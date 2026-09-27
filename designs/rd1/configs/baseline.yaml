@@ -1,0 +1,26 @@
+# Research Design 1 — baseline run.
+# Placeholder task: sentiment classification. Swap model/dataset once RD1's question is set.
+name: rd1-baseline
+seed: 42
+
+model:
+  name: distilbert-base-uncased
+  num_labels: 2
+
+data:
+  dataset: stanfordnlp/imdb
+  text_column: text
+  label_column: label
+  train_split: train
+  eval_split: test
+  max_length: 256
+
+train:
+  epochs: 3
+  learning_rate: 2.0e-5
+  batch_size: 16
+  eval_batch_size: 32
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  fp16: false
+  report_to: none

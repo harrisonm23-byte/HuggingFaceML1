@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Experiment artifacts (models, checkpoints, logs) — track results via metrics/notes instead
+outputs/
+wandb/
+mlruns/
+*.safetensors
+*.bin
+*.pt
+
+# HF caches if redirected locally
+.cache/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

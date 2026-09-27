@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hfml"
+version = "0.1.0"
+description = "Machine learning research with Hugging Face models"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2",
+    "transformers>=5.0",
+    "datasets>=3.0",
+    "accelerate>=0.30",
+    "scikit-learn>=1.3",
+    "numpy",
+    "pyyaml",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "jupyter"]
+tracking = ["wandb"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
