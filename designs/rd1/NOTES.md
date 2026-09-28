@@ -13,3 +13,5 @@ Dated entries: what was run, what happened, what's next. Link run directories un
 - Added notebook 03 (logits, a small MMLU benchmark, a sycophancy pushback eval) as a learning exercise.
 - New idea: does desperation (loss framing) drive more rule-breaking than greed (gain framing)? Added H3 and a framing
   experiment to notebook 02: 5 frames (incl. mixed "gain + downside" / "loss + upside") × calm/emotional × 3 wordings.
+- Added a "we vs. you" switch (blame/credit pinned on the model) to the framing experiment (H4): now 20 conditions.
+  If E2 shows an effect, follow up with Gemma Scope: which features fire on the "you" tokens under blame vs. credit?
