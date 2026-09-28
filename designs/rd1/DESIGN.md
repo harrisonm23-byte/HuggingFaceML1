@@ -44,7 +44,8 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 ## 7. Experiments
 | ID | Config | Purpose | Status |
 |----|--------|---------|--------|
-| E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | todo |
+| E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
+| E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
