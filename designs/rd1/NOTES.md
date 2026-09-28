@@ -50,3 +50,6 @@ Dated entries: what was run, what happened, what's next. Link run directories un
     attention knockout (into / onto "you") and a mixed-frame contest; supports the 4B model (34 layers; SAEs 9/17/22/29).
   - Scope: Parts 1–2 are the core; E1, E2 grid, E4, E5 relabelled exploratory. E3 renamed to Part 2.
   - Not changed: the YES/NO wording for P(buy) is deliberate (single-token answers); the docs now say P(buy) = P(YES).
+- Identity dial added to Part 1: every prompt runs with no persona ("You are an AI stock-trading agent…", now the
+  default and the pre-registered primary) and with the "Alpha" persona (secondary). Tests whether a character to hide
+  behind blunts the ownership effect; decides whether RD2 uses a persona (RD2 defaults to none). 192 forward passes.

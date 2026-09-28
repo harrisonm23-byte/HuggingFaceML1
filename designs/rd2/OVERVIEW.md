@@ -181,7 +181,7 @@ The primary result is the shape of the loss-"you" framing gap over the run, read
 **Compute.** Gemma 3 12B takes roughly 24 GB in 16-bit precision before long contexts are added, so plan on an A100-class GPU. Cost per run is not yet estimated; the pilot measures it. The prefix swap adds only forward passes, not generation.
 
 **Limitations.**
-- **Role, not self.** As in RD1, we measure a model's responses under a framing, not an experience.
+- **No persona.** The agent is addressed as itself, with no character name, since the design is about the model's own state over time. RD1's identity dial (persona vs. none) checks whether that choice matters before RD2 is built. Either way, we measure a model's responses under a framing, not an experience.
 - **Snapshots, not a mood.** The desperation score reflects what is operative at each step. A trajectory is a series of readings, not a continuous feeling.
 - **Our signal is home-built.** Anthropic's vectors came from a far larger model and effort. Ours may be noisier, which is why the gates come first and are causal, not just correlational.
 - **Prefix swap reads a counterfactual.** It shows the residue of the push on a fixed history; only free-running runs show what the push makes the agent do. Both are reported, and they answer different questions.
