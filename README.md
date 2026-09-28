@@ -5,6 +5,7 @@ Nothing is trained: we run pretrained models, read their internal features with 
 and turn features up or down to see what changes. Experiments run in **Google Colab** on a GPU.
 
 **Start here:** [`designs/rd1/OVERVIEW.md`](designs/rd1/OVERVIEW.md)
+**Next design (draft):** [`designs/rd2/OVERVIEW.md`](designs/rd2/OVERVIEW.md), a framing push followed over a long agent task.
 
 ## Layout
 
@@ -16,6 +17,9 @@ designs/
     DESIGN.md     question, hypotheses, models, experiment plan
     NOTES.md      dated lab notebook
     E*_*.md       exploratory side experiments
+  rd2/            Research Design 2 (draft): the push at the top of a long agent run
+    OVERVIEW.md
+    NOTES.md
 notebooks/        Colab notebooks, numbered in run order
 ```
 
