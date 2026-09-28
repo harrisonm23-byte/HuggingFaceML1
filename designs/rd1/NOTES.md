@@ -21,3 +21,5 @@ Dated entries: what was run, what happened, what's next. Link run directories un
 - Made "attention on 'you', coming from a gain or loss statement" explicit in E3: notebook 04 now measures attention
   in both directions: into "you" (share drawn from the preceding loss/gain statement, per layer) and onto "you"
   (how much the decision point looks back at "you", vs. "we"). Documented in E3_tracing_you.md.
+- Added the "you" effect analysis to E2: for every matched you/we pair, BUY counts over trials, the shift in rate
+  (you − we) with a 95% range, pooled over the full matrix, plus a consistency count over the 30 matched pairs.
