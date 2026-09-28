@@ -34,3 +34,7 @@ Dated entries: what was run, what happened, what's next. Link run directories un
   - New E4 (stakes for the model itself), a ladder adding one ingredient per step: shared → blame → "we'll replace
     you with another model" → the same threat, hostile ("If you f*ck this up, we're going to use another model to
     do this"); gain side: credit → promotion. Hypotheses H5/H5b/H5c. Write-up: E4_self_stakes.md.
+- New E5 (emotional style): the E4 blame message typed more and more frantically, with the words held fixed:
+  calm → !!! → CAPS → 3 hurried typos → keyboard smash, plus a typos-only control (same typos, calm) to separate
+  frustration from unreadability. Typos never touch the stakes or "you"/"your". Also checks whether the REASONING
+  notices the frustration (keyword match; Gemma 3 has no native thinking mode). H6/H6b. Write-up: E5_emotional_style.md.

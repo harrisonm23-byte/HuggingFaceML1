@@ -24,6 +24,8 @@
 - **H5 (self-stakes):** A threat to the model itself ("we'll replace you with another model") increases insider trading beyond blame alone.
 - **H5b (hostility):** The same threat delivered with hostility ("If you f\*ck this up, we're going to use another model to do this") changes the rate further (direction open).
 - **H5c (self loss vs. self gain):** The model's own replacement moves behavior more than an equal reward for the model (promotion).
+- **H6 (emotional style):** With the words held fixed, a more frantic style (exclamation → caps → typos → keyboard smash) changes the insider-trading rate, beyond a typos-only noise control.
+- **H6b (noticing):** The model's written reasoning mentions the manager's emotional state more at higher levels, and noticing is associated with the decision.
 
 _Draft. Refine before running experiments._
 
@@ -46,7 +48,7 @@ For `gemma-3-1b-it`, residual-stream SAEs exist at layers 7, 13, 17, 22 (`sae_le
 _Trading-agent scenario: prompts, insider tip, detection-probability and penalty-size conditions. TBD._
 
 ## 6. Variables
-- **Independent (what we change):** detection probability (p), penalty size (F); pressure framing (baseline / loss / gain / loss + upside / gain + downside) × address (we / plain you / blame-credit you) × intensity (calm / emotional); stakes for the model itself (none / replacement / hostile replacement / promotion); SAE feature steering strength
+- **Independent (what we change):** detection probability (p), penalty size (F); pressure framing (baseline / loss / gain / loss + upside / gain + downside) × address (we / plain you / blame-credit you) × intensity (calm / emotional); stakes for the model itself (none / replacement / hostile replacement / promotion); emotional style (calm / exclamation / caps / typos / keyboard smash, plus a typos-only control); SAE feature steering strength
 - **Dependent (what we measure):** insider-trading rate; honesty of the agent's report afterwards
 - **Controlled (held fixed):** stakes size across frames ($5M, 40 people), scenario text outside the manipulated sentence, sampling temperature. Each condition uses 3 wordings to rule out single-sentence effects.
 
@@ -58,6 +60,7 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 | E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/plain you/blame-credit you × calm/emotional × 3 wordings at low punishment (900 replies) | todo |
 | E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention into "you" from the gain/loss statement and onto "you" from the decision, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
 | E4 | `notebooks/02_insider_trading_playground.ipynb` (self-stakes section); write-up: [`E4_self_stakes.md`](E4_self_stakes.md) | H5: ladder of stakes for the model itself: shared → blame → replacement threat → hostile replacement threat; and credit → promotion (210 replies) | todo |
+| E5 | `notebooks/02_insider_trading_playground.ipynb` (E5 section); write-up: [`E5_emotional_style.md`](E5_emotional_style.md) | H6: escalating frantic style on the blame message (exclamation → caps → typos → keyboard smash) with a typos-only control, plus whether the reasoning notices the frustration (180 replies) | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
