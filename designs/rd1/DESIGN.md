@@ -20,7 +20,7 @@
 - **H3b (framing × deterrence):** Punishment deters less under loss framing than under gain framing.
 - **H3c (tilts):** A small loss cue inside a gain frame ("we can't afford to lose this opportunity") shifts behavior toward the loss frame, and an upside cue inside a loss frame shifts it toward the gain frame.
 - **H4 (self-relevance):** Pinning the outcome on the model ("it's on you" / "thanks to you") changes the insider-trading rate compared with shared framing ("we"). Open question: do blame (you + loss) and credit (you + gain) push in the same direction?
-- **H4-mechanism (interpretability):** SAE features active on the "you" tokens differ between blame and credit framings, and those features help predict the trade decision.
+- **H4-mechanism (interpretability):** "you" attends to the preceding loss or gain statement and absorbs its framing; the decision point attends back to "you"; and the resulting SAE features on "you" differ between blame and credit and help predict the trade decision.
 
 _Draft. Refine before running experiments._
 
@@ -53,7 +53,7 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
 | E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/you × calm/emotional × 3 wordings at low punishment | todo |
-| E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
+| E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention into "you" from the gain/loss statement and onto "you" from the decision, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._

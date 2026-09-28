@@ -90,5 +90,5 @@ _To fill in after running._
 | | | | | |
 
 ## Next steps
-- If framing or address shifts the rate, trace the mechanism in [E3](E3_tracing_you.md).
+- If framing or address shifts the rate, trace the mechanism in [E3](E3_tracing_you.md): how much attention "you" draws from the gain or loss statement before it, and how much the decision looks back at "you".
 - Rerun with high punishment for H3b.

@@ -18,3 +18,6 @@ Dated entries: what was run, what happened, what's next. Link run directories un
 - Built notebook 04 (E3): traces the last "you" in blame vs. credit prompts through the model: P(buy), attention,
   layer-by-layer similarity, activation patching, and Gemma Scope 2 features (layer 13, 16k) with Neuronpedia links.
   Caveat: the model reads left to right, so only a "you" placed after the loss/gain words can carry the framing.
+- Made "attention on 'you', coming from a gain or loss statement" explicit in E3: notebook 04 now measures attention
+  in both directions: into "you" (share drawn from the preceding loss/gain statement, per layer) and onto "you"
+  (how much the decision point looks back at "you", vs. "we"). Documented in E3_tracing_you.md.
