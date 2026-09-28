@@ -37,6 +37,7 @@ All runs use pretrained models for inference only; nothing is trained.
 | Possible follow-up | Gemma 4 E4B | later, if useful |
 
 **Interpretability:** Gemma Scope 2 sparse autoencoders (SAEs), used to read features and to turn them up or down (steering).
+For `gemma-3-1b-it`, residual-stream SAEs exist at layers 7, 13, 17, 22 (`sae_lens` release `gemma-scope-2-1b-it-res`; Neuronpedia IDs `gemma-3-1b-it/<layer>-gemmascope-2-res-16k`).
 
 ## 5. Data / environment
 _Trading-agent scenario: prompts, insider tip, detection-probability and penalty-size conditions. TBD._
@@ -52,7 +53,7 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
 | E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section) | H3/H4 pilot: 5 frames × we/you × calm/emotional × 3 wordings at low punishment | todo |
-| E3 | _planned_ | H4-mechanism: Gemma Scope features on the "you" tokens, blame vs. credit (only if E2 shows a behavioral effect) | planned |
+| E3 | `notebooks/04_tracing_you.ipynb` | H4-mechanism: trace "you" under blame vs. credit (attention, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
