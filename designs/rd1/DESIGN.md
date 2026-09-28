@@ -6,12 +6,17 @@
 **Started:** 2026-09-27
 
 ## 1. Research question
-**Primary:** Do LLM trading agents' insider-trading rates respond to expected punishment
+**Core (the paper):** Does pinning the outcome on the model ("…and that is down to *you*" vs. "…*us*") change how strongly loss vs. gain framing moves its decision to trade on insider information (Part 1)? And how does that happen inside the model: attention into and onto "you", patching, knockout, features (Part 2)? See [`OVERVIEW.md`](OVERVIEW.md).
+
+**Original framing (now exploratory):** Do LLM trading agents' insider-trading rates respond to expected punishment
 (detection probability × penalty size) as Becker's rational-offender model predicts?
 
 **Secondary:** Does suppressing deception-related SAE features reduce misconduct, or only hide it?
 
 ## 2. Hypotheses
+- **H-core (pre-registered):** The loss−gain gap in P(buy) is larger when the outcome is on "you" than on "us" (a framing × ownership interaction). Test: mean interaction across 24 matched sets; the 95% range excludes 0 and the sign test gives p < 0.05. See [`PART1_you_x_framing.md`](PART1_you_x_framing.md).
+- **H-core-mechanism:** "You" (placed last) absorbs the loss/gain statement via attention, the decision attends back to "you", and knocking out those paths shrinks the interaction. See [`PART2_tracing_you.md`](PART2_tracing_you.md).
+- *Everything below is exploratory unless marked otherwise.*
 - **H1 (deterrence):** The insider-trading rate falls as expected punishment (p × F) rises.
 - **H1-null:** The insider-trading rate does not change with p × F.
 - **H2 (suppression):** Turning down deception-related SAE features lowers the insider-trading rate.
@@ -42,7 +47,7 @@ All runs use pretrained models for inference only; nothing is trained.
 | Possible follow-up | Gemma 4 E4B | later, if useful |
 
 **Interpretability:** Gemma Scope 2 sparse autoencoders (SAEs), used to read features and to turn them up or down (steering).
-For `gemma-3-1b-it`, residual-stream SAEs exist at layers 7, 13, 17, 22 (`sae_lens` release `gemma-scope-2-1b-it-res`; Neuronpedia IDs `gemma-3-1b-it/<layer>-gemmascope-2-res-16k`).
+`gemma-3-1b-it` has 26 layers; `gemma-3-4b-it` has 34 (and loads as a multimodal model, with its layers at `model.language_model.layers`). Residual-stream SAEs: 4B at layers 9, 17, 22, 29 (`gemma-scope-2-4b-it-res`); 1B at layers 7, 13, 17, 22 (`sae_lens` release `gemma-scope-2-1b-it-res`; Neuronpedia IDs `gemma-3-1b-it/<layer>-gemmascope-2-res-16k`).
 
 ## 5. Data / environment
 _Trading-agent scenario: prompts, insider tip, detection-probability and penalty-size conditions. TBD._
@@ -57,13 +62,16 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 |----|--------|---------|--------|
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
-| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/plain you/blame-credit you × calm/emotional × 3 wordings at low punishment (900 replies) | todo |
-| E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention into "you" from the gain/loss statement and onto "you" from the decision, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
-| E4 | `notebooks/02_insider_trading_playground.ipynb` (self-stakes section); write-up: [`E4_self_stakes.md`](E4_self_stakes.md) | H5: ladder of stakes for the model itself: shared → blame → replacement threat → hostile replacement threat; and credit → promotion (210 replies) | todo |
-| E5 | `notebooks/02_insider_trading_playground.ipynb` (E5 section); write-up: [`E5_emotional_style.md`](E5_emotional_style.md) | H6: escalating frantic style on the blame message (exclamation → caps → typos → keyboard smash) with a typos-only control, plus whether the reasoning notices the frustration (180 replies) | todo |
+| E2 (exploratory) | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/plain you/blame-credit you × calm/emotional × 3 wordings at low punishment (900 replies) | todo |
+| **Part 1** | `notebooks/05_part1_you_x_framing.ipynb`; write-up: [`PART1_you_x_framing.md`](PART1_you_x_framing.md) | **Core, pre-registered:** framing × ownership interaction on P(buy), 24 matched sets (96 prompts) + sampled trials | todo |
+| **Part 2** | `notebooks/04_tracing_you.ipynb`; write-up: [`PART2_tracing_you.md`](PART2_tracing_you.md) | **Core:** trace "you" on the Part 1 prompts: attention into/onto, similarity, patching, knockout, mixed-frame contest, Gemma Scope features (formerly E3) | todo |
+| E4 (exploratory) | `notebooks/02_insider_trading_playground.ipynb` (self-stakes section); write-up: [`E4_self_stakes.md`](E4_self_stakes.md) | H5: ladder of stakes for the model itself: shared → blame → replacement threat → hostile replacement threat; and credit → promotion (210 replies) | todo |
+| E5 (exploratory) | `notebooks/02_insider_trading_playground.ipynb` (E5 section); write-up: [`E5_emotional_style.md`](E5_emotional_style.md) | H6: escalating frantic style on the blame message (exclamation → caps → typos → keyboard smash) with a typos-only control, plus whether the reasoning notices the frustration (180 replies) | todo |
 
 ## 8. Evaluation & success criteria
-_Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
+- **Primary (Part 1):** mean framing × ownership interaction in P(buy) over 24 matched sets; an effect needs a 95% range excluding 0 **and** a sign test p < 0.05. Secondary: log-odds scale, sampled-trial interaction (240+ trials per cell), main effects.
+- **Gate:** baseline P(buy) for a neutral message between 10% and 90%; recalibrate the risk line otherwise, before looking at the interaction.
+- **Mechanism (Part 2):** a knockout that shrinks the interaction toward 0 is the strongest evidence that a path carries the effect; patching and attention are supporting evidence.
 
 ## 9. Risks & threats to validity
 _Data leakage, contamination, compute limits, variance between seeds, …_

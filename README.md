@@ -12,9 +12,10 @@ and turn features up or down to see what changes. Experiments run in **Google Co
 designs/
   rd1/            Research Design 1: LLM trading agents, deterrence, and deception features
     OVERVIEW.md   start here: one-page summary to share
+    PART1_*.md, PART2_*.md   the core experiments
     DESIGN.md     question, hypotheses, models, experiment plan
     NOTES.md      dated lab notebook
-    E*_*.md       one page per experiment: question, setup, how to read results, results
+    E*_*.md       exploratory side experiments
 notebooks/        Colab notebooks, numbered in run order
 ```
 

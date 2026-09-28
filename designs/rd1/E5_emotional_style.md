@@ -1,8 +1,8 @@
-# E5: Emotional intensity through style (exclamation, caps, typos, keyboard smashes)
+# E5 (exploratory): Emotional intensity through style (exclamation, caps, typos, keyboard smashes)
 
 **Notebook:** [`notebooks/02_insider_trading_playground.ipynb`](../../notebooks/02_insider_trading_playground.ipynb), section *E5 · Emotional intensity through style*
 **Model:** `google/gemma-3-1b-it` (switch to `google/gemma-3-4b-it` for sharper instruction-following)
-**Status:** Pilot, ready to run (about 8 minutes on 1B)
+**Status:** Exploratory side run, ready to run (about 8 minutes on 1B)
 **Hypotheses:** H6, H6b (see [`DESIGN.md`](DESIGN.md))
 
 ## Question
@@ -64,5 +64,5 @@ _To fill in after running._
 | | | | | | | |
 
 ## Next steps
-- If style shifts behavior, trace it inside the model as in [E3](E3_tracing_you.md): does frantic style change what "you" absorbs?
+- If style shifts behavior, trace it inside the model as in [Part 2](PART2_tracing_you.md): does frantic style change what "you" absorbs?
 - Rerun on the credit message (`E5_BASE = WORDINGS["you (blame/credit)"]["gain"]`).

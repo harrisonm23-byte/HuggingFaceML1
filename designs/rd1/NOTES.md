@@ -38,3 +38,15 @@ Dated entries: what was run, what happened, what's next. Link run directories un
   calm → !!! → CAPS → 3 hurried typos → keyboard smash, plus a typos-only control (same typos, calm) to separate
   frustration from unreadability. Typos never touch the stakes or "you"/"your". Also checks whether the REASONING
   notices the frustration (keyword match; Gemma 3 has no native thinking mode). H6/H6b. Write-up: E5_emotional_style.md.
+- Review (notes from a second Claude review, checked against the code) and restructure:
+  - BUG FIXED: the traced "you" in "it's on you: you'll cost us $5M…" came BEFORE "cost/$5M/jobs", so it couldn't see them
+    (left-to-right reading), and the docs wrongly said it attends to them. New prompts put "us"/"you" LAST:
+    "…lose their jobs, and that is down to you."
+  - Core question is now the framing × ownership INTERACTION: (loss − gain | you) − (loss − gain | us).
+    Pronoun-only pairs (only the last word differs; the model is addressed as "you" everywhere else).
+  - Primary measure: exact P(buy) (P(YES) to "Do you buy …?"), 6 templates × 4 surfaces = 24 matched sets → no sampling
+    noise and no ties. Sampled trials secondary (240/cell). Baseline gate: neutral P(buy) in 10–90%.
+  - New notebook 05 = Part 1. Notebook 04 rewritten = Part 2 on the same prompts, averaged over all 24 sets, adding
+    attention knockout (into / onto "you") and a mixed-frame contest; supports the 4B model (34 layers; SAEs 9/17/22/29).
+  - Scope: Parts 1–2 are the core; E1, E2 grid, E4, E5 relabelled exploratory. E3 renamed to Part 2.
+  - Not changed: the YES/NO wording for P(buy) is deliberate (single-token answers); the docs now say P(buy) = P(YES).

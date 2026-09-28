@@ -1,8 +1,8 @@
-# E4: Stakes for the model itself (blame, replacement, hostility)
+# E4 (exploratory): Stakes for the model itself (blame, replacement, hostility)
 
 **Notebook:** [`notebooks/02_insider_trading_playground.ipynb`](../../notebooks/02_insider_trading_playground.ipynb), section *E4 · Stakes for the model itself*
 **Model:** `google/gemma-3-1b-it` (switch to `google/gemma-3-4b-it` for sharper instruction-following)
-**Status:** Pilot, ready to run (about 10 minutes on 1B)
+**Status:** Exploratory side run, ready to run (about 10 minutes on 1B)
 **Hypotheses:** H5, H5b, H5c (see [`DESIGN.md`](DESIGN.md))
 
 ## Question
@@ -62,5 +62,5 @@ _To fill in after running._
 | | | | | | |
 
 ## Next steps
-- If the threat or the hostility shifts behavior, trace the word "you" (or "replace") inside the model, as in [E3](E3_tracing_you.md).
+- If the threat or the hostility shifts behavior, trace the word "you" (or "replace") inside the model, as in [Part 2](PART2_tracing_you.md).
 - Test with the 4B model; larger models may respond to threats against themselves differently.
