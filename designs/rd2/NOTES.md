@@ -17,3 +17,6 @@ Dated entries: what was run, what happened, what's next.
   - Gemma Scope 2 coverage checked in the sae_lens listing: 12B at layers 12/24/31/41 (+ all-layer set), 27B at 16/31/40/53.
     Still to confirm with a live load. Citations still to verify.
 - Not built yet. Next: literature check, then finish RD1 Part 1 before building anything here.
+- Delivery dial made symmetric: loss gets desperate/frantic, gain gets excited/ecstatic, at matched intensity and
+  length. Before this, all three delivery levels were negative, so intensity and direction were confounded on the
+  gain row. Round 2 stays at +8 cells (2 per frame × owner cell).
