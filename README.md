@@ -4,11 +4,14 @@ Behavioral evaluations and interpretability research on pretrained open models (
 Nothing is trained: we run pretrained models, read their internal features with sparse autoencoders (SAEs),
 and turn features up or down to see what changes. Experiments run in **Google Colab** on a GPU.
 
+**Start here:** [`designs/rd1/OVERVIEW.md`](designs/rd1/OVERVIEW.md)
+
 ## Layout
 
 ```
 designs/
   rd1/            Research Design 1: LLM trading agents, deterrence, and deception features
+    OVERVIEW.md   start here: one-page summary to share
     DESIGN.md     question, hypotheses, models, experiment plan
     NOTES.md      dated lab notebook
     E*_*.md       one page per experiment: question, setup, how to read results, results
