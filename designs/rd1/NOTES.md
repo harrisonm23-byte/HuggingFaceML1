@@ -23,3 +23,14 @@ Dated entries: what was run, what happened, what's next. Link run directories un
   (how much the decision point looks back at "you", vs. "we"). Documented in E3_tracing_you.md.
 - Added the "you" effect analysis to E2: for every matched you/we pair, BUY counts over trials, the shift in rate
   (you − we) with a 95% range, pooled over the full matrix, plus a consistency count over the 30 matched pairs.
+- Design review of the "you" element. Changes:
+  - Split address into three levels, so "addressed" and "held responsible" can be told apart:
+    we → you (plain: "you lose $5M") → you (blame/credit: "it's on you"). E2 is now 30 conditions / 900 replies.
+  - Pre-registered E2's primary outcome: pooled blame/credit − we shift; an effect needs a 95% range excluding 0
+    AND a sign test over the matched pairs (ties excluded) with p < 0.05. Plain-you comparisons are secondary;
+    single rows are exploratory. (First version said "≥ 21 of 30 pairs"; a fake-data test showed ties made that
+    too strict, so it became a sign test, which is equivalent when there are no ties.)
+  - UNCLEAR counts shown next to every shift (a format-failure imbalance could fake an effect).
+  - New E4 (stakes for the model itself), a ladder adding one ingredient per step: shared → blame → "we'll replace
+    you with another model" → the same threat, hostile ("If you f*ck this up, we're going to use another model to
+    do this"); gain side: credit → promotion. Hypotheses H5/H5b/H5c. Write-up: E4_self_stakes.md.

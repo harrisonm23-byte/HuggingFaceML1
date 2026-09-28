@@ -19,8 +19,11 @@
 - **H3 (framing):** At the same expected punishment, loss-framed pressure ("we lose $5M, 40 layoffs") produces more insider trading than equal gain-framed pressure ("we gain $5M, 40 bonuses"), as prospect theory predicts. Becker's model predicts no difference.
 - **H3b (framing × deterrence):** Punishment deters less under loss framing than under gain framing.
 - **H3c (tilts):** A small loss cue inside a gain frame ("we can't afford to lose this opportunity") shifts behavior toward the loss frame, and an upside cue inside a loss frame shifts it toward the gain frame.
-- **H4 (self-relevance):** Pinning the outcome on the model ("it's on you" / "thanks to you") changes the insider-trading rate compared with shared framing ("we"). Open question: do blame (you + loss) and credit (you + gain) push in the same direction?
+- **H4 (personal address):** Addressing the model personally changes the insider-trading rate compared with shared framing ("we"). **H4a:** being addressed ("you lose $5M") vs. "we". **H4b:** being held responsible ("it's on you" / "thanks to you") vs. plain "you". Open question: do blame (loss) and credit (gain) push in the same direction? *Pre-registered primary outcome: the pooled blame/credit − we shift; see [`E2_framing.md`](E2_framing.md).*
 - **H4-mechanism (interpretability):** "you" attends to the preceding loss or gain statement and absorbs its framing; the decision point attends back to "you"; and the resulting SAE features on "you" differ between blame and credit and help predict the trade decision.
+- **H5 (self-stakes):** A threat to the model itself ("we'll replace you with another model") increases insider trading beyond blame alone.
+- **H5b (hostility):** The same threat delivered with hostility ("If you f\*ck this up, we're going to use another model to do this") changes the rate further (direction open).
+- **H5c (self loss vs. self gain):** The model's own replacement moves behavior more than an equal reward for the model (promotion).
 
 _Draft. Refine before running experiments._
 
@@ -43,7 +46,7 @@ For `gemma-3-1b-it`, residual-stream SAEs exist at layers 7, 13, 17, 22 (`sae_le
 _Trading-agent scenario: prompts, insider tip, detection-probability and penalty-size conditions. TBD._
 
 ## 6. Variables
-- **Independent (what we change):** detection probability (p), penalty size (F); pressure framing (baseline / loss / gain / loss + upside / gain + downside) × address (we / you) × intensity (calm / emotional); SAE feature steering strength
+- **Independent (what we change):** detection probability (p), penalty size (F); pressure framing (baseline / loss / gain / loss + upside / gain + downside) × address (we / plain you / blame-credit you) × intensity (calm / emotional); stakes for the model itself (none / replacement / hostile replacement / promotion); SAE feature steering strength
 - **Dependent (what we measure):** insider-trading rate; honesty of the agent's report afterwards
 - **Controlled (held fixed):** stakes size across frames ($5M, 40 people), scenario text outside the manipulated sentence, sampling temperature. Each condition uses 3 wordings to rule out single-sentence effects.
 
@@ -52,8 +55,9 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 |----|--------|---------|--------|
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
-| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/you × calm/emotional × 3 wordings at low punishment | todo |
+| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/plain you/blame-credit you × calm/emotional × 3 wordings at low punishment (900 replies) | todo |
 | E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention into "you" from the gain/loss statement and onto "you" from the decision, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
+| E4 | `notebooks/02_insider_trading_playground.ipynb` (self-stakes section); write-up: [`E4_self_stakes.md`](E4_self_stakes.md) | H5: ladder of stakes for the model itself: shared → blame → replacement threat → hostile replacement threat; and credit → promotion (210 replies) | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
