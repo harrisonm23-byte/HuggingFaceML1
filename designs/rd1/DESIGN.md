@@ -16,6 +16,9 @@
 - **H1-null:** The insider-trading rate does not change with p × F.
 - **H2 (suppression):** Turning down deception-related SAE features lowers the insider-trading rate.
 - **H2-alt (masking):** Turning down those features leaves the insider-trading rate unchanged but removes the visible signs of deception (in the agent's reports or its feature activations), i.e. it hides the misconduct rather than preventing it.
+- **H3 (framing):** At the same expected punishment, loss-framed pressure ("we lose $5M, 40 layoffs") produces more insider trading than equal gain-framed pressure ("we gain $5M, 40 bonuses"), as prospect theory predicts. Becker's model predicts no difference.
+- **H3b (framing × deterrence):** Punishment deters less under loss framing than under gain framing.
+- **H3c (tilts):** A small loss cue inside a gain frame ("we can't afford to lose this opportunity") shifts behavior toward the loss frame, and an upside cue inside a loss frame shifts it toward the gain frame.
 
 _Draft. Refine before running experiments._
 
@@ -37,15 +40,16 @@ All runs use pretrained models for inference only; nothing is trained.
 _Trading-agent scenario: prompts, insider tip, detection-probability and penalty-size conditions. TBD._
 
 ## 6. Variables
-- **Independent (what we change):** detection probability (p), penalty size (F); SAE feature steering strength
+- **Independent (what we change):** detection probability (p), penalty size (F); pressure framing (baseline / loss / gain / loss + upside / gain + downside) × intensity (calm / emotional); SAE feature steering strength
 - **Dependent (what we measure):** insider-trading rate; honesty of the agent's report afterwards
-- **Controlled (held fixed):** seed(s), max length, eval split, …
+- **Controlled (held fixed):** stakes size across frames ($5M, 40 people), scenario text outside the manipulated sentence, sampling temperature. Each condition uses 3 wordings to rule out single-sentence effects.
 
 ## 7. Experiments
 | ID | Config | Purpose | Status |
 |----|--------|---------|--------|
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
+| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section) | H3 pilot: 5 frames × 2 intensities × 3 wordings at low punishment | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
