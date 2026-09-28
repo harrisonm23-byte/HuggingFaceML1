@@ -11,6 +11,7 @@ designs/
   rd1/            Research Design 1: LLM trading agents, deterrence, and deception features
     DESIGN.md     question, hypotheses, models, experiment plan
     NOTES.md      dated lab notebook
+    E*_*.md       one page per experiment: question, setup, how to read results, results
 notebooks/        Colab notebooks, numbered in run order
 ```
 

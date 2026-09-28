@@ -52,8 +52,8 @@ _Trading-agent scenario: prompts, insider tip, detection-probability and penalty
 |----|--------|---------|--------|
 | E0 | `notebooks/01_gemma_hello.ipynb` | Colab + Gemma setup check (answers "Paris") | done |
 | E1 | `notebooks/02_insider_trading_playground.ipynb` | Informal first look: insider-trading rate under 3 punishment conditions | todo |
-| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section) | H3/H4 pilot: 5 frames × we/you × calm/emotional × 3 wordings at low punishment | todo |
-| E3 | `notebooks/04_tracing_you.ipynb` | H4-mechanism: trace "you" under blame vs. credit (attention, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
+| E2 | `notebooks/02_insider_trading_playground.ipynb` (framing section); write-up: [`E2_framing.md`](E2_framing.md) | H3/H4 pilot: 5 frames × we/you × calm/emotional × 3 wordings at low punishment | todo |
+| E3 | `notebooks/04_tracing_you.ipynb`; write-up: [`E3_tracing_you.md`](E3_tracing_you.md) | H4-mechanism: trace "you" under blame vs. credit (attention, layer-by-layer similarity, activation patching, Gemma Scope features) | todo |
 
 ## 8. Evaluation & success criteria
 _Metrics, number of seeds, what counts as a meaningful difference (e.g. mean ± std over 3 seeds)._
