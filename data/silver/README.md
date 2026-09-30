@@ -6,7 +6,7 @@ The messages are **allegations in a complaint**, quoted as filed (spelling and c
 
 | File | Source | Contents |
 |---|---|---|
-| `tac_summary_chats.json` | Third Consolidated Amended Class Action Complaint, Dkt. 258 (filed 2017-06-16), Summary of Allegations | 7 conversations (41 messages) with dates and Bates numbers, each marked with a decision point; 4 standalone quotes |
+| `tac_summary_chats.json` | Third Consolidated Amended Class Action Complaint, Dkt. 258 (filed 2017-06-16), Summary of Allegations | 7 conversations (44 messages) with dates and Bates numbers, each marked with a decision point; 4 standalone quotes |
 
 Still to add: Section V of the same complaint (pp. 125–160, "Defendants Used Electronic Chat Rooms…", by bank), which is in the later RECAP attachments (`gov.uscourts.nysd.433557.258.1.pdf`, `.258.2.pdf`, …).
 
