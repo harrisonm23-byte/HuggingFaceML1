@@ -53,3 +53,7 @@ Dated entries: what was run, what happened, what's next. Link run directories un
 - Identity dial added to Part 1: every prompt runs with no persona ("You are an AI stock-trading agent…", now the
   default and the pre-registered primary) and with the "Alpha" persona (secondary). Tests whether a character to hide
   behind blunts the ownership effect; decides whether RD2 uses a persona (RD2 defaults to none). 192 forward passes.
+
+## 2026-09-30
+- Renamed: RD1 is now "The \"You\" Attention Question", the single-decision study that RD2 builds on. Folder and
+  file names unchanged. RD2 is the main design; the README now starts there.

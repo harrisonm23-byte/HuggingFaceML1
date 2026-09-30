@@ -1,4 +1,6 @@
-# RD1 Overview: Does pinning the outcome on an AI agent amplify how framing moves its behavior?
+# The "You" Attention Question
+
+*Formerly "RD1". A single-decision study: does pinning the outcome on the model ("…down to **you**") change how strongly loss vs. gain framing moves its behavior, and how does the word "you" carry that inside the model? [RD2](../rd2/OVERVIEW.md) takes the same question over a long agent run and uses this study as its single-decision pilot and the source of its opening lines and tracing code.*
 
 **Status:** Setup done, experiments built and tested offline, first real runs pending · **Last updated:** 2026-09-28
 **Models:** Google Gemma 3 instruction-tuned (4B as the main target, 1B for setup), with Gemma Scope 2 sparse autoencoders

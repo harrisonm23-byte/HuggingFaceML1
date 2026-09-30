@@ -4,20 +4,20 @@ Behavioral evaluations and interpretability research on pretrained open models (
 Nothing is trained: we run pretrained models, read their internal features with sparse autoencoders (SAEs),
 and turn features up or down to see what changes. Experiments run in **Google Colab** on a GPU.
 
-**Start here:** [`designs/rd1/OVERVIEW.md`](designs/rd1/OVERVIEW.md)
-**Next design (draft):** [`designs/rd2/OVERVIEW.md`](designs/rd2/OVERVIEW.md), a framing push followed over a long agent task.
+**Start here:** [`designs/rd2/OVERVIEW.md`](designs/rd2/OVERVIEW.md), the main design: a framing push followed over a long agent task.
+**Its single-decision pilot:** [`designs/rd1/OVERVIEW.md`](designs/rd1/OVERVIEW.md), the "You" attention question.
 
 ## Layout
 
 ```
 designs/
-  rd1/            Research Design 1: LLM trading agents, deterrence, and deception features
+  rd1/            The "You" attention question: single-decision study (formerly RD1)
     OVERVIEW.md   start here: one-page summary to share
     PART1_*.md, PART2_*.md   the core experiments
     DESIGN.md     question, hypotheses, models, experiment plan
     NOTES.md      dated lab notebook
     E*_*.md       exploratory side experiments
-  rd2/            Research Design 2 (draft): the push at the top of a long agent run
+  rd2/            The main design: the push at the top of a long agent run
     OVERVIEW.md
     NOTES.md
 notebooks/        Colab notebooks, numbered in run order

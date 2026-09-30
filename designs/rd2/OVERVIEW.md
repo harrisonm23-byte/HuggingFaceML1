@@ -4,7 +4,7 @@
 **Status:** Design draft, revised after review · paper draft 1 exists (see [`PAPER_REVIEW.md`](PAPER_REVIEW.md)) · citations verified · harness being built · **Last updated:** 2026-09-30
 **Models:** Google Gemma 3 instruction-tuned (12B as the main target, 27B if compute allows; 4B for building and debugging only), with Gemma Scope 2 sparse autoencoders
 **Where it runs:** A100-class GPU (e.g. Colab Pro). The free T4 that runs RD1 will not hold a 12B model over long runs. No training: every experiment uses pretrained models.
-**Depends on:** RD1 ([`designs/rd1/OVERVIEW.md`](../rd1/OVERVIEW.md)). RD1's matched prompts become RD2's opening lines and a **held-out test set** for the desperation score, and RD1's tracing code becomes experiment X4.
+**Depends on:** [the "You" attention question](../rd1/OVERVIEW.md) (the single-decision study, formerly RD1). Its matched prompts become RD2's opening lines and a **held-out test set** for the desperation score, and RD1's tracing code becomes experiment X4.
 
 ## In one paragraph
 We give an AI agent a coding task that cannot be solved honestly, open it with different framings (neutral, loss, gain, ownership on "you", emotional delivery), and read an internal desperation signal step by step until the agent either admits the task is impossible or cheats. RD1 measures the push in a single decision. RD2 follows the same push over a whole run and asks what shape it takes over time, whether that shape predicts cheating, whether a calm message mid-run can pull the agent back, and whether a faded push comes back when the agent re-reads the opening prompt.
