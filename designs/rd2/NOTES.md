@@ -50,4 +50,12 @@ Dated entries: what was run, what happened, what's next.
 - Next: the chat-reply study (the user's idea): the model plays one trader at a decision point and writes the next
   message; dials on the last message (framing, ownership, delivery), verbatim vs. de-identified vs. paraphrased, and how
   visible the victims are; the real trader's reply is the human baseline.
+- Discussed with the user who delivers the loss/gain push in the chat study (the desk head before the chat vs. the rival
+  making the offer). Recommended the desk head (keeps push and offer separate, matches "the push at the top"); not
+  decided. User's call: start simpler first.
+- Pilot built: notebook 08 (silver chat replies). The 25 core decision points, verbatim, no push. The model writes the
+  next message in two roles on the same chat: "human seat" (it is the trader) vs. "AI agent" (an AI desk agent that
+  took over the chat from the trader). A Gemma 4B judge labels replies WENT_ALONG / DECLINED / DODGED /
+  BROKE_CHARACTER and also labels the real traders' replies as a check on itself. Plus a recognition check (can the
+  model name the case?). No paraphrases exist yet; none are needed for this pilot. Main design resumes after.
 
