@@ -57,3 +57,6 @@ Dated entries: what was run, what happened, what's next. Link run directories un
 ## 2026-09-30
 - Renamed: RD1 is now "The \"You\" Attention Question", the single-decision study that RD2 builds on. Folder and
   file names unchanged. RD2 is the main design; the README now starts there.
+- Ownership wording changed at the user's request: tails now read "…and that's on you" / "…and that's on us" (the other
+  five templates use the same "on you/us" construction). The first real Colab run of notebook 05 used the old
+  "that is down to you" wording; it's a 1B gate check, so it stands. The 4B run uses the new wording.

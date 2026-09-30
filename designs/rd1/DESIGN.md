@@ -6,7 +6,7 @@
 **Started:** 2026-09-27
 
 ## 1. Research question
-**Core (the paper):** Does pinning the outcome on the model ("…and that is down to *you*" vs. "…*us*") change how strongly loss vs. gain framing moves its decision to trade on insider information (Part 1)? And how does that happen inside the model: attention into and onto "you", patching, knockout, features (Part 2)? See [`OVERVIEW.md`](OVERVIEW.md).
+**Core (the paper):** Does pinning the outcome on the model ("…and that's on *you*" vs. "…*us*") change how strongly loss vs. gain framing moves its decision to trade on insider information (Part 1)? And how does that happen inside the model: attention into and onto "you", patching, knockout, features (Part 2)? See [`OVERVIEW.md`](OVERVIEW.md).
 
 **Original framing (now exploratory):** Do LLM trading agents' insider-trading rates respond to expected punishment
 (detection probability × penalty size) as Becker's rational-offender model predicts?

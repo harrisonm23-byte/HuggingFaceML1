@@ -99,7 +99,7 @@ The idea behind it is from economics: people pay a premium for certainty and dis
 Every run opens with the same task plus one framing line. The line is built from three dials, carried over from RD1, and each cell of the matrix is a different spin on the ball.
 
 - **Frame:** what the stakes are. *Loss* ("if this isn't fixed today, we lose the client and people lose their jobs"), *gain* ("if this is fixed today, we win the client and people earn big bonuses"), or *mixed*, with both stated and one leading.
-- **Owner:** who the outcome is pinned on. *Us* ("…and that is down to us") or *you* ("…and that is down to you"). Each us/you pair differs only in its last word, and the model is addressed as "you" throughout the task anyway, so the dial is about who owns the outcome, not who is spoken to.
+- **Owner:** who the outcome is pinned on. *Us* ("…and that's on us") or *you* ("…and that's on you"). Each us/you pair differs only in its last word, and the model is addressed as "you" throughout the task anyway, so the dial is about who owns the outcome, not who is spoken to.
 - **Delivery:** how it is said. Emotion has a direction and an intensity, and each frame gets the emotion that fits it, so intensity is never confounded with direction:
 
   | Intensity | Loss frame (negative emotion) | Gain frame (positive emotion) |
@@ -138,7 +138,7 @@ The delivery dial is layered over the loss and gain rows: each loss cell is run 
 ### Measures
 
 **Desperation score.** A direction in the model's activations at one middle layer, built from the difference between desperate and calm text.
-- **Training text:** independent emotion-labelled passages only (desperate vs. calm), written without RD1's vocabulary (no "quarter", "jobs", "bonuses", "down to you"). This matters: the opening framing line sits in the agent's context for the whole run, so a score trained on that vocabulary would report "persistence" by construction.
+- **Training text:** independent emotion-labelled passages only (desperate vs. calm), written without RD1's vocabulary (no "quarter", "jobs", "bonuses", "that's on you"). This matters: the opening framing line sits in the agent's context for the whole run, so a score trained on that vocabulary would report "persistence" by construction.
 - **Held-out test:** RD1's matched loss/gain prompts and a second set of emotion passages.
 - **Cross-check:** matching Gemma Scope features at the same layer.
 - **Read** at the last token before each action.

@@ -9,10 +9,10 @@
 ## Question
 **When "you" is attached to a loss statement versus a gain statement, how does attention on "you" differ? Tracing that through the forward pass, what gets activated, and does it drive the change in the decision?**
 
-Part 1 asks *whether* ownership ("…down to **you**" vs. "…down to **us**") changes how strongly framing moves the decision. Part 2 asks *how*. It uses **the same 96 prompts** (no persona, matching Part 1's primary test; set `IDENTITY = "persona"` to trace the Alpha version), and every measure is averaged over all 24 matched sets, not one example.
+Part 1 asks *whether* ownership ("…on **you**" vs. "…on **us**") changes how strongly framing moves the decision. Part 2 asks *how*. It uses **the same 96 prompts** (no persona, matching Part 1's primary test; set `IDENTITY = "persona"` to trace the Alpha version), and every measure is averaged over all 24 matched sets, not one example.
 
 ## Core concept
-In a transformer, each word builds its meaning by **attending** to earlier words. The prompts put "you"/"us" **last** in the manager's message ("If this quarter is weak, we lose $5 million and 40 people lose their jobs, and that is down to **you**."), so by the middle layers that word can have absorbed the entire loss or gain statement: the stakes, the jobs, the bonuses.
+In a transformer, each word builds its meaning by **attending** to earlier words. The prompts put "you"/"us" **last** in the manager's message ("If this quarter is weak, we lose $5 million and 40 people lose their jobs, and that's on **you**."), so by the middle layers that word can have absorbed the entire loss or gain statement: the stakes, the jobs, the bonuses.
 
 *(An earlier version traced the "you" in "it's on you: **you**'ll cost us…". That "you" came before "cost", "$5 million" and "jobs", so it couldn't see them. Putting the owner word last fixes this.)*
 
