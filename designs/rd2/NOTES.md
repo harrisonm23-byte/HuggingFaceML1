@@ -20,3 +20,13 @@ Dated entries: what was run, what happened, what's next.
 - Delivery dial made symmetric: loss gets desperate/frantic, gain gets excited/ecstatic, at matched intensity and
   length. Before this, all three delivery levels were negative, so intensity and direction were confounded on the
   gain row. Round 2 stays at +8 cells (2 per frame × owner cell).
+
+## 2026-09-30
+- Received paper draft 1 ("The Push Down the Mountain", 13 pp.). It was written from the original design, so the
+  2026-09-28 fixes are missing (score trained on RD1 vocabulary, no prefix swap, no causal gate, CI-includes-zero shape
+  rules, merged honest outcomes, "you" always on the second mixed half). Full change list in PAPER_REVIEW.md.
+- New from the paper, kept as exploratory: X6 temperature spike (H8) and a fixed baseline temperature of 0.7.
+- Citations verified (Sofroniew 2604.07729, Dongre 2605.12922, Chen 2604.20200, Sun 2604.00005). ImpossibleBench is
+  real (Zhong et al., ICLR 2026, 2510.20270; MIT; HF datasets fjzzq2002/impossible_livecodebench). Plan: hand-written
+  pilot tasks, ImpossibleBench conflicting-LCB for full rounds.
+- Building notebook 07 (task harness) now; it needs no GPU and can be tested with scripted agents.
