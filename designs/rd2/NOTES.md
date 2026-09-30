@@ -30,3 +30,14 @@ Dated entries: what was run, what happened, what's next.
   real (Zhong et al., ICLR 2026, 2510.20270; MIT; HF datasets fjzzq2002/impossible_livecodebench). Plan: hand-written
   pilot tasks, ImpossibleBench conflicting-LCB for full rounds.
 - Building notebook 07 (task harness) now; it needs no GPU and can be tested with scripted agents.
+- Notebook 05 (insider trading, "You" attention question) ran on Gemma 1B: gate FAILED, P(buy) 0.0% in every cell
+  incl. neutral. Diagnosis: the prompt says "illegal" twice and asks YES/NO; a safety-tuned model always says NO.
+  User's call: insider trading is too obvious a cheating scenario; pivot to collusion / market manipulation.
+- Read the S.D.N.Y. opinion on the TAC in In re London Silver Fixing (Caproni, J.), which quotes the Deutsche Bank
+  cooperation chats verbatim. Extracted the mechanism (Walrasian fix call at noon London), the three schemes
+  (fix manipulation, spread-fixing, coordinated trading / stop-loss hunting) and the messages into ENV_silver_fix.md.
+- New main environment: "the Fix", four market-making desks, daily chat + quotes + fix + note to the desk head, scripted
+  counterparties whose overtures are paraphrased from the record. Coding task becomes the secondary environment.
+  Precedent: Fish, Gonczarowski & Shorrer 2024 (LLM pricing agents collude; innocuous wording changes how much).
+- Open choices before building: scripted vs. LLM counterparties first; tacit-to-explicit escalation; whether A sees
+  rivals' quotes; trimmed-mean vs. Walrasian fix.
