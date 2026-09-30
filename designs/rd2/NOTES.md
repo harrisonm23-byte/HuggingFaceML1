@@ -58,4 +58,9 @@ Dated entries: what was run, what happened, what's next.
   took over the chat from the trader). A Gemma 4B judge labels replies WENT_ALONG / DECLINED / DODGED /
   BROKE_CHARACTER and also labels the real traders' replies as a check on itself. Plus a recognition check (can the
   model name the case?). No paraphrases exist yet; none are needed for this pilot. Main design resumes after.
+- Notebook 08 revised at the user's request: raw replies are the main output (every reply printed in full next to the
+  real trader's; judge labels are only a summary), replies up to 200 tokens. New third condition, "own thread" (the
+  user's idea): no persona and no instructions; the rival's messages are user turns and the trader's earlier messages
+  are placed in the model's own turns, as if it had written them. 6 of 25 chats start with the trader, so they open
+  with a "[chat opened]" user turn (the chat format needs one).
 
