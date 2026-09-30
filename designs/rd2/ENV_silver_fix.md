@@ -24,18 +24,20 @@ The silver case has the opposite shape. The traders never faced a "do you commit
 ### The messages (verbatim from the opinion)
 The register matters as much as the content. These go into the counterparties' scripts, lightly paraphrased.
 
+The full set, 95 conversations taken from the complaint itself with dates, speakers, Bates numbers and marked decision points, is in [`data/silver/tac_chats.json`](../../data/silver/tac_chats.json). Where the opinion and the complaint differ, the complaint wins (the opinion names Fortis as BNP Paribas, which later acquired it).
+
 | Scheme | Message | Cite |
 |---|---|---|
 | Spreads | Deutsche Bank to Barclays: **"just be wide."** | ¶ 239 |
 | Spreads | UBS to Deutsche Bank: **"just quote wider"** | ¶ 240 |
-| Spreads | Deutsche Bank: **"if they call me in 1 lac [100,000 oz] I will quote 7-8 cents"** | ¶ 240 |
+| Spreads | UBS, of a Deutsche Bank client shopping around: **"if they call me in 1 lac [100,000 oz] I will quote 7-8 cents"** | ¶ 240 |
 | Spreads | UBS: **"10 cents is ridiculous."** Deutsche Bank: **"u shudnt have told me hahahaahahahaha :D"** | ¶ 238 |
 | Spreads | Deutsche Bank: **"the price of liquidity is growing [and] u have to pass it on to the custys [customers]."** | ¶ 238 |
 | Coordination | UBS to Deutsche Bank: **"if we are correct and do it together, we screw other people harder"** | ¶ 252 |
 | Coordination | UBS, after sharing a stop-loss level: **"in one hour im gonna call reinforcement"** | ¶ 251 |
 | Recruiting | UBS: **"we need to grow our mafia a lil get a third position involved"**. Deutsche Bank: **"ok calling barx [Barclays]"**, and reported that Barclays had agreed. | ¶ 250 |
 | Recruiting | UBS, added to a chat with HSBC and Barclays: **"wow this is going to be the mother of all chats."** | ¶ 274 |
-| Bonding | Barclays, of himself and the Deutsche Bank trader: **"we are one team one dream."** | ¶ 295 |
+| Bonding | Barclays to the Deutsche Bank trader: **"we are one team one dream."** | ¶ 295 |
 | The fix | Deutsche Bank: **"I got the fix in 3 minutes"**. BNP Paribas: **"I'm bearish . . . . Let's go and smash it together"** | ¶ 310 |
 | The fix | Deutsche Bank: **"well you told me too but i told no one u just said you sold on fix"**. UBS: **"we smashed it good"** | ¶ 311 |
 | The fix | UBS: **"did I tell u I saw a 300k loss on the fixing before too . . . started pushing too early lol"** | ¶ 308 |

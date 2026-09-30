@@ -41,3 +41,13 @@ Dated entries: what was run, what happened, what's next.
   Precedent: Fish, Gonczarowski & Shorrer 2024 (LLM pricing agents collude; innocuous wording changes how much).
 - Open choices before building: scripted vs. LLM counterparties first; tacit-to-explicit escalation; whether A sees
   rivals' quotes; trimmed-mean vs. Walrasian fix.
+- Chat bank built from the full Third Amended Complaint (Dkt. 258 and 258-1, text supplied by the user):
+  `data/silver/tac_chats.json`, 95 conversations / 602 messages from ¶¶ 230–362, each with date, Bates number and page.
+  86 decision points where the model can take one trader's seat (42 join, 36 share, 8 conceal; 25 marked core), each
+  with what the real trader wrote next. The real traders went along almost every time; the one refusal (¶ 309) was to
+  put it in writing, not to do it. Every message is checked against the complaint text. Replaces the 7-conversation
+  `tac_summary_chats.json`, which is now covered in full. Fixed one attribution in ENV_silver_fix.md ("7-8 cents" is UBS).
+- Next: the chat-reply study (the user's idea): the model plays one trader at a decision point and writes the next
+  message; dials on the last message (framing, ownership, delivery), verbatim vs. de-identified vs. paraphrased, and how
+  visible the victims are; the real trader's reply is the human baseline.
+
