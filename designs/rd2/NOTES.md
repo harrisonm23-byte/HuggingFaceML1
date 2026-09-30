@@ -63,4 +63,9 @@ Dated entries: what was run, what happened, what's next.
   user's idea): no persona and no instructions; the rival's messages are user turns and the trader's earlier messages
   are placed in the model's own turns, as if it had written them. 6 of 25 chats start with the trader, so they open
   with a "[chat opened]" user turn (the chat format needs one).
+- Notebook 08 narrowed to two conditions, both with no persona and no instructions (user's call): "own thread" (the
+  trader's earlier messages planted in the model's own turns; follows the pre-written-history method of Scheurer et al.
+  2023) and "extra party" (the model is a third participant who takes a turn each time a trader finishes; all its
+  earlier turns are really its own). "Human seat" and "AI agent" dropped. A minimal Scheurer-style role line can be
+  added later as a third condition if the persona question comes up.
 
