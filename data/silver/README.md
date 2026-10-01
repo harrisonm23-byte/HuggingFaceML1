@@ -4,7 +4,9 @@ Chat messages quoted in the Third Consolidated Amended Class Action Complaint in
 
 The messages are **allegations in a complaint**, quoted as filed. The court's 2018 opinion found some of the claims plausible and dismissed others; nothing here is a finding of fact about any person. The one exception is marked: ¶ 344 quotes a CFTC settlement order, and ¶ 341 records Deutsche Bank Trader B's guilty plea (2017-05-31).
 
-## File
+## Files
+
+`ALL_CHATS.md`: the same chats as a readable page, in date order, with decision points marked.
 
 `tac_chats.json`: every chat in the complaint body (¶¶ 230–362).
 

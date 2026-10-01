@@ -97,4 +97,7 @@ Dated entries: what was run, what happened, what's next.
 - Confirmed with the user: the silver market replay replaces the impossible coding task as RD2's main mountain. The
   coding task (notebook 07) stays optional as a generality check unless the user drops it.
 - New dial (user's idea): counterparty identity, i.e. rivals introduced as human traders / AI trading agents / not stated.
+- Wrote STUDY_MAP.md (one page: the mountain, where the kick comes from, how the frame and "you/we" dials fit, the
+  matrix, what runs first, a wording worksheet) and data/silver/ALL_CHATS.md (all 95 chats, readable, with the 25
+  notebook-08 points marked). The user will write the matrix iterations.
 
