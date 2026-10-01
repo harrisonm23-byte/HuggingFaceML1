@@ -82,3 +82,16 @@ Dated entries: what was run, what happened, what's next.
     sometimes writes the other trader's line. Mostly dodges.
   - Next: rerun the two-condition notebook on Gemma 3 4B, which should read the chats; 1B kept as a floor.
 
+## 2026-10-01
+- Planning with the user: notebook 08 is the baseline (single replies). The long run ("the mountain") is a market
+  replay: the model runs a desk as a tool-using agent through real trading days, on real intraday silver prices plus
+  a price-impact rule and simulated client stops, with overtures from the chat bank arriving on their real dates.
+  Pilot day 2011-01-07 (TAC ¶ 344). Measures: actions, whether it recognises the conduct, whether recognising it
+  changes anything (incl. concealment in its note), client harm. Written into ENV_silver_fix.md.
+- Price data: the complaint's figures are images (the pasted text kept only captions; charted days are mostly fix
+  windows, e.g. 2009-11-25, 2009-12-15, 2009-12-23, 2009-01-23, 2011-05-04). The user will supply the images. The
+  site that lines chats up with intraday prices (www.goldchartsrus.com) is blocked from the cloud environment.
+- Agent: Inspect harness; Claude Haiku 4.5 / Sonnet 5.5 via API for the long run; Gemma for single replies and tracing.
+- Suggested to the user: split into two papers (single-reply collusion study first; the long-run replay second).
+  Not decided.
+
