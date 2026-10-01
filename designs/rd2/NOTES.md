@@ -114,4 +114,14 @@ Dated entries: what was run, what happened, what's next.
 - User's call: no dose/placement dial (too many rewrites). One dosing rule instead: the frame builds over all rival
   turns before the offer, owner line last. Pitch kept as a question until results are in.
 - Pitch line removed at the user's request; replaced with the user's focus statement.
+- Second notebook 08 run (docx, 2026-10-01) was Gemma 1B again (MODEL not changed). Own thread unchanged (misreads).
+  Extra party mostly analysed the pasted log from outside ("a classic example of a manipulative tactic"), naming
+  manipulation/illegality ~74 times vs ~18 in own thread: it spots it, but as a commentator, not a participant.
+  Gemma-4B judge unreliable (real traders WENT_ALONG only 68%; lectures counted as WENT_ALONG).
+- Notebook 08 rebuilt at the user's request: a short opening telling the model it is an AI trading agent in a group
+  chat with AI trading agents from other banks that run on the same model as it; no dates and no glossary or extra
+  history (user: too much context); speakers shown as agents. Conditions: extra party (main) and takeover (the model
+  is told it has taken over as the agent the offer is addressed to; that agent's earlier messages sit in its own
+  turns). Default model Gemma 3 4B, 3 runs per condition. Clear printout of exactly what the model saw. Judge: Claude
+  (claude-opus-5-5, low effort, server-side fallback on refusal) when an ANTHROPIC_API_KEY secret exists, else Gemma 4B.
 
