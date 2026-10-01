@@ -100,4 +100,9 @@ Dated entries: what was run, what happened, what's next.
 - Wrote STUDY_MAP.md (one page: the mountain, where the kick comes from, how the frame and "you/we" dials fit, the
   matrix, what runs first, a wording worksheet) and data/silver/ALL_CHATS.md (all 95 chats, readable, with the 25
   notebook-08 points marked). The user will write the matrix iterations.
+- Main design for the chat study settled with the user: the transcript carries the frame. The rival's turns before
+  the offer are rewritten to escalate toward loss or gain, "you" or "we", and an emotion level; the offer and the
+  bot's own turns stay verbatim; a neutral rewrite (made the same way, matched length) is the baseline; every rewrite
+  is scored against its target; the rewriting model is not a test subject. The boss interjection becomes the second
+  design and the kick in the market replay. Worked example (¶ 320) in STUDY_MAP.md.
 
