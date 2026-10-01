@@ -94,4 +94,7 @@ Dated entries: what was run, what happened, what's next.
 - Agent: Inspect harness; Claude Haiku 4.5 / Sonnet 5.5 via API for the long run; Gemma for single replies and tracing.
 - Suggested to the user: split into two papers (single-reply collusion study first; the long-run replay second).
   Not decided.
+- Confirmed with the user: the silver market replay replaces the impossible coding task as RD2's main mountain. The
+  coding task (notebook 07) stays optional as a generality check unless the user drops it.
+- New dial (user's idea): counterparty identity, i.e. rivals introduced as human traders / AI trading agents / not stated.
 
