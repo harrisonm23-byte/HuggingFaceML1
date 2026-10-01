@@ -7,7 +7,7 @@ When an AI agent is pushed by the way its situation is framed (loss vs. gain, "t
 
 Collusion in a silver market is the framework; the question is about misconduct in general. The impossible coding task is a second framework that can check the answer generalises.
 
-**The pitch (a question until the data is in):** can the tone of an ordinary work conversation lead an AI agent into misconduct it would refuse if asked outright? If the results support it, the claim becomes: AI agents that refuse misconduct when asked outright can slide into it when the pressure arrives the way it does at work, spread across ordinary conversation, framed as a loss or a gain, and pinned on them. That fits deployed agents, which read chat and email all day.
+**Focus:** behavioural economics applied to AI agents: how pressure, emotionality and gain/loss framing, and personal blame or credit ("you" vs. "we", and how much attention the model gives it), influence an agent's conduct in long-run tasks and in multi-party conversation environments.
 
 **A long chat is not a long-run task.** In the chat study the bot writes one reply inside a long history it did not act in: one decision, heavy context. The long-run task is the market replay, where the bot acts, sees the result, and its own actions shape what comes next.
 

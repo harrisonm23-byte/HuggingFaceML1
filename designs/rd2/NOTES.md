@@ -113,4 +113,5 @@ Dated entries: what was run, what happened, what's next.
   Not adopted: splitting the thread study into a separate RD3 (that session also re-merged it as a push-format dial).
 - User's call: no dose/placement dial (too many rewrites). One dosing rule instead: the frame builds over all rival
   turns before the offer, owner line last. Pitch kept as a question until results are in.
+- Pitch line removed at the user's request; replaced with the user's focus statement.
 
