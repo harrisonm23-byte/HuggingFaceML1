@@ -132,3 +132,5 @@ Dated entries: what was run, what happened, what's next.
   voice, for takeover). Each rewrite checked (numbers kept, length, no refusal), 3 tries, failures flagged. Saves
   rewrites.json. Notebook 08 does not read it yet.
 
+- Notebook 09: worked examples (chat ¶ 320, written by Claude) added to each rewrite instruction for the target frame;
+  switch USE_EXAMPLES; left out when rewriting ¶ 320 itself.
