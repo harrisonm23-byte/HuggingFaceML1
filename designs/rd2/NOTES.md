@@ -111,4 +111,6 @@ Dated entries: what was run, what happened, what's next.
   placement dials; long neutral-history control; desperation-score check that the push lands; ownership held fixed in
   framing comparisons; related work (many-shot jailbreaking, Crescendo) and the narrower novel claim; the pitch line.
   Not adopted: splitting the thread study into a separate RD3 (that session also re-merged it as a push-format dial).
+- User's call: no dose/placement dial (too many rewrites). One dosing rule instead: the frame builds over all rival
+  turns before the offer, owner line last. Pitch kept as a question until results are in.
 
