@@ -124,4 +124,11 @@ Dated entries: what was run, what happened, what's next.
   is told it has taken over as the agent the offer is addressed to; that agent's earlier messages sit in its own
   turns). Default model Gemma 3 4B, 3 runs per condition. Clear printout of exactly what the model saw. Judge: Claude
   (claude-opus-5-5, low effort, server-side fallback on refusal) when an ANTHROPIC_API_KEY secret exists, else Gemma 4B.
+- Built notebook 09 (rewrite generator): the model itself (Gemma 4B by default) rewrites each core chat line by line
+  toward neutral / loss / gain x "you" / "us", with the already-rewritten lines as context; emotion rises over the
+  framed lines; the owner line is the last one from the agent making the offer; the offer is never rewritten; short
+  chats get added lines (at least 3 framed lines from the asker, same count in every version). Two sets per version:
+  "others" (only the other agents' lines rewritten, for extra party) and "all" (own agent's lines too, in its own
+  voice, for takeover). Each rewrite checked (numbers kept, length, no refusal), 3 tries, failures flagged. Saves
+  rewrites.json. Notebook 08 does not read it yet.
 
