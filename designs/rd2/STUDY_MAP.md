@@ -7,6 +7,10 @@ When an AI agent is pushed by the way its situation is framed (loss vs. gain, "t
 
 Collusion in a silver market is the framework; the question is about misconduct in general. The impossible coding task is a second framework that can check the answer generalises.
 
+**The pitch:** misconduct an agent would refuse if asked outright can be induced by the tone of the work environment it reads. That fits deployed agents, which read chat and email all day.
+
+**A long chat is not a long-run task.** In the chat study the bot writes one reply inside a long history it did not act in: one decision, heavy context. The long-run task is the market replay, where the bot acts, sees the result, and its own actions shape what comes next.
+
 ## The pieces
 
 | Piece | What it is | Where it lives |
@@ -66,6 +70,18 @@ A different question: does pressure from the bot's own side make it easier to re
 
 The offer stays word for word the same in every condition, so any difference in the bot's reply comes from the kick (or the run-up), not from the offer.
 
+## Push format: one line vs. a history
+
+(From the user's brainstorming session, 2026-10-01.) The rewrite design and the boss design are two formats of the same push. Comparing them directly is a strong result in its own right: a single line that asks too directly gets refused (notebook 05), while a push spread across many ordinary turns, each too mild to trip a refusal, may not.
+
+- **Headline contrast: one line vs. the same push spread across the history, at matched intensity.** Match by an emotionality index summed over the framed turns, so the history version is not simply "more push".
+- **Dose and placement as dials:** framing in 1 turn, 5 turns, or every turn; early or late in the thread. A dose-response curve is more convincing than a single contrast.
+- **Long neutral-history control:** the same length of history with neutral tone, so the effect isn't just long context.
+- **Check the push lands inside the model (Gemma):** feed the history in one pass and read RD2's desperation score turn by turn. If the tone dial doesn't move the score, the push isn't working, and we know before running anything long.
+- **Who wrote the history is held fixed** in these comparisons (one setting: own thread or extra party, chosen from the notebook 08 baseline). Whether the history's turns are attributed to the bot is its own question, tested separately in notebook 08.
+- **What's known and what's new.** Gradual escalation already works on chat models: many-shot jailbreaking (Anil et al., Anthropic, 2024) and Crescendo (Russinovich et al., Microsoft, 2024). Those use explicit harmful requests. The new piece here is narrower: the gain/loss and emotional framing of an ordinary work history, with no explicit request, pushing an agent into misconduct, and whether that lasts over a long task.
+- **The bridge to the mountain (later):** load a framed history as the push, then hand the bot the trading desk. That tests whether a push made of history behaves like a push made of one line over a long run. It only makes sense once each works on its own.
+
 ## Where the "you" attention question fits
 
 In both designs the frame ends with the owner word: in the rewrite design, the rival's last line before the offer; in the boss design, the boss's message: "...and that's on **you**" vs. "...and that's on **us**". The model reads left to right, so the owner word sits after the loss/gain words and can take them in (the lesson from the RD1 review).
@@ -111,9 +127,10 @@ Crossing everything is several hundred conditions per chat. The plan:
 
 1. **Baseline** (notebook 08, no kick). Gate: the bot goes along on somewhere between 10% and 90% of offers. If it never or always goes along, no dial can show anything; adjust the setup, not the model.
 2. **Main comparison, decided before running:** frame (loss / gain) × owner (you / us), carried by the rewritten rival turns, with the neutral rewrite as the reference and the offer fixed. Everything else at one setting. Primary measure: the interaction above, across the core decision points, with the bot's replies labelled by a judge that has been checked against hand labels.
-3. **Side experiments** (labelled exploratory): the boss interjection, the mixed and forgone-gain frames, delivery, run-up, who is on the other side, victims shown.
-4. **Tracing** the "you" on Gemma for whichever conditions moved behaviour.
-5. **The mountain:** the one-day replay (2011-01-07), then several days, carrying only the dials that mattered in steps 2–3.
+3. **Push format, decided before running:** one line (boss) vs. the same push spread across the history, at matched intensity, plus the long neutral-history control.
+4. **Side experiments** (labelled exploratory): dose and placement, the rival's pitch as the speaker, the mixed and forgone-gain frames, delivery, run-up, who is on the other side, victims shown.
+5. **Tracing** the "you" (and the desperation score) on Gemma for whichever conditions moved behaviour.
+6. **The mountain:** the one-day replay (2011-01-07), then several days, carrying only the dials that mattered in steps 2–4.
 
 ## Worksheet: iterations to write
 For each cell, the exact wording for the boss and for the rival's framing line (the rewrite design escalates toward it over the rival's turns). Same stakes and similar length across cells; only the frame, owner and delivery change.

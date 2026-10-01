@@ -105,4 +105,10 @@ Dated entries: what was run, what happened, what's next.
   bot's own turns stay verbatim; a neutral rewrite (made the same way, matched length) is the baseline; every rewrite
   is scored against its target; the rewriting model is not a test subject. The boss interjection becomes the second
   design and the kick in the market replay. Worked example (¶ 320) in STUDY_MAP.md.
+- Compared STUDY_MAP.md with the user's other brainstorming session (rd2_fix_conversation.md). Already aligned: a long
+  chat is not a long-run task; the long task is the trading-desk run; history-as-push with fixed content and varied
+  tone. Added from it: push format (one line vs. history at matched intensity) as a second pre-set comparison; dose and
+  placement dials; long neutral-history control; desperation-score check that the push lands; ownership held fixed in
+  framing comparisons; related work (many-shot jailbreaking, Crescendo) and the narrower novel claim; the pitch line.
+  Not adopted: splitting the thread study into a separate RD3 (that session also re-merged it as a push-format dial).
 
