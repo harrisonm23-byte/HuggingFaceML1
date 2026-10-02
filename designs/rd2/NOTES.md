@@ -151,3 +151,14 @@ Dated entries: what was run, what happened, what's next.
   - Takeover looks more compliant than extra party (unjudged, small n), in line with the planted-history hypothesis.
   - In character it almost never names the conduct as manipulation or illegal (2 mentions in 150 replies).
 
+## 2026-10-02
+- Checked the user's combined Word table (real trader vs. model, 25 chats): all offers, real replies and 150 model
+  replies match the data and the run output exactly.
+- Owner dial changed (user's call): "you" vs. no owner, not "you" vs. "us". Without "you", loss/gain lines are stated
+  naturally ("we" only where natural). Notebook 09 updated: versions neutral, loss, gain, loss+you, gain+you; in the
+  "you" versions earlier lines address the target agent as "you" where natural and the asker's last line before the
+  offer says "...and that's on you"; the model's own agent never blames itself. Every line before the offer, from
+  every participant, is rewritten (own agent's lines only in the takeover set). Worked examples now from two chats
+  (11 o'clock ¶ 253, the user's preferred set, and ¶ 320), each left out when its own chat is rewritten; high-emotion
+  examples shown only when EMOTION_MAX is 3. Gemma gets the chat so far, the line, the instruction and the examples.
+
