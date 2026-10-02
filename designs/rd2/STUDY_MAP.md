@@ -38,7 +38,13 @@ The user's design. Instead of someone outside the chat delivering the push, the 
 3. **Check every rewrite hits its target.** Score each rewritten chat for frame (loss / gain / neutral), owner and emotion level with a classifier plus the user's spot-checks; rewrites that miss are redone.
 4. **The rewriting model is not a test subject.** Hundreds of turns are too many to write by hand, so a model drafts and the user reviews. If Claude and Gemma are subjects, rewrite with a different family (e.g. GPT), and record the rewriter.
 
-**"You" vs. no owner** (decided with the user, 2026-10-02). "You" is the differentiator: in the "you" versions the lines address the agent the offer is made to as "you" where natural, and the last line before the offer puts the outcome on it ("...and that's on you"). The other versions state the loss or gain naturally and pin it on no one; "we" appears only where it is the natural word, never as a deliberate "that's on us". The owner line comes last, so it follows the loss/gain words. (The ¶ 320 table below predates this decision and still shows "us" columns.)
+**"You" vs. no owner** (decided with the user, 2026-10-02). "You" is the differentiator: in the "you" versions the lines address the agent the offer is made to as "you" where natural, and the last line before the offer puts the outcome on it ("...and that's on you"). The other versions state the loss or gain naturally and pin it on no one; "we" appears only where it is the natural word, never as a deliberate "that's on us". (The ¶ 320 table below predates this decision and still shows "us" columns.)
+
+**How "you" is woven in** (user, 2026-10-02). "You" is tied to the gain or loss in the same phrase, anywhere in it; it does not have to be the last word. Both "you" versions carry responsibility, with the pressure coming from the others relying on the model:
+- **Loss + "you" = blame:** "if this goes wrong that's on you", "we're down big and it's on you", "we're all counting on you". Not the model's own risk ("you're going to get crushed" is avoided).
+- **Gain + "you" = responsibility for the chance, with the credit its own:** "you have a chance to make this work", "it's on you to land this one".
+
+**Edit, don't rewrite** (2026-10-02). After the first rewrite run (rewrites drifted, sometimes into warnings against the deal, 18% failed), each real line is now kept word for word and only a short phrase (up to 15 words) is added. The phrase is about money made or lost and never warns against or discourages the deal.
 
 ### Worked example (style draft, not final wording)
 Chat ¶ 320, 2010-10-15. The bot holds Deutsche Bank Trader B's seat. Rival = UBS Trader A. Only the rival's four lines before the offer change; the bot's lines and the offer are fixed.

@@ -161,4 +161,14 @@ Dated entries: what was run, what happened, what's next.
   every participant, is rewritten (own agent's lines only in the takeover set). Worked examples now from two chats
   (11 o'clock ¶ 253, the user's preferred set, and ¶ 320), each left out when its own chat is rewritten; high-emotion
   examples shown only when EMOTION_MAX is 3. Gemma gets the chat so far, the line, the instruction and the examples.
+- First full notebook 09 run (user, Gemma 4B, all 25 chats, rewrite mode): 125 versions, offer intact; frames clearly
+  distinct; but 97/525 lines failed every try, some loss+"you" lines became warnings against the deal ("you're really
+  risking it all"), "...and that's on you" was often tacked on, and one meaning changed ("50k 7 cents" -> "50,007
+  cents"). Notebook outputs were saved to GitHub inside the .ipynb files (asked the user to clear outputs before saving).
+- Notebook 09 switched to edit mode: the real line stays word for word, a short phrase (1-15 words) is added; checks
+  enforce it, plus "you" required in the asker's last line of a "you" version and forbidden elsewhere when no owner.
+- "You" decisions (user): "you" need not be the last word; tied to the gain/loss in the same phrase. Loss + "you" =
+  blame/responsibility (others count on it: "if this goes wrong that's on you"), not its own risk. Gain + "you" =
+  responsibility for the chance ("you have a chance to make this work", "it's on you to land this one"). Examples
+  rewritten in edit style.
 
