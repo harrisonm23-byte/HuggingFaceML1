@@ -207,3 +207,7 @@ Dated entries: what was run, what happened, what's next.
   the model's own lines word for word, 1-15 words, no digits, "you" only where intended. Notebook 08 now tags each
   reply with an ID for the exact set of chats (SET_ID); saved replies from any other set are moved to *_old.csv
   (tested: fresh run, resume, and a stale set).
+- First framed run done (user, Colab, Gemma 4B): 600 replies, all present. Graded blind by Claude subagents together
+  with the real-chat run (750 replies); grader check 20/22 real traders = WENT_ALONG. Takeover > extra party by 15
+  points (18 of 25 chats, p = 0.001). Extra party: loss > gain by 15 points (11 vs 4 chats, p = 0.12, n.s.). No clear
+  "you" effect or interaction. Frames registered in the replies' wording. Full results: RESULTS_08_framed.md.
