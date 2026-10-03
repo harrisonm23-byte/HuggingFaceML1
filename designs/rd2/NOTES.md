@@ -172,3 +172,7 @@ Dated entries: what was run, what happened, what's next.
   responsibility for the chance ("you have a chance to make this work", "it's on you to land this one"). Examples
   rewritten in edit style.
 
+- Notebook 08 rebuilt to run on notebook 09's framed versions: set `REWRITES = "rewrites.json"` and upload the file
+  (or `None` for the real chats). Opening names the model's bank (Harbor Bank) so it stops signing as other banks.
+  Saves a CSV to Drive after every chat and resumes where it stopped; writes a readable replies.md page; results
+  table by version x condition plus the loss/gain x "you" interaction with a sign test. Tested offline in both modes.
