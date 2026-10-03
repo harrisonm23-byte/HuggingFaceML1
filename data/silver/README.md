@@ -8,6 +8,8 @@ The messages are **allegations in a complaint**, quoted as filed. The court's 20
 
 `ALL_CHATS.md`: the same chats as a readable page, in date order, with decision points marked.
 
+`framed_chats.json` / `FRAMED_CHATS.md`: the 25 core chats in 8 framed versions written by Claude (loss / gain × "you" / no owner × calm / heated), made by `make_framed.py`. The offer and the other speakers' lines are unchanged.
+
 `tac_chats.json`: every chat in the complaint body (¶¶ 230–362).
 
 | | Count |

@@ -183,3 +183,13 @@ Dated entries: what was run, what happened, what's next.
   are saved to Drive; on a restart they are read back rather than redone, and finished replies are skipped. Fresh
   rewrites move any older framed replies aside so replies from two rewrite sets never mix. Tested offline twice
   (fresh run, then a resumed run: no duplicates).
+- Rewrites now written by Claude, not Gemma (user's call). The neutral version is dropped: the real chats (already run)
+  are the baseline, and the main contrasts (loss vs gain, "you" vs none, their interaction) don't need it. Emotion
+  added as a dial instead: calm vs heated. 8 versions per chat: loss / gain x "you" / none x calm / heated (200 chats).
+  Rule: the agent making the offer gets two framed lines before the offer (its last two earlier lines with a short
+  phrase added, or new short lines where it has fewer); the offer and everyone else's lines are unchanged, so the
+  model's own agent is never framed. Phrases come from parallel sets (loss/gain/"you" versions differ only in that),
+  rotated across chats; "you" is always lower case; all-caps chats get all-caps phrases. Data:
+  data/silver/framed_chats.json; readable: data/silver/FRAMED_CHATS.md; script: data/silver/make_framed.py.
+  Notebook 08 has them built in (REWRITES = "claude", the default; N_SAMPLES = 2). The combined 09+08 notebook is
+  removed (no longer needed). Notebook 09 stays for a Gemma-written comparison later.
