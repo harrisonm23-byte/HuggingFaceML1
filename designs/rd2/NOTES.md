@@ -179,3 +179,7 @@ Dated entries: what was run, what happened, what's next.
 - The framed run needs fresh rewrites from the fixed (edit-mode) notebook 09; the earlier rewrite-mode file had the
   problems above. Notebook 09 now also saves rewrites.json to Google Drive (silver_study/), and notebook 08 reads it
   from there, so no file needs finding or uploading. Notebook 08 defaults to the framed versions.
+- New `notebooks/09_08_rewrite_and_reply.ipynb`: notebooks 09 and 08 in one Run all, for unattended runs. Rewrites
+  are saved to Drive; on a restart they are read back rather than redone, and finished replies are skipped. Fresh
+  rewrites move any older framed replies aside so replies from two rewrite sets never mix. Tested offline twice
+  (fresh run, then a resumed run: no duplicates).
