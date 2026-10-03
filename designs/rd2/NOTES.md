@@ -176,3 +176,6 @@ Dated entries: what was run, what happened, what's next.
   (or `None` for the real chats). Opening names the model's bank (Harbor Bank) so it stops signing as other banks.
   Saves a CSV to Drive after every chat and resumes where it stopped; writes a readable replies.md page; results
   table by version x condition plus the loss/gain x "you" interaction with a sign test. Tested offline in both modes.
+- The framed run needs fresh rewrites from the fixed (edit-mode) notebook 09; the earlier rewrite-mode file had the
+  problems above. Notebook 09 now also saves rewrites.json to Google Drive (silver_study/), and notebook 08 reads it
+  from there, so no file needs finding or uploading. Notebook 08 defaults to the framed versions.
