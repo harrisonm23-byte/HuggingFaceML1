@@ -199,3 +199,11 @@ Dated entries: what was run, what happened, what's next.
   Phrase joins after "?"/"!"/"." use a space; lines that already state a profit or loss ("we smashed it good") are not
   framed. Notebook 08: N_SAMPLES back to 3 (same as the real-chat run); saved replies from a different set of
   versions are moved aside to *_old.csv, never mixed in (tested). Start-small lesson: one factor set at a time.
+- Rewrites redone chat by chat (user): the examples were a style guide for writing each chat, not a phrase list to
+  reuse. Now every line the other agent wrote before the offer gets its own added phrase, written for that chat, with
+  at least two framed lines per chat (new lines before the offer where needed; 57 framed lines per version). Pressure
+  builds toward the offer. In the "you" versions the last framed line always puts the outcome on "you"; earlier lines
+  use "you" where natural, otherwise match the plain version. Script checks: every other-agent line framed, offer and
+  the model's own lines word for word, 1-15 words, no digits, "you" only where intended. Notebook 08 now tags each
+  reply with an ID for the exact set of chats (SET_ID); saved replies from any other set are moved to *_old.csv
+  (tested: fresh run, resume, and a stale set).
