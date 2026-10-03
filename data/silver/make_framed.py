@@ -2,7 +2,8 @@
 # Rule: the asker (the agent who makes the offer) gets two framed lines before the offer: its last two earlier lines,
 # kept word for word with a short phrase added at the end, or, where it has fewer, new short lines inserted just
 # before the offer. The offer itself, and every other speaker's lines, stay word for word.
-# Versions: loss / gain x "you" / no owner = 4 per chat. One emotion level, in the style of the approved examples
+# Versions: loss / gain x "you" / no owner = 4 per chat. One emotion level, in the style of Claude's worked examples
+# for notebook 09, which the user liked
 # ("we're getting crushed this week", "can't eat another loss", "if this goes wrong that's on you").
 # Each phrase set is parallel, so a chat's four versions differ only in frame and "you".
 import json, re

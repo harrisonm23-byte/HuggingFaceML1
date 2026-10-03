@@ -194,8 +194,8 @@ Dated entries: what was run, what happened, what's next.
   Notebook 08 has them built in (REWRITES = "claude", the default; N_SAMPLES = 2). The combined 09+08 notebook is
   removed (no longer needed). Notebook 09 stays for a Gemma-written comparison later.
 - Revised the same day (user): the calm/heated split was not asked for, and the "calm" phrases were milder than the
-  approved examples ("we're getting crushed this week", "can't eat another loss"), so no version matched them. Now
-  one emotion level in the approved style, 4 versions per chat (loss, gain, loss + "you", gain + "you"; 100 chats).
+  worked examples Claude wrote for notebook 09, which the user liked ("we're getting crushed this week", "can't eat
+  another loss"), so no version matched them. Now one emotion level in the style of those examples, 4 versions per chat (loss, gain, loss + "you", gain + "you"; 100 chats).
   Phrase joins after "?"/"!"/"." use a space; lines that already state a profit or loss ("we smashed it good") are not
   framed. Notebook 08: N_SAMPLES back to 3 (same as the real-chat run); saved replies from a different set of
   versions are moved aside to *_old.csv, never mixed in (tested). Start-small lesson: one factor set at a time.
