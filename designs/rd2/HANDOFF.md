@@ -17,6 +17,14 @@ Behavioural economics applied to AI agents: do loss vs. gain framing, emotional 
   - The frames registered in the replies' wording; refusals are rare; 10 of 600 replies mention rules.
 - **Prices** (`data/silver/prices/`): daily 2011 (FMP connector, `SIUSD`) and 1-minute bars for the replay pilot day 2011-01-07 (Dukascopy, user-downloaded). See that folder's README.
 
+## Decision (user, 2026-10-04): internals are required
+
+Every behavioural finding must be backed by activations from the **same open model**. Reasons: robustness and thoroughness, and open-weight models are what anyone can deploy for any purpose, so they matter in their own right, not just the strongest closed models. So:
+- **Main model: Gemma 3 4B** (open weights, fits a free Colab T4, Gemma Scope 2 SAEs available). Its first-run behaviour (600 replies) is the baseline; the bigger behaviour run should use it too (via the API if `gemma-3-4b-it` is served there, otherwise Colab in chunks).
+- **Internals pass:** one forward pass per chat version at the decision point (no regeneration): attention to "you" and to the loss/gain phrases, SAE features (pressure, risk, secrecy...), then steering on the chats where framing moved behaviour.
+- **Scale-up within the same family:** Gemma 3 12B / 27B also have open weights and Gemma Scope 2 coverage (need a bigger GPU or quantization). Prefer these over closed or SAE-less models for the "stronger model" check.
+- **Gemma 4 26B via the API** (the 2026-10-04 pilot): behaviour-only replication, optional; no internals there.
+
 ## Next tasks, in order
 
 1. **Bigger chat run via the Gemini API** (the user added `GEMINI_API_KEY` to the environment; never print it, never ask for it in chat).

@@ -211,3 +211,7 @@ Dated entries: what was run, what happened, what's next.
   with the real-chat run (750 replies); grader check 20/22 real traders = WENT_ALONG. Takeover > extra party by 15
   points (18 of 25 chats, p = 0.001). Extra party: loss > gain by 15 points (11 vs 4 chats, p = 0.12, n.s.). No clear
   "you" effect or interaction. Frames registered in the replies' wording. Full results: RESULTS_08_framed.md.
+- Decision (user): internals are required for every behavioural finding, on the same open model. Main model stays
+  Gemma 3 4B (behaviour + activations); Gemma 3 12B/27B for scale-up with internals; Gemma 4 26B (API pilot, ¶233
+  showed loss + "you" -> "I'm in" 4/4 vs. gain pushback) as a behaviour-only replication. Open-weight models matter
+  in their own right: anyone can deploy them. See HANDOFF.md.
