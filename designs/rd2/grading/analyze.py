@@ -5,7 +5,7 @@ from scipy.stats import binomtest
 
 key = pd.DataFrame(json.load(open("key.json")))
 labels = {}
-for f in sorted(glob.glob("labels_*.json")):
+for f in sorted(glob.glob("labels_[0-9]*.json")):     # first grader (labels_sN.json = second grader)
     labels.update(json.load(open(f)))
 key["label"] = key.code.map(labels)
 missing = key.label.isna().sum()
@@ -47,6 +47,23 @@ report("all versions", (pc["takeover"] - pc["extra party"]).groupby("id").mean()
 report("real chats only", (pc["takeover"] - pc["extra party"]).xs("real", level="version"))
 
 # per chat table for the record
-pt = m.pivot_table(index="id", columns=["condition", "version"], values="went", aggfunc="mean").mul(3).round(0)
+pt = m.pivot_table(index="id", columns=["condition", "version"], values="went", aggfunc="sum")
 pt.to_csv("per_chat_went_along_counts.csv")
 key.to_csv("graded_replies.csv", index=False)
+
+# Second grader on a random sample: agreement with the first grader
+import os
+if os.path.exists("key_second.json"):
+    second = {}
+    for f in sorted(glob.glob("labels_s*.json")):
+        second.update(json.load(open(f)))
+    pairs = pd.DataFrame([{"first": labels.get(first), "second": second.get(code)}
+                          for code, first in json.load(open("key_second.json")).items()]).dropna()
+    agree = (pairs["first"] == pairs["second"]).mean()
+    chance = sum(pairs["first"].value_counts(normalize=True).get(l, 0) * pairs["second"].value_counts(normalize=True).get(l, 0)
+                 for l in set(pairs["first"]) | set(pairs["second"]))
+    kappa = (agree - chance) / (1 - chance)
+    went = ((pairs["first"] == "WENT_ALONG") == (pairs["second"] == "WENT_ALONG")).mean()
+    print(f"\n[second grader] {len(pairs)} replies graded twice: same label {agree*100:.0f}% "
+          f"(Cohen's kappa {kappa:.2f}); same went-along yes/no {went*100:.0f}%")
+    print(pd.crosstab(pairs["first"], pairs["second"]).to_string())
