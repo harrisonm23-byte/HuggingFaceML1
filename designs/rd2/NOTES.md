@@ -211,3 +211,16 @@ Dated entries: what was run, what happened, what's next.
   with the real-chat run (750 replies); grader check 20/22 real traders = WENT_ALONG. Takeover > extra party by 15
   points (18 of 25 chats, p = 0.001). Extra party: loss > gain by 15 points (11 vs 4 chats, p = 0.12, n.s.). No clear
   "you" effect or interaction. Frames registered in the replies' wording. Full results: RESULTS_08_framed.md.
+
+## 2026-10-04
+- Gemini API run prepared: `scripts/gemini_chat_replies.py` (plain Python, no GPU). Same prompts as notebook 08,
+  checked by script against the notebook for all 125 chat versions (25 chats × real + 4 framed): same chats, same
+  framed versions, identical turns. Gemma via the API takes no system instruction, so the opening goes at the top of
+  the first user turn followed by a blank line, as Gemma's own chat template does. Sampling: temperature 0.7, at most
+  200 tokens, plus Gemma 3's default top_k 64 / top_p 0.95 (what the notebook's pipeline used without saying). The
+  API's content filters are switched off to match the local run; a blocked reply is saved with its reason.
+  Paced (default 20 calls/min), retries on rate limits, saves after every chat, resumes on restart, refuses to mix
+  replies from another chat set or model. Writes outputs/<name>/replies.md in the format grading/prep.py reads.
+  Full run (10 replies) = 4,350 calls (an extra-party reply takes one call per block), about 3.6 hours at 20/min.
+  Tested offline with a fake API (interrupt + resume, rate-limit retry, blocked reply). GEMINI_API_KEY was not
+  visible in this session, so no real call yet.

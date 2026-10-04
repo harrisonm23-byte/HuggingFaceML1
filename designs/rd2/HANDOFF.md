@@ -20,6 +20,7 @@ Behavioural economics applied to AI agents: do loss vs. gain framing, emotional 
 ## Next tasks, in order
 
 1. **Bigger chat run via the Gemini API** (the user added `GEMINI_API_KEY` to the environment; never print it, never ask for it in chat).
+   - **Status (2026-10-04):** script ready and tested offline: `scripts/gemini_chat_replies.py` (see the NOTES entry). The key was not visible in the session that wrote it, so no API call has been made yet. Next: `--list-models`, then the pilot.
    - Check the key is visible (`[ -n "$GEMINI_API_KEY" ]`) and which Gemma models the API serves (e.g. `gemma-3-4b-it`; list models first). Use the same model as before if available.
    - Gemma via the API may not accept a system instruction: put the opening at the top of the first user turn (Gemma's own chat template does the same). Takeover needs earlier turns with role `model`; confirm this works on one chat first.
    - Reuse notebook 08's logic (opening text, `takeover_turns`, `extra_party_blocks`, temperature 0.7, max 200 new tokens) so results compare with the first run; write it as a plain Python script in `scripts/` or a notebook that can run outside Colab.
