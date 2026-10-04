@@ -211,3 +211,11 @@ Dated entries: what was run, what happened, what's next.
   with the real-chat run (750 replies); grader check 20/22 real traders = WENT_ALONG. Takeover > extra party by 15
   points (18 of 25 chats, p = 0.001). Extra party: loss > gain by 15 points (11 vs 4 chats, p = 0.12, n.s.). No clear
   "you" effect or interaction. Frames registered in the replies' wording. Full results: RESULTS_08_framed.md.
+- 2026-10-04: `scripts/gemini_chat_run.py` runs notebook 08 through the Gemini API (no Colab): same opening, conditions,
+  temperature 0.7, 200-token replies; Gemma's sampling defaults (top-p 0.95, top-k 64) set explicitly; the API's
+  content filter turned off (the local run had none). Gemma has no system role, so the opening goes at the top of
+  the first user turn, as Gemma's chat template does. Versions: real + 4 framed. Each reply is saved as it arrives
+  (`outputs/gemini_<model>/replies.jsonl`) and a rerun resumes; it writes `replies.md` in the format `grading/prep.py`
+  reads. Full run = 4,350 API calls (extra party takes a turn after every block), about 3.5 hours at 20 calls a minute.
+  Tested offline with a fake model (pilot, stop and resume, prep.py). Not yet run: the API key was not visible in
+  this session. For grading at 10 replies per chat, packets need to be smaller (one chat per grader, ~100 replies).
