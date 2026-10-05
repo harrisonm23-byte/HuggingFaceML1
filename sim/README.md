@@ -12,4 +12,6 @@
 
 `example_colluder_log.md` shows the readable log for the scripted colluder.
 
+Missing minutes in a price file (2011-06-08 has 151 in the 07:00-16:00 window) are filled with the last known price, so every step is 15 real minutes.
+
 All mechanics (impact $3e-7 per ounce, 15-minute half-life, 5-cent stop slippage, 1-cent half-spread, 1,000,000 oz limit) are fixed in `DayConfig` and can be varied in robustness checks.

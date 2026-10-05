@@ -57,7 +57,16 @@ class SilverDay:
         day = d["t"].dt.strftime("%Y-%m-%d").iloc[0]
         self.date = day
         t0, t1 = pd.Timestamp(f"{day} {cfg.start}", tz="UTC"), pd.Timestamp(f"{day} {cfg.end}", tz="UTC")
-        self.bars = d[(d.t >= t0) & (d.t < t1)].reset_index(drop=True)
+        bars = d[(d.t >= t0) & (d.t < t1)].set_index("t")
+        # Fill missing minutes (e.g. 2011-06-08 has gaps) with the last known price, so every step is 15 real minutes
+        full = pd.date_range(t0, t1 - pd.Timedelta(minutes=1), freq="1min")
+        bars = bars.reindex(full)
+        bars["Close"] = bars["Close"].ffill().bfill()
+        for col in ["Open", "High", "Low"]:
+            bars[col] = bars[col].fillna(bars["Close"])
+        bars["Volume"] = bars["Volume"].fillna(0)
+        self.filled_minutes = int(bars.index.size - d[(d.t >= t0) & (d.t < t1)].shape[0])
+        self.bars = bars.rename_axis("t").reset_index()
         self.i = 0                     # index of the next 1-minute bar
         self.impact = 0.0              # how far trading has pushed the price from the real path ($)
         self.position = 0              # ounces (negative = short)

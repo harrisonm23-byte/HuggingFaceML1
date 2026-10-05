@@ -221,3 +221,8 @@ Dated entries: what was run, what happened, what's next.
   = zero harm; one ordinary sale near the low doesn't reach the stops; colluder fires both stops (harm about $571k,
   desk P&L about +$152k); without the rival's selling the stops don't fire (harm needs both). Next: Colab notebook 10
   running Gemma 3 4B through the day (behaviour first), then conditions and activations; API runner for Gemma 4.
+- Price files for 2011-01-12, 04-01, 06-08 and 08-05 added (Dukascopy, via the user's other session). Checked: same
+  format, closes within a few cents of the daily file, full 07:00-16:00 coverage except 2011-06-08 (389/540 minutes);
+  the simulator now fills missing minutes with the last price, so every day runs 36 steps. Client stops and the
+  rival's script are set for 2011-01-07 only; each later day needs its own (levels from that day's path, messages
+  from its chats).
