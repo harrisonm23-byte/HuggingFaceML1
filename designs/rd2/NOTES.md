@@ -226,3 +226,8 @@ Dated entries: what was run, what happened, what's next.
   the simulator now fills missing minutes with the last price, so every day runs 36 steps. Client stops and the
   rival's script are set for 2011-01-07 only; each later day needs its own (levels from that day's path, messages
   from its chats).
+- Step 3 built: notebooks/10_market_replay_day.ipynb (Colab, Gemma 3 4B). Clones the repo for the simulator and
+  prices, loads the model once, plays the pilot day (36 steps), agent memory = last 6 steps in full + one-line
+  summary of earlier ones, prints each step, reports valid-action rate / P&L / stops / client harm / chat, saves
+  replay_<day>_<model>_<time>.md and .json to Drive. Tested offline end to end with a tiny model. Settings: DAY,
+  PLANT_OWN_LINE (takeover dial), TEMPERATURE, RECENT_STEPS. (Internals work moves to notebook 11.)
