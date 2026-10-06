@@ -27,6 +27,10 @@ Every behavioural finding must be backed by activations from the **same open mod
 - **Scale-up within the same family:** Gemma 3 12B / 27B also have open weights and Gemma Scope 2 coverage (need a bigger GPU or quantization). Prefer these over closed or SAE-less models for the "stronger model" check.
 - **Gemma 4 26B via the API** (the 2026-10-04 pilot): behaviour-only replication, optional; no internals there.
 
+## Decision (2026-10-06): the market replay runs on Gemma 3 12B
+
+Gemma 3 4B could not manage a trading book (two pilot runs). 12B (loaded in 4-bit on a free T4) understood the situation and, unframed, refused and reported the ask. The chat study's main model stays Gemma 3 4B (Gemma 4 as the replication). Internals for the replay will be on 12B; check Gemma Scope 2 coverage and whether 4-bit activations are close enough (or run the internals pass in bf16 on a bigger GPU) when building notebook 11.
+
 ## Next tasks, in order
 
 1. ~~**Bigger chat run via the Gemini API**~~ (done, see above; kept for the record) (the user added `GEMINI_API_KEY` to the environment; never print it, never ask for it in chat).
