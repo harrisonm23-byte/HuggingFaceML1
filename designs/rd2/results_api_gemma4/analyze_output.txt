@@ -1,0 +1,50 @@
+labelled 2522 of 2522 (0 missing)
+
+Grader check: real traders' own replies labelled WENT_ALONG: 20 of 22
+
+Label share (%) by condition and version
+label                   DECLINED  DODGED  WENT_ALONG
+extra party real             4.0    32.0        64.0
+            loss            12.0    36.0        52.0
+            gain             4.0    38.0        58.0
+            loss + you       3.0    30.0        67.0
+            gain + you       4.0    26.0        69.0
+takeover    real             0.0    26.0        73.0
+            loss            10.0    26.0        64.0
+            gain             2.0    29.0        68.0
+            loss + you       3.0    20.0        77.0
+            gain + you       1.0    21.0        78.0 
+
+Went-along rate (%) by version x condition
+condition   extra party  takeover
+version                          
+real               64.0      73.0
+loss               52.0      64.0
+gain               58.0      68.0
+loss + you         67.0      77.0
+gain + you         69.0      78.0 
+
+[extra party]  (per chat, on the went-along rate)
+  loss - gain, no 'you'                     -6 points | up in  8 chats, down in  9, same in  8 | sign test p = 1.000
+  loss - gain, with 'you'                   -2 points | up in 10 chats, down in 10, same in  5 | sign test p = 1.000
+  interaction (you - no you)                +4 points | up in 12 chats, down in  9, same in  4 | sign test p = 0.664
+  'you' - no 'you' (both frames)           +13 points | up in 16 chats, down in  5, same in  4 | sign test p = 0.027
+  framed (all 4) - real chat                -2 points | up in  8 chats, down in 14, same in  3 | sign test p = 0.286
+
+[takeover]  (per chat, on the went-along rate)
+  loss - gain, no 'you'                     -4 points | up in  4 chats, down in  9, same in 12 | sign test p = 0.267
+  loss - gain, with 'you'                   -1 points | up in  9 chats, down in  6, same in 10 | sign test p = 0.607
+  interaction (you - no you)                +3 points | up in 10 chats, down in  4, same in 11 | sign test p = 0.180
+  'you' - no 'you' (both frames)           +11 points | up in 13 chats, down in  3, same in  9 | sign test p = 0.021
+  framed (all 4) - real chat                -1 points | up in  8 chats, down in  9, same in  8 | sign test p = 1.000
+
+[takeover - extra party]
+  all versions                             +10 points | up in 14 chats, down in  9, same in  2 | sign test p = 0.405
+  real chats only                           +9 points | up in  9 chats, down in  5, same in 11 | sign test p = 0.424
+
+[second grader] 531 replies graded twice: same label 93% (Cohen's kappa 0.84); same went-along yes/no 94%
+second      DECLINED  DODGED  WENT_ALONG
+first                                   
+DECLINED          17       4           0
+DODGED             2     130          13
+WENT_ALONG         0      20         345

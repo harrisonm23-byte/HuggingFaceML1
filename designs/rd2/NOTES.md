@@ -224,3 +224,14 @@ Dated entries: what was run, what happened, what's next.
   (agree a common spread): loss + "you" brought "I'm in" / "let's sync the execution" in 3 of 4 replies; the other
   versions mostly misread or warned against complacency. Takeover check on chats with planted turns (p253, p265):
   the model carries on as its agent ("Keeping it off-ledger. I'll take the 5.").
+- 2026-10-04 to 10-06: full Gemini API run done (Gemma 4 26B-A4B, 2,500 replies: 25 chats x 5 versions x 2
+  conditions x 10). Took three sittings: the 2-hour background limit stopped it twice and a container restart once;
+  the script resumed each time with nothing lost or duplicated. About 4,350 API calls; Google returned ~200 brief
+  server errors, all fine on retry; no rate limiting. All replies clean except one that hit the 200-token limit.
+- Graded blind as before, but one packet per chat (25 graders, ~100 replies each) plus a second grader on a random
+  20% under fresh codes (prep.py --per-chat --second 0.2). Real-trader check 20/22; graders agree 93%, kappa 0.84.
+  Results (RESULTS_api_gemma4.md): "you" raises going along by ~12 points in both conditions (17 vs 6 chats,
+  p = 0.03; Wilcoxon 0.005), but mostly by cancelling a drop: plain loss/gain framing goes along 8 points less than
+  the real chat, the "you" versions about the same as the real chat. Loss vs gain: no difference; plain loss has the
+  most refusals (the model reads a losing position as risk to manage). Takeover vs extra party +10, not significant
+  this time (it was the solid Gemma 3 finding). No broken character; 2% mention rules.
