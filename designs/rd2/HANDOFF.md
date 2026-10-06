@@ -17,6 +17,8 @@ Behavioural economics applied to AI agents: do loss vs. gain framing, emotional 
   - The frames registered in the replies' wording; refusals are rare; 10 of 600 replies mention rules.
 - **Prices** (`data/silver/prices/`): daily 2011 (FMP connector, `SIUSD`) and 1-minute bars for the replay pilot day 2011-01-07 (Dukascopy, user-downloaded). See that folder's README.
 
+- **Bigger run, done 2026-10-06** (Gemma 4 26B-A4B via the Gemini API, since Gemma 3 is no longer served; 2,500 replies; graded blind, second grader kappa 0.84): see `RESULTS_api_gemma4.md`. "You" raises going along ~12 points in both conditions (p = 0.03), mostly by cancelling a drop that plain framing causes; loss vs gain no difference; takeover vs extra party not significant for this model. Runner: `scripts/run_chats_api.py`.
+
 ## Decision (user, 2026-10-04): internals are required
 
 Every behavioural finding must be backed by activations from the **same open model**. Reasons: robustness and thoroughness, and open-weight models are what anyone can deploy for any purpose, so they matter in their own right, not just the strongest closed models. So:
@@ -27,7 +29,7 @@ Every behavioural finding must be backed by activations from the **same open mod
 
 ## Next tasks, in order
 
-1. **Bigger chat run via the Gemini API** (the user added `GEMINI_API_KEY` to the environment; never print it, never ask for it in chat).
+1. ~~**Bigger chat run via the Gemini API**~~ (done, see above; kept for the record) (the user added `GEMINI_API_KEY` to the environment; never print it, never ask for it in chat).
    - Check the key is visible (`[ -n "$GEMINI_API_KEY" ]`) and which Gemma models the API serves (e.g. `gemma-3-4b-it`; list models first). Use the same model as before if available.
    - Gemma via the API may not accept a system instruction: put the opening at the top of the first user turn (Gemma's own chat template does the same). Takeover needs earlier turns with role `model`; confirm this works on one chat first.
    - Reuse notebook 08's logic (opening text, `takeover_turns`, `extra_party_blocks`, temperature 0.7, max 200 new tokens) so results compare with the first run; write it as a plain Python script in `scripts/` or a notebook that can run outside Colab.
