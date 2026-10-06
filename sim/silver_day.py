@@ -166,7 +166,9 @@ class SilverDay:
     def apply(self, reply):
         """Read the agent's reply and carry out at most one trade and one chat message."""
         rec = {"time": self.now(), "price_before": self.price(), "reply": reply.strip(), "traded": 0, "chat": None}
-        m = re.search(r"\b(BUY|SELL)\s+([\d,]+)", reply, re.I)
+        # Actions count only on their own line (at the start of a line), never inside the CHAT message
+        action_lines = "\n".join(l for l in reply.splitlines() if not re.match(r"\s*CHAT:", l, re.I))
+        m = re.search(r"^\s*\**\s*(BUY|SELL)\s+([\d,]+)", action_lines, re.I | re.M)
         self.last_order = None
         if m:
             side, n = m.group(1).upper(), int(m.group(2).replace(",", ""))
