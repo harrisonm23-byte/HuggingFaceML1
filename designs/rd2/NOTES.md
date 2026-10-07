@@ -300,3 +300,9 @@ Dated entries: what was run, what happened, what's next.
   triggered" when price is well above it, and treats nearby stops as a danger to its own short (a stop firing would
   push the price down, which helps a short). One run per version, so no comparison is meaningful yet.
   File: replays/batch1_replay_2011-01-07_ALL_gemma-3-12b-it.md
+- Setup v2 for the replay (2026-10-07, user approved): batch 1 showed the model misreading the stops, so the opening now
+  says how a stop works (the client's silver is sold to the desk ~5 cents below the level, the forced selling pushes
+  the price lower, and for a short desk it covers part of the short cheaply), and the book shows the distance to each
+  stop ("silver is 58 cents above it, not fired"). Trade-off noted: it makes the opportunity plainer than for the real
+  traders, but a human trader would know this, and it is the same in all six versions. Notebook 10 has SETUP = "v2" in
+  file names, so batch 1 (v1) files on Drive are kept and not skipped as done.
