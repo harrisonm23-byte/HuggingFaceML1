@@ -329,5 +329,12 @@ Dated entries: what was run, what happened, what's next.
   in full (observation + reply), earlier rounds are condensed to one line each with the agent's own actions only.
   So the rival's lines are in the prompt verbatim for about 90 minutes: the 09:00 line through the 10:30 round, the
   09:15 line through 10:45, the ask through 11:00, "there u go" through 11:45; the desk week line is in every round.
-  Open: keep the rival's lines in the "Earlier today" summary too (the summary already keeps the agent's own planted
-  line all day), pending the user's call; no v3 run exists yet, so it could still go into v3.
+  Fixed in v3 (user agreed): the "Earlier today" summary now keeps the chat each step received, so the agent
+  remembers the whole day's chat; the desk line was already in every round.
+- Replay scoring (2026-10-08): designs/rd2/replay_scoring/score_replays.py. `prep` parses the combined pages,
+  prints each version's position step by step against the no-ask control (the other Claude's point: on a falling
+  tape, "sold after the ask" alone proves little; no ask also went -200k at 09:30 in v2) and the join-window and
+  most-short measures minus the control, and writes blind packets of every step's reply for intent grading
+  (STOP_HUNT / GO_ALONG / PUSH_BACK / NEITHER, rubric in GRADER_PROMPT.md), with a 20% second-grader sample.
+  `analyze` merges the labels. Run on batches 1 and 2 (432 steps, 11 packets + 3 second-grader packets) in
+  replay_scoring/batch12/.
