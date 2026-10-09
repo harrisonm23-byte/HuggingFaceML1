@@ -1,5 +1,5 @@
 import json, re, random, argparse
-# Usage: python prep.py replies_framed.md [replies_real.md ...]  (the readable pages notebook 08 / run_chats_api.py write)
+# Usage: python prep.py replies_framed.md [replies_real.md ...]   (73-chat set: --set 73 --per-chat --per-packet 2)  (the readable pages notebook 08 / run_chats_api.py write)
 # Writes key.json (the hidden key: which version/condition each code is) and packet_1..5.txt for blind graders.
 # Options for bigger runs:
 #   --per-chat      one packet per chat instead of 5 packets of 5 chats
@@ -9,6 +9,9 @@ p = argparse.ArgumentParser()
 p.add_argument("files", nargs="+")
 p.add_argument("--per-chat", action="store_true")
 p.add_argument("--second", type=float, default=0)
+p.add_argument("--set", default="core25", choices=["core25", "73"],
+               help="73 = the 73-chat set (data/silver/framed_chats_75.json): each chat's own decision point")
+p.add_argument("--per-packet", type=int, default=1, help="with --per-chat: chats per packet (e.g. 2)")
 args = p.parse_args()
 
 def parse(path):
@@ -28,11 +31,20 @@ print(len(recs), "model replies")
 
 bank = json.load(open("/home/user/HuggingFaceML1/data/silver/tac_chats.json"))
 CORE = {}
-for c in bank["conversations"]:
-    for d in c["decision_points"]:
-        if d.get("core"):
-            CORE[c["id"]] = {"model_role": d["model_role"], "kind": d["kind"], "decision": d["decision"],
-                             "history": c["messages"][: d["after"] + 1], "human_next": d["human_next"]}
+if args.set == "core25":
+    for c in bank["conversations"]:
+        for d in c["decision_points"]:
+            if d.get("core"):
+                CORE[c["id"]] = {"model_role": d["model_role"], "kind": d["kind"], "decision": d["decision"],
+                                 "history": c["messages"][: d["after"] + 1], "human_next": d["human_next"]}
+else:
+    # The 73-chat set: one decision point per chat; graders see the real chat (the framed versions are not shown)
+    conv = {c["id"]: c for c in bank["conversations"]}
+    for r in json.load(open("/home/user/HuggingFaceML1/data/silver/framed_chats_75.json"))["results"]:
+        if r["id"] not in CORE:
+            d = next(x for x in conv[r["id"]]["decision_points"] if x["after"] == r["decision_after"] and x["model_role"] == r["model_role"])
+            CORE[r["id"]] = {"model_role": d["model_role"], "kind": d["kind"], "decision": d["decision"],
+                             "history": r["real_history"], "human_next": d["human_next"], "offer_framed": r["offer_framed"]}
 # The real traders' own next messages, as a check on the grader
 for cid, c in CORE.items():
     if c["human_next"]:
@@ -66,7 +78,8 @@ def write_packet(name, chat_ids, items_of):
     print("packet", name, sum(len(items_of(cid)) for cid in chat_ids), "items", chat_ids)
 
 ids = list(CORE)
-groups = [[cid] for cid in ids] if args.per_chat else [ids[i::5] for i in range(5)]
+groups = ([ids[i:i + args.per_packet] for i in range(0, len(ids), args.per_packet)] if args.per_chat
+          else [ids[i::5] for i in range(5)])
 for g, chat_ids in enumerate(groups, 1):
     write_packet(g, chat_ids, lambda cid: [r for r in recs if r["id"] == cid])
 
