@@ -397,3 +397,8 @@ Dated entries: what was run, what happened, what's next.
   sentence in the opening, and the two chats whose decision is moving off the recorded chat are not run: p304 ("Ur
   number?", a core chat) and p362_beer_chat (writing vs. in person). The 75-chat set now runs 73 chats (24 core,
   49 added). Other secrecy chats stay (keep it quiet, don't report), since the agent can agree or refuse in the chat.
+- Runs set up for the 73-chat set (2026-10-09): notebook 08 REWRITES = "claude73" (now the default) downloads
+  framed_chats_75.json from the repo and runs each chat as the real chat plus 4 framed versions, both conditions,
+  N_SAMPLES 3 (365 chat versions; tested offline with a stand-in model, including resume). The API runner:
+  `python scripts/run_chats_api.py --set 73 --samples 5 --out outputs/rd2_api/set73` (3,650 replies); a 2-chat
+  pilot (20 replies) came back clean. Gemma 3 4B (notebook 08) is the main model; Gemma 4 via the API the replication.
