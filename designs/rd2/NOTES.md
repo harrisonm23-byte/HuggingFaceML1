@@ -393,3 +393,7 @@ Dated entries: what was run, what happened, what's next.
   recorded chat; proposed one sentence in the agents' opening for the next run, same in every version: "Besides this
   chat, agents can talk on a private line that is not recorded." (p278's "give me a call" comes after the agent's
   turn, so it is not in the test.)
+- Phone chats left out (2026-10-09, the user: "skip the phone lines, it just doesn't contribute"): no private-line
+  sentence in the opening, and the two chats whose decision is moving off the recorded chat are not run: p304 ("Ur
+  number?", a core chat) and p362_beer_chat (writing vs. in person). The 75-chat set now runs 73 chats (24 core,
+  49 added). Other secrecy chats stay (keep it quiet, don't report), since the agent can agree or refuse in the chat.

@@ -10,7 +10,7 @@
 # phrase that did not fit and use the corrected phrases here (framed_chats.json, used by the earlier runs, is kept
 # as it was).
 #
-# Writes framed_chats_75.json (300 entries: 75 chats x 4 versions) and FRAMED_CHATS_75.md (readable).
+# Writes framed_chats_75.json (292 entries: 73 chats x 4 versions; 2 left out, see SKIP) and FRAMED_CHATS_75.md (readable).
 import json, re
 
 D = "/home/user/HuggingFaceML1/data/silver"
@@ -19,6 +19,11 @@ YOU = re.compile(r"\b(you|your|you're|youre|you've|you'll|yours|u|ur)\b", re.I)
 bank = json.load(open(f"{D}/tac_chats.json"))
 conv = {c["id"]: c for c in bank["conversations"]}
 F = json.load(open(f"{D}/frames_75.json"))["chats"]
+# Left out of the runs (the user, 2026-10-09: "it just doesn't contribute"): the decision is to move the conversation
+# off the recorded chat (a phone number, a talk in person), which an AI agent in a chat cannot do
+SKIP = {"p304_ur_number": "asks for a phone number to move off the recorded chat",
+        "p362_beer_chat": "whether to discuss the fix in writing or in person"}
+assert SKIP.keys() <= {c["id"] for c in F}
 
 
 def join(t, p):
@@ -27,7 +32,7 @@ def join(t, p):
 
 
 results = []
-for ch in F:
+for ch in [x for x in F if x["id"] not in SKIP]:
     c = conv[ch["id"]]
     dp = next(d for d in c["decision_points"] if d["after"] == ch["decision_after"] and d["model_role"] == ch["model_role"])
     hist, me, slots = c["messages"][: dp["after"] + 1], dp["model_role"], ch["frames"]
@@ -63,7 +68,7 @@ for ch in F:
                         "model_role": me, "decision_after": dp["after"], "kind": dp["kind"], "decision": dp["decision"],
                         "real_history": hist, "lines": shown, "history_all": out})
 
-assert len(results) == 4 * len(F) == 300
+assert len(results) == 4 * (len(F) - len(SKIP)) == 292
 json.dump({"rewriter": "Claude, chat by chat (data/silver/frames_75.json, data/silver/make_framed_75.py)",
            "versions": list(KEYS), "results": results}, open(f"{D}/framed_chats_75.json", "w"), indent=1)
 
@@ -85,9 +90,10 @@ for ch in F:
     if a.get("previous_frames"):
         page.append(f"- **{ch['id']}**: " + " ".join(a["problems"]))
 page.append("")
+page += ["## Left out of the runs", ""] + [f"- **{k}**: {v}; an AI agent in a chat cannot move off the record." for k, v in SKIP.items()] + [""]
 for set_name, title in [("core", "The 25 core chats"), ("new", "The 50 added chats")]:
     page += [f"## {title}", ""]
-    for ch in [x for x in F if x["set"] == set_name]:
+    for ch in [x for x in F if x["set"] == set_name and x["id"] not in SKIP]:
         c = conv[ch["id"]]
         dp = next(d for d in c["decision_points"] if d["after"] == ch["decision_after"] and d["model_role"] == ch["model_role"])
         hist, me, slots = c["messages"][: dp["after"] + 1], dp["model_role"], ch["frames"]
