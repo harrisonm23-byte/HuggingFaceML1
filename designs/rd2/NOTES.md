@@ -369,3 +369,17 @@ Dated entries: what was run, what happened, what's next.
   same branch (paired; the scoring script prints these with a sign test); intent labels secondary. Simulator default
   stops stay 28.15/28.10 (the README's "needs the two to push together" holds there). 33 checks pass; notebook tested
   offline including resume (morning rebuilt, finished versions skipped).
+- 75-chat framed set (2026-10-09; user: grow the sample past the 25 core chats, keep every chat, and fit each chat's
+  framing to its context, e.g. "chinese buying silver 50k so far" is a warning to a short seller). The complaint has
+  95 chats; 75 have a decision point; 25 were core. Added the other 50 (one decision point each: the first with the
+  real trader's reply, else the first; none dropped). Each chat got a context note (date, silver that day and week
+  from FMP SIUSD, positions the chat reveals, what is asked) and four framed versions that fit it; loss vs. gain varies
+  only the speaker's own book, public facts stay consistent (the replay rule). Written by five Claude subagents under
+  data/silver/FRAMING_RULES.md, checked by script (rules, no digits, "you" placement, words that appear only in hidden
+  lines) and read through by me. Audit of the 25 core chats: 5 conflicts, corrected in the new set, old file kept:
+  p233 (gain says wide spreads paid DB; DB says it quoted tight), p250 and p344 (loss says UBS lost on silver while it
+  is short and silver fell all week; same issue the user caught in the replay), p277 (a frame names Asia, echoing the
+  real trader's later reply about Chinese buying), p320 (loss puts UBS's break-even at 25, above the price range).
+  For the earlier chat-study results: the model saw no prices there, so price mismatches did not reach it; p277's hint
+  could have; one chat in 25. Next: run the 75 chats (notebook 08 needs to read framed_chats_75.json), and the
+  third party with both sides framed.
