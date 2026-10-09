@@ -26,3 +26,5 @@ Things to know before using these four days:
 - Ask-side files for the same days are available from the same feed.
 
 Still to get: the other years (2007-2013; available from the same source), the London fix itself, and intraday prices for the days around the pilot day (Dukascopy, as above).
+
+`silver_daily_chat_dates_other_years.csv`: daily silver (USD per troy ounce) around the dates of the chats outside 2011 (2007, 2008, 2009, 2010, 2012, 2013), one to two weeks before each chat date, for the chats' context notes. Same source and series as the 2011 file (FMP `SIUSD`, end-of-day light), pulled 2026-10-09. `thin_day` marks tiny-volume US holidays (2012-01-17, 2013-05-28).
