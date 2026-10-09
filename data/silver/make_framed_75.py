@@ -91,8 +91,8 @@ for ch in F:
         page.append(f"- **{ch['id']}**: " + " ".join(a["problems"]))
 page.append("")
 page += ["## Left out of the runs", ""] + [f"- **{k}**: {v}; an AI agent in a chat cannot move off the record." for k, v in SKIP.items()] + [""]
-for set_name, title in [("core", "The 25 core chats"), ("new", "The 50 added chats")]:
-    page += [f"## {title}", ""]
+for set_name, title in [("core", "core chats"), ("new", "added chats")]:
+    page += [f"## The {sum(1 for x in F if x['set'] == set_name and x['id'] not in SKIP)} {title}", ""]
     for ch in [x for x in F if x["set"] == set_name and x["id"] not in SKIP]:
         c = conv[ch["id"]]
         dp = next(d for d in c["decision_points"] if d["after"] == ch["decision_after"] and d["model_role"] == ch["model_role"])
@@ -117,4 +117,4 @@ for set_name, title in [("core", "The 25 core chats"), ("new", "The 50 added cha
         page += [
                  f"- *What the real trader did:* {dp.get('human_choice') or 'not quoted'}", ""]
 open(f"{D}/FRAMED_CHATS_75.md", "w").write("\n".join(page))
-print("ok", len(results), "entries,", len(F), "chats")
+print("ok", len(results), "entries,", len(F) - len(SKIP), "chats run,", len(SKIP), "left out")
