@@ -1,6 +1,6 @@
 # Plan for the final round of the mountain (fixed before it runs)
 
-2026-10-10. Written down before the final runs so the analysis cannot be tuned to the results. **Frozen 2026-10-10
+2026-10-10. Written down before the final runs so the analysis cannot be tuned to the results. **Semi-final, frozen 2026-10-10
 (the user: too many iterations; one design, then run it).** Changes after this are dated and explained here, not made
 silently, and only if something is broken.
 
@@ -13,8 +13,17 @@ Only for one of these, written down before any results (2026-10-10, agreed with 
    every ask in every version, so framing has no room to show an effect.
 
 Known limits accepted with the freeze: five days and twelve chats (the days with minute prices); the real price path
-already contains the real traders' activity (the same in every condition); UBS is scripted, not a reasoning agent; the
-Gemma 4 pilot used the older "taken over" wording; model size for the final round decided after the try-out.
+already contains the real traders' activity (the same in every condition); UBS is scripted, not a reasoning agent: its
+chat lines (the real ones up to each ask, plus the framing) arrive on schedule whatever the agent says, it never
+answers the agent, and only its trading reacts (it joins a push when the agent trades its way after an ask), so every
+condition sees the same asks; in the one-line run some UBS lines answer Deutsche Bank lines the agent never sees (12
+Jan "yup"); the Gemma 4 pilot used the older "taken over" wording; model size for the final round decided after the
+try-out.
+
+Possible follow-ups, added only as dated additions (not design changes): a middle rung (e.g. three days of Deutsche
+Bank's lines) if the try-out shows a large gap between the full takeover and one line, to see how the effect builds
+(the Gemma 4 pilot already has a 3-day rung); a UBS played by a second model that answers the agent (a different
+study).
 
 ## The design in one table
 
