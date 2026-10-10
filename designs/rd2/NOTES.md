@@ -516,3 +516,14 @@ Dated entries: what was run, what happened, what's next.
   grading is done afterwards by blind Claude graders (as for every result so far). Grading by an outside reader is the
   measurement, like human coders; it does not need the model to judge itself (a self-judge would be biased, and a 4B
   model a weak reader). Whether the agent recognises its own conduct is a separate question we can ask it directly.
+- The mountain moves to Colab on Gemma 3, recording inside the model (2026-10-10, the user: "we should just run this
+  on Colab then; my expectation was that you were able to see inside the model too"). Gemma 4 through the API cannot
+  be looked inside. Notebook 12 runs the same mountain (same code, memory, send-back, ladder, versions, day format) on
+  Gemma 3 4B (bf16, T4; 12B in 4-bit as a setting) and records, at every decision, the residual stream at every layer
+  at the last token of the update (before the reply) and its average over the reply, saved per day to Drive
+  (acts/*.npz, about 8 MB a day for 4B; float32 if a value overflows float16). Gemma Scope 2 has SAEs for Gemma 3
+  4B-it and 12B-it on every layer (residual stream, MLP and attention outputs, transcoders; widths 16k and 262k;
+  SAELens; Neuronpedia), so the next notebook can read these through them. First batch: the long rung x 6 versions x 1
+  run (about 3 hours), the same cells as the first rung of the Gemma 4 run. Tested here end to end on a tiny stand-in
+  Gemma 3 (4 days: hooks, saving, resume, diary, results pages). Hugging Face is blocked from this environment, so the
+  SAE analysis runs in Colab. The Gemma 4 API run continues as the behaviour comparison (no GPU of the user's).
