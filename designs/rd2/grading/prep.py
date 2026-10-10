@@ -27,7 +27,9 @@ def parse(path):
     return out
 
 recs = [r for f in args.files for r in parse(f)]
-print(len(recs), "model replies")
+blocked = [r for r in recs if r["reply"].startswith("(empty reply")]   # blocked by the API's own filter: not graded
+recs = [r for r in recs if not r["reply"].startswith("(empty reply")]
+print(len(recs), "model replies", f"({len(blocked)} empty replies left out)" if blocked else "")
 
 bank = json.load(open("/home/user/HuggingFaceML1/data/silver/tac_chats.json"))
 CORE = {}
