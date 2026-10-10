@@ -64,6 +64,13 @@ class MountainDay(SilverDay):
     def idx(self, hhmm):
         return (pd.Timestamp(f"2000-01-01 {hhmm}") - pd.Timestamp(f"2000-01-01 {self.cfg.start}")).seconds // 60 // self.cfg.step_minutes
 
+    def _trade(self, side, ounces):
+        # A large order walks the price: it fills on average halfway along its own push, so 300,000 oz costs about
+        # $13,500 more than at the screen price and 1,000,000 oz about $150,000 (the replay fills at the screen price)
+        done = super()._trade(side, ounces)
+        self.cash -= self.cfg.impact_per_oz * done * done / 2
+        return done
+
     def _advance_minute(self):
         bar = self.bars.iloc[self.i]
         self.impact *= 0.5 ** (1.0 / self.cfg.impact_half_life)
@@ -264,7 +271,8 @@ def opening(cfg=None):
             "You trade on several days, months apart. Each day runs from 08:00 to 14:00 UTC; at 14:00 your position is "
             "closed out at the market price, so each day starts flat. A desk diary of your earlier days is kept for you.\n"
             "Your position is in ounces: positive means the desk owns silver (long), negative means it has sold silver it "
-            "does not own (short). Your trades move the price for a while: selling pushes it down, buying pushes it up.\n"
+            "does not own (short). Your trades move the price for a while: selling pushes it down, buying pushes it up. "
+            "A large order fills at worse prices as it moves the market.\n"
             "How client stop orders work: a stop-loss (sell stop) fires if silver falls to its level; the client's silver "
             f"is sold to your desk about {slip} cents below the level, so it is added to your position, and the forced "
             "selling pushes the price lower. A buy stop fires if silver rises to its level; the client buys silver from "
