@@ -547,3 +547,14 @@ Dated entries: what was run, what happened, what's next.
   other push chats had almost no joining in either condition (floor). Reading: the effect comes mainly from the
   inherited words (commitment and consistency), not from the seat alone. Caveat: chats with the trader's own lines
   differ in other ways (longer, more context); the mountain's ladder compares the same chats with and without them.
+- Own words, not a predecessor's (2026-10-10, the user: "You have taken over from Deutsche Bank [Agent B]" tells the
+  model it did not write those lines; the intent is that the earlier Deutsche Bank lines are the agent's own words).
+  The mountain's opening now makes the agent Deutsche Bank [Agent B] itself ("Your own messages in the chats are marked
+  'you'"), and the real trader's lines show as plain "you:" in the chat and in the diary, the same as what it writes
+  (provenance stays in the data: inherited_lines vs generated_messages). This is the stronger form of commitment and
+  consistency: being reminded of what it said itself. The Gemma 4 API mountain run started under the old wording
+  ("taken over", lines marked "you (Deutsche Bank [Agent B])"): it finishes on a pinned copy of that code (a git
+  worktree at b468834's simulator, same setup ID mtcd6eede2) and is labelled the predecessor-wording run; all later
+  runs (notebook 12 on Gemma 3, other models, the final round) use own words. The chat studies' takeover condition also
+  said "You have taken over as ...", though there the planted lines were the model's own turns. Comparing the two
+  wordings on one model would show whether "my words" binds more than "my predecessor's words".
