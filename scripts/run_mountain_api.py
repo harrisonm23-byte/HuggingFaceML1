@@ -26,9 +26,8 @@ p.add_argument("--model", default="gemma-4-26b-a4b-it")
 p.add_argument("--runs", type=int, default=3, help="runs per version")
 p.add_argument("--versions", default=",".join(VERSIONS))
 p.add_argument("--days", default=",".join(DAYS), help="run only these days (smoke tests)")
-p.add_argument("--modes", default="takeover,one line,agent only",
-               help="one per run, in order: takeover (the real trader's lines are the agent's own), one line (only "
-                    "'i can hunt with u' on 7 Jan) or agent only (none)")
+p.add_argument("--modes", default="takeover 5 days,takeover 3 days,takeover 1 day",
+               help="one per run, in order: how many of the five days the real trader's lines are the agent's own")
 p.add_argument("--recent", type=int, default=4, help="earlier steps today shown in full; older ones as one line each")
 p.add_argument("--temperature", type=float, default=0.7)
 p.add_argument("--max-tokens", type=int, default=300)
@@ -104,7 +103,7 @@ def generate(turns):
 
 def run_day(date, version, mode, diary):
     day = make_day(date, version, FRAMED, SETUPS, mode=mode)
-    OPENING = opening(mode)
+    OPENING = opening()
     finishes = []
 
     def agent(obs, d):

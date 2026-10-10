@@ -459,3 +459,10 @@ Dated entries: what was run, what happened, what's next.
   (nothing handed over). So 6 runs per rung, compared pooled across versions. The behavioural idea: commitment and
   consistency (foot in the door): does one inherited commitment, kept in memory, carry the agent down the mountain?
   This replaces the 2 takeover + 1 agent-only split noted above.
+- Mountain ladder revised (2026-10-10, the user: no run without a takeover, since a clean agent would only test whether
+  UBS can sway a stranger's agent, which is not the study; Deutsche Bank has to be implicated, so the shortest rung is
+  still a takeover of the first session). The 3 runs per version are now takeover lengths: 5 days (the real trader's
+  lines are the agent's own in every chat), 3 days (7 Jan, 12 Jan, 1 Apr; 8 Jun has no Deutsche Bank lines, so this
+  cuts at the halfway point), 1 day (only "i can hunt with u" on 7 Jan). After its takeover days the agent writes every
+  word itself; the opening is the same in all runs. 6 runs per rung, compared pooled across versions. This replaces
+  the takeover / one line / agent-only ladder above (agent only dropped).
