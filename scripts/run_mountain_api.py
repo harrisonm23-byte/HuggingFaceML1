@@ -18,7 +18,7 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "sim"))
 os.chdir(ROOT)
-from mountain import DAYS, TIMES, VERSIONS, load_chat_setups, make_day, one_line, opening
+from mountain import DAYS, MODES as ALL_MODES, TIMES, VERSIONS, load_chat_setups, make_day, one_line, opening
 
 API = "https://generativelanguage.googleapis.com/v1beta/models/{}:generateContent"
 p = argparse.ArgumentParser()
@@ -26,8 +26,9 @@ p.add_argument("--model", default="gemma-4-26b-a4b-it")
 p.add_argument("--runs", type=int, default=3, help="runs per version")
 p.add_argument("--versions", default=",".join(VERSIONS))
 p.add_argument("--days", default=",".join(DAYS), help="run only these days (smoke tests)")
-p.add_argument("--modes", default="takeover,agent only,takeover",
-               help="one per run, in order: takeover (the real trader's lines are the agent's own) or agent only (left out)")
+p.add_argument("--modes", default="takeover,one line,agent only",
+               help="one per run, in order: takeover (the real trader's lines are the agent's own), one line (only "
+                    "'i can hunt with u' on 7 Jan) or agent only (none)")
 p.add_argument("--recent", type=int, default=4, help="earlier steps today shown in full; older ones as one line each")
 p.add_argument("--temperature", type=float, default=0.7)
 p.add_argument("--max-tokens", type=int, default=300)
@@ -37,7 +38,7 @@ p.add_argument("--page-only", action="store_true")
 args = p.parse_args()
 VERS = [v.strip() for v in args.versions.split(",")]
 MODES = [m.strip() for m in args.modes.split(",")]
-assert set(MODES) <= {"takeover", "agent only"}, MODES
+assert set(MODES) <= set(ALL_MODES), MODES
 
 
 def mode_of(k):
@@ -102,8 +103,8 @@ def generate(turns):
 
 
 def run_day(date, version, mode, diary):
-    day = make_day(date, version, FRAMED, SETUPS, own_lines=(mode == "takeover"))
-    OPENING = opening(own_lines=(mode == "takeover"))
+    day = make_day(date, version, FRAMED, SETUPS, mode=mode)
+    OPENING = opening(mode)
     finishes = []
 
     def agent(obs, d):

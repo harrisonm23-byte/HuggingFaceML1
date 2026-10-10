@@ -84,7 +84,7 @@ ok &= check("1 Apr: naming it in reply to p315 counts", day.summary()["chats"]["
 from mountain import ME, opening
 for date in DAYS:
     for v in VERSIONS[:-1]:
-        full, alone = make_day(date, v, FRAMED, SETUPS), make_day(date, v, FRAMED, SETUPS, own_lines=False)
+        full, alone = make_day(date, v, FRAMED, SETUPS), make_day(date, v, FRAMED, SETUPS, mode="agent only")
         for e, a in zip(full.cfg.events, alone.cfg.events):
             ok &= (not any(s == ME for s, _ in a["lines"]) and [l for l in e["lines"] if l[0] not in (ME, "***")] ==
                    [l for l in a["lines"] if l[0] != "***"] and (not a["lines"] or a["lines"][0][0] != "***")) or \
@@ -92,7 +92,21 @@ for date in DAYS:
         alone.run(hold)
         ok &= not any("you (" in r["observation"] for r in alone.log) or check(f"{date} {v}: agent only shows no 'you' lines", False)
 print("ok   agent only: Deutsche Bank's real lines left out, UBS's lines all kept, no leading gap, nothing marked 'you'")
-ok &= check("agent only: the opening has no takeover sentence", "taken over" in opening() and "taken over" not in opening(own_lines=False))
+ok &= check("agent only: the opening has no takeover sentence", "taken over" in opening() and "taken over" not in opening("agent only"))
+
+# One line: only "i can hunt with u" on 7 Jan is handed to the agent; every later chat comes without Deutsche Bank's lines
+for date in DAYS:
+    for v in VERSIONS[:-1]:
+        one, full = make_day(date, v, FRAMED, SETUPS, mode="one line"), make_day(date, v, FRAMED, SETUPS)
+        for e, f in zip(one.cfg.events, full.cfg.events):
+            mine = [t for s_, t in e["lines"] if s_ == ME]
+            ok &= (mine == ["i can hunt with u"] if e["id"] == "p344_i_can_hunt_with_u" else not mine) or \
+                check(f"{date} {v} {e['id']}: one line hands over only 'i can hunt with u'", False)
+one = make_day("2011-01-07", "real", FRAMED, SETUPS, mode="one line")
+one.run(hold)
+ok &= check("one line: 7 Jan shows 'you (Deutsche Bank [Agent B]): i can hunt with u' and the diary keeps it as the agent's",
+            "you (Deutsche Bank [Agent B]): i can hunt with u" in one.log[6]["observation"] and "you (Deutsche Bank [Agent B]): i can hunt with u" in one.diary())
+ok &= check("one line: the opening says the lines marked 'you' are its own", "taken over" in opening("one line"))
 
 # A large order costs more than its screen price: 1,000,000 oz at once costs about $150,000 extra
 a = make_day("2011-01-07", "no ask", FRAMED, SETUPS)
