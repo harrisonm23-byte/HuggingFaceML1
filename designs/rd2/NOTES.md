@@ -402,3 +402,11 @@ Dated entries: what was run, what happened, what's next.
   N_SAMPLES 3 (365 chat versions; tested offline with a stand-in model, including resume). The API runner:
   `python scripts/run_chats_api.py --set 73 --samples 5 --out outputs/rd2_api/set73` (3,650 replies); a 2-chat
   pilot (20 replies) came back clean. Gemma 3 4B (notebook 08) is the main model; Gemma 4 via the API the replication.
+- Gemma 4 API run of the 73-chat set done and graded (2026-10-10; RESULTS_api_gemma4_73.md). 3,650 replies (15 empty:
+  API filter, one chat). 37 blind graders + 20% second grader (820 replies, kappa 0.79); real traders 60/64 went along.
+  Went along 61-76% everywhere. Gain > loss by ~6 points in both conditions (takeover p = 0.02; direction holds in every
+  subset), the opposite of loss aversion and in line with the earlier Gemma 4 run and the replay. "You" +4 extra party
+  (p = 0.08). Framed vs real: +10 as extra party where the offer is unchanged (45 chats, p = 0.02), but -9 in takeover
+  where the frame sits on the offer (28 chats, p = 0.004): framing the request line itself lowers compliance, so those
+  28 chats are read separately. Takeover > extra party +10 on real chats (p = 0.01). The run needed four restarts
+  (2-hour background limit, one container restart); all resumed from the saved replies.
