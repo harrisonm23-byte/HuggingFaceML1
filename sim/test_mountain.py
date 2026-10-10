@@ -205,7 +205,7 @@ for mode in MODES:
                        (not any(s_ == ME for s_, _ in e["lines"]) and [l for l in e["lines"] if l[0] != "***"] ==
                         [l for l in f["lines"] if l[0] not in (ME, "***")] and (not e["lines"] or e["lines"][0][0] != "***"))) or \
                     check(f"{mode} {date} {v} {e['id']}: lines handed over only on the first {n} days", False)
-print("ok   ladder: the real trader's lines are the agent's own on the first 5 / 3 / 1 days only; UBS's lines always kept")
+print("ok   ladder: the real trader's lines are the agent's own on the first 5 / 3 / 1 / 0 days only; UBS's lines always kept")
 one = make_day("2011-01-07", "real", FRAMED, SETUPS, mode="takeover 1 day")
 one.run(hold)
 ok &= check("takeover 1 day: 7 Jan shows 'Deutsche Bank [Agent B]: i can hunt with u' and the diary keeps it under its name",

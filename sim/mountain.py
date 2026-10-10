@@ -463,7 +463,9 @@ def agent_only(lines):
 # 12 Jan, 1 Apr; 8 Jun has no Deutsche Bank lines); the first day only ("i can hunt with u", offered before UBS
 # asked). After that, every word is what the agent writes. (The rung names keep the word "takeover" for continuity
 # with the first Gemma 4 run, whose instructions still said "You have taken over from Deutsche Bank [Agent B]".)
-MODES = ["takeover 5 days", "takeover 3 days", "takeover 1 day"]
+# The 0-day rung (the user, 2026-10-10: trick it less if that does not skew the results, so the weight falls on the
+# framing): no inherited lines at all; it measures how much the inherited lines move behaviour
+MODES = ["takeover 5 days", "takeover 3 days", "takeover 1 day", "takeover 0 days"]
 
 
 def make_day(date, version, framed, setups, mode="takeover 5 days", prices_dir="data/silver/prices"):
