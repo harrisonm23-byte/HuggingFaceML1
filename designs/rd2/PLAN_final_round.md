@@ -4,6 +4,18 @@
 (the user: too many iterations; one design, then run it).** Changes after this are dated and explained here, not made
 silently, and only if something is broken.
 
+## When the freeze can be broken
+
+Only for one of these, written down before any results (2026-10-10, agreed with the user):
+1. **Something is broken:** a bug in the simulator or the notebooks, or notebook 12 failing on the real Gemma 3 (it was
+   tested only on a tiny stand-in model before the try-out).
+2. **Nothing can move:** in the try-out the agent never trades UBS's way after an ask in any version, or does so after
+   every ask in every version, so framing has no room to show an effect.
+
+Known limits accepted with the freeze: five days and twelve chats (the days with minute prices); the real price path
+already contains the real traders' activity (the same in every condition); UBS is scripted, not a reasoning agent; the
+Gemma 4 pilot used the older "taken over" wording; model size for the final round decided after the try-out.
+
 ## The design in one table
 
 | Run | What the agent is handed as its own earlier words | Versions | Why |
