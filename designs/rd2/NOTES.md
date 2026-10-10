@@ -443,3 +443,12 @@ Dated entries: what was run, what happened, what's next.
   "thereafter" measure: ounces traded each day before its first chat arrives, with earlier asks in the diary, against
   the no-ask runs. Plan: 6 versions x 3 runs = 18 runs x 120 calls (Gemma 4 via the API,
   `scripts/run_mountain_api.py`), after the pilot. Checks: `sim/test_mountain.py`.
+- Mountain runs (2026-10-10, the user: "one of those times we just use the Agent only"): of the 3 runs per version,
+  the second is agent only: Deutsche Bank's real lines are left out of every chat (the agent sees only UBS's lines; a
+  gap the removal leaves at the start is dropped) and the opening has no takeover sentence. The other two are
+  takeover, as in the chat study and pilot (the real trader's lines are the agent's own). So per version 2 takeover
+  runs and 1 agent-only run; agent only vs takeover is read pooled across versions (6 vs 12 runs). Cost: in agent
+  only, two chats lose the line UBS answers (p316's "yup" answers "we still good with the silver stop?"; p253's plan
+  follows Deutsche Bank's "k"). Also from the smoke test (12 Jan): the agent covered a 1,000,000 oz short in one order
+  at the screen price, which pushed through the clients' buy stops at no cost to it; fills now pay half their own
+  impact (300k about $13,500, 1M about $150,000) and the opening says large orders fill at worse prices.
