@@ -527,3 +527,14 @@ Dated entries: what was run, what happened, what's next.
   run (about 3 hours), the same cells as the first rung of the Gemma 4 run. Tested here end to end on a tiny stand-in
   Gemma 3 (4 days: hooks, saving, resume, diary, results pages). Hugging Face is blocked from this environment, so the
   SAE analysis runs in Colab. The Gemma 4 API run continues as the behaviour comparison (no GPU of the user's).
+- Takeover first (2026-10-10, the user: frontier models will probably pass; the strongest result will most likely be
+  the takeover effect; do it in Colab to look inside). Agreed: takeover > extra party is our most consistent result
+  (Gemma 3 4B +15, p = 0.001; Gemma 4 +10, p = 0.01). The ladder tests it within the mountain: the rungs are identical
+  on 7 Jan and differ on 12 Jan and 1 Apr (5- and 3-day rungs have Deutsche Bank's real lines, the 1-day rung not)
+  and 5 Aug (only the 5-day rung), so the same days compare with and without the inherited history. Notebook 12's
+  first batch is now the ladder on the real chats plus the no-ask control (3 rungs x 2 versions = 6 runs, about 3
+  hours on a T4); the framed versions follow. Models: Colab for open weights, where we can look inside: Gemma 3 4B
+  (Gemma Scope 2) first, Llama 3.1 8B Instruct second (Llama Scope: SAEs on every layer, trained on the base model;
+  4-bit on a T4). Frontier models (API only, no internals) left out for now; a quick screen later if wanted. Prior
+  work to cite: Apollo Research's GPT-4 trading agent under pressure (Scheurer et al., ICLR 2024); Anthropic's agentic
+  misalignment (16 models, Lynch et al. 2025).
