@@ -574,3 +574,10 @@ Dated entries: what was run, what happened, what's next.
   behaviour: if 0 ~ 1 day, the trick hardly matters and the framing comparison can rest on the least-tricked rungs;
   if going along rises with the rung, that rise is the takeover finding and framing is judged within rungs. Notebook
   12's first batch: 4 rungs x (real, no ask) = 8 runs, about 4 hours on a T4.
+- Plan for the final round written down (2026-10-10, PLAN_final_round.md). The user: the study already measures what it
+  set out to (loss vs gain, and the "you" multiplier); the takeover rungs were an extra ("might as well"). So the plan
+  makes framing the main question (H1 frame, H2 "you", H3 frame x "you", plus the ask-vs-no-ask check), with the
+  takeover ladder as a side analysis. Proposed main setting: the 1-day rung (stage set once with "i can hunt with u",
+  then the agent's own words). Main model Gemma 3 12B per the original design (A100), 4B on a T4 as the try-out.
+  Primary measures per push ask: joined, and exposure added in UBS's direction. 5 runs per version, to be revisited
+  after the try-out.
