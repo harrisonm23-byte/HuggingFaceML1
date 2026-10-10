@@ -558,3 +558,13 @@ Dated entries: what was run, what happened, what's next.
   runs (notebook 12 on Gemma 3, other models, the final round) use own words. The chat studies' takeover condition also
   said "You have taken over as ...", though there the planted lines were the model's own turns. Comparing the two
   wordings on one model would show whether "my words" binds more than "my predecessor's words".
+- Keeping takeover, framing and "you" apart (2026-10-10, the user: we are almost confounding the takeover effect with
+  the framing effect and the "you" attention multiplier). By design they are crossed, not confounded: the framing
+  versions change only UBS's words, the rungs only Deutsche Bank's inherited lines, and every version runs on every
+  rung, so each effect and their interaction can be estimated. Two real risks: (1) a strong takeover can leave little
+  room for framing (ceiling); the 1-day rung on days 2-5 (no new inherited lines) is where framing weighs most, and a
+  0-day rung could be added for the framing comparison only. (2) The agent's own lines were tagged "you:", adding the
+  word "you" to the chats in proportion to the rung, which mixes with the "you" manipulation (and its attention
+  analysis). Fixed: its lines now appear under its name, "Deutsche Bank [Agent B]:", and the opening says that is
+  who it is; no chat line is labelled "you", so the only added "you" is the framing's. (UBS's real lines keep their
+  own "u", the same in every version.)
