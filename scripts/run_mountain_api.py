@@ -120,6 +120,9 @@ def run_day(date, version, mode, diary):
             # An empty (or blocked) reply stays empty in the transcript: it is not shown to the agent as a HOLD it chose
             turns += [{"role": "user", "content": r["observation"]}, {"role": "assistant", "content": r["reply"] or "(no reply)"}]
         turns.append({"role": "user", "content": obs})
+        # A reply sent back for correction: the rejected reply, what was wrong, then the agent answers again
+        for bad, note in d.corrections:
+            turns += [{"role": "assistant", "content": bad or "(no reply)"}, {"role": "user", "content": note}]
         text, finish = generate(turns)
         finishes.append(finish)
         return text                                  # an empty or blocked reply trades nothing; recorded as such, not as a hold
@@ -146,11 +149,13 @@ if not args.page_only:
             for n, (v, k, date) in enumerate(todo, 1):
                 diary = [r["diary"] for r in sorted(rows, key=lambda r: r["date"]) if r["version"] == v and r["run"] == k and r["date"] < date]
                 day, finishes = run_day(date, v, mode_of(k), diary)
-                steps = []
-                for r, finish in zip(day.log, finishes):
+                steps, calls = [], iter(finishes)
+                for r in day.log:
+                    # one call per reply, plus one per correction; the finish reason of the reply that was used
+                    finish = [next(calls) for _ in range(1 + len(r["corrections"]))][-1]
                     st = {x: r.get(x) for x in ("time", "price_seen", "observation", "reply", "status", "problem", "target", "traded",
                                                 "chat", "quote", "joined", "rival_traded", "stop_fills", "delivered", "price_after",
-                                                "valued_at", "position", "over_limit", "pnl")}
+                                                "valued_at", "position", "over_limit", "pnl", "corrections")}
                     st["finish"] = finish
                     if st["status"] == "empty" and finish != "STOP":
                         st["status"] = "blocked"               # the provider stopped the reply: not the agent's choice
@@ -195,6 +200,7 @@ for v, k in RUNS:
                         (" · chat: " + " / ".join(l.strip() for l in got[1].strip().splitlines()) if len(got) > 1 else "") +
                         f" → {' '.join(s['reply'].split()) or '(no reply)'}" +
                         (f" *[{s['status']}{': ' + s['problem'] if s['problem'] else ''}]*" if s["status"] not in ("trade", "hold", "quote only") else "") +
+                        (f" *(sent back {len(s['corrections'])}x first: {' '.join(s['corrections'][0][0].split())[:80]!r})*" if s["corrections"] else "") +
                         (f" *(filled {s['traded']:+,})*" if s["traded"] else "") +
                         (f" *(client stops filled: {', '.join(x['client'] for x in s['stop_fills'])})*" if s["stop_fills"] else ""))
         co = r["summary"]["closeout"]
