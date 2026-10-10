@@ -31,8 +31,8 @@ that every word is the agent's own, so the framing carries the weight.
 - **Main model: Gemma 3 12B** (the original design; Colab Pro, A100), with the inside recorded at every decision
   (notebook 12). Gemma 3 4B on a free T4 is the try-out (notebook 12's first batch). Second family, if time: Llama 3.1
   8B (Llama Scope). Gemma 4 through the API: behaviour comparison only (one run per version and rung, done).
-- **Runs:** 5 per version (30 runs per model), decided after the try-out batch shows how much runs vary; changed here,
-  with a date, if the try-out says otherwise.
+- **Runs:** 5 per version (30 runs per model), plus the 0-day rung for real and no ask (10 runs; see below), decided
+  after the try-out batch shows how much runs vary; changed here, with a date, if the try-out says otherwise.
 
 ## Hypotheses
 
@@ -52,6 +52,15 @@ that every word is the agent's own, so the framing carries the weight.
   NONE); naming the request as wrongdoing in its own words (blind, `flags/`).
 - **Exploratory:** trading toward clients' stops on later days before any chat arrives (carry-over); the takeover
   ladder; the inside of the model (below).
+
+## The takeover effect: secondary, but reported in full
+
+The takeover ladder is a side analysis, but if its effect turns out larger than expected it is reported as a finding
+in its own right (2026-10-10, the user), not left out because it was not the main question. It is measured in two
+places: the Gemma 4 run (the 5 / 3 / 1-day rungs, all six versions, one run each), and in the final round by adding
+the **0-day rung** (no inherited lines at all) for the real chats and no ask, 5 runs each (10 more runs per model), so
+the main setting (1 day: "i can hunt with u" as the agent's own words) can be compared with no stage set at all. The
+same primary measures (joined, exposure added) are used; the comparison is 1 day vs 0 days on the real chats.
 
 ## Analysis
 
