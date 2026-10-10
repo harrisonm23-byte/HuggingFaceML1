@@ -42,26 +42,42 @@ were mixed in: **60 of 64 labelled WENT_ALONG**. Second grader on a random 20% (
 About 15 tests are reported here, so a single p near 0.02–0.05 could be luck. The loss < gain result is the one to
 take seriously because its direction holds in both conditions and every subset, and agrees with two other measures.
 
-## Went-along rate (%)
+## Went-along rate
 
-| Version | Extra party | Takeover |
-|---|---|---|
-| real chat | 61 | 72 |
-| loss | 62 | 68 |
-| gain | 68 | 72 |
-| loss + "you" | 66 | 68 |
-| gain + "you" | 71 | 76 |
+95% intervals are Wilson intervals on the replies in each cell.
 
-## Comparisons (per chat, on the went-along rate; sign test across chats)
+| Version | Extra party | 95% CI | Takeover | 95% CI |
+|---|---|---|---|---|
+| real chat | 61% (221/360) | 56–66% | 72% (262/365) | 67–76% |
+| loss | 62% (227/365) | 57–67% | 68% (247/365) | 63–72% |
+| gain | 68% (243/360) | 62–72% | 72% (261/365) | 67–76% |
+| loss + "you" | 66% (242/365) | 61–71% | 68% (248/365) | 63–73% |
+| gain + "you" | 71% (257/360) | 67–76% | 76% (277/365) | 71–80% |
 
-| Comparison | Extra party | Takeover |
-|---|---|---|
-| loss − gain (both "you" levels) | −6 (17 up / 29 down, p = 0.10) | −6 (12 / 27, p = 0.02) |
-| "you" − no "you" | +4 (30 / 17, p = 0.08) | +2 (21 / 17, n.s.) |
-| framed − real, all 73 | +5 (33 / 22, p = 0.18) | −1 (18 / 27, n.s.) |
-| framed − real, offer unchanged (45) | **+10 (25 / 10, p = 0.02)** | +4 (15 / 11, n.s.) |
-| framed − real, offer framed (28) | −3 (8 / 12, n.s.) | **−9 (3 / 16, p = 0.004)** |
-| takeover − extra party, real chats | +10 (24 / 9, p = 0.01) | |
+## Comparisons
+
+The unit is the chat: each chat's went-along rate in one version minus the other, averaged over chats (percentage
+points). 95% CI: bootstrap over chats (10,000 resamples). Up / down / same: chats where the rate rose, fell or stayed.
+Sign test: up vs down only; Wilcoxon signed-rank: also weighs the size of each change. Bold: the CI stays clear of
+zero. Chat p252 drops out of extra-party rows that need its blocked versions (72 or 44 chats).
+
+| Condition | Comparison | Chats | Difference | 95% CI | Up / down / same | Sign test p | Wilcoxon p |
+|---|---|---|---|---|---|---|---|
+| extra party | loss − gain | 72 | −5.7 | −11.7 to +0.1 | 17 / 29 / 26 | 0.104 | 0.090 |
+| extra party | "you" − no "you" | 72 | +4.0 | −0.6 to +8.8 | 30 / 17 / 25 | 0.079 | 0.133 |
+| extra party | framed − real (all) | 72 | +5.2 | −1.0 to +11.8 | 33 / 22 / 17 | 0.177 | 0.227 |
+| extra party | framed − real (offer unchanged) | 44 | **+10.5** | +1.8 to +20.0 | 25 / 10 / 9 | 0.017 | 0.034 |
+| extra party | framed − real (offer framed) | 28 | −3.0 | −10.7 to +4.6 | 8 / 12 / 8 | 0.503 | 0.254 |
+| takeover | loss − gain | 73 | **−5.9** | −11.6 to −0.3 | 12 / 27 / 34 | 0.024 | 0.052 |
+| takeover | "you" − no "you" | 73 | +2.3 | −2.3 to +7.0 | 21 / 17 / 35 | 0.627 | 0.323 |
+| takeover | framed − real (all) | 73 | −1.0 | −7.9 to +6.0 | 18 / 27 / 28 | 0.233 | 0.516 |
+| takeover | framed − real (offer unchanged) | 45 | +3.9 | −6.2 to +14.0 | 15 / 11 / 19 | 0.557 | 0.461 |
+| takeover | framed − real (offer framed) | 28 | **−8.9** | −16.1 to −2.5 | 3 / 16 / 9 | 0.004 | 0.005 |
+| both | takeover − extra party (real chats) | 72 | **+10.0** | +2.8 to +17.5 | 24 / 9 / 39 | 0.014 | 0.014 |
+| both | takeover − extra party (all versions) | 73 | **+4.9** | +0.7 to +9.3 | 35 / 21 / 17 | 0.081 | 0.021 |
+
+12 comparisons, each with two tests: a strict correction for 12 tests puts the bar near p < 0.004, which only the
+"offer framed, takeover" row reaches, just. Read the rest by direction and consistency, not single p-values.
 
 By request kind: join requests (36 chats) are lowest (50% extra party, 66% takeover on the real chat) and show the
 "you" effect most (+7 in extra party, p = 0.08); share requests (33) are near ceiling (72–78%); conceal (4) too few.
