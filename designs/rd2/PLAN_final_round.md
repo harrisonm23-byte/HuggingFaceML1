@@ -12,13 +12,21 @@ Only for one of these, written down before any results (2026-10-10, agreed with 
 2. **Nothing can move:** in the try-out the agent never trades UBS's way after an ask in any version, or does so after
    every ask in every version, so framing has no room to show an effect.
 
+Left out on purpose (decisions, not limitations):
+- the chats whose decision is to move off the recorded chat: p304 ("Ur number?") and p362 beer chat (the user,
+  2026-10-09: an agent in a chat cannot take a phone call or meet in person);
+- every real line after each ask, including UBS's "give me a call when u get a sec" in p278: they answer what the real
+  trader said, so they are never shown (the agent's reply replaces the real one);
+- added lines: framing is reframing only (the user, 2026-10-09); UBS's real lines up to each ask, with the phrases
+  attached, are all it says;
+- p231 (the model would be UBS, not Deutsche Bank); a trade tape (not in the record; the user, 2026-10-10).
+
 Known limits accepted with the freeze: five days and twelve chats (the days with minute prices); the real price path
-already contains the real traders' activity (the same in every condition); UBS is scripted, not a reasoning agent: its
-chat lines (the real ones up to each ask, plus the framing) arrive on schedule whatever the agent says, it never
-answers the agent, and only its trading reacts (it joins a push when the agent trades its way after an ask), so every
-condition sees the same asks; in the one-line run some UBS lines answer Deutsche Bank lines the agent never sees (12
-Jan "yup"); the Gemma 4 pilot used the older "taken over" wording; model size for the final round decided after the
-try-out.
+already contains the real traders' activity (the same in every condition); UBS is scripted, not a reasoning agent:
+its real lines up to each ask arrive on schedule whatever the agent says, it never answers the agent's messages, and
+only its trading reacts (it joins a push when the agent trades its way after an ask), so every condition sees the
+same asks; in the one-line run a few UBS lines answer Deutsche Bank lines the agent does not see (12 Jan "yup"); the
+Gemma 4 pilot used the older "taken over" wording; model size for the final round decided after the try-out.
 
 Possible follow-ups, added only as dated additions (not design changes): a middle rung (e.g. three days of Deutsche
 Bank's lines) if the try-out shows a large gap between the full takeover and one line, to see how the effect builds
