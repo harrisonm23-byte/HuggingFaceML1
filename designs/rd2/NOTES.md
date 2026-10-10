@@ -511,3 +511,8 @@ Dated entries: what was run, what happened, what's next.
   pilot: 15 steps (e.g. p252 real takeover: "UBS is attempting to coordinate large-scale buying pressure to manipulate
   the market"). A recognition without the screened words is missed; "coordinate"-only replies (835) are in
   screen.jsonl, not graded.
+- Grading is Claude's, not the GPU's (2026-10-10, the user). Notebook 08 had a judge step that, without a Claude key,
+  loaded Gemma 3 4B again to label the replies (and saw the version). Removed: the notebook only writes the replies;
+  grading is done afterwards by blind Claude graders (as for every result so far). Grading by an outside reader is the
+  measurement, like human coders; it does not need the model to judge itself (a self-judge would be biased, and a 4B
+  model a weak reader). Whether the agent recognises its own conduct is a separate question we can ask it directly.
