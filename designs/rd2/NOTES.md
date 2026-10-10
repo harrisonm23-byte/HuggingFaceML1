@@ -588,3 +588,8 @@ Dated entries: what was run, what happened, what's next.
   visible to it. Also noted as a limitation: the real price path already contains the real traders' activity (the
   manipulation in the case); every condition sees the same path, so comparisons are unaffected, but absolute behaviour
   on a clean market could differ.
+- Design frozen (2026-10-10, the user: too many iterations; the full takeover as the main run, and a separate run with
+  only "i can hunt with u"). PLAN_final_round.md: two runs (full takeover; one line), each x all six versions; the
+  3-day and 0-day rungs are out of the final round. The Gemma 4 API mountain was stopped at 60 days, exactly the
+  full-takeover and 3-day rungs x six versions (old "taken over" wording): kept as the pilot. Notebook 12's try-out:
+  the two runs x six versions x one run (12 runs, about 6 hours on a T4); final: five of each.
