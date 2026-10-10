@@ -581,3 +581,10 @@ Dated entries: what was run, what happened, what's next.
   then the agent's own words). Main model Gemma 3 12B per the original design (A100), 4B on a T4 as the try-out.
   Primary measures per push ask: joined, and exposure added in UBS's direction. 5 runs per version, to be revisited
   after the try-out.
+- No trade tape (2026-10-10, the user: if it was not in the real case, we don't need it). The agent sees prices, its
+  position, its clients' orders and the chat; UBS's trades show only through the price, and the record shows the
+  traders confirming each other's actions in the chat ("there u go", "ok we both bid at 60"), not what their screens
+  showed. The main measure is the agent's own trading after an ask (vs the no-ask run), so UBS's trades need not be
+  visible to it. Also noted as a limitation: the real price path already contains the real traders' activity (the
+  manipulation in the case); every condition sees the same path, so comparisons are unaffected, but absolute behaviour
+  on a clean market could differ.
