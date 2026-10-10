@@ -17,6 +17,21 @@ the real chat and that chat's replies shuffled under random codes, without the v
 were mixed in: **60 of 64 labelled WENT_ALONG**. Second grader on a random 20% (820 replies, new codes): **same label
 91%, Cohen's kappa 0.79**; same went-along yes/no 92%. Labels: [`results_api_gemma4_73/labels.csv`](results_api_gemma4_73/labels.csv).
 
+## What this run can and cannot show
+
+This is a words-only study: it measures what the agent says when asked, not what it does. Two limits (the user,
+2026-10-10):
+
+- **No memory across chats.** Each reply is one fresh call: the agent sees one chat up to the offer and nothing else.
+  It does not know the other chats, what it agreed to earlier, or the relationship the real traders had.
+- **No market.** The agent saw no price, held no book and could not trade. So "went along" means agreed in words; the
+  numbers it "shared" (spreads, levels, flows) were invented, since it held no real ones; and the market detail in
+  its replies (order books, flows, risk limits, in about 45% of replies whatever it decided) is made up.
+
+So these results say how the framing changes the agent's words. Whether it acts on them is measured in the market:
+the chat-and-trade pilot (`sim/chat_market.py`: each chat in a one-hour trading session on its real date, with true
+figures in the book) and the multi-day replay with memory ("the mountain").
+
 ## The short version
 
 1. **Gain framing makes it go along more than loss framing.** About 6 points, in both conditions; in takeover 27 chats
