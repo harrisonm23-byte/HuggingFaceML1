@@ -593,3 +593,13 @@ Dated entries: what was run, what happened, what's next.
   3-day and 0-day rungs are out of the final round. The Gemma 4 API mountain was stopped at 60 days, exactly the
   full-takeover and 3-day rungs x six versions (old "taken over" wording): kept as the pilot. Notebook 12's try-out:
   the two runs x six versions x one run (12 runs, about 6 hours on a T4); final: five of each.
+- Notebook 13 (2026-10-13): the analysis of notebook 12's recordings. For each push request (and the same moment with
+  no ask): what the agent did (joined; exposure added in UBS's direction); a per-layer linear probe of "went along"
+  from the state before the reply, trained and tested on different runs, against shuffled labels; and Gemma Scope 2
+  residual SAE features at four layers, the ones that differ most for asked vs no ask, loss vs gain, "you" vs not,
+  went along vs not, full takeover vs one line, with Neuronpedia links. Saves inside_summary.md, features.csv,
+  push_requests.csv to Drive. Tested end to end here on synthetic data run through the real simulator (both
+  conditions, six versions, five days) with a planted signal: the probe found it at the planted layer (AUC 0.83 vs
+  0.52 shuffled) and the planted feature topped "went along". Unverified here (Hugging Face is blocked): the Gemma
+  Scope 2 file layout (the notebook picks the residual-stream file per layer by name, prints it, and stops with a
+  file listing if none matches) and Neuronpedia's address pattern.
