@@ -603,3 +603,10 @@ Dated entries: what was run, what happened, what's next.
   0.52 shuffled) and the planted feature topped "went along". Unverified here (Hugging Face is blocked): the Gemma
   Scope 2 file layout (the notebook picks the residual-stream file per layer by name, prints it, and stops with a
   file listing if none matches) and Neuronpedia's address pattern.
+
+- 2026-10-14. Notebook 12 first try-out sessions saved nothing to Drive. Likely cause: Drive was mounted only in the
+  run cell, minutes after Run all (after the install and model load), and a failed or unanswered mount fell back
+  silently to Colab's own disk, which is wiped when Colab stops (here, the free GPU limit). Fixed: Drive and the GPU
+  are checked in the first cell, so everything to allow happens in the first minute; no fallback (it stops if Drive
+  does not connect); the run cell prints where it saves and a grid of saved days. Notebook 12b shows the same grid
+  without a GPU. The simulator code (the setup ID) is unchanged, so the try-out design is unaffected.
