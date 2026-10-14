@@ -610,3 +610,6 @@ Dated entries: what was run, what happened, what's next.
   are checked in the first cell, so everything to allow happens in the first minute; no fallback (it stops if Drive
   does not connect); the run cell prints where it saves and a grid of saved days. Notebook 12b shows the same grid
   without a GPU. The simulator code (the setup ID) is unchanged, so the try-out design is unaffected.
+- 2026-10-14. Notebook 12: `COPY` setting so two Colab sessions can run at once without overwriting each other's
+  saves on Drive: copy 2 saves to `mountain_gemma-3-4b-it_copy2/` and tags its days `"copy": 2`. Same code and setup
+  ID, so a second copy of the try-out is a second independent repeat of every run (merged at analysis by copy x run).
