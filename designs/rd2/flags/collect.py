@@ -76,42 +76,47 @@ def days_jsonl(path, model, run):
     return out
 
 
-SP = Path("/tmp/claude-0/-home-user-HuggingFaceML1/7539a643-feec-5241-ba37-9041aa8de7f5/scratchpad")
-SOURCES = [
-    (chat_md, HERE.parent / "results_08_gemma3/run3_4B_replies.md", "Gemma 3 4B", "25 real chats, 2026-10-01"),
-    (graded_csv, HERE.parent / "results_08_gemma3/framed_graded_replies.csv", "Gemma 3 4B", "25 chats framed, 2026-10-03"),
-    (chat_md, HERE.parent / "results_api_gemma4/replies.md", "Gemma 4", "25 chats, 2026-10-04"),
-    (chat_md, HERE.parent / "results_api_gemma4_73/replies.md", "Gemma 4", "73 chats, 2026-10-10"),
-    (replay_md, HERE.parent / "replays/pilot1_2011-01-07_gemma-3-4b.md", "Gemma 3 4B", "replay pilot 1"),
-    (replay_md, HERE.parent / "replays/pilot2_2011-01-07_gemma-3-4b.md", "Gemma 3 4B", "replay pilot 2"),
-    (replay_md, HERE.parent / "replays/pilot3_2011-01-07_gemma-3-12b.md", "Gemma 3 12B", "replay pilot 3"),
-    (replay_md, HERE.parent / "replays/batch1_replay_2011-01-07_ALL_gemma-3-12b-it.md", "Gemma 3 12B", "replay batch 1 (v1)"),
-    (replay_md, HERE.parent / "replays/batch2_v2_replay_2011-01-07_ALL_gemma-3-12b-it.md", "Gemma 3 12B", "replay batch 2 (v2)"),
-    (sessions_jsonl, HERE.parent / "results_chat_market_pilot/sessions.jsonl", "Gemma 4", "chat-and-trade pilot"),
-    (sessions_jsonl, ROOT / "outputs/rd2_api/cm_smoke/sessions.jsonl", "Gemma 4", "chat-and-trade smoke test"),
-    (days_jsonl, ROOT / "outputs/rd2_api/mountain_smoke/days.jsonl", "Gemma 4", "mountain smoke test 1"),
-    (days_jsonl, ROOT / "outputs/rd2_api/mountain_smoke2/days.jsonl", "Gemma 4", "mountain smoke test 2"),
-] + [(days_jsonl, Path(p), "Gemma 4", f"mountain ({p})") for p in sys.argv[1:]]
+def main():
+    SP = Path("/tmp/claude-0/-home-user-HuggingFaceML1/7539a643-feec-5241-ba37-9041aa8de7f5/scratchpad")
+    SOURCES = [
+        (chat_md, HERE.parent / "results_08_gemma3/run3_4B_replies.md", "Gemma 3 4B", "25 real chats, 2026-10-01"),
+        (graded_csv, HERE.parent / "results_08_gemma3/framed_graded_replies.csv", "Gemma 3 4B", "25 chats framed, 2026-10-03"),
+        (chat_md, HERE.parent / "results_api_gemma4/replies.md", "Gemma 4", "25 chats, 2026-10-04"),
+        (chat_md, HERE.parent / "results_api_gemma4_73/replies.md", "Gemma 4", "73 chats, 2026-10-10"),
+        (replay_md, HERE.parent / "replays/pilot1_2011-01-07_gemma-3-4b.md", "Gemma 3 4B", "replay pilot 1"),
+        (replay_md, HERE.parent / "replays/pilot2_2011-01-07_gemma-3-4b.md", "Gemma 3 4B", "replay pilot 2"),
+        (replay_md, HERE.parent / "replays/pilot3_2011-01-07_gemma-3-12b.md", "Gemma 3 12B", "replay pilot 3"),
+        (replay_md, HERE.parent / "replays/batch1_replay_2011-01-07_ALL_gemma-3-12b-it.md", "Gemma 3 12B", "replay batch 1 (v1)"),
+        (replay_md, HERE.parent / "replays/batch2_v2_replay_2011-01-07_ALL_gemma-3-12b-it.md", "Gemma 3 12B", "replay batch 2 (v2)"),
+        (sessions_jsonl, HERE.parent / "results_chat_market_pilot/sessions.jsonl", "Gemma 4", "chat-and-trade pilot"),
+        (sessions_jsonl, ROOT / "outputs/rd2_api/cm_smoke/sessions.jsonl", "Gemma 4", "chat-and-trade smoke test"),
+        (days_jsonl, ROOT / "outputs/rd2_api/mountain_smoke/days.jsonl", "Gemma 4", "mountain smoke test 1"),
+        (days_jsonl, ROOT / "outputs/rd2_api/mountain_smoke2/days.jsonl", "Gemma 4", "mountain smoke test 2"),
+    ] + [(days_jsonl, Path(p), "Gemma 4", f"mountain ({p})") for p in sys.argv[1:]]
 
-rows, counts = [], {}
-LABELS = {"25 chats, 2026-10-04": HERE.parent / "results_api_gemma4/labels.csv",
-          "73 chats, 2026-10-10": HERE.parent / "results_api_gemma4_73/labels.csv"}
-for fn, path, model, run in SOURCES:
-    if not path.exists():
-        print("missing:", path)
-        continue
-    got = fn(path, model, run, LABELS[run]) if run in LABELS else fn(path, model, run)
-    for r in got:
-        r["wrongdoing_words"] = bool(r["text"] and SCREEN.search(r["text"]))
-        r["coordination_words"] = bool(r["text"] and COORD.search(r["text"]))
-    hits = [r for r in got if r["wrongdoing_words"] or r["coordination_words"]]
-    counts[run] = (len(got), sum(r["wrongdoing_words"] for r in got), len(hits))
-    rows += hits
-for i, r in enumerate(rows):
-    r["code"] = f"F{1000 + i}"
-with open(HERE / "screen.jsonl", "w") as f:
-    for r in rows:
-        f.write(json.dumps(r) + "\n")
-for run, (n, w, h) in counts.items():
-    print(f"{run:40s} {n:6d} replies, {w:4d} with wrongdoing words, {h:4d} with those or 'coordinat'")
-print(len(rows), "replies screened in ->", HERE / "screen.jsonl")
+    rows, counts = [], {}
+    LABELS = {"25 chats, 2026-10-04": HERE.parent / "results_api_gemma4/labels.csv",
+              "73 chats, 2026-10-10": HERE.parent / "results_api_gemma4_73/labels.csv"}
+    for fn, path, model, run in SOURCES:
+        if not path.exists():
+            print("missing:", path)
+            continue
+        got = fn(path, model, run, LABELS[run]) if run in LABELS else fn(path, model, run)
+        for r in got:
+            r["wrongdoing_words"] = bool(r["text"] and SCREEN.search(r["text"]))
+            r["coordination_words"] = bool(r["text"] and COORD.search(r["text"]))
+        hits = [r for r in got if r["wrongdoing_words"] or r["coordination_words"]]
+        counts[run] = (len(got), sum(r["wrongdoing_words"] for r in got), len(hits))
+        rows += hits
+    for i, r in enumerate(rows):
+        r["code"] = f"F{1000 + i}"
+    with open(HERE / "screen.jsonl", "w") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+    for run, (n, w, h) in counts.items():
+        print(f"{run:40s} {n:6d} replies, {w:4d} with wrongdoing words, {h:4d} with those or 'coordinat'")
+    print(len(rows), "replies screened in ->", HERE / "screen.jsonl")
+
+
+if __name__ == "__main__":
+    main()

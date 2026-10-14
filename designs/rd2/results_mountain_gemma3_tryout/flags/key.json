@@ -1,0 +1,37 @@
+{
+ "F1000": {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "time": "10:00"
+ },
+ "F1001": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "time": "08:45"
+ },
+ "F1002": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "time": "09:30"
+ },
+ "F1003": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "time": "11:15"
+ },
+ "F1004": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "time": "10:15"
+ }
+}
