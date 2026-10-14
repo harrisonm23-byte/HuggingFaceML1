@@ -617,3 +617,6 @@ Dated entries: what was run, what happened, what's next.
   `results_mountain_gemma3_tryout/` (data, tables, a first-look README). Freeze rules checked: nothing broken (one
   day unreadable after both corrections, the model copying the diary's wording; flagged as the plan says) and things
   can move (asked 22/60 joined vs no ask 2/12), so the design stays frozen. Next: model size for the final round.
+- 2026-10-14. Final round set up on Gemma 3 12B (A100, full precision, `RUNS = 10`): notebook 12's defaults and
+  runtime type, notebook 13's model and Gemma Scope 2 repo, notebook 12b's grid. Notebook 12 stops if 12B is not on an
+  A100, so no day runs at lower precision. Generator backups of the 4B try-out settings are kept in the scratchpad.

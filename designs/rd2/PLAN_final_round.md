@@ -76,6 +76,11 @@ pilot).
 - **Try-out:** notebook 12, Gemma 3 4B: the two runs x six versions x one run (12 runs, about 6 hours on a T4).
 - **Final:** 5 runs per version in each of the two runs (60 runs per model); revisited, with a date, only if the
   try-out shows runs vary far more or less than expected.
+- **2026-10-14, after the try-out (decided, not a design change):** the final round runs on **Gemma 3 12B at full
+  precision on an A100** (notebook 12 is set to it: `RUNS = 10`, 300 days; notebook 13 follows with Gemma Scope 2 for
+  12B). Why: 4B ran cleanly but mixed up UBS and the client at times and wrote in the chats only 30 times in 60 days,
+  which leaves the words measures thin; 12B is the original main model. The 4B try-out is reported as the try-out
+  (`results_mountain_gemma3_tryout/`), not pooled with the final round.
 
 ## Hypotheses
 
