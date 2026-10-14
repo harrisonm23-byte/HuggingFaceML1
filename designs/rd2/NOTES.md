@@ -613,3 +613,7 @@ Dated entries: what was run, what happened, what's next.
 - 2026-10-14. Notebook 12: `COPY` setting so two Colab sessions can run at once without overwriting each other's
   saves on Drive: copy 2 saves to `mountain_gemma-3-4b-it_copy2/` and tags its days `"copy": 2`. Same code and setup
   ID, so a second copy of the try-out is a second independent repeat of every run (merged at analysis by copy x run).
+- 2026-10-14. **Try-out complete** (notebook 12, Gemma 3 4B, T4): all 60 days, setup `mt49dbd2be`. Saved in
+  `results_mountain_gemma3_tryout/` (data, tables, a first-look README). Freeze rules checked: nothing broken (one
+  day unreadable after both corrections, the model copying the diary's wording; flagged as the plan says) and things
+  can move (asked 22/60 joined vs no ask 2/12), so the design stays frozen. Next: model size for the final round.
