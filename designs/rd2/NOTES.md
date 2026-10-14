@@ -620,3 +620,8 @@ Dated entries: what was run, what happened, what's next.
 - 2026-10-14. Final round set up on Gemma 3 12B (A100, full precision, `RUNS = 10`): notebook 12's defaults and
   runtime type, notebook 13's model and Gemma Scope 2 repo, notebook 12b's grid. Notebook 12 stops if 12B is not on an
   A100, so no day runs at lower precision. Generator backups of the 4B try-out settings are kept in the scratchpad.
+- 2026-10-14. Recordings made smaller before the 12B final round (the user's Google Drive is 15 GB in all): notebook 12
+  keeps the residual stream only for the steps around the chats (from the step before the first chat to two steps after
+  the last window, 4-10 steps a day; the moments notebook 13 reads, and the same steps on no-ask days), stored as exact
+  bfloat16 (as 16-bit integers: no float16 overflow, half of float32). About 1.4 GB for the 300 days instead of 5-11 GB.
+  Notebook 13 reads both this and the try-out's format, finding steps by time (tested on both). Simulator unchanged.
