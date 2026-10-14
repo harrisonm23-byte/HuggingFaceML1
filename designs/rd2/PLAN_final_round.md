@@ -81,6 +81,11 @@ pilot).
   12B). Why: 4B ran cleanly but mixed up UBS and the client at times and wrote in the chats only 30 times in 60 days,
   which leaves the words measures thin; 12B is the original main model. The 4B try-out is reported as the try-out
   (`results_mountain_gemma3_tryout/`), not pooled with the final round.
+- **2026-10-14, later the same day:** Colab had no A100 free on two tries (it gave an L4), so the final round runs 12B
+  **in 4-bit** (bitsandbytes NF4 weights, bfloat16 compute) on whatever GPU Colab gives, every day the same (saved in
+  `mountain_gemma-3-12b-it_4bit/`, each day records its precision and GPU). Limit: Gemma Scope 2 was trained on the
+  full-precision model, so its readings of the 4-bit model are an approximation; the trading and the words are
+  expected to be close to full precision.
 
 ## Hypotheses
 

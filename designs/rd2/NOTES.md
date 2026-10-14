@@ -625,3 +625,7 @@ Dated entries: what was run, what happened, what's next.
   the last window, 4-10 steps a day; the moments notebook 13 reads, and the same steps on no-ask days), stored as exact
   bfloat16 (as 16-bit integers: no float16 overflow, half of float32). About 1.4 GB for the 300 days instead of 5-11 GB.
   Notebook 13 reads both this and the try-out's format, finding steps by time (tested on both). Simulator unchanged.
+- 2026-10-14. No A100 on Colab twice (fell back to an L4, where 12B at full precision does not fit). Final round set
+  to 12B in 4-bit (NF4, bfloat16 compute) on any GPU, so it is never blocked by the GPU type and every day runs the
+  same way; folder `mountain_gemma-3-12b-it_4bit`, each row records `precision` and `gpu`. Notebook 13 reads that
+  folder. Recorded in PLAN_final_round.md as a dated decision with its limit (Gemma Scope 2 on a 4-bit model).
