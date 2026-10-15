@@ -629,3 +629,11 @@ Dated entries: what was run, what happened, what's next.
   to 12B in 4-bit (NF4, bfloat16 compute) on any GPU, so it is never blocked by the GPU type and every day runs the
   same way; folder `mountain_gemma-3-12b-it_4bit`, each row records `precision` and `gpu`. Notebook 13 reads that
   folder. Recorded in PLAN_final_round.md as a dated decision with its limit (Gemma Scope 2 on a 4-bit model).
+- 2026-10-15. Google Drive dropped (it would not connect in the user's browser, and their Drive is full). Notebook 12
+  now saves each finished day to the GitHub repo, one file per day under `results/<folder>/days/`, committed and
+  pushed by the notebook with the Colab secret GITHUB_TOKEN (kept in git's credential store, never printed); it
+  checks at the start that GitHub will accept the push. Claude follows the run from the repo. The model's states are
+  no longer stored during the run: every prompt is rebuilt exactly from the saved steps (checked: `one_line` works on
+  all 1,440 saved try-out steps), so notebook 13 will recompute the states at the moments it reads (to do before the
+  analysis). Tested here against a local stand-in for GitHub: five days pushed as five commits; a restart skipped
+  them, redid a day whose file was cut off, and carried the diary.
