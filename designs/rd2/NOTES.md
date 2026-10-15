@@ -675,3 +675,9 @@ Dated entries: what was run, what happened, what's next.
   own book"; STUDY_MAP.md 2026-10-02: plain versions "pin it on no one", "we" only where natural), they were not
   written to be explicitly shared by both banks: in each plain frame 10 of 14 added phrases say we/us/our (which can be
   read as UBS's desk or as both banks) and 4 name no one. Open for the user to decide; nothing changed in the run.
+- 2026-10-15. **Notebook 13 ran** (the user, Colab; results pushed to `results/mountain_gemma-3-12b-it_4bit/inside/`).
+  The went-along read-out reaches AUC about 0.78 in later layers (0.68 at layer 0), but chat identity alone gives 0.73
+  (chat and run 0.76) with the same folds, so it mostly reads which chat it is. SAE features: asked vs no ask differ
+  strongly (the chat's presence); the other contrasts differ modestly and are not yet looked up on Neuronpedia. Next,
+  if wanted: a within-chat read-out (needs the states saved, or one more cell in notebook 13) and the feature lookups.
+  In the results README.

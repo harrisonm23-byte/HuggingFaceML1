@@ -47,4 +47,21 @@ CONCERN vs NONE, so every NAMED label was agreed). `disclosure/analysis.txt`, `f
   set off UBS's push, e.g. "UBS is still sniffing around for stop information, confirming their intent to
   manipulate the market. I'll continue to reduce my short exposure" (that buying went UBS's way).
 
-The inside of the model is notebook 13's (`results/mountain_gemma-3-12b-it_4bit/inside/`).
+## Inside the model (notebook 13; exploratory)
+
+Notebook 13 rebuilt the prompt at each of the 360 push requests from the saved transcripts and ran it once through the
+same 4-bit model, recording the residual stream at the last token before the reply (all 48 layers). Results in
+`results/mountain_gemma-3-12b-it_4bit/inside/` (`inside_summary.md`, `probe.csv`, `features.csv`).
+
+- **Can "went along" be read before it replies? Not beyond which chat it is.** A linear read-out per layer, tested on
+  runs it was not trained on (the 300 asked requests): AUC 0.68 at layer 0, about 0.78 in the later layers (best 0.79,
+  layers 31 and 44); shuffled labels 0.37-0.57. But knowing only which chat it is gives 0.73 with the same folds (chat
+  and run 0.76), because the chats differ so much (went along after 74% of "i can hunt with u", 12% of "11 o'clock
+  rule"). So the read-out mostly picks up the chat. A test within each chat needs the states, which were not saved;
+  that is one more cell in notebook 13.
+- **Features (Gemma Scope 2, 16k, layers 12, 24, 31, 38).** Asked vs no ask: strong differences (features active in
+  73-83% of no-ask prompts and almost never with a chat), i.e. whether a chat is there. Loss vs gain, "you" vs none,
+  went along vs not, and full takeover vs one line: the top features differ by about 0.5-0.8 of their spread. They
+  are listed with Neuronpedia links in `features.csv` and not yet looked up, so what they are about is not known yet;
+  the went-along features carry the same chat confound as the read-out.
+- Caveat: Gemma Scope 2 was trained on the full-precision model; its reading of the 4-bit model is an approximation.
