@@ -637,3 +637,7 @@ Dated entries: what was run, what happened, what's next.
   all 1,440 saved try-out steps), so notebook 13 will recompute the states at the moments it reads (to do before the
   analysis). Tested here against a local stand-in for GitHub: five days pushed as five commits; a restart skipped
   them, redid a day whose file was cut off, and carried the diary.
+- 2026-10-15. 12B final round under way: 106 of 300 days saved to GitHub in 3.8 hours (about 2 minutes a day, A100,
+  4-bit), then it stopped at 05:36 UTC when the Colab tab froze. Data checked: 2,544 steps, 1 unreadable, trades and
+  holds balanced, 35 chat messages on 26 days, one setup ID. Likely cause of the freeze: transformers printed two
+  warnings on every reply (thousands of lines over hours); notebook 12 now silences them. Resuming continues from day 107.
