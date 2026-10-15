@@ -649,3 +649,8 @@ Dated entries: what was run, what happened, what's next.
   (24 send-backs) against notebook 13's rebuild: 144 of 144 prompts identical; the analysis cells ran on the 164 real
   12B days so far with stand-in states (a planted signal was found at its layer, AUC 0.95, shuffled labels at most 0.64).
   Not testable here: the GPU forward pass and the Gemma Scope 2 file layout.
+- 2026-10-15. Final-round analysis written before the run finished: `analysis/final_round.py` implements the plan's
+  tests as written (sign tests on per-chat-and-run differences in the joined rate, as in the chat studies; a logistic
+  model with chat as a random effect, statsmodels' Bayesian mixed GLM; exposure added; stops and harm day by day vs no
+  ask; the p240 quote; unreadable steps with the 10% flag; exploratory takeover and carry-over). Run once on the 224
+  days saved so far only to check that it works; nothing in it or the plan was changed after seeing them.
