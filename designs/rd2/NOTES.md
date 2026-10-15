@@ -662,3 +662,10 @@ Dated entries: what was run, what happened, what's next.
   kappa 0.95, all NAMED agreed): 18 of 110 messages revealed a private fact, the asked-for fact in 4 of 200 asks;
   a reply named the request as wrong on 35 of 250 asked days, gain 21 vs loss 8 of 100 (Fisher p = 0.015, secondary);
   7 naming days still set off UBS's push. In the results README.
+- 2026-10-15. **The book** (`book/make_book.py` + `book/book_template.html`): one page with every day of the final
+  round, built from the saved days and the blind grades. A grid of all 300 days (went along or not at each push ask,
+  stops pushed, named the wrong, messages), each day step by step (UBS's lines, the agent's reasoning and messages,
+  its orders, position, UBS's trades, stop fills, a price chart), and the replies at every push ask, every message to
+  UBS and every reply graded as naming the wrong. Counts match `analysis.md` (asked 100/300, no ask 9/60). The page
+  itself is not committed (3.3 MB of model output); rebuild with
+  `python designs/rd2/book/make_book.py results/mountain_gemma-3-12b-it_4bit outputs/mountain_book.html`.
