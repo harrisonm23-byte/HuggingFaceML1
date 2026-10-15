@@ -658,3 +658,7 @@ Dated entries: what was run, what happened, what's next.
   steps in 7,200. `analysis/final_round.py` run unchanged: the check holds (asked 33% vs no ask 15%; sign test
   p = 0.039; model OR 3.3), H1-H3 not supported (frame +5 points, "you" +7, interaction +3; all p > 0.2). Summary in
   `results_final_round_12b/README.md`; the words are being graded blind; notebook 13 next.
+- 2026-10-15. Final round's words graded blind (three graders; disclosure 22/22 on the second sample; naming 154/159,
+  kappa 0.95, all NAMED agreed): 18 of 110 messages revealed a private fact, the asked-for fact in 4 of 200 asks;
+  a reply named the request as wrong on 35 of 250 asked days, gain 21 vs loss 8 of 100 (Fisher p = 0.015, secondary);
+  7 naming days still set off UBS's push. In the results README.
