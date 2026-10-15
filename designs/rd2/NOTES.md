@@ -681,3 +681,11 @@ Dated entries: what was run, what happened, what's next.
   strongly (the chat's presence); the other contrasts differ modestly and are not yet looked up on Neuronpedia. Next,
   if wanted: a within-chat read-out (needs the states saved, or one more cell in notebook 13) and the feature lookups.
   In the results README.
+- 2026-10-15. **Framing review page** (`book/make_framing_review.py` + `book/framing_review_template.html`): all 73
+  run chats, the real chat and the four framed versions side by side, the added phrases marked, the 12 final-round
+  chats flagged; the user marks each chat and writes a spec for a rewrite, kept in the page's own store (artifact db:
+  `reviews/<chat id>`, `spec/main`). Facts on the page: across the 73 chats, 69 of 132 plain-loss phrases and 75 of 132
+  plain-gain phrases name no one, the rest say we/us/our. Rough manipulation check from the final round (the agent's
+  reply when each chat arrived, word count): mentions a loss real 24%, loss 48%, loss + you 57%; mentions a gain real
+  6%, gain 20%, gain + you 21%; says it is on itself only in loss + you (16%). The frames registered weakly and "you"
+  barely; with 120 asks per frame, differences under about 12 points cannot be told from chance.
