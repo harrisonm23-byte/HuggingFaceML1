@@ -641,3 +641,11 @@ Dated entries: what was run, what happened, what's next.
   4-bit), then it stopped at 05:36 UTC when the Colab tab froze. Data checked: 2,544 steps, 1 unreadable, trades and
   holds balanced, 35 chat messages on 26 days, one setup ID. Likely cause of the freeze: transformers printed two
   warnings on every reply (thousands of lines over hours); notebook 12 now silences them. Resuming continues from day 107.
+- 2026-10-15. Notebook 13 rewritten for the final round: reads the days from the repo (`results/<folder>/days/`),
+  rebuilds each push request's prompt exactly as notebook 12's agent saw it (opening, diary, earlier steps, update,
+  send-backs) and runs it once through the same 4-bit 12B model to record the residual stream at every layer at the
+  last token before the reply; then the probe, Gemma Scope 2 features and contrasts as before; results pushed to
+  `results/<folder>/inside/`. Tested here: notebook 12's own agent code on six simulated days with scripted replies
+  (24 send-backs) against notebook 13's rebuild: 144 of 144 prompts identical; the analysis cells ran on the 164 real
+  12B days so far with stand-in states (a planted signal was found at its layer, AUC 0.95, shuffled labels at most 0.64).
+  Not testable here: the GPU forward pass and the Gemma Scope 2 file layout.

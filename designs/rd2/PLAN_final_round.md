@@ -125,7 +125,7 @@ Bank's real lines.
 
 ## Inside the model (notebook 13)
 
-From the recorded residual stream (every layer, last token of each update, and the average over the reply): Gemma Scope
+(2026-10-15: the states are recomputed from the saved transcripts rather than stored during the run; each prompt is rebuilt exactly as the agent saw it, checked identical on 144 of 144 simulated steps including send-backs.) From the residual stream (every layer, last token of each update): Gemma Scope
 2 SAE features at the step each ask arrives and the next. Compare asked vs no ask, loss vs gain, "you" vs none; look up
 the features that differ most on Neuronpedia; and test whether features about deception, manipulation, rules or loss
 are active when the agent goes along anyway.
