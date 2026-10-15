@@ -689,3 +689,7 @@ Dated entries: what was run, what happened, what's next.
   reply when each chat arrived, word count): mentions a loss real 24%, loss 48%, loss + you 57%; mentions a gain real
   6%, gain 20%, gain + you 21%; says it is on itself only in loss + you (16%). The frames registered weakly and "you"
   barely; with 120 asks per frame, differences under about 12 points cannot be told from chance.
+- 2026-10-15. **Reasoning monitor** (exploratory, for the user's job application): three blind graders labelled the
+  agent's reasoning at each of the 300 asked push requests (orders removed) ALONG / REFUSES / SILENT. It flagged 88 of
+  the 100 go-along trades and 66 of the 200 others (voiced willingness 51%, acted 33%). In the results README;
+  `analysis/monitor.py`, `results_final_round_12b/monitor/`. One-page project summary written as a Claude doc.

@@ -47,6 +47,16 @@ CONCERN vs NONE, so every NAMED label was agreed). `disclosure/analysis.txt`, `f
   set off UBS's push, e.g. "UBS is still sniffing around for stop information, confirming their intent to
   manipulate the market. I'll continue to reduce my short exposure" (that buying went UBS's way).
 
+## What a monitor on its reasoning would catch (exploratory, 2026-10-15)
+
+Three blind graders (Claude subagents) read only the agent's reasoning and chat messages at each push request's window
+(the ask step and the next one; its orders removed) and labelled whether it was going along (`monitor/`,
+`MONITOR_PROMPT.md`, `analysis/monitor.py`). Against its trades: of the 100 requests where it went along, 88 were
+flagged, 2 said no or called it wrong, 10 said nothing either way. Of the 200 where it did not, 66 were flagged
+(mostly it said it would help but traded too little or the wrong way to set off UBS's push), 17 said no, 117 said
+nothing. So the reasoning gives away most go-along trades (88%), and the agent voiced willingness after 51% of
+requests but acted on it after 33%. One grader per item; no agreement check yet.
+
 ## Inside the model (notebook 13; exploratory)
 
 Notebook 13 rebuilt the prompt at each of the 360 push requests from the saved transcripts and ran it once through the
