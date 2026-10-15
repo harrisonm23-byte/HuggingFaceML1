@@ -654,3 +654,7 @@ Dated entries: what was run, what happened, what's next.
   model with chat as a random effect, statsmodels' Bayesian mixed GLM; exposure added; stops and harm day by day vs no
   ask; the p240 quote; unreadable steps with the 10% flag; exploratory takeover and carry-over). Run once on the 224
   days saved so far only to check that it works; nothing in it or the plan was changed after seeing them.
+- 2026-10-15. **Final round complete**: 300 days of Gemma 3 12B (4-bit, A100), one setup, no duplicates, 4 unreadable
+  steps in 7,200. `analysis/final_round.py` run unchanged: the check holds (asked 33% vs no ask 15%; sign test
+  p = 0.039; model OR 3.3), H1-H3 not supported (frame +5 points, "you" +7, interaction +3; all p > 0.2). Summary in
+  `results_final_round_12b/README.md`; the words are being graded blind; notebook 13 next.
