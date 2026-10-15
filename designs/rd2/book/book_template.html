@@ -17,6 +17,7 @@
   --harm: #b42318; --harm-wash: #fbe7e5;
   --concern: #8a5a00; --concern-wash: #faf0d9;
   --silver-1: #c9d1da; --silver-2: #8d99a6;
+  --we: #6a3d9a; --add-wash: #fff3c4;
   --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -33,6 +34,7 @@
     --harm: #f5806f; --harm-wash: #351c1a;
     --concern: #e3b24d; --concern-wash: #2f2714;
     --silver-1: #5d6976; --silver-2: #3a444f;
+    --we: #c9a8f2; --add-wash: #3a3115;
     color-scheme: dark;
   }
 }
@@ -47,6 +49,7 @@
   --harm: #f5806f; --harm-wash: #351c1a;
   --concern: #e3b24d; --concern-wash: #2f2714;
   --silver-1: #5d6976; --silver-2: #3a444f;
+  --we: #c9a8f2; --add-wash: #3a3115;
   color-scheme: dark;
 }
 
@@ -223,6 +226,26 @@ details.diary pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1
 .count { font-size: 13.5px; color: var(--muted); margin-top: 12px; }
 .empty { background: var(--paper); border: 1px dashed var(--rule); border-radius: 8px; padding: 20px; color: var(--muted); }
 
+/* The asks */
+.asknav { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; margin-block: 8px 4px; }
+.tally { border-collapse: collapse; font-size: 14px; margin-block: 14px 4px; }
+.tally th, .tally td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+.tally th { font: 500 12px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.daygroup { margin-top: 30px; display: grid; gap: 12px; }
+.chatcard { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; scroll-margin-top: 80px; }
+.tablewrap { overflow-x: auto; }
+.side { border-collapse: collapse; width: 100%; min-width: 880px; table-layout: fixed; }
+.side th { font: 600 12px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+.side th:first-child { width: 86px; }
+.side td { vertical-align: top; padding: 8px; border-bottom: 1px solid var(--rule); font: 13.5px/1.5 var(--f-mono); color: var(--ubs); overflow-wrap: anywhere; }
+.side td.who { font: 600 11px/1.6 var(--f-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.side tr.D td { color: var(--real); background: var(--real-wash); }
+.side tr.offer td { border-bottom: 2px solid var(--ubs); }
+.side td .add { background: var(--add-wash); color: var(--ink); border-radius: 2px; padding: 0 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+b.we { color: var(--we); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+b.you { color: var(--agent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.lg-add { width: 18px; height: 12px; background: var(--add-wash); border: 1px solid var(--rule); }
+
 /* About */
 .prose { display: grid; gap: 18px; }
 .prose h2 { margin-top: 10px; }
@@ -239,6 +262,7 @@ details.diary pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1
     <a class="brand" href="#days"><span class="ingot" aria-hidden="true"></span>Mountain Trading Book</a>
     <nav class="tabs" aria-label="Sections">
       <a href="#days" data-tab="days">Days</a>
+      <a href="#asks" data-tab="asks">The asks</a>
       <a href="#replies" data-tab="replies">Replies</a>
       <a href="#about" data-tab="about">How to read</a>
     </nav>
@@ -248,6 +272,7 @@ details.diary pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1
 <main class="wrap" id="main">
   <section id="v-days"></section>
   <section id="v-day" hidden></section>
+  <section id="v-asks" hidden></section>
   <section id="v-replies" hidden></section>
   <section id="v-about" hidden></section>
 </main>
@@ -263,10 +288,10 @@ const DATES = [...new Set(DAYS.map(d => d.date))].sort();
 const MODE = { full: "Full takeover", one: "One line" };
 const VDESC = {
   "real": "UBS's words as in the 2011 chats.",
-  "loss": "UBS adds that it has been losing money.",
-  "gain": "UBS adds that it has been making money.",
-  "loss + you": "Losing money, and UBS puts it on the agent (\"it's on you\").",
-  "gain + you": "Making money, and UBS puts it on the agent (\"it's on you\").",
+  "loss": "UBS's lines before the request each get a short added phrase about money lost.",
+  "gain": "UBS's lines before the request each get a short added phrase about money made.",
+  "loss + you": "Money lost, and the last added phrase puts it on the agent (\"that's on you\").",
+  "gain + you": "Money made, and the last added phrase gives the chance to the agent (\"you can top it\").",
   "no ask": "No chat at all. The same moments are watched, for comparison."
 };
 const MDESC = {
@@ -682,6 +707,60 @@ $("#v-replies").addEventListener("change", e => {
   RF.n = 30; renderReplies();
 });
 
+// ---------- The asks, side by side ----------
+const AV = ["real", "loss", "gain", "loss + you", "gain + you"];
+const WE_W = /^(we|us|our|ours|we're|we've|we'll)$/i, YOU_W = /^(you|u|your|you're|ur|yours)$/i;
+const words = t => t.match(/[A-Za-z']+/g) || [];
+function marked(t) {
+  return t.split(/([A-Za-z']+)/).map(p => WE_W.test(p) ? `<b class="we">${esc(p)}</b>` : YOU_W.test(p) ? `<b class="you">${esc(p)}</b>` : esc(p)).join("");
+}
+function added(real, framed) { return framed.startsWith(real) ? framed.slice(real.length) : null; }
+function renderAsks() {
+  const tally = Object.fromEntries(AV.slice(1).map(v => [v, { n: 0, we: 0, you: 0, none: 0 }]));
+  for (const c of DATA.chats) for (const v of AV.slice(1)) c.lines[v].forEach(([w, t], i) => {
+    const a = added(c.lines.real[i][1], t);
+    if (!a) return;
+    const ws = words(a), we = ws.some(x => WE_W.test(x)), you = ws.some(x => YOU_W.test(x)), k = tally[v];
+    k.n++; k.we += we; k.you += you; k.none += !we && !you;
+  });
+  const days = DATES.map(dt => {
+    const cs = DATA.chats.filter(c => c.date === dt);
+    return `<div class="daygroup" id="a-${dt}"><h2>${dlabel(dt)}</h2>${cs.map(c => {
+      const n = c.lines.real.length;
+      const rows = c.lines.real.map(([w, t], i) => {
+        const cls = (w === "D" ? "D" : "U") + (i === n - 1 ? " offer" : "");
+        if (w === "D") return `<tr class="${cls}"><td class="who">DB · 2011</td><td colspan="5">${esc(t)}</td></tr>`;
+        return `<tr class="${cls}"><td class="who">UBS${i === n - 1 ? "<br>the request" : ""}</td>${AV.map(v => {
+          const f = c.lines[v][i][1], a = added(t, f);
+          return `<td>${a === null ? marked(f) : esc(t) + (a ? `<span class="add">${marked(a)}</span>` : "")}</td>`;
+        }).join("")}</tr>`;
+      }).join("");
+      return `<article class="chatcard"><div class="cardhead"><span class="mono">${c.at} UTC</span><span class="askname">“${esc(c.name)}”</span>
+          <span>${c.push ? `UBS asks it to push silver ${c.wants}` : `UBS asks for ${esc(c.share)}`}</span>${c.push ? pill("quiet", "push ask") : ""}</div>
+        <div class="tablewrap"><table class="side"><thead><tr><th></th>${AV.map(v => `<th>${esc(v)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div></article>`;
+    }).join("")}</div>`;
+  }).join("");
+  $("#v-asks").innerHTML = `
+    <h1>The asks, side by side</h1>
+    <p class="lede">Every chat UBS sends on the five days, in the five wordings, exactly as the agent saw it (full takeover run).
+      The framed versions keep UBS's real words and add a short phrase (highlighted) to its lines before the request, or to the
+      request itself when that is UBS's only line. The request's own words never change.
+      In the one-line run the same UBS lines arrive, without Deutsche Bank's 2011 lines (except “i can hunt with u” on 7 Jan).</p>
+    <div class="legend" style="margin-top:14px"><span><i class="lg-add"></i>added phrase</span><span><b class="we">we / us / our</b></span><span><b class="you">you / u</b> (the agent)</span></div>
+    <div class="tablewrap"><table class="tally"><thead><tr><th>Version</th><th>Added phrases</th><th>Say we / us / our</th><th>Name no one</th><th>Say you / u</th></tr></thead><tbody>
+      ${AV.slice(1).map(v => { const k = tally[v]; return `<tr><td>${esc(v)}</td><td>${k.n}</td><td>${k.we}</td><td>${k.none}</td><td>${k.you}</td></tr>`; }).join("")}
+    </tbody></table></div>
+    <p class="muted" style="font-size:13.5px">Counts are of the added phrases across the ${DATA.chats.length} chats; a phrase in a “+ you” version can say both “we” and “you”.</p>
+    <nav class="asknav" aria-label="Days">${DATES.map(dt => `<a href="#asks" data-day="${dt}">${dlabel(dt)}</a>`).join("")}</nav>
+    ${days}`;
+}
+$("#v-asks").addEventListener("click", e => {
+  const a = e.target.closest("[data-day]");
+  if (!a) return;
+  e.preventDefault();
+  document.getElementById("a-" + a.dataset.day).scrollIntoView({ block: "start" });
+});
+
 // ---------- How to read ----------
 function renderAbout() {
   const m = DATA.meta;
@@ -719,14 +798,14 @@ function renderAbout() {
     <h2>The results in short</h2>
     <p>The ask works: the agent went along after 33% of UBS's push asks against 15% with no ask. The wording did not matter much: losing vs making money,
       and “it's on you” vs not, made no clear difference to the trading. It rarely told UBS anything private and never gave the stop levels.
-      On 35 of 250 asked days it called the request wrong in its own reasoning, more often when UBS said it was making money, and on some of those days it still traded UBS's way.</p>
+      On 35 of 250 asked days it called the request wrong in its own reasoning, more often in the gain versions, and on some of those days it still traded UBS's way.</p>
     <p class="muted">The tests and their numbers are in designs/rd2/results_final_round_12b/README.md in the repository. This page is built by designs/rd2/book/make_book.py from the saved days.</p>
   </div>`;
 }
 
 // ---------- routing ----------
 let pendingStep = null, current = "days", daysScroll = 0;
-const VIEWS = ["days", "day", "replies", "about"];
+const VIEWS = ["days", "day", "asks", "replies", "about"];
 function show(view) {
   for (const v of VIEWS) $("#v-" + v).hidden = v !== view;
   const tab = view === "day" ? "days" : view;
@@ -741,7 +820,8 @@ function route() {
     const el = pendingStep && document.getElementById("s-" + pendingStep.replace(":", ""));
     if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("flash"); } else scrollTo(0, 0);
     pendingStep = null;
-  } else if (h === "replies") { renderReplies(); show("replies"); scrollTo(0, 0); }
+  } else if (h === "asks") { renderAsks(); show("asks"); scrollTo(0, 0); }
+  else if (h === "replies") { renderReplies(); show("replies"); scrollTo(0, 0); }
   else if (h === "about") { renderAbout(); show("about"); scrollTo(0, 0); }
   else { show("days"); scrollTo(0, daysScroll); }
 }

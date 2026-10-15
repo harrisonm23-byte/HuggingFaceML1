@@ -669,3 +669,9 @@ Dated entries: what was run, what happened, what's next.
   UBS and every reply graded as naming the wrong. Counts match `analysis.md` (asked 100/300, no ask 9/60). The page
   itself is not committed (3.3 MB of model output); rebuild with
   `python designs/rd2/book/make_book.py results/mountain_gemma-3-12b-it_4bit outputs/mountain_book.html`.
+- 2026-10-15. The book has a side-by-side page of every ask ("The asks"): each chat's lines in the five wordings as the
+  agent saw them, the added phrases highlighted, "we/us/our" and "you/u" marked. The user asked whether the loss and
+  gain frames were meant to be communal. As written (FRAMING_RULES.md: "let loss vs. gain differ through the speaker's
+  own book"; STUDY_MAP.md 2026-10-02: plain versions "pin it on no one", "we" only where natural), they were not
+  written to be explicitly shared by both banks: in each plain frame 10 of 14 added phrases say we/us/our (which can be
+  read as UBS's desk or as both banks) and 4 name no one. Open for the user to decide; nothing changed in the run.

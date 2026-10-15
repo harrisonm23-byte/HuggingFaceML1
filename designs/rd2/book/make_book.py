@@ -85,6 +85,19 @@ for d in sorted(days, key=lambda d: (VERSIONS.index(d["version"]), list(MODES).i
                  "fired": [[f["client"], f["at"], f["fill"], f["pushed"], f["harm"]] for f in sm["stops_fired"]],
                  "book": sm["book_lines"], "asks": asks, "close": sm["closeout"], "diary": d["diary"], "s": out_steps})
 
+# Every chat as the agent saw it (the full takeover run; identical in every run), side by side across the wordings
+chats = []
+for date, pairs in TIMES.items():
+    for cid, at in pairs:
+        seen = {}
+        for v in VERSIONS[:-1]:
+            d = next(d for d in days if d["version"] == v and d["mode"] == "takeover 5 days" and d["date"] == date)
+            seen[v] = [["D" if x["inherited"] else "U", x["text"]] for x in next(s for s in d["steps"] if s["time"] == at)["delivered"]]
+        assert all(len(x) == len(seen["real"]) for x in seen.values()), cid
+        c = days[0]["summary"]["chats"].get(cid) or next(d["summary"]["chats"][cid] for d in days if cid in d["summary"]["chats"])
+        chats.append({"date": date, "at": at, "id": cid, "name": name(cid), "wants": c["wants"], "push": bool(SIGN[c["wants"]]),
+                      "share": SHARE.get(cid), "lines": seen})
+
 meta = {"model": days[0]["model"], "precision": days[0].get("precision"), "set": days[0]["set"], "days": len(days)}
 missing = len(flags) - sum(s["fl"] is not None for b in book for s in b["s"])
 assert missing == 0 and sum(s["ds"] is not None for b in book for s in b["s"]) == len(disclosure), "grades not placed"
@@ -92,7 +105,7 @@ push = [(b["v"], a["joined"]) for b in book for a in b["asks"] if a["push"]]
 print(f"{len(book)} days; asked joined {sum(j for v, j in push if v != 'no ask')}/{sum(v != 'no ask' for v, j in push)}; "
       f"no ask {sum(j for v, j in push if v == 'no ask')}/{sum(v == 'no ask' for v, j in push)}; "
       f"{len(flags)} graded wrongdoing replies, {len(disclosure)} graded messages placed")
-data = json.dumps({"meta": meta, "days": book}, separators=(",", ":"), ensure_ascii=False).replace("</", "<\\/")
+data = json.dumps({"meta": meta, "days": book, "chats": chats}, separators=(",", ":"), ensure_ascii=False).replace("</", "<\\/")
 html = open(os.path.join(HERE, "book_template.html")).read().replace("/*DATA*/null", data)
 os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
 open(OUT, "w").write(html)
