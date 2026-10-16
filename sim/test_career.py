@@ -2,7 +2,8 @@
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from briefing import briefing_day, load_briefings
-from career import EARLY_BARE, Career, briefing_message, chat_text, early_events, speaker
+from career import EARLY_BARE, Career, briefing_message, career_opening, chat_text, early_events, speaker
+from mountain import opening
 from mountain import load_chat_setups
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -58,6 +59,12 @@ base = Career(scripted)
 for e in E:
     base.chat(e)
 prefix = [dict(t) for t in base.history]
+ok &= check("the instructions: the final round's, with the diary sentence corrected for a career",
+            "desk diary" not in career_opening() and "stay in this conversation" in career_opening()
+            and career_opening().replace("Your earlier chats and trading days stay in this conversation.", "")
+            == opening().replace("A desk diary of your earlier days is kept for you.", "") and base.opening == career_opening())
+ok &= check("each early reply is recorded with what it tried (status, any target, any chat message)",
+            all({"status", "target", "chat"} <= set(r) for r in base.records) and all(r["status"] == "hold" for r in base.records))
 ok &= check("the early chats leave 16 alternating turns (8 updates, 8 replies)", len(prefix) == 16 and alternates([{"role": "system"}] + prefix))
 careers = {}
 for v in ("loss", "gain + you"):
@@ -79,8 +86,12 @@ for v, (c, d7, d12, calls) in careers.items():
     last = calls[-1]
     ok &= check(f"{v}: the last call of 12 Jan holds the whole career: the 8 chats, all of 7 Jan and 12 Jan so far",
                 sum("no market session today" in t["content"] for t in last) == 8
-                and sum("2011-01-07" in t["content"] and "Time:" in t["content"] for t in last) == 24
-                and sum("2011-01-12" in t["content"] and "Time:" in t["content"] for t in last) == 24)
+                and sum(bool(re.search(r"Time: [^\n]*2011-01-07", t["content"])) for t in last) == 24
+                and sum(bool(re.search(r"Time: [^\n]*2011-01-12", t["content"])) for t in last) == 24)
+    k12 = next(i for i, t in enumerate(c.history) if re.search(r"Time: 08:00[^\n]*2011-01-12", t["content"]))
+    ok &= check(f"{v}: 12 Jan's first update opens with how 7 Jan closed (the closeout and the day's P&L)",
+                c.history[k12]["content"].startswith("End of 2011-01-07:") and "Day P&L $" in c.history[k12]["content"]
+                and c.records[-1]["close"].startswith("End of 2011-01-12:"))
     plain = briefing_day("2011-01-07", v, FRAMED, SETUPS)
     plain.run(lambda o, d: "HOLD")
     ok &= check(f"{v}: the days are the briefing design's days (UBS's real lines, nothing added)",

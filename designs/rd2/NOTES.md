@@ -818,3 +818,15 @@ Dated entries: what was run, what happened, what's next.
   AI agents ("Fortis [Agent]"; a Deutsche Bank colleague is "Deutsche Bank [Agent C]"). Bare replies dropped in the
   early chats: Fortis "THSX MATE" (p306), UBS "gotcha" (p320). The briefing shares the first 7 Jan user turn with the
   update, since Gemma's template needs alternating roles.
+- 2026-10-16. **Career pilot reviewed** (two lenses, each serious finding checked by a skeptic): 1 confirmed, 1 refuted,
+  11 minor. Fixed: (1) a T4 runs out of memory partway through 7 Jan (bf16 attention falls back to an fp32 N x N score
+  tensor below sm80; the context reaches about 15k tokens by the end of 12 Jan), so the set-up cell now stops on any GPU
+  older than an A100/L4; (2) the instructions said "A desk diary of your earlier days is kept for you": for a career this
+  one sentence now reads "Your earlier chats and trading days stay in this conversation"; (3) how a trading day closed
+  (the 14:00 closeout and the day's P&L) never reached the agent: it is now told at the start of its next update;
+  (4) the setup ID covers sim/career.py, sim/briefing.py, MODE and every briefing; (5) a cut-off early-history file is
+  written again if no career used it yet; (6) early chat replies record what the agent tried (status, target, chat);
+  (7) the summary names careers and counts the versions present. Known limits, left as they are (the same in every
+  version, not scored): without the agent's own lines, p306 is Fortis answering a question the agent never asked
+  ("YOUR SUPPOSED TO TELL US") and p307 starts "THSX MATE DID HE OFFER IT DOWN?" with no "he" in view; the undated
+  p310 ("smash it together") has no place in the order and is left out. `sim/test_career.py` 26 checks, all pass.
