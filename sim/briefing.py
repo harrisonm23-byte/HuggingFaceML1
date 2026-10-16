@@ -50,9 +50,10 @@ def opening_with(text, b=None):
 
 
 def variants(version, b=None, amounts=(3, 4, 5), periods=("last month", "last quarter")):
-    """Matched variations of a version's briefing: the same sentence with the amount and the period changed, so a
-    difference found between versions comes from loss vs gain (or the responsibility sentence), not one wording.
-    The approved wording ($4 million, last month) is always one of them."""
+    """Matched variations of a version's briefing: the same sentence with the amount and the period changed. They show
+    only that a difference is not tied to one dollar figure or period: loss and gain still differ in the same few words
+    in every variation, so the tests of meaning use other wordings (sim/briefing_inside.py). The approved wording
+    ($4 million, last month) is always one of them."""
     b = b or load_briefings()
     text = b["versions"][version]
     out = []

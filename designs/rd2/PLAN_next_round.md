@@ -50,18 +50,21 @@ The one change: no Deutsche Bank lines from 2011 appear in the chats (the "0 day
 
 ## Step 0: inside the briefing, before any trading (notebook 15)
 
-The user's idea: look at what the briefing does inside the model first. Each version's prompt on 7 Jan is read once by the model, and its internal state is recorded at all 48 layers. The two moments are 08:00, the first update, and 09:30, UBS's request after holding at every step. There is no trading and no reply, and it takes about 15 minutes.
+The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about 20 to 30 minutes.
 
-**Matched variations:** each briefing comes in six versions ($3, $4 or $5 million; last month or last quarter), so a difference comes from loss vs gain, not one wording.
+**The catch.** The loss and gain briefings differ in a few words (loss/profit, closure/expansion), so any model that registers words tells them apart; that alone shows nothing. An independent review found the first version's checks would all have passed for a word counter. Every check now says what a word counter scores, and `sim/test_briefing_inside.py` confirms it on one.
 
-**What it shows:**
-1. **A loss direction** (loss minus gain), checked on variations it wasn't built from.
-2. **A responsibility direction** ("+ you" minus plain).
-3. **Whether the loss signal is still there at 09:30.**
-4. **A control:** bad vs good weather, no money involved. It shows whether the direction is about losing money or just bad news.
-5. **The Gemma Scope features that differ,** with Neuronpedia links.
+**The test sentences** (`data/silver/briefing_probes.json`, never shown in the pilot):
+1. **Loss and gain in other words** ("ended the month $4 million in the red", "came in above its target by $4 million"), with none of the key words. A word counter scores 0.5 (chance).
+2. **Word flips:** good news told with "loss" and "closure", bad news with "profit" and "expansion". Following meaning scores 1; following words scores 0.
+3. **Money only** and **a threat to the desk only:** which part of the briefing the direction picks up.
+4. **Bad vs good weather** (six pairs, no money), against unrelated splits ($3M vs $5M, month vs quarter, week vs weekend). This can rule out a general "bad news" direction; it cannot show the direction is about money.
+5. **Responsibility** against a matched control sentence ("You are directly informed of these results."), then checked on other wordings.
+6. **A words-only floor:** the same measures on the prompt's word embeddings added up (single-word meanings, no context).
 
-**What it saves:** the loss direction at a middle layer, for Part B's dial, to `results/mountain_gemma-3-12b-it_4bit_briefing_inside/`.
+**What it shows, by layer:** a loss direction (the pilot's loss briefings minus its gain briefings at 08:00) and how it does on each test; a responsibility direction; how much of each is left at UBS's request, read by attention type (most of Gemma 3's layers only see the last 1,024 tokens, and at 09:30 the briefing is further back); how far the request itself moves the state along the loss direction; and the Gemma Scope features that differ, ranked by size, each against its own noise level, with Neuronpedia links and the SAE file.
+
+**What it saves for Part B:** the loss direction at a middle layer chosen for how well it sorts the other wordings, with its natural size, where each briefing sits along it, the states at that layer, and the loss-minus-gain difference at every layer, to `results/mountain_gemma-3-12b-it_4bit_briefing_inside/`. These are saved before the Gemma Scope part, so a problem there loses nothing.
 
 ## Step 1: the pilot (notebook 14)
 
@@ -124,7 +127,7 @@ These assume about a 30% going-along rate and treat the requests as independent.
 ## Part B: the loss dial inside the model
 
 - Every Part B run gets the neutral briefing and UBS's real request. Only the model's internal state is changed.
-- **1. Find the loss direction:** done in Step 0 (notebook 15), from the briefings themselves, with the not-money control.
+- **1. Find the loss direction:** done in Step 0 (notebook 15), from the briefings themselves, tested on other wordings, word flips and a no-money control.
 - **2. Read it:** in the pilot and in Step 2, how strongly it is active when UBS's request arrives, after each briefing.
 - **3. Turn it up or down** at the request steps: off, two loss strengths, two gain strengths, a random direction of the same size, and the loss dial with no request.
 - **Where it runs:** 7 Jan and 12 Jan, 10 runs each, on Colab with the same layer hooks notebook 13 used.
@@ -138,3 +141,5 @@ These assume about a 30% going-along rate and treat the requests as independent.
 | The pilot notebook | `notebooks/14_briefing_pilot.ipynb` |
 | The pilot summary | `designs/rd2/analysis/briefing_pilot.py` |
 | Step 0, inside the briefing | `notebooks/15_inside_the_briefing.ipynb` |
+| Step 0's test sentences | `data/silver/briefing_probes.json` |
+| Step 0's prompts and measures, and their checks | `sim/briefing_inside.py`, `sim/test_briefing_inside.py` |

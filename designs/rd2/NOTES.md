@@ -742,3 +742,19 @@ Dated entries: what was run, what happened, what's next.
   reads "UBS's real lines, with Deutsche Bank's lines removed", with known limits: on 12 Jan "yup" answers a DB
   question the agent does not see (the same in every version); the cut chats on 1 Apr and 5 Aug for Step 2; the fixed
   briefing across days months apart; the request's information. Checks: 41, all pass.
+- 2026-10-16. **Step 0 reviewed independently and rebuilt** (two lenses, each finding checked by a skeptic; 5 major
+  confirmed, 1 overstated, 9 minor). The main problem: loss and gain briefings differ only in loss/profit and
+  closure/expansion, so the held-out check, the weather ratio and the responsibility check would all have passed for a
+  model that only counts words (shown on a bag-of-words stand-in). Rebuilt (`sim/briefing_inside.py`, test sentences in
+  `data/silver/briefing_probes.json`, 202 prompts): loss and gain in other words (none of the key words), word flips
+  (good news told with loss/closure, bad news with profit/expansion), money only, threat to the desk only, six weather
+  pairs against unrelated splits, the responsibility sentence against a matched control ("You are directly informed of
+  these results.") and other wordings, and a words-only floor (summed word embeddings). `sim/test_briefing_inside.py`
+  (31 checks, all pass) shows a word counter scores chance on other words and responsibility, 0 on flips, 1 on the
+  wording checks, and that a stand-in which encodes meaning passes. Also: the dial layer is chosen on other words, not
+  on the trivial check; retention at 09:30 is read by attention type (local layers see 1,024 tokens; the briefing is
+  further back at 09:30); features are ranked by the size of the difference with each group's mean and a per-feature
+  null, plus the features whose decoder points along the loss direction; the directions, their scale, the
+  projections, the states at the dial layer and the per-layer differences are saved and pushed before the Gemma Scope
+  part; re-running the model cell frees the old model; pushes retry. Matched test sentences have equal word counts
+  (the notebook prints the token gaps).
