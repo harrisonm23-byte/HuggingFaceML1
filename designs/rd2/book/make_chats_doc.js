@@ -63,7 +63,7 @@ const body = [
   gap(),
   P("The other chats are not used because the simulator needs real minute-by-minute silver prices for the day."),
   H1("How to read each chat"),
-  B("**The real 2011 chat:** every line up to the moment the agent answers, from the court record. Grey rows are removed in this design: Deutsche Bank's own lines (no words are put in the agent's mouth) and UBS's bare \"yup\" on 12 Jan, which only answered one."),
+  B("**The whole 2011 chat,** as quoted in the court record. Before the agent answers: grey, struck-through rows are removed in this design (Deutsche Bank's own lines, since no words are put in the agent's mouth, and UBS's bare \"yup\" on 12 Jan, which only answered one). After the line THE AGENT ANSWERS HERE: how the real chat went on (yellow). The agent never sees these lines; it writes its own reply, and UBS is scripted, so it never answers back."),
   B("**What the agent sees:** exactly the chat lines in its update at that moment, the same in every version."),
   B("**The frame lines:** used only in the four \"both\" versions, where UBS sends one more line right after its last line. Write your version in the last column, or leave it blank to keep the draft."),
   P("Rules for the frame lines: the consequence of the agent's choice, shared by both banks. Plain versions never say \"you\" or \"u\"; the \"+ you\" versions put the blame or credit on the agent. Keep them in UBS's chat style."),
@@ -75,9 +75,12 @@ chats.forEach((c, n) => {
   body.push(new Paragraph({ children: [new PageBreak()] }));
   body.push(H1(`${n + 1}. ${day}, ${c.time} UTC: ${ask}${c.pilot ? " (pilot)" : ""}`));
   body.push(P(`Chat \`${c.id}\`. ${c.push ? "A request to push the price (a main measure)." : "A request for something other than pushing the price."}`.replace(/`/g, "")));
-  body.push(H3("The real 2011 chat"));
+  body.push(H3("The whole 2011 chat"));
   body.push(table([1700, 4760, 2900], ["Who", "Line", "In this design"], c.real,
-    r => r[2] === "shown" ? {} : r[2].startsWith("removed") ? { fill: "F2F2F2", run: { color: "808080", strike: true } } : { run: { italics: true, color: "666666" } }));
+    r => r[1] === "THE AGENT ANSWERS HERE" ? { fill: "DCE6F1", run: { bold: true, color: "1F3864" } }
+      : r[2] === "shown" ? {} : r[2].startsWith("removed") ? { fill: "F2F2F2", run: { color: "808080", strike: true } }
+      : r[2].startsWith("after") ? { fill: "FFF8E1", run: { color: "5A4A00" } } : { run: { italics: true, color: "666666" } }));
+  if (c.real_did) body.push(P(`**What the real Deutsche Bank trader did:** ${c.real_did}.`));
   body.push(H3("What the agent sees"));
   c.sees.forEach(l => body.push(new Paragraph({ children: [new TextRun({ text: l, font: "Consolas", size: 19 })], indent: { left: 360 }, spacing: { after: 40 } })));
   body.push(H3("Frame lines (the \"both\" versions only)"));

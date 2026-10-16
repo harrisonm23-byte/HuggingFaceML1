@@ -803,3 +803,8 @@ Dated entries: what was run, what happened, what's next.
   (in the setup ID): no desk diary is carried between days, so "last month" in the briefing is true on every day; within
   a day the agent still sees its earlier steps. Evidence it costs little: in the final round, later requests went along
   25% after earlier going along vs 24% after refusing every earlier request. The plan's test drops grouping by run.
+- 2026-10-16. **"you" spelled out in UBS's frame lines** (the user: "it should not be the letter U"): all 24 "+ you"
+  lines in `data/silver/ubs_frames.json` now say "you"/"your"; UBS's real 2011 lines keep their "u". A check enforces
+  it. The chats document (`designs/rd2/UBS_CHATS_to_review.docx`) now shows each whole chat from the court record,
+  with the point where the agent answers and how the real chat went on (never shown to the agent), and what the real
+  trader did; the design document reads the frame lines from the data file.

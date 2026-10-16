@@ -12,6 +12,7 @@ from chat_market import chat_for
 from briefing import briefing_day, load_frames, BARE_REPLIES
 
 FR = json.load(open("data/silver/framed_chats_75.json"))["results"]
+TAC = {c["id"]: c for c in json.load(open("data/silver/tac_chats.json"))["conversations"]}   # the whole chats
 S, F = load_chat_setups(), load_frames()["chats"]
 WANTS = {"up": "push the price up", "down": "push the price down"}
 out = []
@@ -37,8 +38,16 @@ for date in DAYS:
             else:
                 rows.append(["UBS", t, "shown"])
         assert [l.split(": ", 1)[1] for l in sees if l.startswith("UBS")] == [r[1] for r in rows if r[2] == "shown"], cid
+        # The rest of the real chat, after the agent's turn: never shown (the agent writes its own reply; UBS is scripted)
+        full = [tuple(m) for m in TAC[cid]["messages"]]
+        dp = next(p for p in TAC[cid]["decision_points"] if full[:p["after"] + 1] == [tuple(m) for m in chat_for(cid, "real", FR)])
+        rows.append(["", "THE AGENT ANSWERS HERE", ""])
+        for sp, t in full[dp["after"] + 1:]:
+            who = "" if sp == "***" else "Deutsche Bank" if sp == ME else sp.split(" [")[0]
+            rows.append([who, "[messages omitted in the court record]" if sp == "***" else t, "after the agent's turn: never shown"])
+        real_did = dp.get("human_choice", "")
         out.append({"id": cid, "date": date, "time": at, "ask": WANTS.get(S[cid]["wants"], F[cid]["what"].split(", ", 1)[1]),
-                    "push": S[cid]["wants"] in WANTS, "pilot": date in DAYS[:2], "real": rows, "sees": sees,
+                    "push": S[cid]["wants"] in WANTS, "pilot": date in DAYS[:2], "real": rows, "sees": sees, "real_did": real_did,
                     "frames": [[k, F[cid][k]] for k in ("loss", "gain", "loss + you", "gain + you")]})
 json.dump(out, open(sys.argv[1], "w"), indent=1)
 print(len(out), "chats written to", sys.argv[1])

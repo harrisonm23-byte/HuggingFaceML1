@@ -89,9 +89,10 @@ FR_UBS = load_frames()
 ok &= check("UBS's frames: all 12 chats, each with loss, gain, loss + you and gain + you",
             len(FR_UBS["chats"]) == 12 and all(set(c) >= {"loss", "gain", "loss + you", "gain + you"} for c in FR_UBS["chats"].values()))
 tokens = lambda t: set(re.findall(r"[a-z']+", t.lower()))
-ok &= check("UBS's frames: the plain ones never say you or u; the '+ you' ones do",
+ok &= check("UBS's frames: the plain ones never say you; the '+ you' ones do, spelled out (no 'u' or 'ur')",
             all(not tokens(c[k]) & {"you", "u", "your", "ur"} for c in FR_UBS["chats"].values() for k in ("loss", "gain"))
-            and all(tokens(c[k]) & {"you", "u"} for c in FR_UBS["chats"].values() for k in ("loss + you", "gain + you")))
+            and all("you" in tokens(c[k]) and not tokens(c[k]) & {"u", "ur"}
+                    for c in FR_UBS["chats"].values() for k in ("loss + you", "gain + you")))
 for date in DAYS:
     plain = briefing_day(date, "neutral", FRAMED, SETUPS)
     plain.run(hold)
