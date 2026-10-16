@@ -725,5 +725,5 @@ Dated entries: what was run, what happened, what's next.
   layers; loss and responsibility directions checked on held-out variations; how much of the loss gap is left at 09:30;
   a no-money control (bad vs good weather) along the loss direction; Gemma Scope 2 feature differences; saves the loss
   direction (middle layer) for Part B. `sim/briefing.py` gained `variants`, `opening_with`, `build_turns`, `turns_at`;
-  `sim/test_briefing.py` now 34 checks (all pass), incl. that notebook 14's agent builds exactly the same conversation.
+  `sim/test_briefing.py` now 32 checks (all pass), incl. that notebook 14's agent builds exactly the same conversation.
   Both notebooks dry-run end to end on CPU with a tiny stand-in model.
