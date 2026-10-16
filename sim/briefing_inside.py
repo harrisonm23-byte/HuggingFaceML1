@@ -339,6 +339,7 @@ def reading(LT, best, floor=None):
     _, middle = choose_layer(LT)
     med = middle.median(numeric_only=True)
     f = (lambda c: f"; summed-embedding floor {floor[c]:.2f}") if floor is not None else (lambda c: "")
+    fl = (lambda c: f" (floor {floor[c]:.2f})") if floor is not None else (lambda c: "")
 
     def odds(acc, k=None, mn=None):
         if not acc > 0.5:
@@ -375,9 +376,9 @@ def reading(LT, best, floor=None):
         f"request: ordered {r.flip_acc_0930:.2f}, gap share {r.flip_gap_0930:+.2f}: {flips(r.flip_acc_0930, r.flip_gap_0930)}. "
         "Only a clear flip result shows that more than single words reaches the moment Part B reads and steers.",
         f"Which part of the briefing (shares of the loss gap; they need not add up to 1, since the briefing's threat clause "
-        f"also says 'a further loss/profit'): money only {r.money_only_gap:.2f}{f('money_only_gap')}, threat with "
-        f"closure/expansion {r.threat_gap_T1:.2f}{f('threat_gap_T1')}, threat in other words {r.threat_gap_T2:.2f}"
-        f"{f('threat_gap_T2')}. A word counter scores 0.4, 0.2 and 0; a single-word valence stand-in about 0.33 on all three, "
+        f"also says 'a further loss/profit'): money only {r.money_only_gap:.2f}{fl('money_only_gap')}, threat with "
+        f"closure/expansion {r.threat_gap_T1:.2f}{fl('threat_gap_T1')}, threat in other words {r.threat_gap_T2:.2f}"
+        f"{fl('threat_gap_T2')}. A word counter scores 0.4, 0.2 and 0; a single-word valence stand-in about 0.33 on all three, "
         "so even the last is free of the briefing's words but not of single-word valence.",
         f"Bad news in general? Bad weather ordered above good {r.weather_acc:.2f} ({odds(r.weather_acc, k=6)}); cosine with the "
         f"loss difference {r.weather_cos:+.2f}, against {r.null_cos_max:.2f} for the largest unrelated split. Well above that "
