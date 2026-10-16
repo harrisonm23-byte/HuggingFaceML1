@@ -808,3 +808,13 @@ Dated entries: what was run, what happened, what's next.
   it. The chats document (`designs/rd2/UBS_CHATS_to_review.docx`) now shows each whole chat from the court record,
   with the point where the agent answers and how the real chat went on (never shown to the agent), and what the real
   trader did; the design document reads the frame lines from the data file.
+- 2026-10-16. **The career design** (the user: "The dates should be in order ... the same agent ... all Deutsche Bank.
+  No diary, rather sustained context"). One Deutsche Bank agent lives through its chats in date order in one
+  conversation; only the 47 chats in Deutsche Bank's seat (it never changes bank); its own seat lines and bare replies
+  removed. Whole career about 35k tokens (chats about 10k, five trading days about 22k), well inside Gemma 3's window.
+  **Career pilot** (the user: management briefings only, "a quick one, the first day or two"): notebook 16,
+  `sim/career.py` (22 checks in `sim/test_career.py`): the 8 chats from 2007-2010 once per run, shared by every
+  version; the briefing with the first update of 7 Jan; trading 7 and 12 Jan; 5 versions, one career each. Named as
+  AI agents ("Fortis [Agent]"; a Deutsche Bank colleague is "Deutsche Bank [Agent C]"). Bare replies dropped in the
+  early chats: Fortis "THSX MATE" (p306), UBS "gotcha" (p320). The briefing shares the first 7 Jan user turn with the
+  update, since Gemma's template needs alternating roles.

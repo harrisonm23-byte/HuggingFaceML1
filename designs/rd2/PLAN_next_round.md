@@ -58,6 +58,18 @@ Everything else is as in the final round:
 
 The one change: no Deutsche Bank lines from 2011 appear in the chats (the "0 days" handover).
 
+## The career (the user, 16 Oct): one agent, its chats in date order, one sustained conversation
+
+The same Deutsche Bank agent lives through its chats in date order, and its whole history stays in its context: every chat, its own replies, every trading step. There is no diary or summary. Only the chats where the agent sits in Deutsche Bank's seat are used (47 of the 73), so it never changes bank. The agent's own seat lines from the record are removed, with the bare replies to them, so no words are put in its mouth. The whole career fits easily in Gemma 3's context (about 35,000 tokens of its 128,000).
+
+**The career pilot (notebook 16, `sim/career.py`, checks in `sim/test_career.py`):**
+- the 8 chats from 2007–2010, chat only, the same for every version: the agent goes through them once per run, and every version continues from that same history;
+- the management briefing arrives with the first market update on 7 Jan 2011; this is the only thing that differs between versions;
+- trading on 7 Jan and 12 Jan 2011, as in notebook 14;
+- 5 versions (neutral, loss, gain, loss + you, gain + you: management briefings only), one career each, about 30–45 minutes on an A100. Results go to `results/mountain_gemma-3-12b-it_4bit_career_pilot/`.
+
+The full career would add the later chats and trading days (35 chats and 3 more trading days in 2011, then 2012–2013), about 40 minutes per career.
+
 ## Step 0: inside the briefing, before any trading (notebook 15)
 
 The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about half an hour on an A100 (longer on a T4).
@@ -156,3 +168,4 @@ The days count all ten versions over the five days; H1 and H2 compare the manage
 | Step 0, inside the briefing | `notebooks/15_inside_the_briefing.ipynb` |
 | Step 0's test sentences | `data/silver/briefing_probes.json` |
 | Step 0's prompts and measures, and their checks | `sim/briefing_inside.py`, `sim/test_briefing_inside.py` |
+| The career pilot | `notebooks/16_career_pilot.ipynb`, `sim/career.py`, `sim/test_career.py` |
