@@ -719,3 +719,11 @@ Dated entries: what was run, what happened, what's next.
   is untouched), `sim/test_briefing.py` (21 checks, all pass, incl. matched loss/gain wording and identical opening
   without the briefing), `notebooks/14_briefing_pilot.ipynb` (7 Jan and 12 Jan x six versions x one run = 12 days, own
   folder, setup ID includes the wording), `analysis/briefing_pilot.py`.
+- 2026-10-16. **Step 0, inside the briefing** (the user's idea: look at the features the framing gives rise to before
+  any trading): `notebooks/15_inside_the_briefing.ipynb`. Reads each version's prompt on 7 Jan at 08:00 and at 09:30
+  (UBS's request, after holding), six matched variations per briefing ($3/4/5M x last month/quarter), records all 48
+  layers; loss and responsibility directions checked on held-out variations; how much of the loss gap is left at 09:30;
+  a no-money control (bad vs good weather) along the loss direction; Gemma Scope 2 feature differences; saves the loss
+  direction (middle layer) for Part B. `sim/briefing.py` gained `variants`, `opening_with`, `build_turns`, `turns_at`;
+  `sim/test_briefing.py` now 34 checks (all pass), incl. that notebook 14's agent builds exactly the same conversation.
+  Both notebooks dry-run end to end on CPU with a tiny stand-in model.

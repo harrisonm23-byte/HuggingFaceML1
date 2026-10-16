@@ -48,6 +48,21 @@ Everything else is as in the final round:
 
 The one change: no Deutsche Bank lines from 2011 appear in the chats (the "0 days" handover).
 
+## Step 0: inside the briefing, before any trading (notebook 15)
+
+The user's idea: look at what the briefing does inside the model first. Each version's prompt on 7 Jan is read once by the model, and its internal state is recorded at all 48 layers. The two moments are 08:00, the first update, and 09:30, UBS's request after holding at every step. There is no trading and no reply, and it takes about 15 minutes.
+
+**Matched variations:** each briefing comes in six versions ($3, $4 or $5 million; last month or last quarter), so a difference comes from loss vs gain, not one wording.
+
+**What it shows:**
+1. **A loss direction** (loss minus gain), checked on variations it wasn't built from.
+2. **A responsibility direction** ("+ you" minus plain).
+3. **Whether the loss signal is still there at 09:30.**
+4. **A control:** bad vs good weather, no money involved. It shows whether the direction is about losing money or just bad news.
+5. **The Gemma Scope features that differ,** with Neuronpedia links.
+
+**What it saves:** the loss direction at a middle layer, for Part B's dial, to `results/mountain_gemma-3-12b-it_4bit_briefing_inside/`.
+
 ## Step 1: the pilot (notebook 14)
 
 **Size:** 7 Jan and 12 Jan (one UBS push request each), all six versions, one run each = 12 days, about one to two hours. It saves to its own folder: `results/mountain_gemma-3-12b-it_4bit_briefing_pilot/`.
@@ -94,7 +109,7 @@ These assume about a 30% going-along rate and treat the requests as independent.
 ## Part B: the loss dial inside the model
 
 - Every Part B run gets the neutral briefing and UBS's real request. Only the model's internal state is changed.
-- **1. Find the loss direction (new notebook 15):** matched loss/gain sentences show the direction. Gemma Scope features and a not-money control check what it is.
+- **1. Find the loss direction:** done in Step 0 (notebook 15), from the briefings themselves, with the not-money control.
 - **2. Read it:** in the pilot and in Step 2, how strongly it is active when UBS's request arrives, after each briefing.
 - **3. Turn it up or down** at the request steps: off, two loss strengths, two gain strengths, a random direction of the same size, and the loss dial with no request.
 - **Where it runs:** 7 Jan and 12 Jan, 10 runs each, on Colab with the same layer hooks notebook 13 used.
@@ -107,3 +122,4 @@ These assume about a 30% going-along rate and treat the requests as independent.
 | The briefing code and its checks | `sim/briefing.py`, `sim/test_briefing.py` (the final round's code is untouched) |
 | The pilot notebook | `notebooks/14_briefing_pilot.ipynb` |
 | The pilot summary | `designs/rd2/analysis/briefing_pilot.py` |
+| Step 0, inside the briefing | `notebooks/15_inside_the_briefing.ipynb` |
