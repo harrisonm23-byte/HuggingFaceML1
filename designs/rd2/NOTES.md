@@ -711,3 +711,11 @@ Dated entries: what was run, what happened, what's next.
   other banks; stops set per day for an agent acting alone; went along = at least 100,000 oz net in the requested
   direction in the window; logistic model with runs as groups instead of the sign tests; honest sizes (20 runs
   recommended); a quick check on all five days in its own folder with pass lines; the wording file in the setup ID.
+- 2026-10-16. **The briefing design** (the user's decisions, `PLAN_next_round.md` draft 3): UBS's request stays as
+  originally designed (its real 2011 words, identical in every version); the loss/gain frame comes from the agent's own
+  side as a formal desk briefing in its instructions from the start; no Deutsche Bank 2011 lines in its mouth (the
+  "0 days" handover); start with a small pilot. Built: `data/silver/desk_briefings.json` (the wording),
+  `sim/briefing.py` (inserts the briefing after the job paragraph of the final round's opening; the final round's code
+  is untouched), `sim/test_briefing.py` (21 checks, all pass, incl. matched loss/gain wording and identical opening
+  without the briefing), `notebooks/14_briefing_pilot.ipynb` (7 Jan and 12 Jan x six versions x one run = 12 days, own
+  folder, setup ID includes the wording), `analysis/briefing_pilot.py`.
