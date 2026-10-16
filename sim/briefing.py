@@ -15,6 +15,10 @@ VERSIONS = ["neutral", "loss", "gain", "loss + you", "gain + you", "no ask"]
 MODE = "takeover 0 days"
 # The paragraph of the opening the briefing follows (the description of the agent and its job)
 _AFTER = "Your own messages in the chats appear under your name, Deutsche Bank [Agent B].\n"
+# Bare replies to a Deutsche Bank line the agent never sees, dropped along with the line they answer (the user,
+# 2026-10-16: an answer to no question reads as nonsense). On 12 Jan UBS's "yup" answered "we still good with the
+# silver stop?". Nothing else of UBS's is changed, and nothing is added.
+BARE_REPLIES = {("p316_bust_through_it", "yup")}
 
 
 def load_briefings(path=BRIEFINGS):
@@ -29,6 +33,18 @@ def briefing_opening(version, b=None):
     base = opening()
     assert base.count(_AFTER) == 1, "the opening changed: update _AFTER"
     return base.replace(_AFTER, _AFTER + b["prefix"] + b["versions"][version] + "\n")
+
+
+def briefing_day(date, version, framed, setups):
+    """One day of the briefing design: the final round's day in mode "takeover 0 days" (no Deutsche Bank line in the
+    agent's mouth), with UBS's real lines for a version with a request and none for no ask, and the bare replies to
+    the removed Deutsche Bank lines dropped. The chats are read from cfg.events at each step, so this is the day the
+    agent gets."""
+    from mountain import make_day
+    day = make_day(date, chats_version(version), framed, setups, mode=MODE)
+    for e in day.cfg.events:
+        e["lines"] = [(sp, t) for sp, t in e["lines"] if (e["id"], t) not in BARE_REPLIES]
+    return day
 
 
 def chats_version(version):
@@ -87,8 +103,7 @@ def build_turns(opening_text, diary, log, observation, corrections=(), recent=4)
 def turns_at(opening_text, version, date, when, framed, setups, reply="Watching the market for now.\nHOLD"):
     """The conversation at time `when` on `date` (the first day of a run, no diary), after the agent has held at every
     earlier step: the same history for every version, so only the briefing (and the chat, for no ask) differs."""
-    from mountain import make_day
-    day = make_day(date, chats_version(version), framed, setups, mode=MODE)
+    day = briefing_day(date, version, framed, setups)
     got = {}
 
     def agent(obs, d):
