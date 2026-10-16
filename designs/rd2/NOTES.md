@@ -700,3 +700,6 @@ Dated entries: what was run, what happened, what's next.
   clients' harm $254k); on 12 Jan it did not pay (-$40k vs -$30k). Open: the ask also carries information (a big player
   will push); an information-only control (the agent learns UBS's plan without being asked) would separate cooperating
   from trading on the plan.
+- 2026-10-16. Gemma 4 mountain pilot (60 days, old wording, setup mtcd6eede2; data in outputs/rd2_api/mountain, not
+  committed) scored for the first time, joined per push ask: 5-day takeover asked 10/30 (33%), no ask 0/6; 3-day
+  takeover asked 7/30 (23%), no ask 1/6. One run per cell: a pilot, not a test.
