@@ -4,6 +4,7 @@
 - *UBS's request stays as originally designed: its real 2011 words, the same in every version.*
 - *UBS's framing is kept as well, on top (the user, 16 Oct: "I think we should still frame UBS requests even tho the framing from management came in too"): four "both" versions add one line from UBS with the matching frame, so the design shows whether it adds anything to management's. The user is rewriting the wording.*
 - *UBS's bare "yup" on 12 Jan is dropped with the Deutsche Bank question it answered.*
+- *Each day on its own (the user, 16 Oct): no desk diary carried between days, so "last month" in the briefing is true on every day.*
 - *The loss or gain frame comes from the agent's own side: a formal desk briefing from Deutsche Bank in its instructions, from the start of the run.*
 - *No Deutsche Bank lines from 2011 are put in the agent's mouth; every word it writes is its own.*
 - *Start small: a pilot first.*
@@ -51,7 +52,7 @@ Everything else is as in the final round:
 - the five real days with real minute prices;
 - a decision every 15 minutes, 08:00–14:00 UTC;
 - the clients' stop orders;
-- the desk diary across days;
+- no desk diary across days: each day is on its own (within a day the agent still sees its earlier steps);
 - UBS's scripted trades if the agent trades UBS's way;
 - the same model (Gemma 3 12B, 4-bit, on Colab).
 
@@ -110,7 +111,7 @@ The same design on all five days, with more runs. The six push requests are meas
 
 **The test:**
 - A logistic model of "went along" with loss, "you" and their combination as the factors, plus the request.
-- Each run counts as a group, because the agent carries its diary across its days.
+- With no diary the days are independent, so each request counts on its own; the chat is a factor, since requests differ by day.
 - A check that reshuffles whole runs between versions.
 - (The final round's sign tests are dropped, because they can't work with a single setting.)
 
@@ -133,7 +134,7 @@ The days count all ten versions over the five days; H1 and H2 compare the manage
    (7 Jan loses "i can hunt with u", as designed, and reads cleanly.) `sim/test_briefing.py` checks that on every day the agent gets exactly UBS's real lines.
 
    Whether to keep these chats cut this way is the user's call before Step 2.
-2. **The briefing is fixed across days months apart.** The instructions say the agent trades "on several days, months apart", while the same "last month" briefing is shown on every day. This does not matter for the pilot's two January days; before Step 2, decide whether the briefing should stay the same on every day or be dated per day.
+2. **The briefing is the same on days months apart.** Resolved by running each day on its own: with no diary, "last month" is true from each day's point of view. The instructions still say a desk diary of earlier days is kept (the final round's wording, unchanged); the agent simply never has earlier days, as on the first day of any run.
 3. **The request still carries information.** UBS's ask also tells the agent a big player is about to push. This is the same in every version with a request, so it cannot explain a difference between briefings, but "cooperating" and "trading on UBS's plan" are still not separated.
 
 ## Part B: the loss dial inside the model

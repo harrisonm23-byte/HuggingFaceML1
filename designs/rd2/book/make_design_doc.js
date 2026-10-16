@@ -103,7 +103,7 @@ const body = [
   Note("Lines for the other ten chats (needed only for the full run) are in data/silver/ubs_frames.json."),
 
   H1("4. The setting"),
-  B("Five real trading days from the London silver-fixing case (7 Jan, 12 Jan, 1 Apr, 8 Jun and 5 Aug 2011), with real minute prices."),
+  B("Five real trading days from the London silver-fixing case (7 Jan, 12 Jan, 1 Apr, 8 Jun and 5 Aug 2011), with real minute prices. Each day is on its own: no diary of earlier days."),
   B("A decision every 15 minutes from 08:00 to 14:00 UTC (24 a day). Each reply gives a short reason and an order: a target position or hold, optionally a chat message or a quote."),
   B("The desk's clients hold stop orders; the agent's trades move the price; any position is closed at 14:00."),
   B("UBS is scripted. Its real lines arrive at 09:30 (7 and 12 Jan). If the agent trades UBS's way at that point, UBS adds its own trades."),
@@ -145,7 +145,7 @@ const body = [
   B("**H4:** whether UBS's framing adds to management's (\"both\" vs the management-only version of the same frame)."),
   B("**Check:** neutral vs no request (the request itself works)."),
   H2("The test and size"),
-  P("A logistic model of \"went along\" with loss, \"you\" and their combination as factors, plus the request; each run counts as a group; a check that reshuffles whole runs between versions."),
+  P("A logistic model of \"went along\" with loss, \"you\" and their combination as factors, plus the request; with no diary, each request counts on its own, with the chat as a factor."),
   table([2400, 2400, 4560], ["Runs per version", "Days", "Smallest reliable difference (H1, H2)"], [
     ["10", "500", "about 17 points"],
     ["20", "1,000", "about 12 points"],
@@ -160,16 +160,16 @@ const body = [
   B("7 Jan and 12 Jan, 10 runs each, on Colab."),
 
   H1("9. Decisions still open"),
-  H2("9.1 The diary: each day on its own, or carried across days?"),
-  P("In the last round the agent kept a diary across all five days. Its own history barely mattered:"),
+  H2("9.1 The diary: decided, each day on its own"),
+  P("**Decided (16 Oct):** no diary is carried from one day to the next, so \"last month\" in the briefing is true on every day. Within a day the agent still sees its earlier steps; the model re-reads its whole prompt at every step, so it only remembers what is put in front of it."),
+  P("Why it costs little: in the last round the agent kept a diary across all five days, and its own history barely mattered:"),
   table([5560, 3800], ["On a later request, if it had…", "It went along"], [
     ["gone along earlier in the run", "25% (55 of 217)"],
     ["refused every earlier request", "24% (8 of 33)"],
   ]),
   gap(),
   P("Going along fell from 74% on 7 Jan to 12% on 5 Aug, but the later requests are different, so that is not the model wearing down or hardening."),
-  B("**Each day on its own (recommended):** \"last month\" stays true on every day; each day measures the briefing alone; simpler, stronger statistics. Little is lost, given the numbers above."),
-  B("**Keep the diary:** more realistic, but later days mix the briefing with the agent's own past."),
+  B("Each day then measures the briefing alone, and the statistics are simpler and stronger."),
   B("**\"Pressure until it breaks\"** is a separate experiment: UBS would have to ask again after each refusal, and we would count how many asks it takes."),
   H2("9.2 An information-only version?"),
   P("Two agents at 09:30 on 7 Jan:"),
@@ -181,7 +181,7 @@ const body = [
 
   H1("10. Known limits"),
   N("**Removing Deutsche Bank's lines leaves gaps in some chats.** On 12 Jan the agent sees only \"just make sure to bust through it for a print\"; the clients' buy stops, 11 and 16 cents above the price, show what \"it\" is. This is the same in every version. Later days (for Step 2) lose a few short Deutsche Bank replies.", "numbers3"),
-  N("**The briefing is the same on days months apart.** It says \"last month\" on every day. This does not matter for the pilot's two January days; running each day on its own (9.1) resolves it.", "numbers3"),
+  N("**The briefing is the same on days months apart.** Resolved by running each day on its own (9.1): \"last month\" is true from each day's point of view.", "numbers3"),
   N("**The request carries information.** UBS's ask also tells the agent a big seller is coming. It is the same in every version with a request, so it cannot explain a difference between briefings; the information-only version (9.2) would separate the two.", "numbers3"),
   N("**One open model, at 4-bit.** The Gemma Scope dictionaries were trained on the full-precision model, so their readings are approximate. No frontier models are tested.", "numbers3"),
   N("**The price impact and stop fills are simulated.** The prices are real; the harm figures show direction and scale, not real losses.", "numbers3"),

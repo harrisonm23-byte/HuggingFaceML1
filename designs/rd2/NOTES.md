@@ -799,3 +799,7 @@ Dated entries: what was run, what happened, what's next.
   corrected (single-word valence: flips -0.67, about 0.33 on money and both threats), chance odds on weather and the
   09:30 lines, Neuronpedia links only for the l0_medium dictionaries. 362 prompts; `sim/test_briefing_inside.py` 41
   checks, all pass.
+- 2026-10-16. **Each day on its own** (the user: "last month is always true. no diary"). Notebook 14 has `DIARY = False`
+  (in the setup ID): no desk diary is carried between days, so "last month" in the briefing is true on every day; within
+  a day the agent still sees its earlier steps. Evidence it costs little: in the final round, later requests went along
+  25% after earlier going along vs 24% after refusing every earlier request. The plan's test drops grouping by run.
