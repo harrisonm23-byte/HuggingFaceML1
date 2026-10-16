@@ -11,7 +11,12 @@ from mountain import opening
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BRIEFINGS = os.path.join(ROOT, "data", "silver", "desk_briefings.json")
-VERSIONS = ["neutral", "loss", "gain", "loss + you", "gain + you", "no ask"]
+UBS_FRAMES = os.path.join(ROOT, "data", "silver", "ubs_frames.json")
+BRIEFING_VERSIONS = ["neutral", "loss", "gain", "loss + you", "gain + you", "no ask"]
+# The "both" versions (the user, 2026-10-16): the same management briefing, and UBS's request also carries the matching
+# frame, one line from data/silver/ubs_frames.json right after its last real line
+BOTH = ["both loss", "both gain", "both loss + you", "both gain + you"]
+VERSIONS = BRIEFING_VERSIONS + BOTH
 MODE = "takeover 0 days"
 # The paragraph of the opening the briefing follows (the description of the agent and its job)
 _AFTER = "Your own messages in the chats appear under your name, Deutsche Bank [Agent B].\n"
@@ -23,8 +28,19 @@ BARE_REPLIES = {("p316_bust_through_it", "yup")}
 
 def load_briefings(path=BRIEFINGS):
     b = json.load(open(path))
-    assert list(b["versions"]) == VERSIONS, "desk_briefings.json must hold exactly the six versions, in order"
+    assert list(b["versions"]) == BRIEFING_VERSIONS, "desk_briefings.json must hold exactly the six versions, in order"
     return b
+
+
+def base_version(version):
+    """The management briefing a version gets: a "both" version gets the briefing of the same name."""
+    return version[len("both "):] if version.startswith("both ") else version
+
+
+def load_frames(path=UBS_FRAMES):
+    f = json.load(open(path))
+    assert all(set(c) >= {"loss", "gain", "loss + you", "gain + you"} for c in f["chats"].values()), "ubs_frames.json: a frame is missing"
+    return f
 
 
 def briefing_opening(version, b=None):
@@ -32,18 +48,24 @@ def briefing_opening(version, b=None):
     b = b or load_briefings()
     base = opening()
     assert base.count(_AFTER) == 1, "the opening changed: update _AFTER"
-    return base.replace(_AFTER, _AFTER + b["prefix"] + b["versions"][version] + "\n")
+    return base.replace(_AFTER, _AFTER + b["prefix"] + b["versions"][base_version(version)] + "\n")
 
 
-def briefing_day(date, version, framed, setups):
+def briefing_day(date, version, framed, setups, frames=None):
     """One day of the briefing design: the final round's day in mode "takeover 0 days" (no Deutsche Bank line in the
     agent's mouth), with UBS's real lines for a version with a request and none for no ask, and the bare replies to
-    the removed Deutsche Bank lines dropped. The chats are read from cfg.events at each step, so this is the day the
-    agent gets."""
+    the removed Deutsche Bank lines dropped. In a "both" version UBS also sends the matching frame as its own line
+    right after its last real line. The chats are read from cfg.events at each step, so this is the day the agent gets."""
     from mountain import make_day
     day = make_day(date, chats_version(version), framed, setups, mode=MODE)
     for e in day.cfg.events:
         e["lines"] = [(sp, t) for sp, t in e["lines"] if (e["id"], t) not in BARE_REPLIES]
+    if version.startswith("both "):
+        frames = frames or load_frames()
+        for e in day.cfg.events:
+            ubs = [sp for sp, t in e["lines"] if sp.startswith("UBS")]
+            if e["id"] in frames["chats"] and ubs:
+                e["lines"] = e["lines"] + [(ubs[-1], frames["chats"][e["id"]][base_version(version)])]
     return day
 
 
@@ -52,9 +74,9 @@ def chats_version(version):
     return "no ask" if version == "no ask" else "real"
 
 
-def briefing_fingerprint(path=BRIEFINGS):
-    """Part of the setup ID, so days run with different wording are never pooled."""
-    return hashlib.md5(open(path, "rb").read()).hexdigest()[:8]
+def briefing_fingerprint(path=BRIEFINGS, frames=UBS_FRAMES):
+    """The wording of the briefings and of UBS's frames, so days run with different wording are never pooled."""
+    return hashlib.md5(open(path, "rb").read() + open(frames, "rb").read()).hexdigest()[:8]
 
 
 def opening_with(text, b=None):
@@ -71,7 +93,7 @@ def variants(version, b=None, amounts=(3, 4, 5), periods=("last month", "last qu
     in every variation, so the tests of meaning use other wordings (sim/briefing_inside.py). The approved wording
     ($4 million, last month) is always one of them."""
     b = b or load_briefings()
-    text = b["versions"][version]
+    text = b["versions"][base_version(version)]
     out = []
     for period in periods:
         if "$4 million" in text:

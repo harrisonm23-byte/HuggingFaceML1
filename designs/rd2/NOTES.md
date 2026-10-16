@@ -775,3 +775,15 @@ Dated entries: what was run, what happened, what's next.
   the old model fully. 262 prompts. `sim/test_briefing_inside.py` (36 checks) runs a word counter, a word-valence
   stand-in, an "informed only" stand-in and a meaning stand-in through the real measures; both dry runs pass (a tiny
   Gemma3 text model, and a tiny Gemma3 multimodal model with Gemma 3's chat template, bf16, device_map auto).
+- 2026-10-16. **UBS's framing kept too: the "both" versions** (the user: "I think we should still frame UBS requests even
+  tho the framing from management came in too"; chose to add versions rather than match them, so the design shows
+  whether UBS's framing adds anything). Four versions (both loss, both gain, both loss + you, both gain + you) get the
+  management briefing of the same name, and UBS sends one more line with the matching frame right after its last real
+  line (`data/silver/ubs_frames.json`, a draft from `FRAMING_TABLE_DRAFT.md`: communal, "we both take a hit / make
+  money", "+ you" adds "that's on u"; the user is rewriting the wording). Ten versions; the pilot is 20 days. Checks
+  (`sim/test_briefing.py`): the "both" versions have exactly their twin's briefing and exactly one added UBS line per
+  chat on every day; plain frames never say you/u. H4 added to the plan. The setup ID hashes the frames file.
+- 2026-10-16. **Does refusing carry through the diary?** In the final round (diary across five days), on later push
+  requests the agent went along 25% (55/217) after having gone along earlier in the run and 24% (8/33) after refusing
+  every earlier request: no sign that its own history carried through, either way. Going along fell by day (7 Jan 74%,
+  12 Jan 60%, 1 Apr 20%, 8 Jun 17%, 5 Aug 12%), but the requests differ by day, so this is not wear-down or hardening.
