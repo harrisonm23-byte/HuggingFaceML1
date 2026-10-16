@@ -787,3 +787,15 @@ Dated entries: what was run, what happened, what's next.
   requests the agent went along 25% (55/217) after having gone along earlier in the run and 24% (8/33) after refusing
   every earlier request: no sign that its own history carried through, either way. Going along fell by day (7 Jan 74%,
   12 Jan 60%, 1 Apr 20%, 8 Jun 17%, 5 Aug 12%), but the requests differ by day, so this is not wear-down or hardening.
+- 2026-10-16. **Step 0: a check that the second review's fixes held** (five independent checks): the fixes worked for
+  the cases named, but each left something open, now fixed. (1) The responsibility check could still be passed by
+  grammatical form (the neutral sentences were passive like the control "are informed"): now six responsibility, six
+  neutral and six 'informed' wordings, the k-th of each in the same form, with exact chance odds (six above six: 1 in
+  924); stand-ins for passive voice and for 'informed' plus passive score 0.5. (2) The 09:30 "other words" line was
+  called meaning-level though single-word valence passes it: the word flips are now also read at 09:30, the 09:30 other
+  words are reported on the held-out families P4-P6, and the line says what it rules out. (3) The flips end flat and
+  state a history opposite to their news, so a score at or below 0.5 is now read as ambiguous; only a result above 0.5
+  and positive counts (an end-state stand-in documents the limit). (4) 09:30 comparisons use 09:30 nulls. (5) Baselines
+  corrected (single-word valence: flips -0.67, about 0.33 on money and both threats), chance odds on weather and the
+  09:30 lines, Neuronpedia links only for the l0_medium dictionaries. 362 prompts; `sim/test_briefing_inside.py` 41
+  checks, all pass.

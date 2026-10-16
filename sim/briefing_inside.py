@@ -41,7 +41,7 @@ def prompt_rows(b=None, pr=None):
 
     def add(**r):
         rows.append({"set": None, "time": FIRST, "version": None, "side": None, "frame": None, "you": False, "asked": True,
-                     "amount": None, "period": None, "family": None, "week": None, "text": None, **r})
+                     "amount": None, "period": None, "family": None, "form": None, "week": None, "text": None, **r})
 
     def amount_period(label):
         return (int(label[1]) if label.startswith("$") else None), ("quarter" if "quarter" in label else "month")
@@ -75,13 +75,14 @@ def prompt_rows(b=None, pr=None):
                                         ("neutral", "neutral_sentences", "a neutral sentence")):
                     for k, s in enumerate(rs[key]):
                         add(set="you_check", time=when, version=f"{v} + {name}", side=side, frame=v,
-                            family=f"{side[0].upper()}{k + 1}", amount=4, period=p, text=base + " " + s)
-    # Word flips, money only, threat only, weather (08:00)
+                            family=f"{side[0].upper()}{k + 1}", form=rs["forms"][k], amount=4, period=p, text=base + " " + s)
+            # Word flips (both moments: the one test of meaning over single words, also at UBS's request)
+            for f in pr["flips"]["families"]:
+                for side in ("loss", "gain"):
+                    add(set="flip", time=when, version=f"{side} news, {'gain' if side == 'loss' else 'loss'} words",
+                        side=side, frame=side, family=f["family"], amount=4, period=p, text=f[side + "_meaning"].format(p=p))
+    # Money only, threat only, weather (08:00)
     for p in pr["periods"]:
-        for f in pr["flips"]["families"]:
-            for side in ("loss", "gain"):
-                add(set="flip", version=f"{side} meaning, {'gain' if side == 'loss' else 'loss'} words", side=side,
-                    frame=side, family=f["family"], amount=4, period=p, text=f[side + "_meaning"].format(p=p))
         for x in pr["money_only"]["amounts"]:
             for side in ("loss", "gain"):
                 add(set="money_only", version=f"{side}, money only", side=side, frame=side, amount=x, period=p,
@@ -161,6 +162,17 @@ def chance(acc, k):
     return sum(comb(k, j) for j in range(hits, k + 1)) / 2 ** k
 
 
+def rank_chance(acc, m, n):
+    """How often chance alone orders m sentences above n others this well or better (each sentence one item, all
+    orders equally likely): all six above all six is 1 in 924."""
+    from itertools import combinations
+    need, total, hits = acc * m * n - 1e-9, comb(m + n, m), 0
+    for top in combinations(range(m + n), m):
+        u = sum(sum(1 for k in range(m + n) if k not in top and k < i) for i in top)   # pairs a top item wins
+        hits += u >= need
+    return hits / total
+
+
 def groups(P):
     """The groups of prompts the measures compare, by name."""
     def idx(**kw):
@@ -187,11 +199,12 @@ def groups(P):
             G[f"paraphrase{p}_{side}_test"] = [i for i in G[f"paraphrase{p}_{side}"] if P.at[i, "family"] not in SELECT]
         for side in ("you", "informed", "neutral"):
             G[f"you_check{p}_{side}"] = idx(set="you_check", time=t, side=side)
+        for side in ("loss", "gain"):
+            G[f"flip{p}_{side}"] = idx(set="flip", time=t, side=side)
     G["main8_plain4"] = idx(set="main", time=FIRST, you=False, amount=4, frame=("loss", "gain"))
     G["main8_you4"] = idx(set="main", time=FIRST, you=True, amount=4)
     G["main8_plain_framed"] = G["main8_loss_plain"] + G["main8_gain_plain"]
-    for s, sides in (("flip", ("loss", "gain")), ("money_only", ("loss", "gain")), ("threat_only", ("loss", "gain")),
-                     ("weather", ("bad", "good"))):
+    for s, sides in (("money_only", ("loss", "gain")), ("threat_only", ("loss", "gain")), ("weather", ("bad", "good"))):
         for side in sides:
             G[f"{s}_{side}"] = idx(set=s, side=side)
     for fam in ("T1", "T2"):
@@ -208,6 +221,12 @@ def groups(P):
                                      [i for i in weather if P.at[i, "week"] == "weekend"]),
                  "other words P1-P3 vs P4-P6": (half(para, SELECT), [i for i in para if P.at[i, "family"] not in SELECT]),
                  "weather W1-W3 vs W4-W6": (half(weather, ("W1", "W2", "W3")), half(weather, ("W4", "W5", "W6")))}
+    # The same kinds of splits at UBS's request, for the 09:30 comparisons
+    framed9, para9 = G["main9_loss"] + G["main9_gain"], G["paraphrase9_loss"] + G["paraphrase9_gain"]
+    G["null9"] = {"$3M vs $5M": ([i for i in framed9 if P.at[i, "amount"] == 3], [i for i in framed9 if P.at[i, "amount"] == 5]),
+                  "month vs quarter": ([i for i in framed9 if P.at[i, "period"] == "month"],
+                                       [i for i in framed9 if P.at[i, "period"] == "quarter"]),
+                  "other words P1-P3 vs P4-P6": (half(para9, SELECT), [i for i in para9 if P.at[i, "family"] not in SELECT])}
     return G
 
 
@@ -232,7 +251,7 @@ def layer_measures(X, P, G):
         "cos_0930_0800": cos(mean_diff(X, G["main9_loss"], G["main9_gain"]), d),
         "you_wording_check": leave_one_out(X, P.assign(variant=m("you")), G["main8_you"], G["control8"], "variant", ["variant"]),
         "you_left_at_0930": gap(X, uy, G["main9_you"], G["control9"]) / (gap(X, uy, G["main8_you"], G["control8"]) + 1e-12),
-        # Meaning level: loss and gain in other words, at 08:00 and at UBS's request
+        # Beyond the four key words (single-word valence still passes these): loss and gain in other words
         "paraphrase_acc": order(X, u, pairs(P, G["paraphrase_loss"], G["paraphrase_gain"], ["family", "period"])),
         "paraphrase_gap": para_gap / main_gap,
         "select_gap": share("paraphrase_loss_select", "paraphrase_gain_select"),
@@ -240,9 +259,14 @@ def layer_measures(X, P, G):
         "paraphrase_gap_test": share("paraphrase_loss_test", "paraphrase_gain_test"),
         "paraphrase_acc_0930": order(X, u, pairs(P, G["paraphrase9_loss"], G["paraphrase9_gain"], ["family", "period"])),
         "paraphrase_left_at_0930": gap(X, u, G["paraphrase9_loss"], G["paraphrase9_gain"]) / (para_gap + 1e-12),
-        # Word flips: the briefing's own words, the opposite meaning
+        "paraphrase_acc_0930_test": order(X, u, pairs(P, G["paraphrase9_loss_test"], G["paraphrase9_gain_test"], ["family", "period"])),
+        "paraphrase_left_at_0930_test": gap(X, u, G["paraphrase9_loss_test"], G["paraphrase9_gain_test"])
+                                        / (gap(X, u, G["paraphrase_loss_test"], G["paraphrase_gain_test"]) + 1e-12),
+        # Word flips: the briefing's own words, the opposite news (only a result above 0.5 and positive is clear)
         "flip_acc": order(X, u, pairs(P, G["flip_loss"], G["flip_gain"], ["family", "period"])),
         "flip_gap": share("flip_loss", "flip_gain"),
+        "flip_acc_0930": order(X, u, pairs(P, G["flip9_loss"], G["flip9_gain"], ["family", "period"])),
+        "flip_gap_0930": gap(X, u, G["flip9_loss"], G["flip9_gain"]) / (gap(X, u, G["main9_loss"], G["main9_gain"]) + 1e-12),
         # Which part of the briefing: shares of the loss gap (the accuracies reach 1 at any alignment)
         "money_only_gap": share("money_only_loss", "money_only_gain"),
         "threat_gap_T1": share("threat_T1_loss", "threat_T1_gain"),
@@ -252,6 +276,7 @@ def layer_measures(X, P, G):
         "weather_cos": cos(mean_diff(X, G["weather_bad"], G["weather_good"]), d),
         "null_cos_max": max(abs(cos(mean_diff(X, a, b), d)) for a, b in G["null"].values()),
         "request_cos": cos(mean_diff(X, G["main9_all"], G["main9_no_request_all"]), d),
+        "null9_cos_max": max(abs(cos(mean_diff(X, a, b), d)) for a, b in G["null9"].values()),
         # Responsibility: checked in other words against neutral sentences (and 'informed' against them, the other side)
         "you_check_acc": order(X, uy, pairs(P, G["you_check_you"], G["you_check_neutral"], ["frame", "period"])),
         "informed_check_acc": order(X, uy, pairs(P, G["you_check_neutral"], G["you_check_informed"], ["frame", "period"])),
@@ -271,26 +296,31 @@ COLUMNS = {
     "cos_0930_0800": "Cosine of the 09:30 loss-gain difference with the 08:00 one (low with a gap left: the signal has turned)",
     "you_wording_check": "Word level. Responsibility vs matched control sentence, left-out variation (a word counter: 1.0)",
     "you_left_at_0930": "Word level. The responsibility gap at 09:30 as a share of 08:00 (a word counter: 1.0)",
-    "paraphrase_acc": "Loss and gain in other words ordered right along the loss direction, 08:00 (a word counter: 0.5)",
-    "paraphrase_gap": "Their loss-gain gap as a share of the briefings' own gap (a word counter: 0)",
+    "paraphrase_acc": "Loss and gain in other words ordered right, 08:00, all six families (a word counter 0.5; single-word valence 1.0)",
+    "paraphrase_gap": "Their loss-gain gap as a share of the briefings' own gap (a word counter 0)",
     "select_gap": "The same share on families P1-P3 only: the dial layer is chosen on this",
-    "paraphrase_acc_test": "Families P4-P6 ordered right (not used to choose the layer)",
-    "paraphrase_gap_test": "Their gap share (not used to choose the layer)",
-    "paraphrase_acc_0930": "Other words ordered right at UBS's request (09:30), along the 08:00 direction (a word counter: 0.5)",
-    "paraphrase_left_at_0930": "Their gap at 09:30 as a share of their gap at 08:00: the meaning left at the request",
-    "flip_acc": "Word flips ordered by meaning (a word counter: 0; below 0.5 = the word contrast outweighs the meaning)",
-    "flip_gap": "Their gap share (negative = the words win; a word counter: -0.6)",
-    "money_only_gap": "Money only (no threat to the desk), share of the loss gap (repeats the briefing's words; a word counter: 0.4)",
-    "threat_gap_T1": "Threat only, with closure/expansion, share of the loss gap (a word counter: 0.2)",
-    "threat_gap_T2": "Threat only, in other words, share of the loss gap (a word counter: 0)",
+    "paraphrase_acc_test": "Families P4-P6 ordered right, 08:00 (not used to choose the layer)",
+    "paraphrase_gap_test": "Their gap share, 08:00 (not used to choose the layer)",
+    "paraphrase_acc_0930": "Other words ordered right at UBS's request, all six families (includes the layer-choice families)",
+    "paraphrase_left_at_0930": "Their 09:30 gap as a share of their 08:00 gap, all six families (single-word valence: 1.0)",
+    "paraphrase_acc_0930_test": "Families P4-P6 ordered right at UBS's request (not used to choose the layer)",
+    "paraphrase_left_at_0930_test": "Their 09:30 gap as a share of their 08:00 gap (not used to choose the layer)",
+    "flip_acc": "Word flips ordered by the news, 08:00 (above 0.5 = the news beats the words; at or below 0.5 is ambiguous)",
+    "flip_gap": "Their gap share, 08:00 (positive = the news beats the words; a word counter -0.6, single-word valence -0.67)",
+    "flip_acc_0930": "Word flips ordered by the news at UBS's request (the one 09:30 test of more than single words)",
+    "flip_gap_0930": "Their gap share at 09:30, of the briefings' 09:30 gap (positive = the news beats the words)",
+    "money_only_gap": "Money only (no threat to the desk), share of the loss gap (a word counter 0.4; single-word valence about 0.33)",
+    "threat_gap_T1": "Threat only, with closure/expansion, share of the loss gap (a word counter 0.2; single-word valence about 0.33)",
+    "threat_gap_T2": "Threat only, in other words, share of the loss gap (a word counter 0; single-word valence about 0.33)",
     "weather_acc": "Bad above good weather along the loss direction (0.5 = unrelated)",
     "weather_cos": "Cosine of the weather difference with the loss difference",
-    "null_cos_max": "Largest cosine of an unrelated split with it ($3M/$5M, month/quarter, week/weekend, families P1-3/P4-6, W1-3/W4-6)",
-    "request_cos": "Cosine of UBS's request (with minus without) with the loss difference; read against null_cos_max",
-    "you_check_acc": "Responsibility in other words above neutral sentences, along the responsibility direction (a word counter: 0.5)",
-    "informed_check_acc": "Neutral sentences above 'informed' in other words: the other side of the same direction (a word counter: 0.5)",
-    "you_check_acc_0930": "Responsibility in other words above neutral sentences at UBS's request (a word counter: 0.5)",
-    "any_sentence_cos": "Cosine of (+ responsibility) and (+ a neutral sentence), each minus plain: near 1 = it acts like any added sentence",
+    "null_cos_max": "Largest cosine of an unrelated 08:00 split with it ($3M/$5M, month/quarter, week/weekend, P1-3/P4-6, W1-3/W4-6)",
+    "request_cos": "Cosine of UBS's request (with minus without) with the loss difference; read against null9_cos_max",
+    "null9_cos_max": "Largest cosine of an unrelated 09:30 split with the loss difference ($3M/$5M, month/quarter, P1-3/P4-6)",
+    "you_check_acc": "Responsibility in other words above neutral sentences (6 vs 6, forms matched; a word counter 0.5)",
+    "informed_check_acc": "Neutral sentences above 'informed' in other words: the other side of the same direction (a word counter 0.5)",
+    "you_check_acc_0930": "The same at UBS's request (the same sentences, so not independent of you_check_acc)",
+    "any_sentence_cos": "Cosine of (+ responsibility) and (+ a neutral sentence), each minus plain: near 1 = it acts like any added sentence (a word counter 0.11)",
     "you_loss_cos": "Cosine of the responsibility direction with the loss direction",
 }
 
@@ -309,61 +339,76 @@ def reading(LT, best, floor=None):
     _, middle = choose_layer(LT)
     med = middle.median(numeric_only=True)
     f = (lambda c: f"; summed-embedding floor {floor[c]:.2f}") if floor is not None else (lambda c: "")
-    odds = lambda acc, k: (f"by chance, that or better {100 * chance(acc, k):.0f}% of the time" if acc > 0.5
-                           else "no better than chance")
+
+    def odds(acc, k=None, mn=None):
+        if not acc > 0.5:
+            return "no better than chance"
+        p = chance(acc, k) if k else rank_chance(acc, *mn)
+        return f"by chance, that or better {100 * p:.1f}% of the time"
+
+    def flips(acc, share):
+        return ("the news beats the words" if acc > 0.5 and share > 0 else
+                "ambiguous: the words, or the flips' own meaning (both sides end flat, and each states an earlier profit or "
+                "loss opposite to its news)")
     return [
         f"Layer for the dial: {best}, chosen among layers {int(middle.layer.min())}-{int(middle.layer.max())} for the share of "
-        f"the loss gap that loss and gain in other words carry, on families P1-P3 only ({r.select_gap:.2f}). Every other "
-        "number below is untouched by that choice, apart from the all-family figures, which include P1-P3.",
+        f"the loss gap that loss and gain in other words carry, on families P1-P3 only ({r.select_gap:.2f}). The figures for "
+        "families P4-P6 and the other checks are untouched by that choice; all-family figures include P1-P3.",
         f"Word level (a word counter scores 1.0 on all of these, so they show only that the signal is not tied to one amount "
         f"or period, and how much of the word trace lasts): wording check {r.wording_check:.2f}; at UBS's request "
         f"{r.left_at_0930:.2f} of the briefings' gap is left (median {med.left_at_0930:.2f}), {r.left_at_0930_no_request:.2f} "
         f"with no request, pointing the same way as at 08:00 by cosine {r.cos_0930_0800:.2f}.",
-        f"Loss and gain in other words (none of loss, profit, closure, expansion): families P4-P6 ordered "
-        f"{r.paraphrase_acc_test:.2f} at layer {best} ({odds(r.paraphrase_acc_test, 3)}), "
-        f"carrying {r.paraphrase_gap_test:.2f} of the loss gap; all six families {r.paraphrase_acc:.2f} (median "
-        f"{med.paraphrase_acc:.2f}{f('paraphrase_acc')}) and {r.paraphrase_gap:.2f} of the gap (median {med.paraphrase_gap:.2f}"
-        f"{f('paraphrase_gap')}). A word counter scores 0.5 and 0. Above that rules out the four key words, but it can still "
-        "be the good or bad sense of single words (red/black, worse/better): a word-valence stand-in scores 1.0 here, so "
-        "the word flips are the test that separates meaning from single words.",
-        f"At UBS's request, in other words: ordered {r.paraphrase_acc_0930:.2f}, with {r.paraphrase_left_at_0930:.2f} of their "
-        f"08:00 gap left (median {med.paraphrase_left_at_0930:.2f})"
-        + (" (their 08:00 gap is near zero, so this share means little)" if r.paraphrase_gap < 0.05 else "")
-        + ". This is the meaning-level part that reaches the moment Part B reads and steers.",
-        f"Word flips (the briefing's own words, the opposite meaning): ordered {r.flip_acc:.2f} (median {med.flip_acc:.2f}"
-        f"{f('flip_acc')}; 3 families: {odds(r.flip_acc, 3)}), gap share {r.flip_gap:+.2f} (median "
-        f"{med.flip_gap:+.2f}{f('flip_gap')}). A word counter and a word-valence stand-in score 0 and about -0.6. "
-        "Above 0.5 and positive: meaning beats the words. Below: the word contrast outweighs the meaning contrast for these "
-        "sentences, which does not mean there is no meaning.",
+        f"Loss and gain in other words (none of loss, profit, closure, expansion), 08:00: families P4-P6 ordered "
+        f"{r.paraphrase_acc_test:.2f} at layer {best} ({odds(r.paraphrase_acc_test, k=3)}), carrying {r.paraphrase_gap_test:.2f} "
+        f"of the loss gap; all six families {r.paraphrase_acc:.2f} (median {med.paraphrase_acc:.2f}{f('paraphrase_acc')}) and "
+        f"{r.paraphrase_gap:.2f} of the gap (median {med.paraphrase_gap:.2f}{f('paraphrase_gap')}). A word counter scores 0.5 "
+        "and 0. Above that rules out the four key words, not the good or bad sense of single words (red/black, worse/better): "
+        "a single-word valence stand-in scores 1.0 here, so the word flips are the test that separates the two.",
+        f"Word flips (the briefing's own words, the opposite news), 08:00: ordered {r.flip_acc:.2f} (median {med.flip_acc:.2f}"
+        f"{f('flip_acc')}; {odds(r.flip_acc, k=3)}), gap share {r.flip_gap:+.2f} (median {med.flip_gap:+.2f}{f('flip_gap')}): "
+        f"{flips(r.flip_acc, r.flip_gap)}. A word counter scores 0 and -0.6, a single-word valence stand-in 0 and -0.67.",
+        f"At UBS's request (09:30): other words, families P4-P6, ordered {r.paraphrase_acc_0930_test:.2f} "
+        f"({odds(r.paraphrase_acc_0930_test, k=3)}) with {r.paraphrase_left_at_0930_test:.2f} of their 08:00 gap left; all "
+        f"six families (including the layer-choice ones) {r.paraphrase_acc_0930:.2f} and {r.paraphrase_left_at_0930:.2f}"
+        + (" (their 08:00 gap is near zero, so these shares mean little)" if r.paraphrase_gap < 0.05 else "")
+        + f". As at 08:00 this rules out the four key words, not single-word valence (which scores 1.0). Word flips at the "
+        f"request: ordered {r.flip_acc_0930:.2f}, gap share {r.flip_gap_0930:+.2f}: {flips(r.flip_acc_0930, r.flip_gap_0930)}. "
+        "Only a clear flip result shows that more than single words reaches the moment Part B reads and steers.",
         f"Which part of the briefing (shares of the loss gap; they need not add up to 1, since the briefing's threat clause "
-        f"also says 'a further loss/profit'): money only {r.money_only_gap:.2f}, threat with closure/expansion "
-        f"{r.threat_gap_T1:.2f}, threat in other words {r.threat_gap_T2:.2f}. A word counter scores 0.4, 0.2 and 0; only "
-        "the last is free of the briefing's words.",
-        f"Bad news in general? Bad weather ordered above good {r.weather_acc:.2f} (0.5 = unrelated; 6 families); cosine with "
-        f"the loss difference {r.weather_cos:+.2f}, against {r.null_cos_max:.2f} for the largest unrelated split. Well above "
-        "that means the loss direction is partly 'bad news'; near it only rules out a general bad-news direction and does "
-        f"not show the signal is about money. UBS's request itself: cosine {r.request_cos:+.2f} with the loss difference, "
-        "against the same null.",
-        f"Responsibility: in other words, above neutral sentences {r.you_check_acc:.2f} (median {med.you_check_acc:.2f}"
-        f"{f('you_check_acc')}; a word counter and an 'informed only' stand-in score 0.5), {r.you_check_acc_0930:.2f} at "
-        f"UBS's request. Only this side shows responsibility; the other side, neutral above 'informed' in other words, is "
-        f"{r.informed_check_acc:.2f}. Like any added sentence: cosine {r.any_sentence_cos:+.2f}. Overlap with the loss "
-        f"direction: cosine {r.you_loss_cos:+.2f}.",
+        f"also says 'a further loss/profit'): money only {r.money_only_gap:.2f}{f('money_only_gap')}, threat with "
+        f"closure/expansion {r.threat_gap_T1:.2f}{f('threat_gap_T1')}, threat in other words {r.threat_gap_T2:.2f}"
+        f"{f('threat_gap_T2')}. A word counter scores 0.4, 0.2 and 0; a single-word valence stand-in about 0.33 on all three, "
+        "so even the last is free of the briefing's words but not of single-word valence.",
+        f"Bad news in general? Bad weather ordered above good {r.weather_acc:.2f} ({odds(r.weather_acc, k=6)}); cosine with the "
+        f"loss difference {r.weather_cos:+.2f}, against {r.null_cos_max:.2f} for the largest unrelated split. Well above that "
+        "means the loss direction is partly 'bad news'; near it only rules out a general bad-news direction and does not show "
+        f"the signal is about money. UBS's request itself: cosine {r.request_cos:+.2f} with the loss difference, against "
+        f"{r.null9_cos_max:.2f} for the largest unrelated split at 09:30.",
+        f"Responsibility: six other wordings above six neutral sentences (forms matched) {r.you_check_acc:.2f} "
+        f"({odds(r.you_check_acc, mn=(6, 6))}; median {med.you_check_acc:.2f}{f('you_check_acc')}); at UBS's request "
+        f"{r.you_check_acc_0930:.2f} (the same sentences, so not a second test). A word counter and stand-ins for 'informed', "
+        f"for grammatical form and for both score 0.5; count it as a responsibility signal only if it is well beyond chance "
+        f"and the floor. The other side, neutral above 'informed' in other words: {r.informed_check_acc:.2f} "
+        f"({odds(r.informed_check_acc, mn=(6, 6))}). Like any added sentence: cosine {r.any_sentence_cos:+.2f} (a word counter "
+        f"0.11). Overlap with "
+        f"the loss direction: cosine {r.you_loss_cos:+.2f}.",
     ]
 
 
 # ---- features (Gemma Scope 2) ----------------------------------------------------------------------------------------
 def feature_table(F, P, G, comparisons, top=15, layer=None, sae_file=None, link=None):
     """For each comparison, the features whose average activation differs most, in activation units (not capped by a
-    spread taken over the two groups). Each feature's own null is its largest difference across the unrelated splits
-    (one-word and whole-sentence); 'beats_null' marks the ones above it. Comparisons with fewer than 6 prompts a side
-    are marked 'few prompts'. same_sign_in_other_words agrees by chance for about half of all features."""
+    spread taken over the two groups). Each feature's own null is its largest difference across the unrelated splits at
+    the comparison's moment (one-word and whole-sentence; 08:00 or 09:30); 'beats_null' marks the ones above it.
+    Comparisons with fewer than 6 prompts a side are marked 'few prompts'. same_sign_in_other_words agrees by chance
+    for about half of all features. link is None for a dictionary Neuronpedia does not host."""
     spread = F.std(axis=0) + 1e-6
-    null = np.max([np.abs(F[a].mean(0) - F[b].mean(0)) for a, b in G["null"].values()], axis=0)
+    nulls = {k: np.max([np.abs(F[a].mean(0) - F[b].mean(0)) for a, b in G[k].values()], axis=0) for k in ("null", "null9")}
     out = []
-    for name, a, b, check in comparisons:
+    for name, a, b, check, nk in comparisons:
         if len(a) < 2 or len(b) < 2:
             continue
+        null = nulls[nk]
         ma, mb = F[a].mean(0), F[b].mean(0)
         raw = ma - mb
         active = (F[a + b] > 0).mean(axis=0) >= 0.10
@@ -386,18 +431,19 @@ def feature_table(F, P, G, comparisons, top=15, layer=None, sae_file=None, link=
 
 
 def comparisons_for(G):
-    """The feature comparisons: (name, rows a, rows b, a check set in other words or None)."""
-    return [("08:00 loss vs gain (the briefings)", G["main8_loss"], G["main8_gain"], (G["paraphrase_loss"], G["paraphrase_gain"])),
-            ("08:00 loss vs gain in other words", G["paraphrase_loss"], G["paraphrase_gain"], (G["main8_loss"], G["main8_gain"])),
+    """The feature comparisons: (name, rows a, rows b, a check set in other words or None, the null for its moment)."""
+    return [("08:00 loss vs gain (the briefings)", G["main8_loss"], G["main8_gain"], (G["paraphrase_loss"], G["paraphrase_gain"]), "null"),
+            ("08:00 loss vs gain in other words", G["paraphrase_loss"], G["paraphrase_gain"], (G["main8_loss"], G["main8_gain"]), "null"),
             ("08:00 responsible vs matched control sentence", G["main8_you"], G["control8"],
-             (G["you_check_you"], G["you_check_neutral"])),
+             (G["you_check_you"], G["you_check_neutral"]), "null"),
             ("08:00 responsibility in other words vs neutral sentences", G["you_check_you"], G["you_check_neutral"],
-             (G["main8_you"], G["control8"])),
-            ("08:00 bad vs good weather (no money)", G["weather_bad"], G["weather_good"], None),
-            ("08:00 plain loss vs neutral", G["main8_loss_plain"], G["main8_neutral"], None),
-            ("08:00 plain gain vs neutral", G["main8_gain_plain"], G["main8_neutral"], None),
-            ("09:30 loss vs gain (with UBS's request)", G["main9_loss"], G["main9_gain"], (G["paraphrase9_loss"], G["paraphrase9_gain"])),
-            ("09:30 request vs no request (all briefings)", G["main9_all"], G["main9_no_request_all"], None)]
+             (G["main8_you"], G["control8"]), "null"),
+            ("08:00 bad vs good weather (no money)", G["weather_bad"], G["weather_good"], None, "null"),
+            ("08:00 plain loss vs neutral", G["main8_loss_plain"], G["main8_neutral"], None, "null"),
+            ("08:00 plain gain vs neutral", G["main8_gain_plain"], G["main8_neutral"], None, "null"),
+            ("09:30 loss vs gain (with UBS's request)", G["main9_loss"], G["main9_gain"],
+             (G["paraphrase9_loss"], G["paraphrase9_gain"]), "null9"),
+            ("09:30 request vs no request (all briefings)", G["main9_all"], G["main9_no_request_all"], None, "null9")]
 
 
 def aligned_features(W_dec, d, top=15):

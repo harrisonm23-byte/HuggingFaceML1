@@ -41,7 +41,7 @@
     ]
   },
   "flips": {
-    "why": "The briefing's own key words with the opposite meaning: a realised loss told with profit and expansion, a realised gain told with loss and closure. Within a pair only those words differ, exactly as in the briefings. Following the meaning sorts these like the briefings; following the words sorts them backwards. A score below 0.5 means the word contrast outweighs the meaning contrast for these sentences, not that there is no meaning.",
+    "why": "The briefing's own key words with the opposite news: an earlier profit wiped out and an expansion cancelled, told with profit and expansion; an earlier loss wiped out and a closure cancelled, told with loss and closure. Within a pair only those words differ, exactly as in the briefings. Only one result is clear: sorting these like the briefings (above 0.5, positive share) means the loss direction follows the news over the words. A result at or below 0.5 is ambiguous: it can come from the words, or from the flips' own meaning, since both sides end flat and each states an earlier profit or loss opposite to its news.",
     "families": [
       {
         "family": "F1",
@@ -86,20 +86,39 @@
     ]
   },
   "responsibility": {
-    "why": "The responsibility sentence is one more sentence at the end. Its control has the same structure and length but says only that the agent is informed. The checks use other wordings that share none of the words that differ (responsible/for vs informed/of): responsibility in other words and 'informed' in other words, each against neutral sentences about neither. Responsibility is shown only if its other wordings sit above the neutral sentences.",
+    "why": "The responsibility sentence is one more sentence at the end. Its control has the same structure and length but says only that the agent is informed. The checks use other wordings that share none of the words that differ (responsible/for vs informed/of): six of responsibility, six neutral and six of being informed. The k-th sentence of each list has the same grammatical form (future, present, copular, passive, copular, short active), so a state that tracks only form cannot pass. Responsibility is shown only if its other wordings sit above the neutral sentences, well beyond chance (all six above all six happens by chance 1 time in 924).",
     "build_control": "You are directly informed of these results.",
+    "forms": [
+      "future active",
+      "present active",
+      "copular",
+      "passive",
+      "copular",
+      "short active"
+    ],
     "you_paraphrases": [
       "Management will hold you personally accountable.",
       "This outcome rests on your shoulders.",
-      "Any blame or credit is yours alone."
-    ],
-    "informed_in_other_words": [
-      "Management emails you these results each morning.",
-      "This report lands on your desk daily."
+      "Any blame or credit is yours alone.",
+      "You will be judged on this outcome.",
+      "This outcome is your burden now.",
+      "You own this outcome."
     ],
     "neutral_sentences": [
-      "The trading floor was repainted this summer.",
-      "The desk's screens were replaced recently."
+      "Management will repaint the trading floor.",
+      "This building stands on old foundations.",
+      "Any coffee or tea is free here.",
+      "You will be shown the new office.",
+      "This office is a quiet place now.",
+      "You like this view."
+    ],
+    "informed_in_other_words": [
+      "Management will email you these results.",
+      "This report reaches you every morning.",
+      "A summary is in your inbox daily.",
+      "You will be sent these results.",
+      "This report is your daily summary.",
+      "You receive these results."
     ]
   },
   "weather": {

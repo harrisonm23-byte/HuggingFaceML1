@@ -8,8 +8,8 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(__file__))
 from briefing import load_briefings, opening_with, turns_at
 from briefing_inside import (COLUMNS, DATE, WORD_LEVEL, aligned_features, chance, choose_layer, comparisons_for,
-                             feature_table, groups, layer_measures, load_probes, probes_fingerprint, prompt_rows, reading,
-                             with_turns)
+                             feature_table, groups, layer_measures, load_probes, probes_fingerprint, prompt_rows,
+                             rank_chance, reading, with_turns)
 from mountain import load_chat_setups
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,27 +53,35 @@ differ = words(you_sentence) ^ words(rs["build_control"])
 ok &= check(f"the control sentence matches the responsibility sentence in length, differing only in {sorted(differ)}",
             len(you_sentence.split()) == len(rs["build_control"].split()) and differ == {"responsible", "for", "informed", "of"})
 checks = rs["you_paraphrases"] + rs["informed_in_other_words"] + rs["neutral_sentences"]
-ok &= check("responsibility checks: no sentence shares a word that differs between the two",
-            all(not words(s) & differ for s in checks))
-ok &= check("neutral sentences: about neither results nor blame, and share no word with the responsibility sentence",
-            all(not words(s) & (words(you_sentence) | {"results", "report", "blame", "accountable", "you", "your"})
-                for s in rs["neutral_sentences"]))
+ok &= check("responsibility checks: six sentences in each set, none sharing a word that differs between the two",
+            all(len(rs[k]) == 6 for k in ("you_paraphrases", "informed_in_other_words", "neutral_sentences"))
+            and all(not words(s) & differ for s in checks))
+TOPIC = {"results", "report", "summary", "outcome", "blame", "credit", "accountable", "responsible", "informed", "burden"}
+ok &= check("neutral sentences: about neither results nor blame", all(not words(s) & TOPIC for s in rs["neutral_sentences"]))
+PASSIVE = re.compile(r"\b(be|been|is|are|was|were)\s+(\w+ly\s+)?\w+(ed|en|wn|nt)\b", re.I)
+form = lambda s: ("passive" if PASSIVE.search(s) else "future active" if re.search(r"\bwill\b", s)
+                  else "copular" if re.search(r"\bis\b", s) else "active")
+ok &= check("the k-th sentence of each set has the same grammatical form (so grammar alone cannot pass)",
+            all(len({form(rs[k][i]) for k in ("you_paraphrases", "informed_in_other_words", "neutral_sentences")}) == 1
+                for i in range(6)) and form(rs["build_control"]) == "passive" and form(you_sentence) != "passive")
 ok &= check("weather: no money, no desk", all(not words(f[s]) & (KEY | {"million", "desk"}) and "$" not in f[s]
                                               for f in PR["weather"]["families"] for s in ("bad", "good")))
 ok &= check("the probes fingerprint is 8 characters", len(probes_fingerprint()) == 8)
 ok &= check("chance: 3 families all right 12.5% of the time, 6 families 1.6%, 5 of 6 or better 10.9%",
             chance(1.0, 3) == 0.125 and chance(1.0, 6) == 1 / 64 and abs(chance(5 / 6, 6) - 7 / 64) < 1e-12)
+ok &= check("chance for sentences: six above six 1 in 924; three above two 10%, 5 of 6 pairs or better 20%",
+            abs(rank_chance(1.0, 6, 6) - 1 / 924) < 1e-12 and rank_chance(1.0, 3, 2) == 0.1 and abs(rank_chance(5 / 6, 3, 2) - 0.2) < 1e-12)
 
 # ---- the prompts -----------------------------------------------------------------------------------------------------
 P = with_turns(prompt_rows(B, PR), FRAMED, SETUPS, B)
 counts = P.groupby(["set", "time"]).size().to_dict()
 print("   prompts:", len(P), counts)
-ok &= check("262 prompts: the briefings (26 at 08:00, 52 at 09:30 with and without the request), their control sentence "
-            "(12 + 12), other words (24 + 24), the responsibility checks (28 + 28), and at 08:00 12 flips, 12 money only, "
-            "8 threat only, 24 weather",
+ok &= check("362 prompts: the briefings (26 at 08:00, 52 at 09:30 with and without the request), their control sentence "
+            "(12 + 12), other words (24 + 24), the responsibility checks (72 + 72), flips (12 + 12), and at 08:00 12 money "
+            "only, 8 threat only, 24 weather",
             counts == {("main", "08:00"): 26, ("main", "09:30"): 52, ("you_control", "08:00"): 12, ("you_control", "09:30"): 12,
-                       ("paraphrase", "08:00"): 24, ("paraphrase", "09:30"): 24, ("you_check", "08:00"): 28,
-                       ("you_check", "09:30"): 28, ("flip", "08:00"): 12, ("money_only", "08:00"): 12,
+                       ("paraphrase", "08:00"): 24, ("paraphrase", "09:30"): 24, ("you_check", "08:00"): 72,
+                       ("you_check", "09:30"): 72, ("flip", "08:00"): 12, ("flip", "09:30"): 12, ("money_only", "08:00"): 12,
                        ("threat_only", "08:00"): 8, ("weather", "08:00"): 24})
 sample = [P.index[(P.set == "main") & (P.time == "09:30") & (P.version == "loss + you")][0],
           P.index[(P.set == "main") & (P.time == "09:30") & (P.version == "gain (no request)")][0],
@@ -93,9 +101,13 @@ ok &= check("09:30: UBS's request is there with the request and not without it",
             "yo can u help me push silver down?" in r9 and "push silver down" not in n9)
 ok &= check("every prompt's instructions hold its briefing text once", all(t[0]["content"].count(x) == 1 for t, x in zip(P.turns, P.text)))
 G = groups(P)
-ok &= check("the 08:00 and 09:30 groups of other words and responsibility checks do not mix",
-            all(P.loc[G[k], "time"].eq("08:00").all() for k in ("paraphrase_loss", "paraphrase_gain", "you_check_you", "you_check_neutral"))
-            and all(P.loc[G[k], "time"].eq("09:30").all() for k in ("paraphrase9_loss", "paraphrase9_gain", "you_check9_you")))
+ok &= check("the 08:00 and 09:30 groups and nulls do not mix",
+            all(P.loc[G[k], "time"].eq("08:00").all() for k in ("paraphrase_loss", "paraphrase_gain", "you_check_you",
+                                                                 "you_check_neutral", "flip_loss", "flip_gain"))
+            and all(P.loc[G[k], "time"].eq("09:30").all() for k in ("paraphrase9_loss", "paraphrase9_gain", "you_check9_you",
+                                                                     "flip9_loss", "flip9_gain"))
+            and all(P.loc[a + b, "time"].eq("08:00").all() for a, b in G["null"].values())
+            and all(P.loc[a + b, "time"].eq("09:30").all() for a, b in G["null9"].values()))
 ok &= check("families P1-P3 choose the layer, P4-P6 test it, and the two do not overlap",
             set(P.loc[G["paraphrase_loss_select"], "family"]) == {"P1", "P2", "P3"}
             and set(P.loc[G["paraphrase_loss_test"], "family"]) == {"P4", "P5", "P6"})
@@ -113,15 +125,18 @@ print("   word counter:", {k: round(v, 2) for k, v in m.items()})
 ok &= check("word counter: every word-level check is passed (1.0)",
             all(abs(m[k] - 1) < 1e-9 for k in WORD_LEVEL))
 ok &= check("word counter: loss and gain in other words at chance, at 08:00 and at the request (0.5, gap 0)",
-            m["paraphrase_acc"] == m["paraphrase_acc_test"] == m["paraphrase_acc_0930"] == 0.5
+            m["paraphrase_acc"] == m["paraphrase_acc_test"] == m["paraphrase_acc_0930"] == m["paraphrase_acc_0930_test"] == 0.5
             and abs(m["paraphrase_gap"]) < 1e-9 and abs(m["select_gap"]) < 1e-9)
-ok &= check("word counter: word flips backwards (0.0, gap -0.6)", m["flip_acc"] == 0.0 and abs(m["flip_gap"] + 0.6) < 1e-9)
+ok &= check("word counter: word flips backwards at 08:00 and at the request (0.0, gap -0.6)",
+            m["flip_acc"] == m["flip_acc_0930"] == 0.0 and abs(m["flip_gap"] + 0.6) < 1e-9 and abs(m["flip_gap_0930"] + 0.6) < 1e-9)
 ok &= check("word counter: money only 0.4, threat with closure/expansion 0.2, threat in other words 0",
             abs(m["money_only_gap"] - 0.4) < 1e-9 and abs(m["threat_gap_T1"] - 0.2) < 1e-9 and abs(m["threat_gap_T2"]) < 1e-9)
 ok &= check("word counter: weather and the request unrelated (0.5, cosines 0), and so is every unrelated split",
-            m["weather_acc"] == 0.5 and abs(m["weather_cos"]) < 1e-9 and abs(m["request_cos"]) < 1e-9 and m["null_cos_max"] < 1e-9)
-ok &= check("word counter: responsibility and 'informed' checks at chance (0.5), any-sentence cosine 0",
-            m["you_check_acc"] == m["informed_check_acc"] == m["you_check_acc_0930"] == 0.5 and abs(m["any_sentence_cos"]) < 1e-9)
+            m["weather_acc"] == 0.5 and abs(m["weather_cos"]) < 1e-9 and abs(m["request_cos"]) < 1e-9 and m["null_cos_max"] < 1e-9
+            and m["null9_cos_max"] < 1e-9)
+ok &= check(f"word counter: responsibility and 'informed' checks at chance (0.5); any-sentence cosine {m['any_sentence_cos']:.2f} "
+            "(only the shared word 'You')",
+            m["you_check_acc"] == m["informed_check_acc"] == m["you_check_acc_0930"] == 0.5 and 0 < m["any_sentence_cos"] < 0.15)
 ok &= check("every measure has a description", set(m) == set(COLUMNS))
 
 BAD = {"loss", "closure", "red", "below", "down", "back", "worse", "doubt", "missed", "wind", "wound", "shut", "poor", "under", "cut"}
@@ -130,22 +145,39 @@ GOOD = {"profit", "expansion", "black", "above", "up", "build", "built", "better
 valence = np.array([sum((w.lower() in BAD) - (w.lower() in GOOD) for w in toks(s)) for s in texts], float)
 mv = layer_measures(np.c_[X, 10 * valence], P, G)
 ok &= check(f"word valence (how good or bad single words sound, no context): passes other words "
-            f"({mv['paraphrase_acc']:.2f}) and fails the flips ({mv['flip_acc']:.2f})",
-            mv["paraphrase_acc"] == 1 and mv["paraphrase_acc_test"] == 1 and mv["flip_acc"] == 0 and mv["flip_gap"] < 0)
+            f"({mv['paraphrase_acc']:.2f}), also at the request, and fails the flips ({mv['flip_acc']:.2f}, at the request too)",
+            mv["paraphrase_acc"] == mv["paraphrase_acc_test"] == mv["paraphrase_acc_0930"] == mv["paraphrase_acc_0930_test"] == 1
+            and abs(mv["paraphrase_left_at_0930"] - 1) < 1e-6 and mv["flip_acc"] == mv["flip_acc_0930"] == 0 and mv["flip_gap"] < 0)
+pv = layer_measures(valence[:, None], P, G)
+ok &= check(f"pure single-word valence: flips -0.67, and about 0.33 on money only, threat with closure/expansion and "
+            f"threat in other words ({pv['money_only_gap']:.2f}, {pv['threat_gap_T1']:.2f}, {pv['threat_gap_T2']:.2f})",
+            abs(pv["flip_gap"] + 2 / 3) < 1e-9 and all(abs(pv[k] - 1 / 3) < 1e-9 for k in ("money_only_gap", "threat_gap_T1", "threat_gap_T2")))
 
 informed = np.array([float(any(x in t for x in [rs["build_control"]] + rs["informed_in_other_words"])) for t in P.text])
 mi = layer_measures(np.c_[informed, np.zeros((len(P), 2))], P, G)
 ok &= check(f"'informed only' stand-in: the responsibility check stays at chance ({mi['you_check_acc']:.2f}) and only "
             f"the 'informed' side moves ({mi['informed_check_acc']:.2f})", mi["you_check_acc"] == 0.5 and mi["informed_check_acc"] == 1)
+passive = np.array([len(PASSIVE.findall(t)) for t in P.text], float)
+mp = layer_measures(np.c_[passive, np.zeros((len(P), 2))], P, G)
+mip = layer_measures(np.c_[informed + 0.5 * passive, np.zeros((len(P), 2))], P, G)
+ok &= check(f"grammatical-form stand-ins (passive voice; 'informed' plus passive): the responsibility check stays at chance "
+            f"({mp['you_check_acc']:.2f}, {mip['you_check_acc']:.2f})",
+            mp["you_check_acc"] == mp["you_check_acc_0930"] == 0.5 and mip["you_check_acc"] == mip["you_check_acc_0930"] == 0.5)
+end = np.array([0.0 if st == "flip" else 1.0 if sd == "loss" else -1.0 if sd == "gain" else 0.0 for st, sd in zip(P.set, P.side)])
+me = layer_measures(np.c_[end, np.zeros((len(P), 2))], P, G)
+ok &= check("a known limit: a stand-in that tracks the end state (the flips end flat) passes other words but leaves the "
+            "flips at 0.5, so a flip result at or below 0.5 is read as ambiguous",
+            me["paraphrase_acc"] == 1 and me["flip_acc"] == 0.5 and "ambiguous" in reading(pd.DataFrame([{"layer": L, **me} for L in range(8)]), 3)[3])
 
 # ---- a stand-in that knows the meaning passes the meaning checks ----------------------------------------------------
 meaning = np.array([1.0 if s in ("loss", "bad") else -1.0 if s in ("gain", "good") else 0.0 for s in P.side])
 resp = np.where(P.side == "you", 1.0, 0.0) + np.where(P.you, 1.0, 0.0)
 Xm = np.c_[meaning * np.where(P.set == "weather", 0, 1), resp]
 mm = layer_measures(Xm, P, G)
-ok &= check("a stand-in that encodes the meaning: other words (also at the request), flips and responsibility 1.0; "
+ok &= check("a stand-in that encodes the meaning: other words and flips (also at the request) and responsibility 1.0; "
             "weather and 'informed' 0.5",
-            mm["paraphrase_acc"] == mm["paraphrase_acc_test"] == mm["paraphrase_acc_0930"] == 1 and mm["flip_acc"] == 1
+            mm["paraphrase_acc"] == mm["paraphrase_acc_test"] == mm["paraphrase_acc_0930"] == mm["paraphrase_acc_0930_test"] == 1
+            and mm["flip_acc"] == mm["flip_acc_0930"] == 1 and mm["flip_gap_0930"] > 0
             and mm["flip_gap"] > 0 and mm["you_check_acc"] == mm["you_check_acc_0930"] == 1
             and mm["weather_acc"] == 0.5 and mm["informed_check_acc"] == 0.5)
 
