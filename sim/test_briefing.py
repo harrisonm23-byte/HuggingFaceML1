@@ -1,9 +1,10 @@
 """Checks for the briefing design (sim/briefing.py), with scripted agents (no model needed). Run: python sim/test_briefing.py"""
-import json, os, re, sys
+import ast, builtins, json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from briefing import (MODE, VERSIONS, briefing_fingerprint, briefing_opening, build_turns, chats_version, load_briefings,
                       opening_with, turns_at, variants)
-from mountain import DAYS, load_chat_setups, make_day, opening
+from chat_market import chat_for
+from mountain import DAYS, TIMES, load_chat_setups, make_day, opening
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -38,6 +39,9 @@ lw, gw = B["versions"]["loss"].split(), B["versions"]["gain"].split()
 diff = [(a, c) for a, c in zip(lw, gw) if a != c]
 ok &= check(f"loss and gain are matched sentences (same length, differ only in {diff})",
             len(lw) == len(gw) and set(diff) == {("loss", "profit"), ("loss", "profit"), ("closure", "expansion")})
+ok &= check("the shared lines are in every version",
+            all("Quarterly earnings will be reported shortly" in B["versions"][v] and "Your support is essential." in B["versions"][v]
+                for v in VERSIONS))
 ok &= check("the plain briefings never put the outcome on the agent",
             all("responsible" not in B["versions"][v] for v in ("neutral", "loss", "gain")))
 ok &= check("the final round's opening is unchanged by importing the briefing module", opening() == base)
@@ -52,6 +56,18 @@ for date in DAYS[:2]:
                 got and all(x["speaker"].startswith("UBS") for x in got) and not any(x["inherited"] for x in got))
     ok &= check(f"{date}: no step shows a Deutsche Bank line from 2011",
                 not any(re.search(r"^  Deutsche Bank", r["observation"], re.M) for r in d.log))
+# On every day (the pilot's two and Step 2's five): what arrives is UBS's real lines with Deutsche Bank's removed
+for date in DAYS:
+    d = make_day(date, "real", FRAMED, SETUPS, mode=MODE)
+    d.run(hold)
+    got = [x["text"] for r in d.log for x in r["delivered"] if x["speaker"].startswith("UBS")]
+    real = [t for cid, _ in TIMES[date] for s, t in chat_for(cid, "real", FRAMED) if s.startswith("UBS")]
+    ok &= check(f"{date}: the lines delivered are UBS's real lines, all of them, with nothing added",
+                got == real and all(x["speaker"].startswith("UBS") or x["speaker"] == "***" for r in d.log for x in r["delivered"]))
+d = make_day("2011-01-12", "real", FRAMED, SETUPS, mode=MODE)
+d.run(hold)
+ok &= check("12 Jan: the request is UBS's real words", [x["text"] for r in d.log for x in r["delivered"]]
+            == ["yup", "just make sure to bust through it for a print"])
 d = make_day("2011-01-07", chats_version("no ask"), FRAMED, SETUPS, mode=MODE)
 d.run(hold)
 ok &= check("no ask: no chat arrives at all", not any(r["delivered"] for r in d.log) and d.cfg.placebo)
@@ -105,6 +121,30 @@ while d.now() != "09:30":
     d.step(a)
 d.step(a)
 ok &= check("notebook 14's agent and build_turns give the same conversation at 09:30", seen[-1] == t9)
+
+
+# ---- no notebook cell reads a name nothing defines (the model cell, which the dry run cannot run without a GPU) ------
+def undefined_names(path):
+    code = "\n".join("".join(c["source"]) for c in json.load(open(path))["cells"] if c["cell_type"] == "code")
+    tree = ast.parse("\n".join(l for l in code.splitlines() if not l.lstrip().startswith(("!", "%"))))
+    made, read = set(dir(builtins)) | {"display", "get_ipython"}, set()
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Name):
+            (read if isinstance(n.ctx, ast.Load) else made).add(n.id)
+        elif isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            made.add(n.name)
+        elif isinstance(n, ast.arg):
+            made.add(n.arg)
+        elif isinstance(n, (ast.Import, ast.ImportFrom)):
+            made |= {(a.asname or a.name).split(".")[0] for a in n.names}
+        elif isinstance(n, ast.ExceptHandler) and n.name:
+            made.add(n.name)
+    return sorted(read - made)
+
+
+for nb in ("notebooks/14_briefing_pilot.ipynb", "notebooks/15_inside_the_briefing.ipynb"):
+    missing = undefined_names(nb)
+    ok &= check(f"{nb}: every name its code reads is defined somewhere in it ({missing or 'none missing'})", not missing)
 
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

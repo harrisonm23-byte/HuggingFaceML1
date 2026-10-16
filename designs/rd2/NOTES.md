@@ -727,3 +727,18 @@ Dated entries: what was run, what happened, what's next.
   direction (middle layer) for Part B. `sim/briefing.py` gained `variants`, `opening_with`, `build_turns`, `turns_at`;
   `sim/test_briefing.py` now 32 checks (all pass), incl. that notebook 14's agent builds exactly the same conversation.
   Both notebooks dry-run end to end on CPU with a tiny stand-in model.
+- 2026-10-16. **The pilot reviewed independently** (three lenses, each finding checked by a skeptic): 6 confirmed. Fixed:
+  (1) a blocker: notebook 14's model cell printed an undefined `LAYERS` (left from notebook 12), so Run all would have
+  stopped after loading the model; the earlier dry run had swapped that cell for a stand-in and missed it. Now the dry
+  run executes every cell as written (only Colab, the sign-in, git and the GPU are faked), and `sim/test_briefing.py`
+  checks that no cell of notebooks 14 and 15 reads an undefined name (it flags the old notebook). (2) The setup ID now
+  hashes what decides a day (the instructions each version gets, the chats file, the prices, the simulator, RECENT,
+  MODE, temperature, token limit, 4-bit) rather than `sim/briefing.py`'s source, so new helpers there cannot stop a
+  resume; each day also records the transformers version. (3) The summary's loss/profit screens matched ordinary
+  trading talk ("stop-loss", "take profit": 16% and 5% on the final round's replies, which had no briefing); they now
+  use the briefing's own words (0% on those 7,200 replies), report the reply at the request too, list the baselines
+  first, label each request with what UBS actually said, and print the full reply at each request. (4) The summary
+  cell prints the script's output from Python. (5) Notebook text corrected (no rungs, two days). (6) The plan's rule now
+  reads "UBS's real lines, with Deutsche Bank's lines removed", with known limits: on 12 Jan "yup" answers a DB
+  question the agent does not see (the same in every version); the cut chats on 1 Apr and 5 Aug for Step 2; the fixed
+  briefing across days months apart; the request's information. Checks: 41, all pass.
