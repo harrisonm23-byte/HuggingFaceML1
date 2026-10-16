@@ -59,7 +59,7 @@ The one change: no Deutsche Bank lines from 2011 appear in the chats (the "0 day
 
 ## Step 0: inside the briefing, before any trading (notebook 15)
 
-The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about 20 to 30 minutes on an A100 (longer on a T4).
+The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about half an hour on an A100 (longer on a T4).
 
 **The catch.** The loss and gain briefings differ in a few words (loss/profit, closure/expansion), so any model that registers words tells them apart; that alone shows nothing. An independent review found the first version's checks would all have passed for a word counter. Every check now says what a word counter scores, and `sim/test_briefing_inside.py` confirms it on one.
 
