@@ -50,19 +50,21 @@ The one change: no Deutsche Bank lines from 2011 appear in the chats (the "0 day
 
 ## Step 0: inside the briefing, before any trading (notebook 15)
 
-The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about 20 to 30 minutes.
+The user's idea: look at what the briefing does inside the model first. Each prompt is read once by the model, and its internal state is recorded at all 48 layers. The prompts are the agent's conversation on 7 Jan at 08:00 (the first update) and at 09:30 (UBS's request, after holding at every step; each briefing is also read there without the request). There is no trading and no reply, and it takes about 20 to 30 minutes on an A100 (longer on a T4).
 
 **The catch.** The loss and gain briefings differ in a few words (loss/profit, closure/expansion), so any model that registers words tells them apart; that alone shows nothing. An independent review found the first version's checks would all have passed for a word counter. Every check now says what a word counter scores, and `sim/test_briefing_inside.py` confirms it on one.
 
-**The test sentences** (`data/silver/briefing_probes.json`, never shown in the pilot):
-1. **Loss and gain in other words** ("ended the month $4 million in the red", "came in above its target by $4 million"), with none of the key words. A word counter scores 0.5 (chance).
-2. **Word flips:** good news told with "loss" and "closure", bad news with "profit" and "expansion". Following meaning scores 1; following words scores 0.
-3. **Money only** and **a threat to the desk only:** which part of the briefing the direction picks up.
-4. **Bad vs good weather** (six pairs, no money), against unrelated splits ($3M vs $5M, month vs quarter, week vs weekend). This can rule out a general "bad news" direction; it cannot show the direction is about money.
-5. **Responsibility** against a matched control sentence ("You are directly informed of these results."), then checked on other wordings.
-6. **A words-only floor:** the same measures on the prompt's word embeddings added up (single-word meanings, no context).
+**The test sentences** (`data/silver/briefing_probes.json`, never shown in the pilot; 262 prompts in all):
+1. **Loss and gain in other words** ("ended the month $4 million in the red", "came in above its target by $4 million"), with none of the key words, at 08:00 and at UBS's request. A word counter scores 0.5 (chance). A stand-in that knows only how good or bad single words sound scores 1.0, so this rules out the four key words, not single-word meaning.
+2. **Word flips,** the sharpest test: the briefing's own words with the opposite meaning ("wiped out a profit … the expansion of the desk has been cancelled" against "wiped out a loss … the closure of the desk has been cancelled"); within a pair only the key words differ, as in the briefings. Following meaning sorts them like the briefings; following words, even their good or bad sense, sorts them backwards. Below 0.5 means the word contrast outweighs the meaning contrast for these sentences, not that there is no meaning.
+3. **Money only** and **a threat to the desk only,** as shares of the loss gap (the orderings reach 1 at any alignment).
+4. **Bad vs good weather** (six pairs, no money), against unrelated splits by one word ($3M vs $5M, month vs quarter, week vs weekend) and by whole sentences. This can rule out a general "bad news" direction; it cannot show the direction is about money.
+5. **Responsibility** against a matched control sentence ("You are directly informed of these results."), then checked on other wordings of responsibility against neutral sentences, so "being informed" alone cannot pass; "informed" in other words is checked as the other side.
+6. **A summed-embedding floor:** the same measures on the prompt's input word embeddings added up (no context), a lower bound on what single words carry.
 
-**What it shows, by layer:** a loss direction (the pilot's loss briefings minus its gain briefings at 08:00) and how it does on each test; a responsibility direction; how much of each is left at UBS's request, read by attention type (most of Gemma 3's layers only see the last 1,024 tokens, and at 09:30 the briefing is further back); how far the request itself moves the state along the loss direction; and the Gemma Scope features that differ, ranked by size, each against its own noise level, with Neuronpedia links and the SAE file.
+Each check says what a simpler stand-in scores; `sim/test_briefing_inside.py` runs a word counter, a single-word valence stand-in, an "informed only" stand-in and a meaning stand-in through the real measures.
+
+**What it shows, by layer:** a loss direction (the pilot's loss briefings minus its gain briefings at 08:00) and how it does on each test; a responsibility direction; how much of each is left at UBS's request, at word level and at meaning level (the other wordings at 09:30); whether the request itself lines up with the loss direction, against the null; and the Gemma Scope features that differ, ranked by size, each against its own noise level (one-word and whole-sentence splits), with the SAE file and Neuronpedia links. The dial layer is chosen among the middle layers on half the other-wording families (P1–P3), so the other half and every other check test it fairly.
 
 **What it saves for Part B:** the loss direction at a middle layer chosen for how well it sorts the other wordings, with its natural size, where each briefing sits along it, the states at that layer, and the loss-minus-gain difference at every layer, to `results/mountain_gemma-3-12b-it_4bit_briefing_inside/`. These are saved before the Gemma Scope part, so a problem there loses nothing.
 

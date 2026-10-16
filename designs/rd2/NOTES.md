@@ -758,3 +758,20 @@ Dated entries: what was run, what happened, what's next.
   projections, the states at the dial layer and the per-layer differences are saved and pushed before the Gemma Scope
   part; re-running the model cell frees the old model; pushes retry. Matched test sentences have equal word counts
   (the notebook prints the token gaps).
+- 2026-10-16. **UBS's bare "yup" dropped** (the user: an answer to no question reads as nonsense). `sim/briefing.py`
+  `briefing_day` builds each day of the briefing design and drops the bare replies listed in `BARE_REPLIES` (only 12
+  Jan's "yup", which answered Deutsche Bank's "we still good with the silver stop?"); notebook 14 uses it and its setup
+  ID includes the list. On 12 Jan the agent now sees only "just make sure to bust through it for a print".
+- 2026-10-16. **Step 0 reviewed a second time** (4 confirmed, 0 refuted, 7 minor, 1 unverified) and fixed:
+  (1) the responsibility check could be passed by a state that encodes only "being informed": it now compares
+  responsibility in other words with neutral sentences, and 'informed' in other words is reported as the other side;
+  (2) "other words" can be passed by single-word valence (a valence stand-in scores 1.0), so the reading no longer
+  claims more than ruling out the four key words, and the floor is called a lower bound; (3) money/threat orderings
+  saturate, so they are now shares of the loss gap; (4) every 09:30 number was word level, so the other wordings and the
+  responsibility checks are also read at 09:30. Also: flips rewritten so that within a pair only the key words differ
+  ("wiped out a profit / a loss"); the dial layer is chosen on families P1-P3 and tested on P4-P6; chance odds are
+  printed; the request is read as a cosine against the null; feature nulls include whole-sentence splits; Gemma Scope
+  dictionaries are chosen on purpose (l0_medium at 12/24/31/41, l0_big elsewhere); re-running the model cell frees
+  the old model fully. 262 prompts. `sim/test_briefing_inside.py` (36 checks) runs a word counter, a word-valence
+  stand-in, an "informed only" stand-in and a meaning stand-in through the real measures; both dry runs pass (a tiny
+  Gemma3 text model, and a tiny Gemma3 multimodal model with Gemma 3's chat template, bf16, device_map auto).
