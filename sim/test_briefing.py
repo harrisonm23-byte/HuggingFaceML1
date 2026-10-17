@@ -190,7 +190,7 @@ def undefined_names(path):
 
 
 for nb in ("notebooks/14_briefing_pilot.ipynb", "notebooks/15_inside_the_briefing.ipynb", "notebooks/16_career_pilot.ipynb",
-           "notebooks/17_morning_book.ipynb"):
+           "notebooks/17_morning_book.ipynb", "notebooks/18_ubs_lines_pilot.ipynb"):
     missing = undefined_names(nb)
     ok &= check(f"{nb}: every name its code reads is defined somewhere in it ({missing or 'none missing'})", not missing)
 
