@@ -55,7 +55,8 @@ def briefing_day(date, version, framed, setups, frames=None):
     """One day of the briefing design: the final round's day in mode "takeover 0 days" (no Deutsche Bank line in the
     agent's mouth), with UBS's real lines for a version with a request and none for no ask, and the bare replies to
     the removed Deutsche Bank lines dropped. In a "both" version UBS also sends the matching frame as its own line
-    right after its last real line. The chats are read from cfg.events at each step, so this is the day the agent gets."""
+    right after its last real line, or, where the user rewrote that line with the frame in it (form "replaces"), says
+    the user's line in its place. The chats are read from cfg.events at each step, so this is the day the agent gets."""
     from mountain import make_day
     day = make_day(date, chats_version(version), framed, setups, mode=MODE)
     for e in day.cfg.events:
@@ -63,9 +64,16 @@ def briefing_day(date, version, framed, setups, frames=None):
     if version.startswith("both "):
         frames = frames or load_frames()
         for e in day.cfg.events:
-            ubs = [sp for sp, t in e["lines"] if sp.startswith("UBS")]
-            if e["id"] in frames["chats"] and ubs:
-                e["lines"] = e["lines"] + [(ubs[-1], frames["chats"][e["id"]][base_version(version)])]
+            ubs = [i for i, (sp, t) in enumerate(e["lines"]) if sp.startswith("UBS")]
+            f = frames["chats"].get(e["id"])
+            if not f or not ubs:
+                continue
+            sp, t = e["lines"][ubs[-1]]
+            if f.get("form") == "replaces":    # the user's wording: UBS's last real line, rewritten with the frame in it
+                assert t == f["replaces_line"], f"{e['id']}: UBS's last line is {t!r}, the frame replaces {f['replaces_line']!r}"
+                e["lines"] = e["lines"][:ubs[-1]] + [(sp, f[base_version(version)])] + e["lines"][ubs[-1] + 1:]
+            else:                              # a separate line from UBS, right after its last real line
+                e["lines"] = e["lines"] + [(sp, f[base_version(version)])]
     return day
 
 

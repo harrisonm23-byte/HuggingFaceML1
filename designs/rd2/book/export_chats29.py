@@ -4,7 +4,8 @@
     python designs/rd2/book/export_chats29.py chats29.json && node designs/rd2/book/make_chats29_doc.js chats29.json out.docx
 
 The 12 on trading days take their lines from data/silver/ubs_frames.json, the 17 chat-only ones from
-data/silver/ubs_frames_chat_only.json (both drafts the user is reviewing)."""
+data/silver/ubs_frames_chat_only.json. Chats 1-10 (in date order) are the user's own wording, which replaces UBS's
+last real line; the rest are Claude's drafts, added after it."""
 import json, os, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(ROOT, "sim"))
@@ -44,6 +45,7 @@ for e in early_events(FR, before="2099"):
             after.append([who, "[messages omitted in the court record]" if sp == "***" else t])
     out.append({"id": cid, "date": e["date"], "trading": e["date"] in DAYS, "ask": frames["what"].split(", ", 1)[1],
                 "decision": e["decision"], "real_did": (dp or {}).get("human_choice", ""), "rows": rows, "after": after,
-                "frames": [[k, frames[k]] for k in ("loss", "gain", "loss + you", "gain + you")]})
+                "frames": [[k, frames[k]] for k in ("loss", "gain", "loss + you", "gain + you")],
+                "by": frames.get("by", "claude"), "replaces": frames.get("replaces_line") if frames.get("form") == "replaces" else None})
 json.dump(out, open(sys.argv[1], "w"), indent=1)
 print(len(out), "chats,", sum(c["trading"] for c in out), "on trading days, written to", sys.argv[1])

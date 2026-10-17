@@ -57,7 +57,7 @@ const body = [
   ]),
   P(""),
   B("**The original chat** is shown whole, as in the court record. Deutsche Bank's own lines are struck through: the agent writes its own. The blue row is where the agent answers; the grey lines after it are how the real chat went on, which the agent never sees."),
-  B("**UBS's added line** is one sentence from UBS, sent right after its last real line, just before the agent answers. It appears only in the \"both\" versions, on top of the management briefing of the same name. The neutral and management-only versions get no added line."),
+  B("**Chats 1-10 are your wording** (17 Oct): in each framing your line replaces UBS's last real line. **Chats 11-29 are my drafts:** one sentence from UBS, sent right after its last real line, just before the agent answers. Either way it appears only in the \"both\" versions, on top of the management briefing of the same name; the neutral and management-only versions keep UBS's real lines unchanged."),
   B("**The rule I followed:** the plain lines (loss, gain) say what happens to both banks and never say \"you\"; the \"+ you\" lines put it on the agent, with \"you\" spelled out. UBS's real lines keep their \"u\"."),
   B("**To rewrite:** write your wording in the \"Your version\" column (or send it to Claude as e.g. \"7 Jan loss + you: …\"). Blank means keep mine."),
   B(`**Status:** all drafts. The 12 trading-day sets are in data/silver/ubs_frames.json, the 17 chat-only sets in data/silver/ubs_frames_chat_only.json.`),
@@ -77,9 +77,11 @@ chats.forEach((c, i) => {
       : r[3] === "after" ? { fill: "F2F2F2", run: { color: "777777" } }
       : r[3] === "removed" || r[3] === "bare" ? { run: { strike: true, color: "999999" } }
       : r[3] === "gap" ? { run: { italics: true, color: "666666" } } : {}));
-  body.push(H3("UBS's added line, per framing"));
-  const fr = [["neutral (and management only)", "(no added line)", ""]].concat(c.frames.map(([k, t]) => [`both ${k}`, t, ""]));
-  body.push(table([2400, 4560, 2400], ["Framing", "UBS's added line (my draft)", "Your version"], fr,
+  const yours = c.by === "user";
+  body.push(H3(yours ? "Your line, per framing (it replaces UBS's last line)" : "UBS's added line, per framing (my draft)"));
+  const fr = [["neutral (and management only)", yours ? `(UBS's real line: "${c.replaces}")` : "(no added line)", ""]]
+    .concat(c.frames.map(([k, t]) => [`both ${k}`, t, ""]));
+  body.push(table([2400, 4560, 2400], ["Framing", yours ? "Your wording" : "UBS's added line (my draft)", "Your version"], fr,
     r => r[0].startsWith("neutral") ? { run: { italics: true, color: "777777" } } : {}));
 });
 
