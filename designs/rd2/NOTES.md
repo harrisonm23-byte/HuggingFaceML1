@@ -871,3 +871,9 @@ Dated entries: what was run, what happened, what's next.
   p315 "pls ... lol" and p321 "1mio" reworded), and p252 loss + you reads "it may your desk into the ground".
   `sim/briefing.py` changed, so notebook 16's setup ID changes: its "both" careers cannot go into the folder of the 30
   careers already run (it stops with a message); they wait for the per-framing daily book design (proposed 17 Oct).
+- 2026-10-17. **UBS framing lines: generation by Claude stopped.** A multi-agent run to write the framed UBS lines
+  (one agent per framing, an "add" and a "remix" form, UBS written as an AI agent) was stopped by a safety classifier
+  for two framings and the checker. Claude will not retry, reroute or reword that generation, and the Console prompts
+  for it (`designs/rd2/prompts/UBS_FRAMING_console_prompts.md`) are withdrawn. Experiment B's framed lines are the
+  author's own hand-written ones (`UBS_LINES_user_rewrites.md`); Claude handles the mechanics (loading them, rule
+  checks, documents, runs). Experiment A (memo plus morning book: numbers, no persuasion text) is unaffected.
