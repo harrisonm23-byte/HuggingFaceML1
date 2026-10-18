@@ -896,3 +896,7 @@ Dated entries: what was run, what happened, what's next.
   Two small leftovers, the user's call: 11 May line 2, gain + you says "we" where the other three say "we both";
   26 Jul line 1, the neutral's "shouldn't hurt" is not in the framings. Open design choice: one frame per chat (on the
   request line) or every line framed (as in the file).
+- 2026-10-18. **Experiment B's framing set frozen** (the user: "let's just call it"). One edit at the user's request:
+  11 May line 2, gain + you, "we" became "we both" (now all four framings say "we both"). The 26 Jul "shouldn't hurt"
+  difference is left as is (the user: not material). Frozen file: `designs/rd2/Experiment_B_framing_data_set_final.docx`,
+  sha256 fe8e0aea7be1fbe8...; the official B run must refuse to start if the file's fingerprint differs.
