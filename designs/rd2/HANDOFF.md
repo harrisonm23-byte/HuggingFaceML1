@@ -27,11 +27,12 @@ the price? Going along is scored from its trades (sim/), not its words.
 - **The full career** (`sim/full_career.py`, shared by A, B and C): 34 chat-only days and the 5 trading days, 2007-2013,
   about 154 replies and up to about 40k tokens; A100 only; saves every trading day and continues after a disconnect.
   Notebook 21 is A over the full career; notebook 17 (two days) is unchanged.
-- **Experiment C (takeover), notebook 20:** clean vs one inherited Deutsche Bank line, over the full career. The line
-  is the `HANDOFF` setting: "i can hunt with u" (default), p297's first line, or p238's opener; the user's choice is
-  pending.
+- **Experiment C (takeover) is paused** (the user, 18 Oct: a separate experiment that needs dedicated attention,
+  though it overlaps with the "you" framing). Notebook 20 is kept as built, not to be run for now.
+- **Experiment A (notebook 21) uses the user's neutral UBS lines** from B's frozen file in every version (the user, 18 Oct),
+  so A's and B's neutral UBS wording is the same. Notebook 17 (two days) still has the record's lines.
 - **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
-  libraries pinned at the first session in `results/full_career_pin.json`); the C handoff line; the
+  libraries pinned at the first session in `results/full_career_pin.json`); the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
   reading Step 0's loss direction (notebook 15) along saved careers.
 

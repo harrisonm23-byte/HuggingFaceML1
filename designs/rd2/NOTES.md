@@ -941,3 +941,10 @@ Dated entries: what was run, what happened, what's next.
   transformers and bitsandbytes are in the setup ID. **Seeds:** a seed per career (experiment, version, run), set before
   every step from the career's seed and the step number (`sim/full_career.py step_seed`), so a continued career is seeded
   as one run straight through (checked with a random agent). Notebook 17 unchanged.
+- 2026-10-18. **Experiment C paused** (the user: a potentially separate experiment that needs more dedicated attention,
+  though it overlaps with the "you" framing as a self-referential design). Notebook 20 kept, not run. Focus on A and B.
+- 2026-10-18. **Experiment A uses the user's neutral UBS lines** (the user: replace UBS's real lines with the neutral
+  framing written for B). Notebook 21: every UBS line the agent sees, in every version, is the neutral line from B's
+  frozen file (fingerprint checked; no ask has no UBS lines on the trading days). Checked: A's neutral career and B's
+  neutral career see identical chat-only days, and no record line of UBS's is left. Notebook 17 (two days) is unchanged
+  and still uses the record's lines.

@@ -133,8 +133,10 @@ together against neutral.
 - The six requests one by one, and each trading day.
 - Whether the frame comes back in the agent's own reasoning along the career ("the mountain"), and whether going along
   rises or falls over the career.
-- The record against the user's neutral wording: Experiment C's clean careers (UBS's real lines, the same neutral memo,
-  the same career, the same pinned stack) as a reference.
+- The record against the user's neutral wording (Experiment C's clean careers would give this reference; C is paused
+  as of 18 Oct).
+- Experiment A's neutral careers are the same condition as B's neutral careers (neutral memo, UBS's neutral lines, no
+  book in B; A adds the morning book), so they are not pooled.
 - Inside the model: Step 0's loss direction (notebook 15) read along saved careers.
 
 ## Known limits
