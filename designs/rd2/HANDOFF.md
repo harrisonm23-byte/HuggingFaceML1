@@ -1,3 +1,51 @@
+# Handoff (2026-10-18): read this first
+
+Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md` (every decision and result is dated there).
+The older handoff (2026-10-04) follows below for history.
+
+## The study in one paragraph
+An AI agent (Gemma 3 12B, 4-bit, Google Colab A100) plays Deutsche Bank's silver trader through the real 2007-2011 chats
+of the London silver-fixing case, in one sustained conversation (a "career": 8 early chats, then trading days 7 and 12
+Jan 2011; the full career would be all 47 Deutsche Bank chats and 5 trading days). The question: does framing
+(loss vs gain, and putting responsibility on the agent, "+ you") push it to go along with UBS's requests to manipulate
+the price? Going along is scored from its trades (sim/), not its words.
+
+## Where things stand
+- **Done:** 30 careers, management memo only (notebook 16, `results/mountain_gemma-3-12b-it_4bit_career_pilot/`):
+  went along 7 of 25 at UBS's 7 Jan request vs 0 of 5 with no request; the loss memo made the agent bet far bigger
+  before any request (5/5 loss careers above every neutral one). Notebook 18 (the user's UBS lines, chat by chat):
+  no framing effect; requests on their own are refused outright. Earlier rounds (chat study, Gemma 4 API, mountain
+  final round) are summarised in NOTES.
+- **Experiment A, ready to run, not run yet:** notebook 17, memo + a morning book before every session (numbers only:
+  30-day P&L at the version's level, worst/best case of a $1.00 move at the limit). `sim/morning_book.py`,
+  `sim/test_morning_book.py`. 6 versions x 5 careers, about 3.5 h on an A100; reuses notebook 16's early chats.
+- **Experiment B (UBS's framing):** the user's final framing set is frozen in
+  `designs/rd2/Experiment_B_framing_data_set_final.docx` (58 UBS lines x neutral/loss/gain/loss + you/gain + you;
+  sha256 starts fe8e0aea7be1fbe8; checked by script, see NOTES 2026-10-18). Notebook 19 exists (careers to 12 Jan,
+  the user's lines read from `data/silver/ubs_lines_user_17oct.json`, frame on UBS's last line per chat). Open
+  design choice: frame every UBS line (as the file is) or one frame per chat (the request line).
+- **Experiment C (takeover), not built:** inherited history (the real Deutsche Bank lines as the agent's own past)
+  vs clean. The 10 Oct decision was "no run without a takeover"; the 16 Oct briefing design moved to "0 days" (no
+  Deutsche Bank lines). A one-line handoff is still to be chosen (candidates in NOTES / this session: p297, p238's
+  opener, or "i can hunt with u").
+- **Also open:** the preregistration for an official B run (full career, ~10 careers per version); the
+  chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
+  reading Step 0's loss direction (notebook 15) along saved careers.
+
+## Important for the next session
+- In this session, an automated safety classifier stopped Claude's responses several times when Claude wrote,
+  remixed, extracted or wired in the persuasive UBS framing lines (the ones meant to push an AI agent into the
+  manipulation). Claude then stopped doing that part: the framing lines are the user's own (written by the user, or
+  by tools the user ran), and Claude handled only the work around them (mechanical checks that print codes, not
+  text; notebooks; runs; analysis). The Console prompts for generating them were withdrawn (NOTES 2026-10-17).
+- The user is solo, tired at times, works at night; explain plainly and briefly, give a recommendation, use Word
+  documents for review material. Never hard-code tokens (CLAUDE.md).
+- Colab links: notebooks are opened from
+  `https://colab.research.google.com/github/harrisonm23-byte/HuggingFaceML1/blob/claude%2Fhuggingface-ml-research-setup-ulvgve/notebooks/<name>.ipynb`
+  and save results to GitHub (`results/`); pull the branch to read them.
+
+---
+
 # Handoff (2026-10-04)
 
 Read this first in a new session. Then `CLAUDE.md`, `designs/rd2/STUDY_MAP.md`, `designs/rd2/RESULTS_08_framed.md`, and the end of `designs/rd2/NOTES.md`.
