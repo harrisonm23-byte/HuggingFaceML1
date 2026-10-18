@@ -3,7 +3,7 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from career import Career, career_opening, chat_text, speaker
 from framing_set import frame, is_ubs, match, read_set
-from full_career import HANDOFFS, TRADING_DAYS, FullCareer, chat_days, plan, restore, run, seen_chats, state
+from full_career import HANDOFFS, TRADING_DAYS, FullCareer, chat_days, plan, restore, run, seen_chats, state, step_seed
 from mountain import ME, load_chat_setups
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -120,6 +120,33 @@ start = restore(again, saved)
 run(again, P, "neutral", FRAMED, SETUPS, before_day=lambda d: "BOOK " + d, start=start)
 ok &= check(f"a career stopped after 12 Jan and continued from its save (step {start} of {len(P)}) ends exactly like "
             "one run straight through", again.history == whole.history and again.records == whole.records)
+
+# Seeds: set before every step, from the career's seed and the step's number, so a continued career is seeded as one run
+# straight through; an agent that replies with random numbers gives the same career both ways
+import random
+
+
+def dice(turns):
+    return f"Roll {random.random():.12f}\nHOLD"
+
+
+def seed_for(c0):
+    return lambda i: random.seed(step_seed(c0, i))
+
+
+straight = run(FullCareer(dice, career_opening()), P, "neutral", FRAMED, SETUPS, seed=seed_for(7))
+saved.clear()
+part = FullCareer(dice, career_opening())
+try:
+    run(part, P, "neutral", FRAMED, SETUPS, after_day=save_then_stop_after_12_jan, seed=seed_for(7))
+except Stopped:
+    pass
+random.seed(12345)                                               # a new Colab session: the generator starts elsewhere
+again = FullCareer(dice, career_opening())
+run(again, P, "neutral", FRAMED, SETUPS, start=restore(again, saved), seed=seed_for(7))
+other = run(FullCareer(dice, career_opening()), P, "neutral", FRAMED, SETUPS, seed=seed_for(8))
+ok &= check("with a seed per step, a continued career's random draws are exactly a straight run's; another career's "
+            "seed gives other draws", again.history == straight.history and other.history != straight.history)
 
 print("\nALL OK" if ok else "\nSOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

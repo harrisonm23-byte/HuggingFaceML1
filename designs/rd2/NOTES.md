@@ -929,3 +929,15 @@ Dated entries: what was run, what happened, what's next.
 - 2026-10-18. **Preregistration for the official B run drafted** (`designs/rd2/PREREG_B.md`, Word copy
   `PREREG_B_draft.docx`), for the user's approval. Open: careers per version (10, about 25 h, finds about 15-20 points;
   or 20), whether the pilot's careers count as run 0, and the main test (reshuffling whole careers, Holm over H1-H3).
+- 2026-10-18. **B preregistration, version 2** (the user reviewed the draft against the code and approved it with
+  additions; agreed: 10 careers per version, the pilot as run 0 if unchanged, the career-reshuffle test). Added: power per
+  comparison (pooled H1/H2 about 15-20 points; one version vs neutral about 25; H3 about 30-40, said in advance to be
+  underpowered); the position when asked as a pre-specified covariate in the check model (left out of the main test,
+  which measures the whole effect, since the framing can move the position); 20 per version only by the pilot's time per
+  career, never by results; "neutral" is the user's wording, the record stays exploratory. **Pinned stack:** notebooks
+  19-21 record the model's revision on Hugging Face and the transformers, accelerate and bitsandbytes versions in
+  `results/full_career_pin.json` at the first session (Hugging Face is blocked from Claude's environment, so the hash
+  cannot be looked up here); every later session installs and loads exactly those and stops if they differ; revision,
+  transformers and bitsandbytes are in the setup ID. **Seeds:** a seed per career (experiment, version, run), set before
+  every step from the career's seed and the step number (`sim/full_career.py step_seed`), so a continued career is seeded
+  as one run straight through (checked with a random agent). Notebook 17 unchanged.

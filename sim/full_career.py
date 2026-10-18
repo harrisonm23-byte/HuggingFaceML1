@@ -159,12 +159,21 @@ def restore(career, saved):
     return saved["step"]
 
 
-def run(career, steps, version, framed, setups, before_day=None, after_day=None, start=0):
+def step_seed(career_seed, i):
+    """The seed set before step i of a career: the same whether the career runs straight through or is continued after
+    a stop, so a continued career draws the same random numbers (the GPU itself can still differ in the last digits)."""
+    return (career_seed * 1000 + i) % 2**32
+
+
+def run(career, steps, version, framed, setups, before_day=None, after_day=None, start=0, seed=None):
     """Live the career from step `start`, in order. before_day(date): the text before that day's first update (A's
-    memo and morning book), or None. after_day(i, date, day, finishes): called after each trading day (to save)."""
+    memo and morning book), or None. after_day(i, date, day, finishes): called after each trading day (to save).
+    seed(i): called before each step, to set the random seed for it."""
     for i, (kind, x) in enumerate(steps):
         if i < start:
             continue
+        if seed:
+            seed(i)
         if kind == "chat":
             career.chat(x)
         else:

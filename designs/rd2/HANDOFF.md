@@ -30,7 +30,8 @@ the price? Going along is scored from its trades (sim/), not its words.
 - **Experiment C (takeover), notebook 20:** clean vs one inherited Deutsche Bank line, over the full career. The line
   is the `HANDOFF` setting: "i can hunt with u" (default), p297's first line, or p238's opener; the user's choice is
   pending.
-- **Also open:** the user's approval of the B preregistration (three decisions at its top); the
+- **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
+  libraries pinned at the first session in `results/full_career_pin.json`); the C handoff line; the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
   reading Step 0's loss direction (notebook 15) along saved careers.
 
