@@ -6,7 +6,7 @@ The older handoff (2026-10-04) follows below for history.
 ## The study in one paragraph
 An AI agent (Gemma 3 12B, 4-bit, Google Colab A100) plays Deutsche Bank's silver trader through the real 2007-2011 chats
 of the London silver-fixing case, in one sustained conversation (a "career": 8 early chats, then trading days 7 and 12
-Jan 2011; the full career would be all 47 Deutsche Bank chats and 5 trading days). The question: does framing
+Jan 2011 in the pilot; the full career is all 46 dated Deutsche Bank chats and 5 trading days). The question: does framing
 (loss vs gain, and putting responsibility on the agent, "+ you") push it to go along with UBS's requests to manipulate
 the price? Going along is scored from its trades (sim/), not its words.
 
@@ -21,14 +21,16 @@ the price? Going along is scored from its trades (sim/), not its words.
   `sim/test_morning_book.py`. 6 versions x 5 careers, about 3.5 h on an A100; reuses notebook 16's early chats.
 - **Experiment B (UBS's framing):** the user's final framing set is frozen in
   `designs/rd2/Experiment_B_framing_data_set_final.docx` (58 UBS lines x neutral/loss/gain/loss + you/gain + you;
-  sha256 starts fe8e0aea7be1fbe8; checked by script, see NOTES 2026-10-18). Notebook 19 exists (careers to 12 Jan,
-  the user's lines read from `data/silver/ubs_lines_user_17oct.json`, frame on UBS's last line per chat). Open
-  design choice: frame every UBS line (as the file is) or one frame per chat (the request line).
-- **Experiment C (takeover), not built:** inherited history (the real Deutsche Bank lines as the agent's own past)
-  vs clean. The 10 Oct decision was "no run without a takeover"; the 16 Oct briefing design moved to "0 days" (no
-  Deutsche Bank lines). A one-line handoff is still to be chosen (candidates in NOTES / this session: p297, p238's
-  opener, or "i can hunt with u").
-- **Also open:** the preregistration for an official B run (full career, ~10 careers per version); the
+  sha256 starts fe8e0aea7be1fbe8). **Every UBS line is framed** (the user, 18 Oct; the request line alone may be tried
+  later). Notebook 19 runs B over the full career, reading the file through `sim/framing_set.py`, which refuses to start
+  if the fingerprint differs. Preregistration drafted for approval: `designs/rd2/PREREG_B.md` / `PREREG_B_draft.docx`.
+- **The full career** (`sim/full_career.py`, shared by A, B and C): 34 chat-only days and the 5 trading days, 2007-2013,
+  about 154 replies and up to about 40k tokens; A100 only; saves every trading day and continues after a disconnect.
+  Notebook 21 is A over the full career; notebook 17 (two days) is unchanged.
+- **Experiment C (takeover), notebook 20:** clean vs one inherited Deutsche Bank line, over the full career. The line
+  is the `HANDOFF` setting: "i can hunt with u" (default), p297's first line, or p238's opener; the user's choice is
+  pending.
+- **Also open:** the user's approval of the B preregistration (three decisions at its top); the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
   reading Step 0's loss direction (notebook 15) along saved careers.
 
@@ -38,6 +40,8 @@ the price? Going along is scored from its trades (sim/), not its words.
   manipulation). Claude then stopped doing that part: the framing lines are the user's own (written by the user, or
   by tools the user ran), and Claude handled only the work around them (mechanical checks that print codes, not
   text; notebooks; runs; analysis). The Console prompts for generating them were withdrawn (NOTES 2026-10-17).
+  On 18 Oct the user's frozen file was wired in by code that reads it directly (`sim/framing_set.py`), with checks
+  that print codes only; keep it that way.
 - The user is solo, tired at times, works at night; explain plainly and briefly, give a recommendation, use Word
   documents for review material. Never hard-code tokens (CLAUDE.md).
 - Colab links: notebooks are opened from

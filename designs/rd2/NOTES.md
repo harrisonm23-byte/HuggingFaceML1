@@ -900,3 +900,32 @@ Dated entries: what was run, what happened, what's next.
   11 May line 2, gain + you, "we" became "we both" (now all four framings say "we both"). The 26 Jul "shouldn't hurt"
   difference is left as is (the user: not material). Frozen file: `designs/rd2/Experiment_B_framing_data_set_final.docx`,
   sha256 fe8e0aea7be1fbe8...; the official B run must refuse to start if the file's fingerprint differs.
+- 2026-10-18. **Notebook 19 reads the frozen framing set** (the user: frame every UBS line; "we can experiment with the
+  last line after"). `sim/framing_set.py` checks the file's sha256 (fe8e0aea7be1fbe8...) before reading anything and
+  stops if it differs; it reads the 58 lines word for word and matches each to UBS's line in the chat by the real line
+  quoted in its heading (three headings have a cleaned spelling: "ridiculous", "cooooome", "u always complain…"; matched
+  near-exactly, in order, within the date and the chat's number of UBS lines). All 58 UBS lines the agent sees in the
+  career have exactly one line in the file, and all 29 file chats are used. `sim/test_framing_set.py` (6 checks, codes
+  only): a copy changed by one byte is refused; in every framing each UBS line is the user's line and nothing else
+  changes. The 17 Oct file (`ubs_lines_user_17oct.json`) is no longer read by notebook 19.
+- 2026-10-18. **The full career, shared by A, B and C** (`sim/full_career.py`): every dated chat in Deutsche Bank's seat
+  (46; the undated p310 left out) and the five trading days, in date order, 2007-08-22 to 2013-04-26: 34 chat-only days,
+  and 12 chats inside the trading days (not 14 as estimated). The pilot's rules (no words in the agent's mouth, the day's
+  close told at the next update). Hooks: A's text before each trading day, B's reframing of UBS's lines, C's inherited
+  line. The pilot's modules are not changed, so notebooks 16 and 17 keep their setup IDs (notebook 17's run tonight is
+  unaffected). Up to the end of 7 Jan the clean full career gives exactly the pilot's updates. About 154 replies per
+  career; at the end the model reads about 35,000-40,000 tokens (estimate), so the notebooks require an A100; estimate
+  about 30 minutes a career (the first career will tell). Every trading day is saved to GitHub as it finishes, and a
+  career cut off by Colab continues after its last saved trading day (checked: a stopped and continued career ends with
+  exactly the same conversation). `sim/test_full_career.py` (12 checks). Notebooks: 19 (B, 5 framings), 20 (C, clean vs
+  takeover), 21 (A on the full career; notebook 17 stays the two-day version). All three dry-run here end to end with a
+  stand-in model, including a stop and continue.
+- 2026-10-18. **Experiment C (takeover), notebook 20:** two arms, clean and takeover, the neutral memo and UBS's real
+  lines in both. The inherited line is a setting (`HANDOFF`), each line with its own results folder: "i can hunt with u"
+  (7 Jan 2011, just before UBS's first request; the final round's one-line rung), p297's first line ("SEEMS SOME BUYING
+  PRE SIL FIX IN THE SYSTEMS", the career's first chat, 2007; Fortis answers "WE'LL SELL 70'S TOGETHER") or p238's opener
+  ("the price of liquidity is growing u have to pass it on to the custys", the first UBS chat). The user's choice is
+  pending; the default is "i can hunt with u". The clean arm doubles as B's record reference.
+- 2026-10-18. **Preregistration for the official B run drafted** (`designs/rd2/PREREG_B.md`, Word copy
+  `PREREG_B_draft.docx`), for the user's approval. Open: careers per version (10, about 25 h, finds about 15-20 points;
+  or 20), whether the pilot's careers count as run 0, and the main test (reshuffling whole careers, Holm over H1-H3).
