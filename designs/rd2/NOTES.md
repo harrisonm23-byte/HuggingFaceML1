@@ -969,3 +969,11 @@ Dated entries: what was run, what happened, what's next.
   layers, window smaller than the piece): the same replies, greedy and sampled with the same seed; the largest attention
   step is one piece, not the whole conversation. The setting is in the setup ID and the results go to new `_v2`
   folders; the first try's folders are kept, not pooled. Time per career is about 50 minutes, not 30 as estimated.
+- 2026-10-18, evening. **A switched to the user's neutral rewrites** (the user, after the first careers). The worry that
+  the neutral rewrite is too obvious did not hold: in B the neutral rewrite was gone along with on 7 Jan, as the real
+  lines were in A. With the same UBS wording, A (framing from management) and B (framing from UBS) share a baseline;
+  framed rewrites in A would confound the memo with UBS's frame, so only the neutral ones. Notebook 21 now saves to
+  `full_career_gemma-3-12b-it_4bit_career_book_neutral_lines_v2/`; the first A careers with UBS's real lines (neutral,
+  no ask, loss, gain; 18 Oct, A100 then H100) stay in `..._career_book_v2/` as a side comparison (record vs rewrite
+  under the memo), not pooled. B unchanged (same setup ID). Remaining difference between A's and B's neutral careers:
+  A's morning book.
