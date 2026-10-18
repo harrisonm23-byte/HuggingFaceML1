@@ -977,3 +977,9 @@ Dated entries: what was run, what happened, what's next.
   no ask, loss, gain; 18 Oct, A100 then H100) stay in `..._career_book_v2/` as a side comparison (record vs rewrite
   under the memo), not pooled. B unchanged (same setup ID). Remaining difference between A's and B's neutral careers:
   A's morning book.
+- 2026-10-18, night. **Two copies of notebook 21 ran the same career at once** (an old tab and a new one): the first saved
+  `neutral_r0` at 22:18; the second copy's git sync then clashed with that save, and the aborted rebase removed its empty
+  `careers/` folder, so its own save failed (FileNotFoundError). Checked: every saved career in A and B matches its saved
+  days step for step, so nothing was mixed. Fixed in notebooks 19 and 21 (setup IDs unchanged): folders are recreated
+  before saving, the latest saves are fetched before each career and a career another copy finished is skipped, and a
+  finished career is never overwritten.
