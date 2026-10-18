@@ -959,3 +959,13 @@ Dated entries: what was run, what happened, what's next.
   rewritten lines drew as many or more refusals; the neutral rewrite has never been tested. Notebook 21 now has no
   framing-file dependency. B keeps the rewrites; if B's pilot shows neutral near 0% going along, adding the record as a
   reference version in B is to be discussed before the official run.
+- 2026-10-18. **First full-career try: out of memory, fixed** (notebooks 21 and 19 on A100 40 GB, pinned stack:
+  gemma-3-12b-it revision 96b6f1ec, transformers 5.20.1, accelerate 1.15.0, bitsandbytes 0.50.2). B's neutral r0 finished
+  (43,173 tokens at the end, 0 unreadable steps, about 51 minutes); A's neutral r0 ran out of GPU memory partway through
+  5 Aug at about 43k tokens (the morning books make A's careers a little longer). Cause: the model read the whole
+  conversation in one pass before each reply, which needs memory growing with the square of its length (a 3.5 GB
+  attention mask at 43k). Fix: read it in pieces of 4,096 tokens (`prefill_chunk_size`, compiling off), plus PyTorch's
+  expandable memory segments. Checked on the pinned transformers 5.20.1 with a tiny random Gemma 3 (sliding and full
+  layers, window smaller than the piece): the same replies, greedy and sampled with the same seed; the largest attention
+  step is one piece, not the whole conversation. The setting is in the setup ID and the results go to new `_v2`
+  folders; the first try's folders are kept, not pooled. Time per career is about 50 minutes, not 30 as estimated.
