@@ -946,5 +946,10 @@ Dated entries: what was run, what happened, what's next.
 - 2026-10-18. **Experiment A uses the user's neutral UBS lines** (the user: replace UBS's real lines with the neutral
   framing written for B). Notebook 21: every UBS line the agent sees, in every version, is the neutral line from B's
   frozen file (fingerprint checked; no ask has no UBS lines on the trading days). Checked: A's neutral career and B's
-  neutral career see identical chat-only days, and no record line of UBS's is left. Notebook 17 (two days) is unchanged
+  neutral career see identical chat-only days, and no record line of UBS's is left. (Not the same condition overall: A adds the morning book, B has none.) Notebook 17 (two days) is unchanged
   and still uses the record's lines.
+- 2026-10-18. **A and B are two experiments on one shared setup** (the user asked whether to use UBS's real lines in A
+  and whether A and B are one experiment). Kept the neutral lines in A: then UBS's wording differs between A and B only by
+  B's frame, and the neutral rewrite is the baseline (the record stays a reference). A (framing from the agent's own
+  side) and B (framing from UBS) are analysed separately. A direct management-vs-UBS comparison would need B's neutral
+  careers to get the neutral morning book too; not added.
