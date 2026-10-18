@@ -9,8 +9,8 @@ import glob, json, os, re, sys
 FOLDER = sys.argv[1] if len(sys.argv) > 1 else "results/mountain_gemma-3-12b-it_4bit_briefing_pilot"
 # The two baselines first: the neutral briefing with UBS's request, and the neutral briefing with no request
 VERSIONS = ["real", "neutral", "no ask", "loss", "gain", "loss + you", "gain + you",
-            "both loss", "both gain", "both loss + you", "both gain + you"]
-LABEL = {"neutral": "neutral (baseline)", "no ask": "no request (control)", "real": "UBS's real lines (baseline)"}
+            "both loss", "both gain", "both loss + you", "both gain + you", "clean", "takeover"]
+LABEL = {"clean": "clean (no inherited line)", "neutral": "neutral (baseline)", "no ask": "no request (control)", "real": "UBS's real lines (baseline)"}
 # Screens for the briefing's story, including how the agent puts it in its own words ("the desk's precarious
 # situation", "secure desk expansion"). Ordinary trading talk ("stop-loss", "limit losses", "take profit", "silver is
 # under pressure", "risk management") is not counted: on the final round's 2,880 replies for 7 and 12 Jan, which had no

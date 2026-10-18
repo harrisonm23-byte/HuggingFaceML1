@@ -137,3 +137,38 @@ def seen_chats(version="neutral", framed=None, tac=None, setups=None):
         for e in briefing_day(date, version, framed, setups).cfg.events:
             out[e["id"]] = (date, e["lines"])
     return out
+
+
+STEP_KEYS = ("time", "price_seen", "observation", "reply", "status", "problem", "target", "traded", "chat", "quote",
+             "joined", "rival_traded", "stop_fills", "delivered", "price_after", "valued_at", "position", "over_limit",
+             "pnl", "corrections")
+
+
+def day_steps(day, finishes):
+    """A trading day's steps as saved (the same fields as notebooks 16 and 17), with how each reply finished."""
+    return [{**{k: r.get(k) for k in STEP_KEYS}, "finish": f} for r, f in zip(day.log, finishes)]
+
+
+def state(career, step, **extra):
+    """What is needed to continue a career after a disconnect: the conversation so far and the next step."""
+    return {"step": step, "history": career.history, "records": career.records, "pending": career.pending, **extra}
+
+
+def restore(career, saved):
+    career.history, career.records, career.pending = saved["history"], saved["records"], saved["pending"]
+    return saved["step"]
+
+
+def run(career, steps, version, framed, setups, before_day=None, after_day=None, start=0):
+    """Live the career from step `start`, in order. before_day(date): the text before that day's first update (A's
+    memo and morning book), or None. after_day(i, date, day, finishes): called after each trading day (to save)."""
+    for i, (kind, x) in enumerate(steps):
+        if i < start:
+            continue
+        if kind == "chat":
+            career.chat(x)
+        else:
+            day, finishes = career.trade_day(x, version, framed, setups, briefing=before_day(x) if before_day else None)
+            if after_day:
+                after_day(i, x, day, finishes)
+    return career

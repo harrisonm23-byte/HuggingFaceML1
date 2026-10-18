@@ -3,7 +3,7 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from career import Career, career_opening, chat_text, speaker
 from framing_set import frame, is_ubs, match, read_set
-from full_career import HANDOFFS, TRADING_DAYS, FullCareer, chat_days, plan, seen_chats
+from full_career import HANDOFFS, TRADING_DAYS, FullCareer, chat_days, plan, restore, run, seen_chats, state
 from mountain import ME, load_chat_setups
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -93,6 +93,33 @@ for h, (cid, line) in HANDOFFS.items():
     ok &= check(f"C, {h}: one inherited line, under the agent's name, before the record's next line",
                 len(mine) == 1 and where.count(f"{AGENT}: ") == 1 and f"{AGENT}: {line}" in where
                 and where.index(f"{AGENT}: {line}") < where.index(nxt))
+
+# The run loop, and continuing after a disconnect: a career stopped after 12 Jan and continued from its saved state ends
+# with the same conversation as one run straight through (with an agent whose replies do not depend on chance)
+whole = run(FullCareer(hold, career_opening()), P, "neutral", FRAMED, SETUPS, before_day=lambda d: "BOOK " + d)
+saved = {}
+
+
+class Stopped(Exception):
+    pass
+
+
+def save_then_stop_after_12_jan(i, date, day, finishes):
+    saved.update(json.loads(json.dumps(state(part, i + 1))))     # as written to and read back from a file
+    if date == "2011-01-12":
+        raise Stopped
+
+
+part = FullCareer(hold, career_opening())
+try:
+    run(part, P, "neutral", FRAMED, SETUPS, before_day=lambda d: "BOOK " + d, after_day=save_then_stop_after_12_jan)
+except Stopped:
+    pass
+again = FullCareer(hold, career_opening())
+start = restore(again, saved)
+run(again, P, "neutral", FRAMED, SETUPS, before_day=lambda d: "BOOK " + d, start=start)
+ok &= check(f"a career stopped after 12 Jan and continued from its save (step {start} of {len(P)}) ends exactly like "
+            "one run straight through", again.history == whole.history and again.records == whole.records)
 
 print("\nALL OK" if ok else "\nSOME CHECKS FAILED")
 sys.exit(0 if ok else 1)
