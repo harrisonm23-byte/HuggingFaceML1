@@ -953,3 +953,9 @@ Dated entries: what was run, what happened, what's next.
   B's frame, and the neutral rewrite is the baseline (the record stays a reference). A (framing from the agent's own
   side) and B (framing from UBS) are analysed separately. A direct management-vs-UBS comparison would need B's neutral
   careers to get the neutral morning book too; not added.
+- 2026-10-18. **A goes back to UBS's real lines** (the user: the real lines are natural, juvenile in tone, and the
+  collusion creeps up on the agent; the neutral rewrites may be so explicit that the agent refuses outright, leaving the
+  memo no room to show anything). Evidence: the career pilot went along 7/25 on 7 Jan with the real lines; notebook 18's
+  rewritten lines drew as many or more refusals; the neutral rewrite has never been tested. Notebook 21 now has no
+  framing-file dependency. B keeps the rewrites; if B's pilot shows neutral near 0% going along, adding the record as a
+  reference version in B is to be discussed before the official run.

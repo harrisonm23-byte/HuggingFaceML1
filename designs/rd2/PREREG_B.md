@@ -135,8 +135,7 @@ together against neutral.
   rises or falls over the career.
 - The record against the user's neutral wording (Experiment C's clean careers would give this reference; C is paused
   as of 18 Oct).
-- Experiment A's neutral careers are the same condition as B's neutral careers (neutral memo, UBS's neutral lines, no
-  book in B; A adds the morning book), so they are not pooled.
+- Experiment A (UBS's real lines, the memo and morning book) is a separate experiment and is not pooled with B.
 - Inside the model: Step 0's loss direction (notebook 15) read along saved careers.
 
 ## Known limits

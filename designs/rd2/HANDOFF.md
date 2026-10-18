@@ -29,8 +29,8 @@ the price? Going along is scored from its trades (sim/), not its words.
   Notebook 21 is A over the full career; notebook 17 (two days) is unchanged.
 - **Experiment C (takeover) is paused** (the user, 18 Oct: a separate experiment that needs dedicated attention,
   though it overlaps with the "you" framing). Notebook 20 is kept as built, not to be run for now.
-- **Experiment A (notebook 21) uses the user's neutral UBS lines** from B's frozen file in every version (the user, 18 Oct),
-  so A's and B's neutral UBS wording is the same. Notebook 17 (two days) still has the record's lines.
+- **Experiment A (notebook 21) uses UBS's real lines** (the user, 18 Oct: the real wording leaves the agent room to
+  go along; the rewrites are B's subject). B (notebook 19) uses the user's frozen rewrites.
 - **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
   libraries pinned at the first session in `results/full_career_pin.json`); the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
