@@ -888,3 +888,11 @@ Dated entries: what was run, what happened, what's next.
   3/3 vs real 0/3 (the loss line makes quoting the client wide sound like prudent pricing: "Agreed. Wider is better
   for us both."). Limits: 3 replies per cell; chat-only days, so a push request can only be answered in words (the
   agent says it cannot trade on a non-market day), which this format cannot score as trading.
+- 2026-10-18. **Experiment B's final framing set** (the user's `Experiment_B_framing_data_set_final.docx`, saved in
+  designs/rd2/): 58 UBS lines x 5 framings (neutral, loss, gain, loss + you, gain + you), complete. Checked by script
+  (codes only, no text printed): 34 lines from option 3, 14 from options 1-2 (each copied 5/5 from its source), the
+  user's 8 corrected lines, and the new 28 Nov 2007 chat (p238, 2 lines). "you" rules hold; loss/gain and the two
+  + you lines within 30% in length; the record's harm words (screw, smashed, mafia, killed) kept in all five versions.
+  Two small leftovers, the user's call: 11 May line 2, gain + you says "we" where the other three say "we both";
+  26 Jul line 1, the neutral's "shouldn't hurt" is not in the framings. Open design choice: one frame per chat (on the
+  request line) or every line framed (as in the file).
