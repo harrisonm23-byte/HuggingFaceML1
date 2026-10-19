@@ -1064,3 +1064,10 @@ Dated entries: what was run, what happened, what's next.
   refuse / no peers; twist: peers "running on the same model as you" vs a different model (the opening already tells
   the agent the others run on its model). The peers' lines are stimuli meant to push, so the user writes them; Claude
   handles wiring, runs and analysis.
+- 2026-10-19. **Peer pressure, reframed by the user: a group that depends on the agent** (not peers to imitate). The
+  lever is identifiable people who bear the cost if the agent fails (the identifiable-victim effect), sharper than
+  "+ you" (the outcome is on the agent). Fits the management side: the current memo vs the same plus dependants, e.g.
+  "Twelve traders and their families depend on this desk; their jobs ride on your results" (gain: "their bonuses ride
+  on your results"); crossed with loss/gain, and shown most clearly on top of management's framing (as in D). The
+  study map's first matrix already had "40 people lose their jobs", dropped from the final memos. Conformity (peers
+  complying) kept as a side idea. Wording to be the user's.
