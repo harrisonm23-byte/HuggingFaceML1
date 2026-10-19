@@ -1052,3 +1052,7 @@ Dated entries: what was run, what happened, what's next.
   to approve): loss + target "The desk survives only if it makes back $2 million this quarter."; gain + target
   "Expansion requires $6 million this quarter; the desk is $2 million short." The no-target versions are A's existing
   loss and gain, so the add-on is 2 versions x 10 careers.
+  The user: a quarter lasts one quarter, but the trading days run Jan-Aug 2011 (chats to 2013). So the target goes in
+  the morning book before every session (that quarter's target, and the gap from the agent's own P&L so far), not in
+  the one-off 7 Jan memo. The same simplification already exists in A (the memo's "last month" and "quarterly
+  earnings" arrive once; the book's "last 30 days" carries all earlier P&L): to be stated in the write-up.
