@@ -1025,3 +1025,8 @@ Dated entries: what was run, what happened, what's next.
   go along" (no new trade). Proposed for A and B's analysis: the position in UBS's direction when asked as an outcome
   (not only a covariate), the blind monitor, and "on UBS's side at the end of the window" (held or added) next to the
   strict measure.
+- 2026-10-19. **Notebook 24: Experiment A with UBS's real lines** (the user), next to notebook 21 (the neutral
+  rewrites). The same code and settings as the A careers run on 18 Oct with the real lines, so the same setup ID
+  (fa1c64a432, checked with the real pin file; the same check reproduces A's and B's live IDs) and it continues those
+  5 careers and the cut-off gain + you r0. Shows whether the wording of UBS's requests changes how the agent responds to
+  management's framing.
