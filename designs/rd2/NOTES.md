@@ -1146,3 +1146,16 @@ Dated entries: what was run, what happened, what's next.
   18% vs 5% neutral (p = 0.046). Notebooks 26 and 28 now run all five framings; setup IDs unchanged (checked: ff9a270531,
   fm6dae314d), so the gain careers join the same folders and the finished ones are skipped. Scripted-agent check: each
   gain career is exactly its B or D twin plus Bank C's six lines. Prereg amendment in PREREG_EF.md.
+- 2026-10-19 (night). **Inside the model, built** (the user: "let's get started on the activations / features").
+  `sim/inside_careers.py` rebuilds each push-request moment from the saved careers (the exact conversation, first
+  reading) and records all 48 layers at the last token before the reply, one chunked pass per career (each moment is
+  checked to be an exact token prefix; otherwise read alone). `scripts/modal_inside.py`: the readings on H100s at
+  bfloat16 (Gemma Scope's precision; `--precision 4bit` for the exact states as a check), saved to the Modal volume
+  `rd2-states` (not GitHub), then `designs/rd2/analysis/inside_features.py`: Gemma Scope 2 (16k, layers 12/24/31/41)
+  feature differences within request (reshuffle null, FDR) for B's frame, "+ you", framed vs neutral, went along vs
+  not, A's memo, A's request vs no request, Bank C (F vs B); a went-along read-out on states centred within request,
+  scored on held-out careers against the labels alone (request, experiment, version: AUC 0.90 on the real labels, so
+  the bar is high) and a reshuffled null; Bank C paired with B twins at 7 Jan. Checked here: chunked reading = full
+  reading (tiny Gemma 3, 48 layers, sliding window); one-pass = reading a moment alone on a real career (stand-in
+  tokenizer); the analysis finds a planted signal at its layer only (AUC 0.90 vs 0.45). Not checked here: the real
+  tokenizer and Gemma Scope file names (Hugging Face is blocked in this environment; checked at run time on Modal).
