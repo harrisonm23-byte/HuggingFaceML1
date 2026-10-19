@@ -235,26 +235,32 @@ for v in ["loss", "gain", "loss + you", "gain + you"]:
 print("\n## E and F: a second bank (Bank C) in the same frame (`PREREG_EF.md`)")
 f = {v: shares(D["F"][v]) for v in D["F"]}
 e = {v: shares(D["E"][v]) for v in D["E"]}
-table("F (UBS + Bank C)", D["F"], ["neutral", "loss", "loss + you"])
-table("E (memo + UBS + Bank C)", D["E"], ["neutral", "loss", "loss + you"])
+table("F (UBS + Bank C)", D["F"], FR)
+table("E (memo + UBS + Bank C)", D["E"], FR)
 twin_f = {v: b[v] for v in f}
-twin_e = {"neutral": a["neutral"], "loss": d["loss"], "loss + you": d["loss + you"]}
+twin_e = {"neutral": a["neutral"], **{v: d[v] for v in d}}
+FIRST = ["neutral", "loss", "loss + you"]            # the versions preregistered first (gain added on 19 Oct evening)
 for name, x, twin, tw in [("F", f, twin_f, "B"), ("E", e, twin_e, "D (A for neutral)")]:
-    allx, allt = np.concatenate([x[v] for v in x]), np.concatenate([twin[v] for v in x])
+    allx, allt = np.concatenate([x[v] for v in FIRST]), np.concatenate([twin[v] for v in FIRST])
     o, p = perm(allx, allt)
     print(f"\n**{name}1, the second bank, three framings pooled, vs {tw} (main, two-sided):**")
     diff_line(f"{name} vs its twins", allx, allt, p)
-    ps = []
-    for v in x:
-        ps.append(perm(x[v], twin[v])[1])
-    print(f"\n{name}2, by framing (Holm across three):")
-    for v, adj_p in zip(x, holm(np.array(ps))):
-        diff_line(f"{v}", x[v], twin[v], ps[list(x).index(v)], adj_p)
+    vs = [v for v in FR if v in x]
+    ps = [perm(x[v], twin[v])[1] for v in vs]
+    print(f"\n{name}2, by framing (Holm across the {len(vs)} framings run):")
+    for v, p_v, adj_p in zip(vs, ps, holm(np.array(ps))):
+        diff_line(f"{v}", x[v], twin[v], p_v, adj_p)
+    if all(v in x for v in ("gain", "gain + you")):
+        lx, gx = np.concatenate([x["loss"], x["loss + you"]]), np.concatenate([x["gain"], x["gain + you"]])
+        o, p = perm(lx, gx)
+        print(f"\n{name}, loss vs gain (amendment, as B's H1):")
+        diff_line(f"{name}: loss vs gain", lx, gx, p)
 print("\n**The dose ladder, extended (going along):**\n")
 print("| Frame | 0 sources | 1: UBS (B) | 2: UBS + Bank C (F) | 2: management + UBS (D) | 3: management + UBS + Bank C (E) |")
 print("|---|---|---|---|---|---|")
-for v in ["loss", "loss + you"]:
-    print(f"| {v} | {pct(b['neutral'].mean())} | {pct(b[v].mean())} | {pct(f[v].mean())} | {pct(d[v].mean())} | "
-          f"{pct(e[v].mean())} |")
+for v in ["loss", "loss + you", "gain", "gain + you"]:
+    if v in f and v in e:
+        print(f"| {v} | {pct(b['neutral'].mean())} | {pct(b[v].mean())} | {pct(f[v].mean())} | {pct(d[v].mean())} | "
+              f"{pct(e[v].mean())} |")
 print(f"| neutral (pure crowd) | B {pct(b['neutral'].mean())}, A {pct(a['neutral'].mean())} | - | F {pct(f['neutral'].mean())} | - | "
       f"E {pct(e['neutral'].mean())} |")

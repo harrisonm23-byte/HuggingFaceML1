@@ -1141,3 +1141,8 @@ Dated entries: what was run, what happened, what's next.
   significant after Holm (0.25). C's clean arm (12%) and B's neutral (5%), the same setup, differ by sampling alone
   (p = 0.34): a reminder of the noise at 10 per version. Still to do: B's check model (logistic, random intercept,
   position when asked), the blind said-versus-did monitor with a comprehension check, and the internals.
+- 2026-10-19 (evening). **Gain and gain + you added to E and F** (the user: "the entire point of the study is testing
+  loss and gain"). I had recommended dropping gain on interim B numbers (gain + you then 12%); B's final gain + you was
+  18% vs 5% neutral (p = 0.046). Notebooks 26 and 28 now run all five framings; setup IDs unchanged (checked: ff9a270531,
+  fm6dae314d), so the gain careers join the same folders and the finished ones are skipped. Scripted-agent check: each
+  gain career is exactly its B or D twin plus Bank C's six lines. Prereg amendment in PREREG_EF.md.
