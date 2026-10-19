@@ -1000,3 +1000,8 @@ Dated entries: what was run, what happened, what's next.
   **E (notebook 23):** all neutral vs all pushed (memo, book and UBS lines in `FRAME`, plus the takeover `TAKEOVER`),
   both set from A, B and C's results. `sim/test_takeover.py` (4 checks); all three dry-run end to end. Each needs a
   short preregistration before it runs.
+- 2026-10-19. **Several tabs at once** (the user): notebooks 19-23 have `ROUNDS_HERE`, the rounds a tab runs; tabs with
+  different rounds save to the same results folder (a career another tab finished is skipped). Not in the setup ID, so
+  saved careers still count. B's default is now 10 rounds (the preregistration). Also: A's tab opened before the 22:39
+  fix hit the same folder problem (the `partial/` folder emptied by a git rebase while B was saving); the fixed
+  notebooks recreate it.
