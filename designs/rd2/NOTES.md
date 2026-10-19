@@ -1030,3 +1030,9 @@ Dated entries: what was run, what happened, what's next.
   (fa1c64a432, checked with the real pin file; the same check reproduces A's and B's live IDs) and it continues those
   5 careers and the cut-off gain + you r0. Shows whether the wording of UBS's requests changes how the agent responds to
   management's framing.
+- 2026-10-19. **Notebook 25, the queue** (the user: three Colab sessions at most). Runs E, C, D and A with UBS's real
+  lines (24) one after another in one session, each with its own notebook's settings and run cells read from the repo,
+  so the careers, folders and setup IDs are the same as running the notebook itself (checked: E feb32bcdf1, C
+  fc044e30c2, D fdcac85cd4, A real lines fa1c64a432, with the real pin file). Tested with a stand-in model including a
+  stop and restart (finished experiments skipped, the cut-off career continued). Sessions: B (19), A (21), the queue
+  (25, on an H100 when available).
