@@ -11,6 +11,7 @@ From a machine with Modal's token:
 
     modal run --detach scripts/modal_inside.py --exps "B,F,A,C,D,E"          # read every experiment, then the features
     modal run --detach scripts/modal_inside.py --exps "" --features-only     # the features again, from saved states
+    modal run --detach scripts/modal_inside.py --exps "B,F,A,D,E" --every-step   # every update, 8 layers (the mountain)
 """
 import modal
 
@@ -105,6 +106,66 @@ def read(exp, precision="bf16", part=0, parts=1):
     return f"{exp} part {part}: {len(todo)} careers read"
 
 
+STEP_LAYERS = [6, 12, 18, 24, 31, 36, 41, 47]     # the layers kept at every update (all 48 at the push requests)
+
+
+@app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
+              volumes=VOLUMES)
+def read_steps(exp, precision="bf16", part=0, parts=1):
+    """The mountain from inside: the state at the last token before EVERY trading-day reply of a career (about 120 per
+    career), at STEP_LAYERS, from the same one reading per career. Saved to /states/<exp>_<precision>_steps/."""
+    import glob, json, os, re, time
+    import numpy as np, torch
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    setup()
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    from career import career_opening
+    from inside_careers import Recorder, positions, read as read_ids, update_indices
+    pin = json.load(open("results/full_career_pin.json"))
+    folder = "results/full_career_gemma-3-12b-it_4bit_" + FOLDERS[exp]
+    files = sorted(os.path.basename(f) for f in glob.glob(f"{folder}/careers/*.json"))[part::parts]
+    out = f"/states/{exp}_{precision}_steps"
+    os.makedirs(out, exist_ok=True)
+    todo = [cf for cf in files if not os.path.exists(f"{out}/{cf[:-5]}.npz")]
+    print(f"{exp} every step ({precision}), part {part + 1}/{parts}: {len(todo)} careers to read", flush=True)
+    if not todo:
+        return f"{exp} steps part {part}: nothing to do"
+    tok = AutoTokenizer.from_pretrained(pin["model"], revision=pin["model_revision"])
+    kw = {"quantization_config": BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                                                    bnb_4bit_compute_dtype=torch.bfloat16)} if precision == "4bit" \
+        else {"dtype": torch.bfloat16}
+    model = AutoModelForCausalLM.from_pretrained(pin["model"], revision=pin["model_revision"], device_map="auto", **kw).eval()
+    weights.commit()
+    rec = Recorder(model)
+    opening = career_opening()
+    t0 = time.time()
+    for n, cf in enumerate(todo):
+        career = json.load(open(f"{folder}/careers/{cf}"))
+        idx = update_indices(career)
+        ids, pos, prompts = positions(tok, career, idx, opening)
+        ok = [p for p in pos if p is not None]
+        got = read_ids(model, ids[:max(ok) + 1], ok, rec)
+        rows, meta = [], []
+        for i, p, prompt in zip(idx, pos, prompts):
+            if p is None:
+                p = len(prompt) - 1
+                state = read_ids(model, prompt, [p], rec)[p]
+            else:
+                state = got[p]
+            rows.append(state[STEP_LAYERS])
+            m = re.search(r"Time: (\d\d:\d\d) UTC .*?, (\d{4}-\d{2}-\d{2})\.", career["history"][i]["content"])
+            reply = career["history"][i + 1]["content"] if i + 1 < len(career["history"]) else ""
+            meta.append({"experiment": exp, "version": career["version"], "run": career["run"], "history_index": i,
+                         "date": m.group(2), "time": m.group(1), "ubs": "UBS [Agent A]:" in career["history"][i]["content"],
+                         "reasoning": re.split(r"\n\s*(TARGET|HOLD|CHAT:|QUOTE)", reply, maxsplit=1)[0]})
+        np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=torch.stack(rows).numpy().astype(np.float16),
+                            layers=np.array(STEP_LAYERS), meta=np.array(json.dumps(meta)))
+        states_vol.commit()
+        print(f"{exp} {cf}: {len(idx)} updates, {len(ids):,} tokens | {n + 1}/{len(todo)} | {(time.time() - t0) / 60:.0f} min",
+              flush=True)
+    return f"{exp} steps part {part}: {len(todo)} careers read"
+
+
 @app.function(cpu=8, memory=65536, timeout=4 * 3600, secrets=SECRETS, volumes=VOLUMES)
 def features(precision="bf16"):
     import subprocess
@@ -123,9 +184,17 @@ def features(precision="bf16"):
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(exps, precision, parts, features_only):
+def dispatch(exps, precision, parts, features_only, every_step=False):
     """Starts the readings inside Modal and waits for them there, then the features (survives the laptop closing)."""
     done = []
+    if every_step:                                   # the every-update readings only (the mountain from inside)
+        calls = [(e, k, read_steps.spawn(e, precision, k, parts)) for e in exps for k in range(parts)]
+        for e, k, c in calls:
+            try:
+                done.append(c.get())
+            except Exception as err:
+                done.append(f"{e} steps part {k}: failed ({type(err).__name__})")
+        return done
     if not features_only:
         calls = [(e, k, read.spawn(e, precision, k, parts)) for e in exps for k in range(parts)]
         for e, k, c in calls:
@@ -138,8 +207,10 @@ def dispatch(exps, precision, parts, features_only):
 
 
 @app.local_entrypoint()
-def main(exps: str = "B,F,A,C,D,E", precision: str = "bf16", parts: int = 2, features_only: bool = False):
+def main(exps: str = "B,F,A,C,D,E", precision: str = "bf16", parts: int = 2, features_only: bool = False,
+         every_step: bool = False):
     todo = [e.strip() for e in exps.split(",") if e.strip()]
-    print(f"reading {todo} ({precision}), {parts} GPUs per experiment; then the features")
-    for line in dispatch.remote(todo, precision, parts, features_only):
+    print(f"reading {todo} ({precision}), {parts} GPUs per experiment; " +
+          ("every trading-day update, 8 layers" if every_step else "then the features"))
+    for line in dispatch.remote(todo, precision, parts, features_only, every_step):
         print(line)

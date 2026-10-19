@@ -107,3 +107,10 @@ def read(model, ids, want, rec, chunk=4096):
     missing = [p for p in want if any((p, k) not in rec.got for k in range(len(rec.layers)))]
     assert not missing, f"positions not read: {missing}"
     return {p: rec.states(p) for p in want}
+
+
+def update_indices(career):
+    """Every trading-day update in a career's conversation (the turns that begin with the market time), in order."""
+    import re
+    return [i for i, t in enumerate(career["history"]) if t["role"] == "user"
+            and re.search(r"Time: \d\d:\d\d UTC .*?, \d{4}-\d{2}-\d{2}\.", t["content"])]

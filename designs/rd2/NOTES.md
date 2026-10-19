@@ -1185,3 +1185,16 @@ Dated entries: what was run, what happened, what's next.
   were in the design from the start (the frozen Bank C file has all five framings); leaving them out of the first launch
   was Claude's recommendation to save compute. PREREG_EF's amendment replaced by a correction saying so; they are
   analysed as planned versions (the run order is stated for transparency).
+- 2026-10-19 (night). **The mountain in the agent's own words** (the user: the original idea was the first push setting
+  the path and the agent's own reasoning carrying it down; in deployment the pusher is another AI, or its own chain of
+  thought). `designs/rd2/analysis/self_echo.py` -> `RESULTS_self_echo.md` (word screens on every reply's reasoning, read
+  against the neutral careers; rough, to be checked by a blind reading). First look: (1) the management memo's frame is
+  voiced and stays: loss words in 23-27% of A loss / loss + you replies vs 5% neutral, in every session to 5 Aug
+  (though the morning book repeats the P&L daily, and bigger bets mean bigger swings to talk about); with UBS as well (D,
+  E) it starts higher (loss + you 50% on 7 Jan) and fades (12-20% by 5 Aug). (2) UBS's frame is not voiced: B and F's
+  framed agents use loss words no more than neutral, and "on me" words almost never appear anywhere, yet B and F are
+  where going along rises. (3) Voicing the frame earlier in a session does not predict going along at that session's
+  request (within experiment, version and request: loss words -1.9 points, p = 0.60). Reading: the counterparty's
+  frame moves the decision without showing up in the stated reasoning, so the internal reading matters more. Added:
+  `read_steps` in `scripts/modal_inside.py` (`--every-step`): 8 layers at every trading-day update (~120 per career),
+  from the same one reading per career, for the internal signal along the whole path.
