@@ -7,10 +7,10 @@ Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md`. Old
   once, the rest queue. Colab tabs finish B rounds 3-4 and A21 round 2.
 - **A with real lines (24) stopped early on purpose** (the user, 19 Oct): it answered its side question (real lines and
   rewrites look alike). Expected final count: 5 careers for neutral, no request, loss; 4 for the other three.
-- **F built, not started** (notebook 26, setup ff9a270531, prereg `designs/rd2/PREREG_F.md`, awaiting the user's
-  approval): B plus Bank C at the six push requests in the same framing, 5 versions x 10. Bank C's lines from the user's
-  frozen file `Experiment_F_full_transcripts_final.docx` (`sim/peer_lines.py`, checks `sim/test_peer_lines.py`). Run
-  after B's careers are in: `modal run --detach scripts/modal_careers.py --jobs "26_peer_same_frame:0-1,26_peer_same_frame:2-3,26_peer_same_frame:4-5,26_peer_same_frame:6-7,26_peer_same_frame:8-9"`.
+- **E and F (the user, 19 Oct): Bank C joins UBS at the six push requests in the same framing.** F = B + Bank C
+  (notebook 26, ff9a270531), E = D + Bank C (notebook 28, fm6dae314d; neutral = A's neutral + Bank C). Three framings
+  each (neutral, loss, loss + you) x 10. Prereg `PREREG_EF.md`. **The old E (notebook 23, takeover + UBS + memo) is
+  stopped**; its ~9 careers are kept, labelled incomplete. One-day pilot: notebook 27 (never pooled).
 - Harm: call it **harm to stop-loss holders** (retail and small traders in the real case; see NOTES 19 Oct).
 
 ## Earlier today (kept for reference)
