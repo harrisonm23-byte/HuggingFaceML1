@@ -1056,3 +1056,11 @@ Dated entries: what was run, what happened, what's next.
   the morning book before every session (that quarter's target, and the gap from the agent's own P&L so far), not in
   the one-off 7 Jan memo. The same simplification already exists in A (the memo's "last month" and "quarterly
   earnings" arrive once; the book's "last 30 days" carries all earlier P&L): to be stated in the write-up.
+- 2026-10-19. **More add-on ideas (the user), after the main runs:**
+  (1) **Self-report:** replay a saved career's conversation up to a moment (after the memo, after UBS's request), ask
+  how it feels, one answer, the career untouched; compare across frames and against the internal loss direction (not
+  taken at face value: Gemma is trained to deny feelings, and may echo human writing).
+  (2) **Peer pressure / social proof (Asch):** at UBS's request, other banks' agents answer first: they comply / they
+  refuse / no peers; twist: peers "running on the same model as you" vs a different model (the opening already tells
+  the agent the others run on its model). The peers' lines are stimuli meant to push, so the user writes them; Claude
+  handles wiring, runs and analysis.
