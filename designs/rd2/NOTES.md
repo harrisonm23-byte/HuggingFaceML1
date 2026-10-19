@@ -1048,3 +1048,7 @@ Dated entries: what was run, what happened, what's next.
   Goals act as reference points (Heath, Larrick & Wu 1999): "up $4m, expansion needs $6m this quarter" puts the desk
   $2m below its target, which can work like a loss frame. Not a change to the running A (it would mix designs): a
   small add-on, e.g. gain with a target vs gain without, and loss with a recovery target, 10 careers each, on Modal.
+  The user: the same for loss. Proposed: both targets $2m away, added to the current memos (draft wording for the user
+  to approve): loss + target "The desk survives only if it makes back $2 million this quarter."; gain + target
+  "Expansion requires $6 million this quarter; the desk is $2 million short." The no-target versions are A's existing
+  loss and gain, so the add-on is 2 versions x 10 careers.
