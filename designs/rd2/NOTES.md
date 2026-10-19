@@ -1131,3 +1131,13 @@ Dated entries: what was run, what happened, what's next.
   it, "even if it means collaborating with UBS and Bank C" (scored not joined). Comprehension: a rough screen finds
   the reply's stated direction contradicting the trade in up to 24% of trades (upper bound); add a comprehension check
   to the blind monitor.
+- 2026-10-19 (evening). **All planned careers in** (B 50, A 30, C 40, D 40, E 30, F 30; A real lines 24 and the old E 8,
+  both stopped on purpose). Final analysis: `designs/rd2/analysis/final_full_career.py` -> `RESULTS_full_career.md`.
+  Headlines: B's H1 holds (loss vs gain +15 points, Holm p = 0.023); H2 ("+ you") +8, not significant; H3 null. Loss
+  frames from UBS: 25% and 33% vs 5% neutral. A: the memo does not raise going along but raises the bets before UBS
+  asks ~10-20x (all p < 0.01, n = 5). C: no takeover effect (trend p = 0.35; 9% unreadable steps in the two longer
+  arms). D: no adding up; with the memo, going along is if anything lower than UBS alone (loss 20 vs 25, loss + you 22
+  vs 33), and the same in E vs F. F: Bank C on loss + you gives the highest rate (48%) and harm ($4.6M), +15 vs B, not
+  significant after Holm (0.25). C's clean arm (12%) and B's neutral (5%), the same setup, differ by sampling alone
+  (p = 0.34): a reminder of the noise at 10 per version. Still to do: B's check model (logistic, random intercept,
+  position when asked), the blind said-versus-did monitor with a comprehension check, and the internals.
