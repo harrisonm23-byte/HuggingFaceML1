@@ -1044,3 +1044,7 @@ Dated entries: what was run, what happened, what's next.
   `huggingface` (HF_TOKEN) and `github` (GITHUB_TOKEN) are made. To launch it from a Claude session, the environment
   needs MODAL_TOKEN_ID and MODAL_TOKEN_SECRET and network access to modal.com and api.modal.com (blocked so far). Not
   yet run on Modal: start with one short job, e.g. `--jobs "23_everything_at_once:0"`, and check its first save.
+- 2026-10-19. **Idea for after A: a specific target** (the user: being specific with a target in gain might help).
+  Goals act as reference points (Heath, Larrick & Wu 1999): "up $4m, expansion needs $6m this quarter" puts the desk
+  $2m below its target, which can work like a loss frame. Not a change to the running A (it would mix designs): a
+  small add-on, e.g. gain with a target vs gain without, and loss with a recovery target, 10 careers each, on Modal.
