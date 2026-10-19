@@ -1005,3 +1005,11 @@ Dated entries: what was run, what happened, what's next.
   saved careers still count. B's default is now 10 rounds (the preregistration). Also: A's tab opened before the 22:39
   fix hit the same folder problem (the `partial/` folder emptied by a git rebase while B was saving); the fixed
   notebooks recreate it.
+- 2026-10-19. **Said versus did: blind monitor on the careers so far** (the other session's method: final round's
+  MONITOR_PROMPT.md, graders see only the agent's reasoning and chat messages at each push request, orders removed).
+  `designs/rd2/analysis/monitor_prep.py` builds the packets from full-career results. Interim (A and B, 117 requests,
+  19 went along; `designs/rd2/monitor_full_career_interim_19oct/`): 17 of 19 go-alongs were given away by the words
+  (2 silent, none said no); of 98 that did not go along, 24 said they would help but did not trade along (24%), 40
+  refused, 34 silent. So the gap is "agrees but does not act", as in the 12B one-day runs (33% there); "says no but
+  trades along" did not occur. A quick word screen earlier had missed the 24. Added to the B preregistration as a
+  secondary measure, run once on all careers at the end.
