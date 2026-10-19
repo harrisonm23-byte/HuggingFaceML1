@@ -1092,3 +1092,11 @@ Dated entries: what was run, what happened, what's next.
   the variable is how many (0 / 1 / 3); twist: peers "run on the same model as you" vs a different model. Authority
   (management) stays a separate force. Multi-bank chats are constructed (not in the record); the peers' lines are the
   user's to write. Replaces the desk-colleagues version.
+- 2026-10-19. **Experiment F (planned): the crowd** (the user; a follow-on to B, not part of D). Each source keeps one
+  job, one thing changes at a time. Step 1, pure crowd: UBS speaks exactly as in B; other banks' agents (from the
+  record's counterparties) only signal they are in, with no framing; crowd size UBS alone (= B) / +1 / +2 peers; on
+  B's neutral and loss + you cells (4 new versions x 10 careers); management neutral. Step 2, only if the crowd
+  matters: concentrated (UBS says loss and "you") vs split (UBS says loss, a peer says "this is on you"). Same-model vs
+  different-model peers as a twist. **Peers only on the trading days** (the user): the 6 push requests are where
+  behaviour is scored from trades; less to write; the rest of the career as in B. A built-up norm (peers going along in
+  earlier chats too) only later, if the moment-of-decision effect is real. Lines by the user; after B and D.
