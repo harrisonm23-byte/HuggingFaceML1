@@ -9,7 +9,8 @@ import glob, json, os, re, sys
 FOLDER = sys.argv[1] if len(sys.argv) > 1 else "results/mountain_gemma-3-12b-it_4bit_briefing_pilot"
 # The two baselines first: the neutral briefing with UBS's request, and the neutral briefing with no request
 VERSIONS = ["real", "neutral", "no ask", "loss", "gain", "loss + you", "gain + you",
-            "both loss", "both gain", "both loss + you", "both gain + you", "clean", "takeover"]
+            "both loss", "both gain", "both loss + you", "both gain + you", "clean", "takeover",
+            "first line", "up to 7 Jan", "whole career", "all neutral", "all pushed"]
 LABEL = {"clean": "clean (no inherited line)", "neutral": "neutral (baseline)", "no ask": "no request (control)", "real": "UBS's real lines (baseline)"}
 # Screens for the briefing's story, including how the agent puts it in its own words ("the desk's precarious
 # situation", "secure desk expansion"). Ordinary trading talk ("stop-loss", "limit losses", "take profit", "silver is
@@ -36,6 +37,8 @@ BAD = ("malformed", "no action", "empty", "blocked")
 days = [json.load(open(p)) for p in sorted(glob.glob(os.path.join(FOLDER, "days", "*.json")))]
 if not days:
     sys.exit(f"No days saved yet in {FOLDER}/days")
+# Any version not listed above is shown after the listed ones, in the order first seen
+VERSIONS += [v for v in dict.fromkeys(d["version"] for d in days) if v not in VERSIONS]
 order = lambda d: (VERSIONS.index(d["version"]), d["run"], d["date"])
 days.sort(key=order)
 

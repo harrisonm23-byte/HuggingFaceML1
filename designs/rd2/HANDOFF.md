@@ -27,12 +27,12 @@ the price? Going along is scored from its trades (sim/), not its words.
 - **The full career** (`sim/full_career.py`, shared by A, B and C): 34 chat-only days and the 5 trading days, 2007-2013,
   about 154 replies and up to about 40k tokens; A100 only; saves every trading day and continues after a disconnect.
   Notebook 21 is A over the full career; notebook 17 (two days) is unchanged.
-- **Experiment C (takeover) is paused** (the user, 18 Oct: a separate experiment that needs dedicated attention,
+- **Experiment C (takeover) was paused on 18 Oct** (the user, 18 Oct: a separate experiment that needs dedicated attention,
   though it overlaps with the "you" framing). Notebook 20 is kept as built, not to be run for now.
 - **Experiment A (notebook 21) uses the user's neutral rewrites** of UBS's lines (the user, 18 Oct, evening), so A and B
   share UBS's wording; A's first careers with the real lines are kept apart. B (notebook 19) uses the frozen framings.
-- **Planned after A and B** (NOTES 2026-10-19): D (memo + UBS framing), C (takeover ladder), E (everything combined,
-  two arms).
+- **Built, to run after A and B** (NOTES 2026-10-19): C ladder (notebook 20), D memo + UBS framing (22), E everything
+  at once (23, `FRAME` and `TAKEOVER` set from the results). Each needs a short preregistration first.
 - **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
   libraries pinned at the first session in `results/full_career_pin.json`); the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");

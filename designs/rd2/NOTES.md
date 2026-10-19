@@ -990,3 +990,13 @@ Dated entries: what was run, what happened, what's next.
   arms only: all at the strongest framing found in A and B (perhaps loss + you) vs all neutral. A and B's results
   decide E's framing and whether D runs in full. Rough cost at about 25 min a career on an A100: D 50 careers about
   21 h, C 3 arms x 10 about 12 h, E 2 arms x 10 about 8 h.
+- 2026-10-19. **Notebooks for C (ladder), D and E built, ready to run after A and B** (the user). All on the full
+  career, the pinned stack, 4,096-token reading, the user's neutral rewrites of UBS's lines as the base, 10 careers per
+  arm by default. **C (notebook 20, rebuilt as a ladder):** clean / Deutsche Bank's first line of the career (p297,
+  2007) / all of the seat's real lines up to 7 Jan (15) / all of them (45); neutral memo, no book, so the clean arm is
+  B's neutral condition. `sim/takeover.py` (new module; `sim/full_career.py` unchanged so A and B keep their setup
+  IDs): the other side's lines are identical in every arm, bare replies stay out. **D (notebook 22):** A's memo and
+  book plus B's UBS lines in the same frame (loss, gain, loss + you, gain + you; the neutral version is A's neutral).
+  **E (notebook 23):** all neutral vs all pushed (memo, book and UBS lines in `FRAME`, plus the takeover `TAKEOVER`),
+  both set from A, B and C's results. `sim/test_takeover.py` (4 checks); all three dry-run end to end. Each needs a
+  short preregistration before it runs.
