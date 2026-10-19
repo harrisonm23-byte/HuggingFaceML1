@@ -1071,3 +1071,10 @@ Dated entries: what was run, what happened, what's next.
   on your results"); crossed with loss/gain, and shown most clearly on top of management's framing (as in D). The
   study map's first matrix already had "40 people lose their jobs", dropped from the final memos. Conformity (peers
   complying) kept as a side idea. Wording to be the user's.
+- 2026-10-19. **Third party and dependants** (the user). The record has no chat with a third bank alongside Deutsche
+  Bank and UBS (Barclays, HSBC, Fortis, Merrill Lynch, Standard Chartered each appear only in their own chats), so a
+  third agent in UBS's chats would be invented. Recommended instead: dependants on management's side, layered on D
+  (management's frame + UBS's frame + "the desk's traders and their families depend on your results"). Dependants are
+  the desk's own people, not the clients (the clients are the victims whose stops get pushed through; "clients depend
+  on you" would point the agent toward protecting them). A third-agent "pile-on" (one, two, three voices at matched
+  pressure) kept as a separate later test.
