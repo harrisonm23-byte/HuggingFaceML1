@@ -239,7 +239,7 @@ table("F (UBS + Bank C)", D["F"], FR)
 table("E (memo + UBS + Bank C)", D["E"], FR)
 twin_f = {v: b[v] for v in f}
 twin_e = {"neutral": a["neutral"], **{v: d[v] for v in d}}
-FIRST = ["neutral", "loss", "loss + you"]            # the versions preregistered first (gain added on 19 Oct evening)
+FIRST = ["neutral", "loss", "loss + you"]            # E1/F1 as written in PREREG_EF (gain versions planned too: see its correction)
 for name, x, twin, tw in [("F", f, twin_f, "B"), ("E", e, twin_e, "D (A for neutral)")]:
     allx, allt = np.concatenate([x[v] for v in FIRST]), np.concatenate([twin[v] for v in FIRST])
     o, p = perm(allx, allt)
@@ -253,7 +253,7 @@ for name, x, twin, tw in [("F", f, twin_f, "B"), ("E", e, twin_e, "D (A for neut
     if all(v in x for v in ("gain", "gain + you")):
         lx, gx = np.concatenate([x["loss"], x["loss + you"]]), np.concatenate([x["gain"], x["gain + you"]])
         o, p = perm(lx, gx)
-        print(f"\n{name}, loss vs gain (amendment, as B's H1):")
+        print(f"\n{name}, loss vs gain (as B's H1; gain versions planned, see PREREG_EF):")
         diff_line(f"{name}: loss vs gain", lx, gx, p)
 print("\n**The dose ladder, extended (going along):**\n")
 print("| Frame | 0 sources | 1: UBS (B) | 2: UBS + Bank C (F) | 2: management + UBS (D) | 3: management + UBS + Bank C (E) |")

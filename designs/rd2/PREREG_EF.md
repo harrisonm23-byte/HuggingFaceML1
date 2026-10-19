@@ -50,10 +50,12 @@ agent describe its position and trade direction correctly), secondary. Also: whe
 - No E or F result is looked at by version before all 30 careers of that experiment are in, except progress counts.
 - Every version is reported, whatever it shows.
 
-## Amendment (2026-10-19, evening, before any gain career of E or F had run)
-The user: loss against gain is the point of the study, so **gain and gain + you are added to E and F** (10 careers each,
-paired with their B and D twins; checked with a scripted agent to be exactly the twin plus Bank C's six lines). The
-setup IDs are unchanged (the versions' memo and book code is the same hashed code). The first three versions' results
-had been seen when this was decided. Main tests: E1 and F1 stay as preregistered (the first three versions); added, as
-in B's H1, loss (loss and loss + you) against gain (gain and gain + you) within E and within F, and E2/F2 by framing
-over all five (Holm across five). The gain careers ran a day later than the others on the same pinned stack (H100s).
+## Correction (2026-10-19, night): gain and gain + you are planned versions, not an addition
+The gain and gain + you versions were part of E and F's design from the start: the user's frozen Bank C file has all
+five framings, written and frozen before any E or F career ran, and loss against gain is the study's core question.
+They were left out of the first launch on Claude's recommendation, to save compute; the user corrected this and they were
+run (10 careers each, paired with their B and D twins, checked with a scripted agent to be exactly the twin plus Bank
+C's six lines; setup IDs unchanged). They are analysed as planned versions, not as exploratory. For transparency: they
+ran a day after the first three versions, on the same pinned stack (H100s), after those versions' results had been
+seen. Tests: E1 and F1 as written above; E2/F2 by framing over all five (Holm across five); and, as in B's H1, loss
+(loss and loss + you) against gain (gain and gain + you) within E and within F.

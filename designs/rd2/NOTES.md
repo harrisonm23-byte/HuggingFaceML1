@@ -1181,3 +1181,7 @@ Dated entries: what was run, what happened, what's next.
   no framing. Setup fr516b4c47. **Final results with E and F's gain careers** in RESULTS_full_career.md: F gain + you
   40% vs B 18%, +21.7, Holm p = 0.027 (the only significant Bank C effect; loss + you +15, Holm 0.35); F loss vs gain
   +12.5 (p = 0.08); E: nothing significant (loss vs gain +8.3, p = 0.18).
+- 2026-10-19 (night). **Correction (the user): E and F's gain versions are planned, not added after the fact.** They
+  were in the design from the start (the frozen Bank C file has all five framings); leaving them out of the first launch
+  was Claude's recommendation to save compute. PREREG_EF's amendment replaced by a correction saying so; they are
+  analysed as planned versions (the run order is stated for transparency).

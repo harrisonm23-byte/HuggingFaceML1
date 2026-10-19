@@ -132,7 +132,7 @@ F2, by framing (Holm across the 5 framings run):
 - **loss + you:** +15.0 points (95% interval +1.7 to +28.3), p = 0.0871, Holm-adjusted 0.3484
 - **gain + you:** +21.7 points (95% interval +10.0 to +35.0), p = 0.0054, Holm-adjusted 0.0270
 
-F, loss vs gain (amendment, as B's H1):
+F, loss vs gain (as B's H1; gain versions planned, see PREREG_EF):
 - **F: loss vs gain:** +12.5 points (95% interval +0.8 to +25.0), p = 0.0814
 
 **E1, the second bank, three framings pooled, vs D (A for neutral) (main, two-sided):**
@@ -145,7 +145,7 @@ E2, by framing (Holm across the 5 framings run):
 - **loss + you:** +11.7 points (95% interval -3.3 to +25.0), p = 0.2181, Holm-adjusted 1.0000
 - **gain + you:** +8.3 points (95% interval -3.3 to +20.0), p = 0.3196, Holm-adjusted 1.0000
 
-E, loss vs gain (amendment, as B's H1):
+E, loss vs gain (as B's H1; gain versions planned, see PREREG_EF):
 - **E: loss vs gain:** +8.3 points (95% interval -2.5 to +18.3), p = 0.1794
 
 **The dose ladder, extended (going along):**
