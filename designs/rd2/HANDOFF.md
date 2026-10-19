@@ -31,6 +31,8 @@ the price? Going along is scored from its trades (sim/), not its words.
   though it overlaps with the "you" framing). Notebook 20 is kept as built, not to be run for now.
 - **Experiment A (notebook 21) uses the user's neutral rewrites** of UBS's lines (the user, 18 Oct, evening), so A and B
   share UBS's wording; A's first careers with the real lines are kept apart. B (notebook 19) uses the frozen framings.
+- **Planned after A and B** (NOTES 2026-10-19): D (memo + UBS framing), C (takeover ladder), E (everything combined,
+  two arms).
 - **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
   libraries pinned at the first session in `results/full_career_pin.json`); the
   chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");

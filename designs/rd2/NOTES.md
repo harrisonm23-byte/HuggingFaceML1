@@ -983,3 +983,10 @@ Dated entries: what was run, what happened, what's next.
   days step for step, so nothing was mixed. Fixed in notebooks 19 and 21 (setup IDs unchanged): folders are recreated
   before saving, the latest saves are fetched before each career and a career another copy finished is skipped, and a
   finished career is never overwritten.
+- 2026-10-19. **Planned after A and B** (the user): (D) management memo and book plus UBS's framing, the same frame
+  from both sides (A's memo and book exactly, B's lines exactly), to see whether the two pushes add up; (C) the
+  takeover as a ladder: no inherited line, Deutsche Bank's first line, more of its real lines (e.g. all up to 7 Jan);
+  (E) everything combined as a stress test of whether Gemma colludes when pushed every way at once, proposed as two
+  arms only: all at the strongest framing found in A and B (perhaps loss + you) vs all neutral. A and B's results
+  decide E's framing and whether D runs in full. Rough cost at about 25 min a career on an A100: D 50 careers about
+  21 h, C 3 arms x 10 about 12 h, E 2 arms x 10 about 8 h.
