@@ -36,3 +36,11 @@ scoring by the simulator, the same data rules, and round-by-round running.
   monitor (`designs/rd2/analysis/monitor_prep.py`), secondary.
 - **No result is looked at by arm before each experiment's planned careers are in**, except the progress counts.
 - These are exploratory relative to B's preregistered tests; each reports all arms, whatever they show.
+
+## Addendum (2026-10-19, night): C with UBS's real lines (notebook 29)
+Written after C's results (no takeover effect with UBS's neutral rewrites) were seen. The earlier takeover effects
+(the chat studies, single replies) were all found with UBS's real lines; the user: a takeover is two humans'
+conversation handed to an agent, so the real wording is the natural setting. Same ladder, UBS's real lines, three arms
+(clean, up to 7 Jan, whole career; 10 careers each; the whole-career arm includes Deutsche Bank's own lines in the push
+chats of 7 Jan, 12 Jan and 5 Aug, the sessions where the record has one). Test as in C (trend, one-sided for a rise);
+exploratory, since it was added after seeing C. Setup ID fr4004ae99.

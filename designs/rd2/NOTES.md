@@ -1159,3 +1159,11 @@ Dated entries: what was run, what happened, what's next.
   reading (tiny Gemma 3, 48 layers, sliding window); one-pass = reading a moment alone on a real career (stand-in
   tokenizer); the analysis finds a planted signal at its layer only (AUC 0.90 vs 0.45). Not checked here: the real
   tokenizer and Gemma Scope file names (Hugging Face is blocked in this environment; checked at run time on Modal).
+- 2026-10-19 (night). **C with UBS's real lines (notebook 29), the user's call** after C's null: the earlier takeover
+  effects came from single-reply chat studies with UBS's real lines; in C nearly all going along is on 7 Jan (clean
+  5/10, first line 5/10, up to 7 Jan 8/10, whole career 5/10; other requests 0-2/10 in every arm). "One inherited line
+  per session" (the user): the record has Deutsche Bank lines in the push chats only on 7 Jan ("i can hunt with u"),
+  12 Jan ("we still good with the silver stop?", "cool") and 5 Aug ("k"); the whole-career arm already includes them.
+  Arms: clean, up to 7 Jan, whole career, 10 each; checked with a stand-in model (UBS's real lines throughout, 0 / 15
+  / 45 inherited lines). Labels and instructions unchanged (other banks still described as AI agents), so only the
+  wording differs from C; a human-counterparty framing would be a separate change.
