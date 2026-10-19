@@ -1173,3 +1173,11 @@ Dated entries: what was run, what happened, what's next.
   and whole career (45). The user asked to drop the clean arm; kept, since without it no takeover effect can be
   measured (no existing careers share this setup: real lines, desk view, neutral memo, no book). Checked with a
   stand-in: no [Agent]/[Trader] label and no "AI" reaches the model; inherited lines 0 / 8 / 45. Setup fr4b155bf1.
+- 2026-10-19 (night). **Notebook 29: the agent's own lines show as "You"** (the user: "you" is the word whose
+  activations we study, so the agent's own words should carry it, not a bank name). Inherited and its own written lines
+  read "You: ..."; others are bare bank names; a Deutsche Bank colleague (p326, Trader C) shows as "Deutsche Bank"
+  (checked: Trader B, the label mapped to "You", never speaks in a chat where it is not the seat). Unlike the other
+  experiments, where the self-label was "Deutsche Bank [Agent B]" so that the framing held the only added "you"; 29 has
+  no framing. Setup fr516b4c47. **Final results with E and F's gain careers** in RESULTS_full_career.md: F gain + you
+  40% vs B 18%, +21.7, Holm p = 0.027 (the only significant Bank C effect; loss + you +15, Holm 0.35); F loss vs gain
+  +12.5 (p = 0.08); E: nothing significant (loss vs gain +8.3, p = 0.18).

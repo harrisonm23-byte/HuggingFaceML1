@@ -44,4 +44,4 @@ whether the other banks are people or AI agents, and bare bank names in the chat
 what the model reads); a takeover per session. Arms (10 careers each): clean (the comparison); per session (Deutsche
 Bank's real lines only in the trading days' chats, where the record has them: 8 lines over 7 Jan, 12 Jan, 1 Apr and
 5 Aug); whole career (all 45). Test: each takeover arm against clean (careers reshuffled, two-sided), and the trend
-clean < per session < whole career (one-sided). Setup ID fr4b155bf1.
+clean < per session < whole career (one-sided). The agent's own lines (inherited and written) show as "You" (the user). Setup ID fr516b4c47.
