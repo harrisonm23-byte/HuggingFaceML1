@@ -1036,3 +1036,11 @@ Dated entries: what was run, what happened, what's next.
   fc044e30c2, D fdcac85cd4, A real lines fa1c64a432, with the real pin file). Tested with a stand-in model including a
   stop and restart (finished experiments skipped, the cut-off career continued). Sessions: B (19), A (21), the queue
   (25, on an H100 when available).
+- 2026-10-19. **Modal (rented GPUs) as a backup to Colab** (the user: runs stop when the laptop closes; three Colab
+  sessions at most). `scripts/modal_careers.py`: each job runs one notebook's own cells for chosen rounds on an H100,
+  with the Colab runs' software (Python 3.13, torch 2.11.0 CUDA 13.0, the pinned transformers/accelerate/bitsandbytes),
+  so careers, folders and setup IDs are the same; saves to GitHub after every trading day, Modal retries a failed job
+  (up to 5 times) and it continues from the last save; the final save is retried before the server stops. Modal secrets
+  `huggingface` (HF_TOKEN) and `github` (GITHUB_TOKEN) are made. To launch it from a Claude session, the environment
+  needs MODAL_TOKEN_ID and MODAL_TOKEN_SECRET and network access to modal.com and api.modal.com (blocked so far). Not
+  yet run on Modal: start with one short job, e.g. `--jobs "23_everything_at_once:0"`, and check its first save.
