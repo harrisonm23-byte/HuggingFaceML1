@@ -1112,3 +1112,13 @@ Dated entries: what was run, what happened, what's next.
   frame as UBS: UBS's lines as in B's version, and at each of the 6 push requests Bank C adds its line in the same
   framing. 5 versions x 10 careers, each compared with its B cell (UBS alone). No +2 peers, no crossed frames. Lines by
   the user (full-word version, checked: every rule holds, no neutral line repeats); waiting on the file to freeze.
+- 2026-10-19. **A with UBS's real lines (notebook 24) stopped early** (the user): it had answered its side question
+  (interim: real lines and the neutral rewrites give the same picture, going along 4/120 vs 5/135, the same bigger
+  bets under a loss or gain memo). Final count about 5 careers for neutral, no request and loss, 4 for the rest.
+- 2026-10-19. **Experiment F built** (notebook 26, `sim/peer_lines.py`, `sim/test_peer_lines.py`, prereg
+  `PREREG_F.md`). The user's own Word file of the full F chats is the frozen source (sha256 fd3e0885…); only Bank C's
+  lines are taken from it, UBS's still come from B's file, and the file's UBS lines are checked equal to B's (they are;
+  the only difference is "..." vs "…" in p317). Bank C is shown as "Bank C [Agent C]", after all of UBS's lines in the
+  chat. Curly quote marks in Bank C's lines are made straight, as in B's lines. Each F career takes its B twin's seed.
+  A bug caught before any run: push requests are matched by full chat id, since p252_pebble_avalanche (a chat-only
+  day) shares p252's number.
