@@ -91,11 +91,24 @@ def run_job(name, rounds):
     raise RuntimeError("could not push the final saves to GitHub")
 
 
+@app.function(timeout=24 * 3600)
+def dispatch(todo):
+    """Starts every job from inside Modal and waits for them there (no GPU). With --detach, Modal keeps alive only the
+    last call the laptop started; that is this one, so all the jobs keep running when the laptop closes."""
+    calls = [run_job.spawn(name, rounds) for name, rounds in todo]
+    done = []
+    for (name, rounds), c in zip(todo, calls):
+        try:
+            done.append(c.get())
+        except Exception as e:                    # one job failing (after its retries) does not stop the others
+            done.append(f"{name} rounds {rounds}: failed ({type(e).__name__})")
+    return done
+
+
 @app.local_entrypoint()
 def main(jobs: str):
     todo = parse_jobs(jobs)
     for name, rounds in todo:
         print(f"starting {name}, rounds {rounds}")
-    calls = [run_job.spawn(name, rounds) for name, rounds in todo]
-    for c in calls:
-        print(c.get())
+    for line in dispatch.remote(todo):
+        print(line)
