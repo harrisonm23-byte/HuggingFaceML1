@@ -1,4 +1,35 @@
-# Handoff (2026-10-18): read this first
+# Handoff (2026-10-19, early morning UTC): read this first
+
+Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md`. Older handoffs follow below.
+
+## Running now (Colab, three sessions at most; every trading day is pushed to `results/`)
+- **B** (notebook 19, UBS's framing, 10 rounds, preregistered: `designs/rd2/PREREG_B.md`): ~15 of 50 careers done.
+- **A** (notebook 21, memo + morning book, UBS's neutral rewrites, 5 rounds): ~9 of 30 done.
+- **Ready, not started (or in the queue notebook 25):** A with UBS's real lines (24, continues 5 careers), C takeover
+  ladder (20), D memo + UBS framing (22), E everything at once (23, fixed at loss + you, whole-career takeover).
+  Short preregistration for C, D, E: `designs/rd2/PREREG_CDE.md`. Check `git log` for which folders are receiving
+  saves before starting anything, and never run the same notebook and round in two places.
+
+## Next step: Modal (rented GPUs, no laptop needed)
+- `scripts/modal_careers.py`: one job per notebook:rounds on an H100, same cells and software as Colab, saves to
+  GitHub, retried by Modal on failure. Modal secrets `huggingface` and `github` exist.
+- This environment should now have MODAL_TOKEN_ID and MODAL_TOKEN_SECRET and network access to modal.com and
+  api.modal.com (check: `curl -sS -o /dev/null -w "%{http_code}" https://api.modal.com`). Install with
+  `pip install modal`.
+- First a short test: `modal run --detach scripts/modal_careers.py --jobs "23_everything_at_once:0"`, and check that
+  its first trading day lands on GitHub (~15 min including the model download). Then split the rest of E, C, D (and 24)
+  into parallel jobs by rounds, avoiding any notebook/round still running in Colab.
+
+## Monitoring and results
+- Status: `git log` on the branch (each save names the folder, version, round and date).
+- Interim results: count `went along` per version from `results/*_v2/days/*.json` (summary → chats → joined), and the
+  position held before UBS's request (A's clearest effect: the loss memo makes the agent bet 10-15x bigger).
+- Said versus did: `designs/rd2/analysis/monitor_prep.py` + blind graders + `monitor.py` (secondary; run at the end).
+- The user is tired and short of time: brief, plain answers, a recommendation each time.
+
+---
+
+# Handoff (2026-10-18)
 
 Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md` (every decision and result is dated there).
 The older handoff (2026-10-04) follows below for history.
