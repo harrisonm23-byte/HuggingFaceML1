@@ -291,6 +291,96 @@ for l, path in sae_layers(max(layers) + 1).items():
             "top": [{"feature": int(ids[o]), "standardised_difference": float(z[o]), "q": float(q[o])} for o in order]}
     del Fz, fyL, fyG
 
+# ---------------- 4. by request: does the history's share grow, hold or fade along the career?
+# Computed last, with its own random numbers, so sections 1-3 reproduce exactly.
+rng4 = np.random.default_rng(20261021)
+DATE = np.array([r[0]["date"] for r in rows])
+JOINED = np.array([float(bool(r[0]["saved_joined"])) for r in rows])
+TOKENS = np.array([r[0]["tokens"] for r in rows])
+REQUESTS = sorted(set(zip(DATE, CHAT)))             # date order; the two 8 June requests by chat id (09:00, then 09:30)
+GROUP = np.array([HIST[CAREER == c][0] for c in careers])
+FRAMED = LOSS + GAIN
+
+
+def per_career(value, mask):
+    """Each career's mean of value over its moments in mask (NaN for a career with none there)."""
+    return np.array([value[mask & (CAREER == c)].mean() if (mask & (CAREER == c)).any() else np.nan for c in careers])
+
+
+def groups(cv, group_a, group_b):
+    """Careers in group a minus group b on a per-career value; p by reshuffling careers; interval by resampling."""
+    ok = ~np.isnan(cv)
+    va, vb = cv[ok & np.isin(GROUP, group_a)], cv[ok & np.isin(GROUP, group_b)]
+    obs, both = va.mean() - vb.mean(), np.concatenate([va, vb])
+    hits = sum(abs((x := rng4.permutation(both))[:len(va)].mean() - x[len(va):].mean()) >= abs(obs) - 1e-12
+               for _ in range(PERMS))
+    boot = [va[rng4.integers(0, len(va), len(va))].mean() - vb[rng4.integers(0, len(vb), len(vb))].mean()
+            for _ in range(BOOT)]
+    return obs, (hits + 1) / (PERMS + 1), np.percentile(boot, [2.5, 97.5])
+
+
+def flips(cv):
+    """Mean of a per-career paired difference; p by flipping signs; interval by resampling careers."""
+    c = cv[~np.isnan(cv)]
+    obs = c.mean()
+    p = (np.sum(np.abs((rng4.choice([-1, 1], (PERMS, len(c))) * c).mean(1)) >= abs(obs) - 1e-12) + 1) / (PERMS + 1)
+    return obs, p, np.percentile([c[rng4.integers(0, len(c), len(c))].mean() for _ in range(BOOT)], [2.5, 97.5])
+
+
+pts = lambda r: f"{100 * r[0]:+.1f} ({100 * r[2][0]:+.1f} to {100 * r[2][1]:+.1f}; p {r[1]:.4f})"
+request_push = req[:, cols(FRAMED)].mean(1) - req[:, fi["neutral"]]
+report.append("\n## 4. By request: where along the career the push sits\n")
+report.append("Each request on its own (10 careers per version, so each row is rough). Went along (sampled): the saved "
+              "careers' real decisions, framed versions against neutral. The rest is P(order goes along) after the fixed "
+              "neutral reasoning line, in points: the history (framed careers against neutral ones, the request held "
+              "neutral), the request (framed requests against the neutral one, the same moments, all histories), and "
+              "both as saved.\n")
+report.append("| Request | Context (tokens, median) | Went along, sampled: framed / neutral | History | Request | As saved |"
+              "\n|---|---|---|---|---|---|")
+summary["by_request"] = {}
+for d, c in REQUESTS:
+    m = (DATE == d) & (CHAT == c)
+    went_f, went_n = JOINED[m & np.isin(HIST, FRAMED)].mean(), JOINED[m & (HIST == "neutral")].mean()
+    h = groups(per_career(req[:, fi["neutral"]], m), FRAMED, ["neutral"])
+    q = flips(per_career(request_push, m))
+    a = groups(per_career(np.array([req[i, fi[HIST[i]]] for i in range(M)]), m), FRAMED, ["neutral"])
+    report.append(f"| {d} ({c}) | {int(np.median(TOKENS[m])):,} | {100 * went_f:.0f}% / {100 * went_n:.0f}% | {pts(h)} | "
+                  f"{pts(q)} | {pts(a)} |")
+    summary["by_request"][f"{d} {c}"] = {"tokens": float(np.median(TOKENS[m])), "went_along_framed": went_f,
+                                         "went_along_neutral": went_n, "history": h[0], "history_p": h[1],
+                                         "request": q[0], "request_p": q[1], "as_saved": a[0], "as_saved_p": a[1]}
+
+# Early (7 and 12 January) against later: does the history's effect change? Each career's early mean minus its later
+# mean (request held neutral), framed careers against neutral ones.
+early = np.isin(DATE, ["2011-01-07", "2011-01-12"])
+drift = per_career(req[:, fi["neutral"]], early) - per_career(req[:, fi["neutral"]], ~early)
+r = groups(drift, FRAMED, ["neutral"])
+report.append(f"\n**The history's effect, early (7 and 12 January) minus later** (each career's early mean minus its "
+              f"later one, framed careers against neutral): {pts(r)}. Above zero: the history's push is larger early.\n")
+summary["history_early_minus_later"] = {"change": r[0], "p": r[1], "interval": list(r[2])}
+
+# Inside: how far a framed history has moved the state along the held-fixed frame direction at each request, in units of
+# the request's own loss - neutral push (averaged over requests; 1 = as far as the loss request itself moves it).
+report.append("**Inside, by request:** how far a framed history has moved the state (request neutral) along the frame "
+              "direction measured with the history held fixed, in units of the loss request's own push (1 = as far as "
+              "the loss request moves it). Rising along the rows means the push builds up inside; falling, that it "
+              "fades.\n")
+report.append("| Request | " + " | ".join(f"Layer {l}" for l in layers) + " |\n" + "|---" * (len(layers) + 1) + "|")
+inside = {}
+for j, l in enumerate(layers):
+    u = np.mean([(S[CHAT == c][:, cols(LOSS), 0, j].mean(1) - S[CHAT == c][:, fi["neutral"], 0, j]).mean(0)
+                 for c in np.unique(CHAT)], 0)
+    gap = np.linalg.norm(u)
+    u = u / gap
+    x = S[:, fi["neutral"], 0, j] @ u
+    for d, c in REQUESTS:
+        m = (DATE == d) & (CHAT == c)
+        inside.setdefault(f"{d} ({c})", {})[l] = float((x[m & np.isin(HIST, FRAMED)].mean()
+                                                         - x[m & (HIST == "neutral")].mean()) / gap)
+for k, v in inside.items():
+    report.append(f"| {k} | " + " | ".join(f"{v[l]:+.2f}" for l in layers) + " |")
+summary["inside_by_request"] = inside
+
 open(os.path.join(OUT, "MATCHED.md"), "w").write("\n".join(report) + "\n")
 json.dump(summary, open(os.path.join(OUT, "matched.json"), "w"), indent=1, default=float)
 print("written", os.path.join(OUT, "MATCHED.md"))

@@ -1469,3 +1469,18 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - **Paper:** new section 7.7 with Table 11 (request vs history), paragraphs on "you", Bank C, A and the steering miss;
   methods, contributions, the hypotheses table, the discussion and two limitations updated. The remaining note box is for
   the transplant and the second steering run.
+
+## 20 Oct (late): the user's challenge, "if it lives in the history, why does going along peak early?"
+
+- **Counted (no text read):** UBS lines the agent has seen before each request: 6 before 7 Jan, 9 before 1 Apr's
+  first, ~30 before 8 Jun, ~40 before 5 Aug's request. Framed talk piles up while going along falls, so the history's
+  effect is not the amount of framed talk.
+- **My earlier line "the push works by accumulating" was too strong;** the paper's persistence paragraph now states the
+  puzzle and three explanations: the part of the history that matters is built early; something after January
+  suppresses going along for every framing (harder requests, the agent's experience of its January trades, dilution
+  in a 40k-token context); or the history's share is largest early.
+- **Added to `analysis/matched_history.py`** (section 4, computed last with its own random numbers so sections 1-3
+  reproduce): by request, the history's effect, the request's effect and both as saved, with the sampled going-along
+  rates and context length; an early-vs-later test of the history's effect; and, inside, how far a framed history has
+  moved the state along the held-fixed frame direction at each request. Checked on fake data. Runs with
+  `modal run --detach scripts/modal_matched.py --analysis-only` (CPU only).
