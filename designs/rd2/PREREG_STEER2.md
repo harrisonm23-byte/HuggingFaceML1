@@ -1,6 +1,6 @@
 # Preregistration: steering, second run ("ideal acquiescence")
 
-Version 1, 2026-10-20, written before any Stage 1 result exists. The user confirms this text before the run. Stage 1 is
+Version 2, 2026-10-20 (the going-along direction, the transplant and the decision read-out added at the user's question, before any Stage 1 result exists). The user confirms this text before the run. Stage 1 is
 fixed here in full. Stage 2 is fixed in outline; its strength comes from Stage 1 by the rule below, and its remaining
 numbers are written in here before its first career starts.
 
@@ -34,6 +34,19 @@ does joining still fade after January, as it does in the real careers, while ris
   order goes along) more than the random directions do (the mean of the five).
 - **H4, the sign:** at the neutral careers' requests, adding the loss direction raises P(the order goes along) more than
   subtracting it does.
+
+**Added in version 2 (exploratory, reported, not in the Holm set).** The user's question: is the frame direction the
+right thing to push, given that Run 1 read the decision from the state only from layer 21 on?
+- **The going-along direction:** from Run 1's states (all experiments, 1,740 decisions), within each request, experiment
+  and framing, the mean state where the agent went along minus where it did not, at layer 24; built on the other half
+  of the careers; pushed at 1, 2 and 4 times its natural size (and minus 2 times) at the neutral careers' requests, and
+  subtracted from the loss-framed careers', against five (three) random directions at layer 24. A check on the method:
+  if even this cannot move the order, steering a single layer this way is too weak to test the frame.
+- **The transplant:** at the neutral careers' requests, the decision token's state from the loss + you version of the
+  same moment (same history, UBS's frozen loss + you lines) copied into the neutral version, one layer at a time (6,
+  12, 18, 24, 31, 36, 41), with the loss + you version itself as the yardstick. It needs no chosen direction.
+- **Does the push reach the decision?** Under every condition, the decision token's state at layer 24 projected on the
+  going-along direction: does pushing the frame at layer 12 move the decision's representation?
 
 **Reported, not tested as hypotheses:** every condition against no steering; the dose (1, 2 and 4 times); the gain and
 loss-minus-gain directions; layer 18; each random direction; the effect request by request (does steering still move

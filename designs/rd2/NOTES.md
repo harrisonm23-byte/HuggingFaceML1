@@ -1523,3 +1523,10 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - **Parked for later (the user, 20 Oct):** recurring management memos (A2, D2; the user writes the memo templates),
   emotion-story directions (the user writes the stories), the refused-and-failed history (the user writes the failure
   messages).
+- **Added the same night, at the user's question ("are we pushing in the right direction?"):** the going-along direction
+  (Run 1's states: went along minus not, within request x experiment x framing, layer 24; a check on the method), the
+  transplant of the loss + you version's decision-token state into the neutral version, layer by layer (no chosen
+  direction), and, under every condition, the decision token's state at layer 24 projected on the going-along direction
+  (does the frame push at layer 12 reach the decision?). Tiny-model check: transplants at layers 6-24 move the layer-24
+  state and those at 31-41 do not; +along x4 moves it by exactly 4 sizes; patches and hooks cleared. Conditions per
+  moment: 43 (neutral requests), 23 (openings), 16 (loss-framed requests). Prereg updated to version 2 before any result.

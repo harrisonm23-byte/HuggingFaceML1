@@ -13,6 +13,15 @@ The review of the first steering run (20 Oct) found four faults; each is fixed h
 - ten random directions of the same size, not one;
 - both signs in both groups (adding to neutral careers and subtracting from them; the same for loss-framed careers);
 - orders scored as whole numbers in both written forms (`order_dist`).
+
+Two additions (the user, 20 Oct: is the frame direction the right thing to push?):
+- the going-along direction: the state at decisions where the agent went along minus where it did not, within the same
+  request, experiment and framing (Run 1's states, all experiments), at layer 24, where the decision becomes readable
+  (Run 1 read it from layer 21 on, not before). Pushed the same way; also a check on the method itself;
+- the transplant, which needs no direction: at the same moment, the decision token's state from the loss + you version of
+  UBS's request is copied into the neutral version, one layer at a time.
+And under every condition, how far the decision token's state at layer 24 moves along the going-along direction: does
+pushing the frame at layer 12 move the decision's representation?
 """
 import json, os, re
 import numpy as np
@@ -23,6 +32,8 @@ LAYER, CHECK_LAYER = 12, 18                   # 12: where the held-fixed and acr
 STRENGTHS = [1, 2, 4]                         # multiples of the natural size: how far the framing itself moves the state
 N_RANDOM, RANDOM_STRENGTH = 10, 2
 SAMPLES = 2
+ALONG_LAYER, N_RANDOM_ALONG = 24, 5
+TRANSPLANT_LAYERS, TRANSPLANT_FROM = [6, 12, 18, 24, 31, 36, 41], "loss + you"
 
 
 def run_of(meta):
@@ -61,6 +72,73 @@ def directions(npz_paths, layer, n_random=N_RANDOM, seed=20261021):
     return out
 
 
+def along_direction(run1_paths, layer=ALONG_LAYER, n_random=N_RANDOM_ALONG, seed=20261023):
+    """{half: {"along": the going-along shift at its natural size, "random": unit vectors, "size"}} from Run 1's states
+    (all experiments): within each request, experiment and framing, the mean state where the agent went along minus where
+    it did not, averaged over those cells (weighted by the harmonic mean of their two counts). Half 0 is applied to runs
+    0-4 and built on runs 5-9; half 1 the other way."""
+    cells = {}
+    for p in run1_paths:
+        z = np.load(p)
+        meta = json.loads(str(z["meta"]))
+        X = z["states"][:, layer].astype(np.float64)
+        for m, x in zip(meta, X):
+            if not m.get("asked", True):
+                continue
+            key = (m["experiment"], m["version"], m["chat"], int(m["run"]) >= 5)
+            cells.setdefault(key, {True: [], False: []})[bool(m["joined"])].append(x)
+    width = next(iter(cells.values()))[False][0].shape[0]
+    out = {}
+    for half in (0, 1):
+        diffs, w = [], []
+        for (e, v, c, late), g in cells.items():
+            if late != (half == 0) or not g[True] or not g[False]:
+                continue
+            diffs.append(np.mean(g[True], 0) - np.mean(g[False], 0))
+            w.append(2 / (1 / len(g[True]) + 1 / len(g[False])))
+        along = np.average(np.stack(diffs), axis=0, weights=w)
+        rnd = np.random.default_rng(seed + half).normal(size=(n_random, width))
+        out[half] = {"along": along, "random": rnd / np.linalg.norm(rnd, axis=1, keepdims=True),
+                     "size": float(np.linalg.norm(along)), "cells": len(diffs)}
+    return out
+
+
+class Patch:
+    """Replaces one position of a decoder layer's output with a given state, once (the first pass long enough to hold
+    that position); later passes read the patched cache."""
+
+    def __init__(self, layer_module):
+        self.value, self.index = None, None
+        self.handle = layer_module.register_forward_hook(self._hook)
+
+    def _hook(self, module, inputs, output):
+        if self.value is None:
+            return output
+        h = output[0] if isinstance(output, tuple) else output
+        if h.shape[1] <= self.index:
+            return output
+        h = h.clone()
+        h[0, self.index] = self.value.to(h.dtype)
+        self.value = None
+        return (h,) + tuple(output[1:]) if isinstance(output, tuple) else h
+
+
+class Capture:
+    """While on, keeps each watched layer's output at the last position of the pass (register it after any Steer or
+    Patch on the same layer, so it sees their change)."""
+
+    def __init__(self, layer_modules):
+        self.on, self.got = False, {}
+        self.handles = [m.register_forward_hook(self._hook(L)) for L, m in layer_modules.items()]
+
+    def _hook(self, L):
+        def hook(module, inputs, output):
+            if self.on:
+                h = output[0] if isinstance(output, tuple) else output
+                self.got[L] = h[0, -1].float().cpu().numpy()
+        return hook
+
+
 def half_for(run):
     return 0 if run < 5 else 1
 
@@ -82,6 +160,19 @@ def conditions(group, kind):
     n = N_RANDOM if group == "neutral" else N_RANDOM // 2
     c += [(f"random{k} x{RANDOM_STRENGTH}", LAYER, f"random{k}", 1, RANDOM_STRENGTH,
            kind == "request" and group == "neutral" and k < 3) for k in range(n)]
+    if kind == "request":                                # the going-along direction at layer 24, and its random controls
+        a = f"at layer {ALONG_LAYER}"
+        if group == "neutral":
+            c += [(f"+along x{s} {a}", ALONG_LAYER, "along", 1, s, s == 2) for s in STRENGTHS]
+            c.append((f"-along x2 {a}", ALONG_LAYER, "along", -1, 2, False))
+        else:
+            c += [(f"-along x{s} {a}", ALONG_LAYER, "along", -1, s, False) for s in STRENGTHS[:2]]
+            c.append((f"+along x2 {a}", ALONG_LAYER, "along", 1, 2, False))
+        c += [(f"random{k} x{RANDOM_STRENGTH} {a}", ALONG_LAYER, f"random{k}", 1, RANDOM_STRENGTH, False)
+              for k in range(N_RANDOM_ALONG if group == "neutral" else 3)]
+    if kind == "request" and group == "neutral":         # the transplant from the loss + you version of the same moment
+        c.append((f"framed ({TRANSPLANT_FROM}), as read", None, "framed", 0, 0, False))
+        c += [(f"transplant ({TRANSPLANT_FROM}) at layer {L}", L, "transplant", 0, 0, False) for L in TRANSPLANT_LAYERS]
     return c
 
 
@@ -131,36 +222,73 @@ def work_items(folder, moments, sign):
     return sorted(items, key=lambda x: (x["career_file"], x["history_index"]))
 
 
-def run_item(model, tok, steers, dirs, item, career, opening, lead, grid, done=(), samples=SAMPLES):
-    """Every condition at one moment: the history before the moment's update is read once, unsteered; each condition then
-    steers from the update on (the update, the fixed reasoning line and the order). Yields one row per condition."""
+def run_item(model, tok, steers, patches, capture, dirs, item, career, opening, lead, grid, done=(), samples=SAMPLES,
+             framed_full=None):
+    """Every condition at one moment. The history before the moment's update is read once, unsteered; each condition then
+    acts from the update on (the update, the fixed reasoning line and the order). `framed_full`: the same moment's
+    prompt with UBS's request in the loss + you version (neutral careers' requests), for the transplant. Yields one row
+    per condition, with the decision token's state at layer 24 projected on the going-along direction."""
+    import copy
     import torch
     from interventions import goes_along, order_dist, prefill, sample, split_point, summarise_orders
     full, k = split_point(tok, career, item["history_index"], opening)
+    if framed_full is not None:
+        assert framed_full[:k] == full[:k], "the history before the request differs in the framed version"
     for s in steers.values():
         s.vec = None
-    cache = None
+    cache, framed_states = None, None
+    u_along = dirs[ALONG_LAYER][half_for(item["run"])]["along"] / dirs[ALONG_LAYER][half_for(item["run"])]["size"]
+
+    def read_update(seq):
+        """One pass over the update; the watched layers' states at the decision token."""
+        capture.on, capture.got = True, {}
+        try:
+            with torch.no_grad():
+                model(input_ids=torch.tensor([seq[k:]], device=model.device), past_key_values=copy.deepcopy(cache),
+                      use_cache=True, cache_position=torch.arange(k, len(seq), device=model.device))
+        finally:
+            capture.on = False
+        return dict(capture.got)
+
     for name, layer, which, sign, strength, sampled in conditions(item["group"], item["kind"]):
         key = f"{item['career_file']}|{item['history_index']}|{name}"
-        if key in done:
+        if key in done or (which in ("framed", "transplant") and framed_full is None):
             continue
         if cache is None:
             cache = prefill(model, full[:k])
-        d = dirs[layer or LAYER][half_for(item["run"])]
-        vec = vector(d, which, sign, strength)
-        if vec is not None:
-            steers[layer].vec = torch.tensor(vec, dtype=torch.float32, device=model.device)
+        if which == "transplant" and framed_states is None:
+            framed_states = read_update(framed_full)
+        seq = framed_full if which == "framed" else full
+        vec = None
+        if which not in ("framed", "transplant"):
+            vec = vector(dirs[layer or LAYER][half_for(item["run"])], which, sign, strength)
+
+        def arm():
+            if vec is not None:
+                steers[layer].vec = torch.tensor(vec, dtype=torch.float32, device=model.device)
+            if which == "transplant":
+                patches[layer].value = torch.tensor(framed_states[layer], device=model.device)
+                patches[layer].index = len(seq) - 1 - k
+
         try:
-            orders, probs, cover = order_dist(model, tok, full, cache, lead, grid)
+            arm()
+            state = read_update(seq)
+            arm()                                         # the patch fires once per pass: set it again for the orders
+            orders, probs, cover = order_dist(model, tok, seq, cache, lead, grid)
             summary = summarise_orders(orders, probs, item["position"], item["wants"])
-            replies = sample(model, full, cache, samples, tok=tok) if sampled else []
+            if which == "transplant":
+                patches[layer].value = None
+            replies = sample(model, seq, cache, samples, tok=tok) if sampled else []
         finally:
             for s in steers.values():
                 s.vec = None
+            for p in patches.values():
+                p.value = None
         judged = [goes_along(r, item["position"], item["wants"]) for r in replies]      # replies: requests only
         yield {"key": key, **{f: item[f] for f in ("group", "kind", "version", "run", "career_file", "history_index",
                                                     "date", "chat", "wants", "position", "saved_joined")},
                "condition": name, "layer": layer, "which": which, "sign": sign, "strength": strength,
                "shift_size": float(np.linalg.norm(vec)) if vec is not None else 0.0, "coverage": cover,
-               "orders": orders, "probs": probs, **summary, "along": [a for a, _ in judged],
-               "status": [s for _, s in judged], "replies": replies, "tokens": len(full)}
+               "orders": orders, "probs": probs, **summary, "along_projection": float(state[ALONG_LAYER] @ u_along),
+               "along_size": dirs[ALONG_LAYER][half_for(item["run"])]["size"], "along": [a for a, _ in judged],
+               "status": [s for _, s in judged], "replies": replies, "tokens": len(seq)}

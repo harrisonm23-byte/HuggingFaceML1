@@ -3,7 +3,9 @@
 decision moments, with no framed words, at 1, 2 and 4 times its natural size, both signs, against ten random directions
 of the same size. Moments: B's neutral careers at their six requests and five trading-day openings, and its loss and
 loss + you careers at their requests. Outcomes: P(the order goes along) at requests, the expected order size at
-openings, and for some conditions two sampled replies (going along; still readable). Logic in `sim/steer2.py`.
+openings, and for some conditions two sampled replies (going along; still readable). Also the going-along direction
+(Run 1's states: went along minus did not, within request, experiment and framing) at layer 24, and the transplant of
+the decision token's state from the loss + you version of the same moment, layer by layer. Logic in `sim/steer2.py`.
 
     modal run --detach scripts/modal_steer2.py                  # all parts on 6 GPUs, then the analysis
     modal run --detach scripts/modal_steer2.py --analysis-only  # the analysis again (CPU)
@@ -14,6 +16,7 @@ BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
 MATCHED = "/states/v2/matched/B_bf16"
+RUN1 = ["/states/v2/" + e + "_bf16" for e in ("A", "B", "C", "C2", "D", "E", "F")]
 OUT = "/states/v2/steer2"
 
 image = (modal.Image.debian_slim(python_version="3.13")
@@ -56,12 +59,18 @@ def run_part(part, parts):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from career import career_opening
-    from inside_careers import moments
+    from framing_set import read_set
+    from inside_careers import encode, moments, turns_at
     from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, Steer
+    from matched import matched
     import steer2 as S2
     npz = sorted(glob.glob(f"{MATCHED}/*.npz"))
     assert len(npz) == 300, f"{len(npz)} matched moments: the matched B run must be complete"
     dirs = {L: S2.directions(npz, L) for L in (S2.LAYER, S2.CHECK_LAYER)}
+    run1 = sorted(p for d in RUN1 for p in glob.glob(f"{d}/*.npz"))
+    assert len(run1) == 290, f"{len(run1)} careers in Run 1's states (expected 290)"
+    dirs[S2.ALONG_LAYER] = S2.along_direction(run1)
+    print({L: {h: round(d[h]["size"], 1) for h in d} for L, d in dirs.items()}, flush=True)
     todo = S2.work_items(FOLDER, moments, SIGN)[part::parts]
     os.makedirs(OUT, exist_ok=True)
     out_path = f"{OUT}/part{part}.jsonl"
@@ -73,12 +82,21 @@ def run_part(part, parts):
     weights.commit()
     layers = [mm for _, mm in model.named_modules() if type(mm).__name__.endswith("DecoderLayer")]
     assert len(layers) == 48, len(layers)
-    steers = {L: Steer(layers[L]) for L in (S2.LAYER, S2.CHECK_LAYER)}
+    # Hooks in this order, so the capture sees the steering and the patch on the same layer
+    steers = {L: Steer(layers[L]) for L in (S2.LAYER, S2.CHECK_LAYER, S2.ALONG_LAYER)}
+    patches = {L: S2.Patch(layers[L]) for L in S2.TRANSPLANT_LAYERS}
+    capture = S2.Capture({L: layers[L] for L in sorted(set(S2.TRANSPLANT_LAYERS) | {S2.ALONG_LAYER})})
+    chats = read_set()                                  # the user's frozen framing file (its fingerprint is checked)
     opening = career_opening()
     t0 = time.time()
     for n, item in enumerate(todo):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
-        for row in S2.run_item(model, tok, steers, dirs, item, career, opening, NEUTRAL_LEAD, WIDE_GRID, done):
+        framed = None
+        if item["group"] == "neutral" and item["kind"] == "request":
+            c = matched(career, item["history_index"], item["date"], "neutral", S2.TRANSPLANT_FROM, chats)
+            framed = encode(tok, turns_at(c, item["history_index"], opening))
+        for row in S2.run_item(model, tok, steers, patches, capture, dirs, item, career, opening, NEUTRAL_LEAD,
+                               WIDE_GRID, done, framed_full=framed):
             with open(out_path, "a") as f:
                 f.write(json.dumps(row) + "\n")
         states_vol.commit()

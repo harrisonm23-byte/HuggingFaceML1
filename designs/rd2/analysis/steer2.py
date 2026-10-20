@@ -11,7 +11,10 @@ intervals by resampling careers). The four preregistered tests, Holm-corrected t
   minus the mean of the five random directions.
 - H4, the direction's sign: B's neutral careers at requests: adding minus subtracting the loss direction (twice its size).
 Also: every condition against none, the dose (1, 2 and 4 times), the random directions one by one, the effect request by
-request, the sampled replies (going along, unreadable), and the strength Stage 2 would use.
+request, the sampled replies (going along, unreadable), and the strength Stage 2 would use. And three additions
+(exploratory): the going-along direction at layer 24 against random directions at layer 24 (a check on the method), the
+transplant of the loss + you version's decision state layer by layer, and how far each condition moves the decision
+token's state at layer 24 along the going-along direction (in units of that direction's natural size).
 """
 import glob, json, os, sys
 import numpy as np
@@ -35,18 +38,21 @@ for r in rows:
     M.setdefault((r["group"], r["kind"]), {}).setdefault((r["career_file"], r["history_index"]), {})[r["condition"]] = r
 
 
-def val(m, kind, cond):
-    if cond == "random mean":
-        v = [r[VALUE[kind]] for c, r in m.items() if c.startswith("random")]
+def val(m, kind, cond, field=None):
+    field = field or VALUE[kind]
+    if cond.startswith("random mean"):
+        tail = cond[len("random mean"):]                  # "" (layer 12) or " at layer 24"
+        v = [r[field] for c, r in m.items() if c.startswith("random")
+             and (c.endswith(tail) if tail else " at layer" not in c)]
         return float(np.mean(v)) if v else None
-    return m[cond][VALUE[kind]] if cond in m else None
+    return m[cond][field] if cond in m else None
 
 
-def contrast(group, kind, a, b="none", where=lambda m: True):
+def contrast(group, kind, a, b="none", where=lambda m: True, field=None):
     """a minus b at each moment, averaged within career; p by flipping signs by career; interval by resampling careers."""
     per = {}
     for key, m in M.get((group, kind), {}).items():
-        x, y = val(m, kind, a), val(m, kind, b)
+        x, y = val(m, kind, a, field), val(m, kind, b, field)
         if x is None or y is None or not where(m):
             continue
         per.setdefault(key[0], []).append(x - y)
@@ -105,6 +111,46 @@ for (name, g, k, a, b), r in zip(tests, res):
     report.append(f"| {name} | {fmt(r, k)} | {r['holm_p']:.4f} | {r['careers']} |")
     summary["tests"][name] = r
 
+# ---------------- the additions (exploratory)
+A24 = " at layer 24"
+checks = [("Check: neutral careers, requests, +along x2 minus random x2, both at layer 24", "neutral", "request",
+           "+along x2" + A24, "random mean" + A24),
+          ("Check: loss-framed careers, requests, -along x2 minus random x2, both at layer 24", "loss", "request",
+           "-along x2" + A24, "random mean" + A24)]
+report.append("\n## The going-along direction at layer 24 (a check on the method; exploratory)\n")
+report.append("| Contrast | Change | 95% interval | p | Careers |\n|---|---|---|---|---|")
+summary["checks"] = {}
+for name, g, k, a, b in checks:
+    r = contrast(g, k, a, b)
+    report.append(f"| {name} | {fmt(r, k)} | {r['careers'] if r else '–'} |")
+    summary["checks"][name] = r
+
+if ("neutral", "request") in M:
+    report.append("\n## The transplant: the loss + you version's decision state copied into the neutral version of the "
+                  "same moment (neutral careers, requests; exploratory)\n")
+    report.append("| Condition | Change in P(along) | 95% interval | p |\n|---|---|---|---|")
+    summary["transplant"] = {}
+    tr = sorted({c for m in M[("neutral", "request")].values() for c in m if c.startswith(("framed", "transplant"))},
+                key=lambda c: (not c.startswith("framed"), int(c.split()[-1]) if c[-1].isdigit() else 0))
+    for c in tr:
+        r = contrast("neutral", "request", c)
+        report.append(f"| {c} | {fmt(r, 'request')} |")
+        summary["transplant"][c] = r
+
+    report.append("\n## Does the push reach the decision? The decision token's state at layer 24, moved along the "
+                  "going-along direction (units of its natural size; neutral careers, requests; exploratory)\n")
+    report.append("| Condition | Change | 95% interval | p |\n|---|---|---|---|")
+    summary["reaches_decision"] = {}
+    conds = sorted({c for m in M[("neutral", "request")].values() for c in m if c != "none"})
+    for c in conds:
+        r = contrast("neutral", "request", c, field="along_projection")
+        if r is None:
+            continue
+        size = np.mean([m["none"]["along_size"] for m in M[("neutral", "request")].values() if "none" in m])
+        r = {**r, "change": r["change"] / size, "interval": [x / size for x in r["interval"]]}
+        report.append(f"| {c} | {r['change']:+.2f} | {r['interval'][0]:+.2f} to {r['interval'][1]:+.2f} | {r['p']:.4f} |")
+        summary["reaches_decision"][c] = r
+
 # ---------------- every condition against none
 for (g, k) in [("neutral", "request"), ("neutral", "opening"), ("loss", "request")]:
     if (g, k) not in M:
@@ -121,7 +167,7 @@ for (g, k) in [("neutral", "request"), ("neutral", "opening"), ("loss", "request
         report.append(f"| {c} | {fmt(r, k)} | {r['moments'] if r else '–'} |")
         summary["conditions"][f"{g} {k}"][c] = r
     rnd = [summary["conditions"][f"{g} {k}"][c]["change"] for c in conds if c.startswith("random")
-           and summary["conditions"][f"{g} {k}"][c]]
+           and " at layer" not in c and summary["conditions"][f"{g} {k}"][c]]
     for c in ("+loss x2", "-loss x2"):
         rr = summary["conditions"][f"{g} {k}"].get(c)
         if rr and rnd:
