@@ -1472,7 +1472,7 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 
 ## 20 Oct (late): the user's challenge, "if it lives in the history, why does going along peak early?"
 
-- **Counted (no text read):** UBS lines the agent has seen before each request: 6 before 7 Jan, 9 before 1 Apr's
+- **Counted (no text read):** UBS lines the agent has seen before each request: 6 before 7 Jan, 14 before 1 Apr's
   first, ~30 before 8 Jun, ~40 before 5 Aug's request. Framed talk piles up while going along falls, so the history's
   effect is not the amount of framed talk.
 - **My earlier line "the push works by accumulating" was too strong;** the paper's persistence paragraph now states the
