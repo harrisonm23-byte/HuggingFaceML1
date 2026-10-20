@@ -829,6 +829,16 @@ a fixed neutral reasoning line, so its levels (14\% for a neutral career and req
 the orders scored cover a median of 67\% of the model's probability; the comparisons are what it measures. The rereads
 reproduce the original states exactly (median cosine 1.000 at every layer).
 
+\paragraph{Where along the career the push sits.} Split by request (exploratory; ten careers per version), the two parts
+take turns. At the first request (7 January) the effect is the request's own: its framing raised the probability of an
+order that goes along by 26 points ($p < 0.001$), and the history added nothing. At the second (12 January) it is all
+history: framed histories raised the probability by 60 points ($p < 0.001$), and the request's framing added nothing.
+The history still pulled on 1 April (49 points, $p = 0.001$), although the real agents, reasoning in their own words,
+almost never went along there (2\%); by June and August neither part moved the decision. Inside, the framed history's
+push along the frame direction at layer 12 was largest at the first request (as far as the loss request itself moves
+the state) and fell to between 0.09 and 0.38 of that by June and August. The push is delivered early and carried for a
+while by the history, which by 12 January includes the agent's own first trades, rather than built up.
+
 \paragraph{``You'' registers differently after loss than after gain.} With the history fixed, ``you'' alone did not move
 the decision ($+1.1$ points, $p = 0.16$), but with Bank C's line it added 4.1 points after loss and 2.2 after gain, as in
 Experiment F. Inside, the change ``you'' makes to the state is 27\% to 39\% larger after loss than after gain at layers 18
@@ -903,9 +913,10 @@ through August, in every experiment (Section~\ref{sec:trading}). Setbacks did no
 from April on, and careers that lost money in January joined later no more than others. The matched rereads place most of
 the framing's effect on the decision in the history rather than in the request's words; what that history carries is
 evidently not the amount of framed talk. Because every career meets the requests in the same order, later requests that
-are simply harder to join remain an explanation, and a design that varies their order would separate them. A split of
-the rereads by request, and a reread that swaps the agent's own earlier replies, will show whether the history's pull on
-joining fades or is overridden.
+are simply harder to join remain an explanation, and a design that varies their order would separate them. Split by
+request, the rereads show the push delivered by the first request's words, carried by the history to the second and, in
+the model's probabilities, to April, then gone; a reread that swaps the agent's own earlier replies will show how much
+of that carry is the agent's own January record.
 
 \paragraph{Liability and deterrence.} The law and economics of misconduct asks who bears the expected cost of a violation
 and whether that cost deters it \citep{becker1968}. An AI agent that joins a manipulation because a counterparty framed

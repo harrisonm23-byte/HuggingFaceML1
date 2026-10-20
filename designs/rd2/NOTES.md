@@ -1530,3 +1530,16 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   (does the frame push at layer 12 reach the decision?). Tiny-model check: transplants at layers 6-24 move the layer-24
   state and those at 31-41 do not; +along x4 moves it by exactly 4 sizes; patches and hooks cleared. Conditions per
   moment: 43 (neutral requests), 23 (openings), 16 (loss-framed requests). Prereg updated to version 2 before any result.
+
+## 20 Oct (night): the by-request split is in (`results/matched/MATCHED.md`, section 4)
+
+- P(order goes along), points: 7 Jan: history -1, request +26 (p < 0.001); 12 Jan: history +60 (p < 0.001), request 0;
+  1 Apr: history +49 (p = 0.001), request -3, while the sampled careers went along 2% vs 0%; 8 Jun and 5 Aug: ~0 (one
+  request +8 from the request). Early minus later history effect: +16 (p = 0.09).
+- Inside (layer 12): the framed history's push along the held-fixed frame direction, in units of the loss request's own:
+  1.03, 0.59, 0.60, 0.38, 0.09, 0.33 across the six requests. Fades.
+- Reading: the push is delivered by the first request's words, carried by the history (which by 12 Jan includes the
+  agent's own 7 Jan trades) to 12 Jan and, in the probabilities, to 1 Apr, then gone. The 1 Apr gap between the
+  probability (+49) and the sampled behaviour (2%) points at the agent's own reasoning at that moment; scoring the order
+  after the agent's own saved reasoning would test it.
+- Paper: new paragraph "Where along the career the push sits" (7.8) and the persistence paragraph updated.
