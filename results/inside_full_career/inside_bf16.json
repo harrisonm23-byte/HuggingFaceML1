@@ -38,7 +38,7 @@
      {
       "feature": 277,
       "standardised_difference": -0.614,
-      "activation_difference": -8.866,
+      "activation_difference": -8.865,
       "p": 0.001,
       "q": 0.007,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/277"
@@ -139,14 +139,14 @@
      120
     ],
     "features_tested": 151,
-    "q_below_0.05": 57,
+    "q_below_0.05": 56,
     "top": [
      {
       "feature": 162,
       "standardised_difference": -0.834,
       "activation_difference": -139.979,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/162"
      },
      {
@@ -154,7 +154,7 @@
       "standardised_difference": -0.758,
       "activation_difference": -93.91,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4473"
      },
      {
@@ -162,7 +162,7 @@
       "standardised_difference": -0.727,
       "activation_difference": -64.059,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402"
      },
      {
@@ -170,7 +170,7 @@
       "standardised_difference": -0.722,
       "activation_difference": -100.342,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/579"
      },
      {
@@ -178,7 +178,7 @@
       "standardised_difference": 0.699,
       "activation_difference": 48.747,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8967"
      },
      {
@@ -186,7 +186,7 @@
       "standardised_difference": 0.695,
       "activation_difference": 49.521,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13332"
      },
      {
@@ -194,7 +194,7 @@
       "standardised_difference": -0.683,
       "activation_difference": -25.474,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/15592"
      },
      {
@@ -202,7 +202,7 @@
       "standardised_difference": 0.681,
       "activation_difference": 51.027,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884"
      },
      {
@@ -210,7 +210,7 @@
       "standardised_difference": 0.667,
       "activation_difference": 86.041,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741"
      },
      {
@@ -218,7 +218,7 @@
       "standardised_difference": -0.658,
       "activation_difference": -62.148,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2839"
      },
      {
@@ -226,7 +226,7 @@
       "standardised_difference": -0.641,
       "activation_difference": -29.11,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13891"
      },
      {
@@ -234,7 +234,7 @@
       "standardised_difference": 0.635,
       "activation_difference": 41.058,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222"
      },
      {
@@ -242,7 +242,7 @@
       "standardised_difference": 0.621,
       "activation_difference": 43.67,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395"
      },
      {
@@ -250,7 +250,7 @@
       "standardised_difference": -0.616,
       "activation_difference": -74.358,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8326"
      },
      {
@@ -258,7 +258,7 @@
       "standardised_difference": -0.614,
       "activation_difference": -49.646,
       "p": 0.001,
-      "q": 0.0047,
+      "q": 0.0044,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8992"
      }
     ]
@@ -269,14 +269,14 @@
      120
     ],
     "features_tested": 162,
-    "q_below_0.05": 44,
+    "q_below_0.05": 46,
     "top": [
      {
       "feature": 871,
       "standardised_difference": 0.703,
       "activation_difference": 315.157,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871"
      },
      {
@@ -284,7 +284,7 @@
       "standardised_difference": 0.666,
       "activation_difference": 136.346,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/11281"
      },
      {
@@ -292,7 +292,7 @@
       "standardised_difference": 0.636,
       "activation_difference": 123.624,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/929"
      },
      {
@@ -300,7 +300,7 @@
       "standardised_difference": 0.624,
       "activation_difference": 352.944,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/972"
      },
      {
@@ -308,7 +308,7 @@
       "standardised_difference": -0.563,
       "activation_difference": -114.049,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017"
      },
      {
@@ -316,7 +316,7 @@
       "standardised_difference": -0.555,
       "activation_difference": -93.942,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8224"
      },
      {
@@ -324,15 +324,15 @@
       "standardised_difference": 0.553,
       "activation_difference": 65.795,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/195"
      },
      {
       "feature": 5652,
       "standardised_difference": 0.55,
       "activation_difference": 50.269,
-      "p": 0.001,
-      "q": 0.0101,
+      "p": 0.002,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5652"
      },
      {
@@ -340,7 +340,7 @@
       "standardised_difference": 0.544,
       "activation_difference": 112.303,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103"
      },
      {
@@ -348,7 +348,7 @@
       "standardised_difference": 0.535,
       "activation_difference": 236.44,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740"
      },
      {
@@ -356,7 +356,7 @@
       "standardised_difference": -0.534,
       "activation_difference": -69.911,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5381"
      },
      {
@@ -364,7 +364,7 @@
       "standardised_difference": -0.522,
       "activation_difference": -144.339,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149"
      },
      {
@@ -372,7 +372,7 @@
       "standardised_difference": -0.521,
       "activation_difference": -283.441,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805"
      },
      {
@@ -380,7 +380,7 @@
       "standardised_difference": -0.51,
       "activation_difference": -262.813,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/509"
      },
      {
@@ -388,7 +388,7 @@
       "standardised_difference": 0.482,
       "activation_difference": 102.782,
       "p": 0.001,
-      "q": 0.0101,
+      "q": 0.0065,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369"
      }
     ]
@@ -399,14 +399,14 @@
      120
     ],
     "features_tested": 163,
-    "q_below_0.05": 31,
+    "q_below_0.05": 30,
     "top": [
      {
       "feature": 7573,
       "standardised_difference": 0.705,
       "activation_difference": 407.331,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7573"
      },
      {
@@ -414,7 +414,7 @@
       "standardised_difference": 0.664,
       "activation_difference": 325.131,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2903"
      },
      {
@@ -422,7 +422,7 @@
       "standardised_difference": 0.64,
       "activation_difference": 1207.441,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491"
      },
      {
@@ -430,7 +430,7 @@
       "standardised_difference": 0.621,
       "activation_difference": 388.112,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571"
      },
      {
@@ -438,7 +438,7 @@
       "standardised_difference": 0.612,
       "activation_difference": 374.846,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1018"
      },
      {
@@ -446,7 +446,7 @@
       "standardised_difference": -0.608,
       "activation_difference": -671.661,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/755"
      },
      {
@@ -454,7 +454,7 @@
       "standardised_difference": -0.594,
       "activation_difference": -384.704,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061"
      },
      {
@@ -462,7 +462,7 @@
       "standardised_difference": 0.575,
       "activation_difference": 196.25,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/12726"
      },
      {
@@ -470,7 +470,7 @@
       "standardised_difference": -0.568,
       "activation_difference": -267.178,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1826"
      },
      {
@@ -478,15 +478,15 @@
       "standardised_difference": 0.552,
       "activation_difference": 371.954,
       "p": 0.001,
-      "q": 0.0148,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000"
      },
      {
       "feature": 4921,
       "standardised_difference": 0.54,
       "activation_difference": 302.447,
-      "p": 0.003,
-      "q": 0.0257,
+      "p": 0.001,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4921"
      },
      {
@@ -494,7 +494,7 @@
       "standardised_difference": 0.527,
       "activation_difference": 405.755,
       "p": 0.002,
-      "q": 0.0204,
+      "q": 0.0171,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708"
      },
      {
@@ -502,23 +502,23 @@
       "standardised_difference": 0.494,
       "activation_difference": 264.0,
       "p": 0.002,
-      "q": 0.0204,
+      "q": 0.0171,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2559"
      },
      {
       "feature": 1951,
       "standardised_difference": -0.491,
       "activation_difference": -210.946,
-      "p": 0.002,
-      "q": 0.0204,
+      "p": 0.001,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1951"
      },
      {
       "feature": 946,
       "standardised_difference": -0.45,
       "activation_difference": -312.936,
-      "p": 0.002,
-      "q": 0.0204,
+      "p": 0.001,
+      "q": 0.0116,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/946"
      }
     ]
@@ -661,14 +661,14 @@
      120
     ],
     "features_tested": 151,
-    "q_below_0.05": 34,
+    "q_below_0.05": 38,
     "top": [
      {
       "feature": 11649,
       "standardised_difference": 0.776,
       "activation_difference": 39.822,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
      },
      {
@@ -676,15 +676,15 @@
       "standardised_difference": 0.628,
       "activation_difference": 21.451,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059"
      },
      {
       "feature": 11000,
       "standardised_difference": -0.583,
       "activation_difference": -43.977,
-      "p": 0.001,
-      "q": 0.0089,
+      "p": 0.002,
+      "q": 0.0177,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000"
      },
      {
@@ -692,7 +692,7 @@
       "standardised_difference": 0.574,
       "activation_difference": 40.302,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395"
      },
      {
@@ -700,7 +700,7 @@
       "standardised_difference": -0.551,
       "activation_difference": -21.942,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368"
      },
      {
@@ -708,7 +708,7 @@
       "standardised_difference": 0.549,
       "activation_difference": 72.008,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741"
      },
      {
@@ -716,7 +716,7 @@
       "standardised_difference": -0.538,
       "activation_difference": -48.247,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402"
      },
      {
@@ -724,7 +724,7 @@
       "standardised_difference": 0.518,
       "activation_difference": 65.373,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/907"
      },
      {
@@ -732,47 +732,47 @@
       "standardised_difference": 0.493,
       "activation_difference": 27.301,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445"
      },
      {
       "feature": 76,
       "standardised_difference": -0.487,
-      "activation_difference": -112.642,
+      "activation_difference": -112.643,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/76"
      },
      {
       "feature": 10712,
       "standardised_difference": 0.473,
       "activation_difference": 29.287,
-      "p": 0.001,
-      "q": 0.0089,
+      "p": 0.002,
+      "q": 0.0177,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10712"
      },
      {
       "feature": 8185,
       "standardised_difference": -0.473,
       "activation_difference": -26.979,
-      "p": 0.002,
-      "q": 0.0137,
+      "p": 0.005,
+      "q": 0.026,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185"
      },
      {
       "feature": 334,
       "standardised_difference": -0.471,
       "activation_difference": -215.448,
-      "p": 0.002,
-      "q": 0.0137,
+      "p": 0.001,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/334"
      },
      {
       "feature": 3051,
       "standardised_difference": 0.471,
       "activation_difference": 70.486,
-      "p": 0.002,
-      "q": 0.0137,
+      "p": 0.001,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051"
      },
      {
@@ -780,7 +780,7 @@
       "standardised_difference": 0.468,
       "activation_difference": 61.423,
       "p": 0.001,
-      "q": 0.0089,
+      "q": 0.0108,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7789"
      }
     ]
@@ -798,7 +798,7 @@
       "standardised_difference": 0.735,
       "activation_difference": 383.307,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515"
      },
      {
@@ -806,7 +806,7 @@
       "standardised_difference": 0.719,
       "activation_difference": 321.932,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871"
      },
      {
@@ -814,7 +814,7 @@
       "standardised_difference": 0.704,
       "activation_difference": 230.693,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288"
      },
      {
@@ -822,7 +822,7 @@
       "standardised_difference": 0.687,
       "activation_difference": 298.545,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740"
      },
      {
@@ -830,7 +830,7 @@
       "standardised_difference": -0.684,
       "activation_difference": -237.451,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4214"
      },
      {
@@ -838,7 +838,7 @@
       "standardised_difference": -0.619,
       "activation_difference": -124.073,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017"
      },
      {
@@ -846,7 +846,7 @@
       "standardised_difference": -0.618,
       "activation_difference": -117.912,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2882"
      },
      {
@@ -854,15 +854,15 @@
       "standardised_difference": -0.606,
       "activation_difference": -135.682,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1744"
      },
      {
       "feature": 2900,
       "standardised_difference": -0.603,
       "activation_difference": -151.153,
-      "p": 0.001,
-      "q": 0.0045,
+      "p": 0.002,
+      "q": 0.0077,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900"
      },
      {
@@ -870,15 +870,15 @@
       "standardised_difference": -0.603,
       "activation_difference": -131.125,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2079"
      },
      {
       "feature": 4805,
       "standardised_difference": -0.597,
       "activation_difference": -318.974,
-      "p": 0.001,
-      "q": 0.0045,
+      "p": 0.002,
+      "q": 0.0077,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805"
      },
      {
@@ -886,15 +886,15 @@
       "standardised_difference": -0.596,
       "activation_difference": -186.12,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/13577"
      },
      {
       "feature": 2608,
       "standardised_difference": -0.595,
       "activation_difference": -132.651,
-      "p": 0.001,
-      "q": 0.0045,
+      "p": 0.002,
+      "q": 0.0077,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608"
      },
      {
@@ -902,7 +902,7 @@
       "standardised_difference": -0.594,
       "activation_difference": -149.1,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7092"
      },
      {
@@ -910,7 +910,7 @@
       "standardised_difference": 0.591,
       "activation_difference": 103.63,
       "p": 0.001,
-      "q": 0.0045,
+      "q": 0.0058,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605"
      }
     ]
@@ -926,9 +926,9 @@
      {
       "feature": 463,
       "standardised_difference": 0.788,
-      "activation_difference": 1148.454,
+      "activation_difference": 1148.455,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/463"
      },
      {
@@ -936,7 +936,7 @@
       "standardised_difference": 0.667,
       "activation_difference": 503.132,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708"
      },
      {
@@ -944,7 +944,7 @@
       "standardised_difference": 0.662,
       "activation_difference": 428.896,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/367"
      },
      {
@@ -952,7 +952,7 @@
       "standardised_difference": 0.622,
       "activation_difference": 229.364,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1462"
      },
      {
@@ -960,7 +960,7 @@
       "standardised_difference": -0.597,
       "activation_difference": -722.19,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/822"
      },
      {
@@ -968,7 +968,7 @@
       "standardised_difference": -0.592,
       "activation_difference": -184.432,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/698"
      },
      {
@@ -976,7 +976,7 @@
       "standardised_difference": 0.588,
       "activation_difference": 1113.5,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491"
      },
      {
@@ -984,7 +984,7 @@
       "standardised_difference": -0.555,
       "activation_difference": -231.761,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10433"
      },
      {
@@ -992,7 +992,7 @@
       "standardised_difference": -0.544,
       "activation_difference": -120.334,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4228"
      },
      {
@@ -1000,7 +1000,7 @@
       "standardised_difference": -0.534,
       "activation_difference": -201.588,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/897"
      },
      {
@@ -1008,7 +1008,7 @@
       "standardised_difference": -0.524,
       "activation_difference": -542.935,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1571"
      },
      {
@@ -1016,15 +1016,15 @@
       "standardised_difference": 0.511,
       "activation_difference": 222.859,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179"
      },
      {
       "feature": 4586,
       "standardised_difference": 0.504,
       "activation_difference": 186.466,
-      "p": 0.002,
-      "q": 0.0136,
+      "p": 0.001,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586"
      },
      {
@@ -1032,15 +1032,15 @@
       "standardised_difference": -0.503,
       "activation_difference": -89.605,
       "p": 0.001,
-      "q": 0.0096,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9624"
      },
      {
       "feature": 3798,
       "standardised_difference": -0.502,
       "activation_difference": -192.518,
-      "p": 0.002,
-      "q": 0.0136,
+      "p": 0.001,
+      "q": 0.0074,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798"
      }
     ]
@@ -1183,14 +1183,14 @@
      60
     ],
     "features_tested": 147,
-    "q_below_0.05": 24,
+    "q_below_0.05": 23,
     "top": [
      {
       "feature": 11000,
       "standardised_difference": -0.815,
       "activation_difference": -58.734,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000"
      },
      {
@@ -1198,7 +1198,7 @@
       "standardised_difference": -0.734,
       "activation_difference": -19.633,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11837"
      },
      {
@@ -1206,7 +1206,7 @@
       "standardised_difference": -0.66,
       "activation_difference": -25.329,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671"
      },
      {
@@ -1214,7 +1214,7 @@
       "standardised_difference": 0.658,
       "activation_difference": 18.836,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13585"
      },
      {
@@ -1222,7 +1222,7 @@
       "standardised_difference": -0.656,
       "activation_difference": -19.143,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11165"
      },
      {
@@ -1230,7 +1230,7 @@
       "standardised_difference": -0.641,
       "activation_difference": -25.385,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368"
      },
      {
@@ -1238,7 +1238,7 @@
       "standardised_difference": 0.633,
       "activation_difference": 86.917,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/831"
      },
      {
@@ -1246,7 +1246,7 @@
       "standardised_difference": 0.631,
       "activation_difference": 32.689,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
      },
      {
@@ -1254,7 +1254,7 @@
       "standardised_difference": -0.622,
       "activation_difference": -60.156,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402"
      },
      {
@@ -1262,7 +1262,7 @@
       "standardised_difference": -0.604,
       "activation_difference": -19.695,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712"
      },
      {
@@ -1270,7 +1270,7 @@
       "standardised_difference": 0.579,
       "activation_difference": 87.307,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/607"
      },
      {
@@ -1278,15 +1278,15 @@
       "standardised_difference": 0.569,
       "activation_difference": 83.243,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051"
      },
      {
       "feature": 10617,
       "standardised_difference": -0.554,
       "activation_difference": -50.703,
-      "p": 0.001,
-      "q": 0.0105,
+      "p": 0.002,
+      "q": 0.0173,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10617"
      },
      {
@@ -1294,15 +1294,15 @@
       "standardised_difference": -0.541,
       "activation_difference": -30.323,
       "p": 0.001,
-      "q": 0.0105,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674"
      },
      {
       "feature": 12577,
       "standardised_difference": 0.533,
       "activation_difference": 27.921,
-      "p": 0.004,
-      "q": 0.0326,
+      "p": 0.001,
+      "q": 0.0092,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12577"
      }
     ]
@@ -1313,7 +1313,7 @@
      60
     ],
     "features_tested": 160,
-    "q_below_0.05": 27,
+    "q_below_0.05": 29,
     "top": [
      {
       "feature": 11281,
@@ -1342,7 +1342,7 @@
      {
       "feature": 4056,
       "standardised_difference": -0.618,
-      "activation_difference": -184.24,
+      "activation_difference": -184.241,
       "p": 0.001,
       "q": 0.0266,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4056"
@@ -1367,8 +1367,8 @@
       "feature": 1128,
       "standardised_difference": 0.507,
       "activation_difference": 106.106,
-      "p": 0.006,
-      "q": 0.043,
+      "p": 0.002,
+      "q": 0.0355,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128"
      },
      {
@@ -1376,15 +1376,15 @@
       "standardised_difference": 0.496,
       "activation_difference": 123.1,
       "p": 0.002,
-      "q": 0.0369,
+      "q": 0.0355,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6048"
      },
      {
       "feature": 12956,
       "standardised_difference": -0.471,
       "activation_difference": -73.91,
-      "p": 0.003,
-      "q": 0.0369,
+      "p": 0.005,
+      "q": 0.0436,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/12956"
      },
      {
@@ -1392,23 +1392,23 @@
       "standardised_difference": 0.46,
       "activation_difference": 111.993,
       "p": 0.003,
-      "q": 0.0369,
+      "q": 0.04,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900"
      },
      {
       "feature": 3369,
       "standardised_difference": -0.458,
       "activation_difference": -98.468,
-      "p": 0.002,
-      "q": 0.0369,
+      "p": 0.006,
+      "q": 0.0436,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369"
      },
      {
       "feature": 1708,
       "standardised_difference": -0.454,
       "activation_difference": -53.092,
-      "p": 0.007,
-      "q": 0.043,
+      "p": 0.005,
+      "q": 0.0436,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708"
      },
      {
@@ -1416,23 +1416,23 @@
       "standardised_difference": -0.449,
       "activation_difference": -122.622,
       "p": 0.003,
-      "q": 0.0369,
+      "q": 0.04,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951"
      },
      {
       "feature": 2608,
       "standardised_difference": 0.448,
       "activation_difference": 96.34,
-      "p": 0.003,
-      "q": 0.0369,
+      "p": 0.004,
+      "q": 0.0436,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608"
      },
      {
       "feature": 515,
       "standardised_difference": -0.441,
       "activation_difference": -231.251,
-      "p": 0.003,
-      "q": 0.0369,
+      "p": 0.002,
+      "q": 0.0355,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515"
      }
     ]
@@ -1443,14 +1443,14 @@
      60
     ],
     "features_tested": 166,
-    "q_below_0.05": 16,
+    "q_below_0.05": 17,
     "top": [
      {
       "feature": 1583,
       "standardised_difference": -0.642,
       "activation_difference": -90.783,
-      "p": 0.002,
-      "q": 0.0355,
+      "p": 0.001,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1583"
      },
      {
@@ -1458,15 +1458,15 @@
       "standardised_difference": -0.582,
       "activation_difference": -372.086,
       "p": 0.001,
-      "q": 0.0332,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571"
      },
      {
       "feature": 2880,
       "standardised_difference": -0.527,
       "activation_difference": -162.91,
-      "p": 0.002,
-      "q": 0.0355,
+      "p": 0.001,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880"
      },
      {
@@ -1474,71 +1474,71 @@
       "standardised_difference": -0.525,
       "activation_difference": -103.195,
       "p": 0.001,
-      "q": 0.0332,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380"
      },
      {
       "feature": 843,
       "standardised_difference": -0.513,
-      "activation_difference": -142.437,
+      "activation_difference": -142.438,
       "p": 0.001,
-      "q": 0.0332,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/843"
      },
      {
       "feature": 1409,
       "standardised_difference": -0.499,
       "activation_difference": -103.763,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.004,
+      "q": 0.0442,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1409"
      },
      {
       "feature": 1002,
       "standardised_difference": -0.497,
       "activation_difference": -226.584,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.001,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1002"
      },
      {
       "feature": 1179,
       "standardised_difference": -0.494,
       "activation_difference": -205.351,
-      "p": 0.001,
-      "q": 0.0332,
+      "p": 0.002,
+      "q": 0.0276,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179"
      },
      {
       "feature": 13569,
       "standardised_difference": -0.49,
       "activation_difference": -122.583,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.004,
+      "q": 0.0442,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/13569"
      },
      {
       "feature": 3420,
       "standardised_difference": -0.488,
       "activation_difference": -187.334,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.001,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3420"
      },
      {
       "feature": 4586,
       "standardised_difference": -0.483,
       "activation_difference": -176.844,
-      "p": 0.002,
-      "q": 0.0355,
+      "p": 0.001,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586"
      },
      {
       "feature": 14456,
       "standardised_difference": 0.482,
       "activation_difference": 134.715,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.002,
+      "q": 0.0276,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456"
      },
      {
@@ -1546,156 +1546,156 @@
       "standardised_difference": -0.48,
       "activation_difference": -207.682,
       "p": 0.001,
-      "q": 0.0332,
+      "q": 0.0184,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4647"
      },
      {
       "feature": 3061,
       "standardised_difference": -0.473,
       "activation_difference": -325.684,
-      "p": 0.004,
-      "q": 0.0415,
+      "p": 0.003,
+      "q": 0.0383,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061"
      },
      {
       "feature": 5548,
       "standardised_difference": 0.464,
       "activation_difference": 197.262,
-      "p": 0.003,
-      "q": 0.0355,
+      "p": 0.002,
+      "q": 0.0276,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5548"
      }
     ]
    }
   },
-  "All experiments: went along vs did not": {
+  "All experiments: went along vs did not (same request, experiment and framing)": {
    "12": {
     "n": [
      286,
      1424
     ],
     "features_tested": 56,
-    "q_below_0.05": 37,
+    "q_below_0.05": 0,
     "top": [
      {
-      "feature": 524,
-      "standardised_difference": 0.557,
-      "activation_difference": 3.243,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524"
+      "feature": 9234,
+      "standardised_difference": -0.382,
+      "activation_difference": -1.78,
+      "p": 0.003,
+      "q": 0.0839,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9234"
+     },
+     {
+      "feature": 3143,
+      "standardised_difference": -0.333,
+      "activation_difference": -0.912,
+      "p": 0.003,
+      "q": 0.0839,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3143"
+     },
+     {
+      "feature": 9038,
+      "standardised_difference": 0.311,
+      "activation_difference": 2.349,
+      "p": 0.006,
+      "q": 0.1119,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9038"
+     },
+     {
+      "feature": 16341,
+      "standardised_difference": 0.288,
+      "activation_difference": 3.086,
+      "p": 0.017,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341"
+     },
+     {
+      "feature": 2653,
+      "standardised_difference": -0.275,
+      "activation_difference": -0.85,
+      "p": 0.014,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2653"
+     },
+     {
+      "feature": 1245,
+      "standardised_difference": -0.273,
+      "activation_difference": -1.75,
+      "p": 0.023,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1245"
      },
      {
       "feature": 2604,
-      "standardised_difference": 0.527,
-      "activation_difference": 4.541,
-      "p": 0.001,
-      "q": 0.0023,
+      "standardised_difference": -0.256,
+      "activation_difference": -0.816,
+      "p": 0.017,
+      "q": 0.1399,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604"
      },
      {
-      "feature": 482,
-      "standardised_difference": 0.526,
-      "activation_difference": 13.45,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482"
+      "feature": 6423,
+      "standardised_difference": -0.252,
+      "activation_difference": -1.362,
+      "p": 0.025,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/6423"
      },
      {
-      "feature": 277,
-      "standardised_difference": -0.488,
-      "activation_difference": -14.118,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/277"
+      "feature": 2365,
+      "standardised_difference": 0.248,
+      "activation_difference": 3.0,
+      "p": 0.023,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2365"
      },
      {
-      "feature": 3985,
-      "standardised_difference": 0.485,
-      "activation_difference": 6.985,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3985"
+      "feature": 5791,
+      "standardised_difference": -0.246,
+      "activation_difference": -0.679,
+      "p": 0.024,
+      "q": 0.1399,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791"
      },
      {
-      "feature": 117,
-      "standardised_difference": -0.466,
-      "activation_difference": -16.6,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/117"
+      "feature": 2819,
+      "standardised_difference": 0.222,
+      "activation_difference": 0.671,
+      "p": 0.033,
+      "q": 0.1678,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2819"
+     },
+     {
+      "feature": 5762,
+      "standardised_difference": -0.201,
+      "activation_difference": -2.414,
+      "p": 0.0629,
+      "q": 0.2637,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5762"
      },
      {
       "feature": 3000,
-      "standardised_difference": 0.461,
-      "activation_difference": 7.746,
-      "p": 0.001,
-      "q": 0.0023,
+      "standardised_difference": -0.199,
+      "activation_difference": -1.764,
+      "p": 0.0659,
+      "q": 0.2637,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000"
      },
      {
-      "feature": 276,
-      "standardised_difference": 0.438,
-      "activation_difference": 9.327,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/276"
+      "feature": 9773,
+      "standardised_difference": -0.197,
+      "activation_difference": -0.808,
+      "p": 0.0609,
+      "q": 0.2637,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9773"
      },
      {
-      "feature": 314,
-      "standardised_difference": 0.414,
-      "activation_difference": 8.042,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/314"
-     },
-     {
-      "feature": 438,
-      "standardised_difference": 0.403,
-      "activation_difference": 9.107,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438"
-     },
-     {
-      "feature": 3205,
-      "standardised_difference": 0.399,
-      "activation_difference": 1.681,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3205"
-     },
-     {
-      "feature": 168,
-      "standardised_difference": -0.394,
-      "activation_difference": -7.383,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/168"
-     },
-     {
-      "feature": 1641,
-      "standardised_difference": 0.39,
-      "activation_difference": 5.097,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641"
-     },
-     {
-      "feature": 220,
-      "standardised_difference": 0.381,
-      "activation_difference": 7.556,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/220"
-     },
-     {
-      "feature": 2328,
-      "standardised_difference": 0.376,
-      "activation_difference": 4.96,
-      "p": 0.001,
-      "q": 0.0023,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2328"
+      "feature": 111,
+      "standardised_difference": -0.196,
+      "activation_difference": -1.331,
+      "p": 0.0769,
+      "q": 0.2692,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/111"
      }
     ]
    },
@@ -1705,127 +1705,127 @@
      1424
     ],
     "features_tested": 140,
-    "q_below_0.05": 52,
+    "q_below_0.05": 21,
     "top": [
      {
-      "feature": 11649,
-      "standardised_difference": 0.723,
-      "activation_difference": 38.796,
+      "feature": 3068,
+      "standardised_difference": 0.61,
+      "activation_difference": 66.303,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3068"
      },
      {
-      "feature": 9368,
-      "standardised_difference": -0.548,
-      "activation_difference": -24.183,
+      "feature": 13799,
+      "standardised_difference": -0.51,
+      "activation_difference": -17.536,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13799"
      },
      {
-      "feature": 11000,
-      "standardised_difference": -0.536,
-      "activation_difference": -46.367,
+      "feature": 869,
+      "standardised_difference": 0.477,
+      "activation_difference": 41.294,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/869"
      },
      {
-      "feature": 3987,
-      "standardised_difference": 0.485,
-      "activation_difference": 55.131,
+      "feature": 16222,
+      "standardised_difference": -0.447,
+      "activation_difference": -29.714,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3987"
-     },
-     {
-      "feature": 1672,
-      "standardised_difference": 0.463,
-      "activation_difference": 37.957,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1672"
-     },
-     {
-      "feature": 607,
-      "standardised_difference": 0.455,
-      "activation_difference": 68.719,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/607"
-     },
-     {
-      "feature": 5671,
-      "standardised_difference": -0.44,
-      "activation_difference": -17.498,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671"
-     },
-     {
-      "feature": 12646,
-      "standardised_difference": 0.431,
-      "activation_difference": 26.116,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12646"
-     },
-     {
-      "feature": 9908,
-      "standardised_difference": 0.399,
-      "activation_difference": 49.443,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9908"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222"
      },
      {
       "feature": 11975,
-      "standardised_difference": -0.392,
-      "activation_difference": -18.002,
+      "standardised_difference": -0.413,
+      "activation_difference": -15.017,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0127,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11975"
      },
      {
-      "feature": 6382,
-      "standardised_difference": 0.38,
-      "activation_difference": 16.173,
+      "feature": 116,
+      "standardised_difference": -0.412,
+      "activation_difference": -63.705,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6382"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116"
      },
      {
-      "feature": 3051,
-      "standardised_difference": 0.368,
-      "activation_difference": 39.455,
+      "feature": 12075,
+      "standardised_difference": -0.412,
+      "activation_difference": -7.44,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12075"
      },
      {
-      "feature": 579,
-      "standardised_difference": 0.364,
-      "activation_difference": 44.526,
-      "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/579"
+      "feature": 7925,
+      "standardised_difference": 0.409,
+      "activation_difference": 44.429,
+      "p": 0.002,
+      "q": 0.0215,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7925"
      },
      {
-      "feature": 12678,
-      "standardised_difference": 0.335,
-      "activation_difference": 16.161,
+      "feature": 2896,
+      "standardised_difference": -0.403,
+      "activation_difference": -37.032,
       "p": 0.001,
-      "q": 0.0048,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678"
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2896"
+     },
+     {
+      "feature": 5341,
+      "standardised_difference": 0.4,
+      "activation_difference": 29.049,
+      "p": 0.004,
+      "q": 0.0311,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5341"
+     },
+     {
+      "feature": 4250,
+      "standardised_difference": -0.393,
+      "activation_difference": -30.055,
+      "p": 0.001,
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4250"
      },
      {
       "feature": 222,
-      "standardised_difference": 0.333,
-      "activation_difference": 45.585,
-      "p": 0.001,
-      "q": 0.0048,
+      "standardised_difference": 0.39,
+      "activation_difference": 40.968,
+      "p": 0.002,
+      "q": 0.0215,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222"
+     },
+     {
+      "feature": 3987,
+      "standardised_difference": 0.386,
+      "activation_difference": 37.846,
+      "p": 0.001,
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3987"
+     },
+     {
+      "feature": 12678,
+      "standardised_difference": 0.384,
+      "activation_difference": 13.606,
+      "p": 0.001,
+      "q": 0.0127,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678"
+     },
+     {
+      "feature": 11649,
+      "standardised_difference": 0.346,
+      "activation_difference": 16.27,
+      "p": 0.003,
+      "q": 0.0262,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
      }
     ]
    },
@@ -1835,127 +1835,127 @@
      1424
     ],
     "features_tested": 162,
-    "q_below_0.05": 28,
+    "q_below_0.05": 15,
     "top": [
      {
-      "feature": 1128,
-      "standardised_difference": 0.587,
-      "activation_difference": 172.78,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128"
-     },
-     {
-      "feature": 2103,
-      "standardised_difference": 0.436,
-      "activation_difference": 90.187,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103"
-     },
-     {
       "feature": 4368,
-      "standardised_difference": -0.421,
-      "activation_difference": -133.515,
+      "standardised_difference": -0.693,
+      "activation_difference": -159.451,
       "p": 0.001,
-      "q": 0.0116,
+      "q": 0.018,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368"
      },
      {
-      "feature": 95,
-      "standardised_difference": 0.391,
-      "activation_difference": 116.72,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/95"
-     },
-     {
-      "feature": 605,
-      "standardised_difference": -0.361,
-      "activation_difference": -79.007,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605"
-     },
-     {
-      "feature": 3309,
-      "standardised_difference": -0.35,
-      "activation_difference": -84.721,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3309"
-     },
-     {
       "feature": 7338,
-      "standardised_difference": 0.342,
-      "activation_difference": 69.208,
+      "standardised_difference": 0.675,
+      "activation_difference": 97.494,
       "p": 0.001,
-      "q": 0.0116,
+      "q": 0.018,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7338"
      },
      {
-      "feature": 1874,
-      "standardised_difference": -0.331,
-      "activation_difference": -53.075,
+      "feature": 95,
+      "standardised_difference": 0.527,
+      "activation_difference": 124.712,
       "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1874"
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/95"
      },
      {
-      "feature": 2809,
-      "standardised_difference": 0.298,
-      "activation_difference": 67.571,
+      "feature": 1128,
+      "standardised_difference": 0.469,
+      "activation_difference": 107.986,
       "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2809"
-     },
-     {
-      "feature": 11281,
-      "standardised_difference": -0.269,
-      "activation_difference": -68.466,
-      "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/11281"
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128"
      },
      {
       "feature": 3331,
-      "standardised_difference": 0.259,
-      "activation_difference": 54.956,
-      "p": 0.001,
-      "q": 0.0116,
+      "standardised_difference": 0.431,
+      "activation_difference": 75.551,
+      "p": 0.002,
+      "q": 0.027,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3331"
      },
      {
-      "feature": 6294,
-      "standardised_difference": 0.256,
-      "activation_difference": 55.399,
+      "feature": 605,
+      "standardised_difference": -0.424,
+      "activation_difference": -77.996,
       "p": 0.001,
-      "q": 0.0116,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6294"
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605"
      },
      {
-      "feature": 12192,
-      "standardised_difference": 0.254,
-      "activation_difference": 78.76,
-      "p": 0.002,
-      "q": 0.017,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/12192"
+      "feature": 892,
+      "standardised_difference": 0.421,
+      "activation_difference": 65.437,
+      "p": 0.001,
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/892"
      },
      {
-      "feature": 26,
-      "standardised_difference": -0.253,
-      "activation_difference": -83.535,
+      "feature": 1275,
+      "standardised_difference": 0.393,
+      "activation_difference": 58.495,
+      "p": 0.001,
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1275"
+     },
+     {
+      "feature": 3309,
+      "standardised_difference": -0.38,
+      "activation_difference": -75.281,
+      "p": 0.001,
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3309"
+     },
+     {
+      "feature": 896,
+      "standardised_difference": -0.378,
+      "activation_difference": -74.174,
+      "p": 0.001,
+      "q": 0.018,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/896"
+     },
+     {
+      "feature": 6617,
+      "standardised_difference": 0.374,
+      "activation_difference": 88.501,
       "p": 0.003,
-      "q": 0.0231,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/26"
+      "q": 0.0324,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6617"
      },
      {
-      "feature": 1826,
-      "standardised_difference": -0.25,
-      "activation_difference": -45.179,
+      "feature": 5297,
+      "standardised_difference": -0.363,
+      "activation_difference": -38.072,
+      "p": 0.003,
+      "q": 0.0324,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5297"
+     },
+     {
+      "feature": 2069,
+      "standardised_difference": -0.335,
+      "activation_difference": -66.883,
       "p": 0.002,
-      "q": 0.017,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1826"
+      "q": 0.027,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2069"
+     },
+     {
+      "feature": 1293,
+      "standardised_difference": 0.332,
+      "activation_difference": 71.522,
+      "p": 0.003,
+      "q": 0.0324,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293"
+     },
+     {
+      "feature": 879,
+      "standardised_difference": -0.32,
+      "activation_difference": -60.58,
+      "p": 0.002,
+      "q": 0.027,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/879"
      }
     ]
    },
@@ -1965,127 +1965,127 @@
      1424
     ],
     "features_tested": 171,
-    "q_below_0.05": 31,
+    "q_below_0.05": 18,
     "top": [
      {
-      "feature": 14456,
-      "standardised_difference": 0.417,
-      "activation_difference": 159.883,
+      "feature": 3296,
+      "standardised_difference": 0.433,
+      "activation_difference": 179.029,
       "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456"
-     },
-     {
-      "feature": 5120,
-      "standardised_difference": 0.411,
-      "activation_difference": 162.083,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5120"
-     },
-     {
-      "feature": 5995,
-      "standardised_difference": 0.345,
-      "activation_difference": 122.936,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5995"
-     },
-     {
-      "feature": 6928,
-      "standardised_difference": 0.338,
-      "activation_difference": 140.652,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6928"
-     },
-     {
-      "feature": 865,
-      "standardised_difference": 0.323,
-      "activation_difference": 163.604,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865"
-     },
-     {
-      "feature": 11781,
-      "standardised_difference": 0.312,
-      "activation_difference": 194.451,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781"
-     },
-     {
-      "feature": 8520,
-      "standardised_difference": 0.308,
-      "activation_difference": 226.687,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8520"
+      "q": 0.0285,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3296"
      },
      {
       "feature": 7528,
-      "standardised_difference": -0.305,
-      "activation_difference": -215.026,
+      "standardised_difference": -0.431,
+      "activation_difference": -244.039,
       "p": 0.001,
-      "q": 0.0122,
+      "q": 0.0285,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7528"
      },
      {
-      "feature": 1163,
-      "standardised_difference": 0.287,
-      "activation_difference": 127.317,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1163"
-     },
-     {
-      "feature": 1742,
-      "standardised_difference": -0.274,
-      "activation_difference": -39.956,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1742"
+      "feature": 22,
+      "standardised_difference": -0.424,
+      "activation_difference": -190.987,
+      "p": 0.002,
+      "q": 0.038,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/22"
      },
      {
       "feature": 2880,
-      "standardised_difference": -0.272,
-      "activation_difference": -89.573,
+      "standardised_difference": -0.406,
+      "activation_difference": -104.196,
       "p": 0.001,
-      "q": 0.0122,
+      "q": 0.0285,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880"
      },
      {
-      "feature": 451,
-      "standardised_difference": 0.269,
-      "activation_difference": 183.822,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/451"
+      "feature": 911,
+      "standardised_difference": -0.398,
+      "activation_difference": -171.13,
+      "p": 0.002,
+      "q": 0.038,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/911"
      },
      {
-      "feature": 1685,
-      "standardised_difference": 0.259,
-      "activation_difference": 100.36,
+      "feature": 664,
+      "standardised_difference": 0.388,
+      "activation_difference": 68.363,
+      "p": 0.001,
+      "q": 0.0285,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/664"
+     },
+     {
+      "feature": 11781,
+      "standardised_difference": 0.384,
+      "activation_difference": 204.916,
+      "p": 0.002,
+      "q": 0.038,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781"
+     },
+     {
+      "feature": 865,
+      "standardised_difference": 0.377,
+      "activation_difference": 150.572,
+      "p": 0.001,
+      "q": 0.0285,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865"
+     },
+     {
+      "feature": 14456,
+      "standardised_difference": 0.374,
+      "activation_difference": 120.211,
+      "p": 0.001,
+      "q": 0.0285,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456"
+     },
+     {
+      "feature": 6705,
+      "standardised_difference": -0.361,
+      "activation_difference": -114.565,
+      "p": 0.005,
+      "q": 0.0475,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6705"
+     },
+     {
+      "feature": 7808,
+      "standardised_difference": 0.355,
+      "activation_difference": 127.583,
+      "p": 0.005,
+      "q": 0.0475,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7808"
+     },
+     {
+      "feature": 3021,
+      "standardised_difference": -0.343,
+      "activation_difference": -74.794,
       "p": 0.003,
-      "q": 0.027,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1685"
+      "q": 0.0466,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3021"
      },
      {
-      "feature": 6938,
-      "standardised_difference": 0.258,
-      "activation_difference": 110.673,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6938"
+      "feature": 375,
+      "standardised_difference": -0.337,
+      "activation_difference": -297.944,
+      "p": 0.003,
+      "q": 0.0466,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/375"
      },
      {
-      "feature": 8470,
-      "standardised_difference": -0.255,
-      "activation_difference": -110.094,
-      "p": 0.001,
-      "q": 0.0122,
-      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8470"
+      "feature": 3067,
+      "standardised_difference": -0.336,
+      "activation_difference": -65.341,
+      "p": 0.006,
+      "q": 0.0512,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3067"
+     },
+     {
+      "feature": 1033,
+      "standardised_difference": -0.336,
+      "activation_difference": -122.563,
+      "p": 0.004,
+      "q": 0.0475,
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1033"
      }
     ]
    }
@@ -2150,7 +2150,7 @@
      {
       "feature": 438,
       "standardised_difference": 1.46,
-      "activation_difference": 14.594,
+      "activation_difference": 14.593,
       "p": 0.001,
       "q": 0.0029,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438"
@@ -2227,14 +2227,14 @@
      30
     ],
     "features_tested": 136,
-    "q_below_0.05": 12,
+    "q_below_0.05": 14,
     "top": [
      {
       "feature": 13744,
       "standardised_difference": -1.189,
       "activation_difference": -53.32,
       "p": 0.001,
-      "q": 0.0226,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13744"
      },
      {
@@ -2242,7 +2242,7 @@
       "standardised_difference": 1.055,
       "activation_difference": 66.399,
       "p": 0.001,
-      "q": 0.0226,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395"
      },
      {
@@ -2250,7 +2250,7 @@
       "standardised_difference": 0.836,
       "activation_difference": 48.699,
       "p": 0.001,
-      "q": 0.0226,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11552"
      },
      {
@@ -2258,15 +2258,15 @@
       "standardised_difference": 0.799,
       "activation_difference": 105.138,
       "p": 0.002,
-      "q": 0.0388,
+      "q": 0.0247,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1826"
      },
      {
       "feature": 4392,
       "standardised_difference": 0.772,
       "activation_difference": 52.379,
-      "p": 0.004,
-      "q": 0.0453,
+      "p": 0.002,
+      "q": 0.0247,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4392"
      },
      {
@@ -2274,7 +2274,7 @@
       "standardised_difference": 0.73,
       "activation_difference": 32.882,
       "p": 0.001,
-      "q": 0.0226,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445"
      },
      {
@@ -2282,31 +2282,31 @@
       "standardised_difference": -0.725,
       "activation_difference": -16.563,
       "p": 0.001,
-      "q": 0.0226,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10327"
      },
      {
       "feature": 116,
       "standardised_difference": 0.704,
       "activation_difference": 90.048,
-      "p": 0.001,
-      "q": 0.0226,
+      "p": 0.002,
+      "q": 0.0247,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116"
      },
      {
       "feature": 6460,
       "standardised_difference": -0.672,
       "activation_difference": -58.341,
-      "p": 0.004,
-      "q": 0.0453,
+      "p": 0.001,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6460"
      },
      {
       "feature": 14884,
       "standardised_difference": 0.66,
       "activation_difference": 51.922,
-      "p": 0.005,
-      "q": 0.0523,
+      "p": 0.002,
+      "q": 0.0247,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884"
      },
      {
@@ -2314,39 +2314,39 @@
       "standardised_difference": 0.659,
       "activation_difference": 32.585,
       "p": 0.003,
-      "q": 0.0453,
+      "q": 0.0314,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185"
      },
      {
       "feature": 14414,
       "standardised_difference": -0.646,
       "activation_difference": -55.315,
-      "p": 0.004,
-      "q": 0.0453,
+      "p": 0.003,
+      "q": 0.0314,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14414"
      },
      {
       "feature": 9368,
       "standardised_difference": -0.643,
-      "activation_difference": -23.91,
+      "activation_difference": -23.911,
       "p": 0.004,
-      "q": 0.0453,
+      "q": 0.0388,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368"
      },
      {
       "feature": 9712,
       "standardised_difference": 0.622,
       "activation_difference": 20.932,
-      "p": 0.009,
-      "q": 0.0719,
+      "p": 0.001,
+      "q": 0.0194,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712"
      },
      {
       "feature": 5480,
       "standardised_difference": -0.603,
       "activation_difference": -77.138,
-      "p": 0.007,
-      "q": 0.0634,
+      "p": 0.006,
+      "q": 0.0543,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5480"
      }
     ]
@@ -2419,15 +2419,15 @@
       "feature": 7525,
       "standardised_difference": -0.745,
       "activation_difference": -97.168,
-      "p": 0.002,
-      "q": 0.0382,
+      "p": 0.004,
+      "q": 0.0509,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7525"
      },
      {
       "feature": 968,
       "standardised_difference": 0.726,
       "activation_difference": 114.098,
-      "p": 0.003,
+      "p": 0.004,
       "q": 0.0509,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/968"
      },
@@ -2435,16 +2435,16 @@
       "feature": 569,
       "standardised_difference": -0.722,
       "activation_difference": -69.891,
-      "p": 0.007,
-      "q": 0.0892,
+      "p": 0.004,
+      "q": 0.0509,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/569"
      },
      {
       "feature": 1293,
       "standardised_difference": -0.706,
-      "activation_difference": -116.795,
-      "p": 0.004,
-      "q": 0.0556,
+      "activation_difference": -116.796,
+      "p": 0.002,
+      "q": 0.0382,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293"
      },
      {
@@ -2452,31 +2452,31 @@
       "standardised_difference": -0.652,
       "activation_difference": -245.376,
       "p": 0.004,
-      "q": 0.0556,
+      "q": 0.0509,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/429"
      },
      {
       "feature": 288,
       "standardised_difference": -0.567,
-      "activation_difference": -180.304,
-      "p": 0.011,
-      "q": 0.1051,
+      "activation_difference": -180.303,
+      "p": 0.005,
+      "q": 0.0588,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288"
      },
      {
       "feature": 448,
       "standardised_difference": 0.562,
       "activation_difference": 259.464,
-      "p": 0.011,
-      "q": 0.1051,
+      "p": 0.01,
+      "q": 0.1019,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/448"
      },
      {
       "feature": 8848,
       "standardised_difference": 0.554,
       "activation_difference": 56.897,
-      "p": 0.033,
-      "q": 0.2293,
+      "p": 0.036,
+      "q": 0.2459,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8848"
      }
     ]
@@ -2487,14 +2487,14 @@
      30
     ],
     "features_tested": 160,
-    "q_below_0.05": 7,
+    "q_below_0.05": 0,
     "top": [
      {
       "feature": 5413,
       "standardised_difference": -0.824,
       "activation_difference": -202.824,
-      "p": 0.002,
-      "q": 0.0457,
+      "p": 0.001,
+      "q": 0.0533,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5413"
      },
      {
@@ -2502,15 +2502,15 @@
       "standardised_difference": 0.809,
       "activation_difference": 346.068,
       "p": 0.001,
-      "q": 0.032,
+      "q": 0.0533,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2697"
      },
      {
       "feature": 11781,
       "standardised_difference": 0.755,
       "activation_difference": 365.228,
-      "p": 0.001,
-      "q": 0.032,
+      "p": 0.002,
+      "q": 0.0599,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781"
      },
      {
@@ -2518,47 +2518,47 @@
       "standardised_difference": -0.741,
       "activation_difference": -512.31,
       "p": 0.001,
-      "q": 0.032,
+      "q": 0.0533,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9082"
      },
      {
       "feature": 1163,
       "standardised_difference": 0.726,
       "activation_difference": 279.513,
-      "p": 0.001,
-      "q": 0.032,
+      "p": 0.003,
+      "q": 0.0599,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1163"
      },
      {
       "feature": 623,
       "standardised_difference": -0.722,
-      "activation_difference": -219.399,
+      "activation_difference": -219.398,
       "p": 0.002,
-      "q": 0.0457,
+      "q": 0.0599,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/623"
      },
      {
       "feature": 1734,
       "standardised_difference": -0.679,
       "activation_difference": -423.957,
-      "p": 0.001,
-      "q": 0.032,
+      "p": 0.003,
+      "q": 0.0599,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1734"
      },
      {
       "feature": 262,
       "standardised_difference": -0.674,
       "activation_difference": -172.478,
-      "p": 0.003,
-      "q": 0.0533,
+      "p": 0.005,
+      "q": 0.0727,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/262"
      },
      {
       "feature": 72,
       "standardised_difference": 0.642,
       "activation_difference": 239.086,
-      "p": 0.007,
-      "q": 0.1017,
+      "p": 0.008,
+      "q": 0.1066,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/72"
      },
      {
@@ -2566,47 +2566,47 @@
       "standardised_difference": -0.642,
       "activation_difference": -307.295,
       "p": 0.003,
-      "q": 0.0533,
+      "q": 0.0599,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6261"
      },
      {
       "feature": 2387,
       "standardised_difference": -0.625,
       "activation_difference": -144.838,
-      "p": 0.006,
-      "q": 0.0959,
+      "p": 0.005,
+      "q": 0.0727,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2387"
      },
      {
       "feature": 3798,
       "standardised_difference": -0.561,
       "activation_difference": -187.304,
-      "p": 0.011,
-      "q": 0.1256,
+      "p": 0.005,
+      "q": 0.0727,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798"
      },
      {
       "feature": 1742,
       "standardised_difference": -0.547,
       "activation_difference": -108.437,
-      "p": 0.009,
-      "q": 0.1199,
+      "p": 0.015,
+      "q": 0.1332,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1742"
      },
      {
       "feature": 1861,
       "standardised_difference": 0.545,
-      "activation_difference": 194.748,
-      "p": 0.015,
-      "q": 0.141,
+      "activation_difference": 194.747,
+      "p": 0.021,
+      "q": 0.1678,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1861"
      },
      {
       "feature": 1000,
       "standardised_difference": -0.538,
-      "activation_difference": -287.283,
-      "p": 0.01,
-      "q": 0.123,
+      "activation_difference": -287.284,
+      "p": 0.013,
+      "q": 0.1316,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000"
      }
     ]
@@ -2619,7 +2619,7 @@
      30
     ],
     "features_tested": 62,
-    "q_below_0.05": 46,
+    "q_below_0.05": 47,
     "top": [
      {
       "feature": 329,
@@ -2727,7 +2727,7 @@
      },
      {
       "feature": 5791,
-      "standardised_difference": -3.879,
+      "standardised_difference": -3.88,
       "activation_difference": -12.379,
       "p": 0.001,
       "q": 0.0015,
@@ -2749,7 +2749,7 @@
      30
     ],
     "features_tested": 154,
-    "q_below_0.05": 86,
+    "q_below_0.05": 90,
     "top": [
      {
       "feature": 7745,
@@ -2771,8 +2771,8 @@
       "feature": 6357,
       "standardised_difference": -4.777,
       "activation_difference": -51.627,
-      "p": 0.012,
-      "q": 0.0246,
+      "p": 0.01,
+      "q": 0.0192,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6357"
      },
      {
@@ -2787,8 +2787,8 @@
       "feature": 11649,
       "standardised_difference": 4.05,
       "activation_difference": 30.174,
-      "p": 0.016,
-      "q": 0.03,
+      "p": 0.007,
+      "q": 0.0142,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
      },
      {
@@ -2835,8 +2835,8 @@
       "feature": 11296,
       "standardised_difference": -3.316,
       "activation_difference": -19.333,
-      "p": 0.016,
-      "q": 0.03,
+      "p": 0.007,
+      "q": 0.0142,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11296"
      },
      {
@@ -2886,15 +2886,15 @@
       "standardised_difference": -14.117,
       "activation_difference": -195.502,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1260"
      },
      {
       "feature": 756,
       "standardised_difference": -11.894,
       "activation_difference": -79.953,
-      "p": 0.01,
-      "q": 0.0274,
+      "p": 0.005,
+      "q": 0.0155,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/756"
      },
      {
@@ -2902,7 +2902,7 @@
       "standardised_difference": -4.436,
       "activation_difference": -603.142,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/72"
      },
      {
@@ -2910,7 +2910,7 @@
       "standardised_difference": -4.298,
       "activation_difference": -746.999,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951"
      },
      {
@@ -2918,7 +2918,7 @@
       "standardised_difference": -3.51,
       "activation_difference": -379.193,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2750"
      },
      {
@@ -2926,7 +2926,7 @@
       "standardised_difference": -3.452,
       "activation_difference": -96.014,
       "p": 0.009,
-      "q": 0.0254,
+      "q": 0.0258,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15513"
      },
      {
@@ -2934,7 +2934,7 @@
       "standardised_difference": -3.413,
       "activation_difference": -356.218,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708"
      },
      {
@@ -2942,7 +2942,7 @@
       "standardised_difference": -3.064,
       "activation_difference": -497.714,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130"
      },
      {
@@ -2950,7 +2950,7 @@
       "standardised_difference": -2.678,
       "activation_difference": -629.903,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/26"
      },
      {
@@ -2958,7 +2958,7 @@
       "standardised_difference": 2.627,
       "activation_difference": 338.619,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103"
      },
      {
@@ -2966,15 +2966,15 @@
       "standardised_difference": -2.491,
       "activation_difference": -287.811,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369"
      },
      {
       "feature": 15940,
       "standardised_difference": -2.308,
       "activation_difference": -145.602,
-      "p": 0.003,
-      "q": 0.0117,
+      "p": 0.001,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15940"
      },
      {
@@ -2982,15 +2982,15 @@
       "standardised_difference": 2.208,
       "activation_difference": 437.022,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/357"
      },
      {
       "feature": 584,
       "standardised_difference": -2.192,
       "activation_difference": -115.563,
-      "p": 0.006,
-      "q": 0.0177,
+      "p": 0.005,
+      "q": 0.0155,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/584"
      },
      {
@@ -2998,7 +2998,7 @@
       "standardised_difference": -2.191,
       "activation_difference": -211.466,
       "p": 0.001,
-      "q": 0.0048,
+      "q": 0.0041,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7579"
      }
     ]
@@ -3009,14 +3009,14 @@
      30
     ],
     "features_tested": 192,
-    "q_below_0.05": 105,
+    "q_below_0.05": 104,
     "top": [
      {
       "feature": 1594,
       "standardised_difference": -10.83,
       "activation_difference": -177.091,
-      "p": 0.012,
-      "q": 0.0242,
+      "p": 0.007,
+      "q": 0.016,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1594"
      },
      {
@@ -3024,15 +3024,15 @@
       "standardised_difference": -8.724,
       "activation_difference": -1377.083,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5301"
      },
      {
       "feature": 54,
       "standardised_difference": -7.615,
-      "activation_difference": -560.804,
+      "activation_difference": -560.803,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/54"
      },
      {
@@ -3040,7 +3040,7 @@
       "standardised_difference": -5.674,
       "activation_difference": -518.948,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1583"
      },
      {
@@ -3048,7 +3048,7 @@
       "standardised_difference": -4.908,
       "activation_difference": -2233.838,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571"
      },
      {
@@ -3056,7 +3056,7 @@
       "standardised_difference": -4.797,
       "activation_difference": -1018.66,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8441"
      },
      {
@@ -3064,7 +3064,7 @@
       "standardised_difference": -4.516,
       "activation_difference": -1013.623,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380"
      },
      {
@@ -3072,7 +3072,7 @@
       "standardised_difference": -3.917,
       "activation_difference": -1252.285,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2998"
      },
      {
@@ -3080,31 +3080,31 @@
       "standardised_difference": -3.655,
       "activation_difference": -414.071,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1838"
      },
      {
       "feature": 1232,
       "standardised_difference": -3.624,
-      "activation_difference": -230.362,
-      "p": 0.005,
-      "q": 0.0125,
+      "activation_difference": -230.363,
+      "p": 0.012,
+      "q": 0.024,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1232"
      },
      {
       "feature": 1102,
       "standardised_difference": -3.467,
       "activation_difference": -197.654,
-      "p": 0.012,
-      "q": 0.0242,
+      "p": 0.007,
+      "q": 0.016,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1102"
      },
      {
       "feature": 4586,
       "standardised_difference": 3.199,
-      "activation_difference": 908.246,
+      "activation_difference": 908.247,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586"
      },
      {
@@ -3112,15 +3112,15 @@
       "standardised_difference": -3.165,
       "activation_difference": -292.877,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6679"
      },
      {
       "feature": 6261,
       "standardised_difference": 3.098,
-      "activation_difference": 995.279,
+      "activation_difference": 995.28,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6261"
      },
      {
@@ -3128,7 +3128,7 @@
       "standardised_difference": -2.751,
       "activation_difference": -336.126,
       "p": 0.001,
-      "q": 0.0031,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1059"
      }
     ]
@@ -3148,7 +3148,7 @@
       "standardised_difference": 3.055,
       "activation_difference": 17.888,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3985"
      },
      {
@@ -3156,7 +3156,7 @@
       "standardised_difference": 1.58,
       "activation_difference": 5.286,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524"
      },
      {
@@ -3164,7 +3164,7 @@
       "standardised_difference": 1.369,
       "activation_difference": 19.89,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000"
      },
      {
@@ -3172,7 +3172,7 @@
       "standardised_difference": -1.281,
       "activation_difference": -11.185,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/111"
      },
      {
@@ -3180,7 +3180,7 @@
       "standardised_difference": 1.251,
       "activation_difference": 3.399,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9499"
      },
      {
@@ -3188,7 +3188,7 @@
       "standardised_difference": -1.088,
       "activation_difference": -4.139,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791"
      },
      {
@@ -3196,7 +3196,7 @@
       "standardised_difference": -1.033,
       "activation_difference": -3.679,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/4382"
      },
      {
@@ -3204,7 +3204,7 @@
       "standardised_difference": -1.028,
       "activation_difference": -14.419,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2765"
      },
      {
@@ -3212,7 +3212,7 @@
       "standardised_difference": 0.908,
       "activation_difference": 11.611,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/220"
      },
      {
@@ -3220,7 +3220,7 @@
       "standardised_difference": 0.845,
       "activation_difference": 11.315,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/314"
      },
      {
@@ -3228,7 +3228,7 @@
       "standardised_difference": 0.833,
       "activation_difference": 4.21,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604"
      },
      {
@@ -3236,7 +3236,7 @@
       "standardised_difference": 0.833,
       "activation_difference": 15.122,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482"
      },
      {
@@ -3244,7 +3244,7 @@
       "standardised_difference": -0.821,
       "activation_difference": -2.668,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3143"
      },
      {
@@ -3252,7 +3252,7 @@
       "standardised_difference": -0.812,
       "activation_difference": -14.72,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1632"
      },
      {
@@ -3260,7 +3260,7 @@
       "standardised_difference": 0.79,
       "activation_difference": 7.205,
       "p": 0.001,
-      "q": 0.0018,
+      "q": 0.0017,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641"
      }
     ]
@@ -3278,7 +3278,7 @@
       "standardised_difference": 0.897,
       "activation_difference": 48.542,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674"
      },
      {
@@ -3286,7 +3286,7 @@
       "standardised_difference": 0.783,
       "activation_difference": 26.554,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712"
      },
      {
@@ -3294,7 +3294,7 @@
       "standardised_difference": -0.738,
       "activation_difference": -27.943,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671"
      },
      {
@@ -3302,7 +3302,7 @@
       "standardised_difference": -0.694,
       "activation_difference": -32.979,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16165"
      },
      {
@@ -3310,7 +3310,7 @@
       "standardised_difference": 0.654,
       "activation_difference": 17.161,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2098"
      },
      {
@@ -3318,7 +3318,7 @@
       "standardised_difference": 0.644,
       "activation_difference": 53.443,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1672"
      },
      {
@@ -3326,7 +3326,7 @@
       "standardised_difference": 0.641,
       "activation_difference": 24.184,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059"
      },
      {
@@ -3334,7 +3334,7 @@
       "standardised_difference": 0.637,
       "activation_difference": 68.312,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/15074"
      },
      {
@@ -3342,7 +3342,7 @@
       "standardised_difference": 0.62,
       "activation_difference": 36.899,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10712"
      },
      {
@@ -3350,7 +3350,7 @@
       "standardised_difference": -0.617,
       "activation_difference": -96.799,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/907"
      },
      {
@@ -3358,7 +3358,7 @@
       "standardised_difference": 0.549,
       "activation_difference": 74.243,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116"
      },
      {
@@ -3366,7 +3366,7 @@
       "standardised_difference": 0.521,
       "activation_difference": 8.128,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11359"
      },
      {
@@ -3374,7 +3374,7 @@
       "standardised_difference": 0.513,
       "activation_difference": 14.429,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11837"
      },
      {
@@ -3382,7 +3382,7 @@
       "standardised_difference": 0.469,
       "activation_difference": 15.323,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10327"
      },
      {
@@ -3390,7 +3390,7 @@
       "standardised_difference": 0.468,
       "activation_difference": 42.114,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.003,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3122"
      }
     ]
@@ -3401,14 +3401,14 @@
      300
     ],
     "features_tested": 167,
-    "q_below_0.05": 74,
+    "q_below_0.05": 73,
     "top": [
      {
       "feature": 2790,
       "standardised_difference": 0.955,
       "activation_difference": 195.254,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2790"
      },
      {
@@ -3416,7 +3416,7 @@
       "standardised_difference": 0.798,
       "activation_difference": 112.949,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3976"
      },
      {
@@ -3424,7 +3424,7 @@
       "standardised_difference": 0.741,
       "activation_difference": 100.537,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1316"
      },
      {
@@ -3432,7 +3432,7 @@
       "standardised_difference": 0.704,
       "activation_difference": 192.366,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293"
      },
      {
@@ -3440,7 +3440,7 @@
       "standardised_difference": 0.667,
       "activation_difference": 100.332,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3723"
      },
      {
@@ -3448,7 +3448,7 @@
       "standardised_difference": 0.645,
       "activation_difference": 117.643,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/16063"
      },
      {
@@ -3456,7 +3456,7 @@
       "standardised_difference": 0.635,
       "activation_difference": 478.454,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/146"
      },
      {
@@ -3464,7 +3464,7 @@
       "standardised_difference": 0.634,
       "activation_difference": 185.199,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149"
      },
      {
@@ -3472,7 +3472,7 @@
       "standardised_difference": 0.616,
       "activation_difference": 106.977,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/281"
      },
      {
@@ -3480,7 +3480,7 @@
       "standardised_difference": 0.604,
       "activation_difference": 136.263,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130"
      },
      {
@@ -3488,7 +3488,7 @@
       "standardised_difference": 0.594,
       "activation_difference": 95.162,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7201"
      },
      {
@@ -3496,7 +3496,7 @@
       "standardised_difference": 0.587,
       "activation_difference": 78.501,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1460"
      },
      {
@@ -3504,7 +3504,7 @@
       "standardised_difference": 0.586,
       "activation_difference": 130.951,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1880"
      },
      {
@@ -3512,7 +3512,7 @@
       "standardised_difference": 0.572,
       "activation_difference": 148.712,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1824"
      },
      {
@@ -3520,7 +3520,7 @@
       "standardised_difference": 0.564,
       "activation_difference": 134.963,
       "p": 0.001,
-      "q": 0.0036,
+      "q": 0.0034,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2809"
      }
     ]
@@ -3531,14 +3531,14 @@
      300
     ],
     "features_tested": 171,
-    "q_below_0.05": 85,
+    "q_below_0.05": 86,
     "top": [
      {
       "feature": 6938,
       "standardised_difference": 1.506,
       "activation_difference": 554.304,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6938"
      },
      {
@@ -3546,7 +3546,7 @@
       "standardised_difference": 1.228,
       "activation_difference": 407.58,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3981"
      },
      {
@@ -3554,7 +3554,7 @@
       "standardised_difference": 1.099,
       "activation_difference": 797.908,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8520"
      },
      {
@@ -3562,7 +3562,7 @@
       "standardised_difference": 0.935,
       "activation_difference": 240.656,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1405"
      },
      {
@@ -3570,7 +3570,7 @@
       "standardised_difference": 0.925,
       "activation_difference": 275.928,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/843"
      },
      {
@@ -3578,7 +3578,7 @@
       "standardised_difference": 0.922,
       "activation_difference": 422.673,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/451"
      },
      {
@@ -3586,15 +3586,15 @@
       "standardised_difference": 0.862,
       "activation_difference": 277.234,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5120"
      },
      {
       "feature": 337,
       "standardised_difference": 0.791,
-      "activation_difference": 952.899,
+      "activation_difference": 952.898,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/337"
      },
      {
@@ -3602,7 +3602,7 @@
       "standardised_difference": 0.747,
       "activation_difference": 374.902,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5976"
      },
      {
@@ -3610,7 +3610,7 @@
       "standardised_difference": 0.735,
       "activation_difference": 239.088,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1331"
      },
      {
@@ -3618,7 +3618,7 @@
       "standardised_difference": 0.725,
       "activation_difference": 176.201,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5736"
      },
      {
@@ -3626,7 +3626,7 @@
       "standardised_difference": 0.694,
       "activation_difference": 258.855,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2697"
      },
      {
@@ -3634,7 +3634,7 @@
       "standardised_difference": 0.693,
       "activation_difference": 152.826,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1281"
      },
      {
@@ -3642,7 +3642,7 @@
       "standardised_difference": -0.653,
       "activation_difference": -466.921,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/367"
      },
      {
@@ -3650,7 +3650,7 @@
       "standardised_difference": 0.621,
       "activation_difference": 233.472,
       "p": 0.001,
-      "q": 0.0032,
+      "q": 0.0031,
       "neuronpedia": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865"
      }
     ]
@@ -3658,104 +3658,184 @@
   }
  },
  "readout": {
-  "labels_only_auc": 0.8960846035986485,
+  "labels_only_auc": 0.8915850652156831,
   "by_layer": {
-   "0": [
-    0.6861421584033943,
-    0.8949624813388858,
-    0.4751512532411409,
-    0.4513976192346979
-   ],
-   "3": [
-    0.6974615973913727,
-    0.8989623438359393,
-    0.4795341596605642,
-    0.4595937770095073
-   ],
-   "6": [
-    0.6902967117152511,
-    0.897746916005343,
-    0.43636068987192583,
-    0.4620884733244284
-   ],
-   "9": [
-    0.6969017639663707,
-    0.8900565726408423,
-    0.4268975406615856,
-    0.4375466527854168
-   ],
-   "12": [
-    0.7121302152903276,
-    0.9034802977920956,
-    0.48250029464917105,
-    0.4565294256305492
-   ],
-   "15": [
-    0.6951707000864304,
-    0.8974940088001886,
-    0.511211400958592,
-    0.5260297988528325
-   ],
-   "18": [
-    0.7047271548676043,
-    0.9030849768209319,
-    0.5569556847646735,
-    0.47669816138917265
-   ],
-   "21": [
-    0.7311203543647364,
-    0.9124548204604385,
-    0.5391883397501375,
-    0.4691060344150232
-   ],
-   "24": [
-    0.7413103048636757,
-    0.9172183153924727,
-    0.5900988056886933,
-    0.5203651685393258
-   ],
-   "27": [
-    0.7346340457295514,
-    0.9097907008721615,
-    0.5890307024436238,
-    0.46184047693879154
-   ],
-   "30": [
-    0.7422163510646657,
-    0.9199290877661664,
-    0.5749612045258112,
-    0.4824192661271313
-   ],
-   "33": [
-    0.7385086823289071,
-    0.9145173646578141,
-    0.5886231044236663,
-    0.4569272020114717
-   ],
-   "36": [
-    0.7345800267148582,
-    0.9123099512846704,
-    0.5686115148896048,
-    0.4388136442209476
-   ],
-   "39": [
-    0.7353362929205626,
-    0.9107335782195333,
-    0.558303704722244,
-    0.43959200911448104
-   ],
-   "42": [
-    0.7221090005500118,
-    0.9138887797595663,
-    0.5373320499724994,
-    0.4578332482124617
-   ],
-   "45": [
-    0.7408192229119196,
-    0.9165848196747073,
-    0.5554554294020586,
-    0.48381884968963623
-   ]
+   "0": {
+    "state": 0.6789993714151018,
+    "state_labels": 0.8939778620256148,
+    "gain_interval": [
+     -0.008897940486460181,
+     0.012562955779688252
+    ],
+    "held_out_request": 0.4751487978313821,
+    "held_out_request_same_direction": 0.2809995482046044,
+    "reshuffled": 0.482915258898405
+   },
+   "3": {
+    "state": 0.6993129763494932,
+    "state_labels": 0.8938010725229827,
+    "gain_interval": [
+     -0.007779569358531896,
+     0.011748654137660013
+    ],
+    "held_out_request": 0.4795341596605642,
+    "held_out_request_same_direction": 0.2612310442366622,
+    "reshuffled": 0.48194537204368665
+   },
+   "6": {
+    "state": 0.7001158953406145,
+    "state_labels": 0.8932633377858097,
+    "gain_interval": [
+     -0.008664547182177216,
+     0.011337936692783707
+    ],
+    "held_out_request": 0.43636068987192583,
+    "held_out_request_same_direction": 0.3258697061365601,
+    "reshuffled": 0.5016844110945234
+   },
+   "9": {
+    "state": 0.7012822149760352,
+    "state_labels": 0.8889123516932506,
+    "gain_interval": [
+     -0.012886755652151883,
+     0.007714880987414501
+    ],
+    "held_out_request": 0.4268975406615856,
+    "held_out_request_same_direction": 0.24661153453288284,
+    "reshuffled": 0.4489618527539876
+   },
+   "12": {
+    "state": 0.7007297477803096,
+    "state_labels": 0.8967303763652078,
+    "gain_interval": [
+     -0.004907349272481379,
+     0.01513725995583284
+    ],
+    "held_out_request": 0.48250029464917105,
+    "held_out_request_same_direction": 0.2987325174825175,
+    "reshuffled": 0.45057014614598884
+   },
+   "15": {
+    "state": 0.7026989864068516,
+    "state_labels": 0.8963571540818732,
+    "gain_interval": [
+     -0.005378571764226259,
+     0.015259033095022858
+    ],
+    "held_out_request": 0.511211400958592,
+    "held_out_request_same_direction": 0.30703180246719575,
+    "reshuffled": 0.49054176160917734
+   },
+   "18": {
+    "state": 0.7087294727744166,
+    "state_labels": 0.8985326471281527,
+    "gain_interval": [
+     -0.0040178946821692015,
+     0.01730165994929803
+    ],
+    "held_out_request": 0.5569556847646735,
+    "held_out_request_same_direction": 0.30456411565962127,
+    "reshuffled": 0.4449472577983814
+   },
+   "21": {
+    "state": 0.7375068751473246,
+    "state_labels": 0.9145370079358843,
+    "gain_interval": [
+     0.011416998566004708,
+     0.0338255085576368
+    ],
+    "held_out_request": 0.5391883397501375,
+    "held_out_request_same_direction": 0.3027471124381237,
+    "reshuffled": 0.5048322464052801
+   },
+   "24": {
+    "state": 0.7475912430266363,
+    "state_labels": 0.9176111809538776,
+    "gain_interval": [
+     0.014485072911854038,
+     0.036782077145958464
+    ],
+    "held_out_request": 0.5900988056886933,
+    "held_out_request_same_direction": 0.3454540543725937,
+    "reshuffled": 0.44784464131374246
+   },
+   "27": {
+    "state": 0.7409616366779288,
+    "state_labels": 0.9127789345485975,
+    "gain_interval": [
+     0.007698195597150845,
+     0.03317932418316983
+    ],
+    "held_out_request": 0.5890307024436238,
+    "held_out_request_same_direction": 0.3669634438595113,
+    "reshuffled": 0.4663878958120531
+   },
+   "30": {
+    "state": 0.7359255912626699,
+    "state_labels": 0.9166412940991593,
+    "gain_interval": [
+     0.011242005992282497,
+     0.03698636618120601
+    ],
+    "held_out_request": 0.5749612045258112,
+    "held_out_request_same_direction": 0.38723285141824465,
+    "reshuffled": 0.4735699693564862
+   },
+   "33": {
+    "state": 0.734145419187554,
+    "state_labels": 0.9143675846625284,
+    "gain_interval": [
+     0.010053084532761014,
+     0.03454073015975879
+    ],
+    "held_out_request": 0.5886231044236663,
+    "held_out_request_same_direction": 0.3959397344228805,
+    "reshuffled": 0.5221109648778188
+   },
+   "36": {
+    "state": 0.7344744440952307,
+    "state_labels": 0.9133510450223933,
+    "gain_interval": [
+     0.008286956241930777,
+     0.03334596427959227
+    ],
+    "held_out_request": 0.5686115148896048,
+    "held_out_request_same_direction": 0.3870904376522354,
+    "reshuffled": 0.42821855111180956
+   },
+   "39": {
+    "state": 0.7230420562583484,
+    "state_labels": 0.9122878525968413,
+    "gain_interval": [
+     0.0074490954758218405,
+     0.03238874635417383
+    ],
+    "held_out_request": 0.558303704722244,
+    "held_out_request_same_direction": 0.3745703032922134,
+    "reshuffled": 0.4531434155731909
+   },
+   "42": {
+    "state": 0.7126875933055709,
+    "state_labels": 0.9137512768130746,
+    "gain_interval": [
+     0.009949627934349229,
+     0.03290239047423932
+    ],
+    "held_out_request": 0.5373320499724994,
+    "held_out_request_same_direction": 0.4020193289856211,
+    "reshuffled": 0.4646740198004243
+   },
+   "45": {
+    "state": 0.7300547065294256,
+    "state_labels": 0.916633927869883,
+    "gain_interval": [
+     0.012537435177483652,
+     0.03665901482994774
+    ],
+    "held_out_request": 0.5554554294020586,
+    "held_out_request_same_direction": 0.390451893612006,
+    "reshuffled": 0.44005608155889053
+   }
   }
  }
 }

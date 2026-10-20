@@ -1,6 +1,6 @@
 # Inside the model at the push requests (full careers)
 
-States: Gemma 3 12B at bf16, the last token before each push-request reply, 1740 moments (A: 180, B: 300, C: 240, C2: 180, D: 240, E: 300, F: 300). Every comparison is within the same request; p-values reshuffle labels within request (1000 times); q = false-discovery-corrected. Features active in fewer than 5% of the moments compared are left out. Produced by `designs/rd2/analysis/inside_features.py`.
+States: Gemma 3 12B at bf16, the last token before each push-request reply, 1740 moments (A: 180, B: 300, C: 240, C2: 180, D: 240, E: 300, F: 300). Every comparison is within the same request (went along vs not: within the same request, experiment and framing); p-values reshuffle labels within those groups (1000 times); q = false-discovery-corrected. Features active in fewer than 5% of the moments compared are left out. Produced by `designs/rd2/analysis/inside_features.py`.
 
 Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 24, 31, 41]; files `resid_post/layer_12_width_16k_l0_medium/params.safetensors`, `resid_post/layer_24_width_16k_l0_medium/params.safetensors`, `resid_post/layer_31_width_16k_l0_medium/params.safetensors`, `resid_post/layer_41_width_16k_l0_medium/params.safetensors`.
 
@@ -27,65 +27,65 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [3205](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3205) | +0.40 | +1.29 | 0.0020 | 0.010 |
 | [2878](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2878) | -0.40 | -3.86 | 0.0040 | 0.013 |
 
-**Layer 24** (120 vs 120 moments; 151 features tested; 57 with q < 0.05)
+**Layer 24** (120 vs 120 moments; 151 features tested; 56 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [162](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/162) | -0.83 | -139.98 | 0.0010 | 0.005 |
-| [4473](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4473) | -0.76 | -93.91 | 0.0010 | 0.005 |
-| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.73 | -64.06 | 0.0010 | 0.005 |
-| [579](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/579) | -0.72 | -100.34 | 0.0010 | 0.005 |
-| [8967](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8967) | +0.70 | +48.75 | 0.0010 | 0.005 |
-| [13332](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13332) | +0.69 | +49.52 | 0.0010 | 0.005 |
-| [15592](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/15592) | -0.68 | -25.47 | 0.0010 | 0.005 |
-| [14884](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884) | +0.68 | +51.03 | 0.0010 | 0.005 |
-| [7741](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741) | +0.67 | +86.04 | 0.0010 | 0.005 |
-| [2839](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2839) | -0.66 | -62.15 | 0.0010 | 0.005 |
-| [13891](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13891) | -0.64 | -29.11 | 0.0010 | 0.005 |
-| [16222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222) | +0.64 | +41.06 | 0.0010 | 0.005 |
-| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +0.62 | +43.67 | 0.0010 | 0.005 |
-| [8326](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8326) | -0.62 | -74.36 | 0.0010 | 0.005 |
-| [8992](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8992) | -0.61 | -49.65 | 0.0010 | 0.005 |
+| [162](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/162) | -0.83 | -139.98 | 0.0010 | 0.004 |
+| [4473](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4473) | -0.76 | -93.91 | 0.0010 | 0.004 |
+| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.73 | -64.06 | 0.0010 | 0.004 |
+| [579](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/579) | -0.72 | -100.34 | 0.0010 | 0.004 |
+| [8967](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8967) | +0.70 | +48.75 | 0.0010 | 0.004 |
+| [13332](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13332) | +0.69 | +49.52 | 0.0010 | 0.004 |
+| [15592](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/15592) | -0.68 | -25.47 | 0.0010 | 0.004 |
+| [14884](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884) | +0.68 | +51.03 | 0.0010 | 0.004 |
+| [7741](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741) | +0.67 | +86.04 | 0.0010 | 0.004 |
+| [2839](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2839) | -0.66 | -62.15 | 0.0010 | 0.004 |
+| [13891](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13891) | -0.64 | -29.11 | 0.0010 | 0.004 |
+| [16222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222) | +0.64 | +41.06 | 0.0010 | 0.004 |
+| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +0.62 | +43.67 | 0.0010 | 0.004 |
+| [8326](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8326) | -0.62 | -74.36 | 0.0010 | 0.004 |
+| [8992](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8992) | -0.61 | -49.65 | 0.0010 | 0.004 |
 
-**Layer 31** (120 vs 120 moments; 162 features tested; 44 with q < 0.05)
-
-| Feature | Difference (spread units) | Activation difference | p | q |
-|---|---|---|---|---|
-| [871](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871) | +0.70 | +315.16 | 0.0010 | 0.010 |
-| [11281](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/11281) | +0.67 | +136.35 | 0.0010 | 0.010 |
-| [929](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/929) | +0.64 | +123.62 | 0.0010 | 0.010 |
-| [972](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/972) | +0.62 | +352.94 | 0.0010 | 0.010 |
-| [15017](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017) | -0.56 | -114.05 | 0.0010 | 0.010 |
-| [8224](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8224) | -0.56 | -93.94 | 0.0010 | 0.010 |
-| [195](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/195) | +0.55 | +65.80 | 0.0010 | 0.010 |
-| [5652](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5652) | +0.55 | +50.27 | 0.0010 | 0.010 |
-| [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | +0.54 | +112.30 | 0.0010 | 0.010 |
-| [6740](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740) | +0.54 | +236.44 | 0.0010 | 0.010 |
-| [5381](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5381) | -0.53 | -69.91 | 0.0010 | 0.010 |
-| [149](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149) | -0.52 | -144.34 | 0.0010 | 0.010 |
-| [4805](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805) | -0.52 | -283.44 | 0.0010 | 0.010 |
-| [509](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/509) | -0.51 | -262.81 | 0.0010 | 0.010 |
-| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | +0.48 | +102.78 | 0.0010 | 0.010 |
-
-**Layer 41** (120 vs 120 moments; 163 features tested; 31 with q < 0.05)
+**Layer 31** (120 vs 120 moments; 162 features tested; 46 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [7573](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7573) | +0.70 | +407.33 | 0.0010 | 0.015 |
-| [2903](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2903) | +0.66 | +325.13 | 0.0010 | 0.015 |
-| [491](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491) | +0.64 | +1207.44 | 0.0010 | 0.015 |
-| [571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571) | +0.62 | +388.11 | 0.0010 | 0.015 |
-| [1018](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1018) | +0.61 | +374.85 | 0.0010 | 0.015 |
-| [755](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/755) | -0.61 | -671.66 | 0.0010 | 0.015 |
-| [3061](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061) | -0.59 | -384.70 | 0.0010 | 0.015 |
-| [12726](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/12726) | +0.57 | +196.25 | 0.0010 | 0.015 |
-| [1826](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1826) | -0.57 | -267.18 | 0.0010 | 0.015 |
-| [1000](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000) | +0.55 | +371.95 | 0.0010 | 0.015 |
-| [4921](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4921) | +0.54 | +302.45 | 0.0030 | 0.026 |
-| [1708](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708) | +0.53 | +405.75 | 0.0020 | 0.020 |
-| [2559](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2559) | +0.49 | +264.00 | 0.0020 | 0.020 |
-| [1951](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1951) | -0.49 | -210.95 | 0.0020 | 0.020 |
-| [946](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/946) | -0.45 | -312.94 | 0.0020 | 0.020 |
+| [871](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871) | +0.70 | +315.16 | 0.0010 | 0.006 |
+| [11281](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/11281) | +0.67 | +136.35 | 0.0010 | 0.006 |
+| [929](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/929) | +0.64 | +123.62 | 0.0010 | 0.006 |
+| [972](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/972) | +0.62 | +352.94 | 0.0010 | 0.006 |
+| [15017](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017) | -0.56 | -114.05 | 0.0010 | 0.006 |
+| [8224](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8224) | -0.56 | -93.94 | 0.0010 | 0.006 |
+| [195](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/195) | +0.55 | +65.80 | 0.0010 | 0.006 |
+| [5652](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5652) | +0.55 | +50.27 | 0.0020 | 0.012 |
+| [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | +0.54 | +112.30 | 0.0010 | 0.006 |
+| [6740](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740) | +0.54 | +236.44 | 0.0010 | 0.006 |
+| [5381](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5381) | -0.53 | -69.91 | 0.0010 | 0.006 |
+| [149](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149) | -0.52 | -144.34 | 0.0010 | 0.006 |
+| [4805](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805) | -0.52 | -283.44 | 0.0010 | 0.006 |
+| [509](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/509) | -0.51 | -262.81 | 0.0010 | 0.006 |
+| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | +0.48 | +102.78 | 0.0010 | 0.006 |
+
+**Layer 41** (120 vs 120 moments; 163 features tested; 30 with q < 0.05)
+
+| Feature | Difference (spread units) | Activation difference | p | q |
+|---|---|---|---|---|
+| [7573](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7573) | +0.70 | +407.33 | 0.0010 | 0.012 |
+| [2903](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2903) | +0.66 | +325.13 | 0.0010 | 0.012 |
+| [491](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491) | +0.64 | +1207.44 | 0.0010 | 0.012 |
+| [571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571) | +0.62 | +388.11 | 0.0010 | 0.012 |
+| [1018](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1018) | +0.61 | +374.85 | 0.0010 | 0.012 |
+| [755](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/755) | -0.61 | -671.66 | 0.0010 | 0.012 |
+| [3061](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061) | -0.59 | -384.70 | 0.0010 | 0.012 |
+| [12726](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/12726) | +0.57 | +196.25 | 0.0010 | 0.012 |
+| [1826](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1826) | -0.57 | -267.18 | 0.0010 | 0.012 |
+| [1000](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000) | +0.55 | +371.95 | 0.0010 | 0.012 |
+| [4921](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4921) | +0.54 | +302.45 | 0.0010 | 0.012 |
+| [1708](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708) | +0.53 | +405.75 | 0.0020 | 0.017 |
+| [2559](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2559) | +0.49 | +264.00 | 0.0020 | 0.017 |
+| [1951](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1951) | -0.49 | -210.95 | 0.0010 | 0.012 |
+| [946](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/946) | -0.45 | -312.94 | 0.0010 | 0.012 |
 
 
 ## B: "+ you" vs no owner
@@ -110,65 +110,65 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [3490](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3490) | -0.35 | -4.48 | 0.0050 | 0.021 |
 | [6260](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/6260) | +0.34 | +4.02 | 0.0140 | 0.049 |
 
-**Layer 24** (120 vs 120 moments; 151 features tested; 34 with q < 0.05)
+**Layer 24** (120 vs 120 moments; 151 features tested; 38 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.78 | +39.82 | 0.0010 | 0.009 |
-| [9059](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059) | +0.63 | +21.45 | 0.0010 | 0.009 |
-| [11000](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000) | -0.58 | -43.98 | 0.0010 | 0.009 |
-| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +0.57 | +40.30 | 0.0010 | 0.009 |
-| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.55 | -21.94 | 0.0010 | 0.009 |
-| [7741](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741) | +0.55 | +72.01 | 0.0010 | 0.009 |
-| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.54 | -48.25 | 0.0010 | 0.009 |
-| [907](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/907) | +0.52 | +65.37 | 0.0010 | 0.009 |
-| [5445](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445) | +0.49 | +27.30 | 0.0010 | 0.009 |
-| [76](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/76) | -0.49 | -112.64 | 0.0010 | 0.009 |
-| [10712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10712) | +0.47 | +29.29 | 0.0010 | 0.009 |
-| [8185](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185) | -0.47 | -26.98 | 0.0020 | 0.014 |
-| [334](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/334) | -0.47 | -215.45 | 0.0020 | 0.014 |
-| [3051](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051) | +0.47 | +70.49 | 0.0020 | 0.014 |
-| [7789](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7789) | +0.47 | +61.42 | 0.0010 | 0.009 |
+| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.78 | +39.82 | 0.0010 | 0.011 |
+| [9059](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059) | +0.63 | +21.45 | 0.0010 | 0.011 |
+| [11000](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000) | -0.58 | -43.98 | 0.0020 | 0.018 |
+| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +0.57 | +40.30 | 0.0010 | 0.011 |
+| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.55 | -21.94 | 0.0010 | 0.011 |
+| [7741](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7741) | +0.55 | +72.01 | 0.0010 | 0.011 |
+| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.54 | -48.25 | 0.0010 | 0.011 |
+| [907](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/907) | +0.52 | +65.37 | 0.0010 | 0.011 |
+| [5445](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445) | +0.49 | +27.30 | 0.0010 | 0.011 |
+| [76](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/76) | -0.49 | -112.64 | 0.0010 | 0.011 |
+| [10712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10712) | +0.47 | +29.29 | 0.0020 | 0.018 |
+| [8185](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185) | -0.47 | -26.98 | 0.0050 | 0.026 |
+| [334](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/334) | -0.47 | -215.45 | 0.0010 | 0.011 |
+| [3051](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051) | +0.47 | +70.49 | 0.0010 | 0.011 |
+| [7789](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7789) | +0.47 | +61.42 | 0.0010 | 0.011 |
 
 **Layer 31** (120 vs 120 moments; 162 features tested; 65 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [515](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515) | +0.73 | +383.31 | 0.0010 | 0.004 |
-| [871](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871) | +0.72 | +321.93 | 0.0010 | 0.004 |
-| [288](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288) | +0.70 | +230.69 | 0.0010 | 0.004 |
-| [6740](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740) | +0.69 | +298.55 | 0.0010 | 0.004 |
-| [4214](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4214) | -0.68 | -237.45 | 0.0010 | 0.004 |
-| [15017](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017) | -0.62 | -124.07 | 0.0010 | 0.004 |
-| [2882](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2882) | -0.62 | -117.91 | 0.0010 | 0.004 |
-| [1744](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1744) | -0.61 | -135.68 | 0.0010 | 0.004 |
-| [2900](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900) | -0.60 | -151.15 | 0.0010 | 0.004 |
-| [2079](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2079) | -0.60 | -131.12 | 0.0010 | 0.004 |
-| [4805](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805) | -0.60 | -318.97 | 0.0010 | 0.004 |
-| [13577](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/13577) | -0.60 | -186.12 | 0.0010 | 0.004 |
-| [2608](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608) | -0.59 | -132.65 | 0.0010 | 0.004 |
-| [7092](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7092) | -0.59 | -149.10 | 0.0010 | 0.004 |
-| [605](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605) | +0.59 | +103.63 | 0.0010 | 0.004 |
+| [515](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515) | +0.73 | +383.31 | 0.0010 | 0.006 |
+| [871](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/871) | +0.72 | +321.93 | 0.0010 | 0.006 |
+| [288](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288) | +0.70 | +230.69 | 0.0010 | 0.006 |
+| [6740](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6740) | +0.69 | +298.55 | 0.0010 | 0.006 |
+| [4214](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4214) | -0.68 | -237.45 | 0.0010 | 0.006 |
+| [15017](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15017) | -0.62 | -124.07 | 0.0010 | 0.006 |
+| [2882](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2882) | -0.62 | -117.91 | 0.0010 | 0.006 |
+| [1744](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1744) | -0.61 | -135.68 | 0.0010 | 0.006 |
+| [2900](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900) | -0.60 | -151.15 | 0.0020 | 0.008 |
+| [2079](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2079) | -0.60 | -131.12 | 0.0010 | 0.006 |
+| [4805](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4805) | -0.60 | -318.97 | 0.0020 | 0.008 |
+| [13577](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/13577) | -0.60 | -186.12 | 0.0010 | 0.006 |
+| [2608](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608) | -0.59 | -132.65 | 0.0020 | 0.008 |
+| [7092](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7092) | -0.59 | -149.10 | 0.0010 | 0.006 |
+| [605](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605) | +0.59 | +103.63 | 0.0010 | 0.006 |
 
 **Layer 41** (120 vs 120 moments; 163 features tested; 40 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [463](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/463) | +0.79 | +1148.45 | 0.0010 | 0.010 |
-| [1708](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708) | +0.67 | +503.13 | 0.0010 | 0.010 |
-| [367](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/367) | +0.66 | +428.90 | 0.0010 | 0.010 |
-| [1462](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1462) | +0.62 | +229.36 | 0.0010 | 0.010 |
-| [822](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/822) | -0.60 | -722.19 | 0.0010 | 0.010 |
-| [698](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/698) | -0.59 | -184.43 | 0.0010 | 0.010 |
-| [491](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491) | +0.59 | +1113.50 | 0.0010 | 0.010 |
-| [10433](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10433) | -0.56 | -231.76 | 0.0010 | 0.010 |
-| [4228](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4228) | -0.54 | -120.33 | 0.0010 | 0.010 |
-| [897](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/897) | -0.53 | -201.59 | 0.0010 | 0.010 |
-| [1571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1571) | -0.52 | -542.93 | 0.0010 | 0.010 |
-| [1179](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179) | +0.51 | +222.86 | 0.0010 | 0.010 |
-| [4586](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586) | +0.50 | +186.47 | 0.0020 | 0.014 |
-| [9624](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9624) | -0.50 | -89.61 | 0.0010 | 0.010 |
-| [3798](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798) | -0.50 | -192.52 | 0.0020 | 0.014 |
+| [463](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/463) | +0.79 | +1148.45 | 0.0010 | 0.007 |
+| [1708](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1708) | +0.67 | +503.13 | 0.0010 | 0.007 |
+| [367](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/367) | +0.66 | +428.90 | 0.0010 | 0.007 |
+| [1462](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1462) | +0.62 | +229.36 | 0.0010 | 0.007 |
+| [822](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/822) | -0.60 | -722.19 | 0.0010 | 0.007 |
+| [698](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/698) | -0.59 | -184.43 | 0.0010 | 0.007 |
+| [491](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/491) | +0.59 | +1113.50 | 0.0010 | 0.007 |
+| [10433](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10433) | -0.56 | -231.76 | 0.0010 | 0.007 |
+| [4228](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4228) | -0.54 | -120.33 | 0.0010 | 0.007 |
+| [897](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/897) | -0.53 | -201.59 | 0.0010 | 0.007 |
+| [1571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1571) | -0.52 | -542.93 | 0.0010 | 0.007 |
+| [1179](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179) | +0.51 | +222.86 | 0.0010 | 0.007 |
+| [4586](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586) | +0.50 | +186.47 | 0.0010 | 0.007 |
+| [9624](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9624) | -0.50 | -89.61 | 0.0010 | 0.007 |
+| [3798](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798) | -0.50 | -192.52 | 0.0010 | 0.007 |
 
 
 ## B: framed vs neutral
@@ -193,27 +193,27 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [276](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/276) | +1.32 | +17.43 | 0.0010 | 0.002 |
 | [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +1.26 | +3.77 | 0.0010 | 0.002 |
 
-**Layer 24** (240 vs 60 moments; 147 features tested; 24 with q < 0.05)
+**Layer 24** (240 vs 60 moments; 147 features tested; 23 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [11000](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000) | -0.81 | -58.73 | 0.0010 | 0.011 |
-| [11837](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11837) | -0.73 | -19.63 | 0.0010 | 0.011 |
-| [5671](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671) | -0.66 | -25.33 | 0.0010 | 0.011 |
-| [13585](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13585) | +0.66 | +18.84 | 0.0010 | 0.011 |
-| [11165](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11165) | -0.66 | -19.14 | 0.0010 | 0.011 |
-| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.64 | -25.39 | 0.0010 | 0.011 |
-| [831](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/831) | +0.63 | +86.92 | 0.0010 | 0.011 |
-| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.63 | +32.69 | 0.0010 | 0.011 |
-| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.62 | -60.16 | 0.0010 | 0.011 |
-| [9712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712) | -0.60 | -19.70 | 0.0010 | 0.011 |
-| [607](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/607) | +0.58 | +87.31 | 0.0010 | 0.011 |
-| [3051](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051) | +0.57 | +83.24 | 0.0010 | 0.011 |
-| [10617](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10617) | -0.55 | -50.70 | 0.0010 | 0.011 |
-| [13674](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674) | -0.54 | -30.32 | 0.0010 | 0.011 |
-| [12577](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12577) | +0.53 | +27.92 | 0.0040 | 0.033 |
+| [11000](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000) | -0.81 | -58.73 | 0.0010 | 0.009 |
+| [11837](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11837) | -0.73 | -19.63 | 0.0010 | 0.009 |
+| [5671](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671) | -0.66 | -25.33 | 0.0010 | 0.009 |
+| [13585](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13585) | +0.66 | +18.84 | 0.0010 | 0.009 |
+| [11165](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11165) | -0.66 | -19.14 | 0.0010 | 0.009 |
+| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.64 | -25.39 | 0.0010 | 0.009 |
+| [831](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/831) | +0.63 | +86.92 | 0.0010 | 0.009 |
+| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.63 | +32.69 | 0.0010 | 0.009 |
+| [14402](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14402) | -0.62 | -60.16 | 0.0010 | 0.009 |
+| [9712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712) | -0.60 | -19.70 | 0.0010 | 0.009 |
+| [607](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/607) | +0.58 | +87.31 | 0.0010 | 0.009 |
+| [3051](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051) | +0.57 | +83.24 | 0.0010 | 0.009 |
+| [10617](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10617) | -0.55 | -50.70 | 0.0020 | 0.017 |
+| [13674](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674) | -0.54 | -30.32 | 0.0010 | 0.009 |
+| [12577](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12577) | +0.53 | +27.92 | 0.0010 | 0.009 |
 
-**Layer 31** (240 vs 60 moments; 160 features tested; 27 with q < 0.05)
+**Layer 31** (240 vs 60 moments; 160 features tested; 29 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -223,118 +223,118 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [4056](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4056) | -0.62 | -184.24 | 0.0010 | 0.027 |
 | [1519](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1519) | -0.55 | -120.26 | 0.0010 | 0.027 |
 | [6294](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6294) | +0.51 | +144.19 | 0.0010 | 0.027 |
-| [1128](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128) | +0.51 | +106.11 | 0.0060 | 0.043 |
-| [6048](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6048) | +0.50 | +123.10 | 0.0020 | 0.037 |
-| [12956](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/12956) | -0.47 | -73.91 | 0.0030 | 0.037 |
-| [2900](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900) | +0.46 | +111.99 | 0.0030 | 0.037 |
-| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | -0.46 | -98.47 | 0.0020 | 0.037 |
-| [1708](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708) | -0.45 | -53.09 | 0.0070 | 0.043 |
-| [951](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951) | -0.45 | -122.62 | 0.0030 | 0.037 |
-| [2608](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608) | +0.45 | +96.34 | 0.0030 | 0.037 |
-| [515](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515) | -0.44 | -231.25 | 0.0030 | 0.037 |
+| [1128](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128) | +0.51 | +106.11 | 0.0020 | 0.035 |
+| [6048](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6048) | +0.50 | +123.10 | 0.0020 | 0.035 |
+| [12956](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/12956) | -0.47 | -73.91 | 0.0050 | 0.044 |
+| [2900](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2900) | +0.46 | +111.99 | 0.0030 | 0.040 |
+| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | -0.46 | -98.47 | 0.0060 | 0.044 |
+| [1708](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708) | -0.45 | -53.09 | 0.0050 | 0.044 |
+| [951](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951) | -0.45 | -122.62 | 0.0030 | 0.040 |
+| [2608](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2608) | +0.45 | +96.34 | 0.0040 | 0.044 |
+| [515](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/515) | -0.44 | -231.25 | 0.0020 | 0.035 |
 
-**Layer 41** (240 vs 60 moments; 166 features tested; 16 with q < 0.05)
-
-| Feature | Difference (spread units) | Activation difference | p | q |
-|---|---|---|---|---|
-| [1583](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1583) | -0.64 | -90.78 | 0.0020 | 0.035 |
-| [571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571) | -0.58 | -372.09 | 0.0010 | 0.033 |
-| [2880](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880) | -0.53 | -162.91 | 0.0020 | 0.035 |
-| [10380](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380) | -0.53 | -103.19 | 0.0010 | 0.033 |
-| [843](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/843) | -0.51 | -142.44 | 0.0010 | 0.033 |
-| [1409](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1409) | -0.50 | -103.76 | 0.0030 | 0.035 |
-| [1002](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1002) | -0.50 | -226.58 | 0.0030 | 0.035 |
-| [1179](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179) | -0.49 | -205.35 | 0.0010 | 0.033 |
-| [13569](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/13569) | -0.49 | -122.58 | 0.0030 | 0.035 |
-| [3420](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3420) | -0.49 | -187.33 | 0.0030 | 0.035 |
-| [4586](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586) | -0.48 | -176.84 | 0.0020 | 0.035 |
-| [14456](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456) | +0.48 | +134.72 | 0.0030 | 0.035 |
-| [4647](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4647) | -0.48 | -207.68 | 0.0010 | 0.033 |
-| [3061](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061) | -0.47 | -325.68 | 0.0040 | 0.042 |
-| [5548](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5548) | +0.46 | +197.26 | 0.0030 | 0.035 |
-
-
-## All experiments: went along vs did not
-
-**Layer 12** (286 vs 1424 moments; 56 features tested; 37 with q < 0.05)
+**Layer 41** (240 vs 60 moments; 166 features tested; 17 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +0.56 | +3.24 | 0.0010 | 0.002 |
-| [2604](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604) | +0.53 | +4.54 | 0.0010 | 0.002 |
-| [482](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482) | +0.53 | +13.45 | 0.0010 | 0.002 |
-| [277](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/277) | -0.49 | -14.12 | 0.0010 | 0.002 |
-| [3985](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3985) | +0.48 | +6.99 | 0.0010 | 0.002 |
-| [117](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/117) | -0.47 | -16.60 | 0.0010 | 0.002 |
-| [3000](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000) | +0.46 | +7.75 | 0.0010 | 0.002 |
-| [276](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/276) | +0.44 | +9.33 | 0.0010 | 0.002 |
-| [314](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/314) | +0.41 | +8.04 | 0.0010 | 0.002 |
-| [438](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438) | +0.40 | +9.11 | 0.0010 | 0.002 |
-| [3205](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3205) | +0.40 | +1.68 | 0.0010 | 0.002 |
-| [168](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/168) | -0.39 | -7.38 | 0.0010 | 0.002 |
-| [1641](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641) | +0.39 | +5.10 | 0.0010 | 0.002 |
-| [220](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/220) | +0.38 | +7.56 | 0.0010 | 0.002 |
-| [2328](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2328) | +0.38 | +4.96 | 0.0010 | 0.002 |
+| [1583](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1583) | -0.64 | -90.78 | 0.0010 | 0.018 |
+| [571](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/571) | -0.58 | -372.09 | 0.0010 | 0.018 |
+| [2880](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880) | -0.53 | -162.91 | 0.0010 | 0.018 |
+| [10380](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380) | -0.53 | -103.19 | 0.0010 | 0.018 |
+| [843](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/843) | -0.51 | -142.44 | 0.0010 | 0.018 |
+| [1409](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1409) | -0.50 | -103.76 | 0.0040 | 0.044 |
+| [1002](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1002) | -0.50 | -226.58 | 0.0010 | 0.018 |
+| [1179](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1179) | -0.49 | -205.35 | 0.0020 | 0.028 |
+| [13569](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/13569) | -0.49 | -122.58 | 0.0040 | 0.044 |
+| [3420](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3420) | -0.49 | -187.33 | 0.0010 | 0.018 |
+| [4586](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586) | -0.48 | -176.84 | 0.0010 | 0.018 |
+| [14456](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456) | +0.48 | +134.72 | 0.0020 | 0.028 |
+| [4647](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4647) | -0.48 | -207.68 | 0.0010 | 0.018 |
+| [3061](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061) | -0.47 | -325.68 | 0.0030 | 0.038 |
+| [5548](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5548) | +0.46 | +197.26 | 0.0020 | 0.028 |
 
-**Layer 24** (286 vs 1424 moments; 140 features tested; 52 with q < 0.05)
 
-| Feature | Difference (spread units) | Activation difference | p | q |
-|---|---|---|---|---|
-| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.72 | +38.80 | 0.0010 | 0.005 |
-| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.55 | -24.18 | 0.0010 | 0.005 |
-| [11000](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11000) | -0.54 | -46.37 | 0.0010 | 0.005 |
-| [3987](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3987) | +0.48 | +55.13 | 0.0010 | 0.005 |
-| [1672](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1672) | +0.46 | +37.96 | 0.0010 | 0.005 |
-| [607](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/607) | +0.46 | +68.72 | 0.0010 | 0.005 |
-| [5671](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671) | -0.44 | -17.50 | 0.0010 | 0.005 |
-| [12646](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12646) | +0.43 | +26.12 | 0.0010 | 0.005 |
-| [9908](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9908) | +0.40 | +49.44 | 0.0010 | 0.005 |
-| [11975](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11975) | -0.39 | -18.00 | 0.0010 | 0.005 |
-| [6382](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6382) | +0.38 | +16.17 | 0.0010 | 0.005 |
-| [3051](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3051) | +0.37 | +39.45 | 0.0010 | 0.005 |
-| [579](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/579) | +0.36 | +44.53 | 0.0010 | 0.005 |
-| [12678](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678) | +0.34 | +16.16 | 0.0010 | 0.005 |
-| [222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222) | +0.33 | +45.59 | 0.0010 | 0.005 |
+## All experiments: went along vs did not (same request, experiment and framing)
 
-**Layer 31** (286 vs 1424 moments; 162 features tested; 28 with q < 0.05)
+**Layer 12** (286 vs 1424 moments; 56 features tested; 0 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [1128](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128) | +0.59 | +172.78 | 0.0010 | 0.012 |
-| [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | +0.44 | +90.19 | 0.0010 | 0.012 |
-| [4368](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368) | -0.42 | -133.51 | 0.0010 | 0.012 |
-| [95](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/95) | +0.39 | +116.72 | 0.0010 | 0.012 |
-| [605](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605) | -0.36 | -79.01 | 0.0010 | 0.012 |
-| [3309](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3309) | -0.35 | -84.72 | 0.0010 | 0.012 |
-| [7338](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7338) | +0.34 | +69.21 | 0.0010 | 0.012 |
-| [1874](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1874) | -0.33 | -53.08 | 0.0010 | 0.012 |
-| [2809](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2809) | +0.30 | +67.57 | 0.0010 | 0.012 |
-| [11281](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/11281) | -0.27 | -68.47 | 0.0010 | 0.012 |
-| [3331](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3331) | +0.26 | +54.96 | 0.0010 | 0.012 |
-| [6294](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6294) | +0.26 | +55.40 | 0.0010 | 0.012 |
-| [12192](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/12192) | +0.25 | +78.76 | 0.0020 | 0.017 |
-| [26](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/26) | -0.25 | -83.53 | 0.0030 | 0.023 |
-| [1826](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1826) | -0.25 | -45.18 | 0.0020 | 0.017 |
+| [9234](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9234) | -0.38 | -1.78 | 0.0030 | 0.084 |
+| [3143](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3143) | -0.33 | -0.91 | 0.0030 | 0.084 |
+| [9038](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9038) | +0.31 | +2.35 | 0.0060 | 0.112 |
+| [16341](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341) | +0.29 | +3.09 | 0.0170 | 0.140 |
+| [2653](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2653) | -0.28 | -0.85 | 0.0140 | 0.140 |
+| [1245](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1245) | -0.27 | -1.75 | 0.0230 | 0.140 |
+| [2604](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604) | -0.26 | -0.82 | 0.0170 | 0.140 |
+| [6423](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/6423) | -0.25 | -1.36 | 0.0250 | 0.140 |
+| [2365](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2365) | +0.25 | +3.00 | 0.0230 | 0.140 |
+| [5791](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791) | -0.25 | -0.68 | 0.0240 | 0.140 |
+| [2819](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2819) | +0.22 | +0.67 | 0.0330 | 0.168 |
+| [5762](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5762) | -0.20 | -2.41 | 0.0629 | 0.264 |
+| [3000](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000) | -0.20 | -1.76 | 0.0659 | 0.264 |
+| [9773](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9773) | -0.20 | -0.81 | 0.0609 | 0.264 |
+| [111](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/111) | -0.20 | -1.33 | 0.0769 | 0.269 |
 
-**Layer 41** (286 vs 1424 moments; 171 features tested; 31 with q < 0.05)
+**Layer 24** (286 vs 1424 moments; 140 features tested; 21 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [14456](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456) | +0.42 | +159.88 | 0.0010 | 0.012 |
-| [5120](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5120) | +0.41 | +162.08 | 0.0010 | 0.012 |
-| [5995](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5995) | +0.34 | +122.94 | 0.0010 | 0.012 |
-| [6928](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6928) | +0.34 | +140.65 | 0.0010 | 0.012 |
-| [865](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865) | +0.32 | +163.60 | 0.0010 | 0.012 |
-| [11781](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781) | +0.31 | +194.45 | 0.0010 | 0.012 |
-| [8520](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8520) | +0.31 | +226.69 | 0.0010 | 0.012 |
-| [7528](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7528) | -0.30 | -215.03 | 0.0010 | 0.012 |
-| [1163](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1163) | +0.29 | +127.32 | 0.0010 | 0.012 |
-| [1742](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1742) | -0.27 | -39.96 | 0.0010 | 0.012 |
-| [2880](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880) | -0.27 | -89.57 | 0.0010 | 0.012 |
-| [451](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/451) | +0.27 | +183.82 | 0.0010 | 0.012 |
-| [1685](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1685) | +0.26 | +100.36 | 0.0030 | 0.027 |
-| [6938](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6938) | +0.26 | +110.67 | 0.0010 | 0.012 |
-| [8470](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/8470) | -0.26 | -110.09 | 0.0010 | 0.012 |
+| [3068](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3068) | +0.61 | +66.30 | 0.0010 | 0.013 |
+| [13799](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13799) | -0.51 | -17.54 | 0.0010 | 0.013 |
+| [869](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/869) | +0.48 | +41.29 | 0.0010 | 0.013 |
+| [16222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222) | -0.45 | -29.71 | 0.0010 | 0.013 |
+| [11975](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11975) | -0.41 | -15.02 | 0.0010 | 0.013 |
+| [116](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116) | -0.41 | -63.70 | 0.0010 | 0.013 |
+| [12075](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12075) | -0.41 | -7.44 | 0.0010 | 0.013 |
+| [7925](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7925) | +0.41 | +44.43 | 0.0020 | 0.021 |
+| [2896](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2896) | -0.40 | -37.03 | 0.0010 | 0.013 |
+| [5341](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5341) | +0.40 | +29.05 | 0.0040 | 0.031 |
+| [4250](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4250) | -0.39 | -30.05 | 0.0010 | 0.013 |
+| [222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222) | +0.39 | +40.97 | 0.0020 | 0.021 |
+| [3987](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3987) | +0.39 | +37.85 | 0.0010 | 0.013 |
+| [12678](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678) | +0.38 | +13.61 | 0.0010 | 0.013 |
+| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.35 | +16.27 | 0.0030 | 0.026 |
+
+**Layer 31** (286 vs 1424 moments; 162 features tested; 15 with q < 0.05)
+
+| Feature | Difference (spread units) | Activation difference | p | q |
+|---|---|---|---|---|
+| [4368](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368) | -0.69 | -159.45 | 0.0010 | 0.018 |
+| [7338](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7338) | +0.68 | +97.49 | 0.0010 | 0.018 |
+| [95](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/95) | +0.53 | +124.71 | 0.0010 | 0.018 |
+| [1128](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128) | +0.47 | +107.99 | 0.0010 | 0.018 |
+| [3331](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3331) | +0.43 | +75.55 | 0.0020 | 0.027 |
+| [605](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605) | -0.42 | -78.00 | 0.0010 | 0.018 |
+| [892](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/892) | +0.42 | +65.44 | 0.0010 | 0.018 |
+| [1275](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1275) | +0.39 | +58.49 | 0.0010 | 0.018 |
+| [3309](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3309) | -0.38 | -75.28 | 0.0010 | 0.018 |
+| [896](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/896) | -0.38 | -74.17 | 0.0010 | 0.018 |
+| [6617](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6617) | +0.37 | +88.50 | 0.0030 | 0.032 |
+| [5297](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5297) | -0.36 | -38.07 | 0.0030 | 0.032 |
+| [2069](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2069) | -0.34 | -66.88 | 0.0020 | 0.027 |
+| [1293](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293) | +0.33 | +71.52 | 0.0030 | 0.032 |
+| [879](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/879) | -0.32 | -60.58 | 0.0020 | 0.027 |
+
+**Layer 41** (286 vs 1424 moments; 171 features tested; 18 with q < 0.05)
+
+| Feature | Difference (spread units) | Activation difference | p | q |
+|---|---|---|---|---|
+| [3296](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3296) | +0.43 | +179.03 | 0.0010 | 0.029 |
+| [7528](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7528) | -0.43 | -244.04 | 0.0010 | 0.029 |
+| [22](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/22) | -0.42 | -190.99 | 0.0020 | 0.038 |
+| [2880](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880) | -0.41 | -104.20 | 0.0010 | 0.029 |
+| [911](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/911) | -0.40 | -171.13 | 0.0020 | 0.038 |
+| [664](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/664) | +0.39 | +68.36 | 0.0010 | 0.029 |
+| [11781](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781) | +0.38 | +204.92 | 0.0020 | 0.038 |
+| [865](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865) | +0.38 | +150.57 | 0.0010 | 0.029 |
+| [14456](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456) | +0.37 | +120.21 | 0.0010 | 0.029 |
+| [6705](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6705) | -0.36 | -114.56 | 0.0050 | 0.048 |
+| [7808](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7808) | +0.35 | +127.58 | 0.0050 | 0.048 |
+| [3021](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3021) | -0.34 | -74.79 | 0.0030 | 0.047 |
+| [375](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/375) | -0.34 | -297.94 | 0.0030 | 0.047 |
+| [3067](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3067) | -0.34 | -65.34 | 0.0060 | 0.051 |
+| [1033](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1033) | -0.34 | -122.56 | 0.0040 | 0.048 |
 
 
 ## A: a memo (loss, gain, + you) vs the neutral memo
@@ -359,25 +359,25 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [360](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/360) | +1.05 | +7.23 | 0.0010 | 0.003 |
 | [3490](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3490) | +0.99 | +12.87 | 0.0010 | 0.003 |
 
-**Layer 24** (120 vs 30 moments; 136 features tested; 12 with q < 0.05)
+**Layer 24** (120 vs 30 moments; 136 features tested; 14 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [13744](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13744) | -1.19 | -53.32 | 0.0010 | 0.023 |
-| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +1.05 | +66.40 | 0.0010 | 0.023 |
-| [11552](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11552) | +0.84 | +48.70 | 0.0010 | 0.023 |
-| [1826](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1826) | +0.80 | +105.14 | 0.0020 | 0.039 |
-| [4392](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4392) | +0.77 | +52.38 | 0.0040 | 0.045 |
-| [5445](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445) | +0.73 | +32.88 | 0.0010 | 0.023 |
-| [10327](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10327) | -0.72 | -16.56 | 0.0010 | 0.023 |
-| [116](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116) | +0.70 | +90.05 | 0.0010 | 0.023 |
-| [6460](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6460) | -0.67 | -58.34 | 0.0040 | 0.045 |
-| [14884](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884) | +0.66 | +51.92 | 0.0050 | 0.052 |
-| [8185](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185) | +0.66 | +32.59 | 0.0030 | 0.045 |
-| [14414](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14414) | -0.65 | -55.31 | 0.0040 | 0.045 |
-| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.64 | -23.91 | 0.0040 | 0.045 |
-| [9712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712) | +0.62 | +20.93 | 0.0090 | 0.072 |
-| [5480](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5480) | -0.60 | -77.14 | 0.0070 | 0.063 |
+| [13744](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13744) | -1.19 | -53.32 | 0.0010 | 0.019 |
+| [5395](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5395) | +1.05 | +66.40 | 0.0010 | 0.019 |
+| [11552](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11552) | +0.84 | +48.70 | 0.0010 | 0.019 |
+| [1826](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1826) | +0.80 | +105.14 | 0.0020 | 0.025 |
+| [4392](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4392) | +0.77 | +52.38 | 0.0020 | 0.025 |
+| [5445](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5445) | +0.73 | +32.88 | 0.0010 | 0.019 |
+| [10327](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10327) | -0.72 | -16.56 | 0.0010 | 0.019 |
+| [116](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116) | +0.70 | +90.05 | 0.0020 | 0.025 |
+| [6460](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6460) | -0.67 | -58.34 | 0.0010 | 0.019 |
+| [14884](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14884) | +0.66 | +51.92 | 0.0020 | 0.025 |
+| [8185](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8185) | +0.66 | +32.59 | 0.0030 | 0.031 |
+| [14414](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14414) | -0.65 | -55.31 | 0.0030 | 0.031 |
+| [9368](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9368) | -0.64 | -23.91 | 0.0040 | 0.039 |
+| [9712](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9712) | +0.62 | +20.93 | 0.0010 | 0.019 |
+| [5480](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5480) | -0.60 | -77.14 | 0.0060 | 0.054 |
 
 **Layer 31** (120 vs 30 moments; 153 features tested; 8 with q < 0.05)
 
@@ -390,39 +390,39 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | -0.87 | -198.57 | 0.0010 | 0.022 |
 | [3101](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3101) | -0.77 | -150.08 | 0.0010 | 0.022 |
 | [1880](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1880) | -0.76 | -110.64 | 0.0010 | 0.022 |
-| [7525](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7525) | -0.74 | -97.17 | 0.0020 | 0.038 |
-| [968](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/968) | +0.73 | +114.10 | 0.0030 | 0.051 |
-| [569](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/569) | -0.72 | -69.89 | 0.0070 | 0.089 |
-| [1293](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293) | -0.71 | -116.80 | 0.0040 | 0.056 |
-| [429](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/429) | -0.65 | -245.38 | 0.0040 | 0.056 |
-| [288](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288) | -0.57 | -180.30 | 0.0110 | 0.105 |
-| [448](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/448) | +0.56 | +259.46 | 0.0110 | 0.105 |
-| [8848](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8848) | +0.55 | +56.90 | 0.0330 | 0.229 |
+| [7525](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7525) | -0.74 | -97.17 | 0.0040 | 0.051 |
+| [968](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/968) | +0.73 | +114.10 | 0.0040 | 0.051 |
+| [569](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/569) | -0.72 | -69.89 | 0.0040 | 0.051 |
+| [1293](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293) | -0.71 | -116.80 | 0.0020 | 0.038 |
+| [429](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/429) | -0.65 | -245.38 | 0.0040 | 0.051 |
+| [288](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/288) | -0.57 | -180.30 | 0.0050 | 0.059 |
+| [448](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/448) | +0.56 | +259.46 | 0.0100 | 0.102 |
+| [8848](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/8848) | +0.55 | +56.90 | 0.0360 | 0.246 |
 
-**Layer 41** (120 vs 30 moments; 160 features tested; 7 with q < 0.05)
+**Layer 41** (120 vs 30 moments; 160 features tested; 0 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [5413](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5413) | -0.82 | -202.82 | 0.0020 | 0.046 |
-| [2697](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2697) | +0.81 | +346.07 | 0.0010 | 0.032 |
-| [11781](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781) | +0.76 | +365.23 | 0.0010 | 0.032 |
-| [9082](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9082) | -0.74 | -512.31 | 0.0010 | 0.032 |
-| [1163](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1163) | +0.73 | +279.51 | 0.0010 | 0.032 |
-| [623](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/623) | -0.72 | -219.40 | 0.0020 | 0.046 |
-| [1734](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1734) | -0.68 | -423.96 | 0.0010 | 0.032 |
-| [262](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/262) | -0.67 | -172.48 | 0.0030 | 0.053 |
-| [72](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/72) | +0.64 | +239.09 | 0.0070 | 0.102 |
-| [6261](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6261) | -0.64 | -307.30 | 0.0030 | 0.053 |
-| [2387](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2387) | -0.62 | -144.84 | 0.0060 | 0.096 |
-| [3798](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798) | -0.56 | -187.30 | 0.0110 | 0.126 |
-| [1742](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1742) | -0.55 | -108.44 | 0.0090 | 0.120 |
-| [1861](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1861) | +0.55 | +194.75 | 0.0150 | 0.141 |
-| [1000](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000) | -0.54 | -287.28 | 0.0100 | 0.123 |
+| [5413](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5413) | -0.82 | -202.82 | 0.0010 | 0.053 |
+| [2697](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2697) | +0.81 | +346.07 | 0.0010 | 0.053 |
+| [11781](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781) | +0.76 | +365.23 | 0.0020 | 0.060 |
+| [9082](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/9082) | -0.74 | -512.31 | 0.0010 | 0.053 |
+| [1163](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1163) | +0.73 | +279.51 | 0.0030 | 0.060 |
+| [623](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/623) | -0.72 | -219.40 | 0.0020 | 0.060 |
+| [1734](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1734) | -0.68 | -423.96 | 0.0030 | 0.060 |
+| [262](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/262) | -0.67 | -172.48 | 0.0050 | 0.073 |
+| [72](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/72) | +0.64 | +239.09 | 0.0080 | 0.107 |
+| [6261](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6261) | -0.64 | -307.30 | 0.0030 | 0.060 |
+| [2387](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2387) | -0.62 | -144.84 | 0.0050 | 0.073 |
+| [3798](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3798) | -0.56 | -187.30 | 0.0050 | 0.073 |
+| [1742](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1742) | -0.55 | -108.44 | 0.0150 | 0.133 |
+| [1861](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1861) | +0.55 | +194.75 | 0.0210 | 0.168 |
+| [1000](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1000) | -0.54 | -287.28 | 0.0130 | 0.132 |
 
 
 ## A: UBS's request vs the same moment without it
 
-**Layer 12** (30 vs 30 moments; 62 features tested; 46 with q < 0.05)
+**Layer 12** (30 vs 30 moments; 62 features tested; 47 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -442,21 +442,21 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [5791](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791) | -3.88 | -12.38 | 0.0010 | 0.002 |
 | [360](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/360) | +3.38 | +22.39 | 0.0010 | 0.002 |
 
-**Layer 24** (30 vs 30 moments; 154 features tested; 86 with q < 0.05)
+**Layer 24** (30 vs 30 moments; 154 features tested; 90 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
 | [7745](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7745) | -6.40 | -208.52 | 0.0010 | 0.003 |
 | [8790](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8790) | -5.52 | -182.94 | 0.0010 | 0.003 |
-| [6357](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6357) | -4.78 | -51.63 | 0.0120 | 0.025 |
+| [6357](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6357) | -4.78 | -51.63 | 0.0100 | 0.019 |
 | [9503](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9503) | -4.39 | -219.92 | 0.0010 | 0.003 |
-| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +4.05 | +30.17 | 0.0160 | 0.030 |
+| [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +4.05 | +30.17 | 0.0070 | 0.014 |
 | [5671](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5671) | +3.70 | +93.00 | 0.0010 | 0.003 |
 | [11105](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11105) | -3.63 | -124.34 | 0.0010 | 0.003 |
 | [8967](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8967) | -3.55 | -129.00 | 0.0010 | 0.003 |
 | [222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222) | +3.54 | +311.12 | 0.0010 | 0.003 |
 | [2697](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2697) | -3.32 | -131.86 | 0.0010 | 0.003 |
-| [11296](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11296) | -3.32 | -19.33 | 0.0160 | 0.030 |
+| [11296](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11296) | -3.32 | -19.33 | 0.0070 | 0.014 |
 | [16165](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16165) | +3.25 | +127.36 | 0.0010 | 0.003 |
 | [1672](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/1672) | +3.24 | +203.34 | 0.0010 | 0.003 |
 | [12075](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12075) | +3.24 | +47.09 | 0.0010 | 0.003 |
@@ -466,27 +466,27 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [1260](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1260) | -14.12 | -195.50 | 0.0010 | 0.005 |
-| [756](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/756) | -11.89 | -79.95 | 0.0100 | 0.027 |
-| [72](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/72) | -4.44 | -603.14 | 0.0010 | 0.005 |
-| [951](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951) | -4.30 | -747.00 | 0.0010 | 0.005 |
-| [2750](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2750) | -3.51 | -379.19 | 0.0010 | 0.005 |
-| [15513](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15513) | -3.45 | -96.01 | 0.0090 | 0.025 |
-| [1708](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708) | -3.41 | -356.22 | 0.0010 | 0.005 |
-| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | -3.06 | -497.71 | 0.0010 | 0.005 |
-| [26](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/26) | -2.68 | -629.90 | 0.0010 | 0.005 |
-| [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | +2.63 | +338.62 | 0.0010 | 0.005 |
-| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | -2.49 | -287.81 | 0.0010 | 0.005 |
-| [15940](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15940) | -2.31 | -145.60 | 0.0030 | 0.012 |
-| [357](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/357) | +2.21 | +437.02 | 0.0010 | 0.005 |
-| [584](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/584) | -2.19 | -115.56 | 0.0060 | 0.018 |
-| [7579](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7579) | -2.19 | -211.47 | 0.0010 | 0.005 |
+| [1260](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1260) | -14.12 | -195.50 | 0.0010 | 0.004 |
+| [756](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/756) | -11.89 | -79.95 | 0.0050 | 0.015 |
+| [72](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/72) | -4.44 | -603.14 | 0.0010 | 0.004 |
+| [951](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/951) | -4.30 | -747.00 | 0.0010 | 0.004 |
+| [2750](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2750) | -3.51 | -379.19 | 0.0010 | 0.004 |
+| [15513](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15513) | -3.45 | -96.01 | 0.0090 | 0.026 |
+| [1708](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1708) | -3.41 | -356.22 | 0.0010 | 0.004 |
+| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | -3.06 | -497.71 | 0.0010 | 0.004 |
+| [26](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/26) | -2.68 | -629.90 | 0.0010 | 0.004 |
+| [2103](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2103) | +2.63 | +338.62 | 0.0010 | 0.004 |
+| [3369](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3369) | -2.49 | -287.81 | 0.0010 | 0.004 |
+| [15940](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/15940) | -2.31 | -145.60 | 0.0010 | 0.004 |
+| [357](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/357) | +2.21 | +437.02 | 0.0010 | 0.004 |
+| [584](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/584) | -2.19 | -115.56 | 0.0050 | 0.015 |
+| [7579](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7579) | -2.19 | -211.47 | 0.0010 | 0.004 |
 
-**Layer 41** (30 vs 30 moments; 192 features tested; 105 with q < 0.05)
+**Layer 41** (30 vs 30 moments; 192 features tested; 104 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [1594](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1594) | -10.83 | -177.09 | 0.0120 | 0.024 |
+| [1594](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1594) | -10.83 | -177.09 | 0.0070 | 0.016 |
 | [5301](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5301) | -8.72 | -1377.08 | 0.0010 | 0.003 |
 | [54](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/54) | -7.62 | -560.80 | 0.0010 | 0.003 |
 | [1583](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1583) | -5.67 | -518.95 | 0.0010 | 0.003 |
@@ -495,8 +495,8 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [10380](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380) | -4.52 | -1013.62 | 0.0010 | 0.003 |
 | [2998](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2998) | -3.92 | -1252.29 | 0.0010 | 0.003 |
 | [1838](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1838) | -3.65 | -414.07 | 0.0010 | 0.003 |
-| [1232](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1232) | -3.62 | -230.36 | 0.0050 | 0.013 |
-| [1102](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1102) | -3.47 | -197.65 | 0.0120 | 0.024 |
+| [1232](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1232) | -3.62 | -230.36 | 0.0120 | 0.024 |
+| [1102](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1102) | -3.47 | -197.65 | 0.0070 | 0.016 |
 | [4586](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/4586) | +3.20 | +908.25 | 0.0010 | 0.003 |
 | [6679](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6679) | -3.17 | -292.88 | 0.0010 | 0.003 |
 | [6261](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6261) | +3.10 | +995.28 | 0.0010 | 0.003 |
@@ -545,27 +545,27 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | [10327](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10327) | +0.47 | +15.32 | 0.0010 | 0.003 |
 | [3122](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3122) | +0.47 | +42.11 | 0.0010 | 0.003 |
 
-**Layer 31** (300 vs 300 moments; 167 features tested; 74 with q < 0.05)
+**Layer 31** (300 vs 300 moments; 167 features tested; 73 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [2790](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2790) | +0.95 | +195.25 | 0.0010 | 0.004 |
-| [3976](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3976) | +0.80 | +112.95 | 0.0010 | 0.004 |
-| [1316](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1316) | +0.74 | +100.54 | 0.0010 | 0.004 |
-| [1293](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293) | +0.70 | +192.37 | 0.0010 | 0.004 |
-| [3723](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3723) | +0.67 | +100.33 | 0.0010 | 0.004 |
-| [16063](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/16063) | +0.65 | +117.64 | 0.0010 | 0.004 |
-| [146](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/146) | +0.64 | +478.45 | 0.0010 | 0.004 |
-| [149](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149) | +0.63 | +185.20 | 0.0010 | 0.004 |
-| [281](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/281) | +0.62 | +106.98 | 0.0010 | 0.004 |
-| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | +0.60 | +136.26 | 0.0010 | 0.004 |
-| [7201](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7201) | +0.59 | +95.16 | 0.0010 | 0.004 |
-| [1460](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1460) | +0.59 | +78.50 | 0.0010 | 0.004 |
-| [1880](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1880) | +0.59 | +130.95 | 0.0010 | 0.004 |
-| [1824](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1824) | +0.57 | +148.71 | 0.0010 | 0.004 |
-| [2809](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2809) | +0.56 | +134.96 | 0.0010 | 0.004 |
+| [2790](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2790) | +0.95 | +195.25 | 0.0010 | 0.003 |
+| [3976](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3976) | +0.80 | +112.95 | 0.0010 | 0.003 |
+| [1316](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1316) | +0.74 | +100.54 | 0.0010 | 0.003 |
+| [1293](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293) | +0.70 | +192.37 | 0.0010 | 0.003 |
+| [3723](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3723) | +0.67 | +100.33 | 0.0010 | 0.003 |
+| [16063](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/16063) | +0.65 | +117.64 | 0.0010 | 0.003 |
+| [146](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/146) | +0.64 | +478.45 | 0.0010 | 0.003 |
+| [149](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/149) | +0.63 | +185.20 | 0.0010 | 0.003 |
+| [281](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/281) | +0.62 | +106.98 | 0.0010 | 0.003 |
+| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | +0.60 | +136.26 | 0.0010 | 0.003 |
+| [7201](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7201) | +0.59 | +95.16 | 0.0010 | 0.003 |
+| [1460](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1460) | +0.59 | +78.50 | 0.0010 | 0.003 |
+| [1880](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1880) | +0.59 | +130.95 | 0.0010 | 0.003 |
+| [1824](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1824) | +0.57 | +148.71 | 0.0010 | 0.003 |
+| [2809](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2809) | +0.56 | +134.96 | 0.0010 | 0.003 |
 
-**Layer 41** (300 vs 300 moments; 171 features tested; 85 with q < 0.05)
+**Layer 41** (300 vs 300 moments; 171 features tested; 86 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -588,30 +588,30 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 
 ## Can "went along" be read from the state, beyond the request and the framing?
 
-1710 moments with a request, 286 went along. Read-out scored on careers it was not trained on (5 folds by career), and on a request it never saw (careers share chat lines, e.g. C clean = B neutral, so the held-out request shows it is not learning the conversation). **The labels alone (request, experiment, version) score AUC 0.896.** States are centred within each request and reduced to 64 components (fitted on the training careers) per layer.
+1710 moments with a request, 286 went along. Read-out scored on careers it was not trained on (5 folds by career), and on a request it never saw (careers share chat lines, e.g. C clean = B neutral, so the held-out request shows it is not learning the conversation). **The labels alone (request, experiment, version) score AUC 0.892.** States are centred within each request and reduced to 64 components per layer (fitted on all careers' states, no outcome used). "Gain" is state + labels minus labels alone, with a 95% interval from resampling careers (an interval above 0 means the state adds something). The held-out request is also scored by a read-out trained only on requests where UBS wants the same direction (going along is buying in some requests and selling in others).
 
-| Layer | AUC: state | AUC: state + labels | AUC: state, a held-out request | AUC: state, outcomes reshuffled within request |
-|---|---|---|---|---|
-| 0 | 0.686 | 0.895 | 0.475 | 0.451 |
-| 3 | 0.697 | 0.899 | 0.480 | 0.460 |
-| 6 | 0.690 | 0.898 | 0.436 | 0.462 |
-| 9 | 0.697 | 0.890 | 0.427 | 0.438 |
-| 12 | 0.712 | 0.903 | 0.483 | 0.457 |
-| 15 | 0.695 | 0.897 | 0.511 | 0.526 |
-| 18 | 0.705 | 0.903 | 0.557 | 0.477 |
-| 21 | 0.731 | 0.912 | 0.539 | 0.469 |
-| 24 | 0.741 | 0.917 | 0.590 | 0.520 |
-| 27 | 0.735 | 0.910 | 0.589 | 0.462 |
-| 30 | 0.742 | 0.920 | 0.575 | 0.482 |
-| 33 | 0.739 | 0.915 | 0.589 | 0.457 |
-| 36 | 0.735 | 0.912 | 0.569 | 0.439 |
-| 39 | 0.735 | 0.911 | 0.558 | 0.440 |
-| 42 | 0.722 | 0.914 | 0.537 | 0.458 |
-| 45 | 0.741 | 0.917 | 0.555 | 0.484 |
+| Layer | AUC: state | AUC: state + labels | Gain over labels (95% interval) | AUC: a held-out request | AUC: a held-out request, same direction | AUC: state, outcomes reshuffled within request |
+|---|---|---|---|---|---|---|
+| 0 | 0.679 | 0.894 | +0.002 (-0.009 to +0.013) | 0.475 | 0.281 | 0.483 |
+| 3 | 0.699 | 0.894 | +0.002 (-0.008 to +0.012) | 0.480 | 0.261 | 0.482 |
+| 6 | 0.700 | 0.893 | +0.002 (-0.009 to +0.011) | 0.436 | 0.326 | 0.502 |
+| 9 | 0.701 | 0.889 | -0.003 (-0.013 to +0.008) | 0.427 | 0.247 | 0.449 |
+| 12 | 0.701 | 0.897 | +0.005 (-0.005 to +0.015) | 0.483 | 0.299 | 0.451 |
+| 15 | 0.703 | 0.896 | +0.005 (-0.005 to +0.015) | 0.511 | 0.307 | 0.491 |
+| 18 | 0.709 | 0.899 | +0.007 (-0.004 to +0.017) | 0.557 | 0.305 | 0.445 |
+| 21 | 0.738 | 0.915 | +0.023 (+0.011 to +0.034) | 0.539 | 0.303 | 0.505 |
+| 24 | 0.748 | 0.918 | +0.026 (+0.014 to +0.037) | 0.590 | 0.345 | 0.448 |
+| 27 | 0.741 | 0.913 | +0.021 (+0.008 to +0.033) | 0.589 | 0.367 | 0.466 |
+| 30 | 0.736 | 0.917 | +0.025 (+0.011 to +0.037) | 0.575 | 0.387 | 0.474 |
+| 33 | 0.734 | 0.914 | +0.023 (+0.010 to +0.035) | 0.589 | 0.396 | 0.522 |
+| 36 | 0.734 | 0.913 | +0.022 (+0.008 to +0.033) | 0.569 | 0.387 | 0.428 |
+| 39 | 0.723 | 0.912 | +0.021 (+0.007 to +0.032) | 0.558 | 0.375 | 0.453 |
+| 42 | 0.713 | 0.914 | +0.022 (+0.010 to +0.033) | 0.537 | 0.402 | 0.465 |
+| 45 | 0.730 | 0.917 | +0.025 (+0.013 to +0.037) | 0.555 | 0.390 | 0.440 |
 
 ## Bank C at 7 Jan, paired with each career's B twin
 
-50 pairs (the same career up to Bank C's first line). The size of the state change Bank C makes, by layer, against the change between two B careers of the same version at the same moment:
+50 pairs (twins share a seed, but on the saved transcripts every pair differs from the first reply, so this is not Bank C's line alone). The size of the state change, by layer, against the change between two B careers of the same version at the same moment:
 
 | Layer | Bank C: mean change (F minus its twin) | Two B careers of the same version |
 |---|---|---|
@@ -624,4 +624,4 @@ Gemma Scope 2 (google/gemma-scope-2-12b-it, residual stream, 16k): layers [12, 2
 | 36 | 7792.3 | 7759.1 |
 | 42 | 10583.6 | 11024.3 |
 
-If the twins really are the same career up to 7 Jan (no GPU drift), the first column is Bank C's line alone; if they drifted, it is closer to the second.
+Where the first column is no larger than the second, F's state is no further from its twin than two B careers are from each other.
