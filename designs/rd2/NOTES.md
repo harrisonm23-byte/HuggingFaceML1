@@ -1278,3 +1278,18 @@ Dated entries: what was run, what happened, what's next.
   - B at 4-bit;
   - the matched run;
   - then the features rerun.
+
+## 20 Oct (early hours): "you" after loss vs after gain
+
+- **The user's point:** "you" may register differently after loss (blame) than after gain (credit), so the two should
+  be compared.
+- **Added to the matched-history analysis** (`analysis/matched_history.py`), each with the history held fixed and
+  with and without Bank C:
+  - the change "+ you" makes after loss and after gain, and the difference between the two;
+  - in the state: the size of each change, how alike the two changes are (cosine), and a ceiling from the change after
+    loss measured on two halves of the careers;
+  - Gemma Scope features after loss, after gain, and their difference, with the overlap of their top features.
+- **Behaviour so far:**
+  - B's preregistered H3 (the same comparison across careers) was +0.0 points, underpowered at 10 per arm, as said in
+    advance;
+  - in F, "you" added +20 points after loss (28% -> 48%) and +28 after gain (12% -> 40%); that difference is not tested.

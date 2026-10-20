@@ -11,8 +11,11 @@ versions is the request's own effect; between careers (same request version, dif
    between groups (unpaired), 10,000 times; 95% intervals from resampling careers.
 2. The state: the size of each change by layer; the frame direction measured with the history held fixed, against
    the one measured across careers (Run 1, which the steering used); Bank C's change along it.
-3. Gemma Scope features: loss vs gain request, and Bank C's line, paired within moments (signs flipped by career,
-   false-discovery corrected), with the overlap with Run 1's loss-vs-gain features.
+3. Gemma Scope features: loss vs gain request, "you" after loss and after gain, and Bank C's line, paired within
+   moments (signs flipped by career, false-discovery corrected), with the overlap with Run 1's loss-vs-gain features.
+"You" after loss and after gain (the user, 20 Oct): after loss, "you" may read as blame; after gain, as credit. So the
+change "+ you" makes is measured separately in each frame, in what the agent would do, in the state (are the two changes
+alike?) and in the features, and the two are compared (B's preregistered H3, here with the history held fixed).
 Check: the "as saved" version (the career's own framing, no Bank C) against Run 1's state for the same moment.
 """
 import glob, json, os, sys
@@ -111,6 +114,12 @@ tests = {
     "Request: \"+ you\" vs none": req[:, cols(YOU)].mean(1) - req[:, cols(NOYOU)].mean(1),
     "Bank C's line (all framings)": (P[:, :, 1] - P[:, :, 0]).mean(1),
 }
+for bc, tag in ((0, ""), (1, ", with Bank C")):                    # "you" after loss and after gain (F: with Bank C)
+    you_loss = P[:, fi["loss + you"], bc] - P[:, fi["loss"], bc]
+    you_gain = P[:, fi["gain + you"], bc] - P[:, fi["gain"], bc]
+    tests[f"\"You\" after loss: loss + you vs loss{tag}"] = you_loss
+    tests[f"\"You\" after gain: gain + you vs gain{tag}"] = you_gain
+    tests[f"\"You\" after loss minus after gain{tag}"] = you_loss - you_gain
 tests.update({f"Bank C's line ({v})": P[:, fi[v], 1] - P[:, fi[v], 0] for v in FRAMINGS})
 report.append(f"\n**The request's own effect** (the same moments, all {len(careers)} histories; paired, signs flipped "
               "by career):\n")
@@ -166,6 +175,27 @@ for j, l in enumerate(layers):
     sib = [np.linalg.norm(a[1][j] - b[1][j]) for (ka, a) in run1.items() for (kb, b) in run1.items()
            if ka < kb and ka[1] == kb[1] and a[0] == b[0]] if run1 else [np.nan]
     report.append(f"| {l} | {lg:.1f} | {fn:.1f} | {bc:.1f} | {np.mean(sib):.1f} |")
+
+# "You" after loss and after gain: the change "+ you" makes at the same moment, in each frame
+report.append("\n**\"You\" after loss and after gain** (the change \"+ you\" makes to the state at the same moment): its "
+              "size in each frame, and how alike the two changes are (cosine of the average changes: 1 = the same "
+              "change, 0 = unrelated). The last column is the ceiling: the change after loss compared with itself, "
+              "measured on two halves of the careers. A cosine between the frames well below that ceiling means \"you\" "
+              "registers differently after loss than after gain.\n")
+report.append("| Layer | Size after loss | Size after gain | Cosine, after loss vs after gain | Median cosine, moment by "
+              "moment | Ceiling: after loss vs itself (two halves) |\n|---|---|---|---|---|---|")
+half = np.isin(CAREER, careers[::2])
+ucos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+for j, l in enumerate(layers):
+    dL = S[:, fi["loss + you"], 0, j] - S[:, fi["loss"], 0, j]
+    dG = S[:, fi["gain + you"], 0, j] - S[:, fi["gain"], 0, j]
+    per = np.median([ucos(a, b) for a, b in zip(dL, dG)])
+    row = {"size_loss": float(np.linalg.norm(dL, axis=1).mean()), "size_gain": float(np.linalg.norm(dG, axis=1).mean()),
+           "cosine": ucos(dL.mean(0), dG.mean(0)), "median_cosine": float(per),
+           "ceiling": ucos(dL[half].mean(0), dL[~half].mean(0))}
+    report.append(f"| {l} | {row['size_loss']:.1f} | {row['size_gain']:.1f} | {row['cosine']:.3f} | {row['median_cosine']:.3f} "
+                  f"| {row['ceiling']:.3f} |")
+    summary.setdefault("you_loss_vs_gain", {})[l] = row
 
 # The frame direction: loss-framed minus neutral request, the history held fixed, against Run 1's (across careers)
 report.append("\n**The frame direction** (loss and loss + you minus neutral, averaged over requests). Held fixed: from "
@@ -226,18 +256,28 @@ for l, path in sae_layers(max(layers) + 1).items():
         continue
     j, sae = layers.index(l), load_sae(path, W)
     Fz = encode(S[:, :, :, j].reshape(-1, W), sae).reshape(M, len(FRAMINGS), 2, -1)
+    fyL = Fz[:, fi["loss + you"], 0] - Fz[:, fi["loss"], 0]
+    fyG = Fz[:, fi["gain + you"], 0] - Fz[:, fi["gain"], 0]
+    tops = {}
     for name, D, live_from in [
             ("Request: loss frame vs gain frame", Fz[:, cols(LOSS), 0].mean(1) - Fz[:, cols(GAIN), 0].mean(1),
              Fz[:, cols(LOSS + GAIN), 0]),
+            ("\"You\" after loss: loss + you vs loss", fyL, Fz[:, cols(LOSS), 0]),
+            ("\"You\" after gain: gain + you vs gain", fyG, Fz[:, cols(GAIN), 0]),
+            ("\"You\" after loss minus after gain", fyL - fyG, Fz[:, cols(LOSS + GAIN), 0]),
             ("Bank C's line (all framings)", (Fz[:, :, 1] - Fz[:, :, 0]).mean(1), Fz[:, :, :])]:
         live = (live_from.reshape(-1, Fz.shape[-1]) > 0).mean(0) >= 0.05
         raw, z, p, q = feature_test(D[:, live])
         ids = np.where(live)[0]
         order = np.argsort(-np.abs(z))[:TOP]
         shared = ""
+        tops[name] = {int(ids[o]) for o in order}
         if name.startswith("Request") and l in run1_top:
-            k = len(run1_top[l] & {int(ids[o]) for o in order})
+            k = len(run1_top[l] & tops[name])
             shared = f"; {k} of the top {TOP} are also in Run 1's top {TOP} (loss vs gain across careers)"
+        if name.startswith("\"You\" after gain"):
+            k = len(tops[name] & tops["\"You\" after loss: loss + you vs loss"])
+            shared = f"; {k} of its top {TOP} are also in the top {TOP} after loss"
         report.append(f"**{name}, layer {l}** ({int(live.sum())} features tested; {int((q < 0.05).sum())} with q < 0.05"
                       f"{shared})\n")
         report.append("| Feature | Difference (spread units) | Activation difference | p | q |\n|---|---|---|---|---|")
@@ -248,7 +288,7 @@ for l, path in sae_layers(max(layers) + 1).items():
         summary.setdefault("features", {}).setdefault(name, {})[l] = {
             "tested": int(live.sum()), "q_below_0.05": int((q < 0.05).sum()),
             "top": [{"feature": int(ids[o]), "standardised_difference": float(z[o]), "q": float(q[o])} for o in order]}
-    del Fz
+    del Fz, fyL, fyG
 
 open(os.path.join(OUT, "MATCHED.md"), "w").write("\n".join(report) + "\n")
 json.dump(summary, open(os.path.join(OUT, "matched.json"), "w"), indent=1, default=float)
