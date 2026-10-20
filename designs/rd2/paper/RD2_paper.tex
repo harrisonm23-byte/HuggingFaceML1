@@ -431,11 +431,11 @@ decision and on the state, exact pairs for Bank C's line, and a clean frame dire
   arr/.style={-{Stealth[length=2.2mm]}, thick}]
 \node[box, minimum width=10.5cm] (hist) {\textbf{Identical history and market state}\\[1pt]
   \footnotesize the saved career up to UBS's request: chats, prices, positions, profit and loss, the agent's own words};
-\node[box, below left=0.55cm and -1.6cm of hist, minimum width=2.5cm] (l) {\textbf{Loss}\\ \footnotesize UBS's request};
-\node[box, right=0.25cm of l, minimum width=2.5cm] (g) {\textbf{Gain}\\ \footnotesize UBS's request};
-\node[box, right=0.25cm of g, minimum width=2.5cm] (ly) {\textbf{Loss + you}\\ \footnotesize (blame)};
-\node[box, right=0.25cm of ly, minimum width=2.5cm] (gy) {\textbf{Gain + you}\\ \footnotesize (credit)};
-\node[box, below=0.55cm of hist.south |- l.south, minimum width=10.5cm, yshift=-0.55cm] (meas)
+\node[box, text width=2.3cm, below left=0.55cm and 0.125cm of hist.south] (g) {\textbf{Gain}\\ \footnotesize UBS's request};
+\node[box, text width=2.3cm, below right=0.55cm and 0.125cm of hist.south] (ly) {\textbf{Loss + you}\\ \footnotesize (blame)};
+\node[box, text width=2.3cm, left=0.25cm of g] (l) {\textbf{Loss}\\ \footnotesize UBS's request};
+\node[box, text width=2.3cm, right=0.25cm of ly] (gy) {\textbf{Gain + you}\\ \footnotesize (credit)};
+\node[box, below=0.55cm of hist.south |- l.south, minimum width=10.5cm] (meas)
   {\textbf{Compare the state and the decision}\\[1pt] \footnotesize at the last token before the reply; each version
   also with and without Bank C's line, and in neutral};
 \node[box, below=0.45cm of meas, minimum width=10.5cm] (cause) {\textbf{Causal tests}\\[1pt] \footnotesize transplant
