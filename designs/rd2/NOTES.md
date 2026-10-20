@@ -1238,3 +1238,19 @@ Dated entries: what was run, what happened, what's next.
   pressure (after a blind reading), "you" tracing, look-back / compaction. Cut: the outside-text emotion gauge (only
   needed for a "desperation" claim), the "you"-position requirement (does not affect the experiments), temperature,
   non-blame "you", other models.
+
+## 20 Oct (late): inside, Run 1 results
+
+- Run 1 (`results/inside_full_career/INSIDE_bf16.md`) covers 1,740 moments.
+- **The frame shows inside.** B loss vs gain: 23-57 Gemma Scope features per layer at q < 0.05. Framed vs neutral:
+  16-35. "+ you": 16-65.
+- **The decision read-out is weak.** Within request, AUC 0.69-0.74. With labels it reaches 0.90-0.92, against 0.90 for
+  the labels alone. On a held-out request it is near chance (0.43-0.59).
+- **F's careers differ from their B twins from the first reply** (all 50; checked on the transcripts), so the paired
+  Bank C test cannot isolate Bank C's line.
+- **Analysis fixes:**
+  - went along vs not is now compared within request x experiment x framing (within request alone, it repeated the
+    loss-frame features);
+  - the read-out gets a career-bootstrap interval on its gain over the labels, and a same-direction held-out-request
+    column.
+- **To do:** rerun with `modal run --detach scripts/modal_inside.py --features-only`.

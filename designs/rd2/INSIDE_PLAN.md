@@ -17,12 +17,41 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
 
 | # | Test | What it asks | Status | Where |
 |---|---|---|---|---|
-| 1 | Did the frame land? (manipulation check) | Which Gemma Scope features differ at the decision? Comparisons: framed vs neutral, loss vs gain, "+ you" vs none, memo vs neutral, request vs no request, went along vs not. Find the differing features first, then name them | **Relaunched** (Run 1) | `scripts/modal_inside.py`, `analysis/inside_features.py` -> `results/inside_full_career/` |
-| 2 | Can the decision be read inside? | Can a linear read-out find "went along" in the state, beyond what the request and framing labels give (AUC 0.90)? It is scored on held-out careers **and** on a held-out request: careers share chat lines, so a read-out could learn the conversation. Shuffled outcomes as the null | **Relaunched** (Run 1) | as 1 |
-| 3 | Bank C, paired | F against its B twin (same seed; same career until 7 Jan): how much does Bank C's line move the state? | **Relaunched** (Run 1) | as 1 |
+| 1 | Did the frame land? (manipulation check) | Which Gemma Scope features differ at the decision? Comparisons: framed vs neutral, loss vs gain, "+ you" vs none, memo vs neutral, request vs no request, went along vs not. Find the differing features first, then name them | **Run 1 done: the frame shows** (below). Features still to name | `scripts/modal_inside.py`, `analysis/inside_features.py` -> `results/inside_full_career/` |
+| 2 | Can the decision be read inside? | Can a linear read-out find "went along" in the state, beyond what the request and framing labels give (AUC 0.90)? It is scored on held-out careers **and** on a held-out request: careers share chat lines, so a read-out could learn the conversation. Shuffled outcomes as the null | **Run 1 done: weak** (below). Fairer rerun queued (features only) | as 1 |
+| 3 | Bank C, paired | F against its B twin (same seed; same career until 7 Jan): how much does Bank C's line move the state? | **Run 1: the twins are not twins** (below). Needs exact pairs, or move to follow-up | as 1 |
 | 4 | The mountain inside | B's loss-frame direction, built on half the careers and read on the other half, followed along every update. Does the internal signal stay, fade or build? Does it outlast the words, which fade by 12 Jan? | **Relaunched** (Run 2). The path analysis is written when the states land | `read_steps` in `scripts/modal_inside.py` |
 | 5 | Steering: does the frame cause the decision? | Add B's loss-frame direction at layer 24 to neutral agents, and remove it from loss + you agents. Requests: 7 and 12 Jan, 8 replies per condition. Strengths: 2x and 4x the loss-neutral gap. Controls: a random direction of the same size, and the memo's direction from A, which contains no UBS words. If the memo's direction also moves B, the direction means loss, not the framed words | **Built**. Launch ~15 min after Run 1 (it needs B's and A's states) | `sim/interventions.py`, `scripts/modal_interventions.py` -> `results/interventions/` |
 | 6 | Said and did | For every condition in 5, both outcomes. **Did:** the probability that its order goes along (log-probs over the order grid, no sampling noise), plus the sampled orders. **Said:** the reasoning graded blind, with the grader seeing only the reasoning (not the condition or the order). The grader codes (a) commits / declines / silent and (b) whether it mentions the frame's stakes. The same grading runs on the saved career replies | Order log-probs **built** into 5. Blind grading **to add** (no GPU) | as 5 |
+
+## Run 1 results (20 Oct; `results/inside_full_career/INSIDE_bf16.md`)
+
+1,740 moments from every experiment; every comparison is within the same request.
+
+- **1. The frame shows inside.** Gemma Scope features differ (false-discovery q < 0.05) per layer:
+  - B, loss vs gain: 23-57 features;
+  - framed vs neutral: 16-35;
+  - "+ you" vs none: 16-65;
+  - A's memo vs the neutral memo: 27 at layer 12, but only 7-12 at layers 24-41 (fewer neutral careers, so less power).
+
+  The features are not named yet.
+- **2. The decision is only weakly readable.**
+  - Within a request, the state predicts going along: AUC 0.69-0.74, against about 0.46 with reshuffled outcomes.
+  - With the labels added, it reaches 0.90-0.92, against 0.90 for the labels alone. The gain is not yet tested.
+  - On a request the read-out never saw, it is near chance: 0.43-0.59.
+
+  So far, then, the state carries mostly which request and framing it is; no general "going along" signal has been
+  found.
+- **3. The twins are not twins.** Checked on the saved transcripts, every F career differs from its B twin from the
+  first reply onward (the same seed, but GPU sampling differs). The paired test therefore cannot isolate Bank C's line:
+  from layer 24 on, F is no further from its twin than two B careers are from each other.
+- **Fixed in the analysis** (rerun with `--features-only`):
+  - "Went along vs not" was compared within request only. Since framing raises going along, 8 of its top 15
+    features at layer 12 were loss-frame features with the same sign. It is now compared within the same request,
+    experiment and framing.
+  - The read-out now has a 95% interval on its gain over the labels.
+  - The read-out is also scored on a held-out request with training only on requests where UBS wants the same
+    direction: going along means buying in some requests and selling in others.
 
 ## Follow-up, if time allows
 
@@ -88,3 +117,5 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
   5. Checking where "you" sits: **cut**; done for Bank C.
 
   The plan is now core / follow-up / cut.
+- **20 Oct, Run 1 read** (above): the frame shows; the read-out is weak; the Bank C twins differ from the first reply.
+  The went-along comparison and the read-out were fixed.
