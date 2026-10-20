@@ -1484,3 +1484,24 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   rates and context length; an early-vs-later test of the history's effect; and, inside, how far a framed history has
   moved the state along the held-fixed frame direction at each request. Checked on fake data. Runs with
   `modal run --detach scripts/modal_matched.py --analysis-only` (CPU only).
+
+## 20 Oct (late): what the agents traded (the user: "the mountain includes the trading")
+
+- `designs/rd2/analysis/trading_trajectory.py` -> `results/trading_trajectory/TRADING.md` (exploratory; B, A, D, F, E):
+  activity by trading day (gross, before the first chat, largest position, P&L), the position held at each request,
+  the side at the end of each window by the agent's own trades, and January's outcome against what followed.
+- **The frame keeps acting on risk-taking through August:** before-first-chat trading, loss minus gain framings, over the
+  three later days: B +36k oz (p = 0.017), F +43k (0.039), D +128k (0.008), E +114k (0.003), A +159k (0.036). In B the
+  gap is mostly gain agents trading almost nothing at the open. A's loss vs neutral memo: +508k on 7 Jan to +172k on
+  5 Aug.
+- **Trading grows while joining stops:** every version trades far more from April (B 0.74-0.99M oz/day vs 0.09-0.50M in
+  January) and loses money every later day. Loss agents in B are often already positioned when asked (1 Apr: 40% with
+  UBS without adding; 8 Jun: 40% against), vs 10% of neutral agents.
+- **January's outcome does not explain the stop:** joining in January earned about the same as refusing; careers that lost
+  in January joined later no more than others.
+- **Measurement note:** the desk's `position` includes clients' stop fills (the desk takes their silver when the price is
+  pushed through). The preregistered secondary "on UBS's side at the end of the window" in `final_full_career.py` uses
+  `position`, so it reads the desk's book rather than the agent's choice; the paper does not report it. The trading
+  report uses the agent's own trades. Left `final_full_career.py` unchanged (preregistered); for the user to decide.
+- **Paper:** new Section 7.5 with Table 10; the persistence paragraph rewritten: the push toward joining fades, the push
+  toward risk-taking persists, setbacks do not revive joining.

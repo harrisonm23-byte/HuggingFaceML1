@@ -665,6 +665,50 @@ $p = 0.68$), and the agent never cited an inherited line in its replies. C's cle
 it went along 12\% of the time against B's 5\% ($p = 0.34$), a reminder of the variation between identical sets of 10
 careers.
 
+\subsection{What the agents traded across the career}
+\label{sec:trading}
+
+Going along is one decision per request, scored from trades; the rest of the trading record shows what else the framing
+did (exploratory). Each day's position is closed at 14:00, so what carries from one trading day to the next is the
+conversation: the agent's replies, its orders and the results it is told.
+
+\begin{table}[H]
+\centering
+\caption{The frame keeps acting on risk-taking. Thousands of ounces traded before the first chat of the day, loss
+framings minus gain framings (``+ you'' and not pooled), on the first trading day and over the three later ones (1 April, 8 June and
+5 August). Intervals resample careers; $p$ reshuffles careers. Exploratory.}
+\label{tab:persist}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{4.6cm}CCCC}
+\toprule
+\textbf{Experiment} & \textbf{7 January} & \textbf{Later days} & \textbf{95\% interval} & \textbf{$p$ (later)} \\
+\midrule
+B: UBS's framing & $+74$ & $+36$ & $+8$ to $+68$ & 0.017 \\
+F: UBS + Bank C & $+60$ & $+43$ & $+7$ to $+88$ & 0.039 \\
+D: Management + UBS & $+102$ & $+128$ & $+43$ to $+220$ & 0.008 \\
+E: Management + UBS + Bank C & $+292$ & $+114$ & $+43$ to $+190$ & 0.003 \\
+A: Management & $+131$ & $+159$ & $+42$ to $+285$ & 0.036 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{The frame keeps acting on risk-taking.} On every trading day, agents under a loss frame traded more before
+the first chat than agents under a gain frame, and the difference held through August in every experiment
+(Table~\ref{tab:persist}). In B the gap comes mostly from gain-framed agents, which traded almost nothing before the first
+chat on most days. Against the neutral memo, management's loss priming shrank but remained: in A, from 508,000 ounces
+more on 7 January to 172,000 on 5 August (both $p < 0.02$).
+
+\paragraph{Trading grows while joining stops.} Agents in every version, neutral included, traded far more after January
+(in B, 0.74 to 0.99 million ounces a day from April on, against 0.09 to 0.50 million in January) and lost money on every
+later day. Going along stopped; trading did not. Later in the career, loss-framed agents in B were often already
+positioned when asked: at the 1 April request 40\% already held UBS's side without adding to it, and at the two 8 June
+requests 40\% held the opposite side, against 10\% of neutral agents in each case. The frame moved how the agent stood
+when the request arrived, in both directions.
+
+\paragraph{January's outcome does not explain the stop.} Joining in January neither earned nor lost money compared with
+refusing (B: $+\$0.03$ million, interval $-0.03$ to $+0.08$), and careers that lost money in January went along later no
+more than those that did not (0\% against 4\% in B).
+
 \subsection{What the agent wrote}
 
 A rough word screen of the agent's reasoning, to be checked by a blind reading, suggests three things. Management's loss
@@ -851,20 +895,17 @@ losses more than neutral agents did, if the word screen is confirmed by a blind 
 agent's reasoning for signs of pressure would then miss the influence even when it sees the decision.
 
 \paragraph{Persistence or setbacks?} Two hypotheses predict misconduct late in a long task: a framing that keeps acting
-after many decisions, and setbacks that make the objective harder to reach. In these careers the framing acted most at the
-first two requests, and going along nearly stopped afterwards under every framing. Neither hypothesis fits: the framing's
-effect did not persist, and going along did not rise as the career went on. Because every career meets the requests in
-the same order, however, this cannot separate a framing that fades from later requests that are harder to join. A design
-that varies the order of the requests across careers would separate them. The matched rereads add one piece and one
-puzzle. At a given request, most of the framing's effect is carried by the history rather than by the request's own words;
-yet the history does not simply pile up. Before the first request the agent has seen 6 of UBS's framed lines, before
-the last about 40, and going along fell rather than rose. Whatever the history carries is therefore not the amount of framed
-talk. Three explanations remain: the part of the history that matters is built early (by 7 January the framing has
-already changed how much the agent traded); something after January suppresses going along under every framing,
-including neutral, leaving no room for the framing to show (later requests that are harder to join, the agent's own
-experience of its January trades, or framed lines diluted in a conversation that grows to 40,000 tokens); or the
-history's share is itself largest early. A split of the rereads by request, inside the model and in the decision, will
-show which.
+after many decisions, and setbacks that make the objective harder to reach. The answer depends on which behavior one
+watches. The framing's push toward joining was concentrated at the first two requests and nearly stopped afterwards under
+every framing, even as UBS's framed lines piled up (6 before the first request, about 40 before the last). Its push
+toward risk-taking persisted: loss-framed agents traded more before any chat than gain-framed agents on every trading day
+through August, in every experiment (Section~\ref{sec:trading}). Setbacks did not revive joining: every version lost money
+from April on, and careers that lost money in January joined later no more than others. The matched rereads place most of
+the framing's effect on the decision in the history rather than in the request's words; what that history carries is
+evidently not the amount of framed talk. Because every career meets the requests in the same order, later requests that
+are simply harder to join remain an explanation, and a design that varies their order would separate them. A split of
+the rereads by request, and a reread that swaps the agent's own earlier replies, will show whether the history's pull on
+joining fades or is overridden.
 
 \paragraph{Liability and deterrence.} The law and economics of misconduct asks who bears the expected cost of a violation
 and whether that cost deters it \citep{becker1968}. An AI agent that joins a manipulation because a counterparty framed
