@@ -63,3 +63,13 @@ def explained(x, sae):
         return None
     rebuilt = encode(x, sae) @ Wd + (bd if bd is not None else 0)
     return float(1 - ((x - rebuilt) ** 2).sum() / ((x - x.mean(0)) ** 2).sum())
+
+
+def relative_error(x, sae):
+    """The dictionary's squared error as a share of the states' squared size (0 = perfect). Unlike explained(), it does
+    not depend on how much the states differ from each other, which is little when every state is the same token."""
+    Wd, bd = sae[3], sae[4]
+    if Wd is None:
+        return None
+    rebuilt = encode(x, sae) @ Wd + (bd if bd is not None else 0)
+    return float(((x - rebuilt) ** 2).sum() / (x ** 2).sum())

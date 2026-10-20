@@ -24,7 +24,7 @@ import numpy as np
 
 STATES, PRECISION, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "sim"))
-from gemma_scope import NEURONPEDIA, SAE_REPO, SAE_WIDTH, encode, explained, load_sae, sae_layers
+from gemma_scope import NEURONPEDIA, SAE_REPO, SAE_WIDTH, encode, explained, load_sae, relative_error, sae_layers
 RNG = np.random.default_rng(20261019)
 PERMS, TOP = int(os.environ.get("INSIDE_PERMS", 1000)), 15
 os.makedirs(OUT, exist_ok=True)
@@ -143,7 +143,7 @@ report.append(f"Gemma Scope 2 ({SAE_REPO}, residual stream, {SAE_WIDTH}): layers
 for layer, f in found.items():
     sae = load_sae(f, W)
     F = encode(X[:, layer], sae)
-    checks[layer] = {"explained_all": explained(X[:, layer], sae)}
+    checks[layer] = {"explained_all": explained(X[:, layer], sae), "relative_error_all": relative_error(X[:, layer], sae)}
     for name, spec in COMPARISONS.items():
         a, b, S = spec if len(spec) == 3 else (*spec, REQ)
         if a.sum() < 6 or b.sum() < 6:
@@ -212,12 +212,15 @@ report.append("Share of variance rebuilt: 1 minus the dictionary's squared error
               "feature differences compared between the two precisions.\n")
 if PAIR4:
     report.append(f"B moments read at both precisions: {len(PAIR4)}.\n")
-report.append("| Layer | Variance rebuilt (all moments) | B, bfloat16 | B, 4-bit | State similarity, 4-bit vs bfloat16 "
+report.append("Relative error: the dictionary's squared error as a share of the states' own squared size (0 = perfect); "
+              "unlike the share of variance, it does not depend on how little the moments differ from each other (they are "
+              "all the same token).\n")
+report.append("| Layer | Variance rebuilt (all moments) | Relative error (all moments) | B, bfloat16 | B, 4-bit | State similarity, 4-bit vs bfloat16 "
               "(median cosine; lowest) | Loss vs gain differences: correlation | Top 15 shared | Top 15, same sign |\n"
-              "|---|---|---|---|---|---|---|---|")
+              "|---|---|---|---|---|---|---|---|---|")
 fmt = lambda v, f="{:.3f}": "-" if v is None else f.format(v)
 for layer, c in checks.items():
-    report.append(f"| {layer} | {fmt(c['explained_all'])} | {fmt(c.get('explained_B_bf16'))} | "
+    report.append(f"| {layer} | {fmt(c['explained_all'])} | {fmt(c.get('relative_error_all'))} | {fmt(c.get('explained_B_bf16'))} | "
                   f"{fmt(c.get('explained_B_4bit'))} | "
                   + (f"{c['cosine_median']:.3f}; {c['cosine_min']:.3f}" if 'cosine_median' in c else "-")
                   + f" | {fmt(c.get('z_correlation'))} | {fmt(c.get('top_shared'), '{}')} | {fmt(c.get('top_same_sign'), '{}')} |")

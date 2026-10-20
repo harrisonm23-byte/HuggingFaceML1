@@ -1373,3 +1373,21 @@ Dated entries: what was run, what happened, what's next.
   - example framing lines (Table 3, from the frozen set);
   - the court citation details.
 - **Build:** `cd designs/rd2/paper && pdflatex RD2_paper && bibtex RD2_paper && pdflatex RD2_paper && pdflatex RD2_paper`.
+
+## 20 Oct (morning): Run 1 checks in; paper updated
+
+- **4-bit vs bfloat16** (B; from `INSIDE_4bit.md` against `INSIDE_bf16.md`, since the bf16 rerun finished before the
+  4-bit reading):
+  - similar counts of significant features;
+  - loss vs gain top 15 shared 11 / 8 / 6 / 5 at layers 12 / 24 / 31 / 41, all with the same sign.
+- **Half-split confirmation:** loss vs gain 9 / 2 / 2 / 0 of the top 15 confirmed; framed vs neutral 15 / 7 / 1 / 1.
+  Robust at layer 12, not deeper.
+- **Read-out:**
+  - held-out request scored within request: AUC 0.70-0.76 at layers 18-36 (same direction: 0.62-0.70 at 24-45). The
+    earlier "near chance" was the pooled scoring.
+  - With the position in the labels bar (0.897), the state adds +0.017 to +0.022 at layers 21-45.
+- **SAE fit:** the share of variance rebuilt across moments is -1.13 / 0.13 / 0.45 / 0.06. Every moment is the same
+  template token, so the moments vary little.
+  - Added a second check, the error relative to the states' size (`gemma_scope.relative_error`), shown at the next
+    `--features-only` run.
+- **Paper updated** with all of these.

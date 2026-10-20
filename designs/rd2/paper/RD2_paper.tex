@@ -43,8 +43,8 @@ requests the agent went along with from 5\% to 25\% (33\% with ``you''), and los
 $p = 0.023$). A second bank in the same frame raised ``gain + you'' from 18\% to 40\% (Holm $p = 0.027$). Management's
 memo, which reported a \$4 million loss or gain, did not raise collusion but raised trading before any request 10 to 19
 times. Inheriting the trader's history had no effect. Inside the model, the framing is visible in Gemma Scope 2
-features at the decision; a signal for the decision beyond the framing appears only in middle and late layers; and a
-first steering test was inconclusive. Matched-history and activation-transplant tests of cause are in progress.
+features at the decision; a signal for the decision beyond the framing appears in middle and late layers and carries over
+to requests the read-out never saw; and a first steering test was inconclusive. Matched-history and activation-transplant tests of cause are in progress.
 \end{abstract}
 
 \section{Introduction}
@@ -170,8 +170,8 @@ yes for ``gain + you'' ($+22$, Holm $p = 0.027$). \\
 History (C) & Going along rises with the amount of the real trader's history inherited. & No trend. & Not supported
 (two nulls, 70 careers). \\
 Inside & The frame registers at the decision; the state carries the decision; steering along the frame moves it. & No
-feature differences; no gain over labels; no steering effect beyond random. & Registers; small gain over labels in
-middle and late layers; causal tests in progress. \\
+feature differences; no gain over labels; no steering effect beyond random. & Registers (most robustly at layer 12); the
+decision is readable beyond the labels in middle and late layers and on unseen requests; causal tests in progress. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -314,19 +314,20 @@ single versions against neutral differences of about 25 points; H3 was declared 
 
 \paragraph{Reading the state.} The careers ran in 4-bit. We reread every saved career at bfloat16, the precision Gemma
 Scope 2 was trained on, and record the residual stream at all 48 layers at the last token before the agent's reply to
-each push request (1,740 moments across all experiments). A 4-bit reread of B (in progress) checks that the two precisions
-agree.
+each push request (1,740 moments across all experiments). A 4-bit reread of B checks that the two precisions agree.
 
 \paragraph{Features.} We encode the states with the Gemma Scope 2 residual-stream sparse autoencoders (16k features) at
 layers 12, 24, 31 and 41 \citep{mcdougall2025}. Every comparison is made within the same push request, because the
 requests differ more from each other than the framings do; $p$-values reshuffle labels within request (1,000 times),
 with a false-discovery-rate correction across features. ``Went along'' against ``did not'' is compared within the same
-request, experiment and framing, since framing itself changes going along. Features will also be found on half the careers and
-confirmed on the other half (in progress).
+request, experiment and framing, since framing itself changes going along. As a check, the top features of each comparison are
+found on half the careers and tested on the other half. We also measure how well the sparse autoencoders rebuild our
+states.
 
 \paragraph{Reading the decision.} A logistic read-out predicts going along from each layer's state (centered within
-request and reduced to 64 components), scored on held-out careers and on a held-out request. Its bar is a read-out given
-only the labels (request, experiment and framing).
+request and reduced to 64 components), scored on held-out careers and on a held-out request (scored within that
+request). Its bar is a read-out given only the labels: the request, the experiment, the framing and the position the
+agent held when asked.
 
 \paragraph{Steering.} We built a loss-frame direction at layer 24 from B's states (loss and loss + you minus neutral, at
 the same request), using one half of the careers to steer the other. At 7 and 12 January we added it to neutral agents
@@ -523,37 +524,50 @@ predict going along ($+3$ points within experiment, framing and request; $p = 0.
 \label{sec:inside}
 
 \paragraph{The framing registers at the decision.} Within the same request, many Gemma Scope 2 features differ between
-framings at the last token before the agent's reply (Table~\ref{tab:features}): between loss and gain, 23 to 56 features
-per layer pass a false-discovery threshold of 0.05; between ``you'' and no ``you'', 16 to 65; between framed and neutral,
-17 to 35. Management's memo is visible at layer 12 (27 features) and fades with depth (none at layer 41). The features
+framings at the last token before the agent's reply (Table~\ref{tab:features}): between loss and gain, 23 to 59 features
+per layer pass a false-discovery threshold of 0.05; between ``you'' and no ``you'', 16 to 64; between framed and neutral,
+17 to 36. Management's memo is visible at layer 12 (27 features) and fades with depth (4 at layer 41). The features
 have not yet been named.
 
 \begin{table}[ht]
 \centering
 \caption{Number of Gemma Scope 2 features (16k, residual stream) that differ at the decision, within the same request,
-at a false-discovery rate of 0.05. Moments: 1,740 decisions across all experiments.}
+at a false-discovery rate of 0.05. In brackets: how many of the 15 features that differ most on half the careers
+differ the same way on the other half. Moments: 1,740 decisions across all experiments.}
 \label{tab:features}
 \small
 \begin{tabularx}{\linewidth}{Lcccc}
 \toprule
 \textbf{Comparison} & \textbf{Layer 12} & \textbf{Layer 24} & \textbf{Layer 31} & \textbf{Layer 41} \\
 \midrule
-B: loss vs gain & 23 & 56 & 46 & 30 \\
-B: ``you'' vs no ``you'' & 16 & 38 & 65 & 40 \\
-B: framed vs neutral & 35 & 23 & 29 & 17 \\
-A: a memo vs the neutral memo & 27 & 14 & 8 & 0 \\
-Went along vs not (same request, experiment and framing) & 0 & 21 & 15 & 18 \\
+B: loss vs gain & 23 (9) & 59 (2) & 47 (2) & 27 (0) \\
+B: ``you'' vs no ``you'' & 16 (8) & 38 (1) & 64 (0) & 41 (0) \\
+B: framed vs neutral & 36 (15) & 22 (7) & 27 (1) & 17 (1) \\
+A: a memo vs the neutral memo & 27 (9) & 15 (2) & 11 (1) & 4 (0) \\
+Went along vs not (same request, experiment and framing) & 0 (1) & 24 (7) & 17 (5) & 18 (2) \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\paragraph{The decision is readable, a little, in middle and late layers.} Comparing agents that went along with those
-that did not, within the same request, experiment and framing, no feature differs at layer 12, but 15 to 21 do at layers
-24 to 41, mostly different features from those that mark the framing. A linear read-out of the state predicts going
-along within a request (AUC 0.68 to 0.75 by layer, against about 0.47 with reshuffled outcomes). Given the labels
-(request, experiment and framing), which alone reach an AUC of 0.892, the state adds 0.021 to 0.026 at layers 21 to 45,
-with intervals above zero, and nothing at layers 0 to 18. \pending{Pending: the read-out on a held-out request, rescored
-within request; features confirmed on held-out careers; the 4-bit check.}
+\paragraph{How far the features can be trusted.} Three checks qualify Table~\ref{tab:features}. The framing's
+features replicate on held-out careers at layer 12 (9 of 15 for loss against gain; 15 of 15 for framed against neutral)
+but rarely at deeper layers, where the lists vary from one set of careers to another; comparisons across careers mix
+the framing with each career's history, which the matched-history reads remove. Read at 4-bit, the precision the careers
+ran at, B's comparisons give similar numbers of significant features, and their top features agree with bfloat16's at
+layer 12 (11 of 15 shared for loss against gain, all with the same sign) and less closely at deeper layers (5 to 8 of 15).
+Finally, the sparse autoencoders rebuild our states poorly relative to how much the states differ from one moment to
+the next: every moment is the same token in the chat template, so the moments differ little, and the reconstruction
+error is larger than those differences at most layers. Individual features should therefore be read with caution
+until a second check, the error relative to the states' own size, is in.
+
+\paragraph{The decision is readable in middle and late layers, and on unseen requests.} Comparing agents that went along
+with those that did not, within the same request, experiment and framing, no feature differs at layer 12, but 17 to 24
+do at layers 24 to 41, mostly different features from those that mark the framing. A linear read-out of the state
+predicts going along within a request (AUC 0.68 to 0.75 by layer, against about 0.47 with reshuffled outcomes). Given
+the labels (request, experiment, framing and the position held when asked), which alone reach an AUC of 0.897, the state
+adds 0.017 to 0.022 at layers 21 to 45, with intervals above zero, and nothing at layers 0 to 18. A read-out trained on
+five requests ranks going along within the sixth at an AUC of 0.70 to 0.76 at layers 18 to 36, and at 0.62 to 0.70 at
+layers 24 to 45 when trained only on requests in which UBS wanted the same direction.
 
 \paragraph{A first steering test was inconclusive.} Adding the loss-frame direction to neutral agents did not raise going
 along; it lowered it, from 23\% of sampled replies to 14\% (two times the gap; $p = 0.12$) and 10\% (four times;
@@ -599,8 +613,8 @@ agent's reasoning for signs of pressure would then miss the influence even when 
 continue it more often and never cites it. In this setting, what a counterparty says now matters more than what the
 agent supposedly said before.
 
-\paragraph{Inside the model.} The framing is clearly represented at the decision, and the decision is weakly readable
-beyond the framing in middle and late layers. Whether the represented framing causes the decision remains open: the
+\paragraph{Inside the model.} The framing is clearly represented at the decision, and the decision is readable
+beyond the framing in middle and late layers, in a way that carries over to requests the read-out never saw. Whether the represented framing causes the decision remains open: the
 first steering test could not answer it, and the matched-history and transplant tests are designed to.
 
 \section{Limitations}
@@ -616,8 +630,10 @@ trading on the information that a large player is about to push the price.
 \item \textbf{Harm is understated.} Only the stops placed in the simulation are counted.
 \item \textbf{Twins diverge.} Careers that share a seed differ from the first reply, because sampling on a GPU is not
 exactly reproducible; F's and E's comparisons with their twins are therefore unpaired.
-\item \textbf{Precision.} The careers ran in 4-bit; the states were read at bfloat16, the precision of Gemma Scope 2. A
-4-bit reread checks the difference.
+\item \textbf{Precision.} The careers ran in 4-bit; the states were read at bfloat16, the precision of Gemma
+Scope 2. A 4-bit reread agrees on the framing's presence, less closely on which deep-layer features carry it.
+\item \textbf{Dictionary fit.} The sparse autoencoders rebuild our decision-point states with an error larger than the
+differences between moments at most layers, so individual features are provisional.
 \item \textbf{Exploratory parts.} C redone, the comparisons of F with B's neutral careers, the word screen and every
 analysis inside the model are exploratory.
 \item \textbf{Responses, not experience.} We measure how a model responds under a framing, not anything it feels.
