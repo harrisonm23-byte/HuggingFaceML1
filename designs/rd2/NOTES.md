@@ -1354,3 +1354,22 @@ Dated entries: what was run, what happened, what's next.
   - A's priming direction is compared with Run 1's and UBS's at the requests only, with openings as a separate
     column;
   - A's unpaired intervals (5 careers per version) are marked rough.
+
+## 20 Oct (morning): paper draft (pilot format)
+
+- `designs/rd2/paper/RD2_paper.tex` (+ `references.bib`, built to `RD2_paper.pdf`, 16 pages) is in the format of the
+  29 Sep design draft.
+- **Contents:**
+  - every behavioural result (B as preregistered; A, D, E, F, C, C redone);
+  - Run 1's inside results;
+  - the first steering test and its audit;
+  - matched-history and transplant results marked as in progress.
+- **New numbers computed for it** (exploratory): F's framed versions against B's neutral careers:
+  - loss +23.3 (Holm 0.001);
+  - loss + you +43.3 (0.0004);
+  - gain + you +35.0 (0.0004);
+  - gain +6.7 (0.45).
+- **Left for the author:**
+  - example framing lines (Table 3, from the frozen set);
+  - the court citation details.
+- **Build:** `cd designs/rd2/paper && pdflatex RD2_paper && bibtex RD2_paper && pdflatex RD2_paper && pdflatex RD2_paper`.
