@@ -1198,3 +1198,9 @@ Dated entries: what was run, what happened, what's next.
   frame moves the decision without showing up in the stated reasoning, so the internal reading matters more. Added:
   `read_steps` in `scripts/modal_inside.py` (`--every-step`): 8 layers at every trading-day update (~120 per career),
   from the same one reading per career, for the internal signal along the whole path.
+- 2026-10-20. **C redone (notebook 29) finished: no takeover effect again.** Clean 8%, per session 10%, whole career 7%
+  (p = 1.0 each vs clean; trend p = 0.68); going along almost only on 7 Jan (5, 4, 3 of 10). With notebook 20 (neutral
+  rewrites, agent labels), two independent nulls over 70 careers: in a full career, inheriting Deutsche Bank's own
+  words does not raise going along, whatever UBS's wording or how the agent is named. The earlier takeover effects
+  were single-chat effects (one reply, the inherited line next to the request). Real lines with no framing (8%) sit
+  near B's neutral (5%).
