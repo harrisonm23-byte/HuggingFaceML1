@@ -1436,3 +1436,19 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   LaTeX; math is written as plain text (italic letters, sub/superscripts) so every viewer shows it.
 - If the user edits the Word copy, their edits are folded back into `RD2_paper.tex` (the source of the PDF) before the
   next rebuild, so neither copy loses changes.
+
+## 20 Oct: the user's Word edits folded in (RD23_paper.docx)
+
+- Compared paragraph by paragraph with the Word copy sent (no tracked changes in the file). Applied:
+  - title: "The Push Down the Mountain: The Influence of Loss, Gain, Blame, and Credit in Long-Horizon Coordinated AI
+    Misconduct" (the user asked for help with it);
+  - author: "Harrison C. Margolin" (affiliation left off, as in the edit);
+  - the abstract, rewritten by the user (typos fixed: "Deutch" to "Deutsche", "its own" to "their own", "UBS'" to
+    "UBS's");
+  - introduction: "they often follow"; "AI agents trade, negotiate and procure on others' behalf."
+- The other differences were Word formatting only (heading numbers turned into Word's automatic numbering for
+  sections 1-5).
+- Raised with the user, not changed: "trading position sizes" (we measured trading before the first chat), "290
+  careers" (includes C, which the new abstract no longer mentions), "illegally", and the dropped sentence on the
+  effect being concentrated at the first two requests.
+- `make_docx.py` now reads the title, author and date from the LaTeX.

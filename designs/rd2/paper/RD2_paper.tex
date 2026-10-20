@@ -24,30 +24,38 @@
 \newcommand{\authornote}[1]{\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\itshape #1}}}
 \newcommand{\pending}[1]{\textit{[#1]}}
 
-\title{\textbf{The Push Down the Mountain:}\\ \textbf{Loss, Gain, Blame and Credit in an AI Trading Agent's Decision to Collude}}
-\author{Harrison Margolin\\ \normalsize Algoverse AI Research}
+\title{\textbf{The Push Down the Mountain:}\\ \textbf{The Influence of Loss, Gain, Blame, and Credit in Long-Horizon Coordinated AI Misconduct}}
+\author{Harrison C. Margolin}
 \date{\small Working draft, October 20, 2026 \quad$\cdot$\quad Behavioral results final; interpretability results in progress}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Behavioral economics identified levers that move human decisions without changing their substance: whether stakes are
-framed as losses or gains, who is held responsible for the outcome, what a person has just lost or won, and what others
-around them are doing. We ask whether the same levers move an AI agent acting as an economic agent in a market, toward
-or away from collusion. We place an open-weights model (Gemma 3 12B) in the seat of a bank's silver desk for a
-``career'' rebuilt from the chats quoted in the London silver-fixing litigation: 34 chat-only days and five trading days
-on replayed 2011 prices, in one conversation of about 40,000 tokens, during which a counterparty (UBS) asks the agent
-six times to push the price with it. Across 290 careers we vary how UBS frames its stakes (loss or gain), whether it puts
-the outcome on the agent (blame after a loss, credit after a gain), what the agent's own management reports it has just
-lost or made, whether a second bank endorses the scheme, and whether the agent inherits the real trader's history. In
-the preregistered experiment, loss framing raised the share of requests the agent went along with from 5\% to 25\%
-(33\% with blame), and loss exceeded gain by 15 points (Holm $p = 0.023$; odds ratio 6.9 in a request-level model). The
-effect was concentrated in the first two requests. A second bank's endorsement raised the credit framing from 18\% to
-40\% (Holm $p = 0.027$). Management's report of a \$4 million loss or gain did not raise collusion but raised trading
-before any request 10 to 19 times, as prior outcomes do in people. Inheriting the trader's history had no effect. Inside
-the model, the framing is visible at the decision, and a signal for the decision itself carries over to requests the
-model never saw; causal tests are in progress.
+Language model agents increasingly act over long horizons, completing tasks by communicating with other parties (AI or
+human), and reviewing their own continuous reasoning. Behavioral economics identifies levers that influence human
+decisions, including whether stakes are interpreted through a lens of loss-aversion or gain-seeking. Human psychology
+often focuses on who bears responsibility for a communal outcome, and what others are doing.
+
+We ask whether the same levers move an AI agent in a simulated commodities market toward collusion; whether the way a
+counterparty frames duplicitous requests can change an agent's long-run decision making or even convince it to
+participate in requested misconduct.
+
+We place an open-weights model (Gemma 3 12B) in the seat of a bank's silver trading desk for a ``career'' rebuilt from
+real chats quoted in the London silver-fixing litigation. Each career covers 34 chat-only days and five trading days on
+replayed 2011 prices, in one conversation of about 40,000 tokens, during which a counterparty (UBS) asks the agent
+(Deutsche Bank) to illegally collude on the price of silver. Across 290 careers, we vary how UBS's requests are framed
+(loss- or gain-focused), whether it pins the outcome on the agent itself (blame for a loss, credit for a gain), what the
+agent's management had reported, and whether adding a second bank endorsing the scheme would influence the agent's
+willingness to participate.
+
+In the preregistered experiment, loss framing raised the rate of participation from 5\% to 25\%, and 33\% with blame.
+Loss exceeded gain by 15 points (Holm $p = 0.023$; odds ratio 6.9 in a request-level model). A second bank's
+endorsement raised the credit framing from 18\% to 40\% (Holm $p = 0.027$). Management's report of a \$4 million loss or
+gain did not raise collusion-participation but notably raised trading position sizes by 10 to 19 times.
+
+Inside the model, the framing is visible at the decision, and a signal for the decision itself carries over to requests
+the model never saw; causal tests are in progress.
 \end{abstract}
 
 \section{Introduction}
@@ -56,10 +64,10 @@ Behavioral economics established that decisions depend on how a choice is presen
 same outcome described as a loss rather than a gain leads people to take more risk \citep{kahneman1979,tversky1981};
 outcomes are judged against a reference point \citep{koszegi2006}; people behave differently when an outcome is
 attributed to them \citep{bartling2012}; what they have just lost or won changes their next gamble \citep{thaler1990};
-and they follow what others around them do \citep{asch1956,bikhchandani1992}. Markets are where these levers matter
+and they often follow what others around them do \citep{asch1956,bikhchandani1992}. Markets are where these levers matter
 most, and where they can erode moral restraint \citep{falk2013}.
 
-AI agents now trade, negotiate and procure on others' behalf, and they meet these levers constantly. Their
+AI agents trade, negotiate and procure on others' behalf. Their
 counterparties do not need to change the facts to change a decision; they can change how the stakes are framed, whom
 the outcome is pinned on, and who else appears to be on board. Language models are known to act as economic agents with
 human-like regularities \citep{horton2023}, to reach collusive prices without being told to \citep{fish2024}, and to

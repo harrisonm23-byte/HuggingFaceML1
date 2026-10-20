@@ -155,14 +155,23 @@ def number_sections(tex):
     return "".join(out)
 
 
+def plain_title_block(tex):
+    """The title, author and date as plain text (Word has no use for LaTeX's line breaks and font sizes)."""
+    for cmd, joiner in [("title", " "), ("author", ", "), ("date", ". ")]:
+        start = tex.index(f"\\{cmd}{{")
+        end = balanced(tex, start + len(cmd) + 1)
+        body = tex[start + len(cmd) + 2:end - 1]
+        body = re.sub(r"\\(textbf|emph)\{([^{}]*)\}", r"\2", body)
+        body = re.sub(r"\\(small|normalsize|large|Large)\b\s*", "", body)
+        body = re.sub(r"\s*(\\\\|\\quad\$\\cdot\$\\quad)\s*", joiner, body)
+        tex = tex[:start] + f"\\{cmd}{{{body.strip()}}}" + tex[end:]
+    return tex
+
+
 def prepare(tex, labels, aligns):
     tex = re.sub(r"\\newcommand\{\\authornote\}.*\n",
                  "\\\\newcommand{\\\\authornote}[1]{\\\\textbf{[Note:} \\\\textit{#1}\\\\textbf{]}}\n", tex)
-    tex = re.sub(r"\\title\{.*?\n\\date\{.*?\}\n",
-                 "\\\\title{The Push Down the Mountain: Loss, Gain, Blame and Credit in an AI Trading Agent's "
-                 "Decision to Collude}\n\\\\author{Harrison Margolin, Algoverse AI Research}\n"
-                 "\\\\date{Working draft, October 20, 2026. Behavioral results final; interpretability results in "
-                 "progress.}\n", tex, flags=re.S)
+    tex = plain_title_block(tex)
     tex = draw_figures(tex)
     tex = tables_to_tabular(tex, aligns)
     tex = number_captions(tex, labels)
