@@ -1318,3 +1318,23 @@ Dated entries: what was run, what happened, what's next.
   memo and a "threat only" memo, and they are swapped into the same saved moments.
 - **Note in both matched analyses:** a "you after loss vs after gain" difference in the features can come from their
   thresholds alone; the linear cosine table is the cleaner test.
+
+## 20 Oct (early hours): first steering run read and audited
+
+- **Result** (`results/interventions/INTERVENTIONS.md`): inconclusive on cause. Adding the loss direction lowered going
+  along in neutral agents, as did one random and the memo direction. Removing it in loss + you agents lowered going
+  along (-20, p 0.07), while removing random raised it (+11).
+- **Audit:** a 20-agent workflow, every finding checked twice. Confirmed faults:
+  - the in-sample gap (so the strength was overstated);
+  - a single random direction, never tested against the frame;
+  - each sign used in only one group;
+  - the log-prob scoring (no "+n" form, prefix overlap, no coverage);
+  - unreadable replies counted as not going along;
+  - the reasoning swap leaves the agent's words about the requests in place.
+- **Fixed now:**
+  - `sim/interventions.py` order_dist and summarise_orders (whole numbers, both sign forms, coverage), used by both
+    matched runs;
+  - `sim/test_interventions_tiny.py` checks them exactly against brute force on a tiny random Gemma 3, along with the
+    cached reads.
+  - order_prob stays as it was, for the first run's record.
+- **Next:** steering v2 per the audit's design, after the matched run.

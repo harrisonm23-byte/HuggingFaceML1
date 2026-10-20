@@ -49,6 +49,33 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
   first reply onward (the same seed, but GPU sampling differs), so the paired test cannot isolate Bank C's line. It is
   replaced by test 3's exact pairs.
 
+## Steering, first run (results/interventions/INTERVENTIONS.md): what it shows, and its faults
+
+- **What it shows:**
+  - Adding the across-careers loss direction did not raise going along in neutral agents; it lowered it.
+  - So did one random direction of the same size, and so did the memo direction.
+  - Removing the loss direction in loss + you agents lowered going along (73% -> 53%, p 0.07), while removing the
+    random direction raised it. That is suggestive but untested against the random direction.
+  - Wiping its earlier trading-day reasoning changed nothing significant.
+- **Overall:** the run neither shows nor rules out that the loss representation causes going along.
+- **Faults found by a code audit (each confirmed by two independent checks):**
+  - The strength was measured on the same careers that built the direction, so x2 and x4 were larger than stated.
+  - There was one random direction, and it was never tested against the frame direction.
+  - Each sign was used in only one group, so a sign's effect cannot be told apart from a group difference.
+  - The log-prob scoring:
+    - left out "TARGET +n";
+    - counted "TARGET 50000" inside "TARGET 500000";
+    - had a narrow grid and no coverage.
+  - Unreadable replies were counted as "not going along".
+  - "Own words neutralised" left the agent's words about the requests in place, so it leans towards a null.
+- **Fixed for every new run:** `order_dist` scores whole numbers in both sign forms, with coverage. It is checked
+  exactly against brute force on a tiny random Gemma 3 (`sim/test_interventions_tiny.py`), which also checks the
+  cached reads.
+- **Steering v2 (designed, to build after the matched run):**
+  - the held-fixed frame direction at its natural size (x1, x2), cross-fitted, both signs in both groups;
+  - against 10 random directions;
+  - the request swap as the yardstick, and a swap plus counter-steer.
+
 ## Added after the outside review (20 Oct)
 
 - **3 (above): same moment, different frame.** The one change the review called most important.

@@ -5,8 +5,9 @@ differ. Here every saved B moment (50 careers x 6 push requests) is kept exactly
 the request itself changes: UBS's lines in each of the five framings (the user's frozen lines, `sim/matched.py`), each
 with and without Bank C's line (F's frozen line in the same framing). For each of the 10 versions of the moment:
 - the state at the last token before the reply (layers KEEP; no reply is sampled);
-- P(the order goes along), by log-probs over the wide order grid after a fixed neutral reasoning line, and the grid's
-  coverage (the share of all probability its orders take).
+- P(the order goes along), by log-probs over the wide order grid after a fixed neutral reasoning line (each size
+  scored as a whole number, in both ways the agents write a positive order: `order_dist`), and the grid's coverage (the
+  share of all probability its orders take).
 This separates the request's immediate effect (same history, different request) from the history's (different
 careers, same request), and gives Bank C's line alone (same moment, with and without it). At bfloat16, like the
 states and the steering.
@@ -74,7 +75,7 @@ def run_part(part, parts):
     from career import career_opening
     from framing_set import FRAMINGS, read_set
     from inside_careers import Recorder, encode, moments, turns_at
-    from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, order_prob, prefill, split_point
+    from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, order_dist, prefill, split_point, summarise_orders
     from matched import matched
     from peer_lines import CHAT_ID, read_peers
     chats, peers = read_set(), read_peers()
@@ -112,13 +113,12 @@ def run_part(part, parts):
                           use_cache=True, cache_position=torch.arange(k, len(full), device=model.device))
                 states.append(rec.states(len(full) - 1)[KEEP].numpy())
                 rec.reset([])
-                p, scores = order_prob(model, tok, full, cache, NEUTRAL_LEAD, position, m["wants"], detail=True,
-                                       grid=WIDE_GRID)
+                orders, probs, cover = order_dist(model, tok, full, cache, NEUTRAL_LEAD, WIDE_GRID)
                 rows.append({"experiment": "B", "history": m["version"], "run": m["run"], "chat": m["chat"],
                              "date": m["date"], "wants": m["wants"], "career_file": m["career_file"],
                              "held_their_way": m["held_their_way"], "saved_joined": m["joined"],
-                             "framing": v1, "bank_c": bank_c, "p_order_along": p,
-                             "coverage": float(sum(math.exp(s) for s in scores)), "tokens": len(full)})
+                             "framing": v1, "bank_c": bank_c, **summarise_orders(orders, probs, position, m["wants"]),
+                             "coverage": cover, "probs": probs, "tokens": len(full)})
         arr = np.stack(states).astype(np.float32)
         assert np.isfinite(arr).all(), f"{path}: a state is not finite"
         np.savez_compressed(path, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
@@ -137,7 +137,7 @@ def run_part_memo(part, parts):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from career import career_opening
     from inside_careers import Recorder, encode, moments, turns_at
-    from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, order_prob, prefill, split_point
+    from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, order_dist, prefill, split_point, summarise_orders
     from matched import priming_days, swap_priming
     requests = {}
     for m in moments(FOLDER_A, "A"):
@@ -153,7 +153,6 @@ def run_part_memo(part, parts):
     weights.commit()
     rec = Recorder(model)
     opening = career_opening()
-    orders = ["HOLD"] + WIDE_GRID
     t0 = time.time()
     for n, cf in enumerate(files):
         path = f"{OUT_A}/{cf[:-5]}.npz"
@@ -192,18 +191,13 @@ def run_part_memo(part, parts):
                 position = x["position"]
                 if position is None:                       # the opening: its position, as the update shows it
                     position = float(re.findall(r"Your position: ([+-][\d,]+) oz", c1["history"][x["history_index"]]["content"])[-1].replace(",", ""))
-                p, scores = order_prob(model, tok, full, cache, NEUTRAL_LEAD, position, x["wants"] or "up", detail=True,
-                                       grid=WIDE_GRID)
-                w = np.exp(np.array(scores) - max(scores))
-                q = w / w.sum()
-                size = [abs(position)] + [abs(t) for t in WIDE_GRID]
-                change = [0.0] + [float(t != position) for t in WIDE_GRID]
+                orders, probs, cover = order_dist(model, tok, full, cache, NEUTRAL_LEAD, WIDE_GRID)
                 rows.append({"experiment": "A", "history": v0, "run": career["run"], "career_file": cf,
                              "kind": x["kind"], "history_index": x["history_index"], "chat": x.get("chat"),
                              "wants": x["wants"], "position": position, "saved_joined": x.get("saved_joined"),
-                             "priming": v1, "p_order_along": p if x["kind"] == "request" else None,
-                             "expected_size": float(q @ np.array(size)), "p_change": float(q @ np.array(change)),
-                             "coverage": float(sum(math.exp(s) for s in scores)), "tokens": len(full)})
+                             "priming": v1, "p_order_along": None,
+                             **summarise_orders(orders, probs, position, x["wants"]),
+                             "coverage": cover, "probs": probs, "tokens": len(full)})
         arr = np.stack(states).astype(np.float32)
         assert np.isfinite(arr).all(), f"{path}: a state is not finite"
         np.savez_compressed(path, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))

@@ -147,3 +147,64 @@ def order_prob(model, tok, full, cache, lead, position, wants, detail=False, gri
     w = [math.exp(v - m) for v in scores]
     p = sum(wi for wi, a in zip(w, along) if a) / sum(w)
     return (p, scores) if detail else p
+
+
+_CONT = {}
+
+
+def _continuations(tok):
+    """Token ids that would continue a number: those starting with a digit (no space before it). The agents never
+    write commas or decimal points in an order, and a full stop can end one ("TARGET -200000."), so those end it."""
+    if id(tok) not in _CONT:
+        _CONT[id(tok)] = [i for t, i in tok.get_vocab().items() if t[:1] in set("0123456789")]
+    return _CONT[id(tok)]
+
+
+def order_dist(model, tok, full, cache, lead, grid):
+    """The agent's order after the decision prompt and a reasoning `lead`, as a distribution over HOLD and each size in
+    `grid` (the review of 20 Oct fixed two faults of order_prob, kept as it was for the first steering run):
+    - a positive size is scored in both ways the agents write it, "TARGET n" and "TARGET +n", summed;
+    - each "TARGET n" is scored as a whole number: its probability times the chance the number ends there (the next
+      token is not a digit), so "TARGET 50000" no longer also counts "TARGET 500000".
+    Returns (orders, probabilities normalised over them, coverage = their summed probability before normalising)."""
+    import math
+    import torch
+    head = tok("\n\n".join([lead.strip(), ""]) if lead else "", add_special_tokens=False)["input_ids"]
+    base = copy.deepcopy(cache)
+    ids = torch.tensor([full + head], device=model.device)
+    k = cache.get_seq_length()
+    with torch.no_grad():
+        model(input_ids=ids[:, k:ids.shape[1] - 1], past_key_values=base, use_cache=True,
+              cache_position=torch.arange(k, ids.shape[1] - 1, device=model.device))
+    n0, cont = len(full) + len(head), _continuations(tok)
+
+    def logp(text, whole_number):
+        c = tok(text, add_special_tokens=False)["input_ids"]
+        x = torch.tensor([full + head + c], device=model.device)
+        with torch.no_grad():
+            logits = model(input_ids=x[:, n0 - 1:], past_key_values=copy.deepcopy(base), use_cache=True,
+                           cache_position=torch.arange(n0 - 1, x.shape[1], device=model.device)).logits[0].float()
+        lp = torch.log_softmax(logits, -1)            # lp[j] predicts token j of the order; the last row, what follows
+        total = float(sum(lp[j, c[j]] for j in range(len(c))))
+        if whole_number:
+            total += math.log(max(1e-12, 1 - float(lp[len(c), cont].exp().sum())))
+        return total
+
+    orders, mass = ["HOLD"] + list(grid), [math.exp(logp("HOLD", False))]
+    for t in grid:
+        forms = [f"TARGET {t}"] + ([f"TARGET +{t}"] if t > 0 else [])
+        mass.append(sum(math.exp(logp(f, True)) for f in forms))
+    total = sum(mass)
+    return orders, [m / total for m in mass], total
+
+
+def summarise_orders(orders, probs, position, wants=None):
+    """From order_dist: P(the order goes along) (if `wants`), the expected size of the position it sets, and the chance
+    it changes its position."""
+    size = [abs(position) if o == "HOLD" else abs(o) for o in orders]
+    change = [0.0 if o == "HOLD" else float(o != position) for o in orders]
+    out = {"expected_size": sum(p * s for p, s in zip(probs, size)), "p_change": sum(p * c for p, c in zip(probs, change))}
+    if wants:
+        out["p_order_along"] = sum(p for o, p in zip(orders, probs)
+                                   if goes_along("HOLD" if o == "HOLD" else f"TARGET {o}", position, wants)[0])
+    return out
