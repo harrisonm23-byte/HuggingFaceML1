@@ -1,0 +1,68 @@
+{
+ "B neutral": {
+  "+ loss frame x2": {
+   "rate": 0.14375,
+   "change": -0.0875,
+   "p_order": 0.20488361764726254,
+   "p_order_change": -0.1441843108861343
+  },
+  "+ loss frame x4": {
+   "rate": 0.1,
+   "change": -0.13125,
+   "p_order": 0.06617774315244859,
+   "p_order_change": -0.2828901853809483
+  },
+  "+ memo loss direction x4": {
+   "rate": 0.09375,
+   "change": -0.1375,
+   "p_order": 0.02108815703677687,
+   "p_order_change": -0.32797977149662
+  },
+  "+ random x4": {
+   "rate": 0.15,
+   "change": -0.08125,
+   "p_order": 0.024088135249561014,
+   "p_order_change": -0.3249797932838358
+  }
+ },
+ "B loss + you": {
+  "- loss frame x2": {
+   "rate": 0.625,
+   "change": -0.10625,
+   "p_order": 0.766060684793252,
+   "p_order_change": 0.053809308331021155
+  },
+  "- loss frame x4": {
+   "rate": 0.53125,
+   "change": -0.2,
+   "p_order": 0.48606589328723865,
+   "p_order_change": -0.2261854831749921
+  },
+  "- memo loss direction x4": {
+   "rate": 0.61875,
+   "change": -0.1125,
+   "p_order": 0.7317705006127978,
+   "p_order_change": 0.019519124150567172
+  },
+  "- random x4": {
+   "rate": 0.8375,
+   "change": 0.10625,
+   "p_order": 0.8687068692090397,
+   "p_order_change": 0.15645549274680884
+  },
+  "own words neutralised": {
+   "rate": 0.79375,
+   "change": 0.0625,
+   "p_order": 0.8581723599097867,
+   "p_order_change": 0.14592098344755594
+  }
+ },
+ "F gain + you": {
+  "own words neutralised": {
+   "rate": 0.85,
+   "change": -0.06875,
+   "p_order": 0.6923434171100286,
+   "p_order_change": 0.0935075660906234
+  }
+ }
+}
