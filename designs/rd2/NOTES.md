@@ -1428,3 +1428,11 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   13 / 10 / 11 / 10, all 15 with the same sign at every layer.
 - **Went along vs not, layer 41:** 3 of the top 15 confirmed on the other half (was 2; reshuffle noise).
 - Paper updated (inside-model results, Table 10, Limitations).
+
+## 20 Oct: an editable Word copy of the paper
+
+- `designs/rd2/paper/make_docx.py` makes `RD2_paper.docx` from the LaTeX (run after building the PDF; it reads the
+  numbering from the .aux). Text, tables, citations and references are editable; the two figures are pictures drawn by
+  LaTeX; math is written as plain text (italic letters, sub/superscripts) so every viewer shows it.
+- If the user edits the Word copy, their edits are folded back into `RD2_paper.tex` (the source of the PDF) before the
+  next rebuild, so neither copy loses changes.
