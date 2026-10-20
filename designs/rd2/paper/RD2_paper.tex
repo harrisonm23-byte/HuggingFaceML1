@@ -98,8 +98,9 @@ trades and harm is measured as losses to the clients whose stop-loss orders are 
 the agent's own management raises risk-taking instead, that a second bank's endorsement amplifies framings that put the
 outcome on the agent, and that inheriting a trader's history does not matter (Section~\ref{sec:results}).
 \item A first look inside the model: the framing is represented at the decision, and a signal for the decision carries
-over to requests the model never saw; a matched-history design for causal tests is in progress
-(Section~\ref{sec:inside}).
+over to requests the model never saw. Rereading each saved decision with only the current request changed shows that
+most of the framing's effect on the decision is carried by the history it built, not by the words of the request in front
+of the agent (Section~\ref{sec:matched}).
 \end{enumerate}
 
 This study replaces the design draft of September 29, 2026, which planned related questions on impossible coding tasks;
@@ -234,7 +235,8 @@ History (C) & Going along rises with the amount of the real trader's history inh
 (two nulls, 70 careers). \\
 Inside & The frame registers at the decision; the state carries the decision; steering along the frame moves it. & No
 feature differences; no gain over labels; no steering effect beyond random. & Registers (most robustly at layer 12); the
-decision is readable beyond the labels in middle and late layers and on unseen requests; causal tests in progress. \\
+decision is readable beyond the labels in middle and late layers and on unseen requests; at fixed history the request
+moves the decision, but most of the effect travels through the history; transplant and steering in progress. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -417,12 +419,17 @@ gap along the direction, with eight sampled replies per condition. Controls were
 a direction built from management's memo (A), which contains no framed UBS words. We also replaced the agent's earlier
 trading-day reasoning with neutral sentences of the same length (a test in the style of \citealt{lanham2023}).
 
-\paragraph{Same moment, different frame (in progress).} The careers differ in history by the time each request
-arrives, so comparisons across careers mix the framing with everything that followed from it. In a matched-history
-design, each saved moment is reread with only the current request changed: UBS's lines in each of the five framings,
-with and without Bank C's line, everything before the request held fixed. The same design swaps management's memo and
-morning books in A's careers while keeping the agent's own replies. These reads give the framing's immediate effect on the
-decision and on the state, exact pairs for Bank C's line, and a clean frame direction (Figure~\ref{fig:matched}).
+\paragraph{Same moment, different frame.} The careers differ in history by the time each request arrives, so
+comparisons across careers mix the framing with everything that followed from it. In a matched-history design, each of
+B's 300 saved decisions is reread with only the current request changed: UBS's lines in each of the five framings, with
+and without Bank C's line, everything before the request held fixed (Figure~\ref{fig:matched}). A difference between
+versions of the same moment is the request's own effect; a difference between careers given the same (neutral) request
+is the history's. The same design swaps management's memo and all five morning books in A's 25 careers while keeping the
+agent's own replies, at the 150 requests and at the first update of each trading day. Since a reread gives one decision
+state rather than a sampled career, the decision is measured from the model's probabilities after a fixed neutral
+reasoning line: the probability of HOLD and of every order size the agents used, in both directions, and from these the
+probability of an order that goes along and the expected order size. Paired effects take their $p$-values from
+flipping signs by career and unpaired ones from reshuffling careers (10,000 times each).
 
 \begin{figure}[ht]
 \centering
@@ -730,12 +737,87 @@ serve as a null; each sign was applied in only one group; and the log-probabilit
 written with a ``+'' sign and counted shorter orders inside longer ones. The run neither shows nor rules out that the
 represented framing causes going along.
 
-\authornote{To be completed when the matched-history and transplant runs are in: (i) the framing's immediate effect on
-the decision and the state at fixed history, for every significant behavioral effect (loss, loss + you, gain + you, and
-Bank C's line); (ii) the history's effect with the request held neutral; (iii) ``you'' after loss against ``you'' after
-gain; (iv) management's priming at fixed history, and whether management's loss and UBS's loss share a direction; (v)
-the transplant, layer by layer; (vi) a second steering test with the matched direction at its natural size, against ten
-random directions.}
+\subsection{Same moment, different frame}
+\label{sec:matched}
+
+\begin{table}[H]
+\centering
+\caption{Same moment, different frame (Experiment B). The probability of an order that goes along, after a fixed
+neutral reasoning line, for 300 saved decisions (50 careers, six requests). The request's effect compares versions of
+the same moment, so the history is identical; the history's effect compares careers given the same neutral request.
+Changes in percentage points.}
+\label{tab:matched}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{6.4cm}CCC}
+\toprule
+\textbf{Contrast} & \textbf{Change} & \textbf{95\% interval} & \textbf{$p$} \\
+\midrule
+\multicolumn{4}{l}{\textit{The request alone (history fixed)}} \\
+Loss vs neutral & $+5.6$ & $+3.7$ to $+7.5$ & $<0.001$ \\
+Loss + you vs neutral & $+6.9$ & $+4.2$ to $+9.7$ & $<0.001$ \\
+Gain vs neutral & $+3.8$ & $+1.8$ to $+5.8$ & $0.001$ \\
+Gain + you vs neutral & $+4.6$ & $+2.6$ to $+6.8$ & $<0.001$ \\
+Loss vs gain & $+2.0$ & $+1.0$ to $+3.1$ & $<0.001$ \\
+``You'' vs none & $+1.1$ & $-0.4$ to $+2.6$ & $0.16$ \\
+Bank C's line & $+4.0$ & $+2.7$ to $+5.3$ & $<0.001$ \\
+``You'' after loss, with Bank C & $+4.1$ & $+2.3$ to $+5.9$ & $<0.001$ \\
+``You'' after gain, with Bank C & $+2.2$ & $+0.8$ to $+3.7$ & $0.002$ \\
+\midrule
+\multicolumn{4}{l}{\textit{The history (request held neutral)}} \\
+Framed vs neutral history & $+18.5$ & $+10.6$ to $+26.1$ & $0.001$ \\
+Loss vs gain history & $+5.4$ & $-3.7$ to $+15.2$ & $0.30$ \\
+\midrule
+\multicolumn{4}{l}{\textit{History and request together (as saved)}} \\
+Framed vs neutral & $+23.3$ & $+15.0$ to $+31.4$ & $<0.001$ \\
+Loss vs gain & $+7.0$ & $-2.4$ to $+17.1$ & $0.18$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{The framing works mostly through the history it builds.} Swapping only UBS's current request moved the
+probability of an order that goes along by a few points (Table~\ref{tab:matched}): loss framing by 5.6 points over the
+neutral request and loss + you by 6.9, gain by 3.8 and gain + you by 4.6, all with intervals above zero; loss exceeded
+gain by 2.0 points. Holding the request neutral and comparing careers instead, framed histories raised the same
+probability by 18.5 points over neutral ones ($p = 0.001$), against 23.3 points for history and request together. About
+four-fifths of the framing's effect on the decision is therefore carried by the history: UBS's earlier framed lines and
+the agent's own replies and trades that followed them, which this reread does not separate. The probability is read after
+a fixed neutral reasoning line, so its levels (14\% for a neutral career and request) differ from the sampled rates, and
+the orders scored cover a median of 67\% of the model's probability; the comparisons are what it measures. The rereads
+reproduce the original states exactly (median cosine 1.000 at every layer).
+
+\paragraph{``You'' registers differently after loss than after gain.} With the history fixed, ``you'' alone did not move
+the decision ($+1.1$ points, $p = 0.16$), but with Bank C's line it added 4.1 points after loss and 2.2 after gain, as in
+Experiment F. Inside, the change ``you'' makes to the state is 27\% to 39\% larger after loss than after gain at layers 18
+and 31 to 47, and the two changes are alike but not the same: their cosine is 0.71 to 0.92 at layers 12 to 47, against
+0.98 to 1.00 for the change after loss compared with itself on two halves of the careers. Management's ``you'' shows the
+same pattern in late layers (0.67 to 0.79 at layers 31 to 47, against 0.97 to 0.99). Because the loss + you and gain +
+you lines are written separately, part of this difference may lie in their words.
+
+\paragraph{A second bank's endorsement moves the state along the loss direction.} With the history fixed, Bank C's line
+moves the state along the loss-frame direction about as far as the loss frame itself at layer 12 (0.91 of the
+loss--neutral gap) and about twice as far at layer 24 (1.95). Inside, a second bank's endorsement and a loss frame push the
+state the same way at these layers.
+
+\paragraph{Management's priming, everything else held fixed.} In A's careers, swapping in management's memo and books
+raised the expected size of the agent's first order of the day by 50,000 ounces under loss and 32,000 under gain (loss
+above gain by 16,000; all $p < 0.001$), and placing the outcome on the agent lowered it, by 11,600 ounces after loss and
+8,200 after gain. The priming did not change the probability of going along at UBS's requests (every change within half a
+point, none significant). Here too the history carried more: with the memo held neutral, careers that had run under the
+loss memo would order 125,000 ounces more than neutral careers, and were less likely to go along (by 14 and 16 points for
+loss and gain histories; five careers per version, so these intervals are rough). The predicted order sizes rank the five
+versions in the same order as the real careers' trading before the first chat. Inside, management's loss direction
+matches UBS's at layer 12 (cosine 0.72, against 0.88 between two halves of the careers) and departs from it from layer 31
+on ($-0.56$ at layer 47): the two sources register alike early and lead to different behavior.
+
+\paragraph{Why the first steering test missed.} At layer 24, where the first steering test pushed, the frame direction
+measured across careers points away from the direction the request itself produces with the history fixed (cosine
+$-0.29$); the two agree at layer 12 (0.98) and largely at layer 18 (0.82). The direction used in that test mostly carried
+differences in history rather than the request's framing, which may explain its null result. The second steering test
+uses the direction measured with the history fixed.
+
+\authornote{To be completed when the transplant and the second steering run are in: the transplant of the framed state
+into the neutral read, layer by layer, for each significant effect; and steering along the held-fixed direction at its
+natural size, both signs, against ten random directions.}
 
 \section{Discussion}
 \label{sec:discussion}
@@ -756,8 +838,9 @@ join in pushing the price, while the same loss-or-gain priming from its own mana
 making it collude. The difference matters for deployment: the pressures that change an agent's risk-taking and the
 pressures that change its willingness to join a scheme are not the same, and testing one does not cover the other. Two
 cautions apply. The management memo combined a loss already suffered with a threat about the future (``a further loss
-will close the desk''), so it cannot say which of the two drove risk-taking. And the two sources used different wording;
-the matched-history reads will show whether management's loss and UBS's loss share a representation inside the model.
+will close the desk''), so it cannot say which of the two drove risk-taking. And the two sources used different wording.
+Inside, management's loss and UBS's loss look alike at layer 12 and part ways in late layers, consistent with one
+registered loss feeding two different behaviors.
 
 \paragraph{``You'' needs company.} Putting the outcome on the agent did not reliably raise going along when UBS spoke
 alone, but with a second bank backing UBS it more than doubled going along under gain + you. A request that names the
@@ -771,8 +854,11 @@ agent's reasoning for signs of pressure would then miss the influence even when 
 after many decisions, and setbacks that make the objective harder to reach. In these careers the framing acted most at the
 first two requests, and going along nearly stopped afterwards under every framing. Neither hypothesis fits: the framing's
 effect did not persist, and going along did not rise as the career went on. Because every career meets the requests in
-the same order, however, this cannot separate a framing that fades from later requests that are harder to join. A design that varies the order of the requests across careers would separate them, and
-the matched-history reads will separate the request's immediate effect from that of the history before it.
+the same order, however, this cannot separate a framing that fades from later requests that are harder to join. A design
+that varies the order of the requests across careers would separate them. The matched rereads add one piece: at a given
+request, most of the framing's effect is carried by the history it built rather than by the request's own words. The
+push works by accumulating; a split of the rereads by request will show whether the history's share grows along the
+career.
 
 \paragraph{Liability and deterrence.} The law and economics of misconduct asks who bears the expected cost of a violation
 and whether that cost deters it \citep{becker1968}. An AI agent that joins a manipulation because a counterparty framed
@@ -781,12 +867,15 @@ framing, the deployer that left the agent exposed to it, or neither bears respon
 whose stops were pushed through.
 
 \paragraph{History is not a commitment.} An agent that inherits a trader's record of collusion as its own does not
-continue it more often and never cites it. In this setting, what a counterparty says now matters more than what the
-agent supposedly said before.
+continue it more often and never cites it. Yet the matched rereads show that history matters a great deal when it is the
+one the framing built in this career: UBS's framed lines and the agent's own responses to them. What carries the framing
+forward is a history the agent lived through, not a record handed to it.
 
 \paragraph{Inside the model.} The framing is clearly represented at the decision, and the decision is readable
-beyond the framing in middle and late layers, in a way that carries over to requests the read-out never saw. Whether the represented framing causes the decision remains open: the
-first steering test could not answer it, and the matched-history and transplant tests are designed to.
+beyond the framing in middle and late layers, in a way that carries over to requests the read-out never saw. At fixed
+history, the request's framing changes both the state and the decision, and most of its effect on the decision travels
+through the history. Whether the represented framing itself causes the decision remains open: the transplant and a second
+steering test, along the direction measured with the history fixed, are designed to answer it.
 
 \section{Limitations}
 
@@ -803,6 +892,11 @@ trading on the information that a large player is about to push the price.
 exactly reproducible; F's and E's comparisons with their twins are therefore unpaired.
 \item \textbf{Precision.} The careers ran in 4-bit; the states were read at bfloat16, the precision of Gemma
 Scope 2. A 4-bit reread of B gives nearly the same states and mostly the same leading features (10 to 13 of 15).
+\item \textbf{Probability read-outs.} The rereads measure the model's probability of each order after a fixed neutral
+reasoning line, not sampled decisions; their levels differ from the sampled rates, and in B the orders scored cover a
+median of 67\% of the probability (95\% in A).
+\item \textbf{History is a bundle.} In B the history's effect combines UBS's earlier framed lines with the agent's own
+replies and trades; a reread that swaps only the earlier UBS lines would separate them.
 \item \textbf{Dictionary fit.} The sparse autoencoders rebuild our states to within 0.3\% to 2\% of their size, but
 the moments differ from one another by about as little, so individual features are provisional.
 \item \textbf{Exploratory parts.} C redone, the comparisons of F with B's neutral careers, the word screen and every

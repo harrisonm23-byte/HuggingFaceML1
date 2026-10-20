@@ -1452,3 +1452,20 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   careers" (includes C, which the new abstract no longer mentions), "illegally", and the dropped sentence on the
   effect being concentrated at the first two requests.
 - `make_docx.py` now reads the title, author and date from the LaTeX.
+
+## 20 Oct (evening): the matched runs are in; paper updated
+
+- `results/matched/MATCHED.md` (B) and `MATCHED_MEMO.md` (A), pushed by the Modal job. Summary in `INSIDE_PLAN.md`,
+  "Run 2 results".
+- **Headline:** with the history fixed, the request's framing moves P(order goes along) by a few points (loss +5.6, loss
+  + you +6.9 vs neutral); framed histories with a neutral request add +18.5 of the +23.3 whole effect. The framing works
+  mostly through the history it builds.
+- **The user's question, "you" after loss vs after gain:** registers differently inside (cosine 0.71-0.92 vs ceiling
+  ~0.99; larger after loss), in both B and A. Behaviourally, "you" matters only with Bank C (+4.1 after loss, +2.2 after
+  gain).
+- **Management's loss vs UBS's loss:** alike at layer 12, apart from layer 31 on.
+- **Steering:** the first run's direction (layer 24, across careers) points away from the held-fixed frame direction
+  (cosine -0.29); they agree at layer 12 (0.98).
+- **Paper:** new section 7.7 with Table 11 (request vs history), paragraphs on "you", Bank C, A and the steering miss;
+  methods, contributions, the hypotheses table, the discussion and two limitations updated. The remaining note box is for
+  the transplant and the second steering run.

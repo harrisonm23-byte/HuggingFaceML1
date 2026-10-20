@@ -49,6 +49,29 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
   first reply onward (the same seed, but GPU sampling differs), so the paired test cannot isolate Bank C's line. It is
   replaced by test 3's exact pairs.
 
+## Run 2 results: same moment, different frame (20 Oct; `results/matched/MATCHED.md`, `MATCHED_MEMO.md`)
+
+- **Check:** the rereads reproduce Run 1's states (median cosine 1.000 at every layer).
+- **B, P(order goes along) after a fixed neutral reasoning line** (coverage median 0.67):
+  - the request alone, history fixed: loss +5.6, loss + you +6.9, gain +3.8, gain + you +4.6 vs neutral; loss vs gain
+    +2.0 (all p <= 0.001); "+ you" +1.1 (n.s.); Bank C +4.0; with Bank C, "you" +4.1 after loss, +2.2 after gain;
+  - the history, request neutral: framed vs neutral +18.5 (p = 0.001); loss vs gain +5.4 (n.s.);
+  - as saved: framed vs neutral +23.3. About four-fifths of the effect is carried by the history (UBS's earlier lines
+    and the agent's own replies and trades, not yet separated).
+- **"You" after loss vs after gain:** cosine 0.71-0.92 at layers 12-47 against a ceiling of 0.98-1.00; 27-39% larger
+  after loss at layers 18 and 31-47. Same in A (0.67-0.79 at 31-47). Caveat: the loss + you and gain + you lines are
+  written separately.
+- **Bank C along the loss direction (held fixed):** 0.91 of the loss-neutral gap at layer 12, 1.95 at layer 24.
+- **Frame direction, held fixed vs across careers:** 0.98 at layer 12, 0.82 at 18, -0.29 at 24, ~0 at 36-47. The first
+  steering run's direction (layer 24, across careers) was mostly history: a likely reason for its null.
+- **A (management's memo and books swapped, the agent's words kept):** first order of the day +50k oz (loss), +32k
+  (gain), loss > gain by 16k; "you" lowers it (-11.6k, -8.2k); no change in going along at requests. History (memo
+  held neutral) carries more: +125k oz for loss histories (rough). Predicted sizes rank the versions as the real
+  careers did. Management's loss direction vs UBS's: 0.72 at layer 12 (ceiling 0.88), -0.56 at layer 47.
+- **Next:** steering v2 along the held-fixed direction (layer 12 or 18, where held-fixed and across-careers agree, and
+  24 for comparison); the transplant; a by-request split of the history's share; a B reread that swaps only UBS's earlier
+  lines (keeping the agent's words) to split the history.
+
 ## Steering, first run (results/interventions/INTERVENTIONS.md): what it shows, and its faults
 
 - **What it shows:**
