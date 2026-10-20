@@ -1231,3 +1231,10 @@ Dated entries: what was run, what happened, what's next.
   that every value is finite); the old folders are unused. The steering run was stopped before steering anything, and
   its strength is now a multiple (2x, 4x) of the gap between B's loss and neutral moments along the direction, not a
   share of the residual's length, which Gemma's few very large dimensions dominate.
+- 2026-10-20. **Inside plan made semifinal** (the user: cut what is not needed; the words are necessary as well as the
+  trade). INSIDE_PLAN.md rewritten: core = frame landed (features), decision read-out, Bank C pairs, the mountain inside
+  (B's cross-fitted frame direction along every update), steering with the memo-direction check, and said-and-did (order
+  log-probs + blind grading of the reasoning's stance). Follow-up: own reasoning wiped (chain of thought), hidden
+  pressure (after a blind reading), "you" tracing, look-back / compaction. Cut: the outside-text emotion gauge (only
+  needed for a "desperation" claim), the "you"-position requirement (does not affect the experiments), temperature,
+  non-blame "you", other models.
