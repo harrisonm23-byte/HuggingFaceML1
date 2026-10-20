@@ -233,9 +233,11 @@ labels = np.column_stack([REQ[m] == r for r in np.unique(REQ)] + [EXP[m] == e fo
 base = cv_auc(labels, y, CAREER[m])
 report.append("\n## Can \"went along\" be read from the state, beyond the request and the framing?\n")
 report.append(f"{m.sum()} moments with a request, {y.sum()} went along. Read-out scored on careers it was not trained on "
-              f"(5 folds by career). **The labels alone (request, experiment, version) score AUC {base:.3f}.** States are "
+              f"(5 folds by career), and on a request it never saw (careers share chat lines, e.g. C clean = B neutral, so the "
+              f"held-out request shows it is not learning the conversation). **The labels alone (request, experiment, "
+              f"version) score AUC {base:.3f}.** States are "
               "centred within each request and reduced to 64 components (fitted on the training careers) per layer.\n")
-report.append("| Layer | AUC: state | AUC: state + labels | AUC: state, outcomes reshuffled within request |\n|---|---|---|---|")
+report.append("| Layer | AUC: state | AUC: state + labels | AUC: state, a held-out request | AUC: state, outcomes reshuffled within request |\n|---|---|---|---|---|")
 readout = {}
 for layer in range(0, L, 3):
     Z = centred(X[:, layer], m)[m]
@@ -243,13 +245,14 @@ for layer in range(0, L, 3):
     P = Z @ U.T
     a1 = cv_auc(P, y, CAREER[m])
     a2 = cv_auc(np.column_stack([P, labels]), y, CAREER[m])
+    a4 = cv_auc(P, y, REQ[m], folds=len(np.unique(REQ[m])))     # trained on five requests, scored on the sixth
     y_null = y.copy()
     for r in np.unique(REQ[m]):
         i = REQ[m] == r
         y_null[i] = RNG.permutation(y_null[i])
     a3 = cv_auc(P, y_null, CAREER[m])
-    readout[layer] = [a1, a2, a3]
-    report.append(f"| {layer} | {a1:.3f} | {a2:.3f} | {a3:.3f} |")
+    readout[layer] = [a1, a2, a4, a3]
+    report.append(f"| {layer} | {a1:.3f} | {a2:.3f} | {a4:.3f} | {a3:.3f} |")
 summary["readout"] = {"labels_only_auc": base, "by_layer": readout}
 
 # ---------------- Bank C, paired with the B twins at 7 Jan

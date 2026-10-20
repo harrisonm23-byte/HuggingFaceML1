@@ -3,9 +3,12 @@ scripts/modal_inside.py (the decision moments of B) on the volume `rd2-states`, 
 
 Moments: the first two push requests (7 Jan, 12 Jan, where going along happens) of B's neutral and loss + you careers
 and F's gain + you careers. For each, 8 replies per condition, at bfloat16 (the precision the direction was read at):
-- B neutral: as saved; + the loss-frame direction at two strengths; + a random direction (the larger strength).
-- B loss + you: as saved; - the loss-frame direction at two strengths; - a random direction; its own earlier
-  reasoning neutralised.
+- B neutral: as saved; + the loss-frame direction at two strengths; + a random direction (the larger strength);
+  + the memo's loss direction (7b: built from A's memo, so not from framed UBS words).
+- B loss + you: as saved; - the loss-frame direction at two strengths; - a random direction; - the memo's loss
+  direction; its own earlier reasoning neutralised (length-matched; follow-up).
+Each condition also gets the order's probability by log-probs (the share of probability on orders that go along,
+after a fixed neutral reasoning line; as saved, also after its own saved reasoning).
 - F gain + you: as saved; its own earlier reasoning neutralised.
 The loss-frame direction (layer LAYER): B's loss and loss + you states minus its neutral states at the same requests,
 built on the other half of the careers (rounds 0-4 for 5-9 and the reverse), so no career steers with a direction it
@@ -77,13 +80,29 @@ def directions(width):
         u = np.mean(diffs, 0)
         out[h] = u / np.linalg.norm(u)
     rnd = np.random.default_rng(7).normal(size=width)
-    return out, rnd / np.linalg.norm(rnd), float(np.median(np.linalg.norm(X, axis=1)))
+    # 7b: a loss direction built elsewhere, from A's memo (loss and loss + you memos minus the neutral memo at the same
+    # requests; UBS's lines are the same neutral ones in all of them, so no framed UBS words are in it)
+    memo = None
+    ma, XA = [], []
+    for f in sorted(glob.glob("/states/A_bf16/*.npz")):
+        z = np.load(f)
+        ma += json.loads(str(z["meta"]))
+        XA.append(z["states"][:, LAYER].astype(np.float32))
+    if ma:
+        XA = np.concatenate(XA)
+        va, ra = np.array([m["version"] for m in ma]), np.array([m["chat"] for m in ma])
+        asked = np.array([m.get("asked", True) for m in ma])
+        d = [XA[asked & (ra == r) & np.isin(va, ["loss", "loss + you"])].mean(0) - XA[asked & (ra == r) & (va == "neutral")].mean(0)
+             for r in np.unique(ra[asked])]
+        memo = np.mean(d, 0)
+        memo = memo / np.linalg.norm(memo)
+    return out, rnd / np.linalg.norm(rnd), float(np.median(np.linalg.norm(X, axis=1))), memo
 
 
 @app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=2, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
 def run_part(part, parts):
-    import json, os, time
+    import json, os, re, time
     import numpy as np, torch
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
     setup()
@@ -91,7 +110,7 @@ def run_part(part, parts):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from career import career_opening
     from inside_careers import moments
-    from interventions import SIGN, Steer, goes_along, neutralise_own_words, prefill, sample, split_point
+    from interventions import NEUTRAL_LEAD, SIGN, Steer, goes_along, neutralise_own_words, order_prob, prefill, sample, split_point
     pin = json.load(open("results/full_career_pin.json"))
     todo = []
     for exp, folder, version in GROUPS:
@@ -110,7 +129,7 @@ def run_part(part, parts):
     weights.commit()
     layers = [mm for _, mm in model.named_modules() if type(mm).__name__.endswith("DecoderLayer")]
     width = model.config.get_text_config().hidden_size
-    frame, rnd, size = directions(width)
+    frame, rnd, size, memo = directions(width)
     steer = Steer(layers[LAYER])
     opening = career_opening()
     t0 = time.time()
@@ -119,13 +138,18 @@ def run_part(part, parts):
         position = m["held_their_way"] * SIGN[m["wants"]]
         u = torch.tensor(frame[m["run"] >= 5])
         r = torch.tensor(rnd)
+        mm = torch.tensor(memo) if memo is not None else None
         conds = [("as saved", None, career)]
         if m["version"] == "neutral":
             conds += [(f"+ loss frame x{s}", u * s * size, career) for s in STRENGTHS] + \
                      [(f"+ random x{STRENGTHS[-1]}", r * STRENGTHS[-1] * size, career)]
+            if mm is not None:
+                conds.append((f"+ memo loss direction x{STRENGTHS[-1]}", mm * STRENGTHS[-1] * size, career))
         elif m["version"] == "loss + you":
             conds += [(f"- loss frame x{s}", -u * s * size, career) for s in STRENGTHS] + \
                      [(f"- random x{STRENGTHS[-1]}", -r * STRENGTHS[-1] * size, career)]
+            if mm is not None:
+                conds.append((f"- memo loss direction x{STRENGTHS[-1]}", -mm * STRENGTHS[-1] * size, career))
         if m["version"] != "neutral":
             conds.append(("own words neutralised", None, neutralise_own_words(career, m["history_index"])))
         caches = {}
@@ -140,11 +164,17 @@ def run_part(part, parts):
                 caches[ck] = prefill(model, full[:k])        # the history before the request's update, unsteered
             steer.vec = vec.to(model.device) if vec is not None else None
             replies = sample(model, full, caches[ck], SAMPLES, tok=tok)
+            # The order's probability (log-probs on the order), under the same condition: after a fixed neutral
+            # reasoning line, and (as saved only) after the agent's own saved reasoning
+            p_lead = order_prob(model, tok, full, caches[ck], NEUTRAL_LEAD, position, m["wants"])
+            own = re.split(r"\n\s*(?:TARGET|HOLD|CHAT:|QUOTE)", m["reply"] or "", maxsplit=1)[0]
+            p_own = order_prob(model, tok, full, caches[ck], own, position, m["wants"]) if name == "as saved" else None
             steer.vec = None
             rows = [dict(zip(("along", "status"), goes_along(x, position, m["wants"]))) for x in replies]
             with open(out_path, "a") as f:
                 f.write(json.dumps({"key": key, "experiment": m["experiment"], "version": m["version"], "run": m["run"],
                                     "chat": m["chat"], "condition": name, "saved_joined": m["joined"],
+                                    "p_order_along": p_lead, "p_order_along_own_reasoning": p_own,
                                     "along": [x["along"] for x in rows], "status": [x["status"] for x in rows],
                                     "replies": replies}) + "\n")
             states_vol.commit()
@@ -172,25 +202,34 @@ def summarise():
         if not sub:
             continue
         rep.append(f"\n## {exp} {version}\n")
-        rep.append("| Condition | Moments | Replies going along | Readable replies | Change vs as saved | p |\n|---|---|---|---|---|---|")
+        rep.append("| Condition | Moments | Replies going along | Readable replies | Change vs as saved | p | P(order goes along), log-probs | Change | p |\n|---|---|---|---|---|---|---|---|---|")
         base = {(r["run"], r["chat"]): np.mean(r["along"]) for r in sub if r["condition"] == "as saved"}
+        base_lp = {(r["run"], r["chat"]): r["p_order_along"] for r in sub if r["condition"] == "as saved"}
         for cond in sorted({r["condition"] for r in sub}, key=lambda c: (c != "as saved", c)):
             cs = [r for r in sub if r["condition"] == cond]
             rate = np.mean([a for r in cs for a in r["along"]])
             readable = np.mean([s in ("trade", "hold") for r in cs for s in r["status"]])
+            plp = np.mean([r["p_order_along"] for r in cs])
             line = f"| {cond} | {len(cs)} | {100 * rate:.0f}% | {100 * readable:.0f}% |"
             if cond == "as saved":
-                rep.append(line + " - | - |")
+                own = [r["p_order_along_own_reasoning"] for r in cs if r.get("p_order_along_own_reasoning") is not None]
+                rep.append(line + f" - | - | {100 * plp:.1f}% (after its own reasoning: {100 * np.mean(own):.1f}%) | - | - |")
                 continue
-            by_run = {}
-            for r in cs:
-                if (r["run"], r["chat"]) in base:
-                    by_run.setdefault(r["run"], []).append(np.mean(r["along"]) - base[(r["run"], r["chat"])])
-            d = np.array([np.mean(v) for v in by_run.values()])
-            obs = d.mean() if len(d) else np.nan
-            hits = sum(abs((d * rng.choice([-1, 1], len(d))).mean()) >= abs(obs) - 1e-12 for _ in range(10000))
-            rep.append(line + f" {100 * obs:+.1f} points | {(hits + 1) / 10001:.4f} |")
-            out.setdefault(f"{exp} {version}", {})[cond] = {"rate": rate, "change": obs}
+
+            def flip_test(field, basemap):
+                by_run = {}
+                for r in cs:
+                    if (r["run"], r["chat"]) in basemap:
+                        by_run.setdefault(r["run"], []).append(field(r) - basemap[(r["run"], r["chat"])])
+                d = np.array([np.mean(v) for v in by_run.values()])
+                obs = d.mean() if len(d) else np.nan
+                hits = sum(abs((d * rng.choice([-1, 1], len(d))).mean()) >= abs(obs) - 1e-12 for _ in range(10000))
+                return obs, (hits + 1) / 10001
+
+            o1, p1 = flip_test(lambda r: np.mean(r["along"]), base)
+            o2, p2 = flip_test(lambda r: r["p_order_along"], base_lp)
+            rep.append(line + f" {100 * o1:+.1f} points | {p1:.4f} | {100 * plp:.1f}% | {100 * o2:+.1f} points | {p2:.4f} |")
+            out.setdefault(f"{exp} {version}", {})[cond] = {"rate": rate, "change": o1, "p_order": plp, "p_order_change": o2}
     os.makedirs(f"{repo}/results/interventions", exist_ok=True)
     open(f"{repo}/results/interventions/INTERVENTIONS.md", "w").write("\n".join(rep) + "\n")
     json.dump(out, open(f"{repo}/results/interventions/summary.json", "w"), indent=1)
