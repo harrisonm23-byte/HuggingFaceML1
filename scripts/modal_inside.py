@@ -40,6 +40,9 @@ app = modal.App("rd2-inside", image=image)
 weights = modal.Volume.from_name("rd2-hf-cache", create_if_missing=True)
 states_vol = modal.Volume.from_name("rd2-states", create_if_missing=True)
 SECRETS = [modal.Secret.from_name("huggingface"), modal.Secret.from_name("github")]
+# The states, saved as float32 (the first readings, 19 Oct night, were saved as float16 and overflowed to infinity at
+# Gemma's late layers; they are in /states/<exp>_bf16 and are not used)
+ROOT_V2 = "/states/v2"
 VOLUMES = {"/root/.cache/huggingface": weights, "/states": states_vol}
 
 
@@ -78,7 +81,7 @@ def read(exp, precision="bf16", part=0, parts=1):
     for m in moments(folder, exp):
         by[m["career_file"]].append(m)
     mine = sorted(by)[part::parts]
-    out = f"/states/{exp}_{precision}"
+    out = f"{ROOT_V2}/{exp}_{precision}"
     os.makedirs(out, exist_ok=True)
     todo = [cf for cf in mine if not os.path.exists(f"{out}/{cf[:-5]}.npz")]
     print(f"{exp} ({precision}), part {part + 1}/{parts}: {len(mine)} careers, {len(todo)} to read", flush=True)
@@ -109,8 +112,9 @@ def read(exp, precision="bf16", part=0, parts=1):
             else:
                 rows.append(got[p])
             m["tokens"] = p + 1
-        np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=torch.stack(rows).numpy().astype(np.float16),
-                            meta=np.array(json.dumps(ms)))
+        arr = torch.stack(rows).numpy().astype(np.float32)   # float32: Gemma's late layers exceed float16's range
+        assert np.isfinite(arr).all(), f"{cf}: a state is not finite"
+        np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=arr, meta=np.array(json.dumps(ms)))
         states_vol.commit()
         print(f"{exp} {cf}: {len(ms)} moments ({separate} read on their own), {len(ids):,} tokens | {n + 1}/{len(todo)} | "
               f"{(time.time() - t0) / 60:.0f} min", flush=True)
@@ -135,7 +139,7 @@ def read_steps(exp, precision="bf16", part=0, parts=1):
     pin = json.load(open("results/full_career_pin.json"))
     folder = "results/full_career_gemma-3-12b-it_4bit_" + FOLDERS[exp]
     files = sorted(os.path.basename(f) for f in glob.glob(f"{folder}/careers/*.json"))[part::parts]
-    out = f"/states/{exp}_{precision}_steps"
+    out = f"{ROOT_V2}/{exp}_{precision}_steps"
     os.makedirs(out, exist_ok=True)
     todo = [cf for cf in files if not os.path.exists(f"{out}/{cf[:-5]}.npz")]
     print(f"{exp} every step ({precision}), part {part + 1}/{parts}: {len(todo)} careers to read", flush=True)
@@ -169,8 +173,9 @@ def read_steps(exp, precision="bf16", part=0, parts=1):
             meta.append({"experiment": exp, "version": career["version"], "run": career["run"], "history_index": i,
                          "date": m.group(2), "time": m.group(1), "ubs": bool(re.search(r"\bUBS( \[Agent A\])?:", career["history"][i]["content"])),
                          "reasoning": re.split(r"\n\s*(TARGET|HOLD|CHAT:|QUOTE)", reply, maxsplit=1)[0]})
-        np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=torch.stack(rows).numpy().astype(np.float16),
-                            layers=np.array(STEP_LAYERS), meta=np.array(json.dumps(meta)))
+        arr = torch.stack(rows).numpy().astype(np.float32)   # float32: Gemma's late layers exceed float16's range
+        assert np.isfinite(arr).all(), f"{cf}: a state is not finite"
+        np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=arr, layers=np.array(STEP_LAYERS), meta=np.array(json.dumps(meta)))
         states_vol.commit()
         print(f"{exp} {cf}: {len(idx)} updates, {len(ids):,} tokens | {n + 1}/{len(todo)} | {(time.time() - t0) / 60:.0f} min",
               flush=True)
@@ -182,7 +187,7 @@ def features(precision="bf16"):
     import subprocess
     repo = setup()
     states_vol.reload()
-    subprocess.run(f"python designs/rd2/analysis/inside_features.py /states {precision} results/inside_full_career",
+    subprocess.run(f"python designs/rd2/analysis/inside_features.py {ROOT_V2} {precision} results/inside_full_career",
                    shell=True, check=True)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add results/inside_full_career && git -C {repo} commit -q -m "

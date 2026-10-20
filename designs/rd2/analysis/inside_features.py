@@ -38,6 +38,7 @@ def load():
 
 
 META, X = load()                                          # X: moments x layers x width
+assert np.isfinite(X).all(), "a state is not finite (saved in a format too small for Gemma's values?)"
 N, L, W = X.shape
 print(f"{N} moments, {L} layers, width {W}, experiments {sorted({m['experiment'] for m in META})}")
 REQ = np.array([m["chat"] for m in META])

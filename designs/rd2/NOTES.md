@@ -1224,3 +1224,10 @@ Dated entries: what was run, what happened, what's next.
   losses, not the memo's story; and "a reasoning-only monitor would miss it" was too strong: in the 300-day 12B run,
   graders reading only the reasoning caught 88% of the times it went along. What the reasoning does not show is the
   frame's influence (UBS's framing raises going along without its words appearing), not the decision itself.
+- 2026-10-20. **Bug in the first internals readings, fixed:** the states were saved as float16, and Gemma 3's late-layer
+  values exceed float16's range (about 65,000), so some became infinite ("invalid value encountered in subtract" when
+  the steering run built its direction; the feature step had stopped without pushing for the same reason). The
+  readings themselves ran well (B's 50 careers in about 4 minutes). Now saved as float32 in `/states/v2/` (with a check
+  that every value is finite); the old folders are unused. The steering run was stopped before steering anything, and
+  its strength is now a multiple (2x, 4x) of the gap between B's loss and neutral moments along the direction, not a
+  share of the residual's length, which Gemma's few very large dimensions dominate.

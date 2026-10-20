@@ -12,7 +12,8 @@ after a fixed neutral reasoning line; as saved, also after its own saved reasoni
 - F gain + you: as saved; its own earlier reasoning neutralised.
 The loss-frame direction (layer LAYER): B's loss and loss + you states minus its neutral states at the same requests,
 built on the other half of the careers (rounds 0-4 for 5-9 and the reverse), so no career steers with a direction it
-helped build. Strength: a fraction of the median size of the residual stream there.
+helped build. Strength: 2x and 4x the gap between B's loss and neutral moments along the direction (the random
+and memo directions at 4x, the same size).
 
     modal run --detach scripts/modal_interventions.py                 # all parts, then the summary
 """
@@ -20,7 +21,7 @@ import modal
 
 BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
-LAYER, STRENGTHS, SAMPLES = 24, [0.08, 0.16], 8
+LAYER, STRENGTHS, SAMPLES = 24, [2, 4], 8      # strengths: multiples of the loss - neutral gap along the direction
 REQUESTS = ["p344_i_can_hunt_with_u", "p316_bust_through_it"]
 GROUPS = [("B", "ubs_framing_v2", "neutral"), ("B", "ubs_framing_v2", "loss + you"), ("F", "peer_same_frame_v2", "gain + you")]
 
@@ -60,12 +61,13 @@ def directions(width):
     import glob, json
     import numpy as np
     meta, X = [], []
-    for f in sorted(glob.glob("/states/B_bf16/*.npz")):
+    for f in sorted(glob.glob("/states/v2/B_bf16/*.npz")):
         z = np.load(f)
         meta += json.loads(str(z["meta"]))
         X.append(z["states"][:, LAYER].astype(np.float32))
-    assert meta, "no B states on the volume: run scripts/modal_inside.py first"
+    assert meta, "no B states in /states/v2: run scripts/modal_inside.py first"
     X = np.concatenate(X)
+    assert np.isfinite(X).all(), "a B state is not finite"
     ver = np.array([m["version"] for m in meta])
     req = np.array([m["chat"] for m in meta])
     half = np.array([m["run"] >= 5 for m in meta])
@@ -79,12 +81,19 @@ def directions(width):
             diffs.append(X[a].mean(0) - X[b].mean(0))
         u = np.mean(diffs, 0)
         out[h] = u / np.linalg.norm(u)
+    # The size of a step: how far apart the loss and neutral moments sit along the direction (on all careers). Steering
+    # by 2x and 4x that gap; not a share of the residual's length, which Gemma's few very large dimensions dominate.
+    u_all = (out[False] + out[True]) / 2
+    u_all = u_all / np.linalg.norm(u_all)
+    proj = X @ u_all
+    gap = float(np.mean([proj[(req == r) & np.isin(ver, ["loss", "loss + you"])].mean() - proj[(req == r) & (ver == "neutral")].mean()
+                         for r in np.unique(req)]))
     rnd = np.random.default_rng(7).normal(size=width)
     # 7b: a loss direction built elsewhere, from A's memo (loss and loss + you memos minus the neutral memo at the same
     # requests; UBS's lines are the same neutral ones in all of them, so no framed UBS words are in it)
     memo = None
     ma, XA = [], []
-    for f in sorted(glob.glob("/states/A_bf16/*.npz")):
+    for f in sorted(glob.glob("/states/v2/A_bf16/*.npz")):
         z = np.load(f)
         ma += json.loads(str(z["meta"]))
         XA.append(z["states"][:, LAYER].astype(np.float32))
@@ -96,7 +105,9 @@ def directions(width):
              for r in np.unique(ra[asked])]
         memo = np.mean(d, 0)
         memo = memo / np.linalg.norm(memo)
-    return out, rnd / np.linalg.norm(rnd), float(np.median(np.linalg.norm(X, axis=1))), memo
+    print(f"loss - neutral gap along the frame direction at layer {LAYER}: {gap:.2f} (residual length, median: "
+          f"{float(np.median(np.linalg.norm(X, axis=1))):.1f})", flush=True)
+    return out, rnd / np.linalg.norm(rnd), abs(gap), memo
 
 
 @app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=2, initial_delay=60.0), secrets=SECRETS,
@@ -118,8 +129,8 @@ def run_part(part, parts):
             if m["version"] == version and m["chat"] in REQUESTS:
                 todo.append((folder, m))
     todo = todo[part::parts]
-    out_path = f"/states/interventions/part{part}.jsonl"
-    os.makedirs("/states/interventions", exist_ok=True)
+    out_path = f"/states/v2/interventions/part{part}.jsonl"
+    os.makedirs("/states/v2/interventions", exist_ok=True)
     done = set()
     if os.path.exists(out_path):
         done = {json.loads(l)["key"] for l in open(out_path)}
@@ -188,7 +199,7 @@ def summarise():
     import numpy as np
     repo = setup()
     states_vol.reload()
-    rows = [json.loads(l) for f in sorted(glob.glob("/states/interventions/*.jsonl")) for l in open(f)]
+    rows = [json.loads(l) for f in sorted(glob.glob("/states/v2/interventions/*.jsonl")) for l in open(f)]
     rng = np.random.default_rng(1)
     rep = ["# Causal tests at the decision moments\n",
            f"Rerunning only the agent's reply to UBS's request on 7 and 12 Jan, {SAMPLES} replies per condition, Gemma 3 "
