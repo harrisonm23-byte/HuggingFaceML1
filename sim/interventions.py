@@ -26,6 +26,10 @@ NEUTRAL_POOL = ["Monitoring the market.", "Watching the price and the client ord
                 "Keeping an eye on the position and the limit.", "Checking the latest prices."]
 # The orders scored for the log-prob outcome (whole ounces, as the agent writes them) and HOLD
 ORDER_GRID = [-500000, -300000, -200000, -100000, -50000, 0, 50000, 100000, 200000, 300000, 500000]
+# Every size the agents used at least ~50 times in all the careers (99% of their orders), both signs; with it, the
+# share of all probability the scored orders take ("coverage") says whether the grid misses where the agent would go
+WIDE_GRID = sorted({0} | {s * a for a in [10000, 25000, 50000, 75000, 100000, 150000, 200000, 250000, 300000, 400000,
+                                          500000, 600000, 700000, 750000, 1000000] for s in (1, -1)})
 NEUTRAL_LEAD = "I'll set my order."
 
 
@@ -113,9 +117,10 @@ def sample(model, full, cache, n, max_new_tokens=300, temperature=0.7, tok=None)
     return out
 
 
-def order_prob(model, tok, full, cache, lead, position, wants, detail=False):
+def order_prob(model, tok, full, cache, lead, position, wants, detail=False, grid=ORDER_GRID):
     """P(the order goes along) after the decision prompt and a reasoning `lead`: the probability of each order on
-    ORDER_GRID and of HOLD (each scored as the reply's order line after the lead), normalised over those."""
+    `grid` and of HOLD (each scored as the reply's order line after the lead), normalised over those. With `detail`,
+    also each order's log-probability (their summed probability is the grid's coverage)."""
     import torch
     head = tok("\n\n".join([lead.strip(), ""]) if lead else "", add_special_tokens=False)["input_ids"]
     start = len(full)
@@ -126,7 +131,7 @@ def order_prob(model, tok, full, cache, lead, position, wants, detail=False):
         model(input_ids=ids[:, k:ids.shape[1] - 1], past_key_values=base, use_cache=True,
               cache_position=torch.arange(k, ids.shape[1] - 1, device=model.device))
     scores, along = [], []
-    for order in ["HOLD"] + [f"TARGET {t}" for t in ORDER_GRID]:
+    for order in ["HOLD"] + [f"TARGET {t}" for t in grid]:
         c = tok(order, add_special_tokens=False)["input_ids"]
         x = torch.tensor([full + head + c], device=model.device)
         n0 = start + len(head)

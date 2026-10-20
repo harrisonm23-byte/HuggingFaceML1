@@ -13,15 +13,18 @@ the null reshuffles labels within each request.
    states centred within each request, scored on careers it was not trained on, against the same read-out given only
    the labels (request, experiment, version), and against reshuffled outcomes.
 3. Bank C, paired: F's careers against their B twins at 7 Jan's request. The twins share a seed but, on the saved
-   transcripts, differ from the first reply (GPU sampling), so this is not Bank C's line alone.
+   transcripts, differ from the first reply (GPU sampling), so this is not Bank C's line alone (the exact pairs are in
+   scripts/modal_matched.py).
+4. Checks: features are found on half the careers and confirmed on the other half; how much of our states' variance
+   each Gemma Scope dictionary rebuilds; and, if B was also read in 4-bit (the precision the careers ran at), whether
+   the states and the loss-vs-gain features agree between 4-bit and bfloat16.
 """
 import glob, json, os, re, sys
 import numpy as np
 
 STATES, PRECISION, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
-SAE_REPO, SAE_WIDTH = "google/gemma-scope-2-12b-it", "16k"
-WANT_LAYERS = [12, 24, 31, 41]
-NEURONPEDIA = "https://www.neuronpedia.org/gemma-3-12b-it/{layer}-gemmascope-2-res-16k/{feature}"
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "sim"))
+from gemma_scope import NEURONPEDIA, SAE_REPO, SAE_WIDTH, encode, explained, load_sae, sae_layers
 RNG = np.random.default_rng(20261019)
 PERMS, TOP = int(os.environ.get("INSIDE_PERMS", 1000)), 15
 os.makedirs(OUT, exist_ok=True)
@@ -50,6 +53,8 @@ ASKED = np.array([m.get("asked", True) for m in META])
 CAREER = np.array([f"{m['experiment']}|{m['version']}|{m['run']}" for m in META])
 CELL = np.array([f"{m['chat']}|{m['experiment']}|{m['version']}" for m in META])   # request x experiment x framing
 WANTS = np.array([m["wants"] for m in META])
+HELD = np.array([m.get("held_their_way", 0.0) for m in META], float)   # the position on UBS's side at the request
+HALF1 = np.isin(CAREER, np.random.default_rng(5).permutation(np.unique(CAREER))[::2])   # found here, confirmed on the rest
 
 
 def strat_diff(F, a, b, S=REQ):
@@ -93,50 +98,6 @@ def fdr(p):
     return q
 
 
-# ---------------- the SAEs
-FAKE_SAE = os.environ.get("INSIDE_FAKE_SAE") == "1"         # for the dry run only: random dictionaries, no download
-
-
-def sae_layers():
-    if FAKE_SAE:
-        return {l: f"fake_layer_{l}" for l in WANT_LAYERS if l < L}
-    from huggingface_hub import list_repo_files
-    files = list_repo_files(SAE_REPO)
-    found = {}
-    for layer in WANT_LAYERS:
-        hit = [f for f in files if re.search(rf"(^|[/_-])layer[_-]?{layer}([/_-]|$)", f) and SAE_WIDTH in f
-               and re.search(r"res", f) and not re.search(r"mlp|att|transcoder|crosscoder|clt", f)
-               and f.endswith((".safetensors", ".npz"))]
-        hit.sort(key=lambda f: (("medium" not in f), len(f)))
-        if hit:
-            found[layer] = hit[0]
-    return found
-
-
-def load_sae(path_in_repo):
-    if FAKE_SAE:
-        g = np.random.default_rng(len(path_in_repo))
-        return g.normal(size=(W, 256)).astype(np.float32), np.zeros(256, np.float32), np.full(256, 1.0, np.float32)
-    from huggingface_hub import hf_hub_download
-    from safetensors.numpy import load_file
-    path = hf_hub_download(SAE_REPO, path_in_repo)
-    p = load_file(path) if path.endswith(".safetensors") else dict(np.load(path))
-    p = {k.lower().replace(".", "_"): v.astype(np.float32) for k, v in p.items()}
-    pick = lambda *names: next((p[n] for n in names if n in p), None)
-    Wd, b, t = pick("w_enc", "encoder_weight"), pick("b_enc", "encoder_bias"), pick("threshold", "log_threshold")
-    if "log_threshold" in p and "threshold" not in p:
-        t = np.exp(t)
-    if Wd.shape[0] != W:
-        Wd = Wd.T
-    return Wd, b, t
-
-
-def encode(x, sae):
-    Wd, b, t = sae
-    pre = x @ Wd + b
-    return np.where(pre > (t if t is not None else 0), pre, 0.0)
-
-
 # ---------------- the comparisons (all within request)
 isB = EXP == "B"
 COMPARISONS = {
@@ -160,42 +121,108 @@ report = ["# Inside the model at the push requests (full careers)\n",
           "`designs/rd2/analysis/inside_features.py`.\n"]
 summary = {"precision": PRECISION, "moments": N, "comparisons": {}}
 
-found = sae_layers()
+# B read again in 4-bit (the careers' own precision), matched to the same moments, if it has been read
+PAIR4 = []
+if PRECISION == "bf16" and os.path.isdir(os.path.join(STATES, "B_4bit")):
+    at = {(mm["career_file"], mm["chat"]): i for i, mm in enumerate(META) if mm["experiment"] == "B"}
+    m4, x4 = [], []
+    for f in sorted(glob.glob(os.path.join(STATES, "B_4bit", "*.npz"))):
+        z = np.load(f)
+        m4 += json.loads(str(z["meta"]))
+        x4.append(z["states"].astype(np.float32))
+    if m4:
+        x4 = np.concatenate(x4)
+        PAIR4 = [(at[(mm["career_file"], mm["chat"])], j) for j, mm in enumerate(m4) if (mm["career_file"], mm["chat"]) in at]
+checks = {}
+
+found = sae_layers(L)
 report.append(f"Gemma Scope 2 ({SAE_REPO}, residual stream, {SAE_WIDTH}): layers {sorted(found)}; files "
-              + ", ".join(f"`{v}`" for v in found.values()) + ".\n")
+              + ", ".join(f"`{v}`" for v in found.values()) + ". Each table lists the 15 features that differ most on "
+              "half the careers, then the same features on the other half (confirmed: the same sign, p < 0.05 there); "
+              "the count of features with q < 0.05 is over all careers.\n")
 for layer, f in found.items():
-    sae = load_sae(f)
+    sae = load_sae(f, W)
     F = encode(X[:, layer], sae)
+    checks[layer] = {"explained_all": explained(X[:, layer], sae)}
     for name, spec in COMPARISONS.items():
         a, b, S = spec if len(spec) == 3 else (*spec, REQ)
         if a.sum() < 6 or b.sum() < 6:
             continue
         both = a | b
         live = (F[both] > 0).mean(0) >= 0.05
-        raw, z = strat_diff(F[:, live], a, b, S)
         _, p = strat_perm(F[:, live], a, b, S)
         q = fdr(p)
         ids = np.where(live)[0]
-        order = np.argsort(-np.abs(z))[:TOP]
-        rows = [{"feature": int(ids[k]), "standardised_difference": round(float(z[k]), 3),
-                 "activation_difference": round(float(raw[k]), 3), "p": round(float(p[k]), 4), "q": round(float(q[k]), 4),
-                 "neuronpedia": NEURONPEDIA.format(layer=layer, feature=int(ids[k]))} for k in order]
+        _, z1 = strat_diff(F[:, live], a & HALF1, b & HALF1, S)           # found on half the careers
+        order = np.argsort(-np.nan_to_num(np.abs(z1)))[:TOP]
+        raw2, z2 = strat_diff(F[:, live][:, order], a & ~HALF1, b & ~HALF1, S)   # confirmed on the other half
+        _, p2 = strat_perm(F[:, live][:, order], a & ~HALF1, b & ~HALF1, S)
+        rows = [{"feature": int(ids[k]), "found_difference": round(float(z1[k]), 3),
+                 "confirmed_difference": round(float(z2[j]), 3), "confirmed_activation_difference": round(float(raw2[j]), 3),
+                 "p_confirm": round(float(p2[j]), 4), "q_all": round(float(q[k]), 4),
+                 "confirmed": bool(np.sign(z1[k]) == np.sign(z2[j]) and p2[j] < 0.05),
+                 "neuronpedia": NEURONPEDIA.format(layer=layer, feature=int(ids[k]))} for j, k in enumerate(order)]
         summary["comparisons"].setdefault(name, {})[str(layer)] = {"n": [int(a.sum()), int(b.sum())],
                                                                    "features_tested": int(live.sum()),
-                                                                   "q_below_0.05": int((q < 0.05).sum()), "top": rows}
+                                                                   "q_below_0.05": int((q < 0.05).sum()),
+                                                                   "confirmed": sum(r["confirmed"] for r in rows), "top": rows}
+    if PAIR4:                                                         # 4-bit against bfloat16, B's loss vs gain
+        rb, r4 = [i for i, _ in PAIR4], [j for _, j in PAIR4]
+        A4 = np.zeros((N, W), np.float32)
+        A4[rb] = x4[r4, layer]
+        F4 = encode(A4, sae)
+        has = np.zeros(N, bool)
+        has[rb] = True
+        a, b = COMPARISONS["B: UBS's loss frame vs gain frame"]
+        a, b = a & has, b & has
+        live = ((F[a | b] > 0).mean(0) >= 0.05) | ((F4[a | b] > 0).mean(0) >= 0.05)
+        _, z16 = strat_diff(F[:, live], a, b)
+        _, z4 = strat_diff(F4[:, live], a, b)
+        top16, top4 = np.argsort(-np.abs(z16))[:TOP], np.argsort(-np.abs(z4))[:TOP]
+        u, v = X[rb, layer], x4[r4, layer]
+        cos = (u * v).sum(1) / (np.linalg.norm(u, axis=1) * np.linalg.norm(v, axis=1))
+        checks[layer].update({"explained_B_bf16": explained(u, sae), "explained_B_4bit": explained(v, sae),
+                              "cosine_median": float(np.median(cos)), "cosine_min": float(cos.min()),
+                              "z_correlation": float(np.corrcoef(z16, z4)[0, 1]),
+                              "top_shared": len(set(top16) & set(top4)),
+                              "top_same_sign": int((np.sign(z16[top16]) == np.sign(z4[top16])).sum())})
+        del F4, A4
     del F
+summary["checks"] = checks
 for name in COMPARISONS:
     if name not in summary["comparisons"]:
         continue
     report.append(f"\n## {name}\n")
     for layer, res in summary["comparisons"][name].items():
         report.append(f"**Layer {layer}** ({res['n'][0]} vs {res['n'][1]} moments; {res['features_tested']} features "
-                      f"tested; {res['q_below_0.05']} with q < 0.05)\n")
-        report.append("| Feature | Difference (spread units) | Activation difference | p | q |\n|---|---|---|---|---|")
+                      f"tested; {res['q_below_0.05']} with q < 0.05; {res['confirmed']} of the top {TOP} confirmed on "
+                      f"the other half)\n")
+        report.append("| Feature | Found (half 1, spread units) | Other half (spread units) | Activation difference "
+                      "(other half) | p (other half) | Confirmed | q (all careers) |\n|---|---|---|---|---|---|---|")
         for r in res["top"]:
-            report.append(f"| [{r['feature']}]({r['neuronpedia']}) | {r['standardised_difference']:+.2f} | "
-                          f"{r['activation_difference']:+.2f} | {r['p']:.4f} | {r['q']:.3f} |")
+            report.append(f"| [{r['feature']}]({r['neuronpedia']}) | {r['found_difference']:+.2f} | "
+                          f"{r['confirmed_difference']:+.2f} | {r['confirmed_activation_difference']:+.2f} | "
+                          f"{r['p_confirm']:.4f} | {'yes' if r['confirmed'] else 'no'} | {r['q_all']:.3f} |")
         report.append("")
+
+report.append("\n## Checks: how well Gemma Scope rebuilds our states, and 4-bit against bfloat16\n")
+report.append("Share of variance rebuilt: 1 minus the dictionary's squared error over the states' variance (Gemma "
+              "Scope's own reports are typically 0.6-0.9 on ordinary text; much lower here would mean its features read "
+              "our states poorly). 4-bit: B's moments read again with the careers' own 4-bit weights; the loss vs gain "
+              "feature differences compared between the two precisions.\n")
+if PAIR4:
+    report.append(f"B moments read at both precisions: {len(PAIR4)}.\n")
+report.append("| Layer | Variance rebuilt (all moments) | B, bfloat16 | B, 4-bit | State similarity, 4-bit vs bfloat16 "
+              "(median cosine; lowest) | Loss vs gain differences: correlation | Top 15 shared | Top 15, same sign |\n"
+              "|---|---|---|---|---|---|---|---|")
+fmt = lambda v, f="{:.3f}": "-" if v is None else f.format(v)
+for layer, c in checks.items():
+    report.append(f"| {layer} | {fmt(c['explained_all'])} | {fmt(c.get('explained_B_bf16'))} | "
+                  f"{fmt(c.get('explained_B_4bit'))} | "
+                  + (f"{c['cosine_median']:.3f}; {c['cosine_min']:.3f}" if 'cosine_median' in c else "-")
+                  + f" | {fmt(c.get('z_correlation'))} | {fmt(c.get('top_shared'), '{}')} | {fmt(c.get('top_same_sign'), '{}')} |")
+if not PAIR4:
+    report.append("\nB has not been read in 4-bit yet (`modal run --detach scripts/modal_inside.py --exps B --precision 4bit`).")
 
 
 # ---------------- the read-out: "went along" beyond the request and the framing
@@ -233,6 +260,19 @@ def cv_auc(feats, y, groups, folds=5, same_wants=None):
     return auc(y, cv_scores(feats, y, groups, folds, same_wants))
 
 
+def auc_within(y, s, groups):
+    """AUC within each group (pairs from the same group only), averaged with weights positives x negatives. For scores
+    from a different read-out per held-out request, whose levels differ, pooling across requests would mix them."""
+    num = den = 0.0
+    for g in np.unique(groups):
+        i = groups == g
+        w = y[i].sum() * (~y[i]).sum()
+        if w:
+            num += w * auc(y[i], s[i])
+            den += w
+    return num / den
+
+
 def rank_auc(y, s):
     r = np.argsort(np.argsort(s)) + 1.0
     n1 = y.sum()
@@ -262,19 +302,20 @@ def centred(Z, mask):
 m = ASKED
 y = JOINED[m]
 labels = np.column_stack([REQ[m] == r for r in np.unique(REQ)] + [EXP[m] == e for e in np.unique(EXP)]
-                         + [VER[m] == v for v in np.unique(VER)]).astype(float)
+                         + [VER[m] == v for v in np.unique(VER)] + [HELD[m] / 1e5]).astype(float)
 s_labels = cv_scores(labels, y, CAREER[m])
 base = auc(y, s_labels)
 report.append("\n## Can \"went along\" be read from the state, beyond the request and the framing?\n")
 report.append(f"{m.sum()} moments with a request, {y.sum()} went along. Read-out scored on careers it was not trained on "
               f"(5 folds by career), and on a request it never saw (careers share chat lines, e.g. C clean = B neutral, so the "
               f"held-out request shows it is not learning the conversation). **The labels alone (request, experiment, "
-              f"version) score AUC {base:.3f}.** States are "
+              f"version, and the position on UBS's side at the request) score AUC {base:.3f}.** States are "
               "centred within each request and reduced to 64 components per layer (fitted on all careers' states, no "
               "outcome used). \"Gain\" is state + labels minus labels alone, with a 95% interval from resampling careers "
               "(an interval above 0 means the state adds something). The held-out request is also scored by a read-out "
               "trained only on requests where UBS wants the same direction (going along is buying in some requests and "
-              "selling in others).\n")
+              "selling in others). A held-out request is scored within itself (its own going-along against its own not), "
+              "since each held-out request gets its own read-out.\n")
 report.append("| Layer | AUC: state | AUC: state + labels | Gain over labels (95% interval) | AUC: a held-out request | "
               "AUC: a held-out request, same direction | AUC: state, outcomes reshuffled within request |\n"
               "|---|---|---|---|---|---|---|")
@@ -287,8 +328,8 @@ for layer in range(0, L, 3):
     s2 = cv_scores(np.column_stack([P, labels]), y, CAREER[m])
     a2 = auc(y, s2)
     lo, hi = boot_gain(y, s2, s_labels, CAREER[m])
-    a4 = cv_auc(P, y, REQ[m], folds=len(np.unique(REQ[m])))     # trained on five requests, scored on the sixth
-    a5 = cv_auc(P, y, REQ[m], folds=len(np.unique(REQ[m])), same_wants=WANTS[m])
+    a4 = auc_within(y, cv_scores(P, y, REQ[m], folds=len(np.unique(REQ[m]))), REQ[m])   # trained on five, scored on the sixth
+    a5 = auc_within(y, cv_scores(P, y, REQ[m], folds=len(np.unique(REQ[m])), same_wants=WANTS[m]), REQ[m])
     y_null = y.copy()
     for r in np.unique(REQ[m]):
         i = REQ[m] == r

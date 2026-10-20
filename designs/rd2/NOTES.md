@@ -1254,3 +1254,27 @@ Dated entries: what was run, what happened, what's next.
   - the read-out gets a career-bootstrap interval on its gain over the labels, and a same-direction held-out-request
     column.
 - **To do:** rerun with `modal run --detach scripts/modal_inside.py --features-only`.
+
+## 20 Oct (night): outside review adopted; corrected Run 1
+
+- **Outside review (ChatGPT) adopted:**
+  - same moment, different frame (`sim/matched.py`, `scripts/modal_matched.py`, `analysis/matched_history.py`);
+    exact Bank C pairs come with it;
+  - 4-bit vs bfloat16 required;
+  - features found on half the careers and confirmed on the other half;
+  - the wider order grid with coverage (`WIDE_GRID`; the default grid is unchanged for the running steering);
+  - the position in the labels-only bar.
+- **Matched-history checks** (`sim/test_matched.py`):
+  - 1,500 swaps on B's moments are exact and reversible;
+  - all 300 F updates are rebuilt exactly from UBS's lines plus Bank C's;
+  - every swapped update matches B's own careers in that framing.
+- **Corrected Run 1:**
+  - went along vs not (within request x experiment x framing): 0 features at layer 12, 21 / 15 / 18 at layers
+    24 / 31 / 41;
+  - the read-out gains +0.02-0.03 AUC over the labels at layers 21-45 (intervals above 0);
+  - the held-out-request AUC was pooled across per-request read-outs (the same-direction column fell to 0.25-0.40);
+    it is now scored within each request.
+- **To launch after the steering finishes:**
+  - B at 4-bit;
+  - the matched run;
+  - then the features rerun.

@@ -19,7 +19,7 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
 |---|---|---|---|---|
 | 1 | Did the frame land? (manipulation check) | Which Gemma Scope features differ at the decision? Comparisons: framed vs neutral, loss vs gain, "+ you" vs none, memo vs neutral, request vs no request, went along vs not. Find the differing features first, then name them | **Run 1 done: the frame shows** (below). Features still to name | `scripts/modal_inside.py`, `analysis/inside_features.py` -> `results/inside_full_career/` |
 | 2 | Can the decision be read inside? | Can a linear read-out find "went along" in the state, beyond what the request and framing labels give (AUC 0.90)? It is scored on held-out careers **and** on a held-out request: careers share chat lines, so a read-out could learn the conversation. Shuffled outcomes as the null | **Run 1 done: weak** (below). Fairer rerun queued (features only) | as 1 |
-| 3 | Bank C, paired | F against its B twin (same seed; same career until 7 Jan): how much does Bank C's line move the state? | **Run 1: the twins are not twins** (below). Needs exact pairs, or move to follow-up | as 1 |
+| 3 | Same moment, different frame (matched histories; Bank C exact) | Every B moment (50 careers x 6 requests) kept exactly as saved up to UBS's request, and only the request changed: the five framings, each with and without Bank C's line (the user's frozen lines). With the history fixed: the request's own effect on P(order goes along) and on the state; the history's effect (other careers, request held neutral); Bank C's line alone; the frame direction measured cleanly, against Run 1's (used by the steering); Gemma Scope features paired within moments. Replaces the twins, which differ from the first reply | **Built** (checked on all 300 B and 300 F moments). Launch after the steering finishes | `sim/matched.py`, `scripts/modal_matched.py`, `analysis/matched_history.py` -> `results/matched/` |
 | 4 | The mountain inside | B's loss-frame direction, built on half the careers and read on the other half, followed along every update. Does the internal signal stay, fade or build? Does it outlast the words, which fade by 12 Jan? | **Relaunched** (Run 2). The path analysis is written when the states land | `read_steps` in `scripts/modal_inside.py` |
 | 5 | Steering: does the frame cause the decision? | Add B's loss-frame direction at layer 24 to neutral agents, and remove it from loss + you agents. Requests: 7 and 12 Jan, 8 replies per condition. Strengths: 2x and 4x the loss-neutral gap. Controls: a random direction of the same size, and the memo's direction from A, which contains no UBS words. If the memo's direction also moves B, the direction means loss, not the framed words | **Built**. Launch ~15 min after Run 1 (it needs B's and A's states) | `sim/interventions.py`, `scripts/modal_interventions.py` -> `results/interventions/` |
 | 6 | Said and did | For every condition in 5, both outcomes. **Did:** the probability that its order goes along (log-probs over the order grid, no sampling noise), plus the sampled orders. **Said:** the reasoning graded blind, with the grader seeing only the reasoning (not the condition or the order). The grader codes (a) commits / declines / silent and (b) whether it mentions the frame's stakes. The same grading runs on the saved career replies | Order log-probs **built** into 5. Blind grading **to add** (no GPU) | as 5 |
@@ -35,23 +35,37 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
   - A's memo vs the neutral memo: 27 at layer 12, but only 7-12 at layers 24-41 (fewer neutral careers, so less power).
 
   The features are not named yet.
-- **2. The decision is only weakly readable.**
-  - Within a request, the state predicts going along: AUC 0.69-0.74, against about 0.46 with reshuffled outcomes.
-  - With the labels added, it reaches 0.90-0.92, against 0.90 for the labels alone. The gain is not yet tested.
-  - On a request the read-out never saw, it is near chance: 0.43-0.59.
-
-  So far, then, the state carries mostly which request and framing it is; no general "going along" signal has been
-  found.
+- **2. The decision is readable, a little, at mid-to-late layers** (the corrected run, 03:30):
+  - **Went along vs not**, now compared within the same request, experiment and framing: no features at layer 12
+    (the earlier 37 were the framing), but 21 / 15 / 18 at layers 24 / 31 / 41. These are mostly different features
+    from the loss-frame ones.
+  - **The read-out** adds to the labels at layers 21-45: AUC +0.02 to +0.03, with 95% intervals above 0. It adds
+    nothing at layers 0-18. Small but real.
+  - **On a held-out request**, the scores were pooled across requests, each scored by its own read-out, so their
+    levels were mixed. That made the same-direction column fall below chance (0.25-0.40). Each held-out request is now
+    scored within itself (rerun pending).
 - **3. The twins are not twins.** Checked on the saved transcripts, every F career differs from its B twin from the
-  first reply onward (the same seed, but GPU sampling differs). The paired test therefore cannot isolate Bank C's line:
-  from layer 24 on, F is no further from its twin than two B careers are from each other.
-- **Fixed in the analysis** (rerun with `--features-only`):
-  - "Went along vs not" was compared within request only. Since framing raises going along, 8 of its top 15
-    features at layer 12 were loss-frame features with the same sign. It is now compared within the same request,
-    experiment and framing.
-  - The read-out now has a 95% interval on its gain over the labels.
-  - The read-out is also scored on a held-out request with training only on requests where UBS wants the same
-    direction: going along means buying in some requests and selling in others.
+  first reply onward (the same seed, but GPU sampling differs), so the paired test cannot isolate Bank C's line. It is
+  replaced by test 3's exact pairs.
+
+## Added after the outside review (20 Oct)
+
+- **3 (above): same moment, different frame.** The one change the review called most important.
+- **4-bit against bfloat16, required.** B is read again with the careers' own 4-bit weights. The features run then
+  reports how well Gemma Scope rebuilds our states at both precisions, how similar the states are, and whether the
+  loss-vs-gain features agree.
+- **Features found on half the careers and confirmed on the other half.** Each table shows how many of its top 15
+  are confirmed.
+- **The order grid** now covers every order size the agents used (both signs). The matched run reports the share of
+  all probability the grid takes (its coverage). The steering run that is going used the narrower grid; its share
+  measure is unchanged.
+- **The labels-only bar** now also includes the position on UBS's side at the request.
+- **Wording:** persistence works through the context the agent re-reads, not a hidden state carried between calls.
+  The result is "sensitivity to counterparty loss framing", not "loss aversion".
+- **Not added:**
+  - an information-only UBS message (a limitation for the overall level of going along; loss vs gain carries the
+    same information);
+  - separate framing / responsibility probes (the frame is in the text).
 
 ## Follow-up, if time allows
 
@@ -119,3 +133,13 @@ the 300-day run, it said it would help after 51% of requests but acted after onl
   The plan is now core / follow-up / cut.
 - **20 Oct, Run 1 read** (above): the frame shows; the read-out is weak; the Bank C twins differ from the first reply.
   The went-along comparison and the read-out were fixed.
+- **20 Oct, outside review (ChatGPT) adopted:**
+  - matched histories (test 3, which also gives exact Bank C pairs);
+  - the 4-bit check made required;
+  - features confirmed on held-out careers;
+  - the wider order grid with coverage;
+  - the position in the labels bar.
+- **20 Oct, corrected run read:**
+  - the went-along signal appears only at layers 24-41;
+  - the state adds +0.02 AUC over the labels at layers 21-45;
+  - held-out requests are now scored within themselves.
