@@ -1505,3 +1505,21 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   report uses the agent's own trades. Left `final_full_career.py` unchanged (preregistered); for the user to decide.
 - **Paper:** new Section 7.5 with Table 10; the persistence paragraph rewritten: the push toward joining fades, the push
   toward risk-taking persists, setbacks do not revive joining.
+
+## 20 Oct (night): steering, second run built (Stage 1 of "ideal acquiescence")
+
+- The user's idea: give the model the frame's internal state by hand, with no framed words, and see whether it behaves
+  like a framed agent; then keep it on all career to see whether joining still fades.
+- **Built:** `sim/steer2.py` (directions from the matched rereads, built on the other half of the careers; conditions;
+  the per-moment loop), `scripts/modal_steer2.py` (6 GPUs, then the analysis pushes `results/steer2/STEER2.md`),
+  `designs/rd2/analysis/steer2.py`, and `designs/rd2/PREREG_STEER2.md` (H1-H4, Stage 2 outline and how it is read).
+- **Fixes the first run's four faults:** held-out direction and size; ten random directions; both signs in both groups;
+  whole-number order scoring.
+- **Checked on a tiny random Gemma with the real B careers:** 230 moments (60 neutral requests, 50 neutral openings,
+  120 loss-framed requests); 26 / 23 / 10 conditions; every condition changes the model's raw order probabilities; hooks
+  cleared after each; sampled replies scored; the analysis runs end to end. (On the tiny model the normalised order
+  probabilities barely move because almost all of the mass sits on HOLD; the raw mass moves by a few percent.)
+- **Launch:** `modal run --detach scripts/modal_steer2.py` (needs the matched B states, which are on the volume).
+- **Parked for later (the user, 20 Oct):** recurring management memos (A2, D2; the user writes the memo templates),
+  emotion-story directions (the user writes the stories), the refused-and-failed history (the user writes the failure
+  messages).
