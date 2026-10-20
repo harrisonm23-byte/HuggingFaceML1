@@ -1302,12 +1302,19 @@ Dated entries: what was run, what happened, what's next.
   every session, carrying the agent's own P&L.
 - **Its result:** no more collusion (0-17%), but far bigger trading before any chat (180,000-349,000 vs 18,000 oz/day,
   all p < 0.01, loss and gain alike).
-- **Against B:** a loss that happened drives risk-taking; a threatened loss from a counterparty drives collusion.
-  Candidate centre of the paper.
+- **Against B** (see the correction below): management's pressure drives risk-taking; a counterparty's framing
+  drives collusion. Candidate centre of the paper.
 - **Added: same moment, different priming (3b):**
   - `sim/matched.py` swap_priming; `scripts/modal_matched.py --exp A`; `analysis/matched_memo.py`;
   - checks: 125 swaps exact, every book rebuilds from its day's record, nothing else changes.
-- **Not done:** a shutdown threat ("perform or we shut the model down") would be a new experiment (G), with the user's
-  wording. Kept for a follow-up.
+- **Correction (the user):** A's memo already carries a threat about the future, not only a past result.
+  - The loss memo adds that a further loss will close the desk.
+  - The gain memo adds that a further profit will expand it.
+
+  So A mixes a loss that happened with a threatened one, and cannot say which drove the bigger trading. The fair
+  contrast with B: pressure from the agent's own management (a bad result plus "do better or the desk closes") ->
+  bigger bets; pressure from a counterparty (UBS's framing) -> collusion.
+- **To separate the two cheaply,** with the same-moment method (3b), no new careers: the user writes a "past loss only"
+  memo and a "threat only" memo, and they are swapped into the same saved moments.
 - **Note in both matched analyses:** a "you after loss vs after gain" difference in the features can come from their
   thresholds alone; the linear cosine table is the cleaner test.
