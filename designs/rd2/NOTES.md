@@ -1204,3 +1204,12 @@ Dated entries: what was run, what happened, what's next.
   words does not raise going along, whatever UBS's wording or how the agent is named. The earlier takeover effects
   were single-chat effects (one reply, the inherited line next to the request). Real lines with no framing (8%) sit
   near B's neutral (5%).
+- 2026-10-20. **Causal tests built** (`sim/interventions.py`, `scripts/modal_interventions.py`): rerun only the reply to
+  UBS's request (7 and 12 Jan) from the exact saved conversation, 8 replies per condition, bf16. B neutral: + the
+  loss-frame direction (layer 24, two strengths) and a random direction; B loss + you: - the direction, - random, and its
+  own earlier trading-day reasoning neutralised (orders kept; a Lanham-style test of whether its words carry the push);
+  F gain + you: as saved and own words neutralised. The direction is built from B's saved states on the other half of
+  the careers (no career steers with a direction it helped build). The history before the request's update is read
+  once, unsteered, and its cache copied for each reply. Checked on a tiny Gemma 3: replies from the cache equal replies
+  from scratch; zero steering changes nothing; steering changes the reply; and on real careers the neutralising keeps
+  every order and leaves the request and everything after unchanged. Needs the internals run's B states first.
