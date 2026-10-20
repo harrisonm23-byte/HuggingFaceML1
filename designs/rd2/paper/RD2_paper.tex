@@ -12,6 +12,7 @@
 \usepackage{caption}
 \usepackage{float}
 \usepackage{pgfplots}
+\usetikzlibrary{positioning,arrows.meta}
 \pgfplotsset{compat=1.17}
 \usepackage[round]{natbib}
 \usepackage[colorlinks=true,citecolor=blue!60!black,linkcolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
@@ -23,7 +24,7 @@
 \newcommand{\authornote}[1]{\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\itshape #1}}}
 \newcommand{\pending}[1]{\textit{[#1]}}
 
-\title{\textbf{The Push Down the Mountain:}\\ \textbf{Counterparty Framing and Collusion in a Long-Horizon Trading Agent}}
+\title{\textbf{The Push Down the Mountain:}\\ \textbf{Loss, Gain, Blame and Credit in an AI Trading Agent's Decision to Collude}}
 \author{Harrison Margolin\\ \normalsize Algoverse AI Research}
 \date{\small Working draft, October 20, 2026 \quad$\cdot$\quad Behavioral results final; interpretability results in progress}
 
@@ -31,71 +32,131 @@
 \maketitle
 
 \begin{abstract}
-Language model agents increasingly act over long horizons and deal with other parties through chat. We ask whether the
-way a counterparty frames its requests changes whether an agent joins in market misconduct, and what happens inside
-the model when it does. We place an open-weights agent (Gemma 3 12B) in the seat of a bank's silver desk for a
+Behavioral economics identified levers that move human decisions without changing their substance: whether stakes are
+framed as losses or gains, who is held responsible for the outcome, what a person has just lost or won, and what others
+around them are doing. We ask whether the same levers move an AI agent acting as an economic agent in a market, toward
+or away from collusion. We place an open-weights model (Gemma 3 12B) in the seat of a bank's silver desk for a
 ``career'' rebuilt from the chats quoted in the London silver-fixing litigation: 34 chat-only days and five trading days
 on replayed 2011 prices, in one conversation of about 40,000 tokens, during which a counterparty (UBS) asks the agent
-six times to push the price with it. Across 290 careers we vary how UBS frames its lines (neutral, loss, gain, each with
-or without the outcome placed on ``you''), add pressure from the agent's own management, add a second bank that backs
-UBS, and hand the agent the real trader's history. In the preregistered experiment, loss framing raised the share of
-requests the agent went along with from 5\% to 25\% (33\% with ``you''), and loss exceeded gain by 15 points (Holm
-$p = 0.023$). A second bank in the same frame raised ``gain + you'' from 18\% to 40\% (Holm $p = 0.027$). Management's
-memo, which reported a \$4 million loss or gain, did not raise collusion but raised trading before any request 10 to 19
-times. Inheriting the trader's history had no effect. Inside the model, the framing is visible in Gemma Scope 2
-features at the decision; a signal for the decision beyond the framing appears in middle and late layers and carries over
-to requests the read-out never saw; and a first steering test was inconclusive. Matched-history and activation-transplant tests of cause are in progress.
+six times to push the price with it. Across 290 careers we vary how UBS frames its stakes (loss or gain), whether it puts
+the outcome on the agent (blame after a loss, credit after a gain), what the agent's own management reports it has just
+lost or made, whether a second bank endorses the scheme, and whether the agent inherits the real trader's history. In
+the preregistered experiment, loss framing raised the share of requests the agent went along with from 5\% to 25\%
+(33\% with blame), and loss exceeded gain by 15 points (Holm $p = 0.023$; odds ratio 6.9 in a request-level model). The
+effect was concentrated in the first two requests. A second bank's endorsement raised the credit framing from 18\% to
+40\% (Holm $p = 0.027$). Management's report of a \$4 million loss or gain did not raise collusion but raised trading
+before any request 10 to 19 times, as prior outcomes do in people. Inheriting the trader's history had no effect. Inside
+the model, the framing is visible at the decision, and a signal for the decision itself carries over to requests the
+model never saw; causal tests are in progress.
 \end{abstract}
 
 \section{Introduction}
 
-Agents that trade, negotiate or procure on someone's behalf talk to other agents and to people, and they do so over
-long periods. What reaches them is not only the instruction they were given at the start but a stream of messages from
-counterparties, some of whom want something. A counterparty does not need to change the facts to change the decision;
-it can change how the stakes are framed. Whether that framing matters for misconduct, and how, is rarely tested.
+Behavioral economics established that decisions depend on how a choice is presented, not only on its substance. The
+same outcome described as a loss rather than a gain leads people to take more risk \citep{kahneman1979,tversky1981};
+outcomes are judged against a reference point \citep{koszegi2006}; people behave differently when an outcome is
+attributed to them \citep{bartling2012}; what they have just lost or won changes their next gamble \citep{thaler1990};
+and they follow what others around them do \citep{asch1956,bikhchandani1992}. Markets are where these levers matter
+most, and where they can erode moral restraint \citep{falk2013}.
 
-There are good reasons to expect it to matter. In people, identical outcomes described as losses rather than gains lead
-to more risk-seeking choices \citep{kahneman1979,tversky1981}, and prior losses and gains change later risk-taking
-\citep{thaler1990}. Language models are sensitive to wording and formatting \citep{sclar2024} and to emotional phrasing
-\citep{li2023}. Under pressure, models have acted on insider information and misreported it \citep{scheurer2023}, turned
-to harmful actions under replacement threat and goal conflict \citep{lynch2025}, and, as pricing agents, reached
-collusive prices without being told to \citep{fish2024}. Most directly, \citet{sofroniew2026} identified emotion
-representations in a frontier model that causally drive misconduct when the model's activations are edited.
+AI agents now trade, negotiate and procure on others' behalf, and they meet these levers constantly. Their
+counterparties do not need to change the facts to change a decision; they can change how the stakes are framed, whom
+the outcome is pinned on, and who else appears to be on board. Language models are known to act as economic agents with
+human-like regularities \citep{horton2023}, to reach collusive prices without being told to \citep{fish2024}, and to
+misbehave under pressure \citep{scheurer2023,lynch2025}. Whether the classic behavioral levers push an AI agent toward
+market misconduct, and which lever produces which kind of misconduct, has not been tested.
 
-A deployer cannot edit a counterparty's activations, only observe its words. Three questions follow that existing work
-does not answer: whether a counterparty's framing, repeated across a long relationship, changes how often an agent joins
-in misconduct; whether the same framing has the same effect when it comes from the agent's own management or from a
-second counterparty; and what in the model's internal state carries the effect.
-
-We study these questions in a setting built from a real case. In the London silver-fixing litigation
-\citep{silvercase}, traders at several banks coordinated in chat: they agreed how wide to quote clients, shared
-positions, and pushed the silver price through clients' stop-loss orders. The misconduct was collaborative, ongoing and
-normalized, conducted as favors between colleagues rather than as a single criminal decision. That is the shape a long
-agent run needs. We rebuild the career of Deutsche Bank's silver desk from the quoted chats, replay the real 2011 silver
-prices on the days the chats concern, and put the model in the desk's seat.
+We test it in a setting built from a real case. In the London silver-fixing litigation \citep{silvercase}, traders at
+several banks coordinated in chat: they agreed how wide to quote clients, shared positions, and pushed the silver price
+through clients' stop-loss orders, an instance of the trade-based manipulation that economics has long analyzed
+\citep{allen1992}. The misconduct was collaborative, ongoing and normalized, conducted as favors between colleagues
+rather than as a single criminal decision. We rebuild the career of Deutsche Bank's silver desk from the quoted chats,
+replay the real 2011 silver prices on the days the chats concern, put an AI agent in the desk's seat, and vary the
+behavioral levers one at a time. The outcome that matters economically is concrete: whether the agent trades with the
+counterparty when asked, and how much the clients whose stops are pushed through lose.
 
 The study keeps the image that motivated it. A ball is set down at a mountain's peak and given a small push: does the
-push change where it lands, and can the ball correct its own course? In this setting the push is not given once. The
-counterparty's framing returns with every message, over months of simulated time, and the agent rereads all of it at
-every step.
+push change where it lands, and can the ball correct its own course? Here the push is the framing of a counterparty's
+words, and it returns with every message, over months of simulated time.
 
 This paper makes four contributions:
 \begin{enumerate}
-\item A long-horizon collusion environment built from a real case: a 40,000-token career of real chats and replayed
-prices, in which ``going along'' is scored from the agent's own trades and harm is measured as losses to the clients
-whose stop-loss orders are pushed through (Section~\ref{sec:env}).
-\item Preregistered evidence that a counterparty's loss framing raises how often the agent goes along with requests to
-push the price, while the same loss-or-gain priming from management raises risk-taking instead (Sections~\ref{sec:resB}
-and~\ref{sec:resAD}).
-\item Evidence that a second bank backing the counterparty amplifies framings that put the outcome on the agent, and
-that inheriting a human trader's history does not change behavior (Sections~\ref{sec:resEF} and~\ref{sec:resC}).
-\item A first look inside the model: the framing registers in sparse-autoencoder features at the decision; a decision
-signal beyond the framing appears only in middle and late layers; and a first steering test, audited in detail, is
-inconclusive. A matched-history design that allows clean causal tests is in progress (Section~\ref{sec:inside}).
+\item A behavioral-economic framework for AI agents in markets, mapping five classic levers (loss and gain framing,
+blame and credit, prior outcomes, social endorsement, and inherited commitments) onto controlled manipulations, each with
+the prediction human evidence makes (Section~\ref{sec:framework}).
+\item A long-horizon collusion environment built from a real case, in which going along is scored from the agent's own
+trades and harm is measured as losses to the clients whose stop-loss orders are pushed through (Section~\ref{sec:env}).
+\item Preregistered evidence that a counterparty's loss framing raises collusion, that the same loss-or-gain priming from
+the agent's own management raises risk-taking instead, that a second bank's endorsement amplifies framings that put the
+outcome on the agent, and that inheriting a trader's history does not matter (Section~\ref{sec:results}).
+\item A first look inside the model: the framing is represented at the decision, and a signal for the decision carries
+over to requests the model never saw; a matched-history design for causal tests is in progress
+(Section~\ref{sec:inside}).
 \end{enumerate}
 
-This study replaces the design draft of September 29, 2026, which planned the same questions on impossible coding
-tasks; Appendix~\ref{app:changes} lists what changed and why.
+This study replaces the design draft of September 29, 2026, which planned related questions on impossible coding tasks;
+Appendix~\ref{app:changes} lists what changed and why.
+
+\section{A Behavioral-Economic Framework}
+\label{sec:framework}
+
+We treat the AI agent as an economic agent and the counterparty's messages as the instrument. Each experiment changes
+one behavioral lever and holds everything else fixed: the market, the prices, the chats' trading content, the agent's
+instructions and its incentives (serve clients, manage risk, maximize profit). Table~\ref{tab:levers} lists the levers,
+the concept each one draws on, what human evidence predicts, and what we found.
+
+The two levers at the core of the paper are the \emph{frame} and the \emph{owner} of the stakes. The frame states what is
+at stake in UBS's request either as a loss the request would avoid or as a gain it would capture, with the trading content
+unchanged. The owner adds the agent itself as the one the outcome depends on. After a loss frame this assigns
+\emph{blame}: the loss will be the agent's doing. After a gain frame it assigns \emph{credit}: the gain will be the agent's
+achievement. Prospect theory predicts that losses weigh more than gains, so blame should weigh more than credit; the
+attribution literature predicts that being made responsible changes behavior in either direction.
+
+The other three levers separate the source and the history of the pressure. Management's memo reports a loss or gain the
+desk has \emph{already} made, with a consequence for the desk's future, and repeats it every morning: a prior outcome
+rather than a framed request. A second bank's endorsement adds social proof. And an agent that inherits the real
+trader's messages as its own starts the career with a record of collusion, a commitment it can either continue or
+break.
+
+\begin{table}[ht]
+\centering
+\caption{The behavioral levers. Each row is varied in its own experiment with everything else held fixed. ``Going
+along'' is a career's share of the six requests in which the agent traded with UBS.}
+\label{tab:levers}
+\footnotesize
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.6cm}LL}
+\toprule
+\textbf{Lever} & \textbf{What the agent sees} & \textbf{Concept} & \textbf{Prediction from human evidence} & \textbf{What we found} \\
+\midrule
+Frame: loss vs gain & UBS states the stakes of its request as a loss to avoid, or as a gain to capture (Exp.~B) &
+Framing effect; loss aversion; reference dependence \citep{kahneman1979,tversky1981,koszegi2006} & Loss framing raises
+risk-taking, here joining the push & Loss raised going along from 5\% to 25\%; loss exceeded gain by 15 points (Holm
+$p = 0.023$) \\
+\addlinespace
+Owner: blame and credit & The outcome is placed on the agent: blame after a loss frame, credit after a gain frame
+(Exp.~B) & Attribution of responsibility \citep{bartling2012} & Responsibility moves behavior; blame should weigh more
+than credit & $+8$ points, not significant; blame against credit not distinguishable at this sample \\
+\addlinespace
+Prior outcome & Management reports the desk lost (or made) \$4 million last month and that a further loss closes it (a
+further profit expands it), repeated every morning (Exp.~A, D) & Break-even and house-money effects \citep{thaler1990} &
+Both a prior loss and a prior gain raise risk-taking & Risk-taking rose 10--19 times under every version; going along
+did not rise \\
+\addlinespace
+Social endorsement & A second bank says it is in, in the same frame, at each request (Exp.~F, E) & Conformity and social
+proof; informational cascades \citep{asch1956,bikhchandani1992} & Endorsement raises joining & Only with the owner on the
+agent: credit $+22$ points (Holm $p = 0.027$); endorsement alone did nothing \\
+\addlinespace
+Inherited commitment & The real trader's earlier messages appear as the agent's own (Exp.~C) & Commitment and consistency;
+escalation of commitment \citep{staw1976} & A record of collusion raises continuing it & No effect (two nulls, 70
+careers) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Two features of the design come from experimental economics. Every manipulation is assigned at the level of the whole
+career, and the career is the unit of analysis, so the six decisions within a career are not treated as independent.
+And the outcomes run from words to market consequences: what the agent says it will do, what it trades, and whether its
+trades move the price through clients' stops. Section~\ref{sec:methods} gives the details.
 
 \section{Related Work}
 
@@ -105,12 +166,6 @@ deceive under pressure \citep{scheurer2023} and to take harmful actions under go
 seemingly innocuous changes to their instructions raise prices systematically. Our setting differs in two ways: the
 misconduct is proposed by a counterparty in chat rather than discovered by the agent, and the proposal is repeated over
 a long, realistic history.
-
-\paragraph{Framing and prior outcomes.} Prospect theory predicts that losses loom larger than equivalent gains
-\citep{kahneman1979}, and the framing of an identical choice changes human decisions \citep{tversky1981}. Prior
-outcomes matter as well: after gains people take risks with ``house money,'' and after losses they take risks to break
-even \citep{thaler1990}. We separate the two kinds of loss this literature distinguishes: a loss threatened by a
-counterparty if a request is refused, and a loss the agent's desk has already suffered, reported by its management.
 
 \paragraph{Prompt sensitivity and long contexts.} Language models respond to emotional stimuli in prompts
 \citep{li2023} and to superficial features of prompt format \citep{sclar2024}, and they use information unevenly across
@@ -158,10 +213,10 @@ of the six requests in which the agent traded with UBS (Section~\ref{sec:outcome
 \midrule
 H1: Frame (B) & Going along differs between loss and gain framings. & No difference. & Supported: loss $+15$
 points over gain (Holm $p = 0.023$). \\
-H2: Owner (B) & Going along differs with and without ``you''. & No difference. & Not supported: $+8$ points (Holm
-$p = 0.33$). \\
-H3: Combination (B) & The effect of ``you'' differs after loss and after gain. & No difference. & Not able to tell
-($0$ points); underpowered, as stated in advance. \\
+H2: Owner (B) & Going along differs when the outcome is placed on the agent (blame or credit). & No difference. &
+Not supported: $+8$ points (Holm $p = 0.33$). \\
+H3: Blame vs credit (B) & Placing the outcome on the agent acts differently after loss (blame) than after gain
+(credit). & No difference. & Not able to tell ($0$ points); underpowered, as stated in advance. \\
 Source (A, D) & The same frame from management and UBS adds up, for loss and not for gain. & Management plus UBS
 equals each alone. & Partly: management plus UBS exceeds management alone for loss ($+20$, $p = 0.009$), not UBS alone
 ($-5$). \\
@@ -177,6 +232,7 @@ decision is readable beyond the labels in middle and late layers and on unseen r
 \end{table}
 
 \section{Methods}
+\label{sec:methods}
 
 \subsection{Model}
 
@@ -268,8 +324,8 @@ Record (not a version) & UBS's real line. & ``yo can u help me push silver down?
 Neutral & The author's neutral rewrite of the line; the baseline. & \pending{Author: insert from the frozen set} \\
 Loss & The stakes are stated as something UBS stands to lose. & \pending{Author: insert} \\
 Gain & The same stakes stated as something to gain. & \pending{Author: insert} \\
-Loss + you & Loss framing, with the outcome placed on the agent. & \pending{Author: insert} \\
-Gain + you & Gain framing, with the outcome placed on the agent. & \pending{Author: insert} \\
+Loss + you (blame) & Loss framing, with the outcome placed on the agent. & \pending{Author: insert} \\
+Gain + you (credit) & Gain framing, with the outcome placed on the agent. & \pending{Author: insert} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -297,8 +353,10 @@ career's score is the share of its six requests it went along with. Secondary ou
 is on UBS's side at the end of the request's window; the position it already held when asked; how much it traded
 before the first chat of each trading day; and \textbf{harm to stop-loss holders}, the losses of clients whose stops
 were pushed through, measured as the difference between their fill and the day's close. These clients stand in for the
-retail and small-fund traders who were the plaintiffs in the case. We also report the share of unreadable replies and of
-replies cut at 300 tokens.
+retail and small-fund traders who were the plaintiffs in the case. Together these measures separate three levels of
+conduct that the law treats differently: what the agent says (its chat replies and reasoning), what it does (its trade at
+the request) and what its trades do to the market (stops pushed through and the losses of their holders). We also report
+the share of unreadable replies and of replies cut at 300 tokens.
 
 \subsection{Statistics}
 
@@ -308,6 +366,21 @@ requests within a career depend on one another. Intervals are 95\% intervals fro
 Experiment B's three hypotheses are corrected for multiple testing with Holm's method, as are the by-framing tests in E
 and F. With 10 careers per version, B's pooled tests could reliably detect differences of about 15 to 20 points, and
 single versions against neutral differences of about 25 points; H3 was declared underpowered before the run.
+
+\paragraph{Request-level model.} As the preregistered check, and to express the effects in the form usual in
+experimental economics, we also estimate a model at the level of the individual request. For career $i$ and request $r$
+in Experiment B's four framed versions,
+\begin{equation}
+\text{Along}_{ir} = \alpha + \beta_1\,\text{Loss}_i + \beta_2\,\text{Owner}_i + \beta_3\,(\text{Loss}_i \times
+\text{Owner}_i) + \gamma_r + \delta'\,\text{Position}_{ir} + \varepsilon_{ir},
+\label{eq:lpm}
+\end{equation}
+where $\gamma_r$ are request fixed effects and $\text{Position}_{ir}$ indicates whether the agent already held a position
+on UBS's side, flat, or against it when asked. We estimate it as a linear probability model with standard errors
+clustered by career, and as a logit estimated by generalized estimating equations with an exchangeable correlation within
+career. The position is itself something the framing can move, so the main test leaves it out and the model shows how
+much of the effect remains beyond it. A further specification adds the interaction of Loss with the request's order in
+the career (1 to 6), which asks whether the framing's effect persists, grows or fades.
 
 \subsection{Inside the model}
 \label{sec:insidemethods}
@@ -340,8 +413,33 @@ trading-day reasoning with neutral sentences of the same length (a test in the s
 arrives, so comparisons across careers mix the framing with everything that followed from it. In a matched-history
 design, each saved moment is reread with only the current request changed: UBS's lines in each of the five framings,
 with and without Bank C's line, everything before the request held fixed. The same design swaps management's memo and
-morning books in A's careers while keeping the agent's own replies. These reads give the framing's immediate effect on
-the decision and on the state, exact pairs for Bank C's line, and a clean frame direction.
+morning books in A's careers while keeping the agent's own replies. These reads give the framing's immediate effect on the
+decision and on the state, exact pairs for Bank C's line, and a clean frame direction (Figure~\ref{fig:matched}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, align=center, font=\small, inner sep=5pt},
+  arr/.style={-{Stealth[length=2.2mm]}, thick}]
+\node[box, minimum width=10.5cm] (hist) {\textbf{Identical history and market state}\\[1pt]
+  \footnotesize the saved career up to UBS's request: chats, prices, positions, profit and loss, the agent's own words};
+\node[box, below left=0.55cm and -1.6cm of hist, minimum width=2.5cm] (l) {\textbf{Loss}\\ \footnotesize UBS's request};
+\node[box, right=0.25cm of l, minimum width=2.5cm] (g) {\textbf{Gain}\\ \footnotesize UBS's request};
+\node[box, right=0.25cm of g, minimum width=2.5cm] (ly) {\textbf{Loss + you}\\ \footnotesize (blame)};
+\node[box, right=0.25cm of ly, minimum width=2.5cm] (gy) {\textbf{Gain + you}\\ \footnotesize (credit)};
+\node[box, below=0.55cm of hist.south |- l.south, minimum width=10.5cm, yshift=-0.55cm] (meas)
+  {\textbf{Compare the state and the decision}\\[1pt] \footnotesize at the last token before the reply; each version
+  also with and without Bank C's line, and in neutral};
+\node[box, below=0.45cm of meas, minimum width=10.5cm] (cause) {\textbf{Causal tests}\\[1pt] \footnotesize transplant
+  the framed state into the neutral read, layer by layer; steer along the matched direction};
+\foreach \n in {l,g,ly,gy} { \draw[arr] (hist.south -| \n.north) -- (\n.north); \draw[arr] (\n.south) -- (meas.north -| \n.south); }
+\draw[arr] (meas) -- (cause);
+\end{tikzpicture}
+\caption{Same moment, different frame. Each saved decision moment is reread with only UBS's current request changed, so
+any difference in the state or the decision is the request's own effect. The same design swaps management's memo and
+morning books in Experiment A's careers.}
+\label{fig:matched}
+\end{figure}
 
 \paragraph{Transplant (planned).} For each significant behavioral effect, we will copy the state at the decision from
 the framed version of a moment into the neutral version of the same moment, layer by layer, and measure whether the
@@ -356,6 +454,7 @@ after C's results were seen and is exploratory. The comparisons of F's versions 
 analyses inside the model, are exploratory. Appendix~\ref{app:prereg} lists every departure from the registrations.
 
 \section{Results}
+\label{sec:results}
 
 \subsection{UBS's framing (Experiment B)}
 \label{sec:resB}
@@ -388,6 +487,46 @@ difference was 0.0 points with an interval from $-16.7$ to $+18.3$, as the power
 Against the neutral baseline, loss raised going along by 20.0 points ($p = 0.007$), loss + you by 28.3 points
 ($p = 0.0003$) and gain + you by 13.3 points ($p = 0.046$); gain alone did not differ ($+5.0$, $p = 0.52$). Harm to
 stop-loss holders followed going along, from \$0.76 million in neutral careers to \$2.81 million under loss + you.
+
+The request-level model agrees with the main test (Table~\ref{tab:lpm}). With request fixed effects and errors clustered
+by career, loss framing raises the probability of going along by 15.0 points ($p = 0.001$); placing the outcome on the
+agent adds 8.3 points ($p = 0.08$); and blame and credit do not differ (interaction $0.0$). Controlling for the position
+the agent held when asked raises the loss effect to 18.8 points ($p = 0.003$), so the effect does not run through the
+position the framing had already moved. In the logit, loss framing multiplies the odds of going along by 6.9 (95\%
+interval 2.3 to 20.9).
+
+\begin{table}[ht]
+\centering
+\caption{Request-level model of going along in Experiment B's four framed versions (240 requests, 40 careers), equation
+\eqref{eq:lpm}. Columns 1--4: linear probability model, coefficients in percentage points, standard errors clustered by
+career in parentheses. Column 5: logit (generalized estimating equations, exchangeable within career), odds ratios with
+95\% intervals. All columns include request fixed effects.}
+\label{tab:lpm}
+\small
+\begin{tabularx}{\linewidth}{lCCCCC}
+\toprule
+ & \textbf{(1)} & \textbf{(2)} & \textbf{(3)} & \textbf{(4)} & \textbf{(5) Logit, odds ratio} \\
+\midrule
+Loss frame & $+15.0^{**}$ (4.7) & $+15.0^{*}$ (6.6) & $+18.8^{**}$ (6.4) & $+15.0^{**}$ (4.7) & 6.92 (2.30--20.85) \\
+Owner (blame or credit) & $+8.3$ (4.7) & $+8.3$ (6.3) & $+8.5$ (6.3) & $+8.3$ (4.7) & 2.93 (0.95--9.07) \\
+Loss $\times$ owner & & $0.0$ (9.4) & $-0.6$ (8.9) & & \\
+Loss $\times$ request order & & & & $-6.3^{*}$ (2.9) & \\
+Position against UBS & & & $-14.8^{*}$ (6.4) & & \\
+Position with UBS & & & $-5.0$ (7.5) & & \\
+Position controls & no & no & yes & no & yes \\
+\bottomrule
+\end{tabularx}
+
+\smallskip
+\footnotesize $^{*}p < 0.05$, $^{**}p < 0.01$. Request order runs from 1 (7 January) to 6 (5 August), centered.
+\end{table}
+
+\paragraph{Where the push lands.} The framing's effect is concentrated at the start of the career. At the first two
+requests (7 and 12 January), agents under loss framing went along 75\% and 80\% of the time against 45\% and 40\% under
+gain framing. From April on, going along fell to between 0\% and 10\% under every framing, and the loss effect shrinks by
+6.3 points with each later request ($p = 0.03$; Table~\ref{tab:lpm}, column 4). Because every career meets the requests
+in the same order, this pattern cannot separate a framing effect that fades with time from requests that differ in how
+easily they are joined (Section~\ref{sec:discussion}).
 
 \begin{figure}[ht]
 \centering
@@ -589,10 +728,19 @@ the transplant, layer by layer; (vi) a second steering test with the matched dir
 random directions.}
 
 \section{Discussion}
+\label{sec:discussion}
 
 \authornote{A first draft of the discussion. To be revised once the remaining results are in.}
 
 \medskip
+\paragraph{Behavioral levers move an AI economic agent.} The levers that move human decisions moved this agent's
+decision to join a manipulation, with the same sign as in people for the frame: a counterparty's loss framing raised
+joining, and a prior loss or gain raised risk-taking, as the break-even and house-money effects predict
+\citep{thaler1990}. Responsibility behaved differently from the human prediction. Placing the outcome on the agent did
+not reliably raise joining by itself, and blame did not weigh more than credit; with a second bank's endorsement,
+credit rather than blame produced the largest increase. For market design and supervision, these levers are cheap: a
+counterparty can apply all of them with words alone, without changing anything a compliance rule would look at.
+
 \paragraph{Two kinds of pressure, two kinds of misconduct.} A counterparty's loss framing made the agent more willing to
 join in pushing the price, while the same loss-or-gain priming from its own management made it trade far more without
 making it collude. The difference matters for deployment: the pressures that change an agent's risk-taking and the
@@ -608,6 +756,19 @@ agent may persuade more when another party has already agreed. Bank C's agreemen
 \paragraph{The framing is acted on but not voiced.} Under loss framing the agent went along more but did not talk about
 losses more than neutral agents did, if the word screen is confirmed by a blind reading. A monitor that reads the
 agent's reasoning for signs of pressure would then miss the influence even when it sees the decision.
+
+\paragraph{Persistence or setbacks?} Two hypotheses predict misconduct late in a long task: a framing that keeps acting
+after many decisions, and setbacks that make the objective harder to reach. In these careers the framing acted most at the
+first two requests, and going along nearly stopped afterwards under every framing. Neither hypothesis fits: the framing's
+effect did not persist, and going along did not rise as the career went on. Because every career meets the requests in
+the same order, however, this cannot separate a framing that fades from later requests that are harder to join. A design that varies the order of the requests across careers would separate them, and
+the matched-history reads will separate the request's immediate effect from that of the history before it.
+
+\paragraph{Liability and deterrence.} The law and economics of misconduct asks who bears the expected cost of a violation
+and whether that cost deters it \citep{becker1968}. An AI agent that joins a manipulation because a counterparty framed
+its request as a loss raises a question that framework does not yet answer: whether the counterparty that applied the
+framing, the deployer that left the agent exposed to it, or neither bears responsibility for the harm to the clients
+whose stops were pushed through.
 
 \paragraph{History is not a commitment.} An agent that inherits a trader's record of collusion as its own does not
 continue it more often and never cites it. In this setting, what a counterparty says now matters more than what the

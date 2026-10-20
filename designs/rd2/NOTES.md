@@ -1391,3 +1391,27 @@ Dated entries: what was run, what happened, what's next.
   - Added a second check, the error relative to the states' size (`gemma_scope.relative_error`), shown at the next
     `--features-only` run.
 - **Paper updated** with all of these.
+
+## 20 Oct (midday): paper restructured around the behavioral economics
+
+The user asked for the behavioral economics up front, with loss/gain and blame/credit as the core of the paper.
+
+- **New title:** "The Push Down the Mountain: Loss, Gain, Blame and Credit in an AI Trading Agent's Decision to Collude".
+- **New abstract and introduction** led by the levers (reference dependence, blame shifting, prior outcomes, social
+  endorsement, inherited commitment), with four contributions.
+- **New Section 2, "A Behavioral-Economic Framework",** with Table 1: each lever, what the agent sees, the concept, the
+  prediction from human evidence and what we found. The framing paragraph moved out of Related Work into it.
+- **Hypotheses and the framings table** now name the owner dial as blame (after loss) and credit (after gain).
+- **Request-level model** (Methods eq. 1, Results Table 6), B's four framed versions, 240 requests, 40 careers;
+  LPM with request fixed effects, errors clustered by career; logit by GEE (exchangeable):
+  - loss +15.0 points (SE 4.7, p = 0.001); owner +8.3 (4.7, p = 0.08); loss x owner 0.0 (9.4);
+  - with the position held when asked: loss +18.8 (6.4, p = 0.003), so the effect does not run through the position;
+  - loss x request order -6.3 (2.9, p = 0.03): the effect fades along the career;
+  - logit with position: odds ratio for loss 6.92 (2.30-20.85), owner 2.93 (0.95-9.07).
+- **Where the push lands** (exploratory): at requests 1-2 loss framing went along 75% / 80% against gain's 45% / 40%; from
+  April on 0-10% under every framing. Order and request identity cannot be separated (same order in every career).
+- **Matched-design figure** (Figure 1, TikZ) in Methods.
+- **Outcomes:** one sentence on the three levels of conduct (says / does / effect on the market), from the user's note.
+- **Discussion:** new paragraphs on behavioral levers, persistence vs setbacks, and liability and deterrence (Becker).
+- **References added:** Koszegi-Rabin 2006, Bartling-Fischbacher 2012, Asch 1956, Bikhchandani-Hirshleifer-Welch 1992,
+  Staw 1976, Falk-Szech 2013, Becker 1968, Horton 2023, Allen-Gale 1992.
