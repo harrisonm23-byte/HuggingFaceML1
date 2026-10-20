@@ -1543,3 +1543,14 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   probability (+49) and the sampled behaviour (2%) points at the agent's own reasoning at that moment; scoring the order
   after the agent's own saved reasoning would test it.
 - Paper: new paragraph "Where along the career the push sits" (7.8) and the persistence paragraph updated.
+
+## 20 Oct (night): emotion word lists (the user's idea), template made
+
+- The user: instead of stories, long dense lists of emotion phrases (loss: catastrophe, failure, "it's over"; blame: "it's
+  all your fault"; gain: victory, "we did it"; credit: "you're a hero"), to find what activates and compare or inject it.
+- Template `designs/rd2/Emotion_lists_TEMPLATE.docx` (sections Loss, Blame, Gain, Credit, Neutral; no sample phrases;
+  the author writes them). Design: a matched neutral list; Loss/Gain with "we/they" and Blame/Credit with "you" so the
+  owner separates; 50-100 varied phrases per theme, shuffled into many documents; held-out check.
+- Plan once filled: (1) compare, no injection: cosine of each emotion direction with the frame direction from UBS's
+  lines (held fixed) by layer, and the framed careers' drift along it; (2) inject: as steering arms, or as text placed
+  before a request (an incidental-emotion priming test, after Lerner et al.).
