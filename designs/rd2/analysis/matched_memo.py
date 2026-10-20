@@ -123,8 +123,8 @@ for title, Y, mask, fmt, scale, unit in outcomes:
         report.append(f"| {name} | {scale * o:+,.1f}{unit} | {scale * ci[0]:+,.1f} to {scale * ci[1]:+,.1f} | {p:.4f} |")
         summary["tests"][f"{title} | {name}"] = {"change": o, "p": p, "interval": list(ci)}
     neutral_priming = Y[:, vi["neutral"]]
-    report.append(f"\n| What its own words carry (priming held neutral; different careers, 5 per version) | Change | "
-                  "95% interval | p |\n|---|---|---|---|")
+    report.append(f"\n| What its own words carry (priming held neutral; different careers, 5 per version, so the "
+                  "intervals are rough) | Change | 95% interval | p |\n|---|---|---|---|")
     for name, (a, b) in {"History: loss frame vs neutral": (LOSS, ["neutral"]),
                          "History: gain frame vs neutral": (GAIN, ["neutral"])}.items():
         o, p, ci = unpaired(neutral_priming, mask, a, b)
@@ -174,17 +174,22 @@ report.append("**The priming direction** (loss and loss + you priming minus neut
               "careers: Run 1's memo direction (A's loss careers minus its neutral careers; the steering's memo check "
               "used it). UBS's loss: B's matched run, UBS's loss request minus neutral with the history held fixed: is "
               "management's loss the same thing inside as UBS's?\n")
-report.append("| Layer | Ceiling (two halves) | vs Run 1's memo direction | vs UBS's loss (history held fixed) |\n|---|---|---|---|")
+report.append("Measured at UBS's requests (where Run 1's and UBS's directions were measured too); the last column compares "
+              "it with the same priming direction at the day's first update.\n")
+report.append("| Layer | Ceiling (two halves) | vs Run 1's memo direction | vs UBS's loss (history held fixed) | vs the "
+              "priming direction at the day's first update |\n|---|---|---|---|---|")
 half = np.isin(CAREER, careers[::2])
+fmt = lambda x: "-" if x is None else f"{x:.3f}"
 for j, l in enumerate(layers):
-    d = S[:, cols(LOSS), j].mean(1) - S[:, vi["neutral"], j]
+    d = S[REQ][:, cols(LOSS), j].mean(1) - S[REQ][:, vi["neutral"], j]
     u = d.mean(0)
+    u_open = (S[OPEN][:, cols(LOSS), j].mean(1) - S[OPEN][:, vi["neutral"], j]).mean(0)
     if l == 24:
         np.save(os.path.join(ROOT, "matched", "memo_direction_held_fixed_L24.npy"), unit(u))
-    row = {"ceiling": ucos(d[half].mean(0), d[~half].mean(0)),
-           "run1_memo": ucos(u, memo1[l]) if l in memo1 else None, "ubs_loss": ucos(u, ubs[l]) if l in ubs else None}
-    fmt = lambda x: "-" if x is None else f"{x:.3f}"
-    report.append(f"| {l} | {row['ceiling']:.3f} | {fmt(row['run1_memo'])} | {fmt(row['ubs_loss'])} |")
+    row = {"ceiling": ucos(d[half[REQ]].mean(0), d[~half[REQ]].mean(0)),
+           "run1_memo": ucos(u, memo1[l]) if l in memo1 else None, "ubs_loss": ucos(u, ubs[l]) if l in ubs else None,
+           "openings": ucos(u, u_open)}
+    report.append(f"| {l} | {row['ceiling']:.3f} | {fmt(row['run1_memo'])} | {fmt(row['ubs_loss'])} | {row['openings']:.3f} |")
     summary.setdefault("direction", {})[l] = row
 report.append("\n**\"You\" after loss and after gain** (the change the \"+ you\" priming makes at the same moment): "
               "sizes, how alike (cosine), and the ceiling (after loss vs itself on two halves of the careers).\n")

@@ -121,7 +121,9 @@ def run_part(part, parts):
                              "coverage": cover, "probs": probs, "tokens": len(full)})
         arr = np.stack(states).astype(np.float32)
         assert np.isfinite(arr).all(), f"{path}: a state is not finite"
-        np.savez_compressed(path, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
+        with open(path + ".tmp", "wb") as fh:                # written whole, then renamed: a crash cannot leave a
+            np.savez_compressed(fh, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
+        os.replace(path + ".tmp", path)                     # half-written file that a retry would skip
         states_vol.commit()
         print(f"part {part}: {n + 1}/{len(todo)} moments | {(time.time() - t0) / 60:.0f} min", flush=True)
     return f"part {part}: {len(todo)} moments"
@@ -176,11 +178,12 @@ def run_part_memo(part, parts):
                 full, k = split_point(tok, c1, x["history_index"], opening)
                 assert full[:k0] == full0[:k0], "the history before the memo changed"
                 cache = copy.deepcopy(shared)
-                if k > k0:                                 # the career from the memo to this moment, in this version
-                    rec.reset([])
+                rec.reset([])
+                for a in range(k0, k, 4096):              # the career from the memo to this moment, in this version,
+                    b = min(a + 4096, k)                  # in pieces (one piece would need ~58 GB for its logits)
                     with torch.no_grad():
-                        model(input_ids=torch.tensor([full[k0:k]], device=model.device), past_key_values=cache,
-                              use_cache=True, cache_position=torch.arange(k0, k, device=model.device))
+                        model(input_ids=torch.tensor([full[a:b]], device=model.device), past_key_values=cache,
+                              use_cache=True, cache_position=torch.arange(a, b, device=model.device))
                 rec.reset([len(full) - 1])
                 rec.seen = [k] * len(rec.layers)
                 with torch.no_grad():
@@ -200,7 +203,9 @@ def run_part_memo(part, parts):
                              "coverage": cover, "probs": probs, "tokens": len(full)})
         arr = np.stack(states).astype(np.float32)
         assert np.isfinite(arr).all(), f"{path}: a state is not finite"
-        np.savez_compressed(path, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
+        with open(path + ".tmp", "wb") as fh:                # written whole, then renamed: a crash cannot leave a
+            np.savez_compressed(fh, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
+        os.replace(path + ".tmp", path)                     # half-written file that a retry would skip
         states_vol.commit()
         print(f"A part {part}: {n + 1}/{len(files)} careers | {(time.time() - t0) / 60:.0f} min", flush=True)
     return f"A part {part}: {len(files)} careers"

@@ -1338,3 +1338,19 @@ Dated entries: what was run, what happened, what's next.
     cached reads.
   - order_prob stays as it was, for the first run's record.
 - **Next:** steering v2 per the audit's design, after the matched run.
+
+## 20 Oct (morning): matched runs reviewed and cleared
+
+- **The review:** a 9-agent workflow (B GPU path, A GPU path, the analyses), every serious finding checked twice.
+- **Its one serious finding,** the order-scoring overlap, was already fixed by `order_dist` (pushed).
+- **Checked correct:**
+  - the Recorder offsets and the cache positions in transformers 5.20.1;
+  - the prefix asserts, the saved orders against the analyses' reshapes, and Run 1 matching;
+  - memory, cost, resume, and the data present in git.
+- **Small fixes made:**
+  - each npz is written to a temporary file, then renamed;
+  - A's career from the memo to each moment is read in 4,096-token pieces (one piece would need ~58 GB of logits;
+    the tiny Gemma check shows chunked reading equals one read);
+  - A's priming direction is compared with Run 1's and UBS's at the requests only, with openings as a separate
+    column;
+  - A's unpaired intervals (5 careers per version) are marked rough.
