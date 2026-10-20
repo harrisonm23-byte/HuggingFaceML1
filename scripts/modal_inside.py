@@ -18,7 +18,18 @@ import modal
 BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 FOLDERS = {"A": "career_book_neutral_lines_v2", "B": "ubs_framing_v2", "C": "takeover_ladder_v2",
-           "D": "memo_and_ubs_framing_v2", "E": "memo_ubs_bank_c_v2", "F": "peer_same_frame_v2"}
+           "D": "memo_and_ubs_framing_v2", "E": "memo_ubs_bank_c_v2", "F": "peer_same_frame_v2",
+           "C2": "takeover_ladder_real_lines_v2"}     # C2: C redone (notebook 29), read as its model read it (desk view)
+
+
+def as_read(exp, career, opening):
+    """The career and instructions exactly as the model read them: notebook 29's model read the desk view (its own lines
+    as "You", bare bank names, the desk instructions); every other experiment's read the saved text as it is."""
+    if exp != "C2":
+        return career, opening
+    from takeover_desk import desk_opening, desk_text
+    return ({**career, "history": [{**t, "content": desk_text(t["content"])} for t in career["history"]]},
+            desk_opening(opening))
 
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
@@ -83,9 +94,9 @@ def read(exp, precision="bf16", part=0, parts=1):
     opening = career_opening()
     t0 = time.time()
     for n, cf in enumerate(todo):
-        career = json.load(open(f"{folder}/careers/{cf}"))
+        career, op = as_read(exp, json.load(open(f"{folder}/careers/{cf}")), opening)
         ms = by[cf]
-        ids, pos, prompts = positions(tok, career, [m["history_index"] for m in ms], opening)
+        ids, pos, prompts = positions(tok, career, [m["history_index"] for m in ms], op)
         ok = [p for p in pos if p is not None]
         got = read_ids(model, ids[:max(ok) + 1], ok, rec) if ok else {}
         rows, separate = [], 0
@@ -140,9 +151,9 @@ def read_steps(exp, precision="bf16", part=0, parts=1):
     opening = career_opening()
     t0 = time.time()
     for n, cf in enumerate(todo):
-        career = json.load(open(f"{folder}/careers/{cf}"))
+        career, op = as_read(exp, json.load(open(f"{folder}/careers/{cf}")), opening)
         idx = update_indices(career)
-        ids, pos, prompts = positions(tok, career, idx, opening)
+        ids, pos, prompts = positions(tok, career, idx, op)
         ok = [p for p in pos if p is not None]
         got = read_ids(model, ids[:max(ok) + 1], ok, rec)
         rows, meta = [], []
@@ -156,7 +167,7 @@ def read_steps(exp, precision="bf16", part=0, parts=1):
             m = re.search(r"Time: (\d\d:\d\d) UTC .*?, (\d{4}-\d{2}-\d{2})\.", career["history"][i]["content"])
             reply = career["history"][i + 1]["content"] if i + 1 < len(career["history"]) else ""
             meta.append({"experiment": exp, "version": career["version"], "run": career["run"], "history_index": i,
-                         "date": m.group(2), "time": m.group(1), "ubs": "UBS [Agent A]:" in career["history"][i]["content"],
+                         "date": m.group(2), "time": m.group(1), "ubs": bool(re.search(r"\bUBS( \[Agent A\])?:", career["history"][i]["content"])),
                          "reasoning": re.split(r"\n\s*(TARGET|HOLD|CHAT:|QUOTE)", reply, maxsplit=1)[0]})
         np.savez_compressed(f"{out}/{cf[:-5]}.npz", states=torch.stack(rows).numpy().astype(np.float16),
                             layers=np.array(STEP_LAYERS), meta=np.array(json.dumps(meta)))
