@@ -1415,3 +1415,16 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - **Discussion:** new paragraphs on behavioral levers, persistence vs setbacks, and liability and deterrence (Becker).
 - **References added:** Koszegi-Rabin 2006, Bartling-Fischbacher 2012, Asch 1956, Bikhchandani-Hirshleifer-Welch 1992,
   Staw 1976, Falk-Szech 2013, Becker 1968, Horton 2023, Allen-Gale 1992.
+
+## 20 Oct (afternoon): features-only rerun in (relative error); paper's SAE caveat narrowed
+
+- **Relative error** (squared error over the states' squared size): 0.003 / 0.003 / 0.011 / 0.020 at layers 12 / 24 / 31
+  / 41. The dictionary rebuilds each state closely. The low share of variance rebuilt (-1.13 / 0.13 / 0.45 / 0.06) comes
+  from how little the moments differ: their spread around the average is only 0.1-2% of their squared size (same
+  template token every time). So the SAE is sound, but its error is as large as the differences we compare: features
+  stay provisional; read-outs and directions (raw states) are unaffected.
+- **4-bit vs bf16, now on the same 300 B moments** (the code's paired check, which replaces the manual comparison):
+  median cosine 0.998-1.000; loss-vs-gain feature differences correlate 0.96 / 0.90 / 0.90 / 0.87; top 15 shared
+  13 / 10 / 11 / 10, all 15 with the same sign at every layer.
+- **Went along vs not, layer 41:** 3 of the top 15 confirmed on the other half (was 2; reshuffle noise).
+- Paper updated (inside-model results, Table 10, Limitations).

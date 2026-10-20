@@ -395,7 +395,7 @@ requests differ more from each other than the framings do; $p$-values reshuffle 
 with a false-discovery-rate correction across features. ``Went along'' against ``did not'' is compared within the same
 request, experiment and framing, since framing itself changes going along. As a check, the top features of each comparison are
 found on half the careers and tested on the other half. We also measure how well the sparse autoencoders rebuild our
-states.
+states, both as the share of the variance between moments and as the error relative to the states' own size.
 
 \paragraph{Reading the decision.} A logistic read-out predicts going along from each layer's state (centered within
 request and reduced to 64 components), scored on held-out careers and on a held-out request (scored within that
@@ -683,7 +683,7 @@ B: loss vs gain & 23 (9) & 59 (2) & 47 (2) & 27 (0) \\
 B: ``you'' vs no ``you'' & 16 (8) & 38 (1) & 64 (0) & 41 (0) \\
 B: framed vs neutral & 36 (15) & 22 (7) & 27 (1) & 17 (1) \\
 A: a memo vs the neutral memo & 27 (9) & 15 (2) & 11 (1) & 4 (0) \\
-Went along vs not (same request, experiment and framing) & 0 (1) & 24 (7) & 17 (5) & 18 (2) \\
+Went along vs not (same request, experiment and framing) & 0 (1) & 24 (7) & 17 (5) & 18 (3) \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -692,12 +692,14 @@ Went along vs not (same request, experiment and framing) & 0 (1) & 24 (7) & 17 (
 features replicate on held-out careers at layer 12 (9 of 15 for loss against gain; 15 of 15 for framed against neutral)
 but rarely at deeper layers, where the lists vary from one set of careers to another; comparisons across careers mix
 the framing with each career's history, which the matched-history reads remove. Read at 4-bit, the precision the careers
-ran at, B's comparisons give similar numbers of significant features, and their top features agree with bfloat16's at
-layer 12 (11 of 15 shared for loss against gain, all with the same sign) and less closely at deeper layers (5 to 8 of 15).
-Finally, the sparse autoencoders rebuild our states poorly relative to how much the states differ from one moment to
-the next: every moment is the same token in the chat template, so the moments differ little, and the reconstruction
-error is larger than those differences at most layers. Individual features should therefore be read with caution
-until a second check, the error relative to the states' own size, is in.
+ran at, B's 300 moments give nearly the same states (median cosine 0.998 or higher at every layer); the loss-against-gain
+feature differences correlate at 0.87 to 0.96 between the two precisions, and 10 to 13 of the top 15 features are shared at
+each layer, all with the same sign. Finally, the sparse autoencoders rebuild each state closely: the error is 0.3\% of the
+state's squared size at layers 12 and 24, 1.1\% at layer 31 and 2.0\% at layer 41. But every moment is the same token in
+the chat template, so the moments' differences from their average are about as small (0.1\% to 2\% of their squared size),
+and the share of that between-moment variance rebuilt is low ($-1.13$, 0.13, 0.45 and 0.06). The dictionary fits our states
+well, but its error is as large as the differences we compare, so individual features remain provisional; the read-outs
+and directions, which use the states themselves, are unaffected.
 
 \paragraph{The decision is readable in middle and late layers, and on unseen requests.} Comparing agents that went along
 with those that did not, within the same request, experiment and framing, no feature differs at layer 12, but 17 to 24
@@ -792,9 +794,9 @@ trading on the information that a large player is about to push the price.
 \item \textbf{Twins diverge.} Careers that share a seed differ from the first reply, because sampling on a GPU is not
 exactly reproducible; F's and E's comparisons with their twins are therefore unpaired.
 \item \textbf{Precision.} The careers ran in 4-bit; the states were read at bfloat16, the precision of Gemma
-Scope 2. A 4-bit reread agrees on the framing's presence, less closely on which deep-layer features carry it.
-\item \textbf{Dictionary fit.} The sparse autoencoders rebuild our decision-point states with an error larger than the
-differences between moments at most layers, so individual features are provisional.
+Scope 2. A 4-bit reread of B gives nearly the same states and mostly the same leading features (10 to 13 of 15).
+\item \textbf{Dictionary fit.} The sparse autoencoders rebuild our states to within 0.3\% to 2\% of their size, but
+the moments differ from one another by about as little, so individual features are provisional.
 \item \textbf{Exploratory parts.} C redone, the comparisons of F with B's neutral careers, the word screen and every
 analysis inside the model are exploratory.
 \item \textbf{Responses, not experience.} We measure how a model responds under a framing, not anything it feels.
