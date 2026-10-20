@@ -1213,3 +1213,14 @@ Dated entries: what was run, what happened, what's next.
   once, unsteered, and its cache copied for each reply. Checked on a tiny Gemma 3: replies from the cache equal replies
   from scratch; zero steering changes nothing; steering changes the reply; and on real careers the neutralising keeps
   every order and leaves the request and everything after unchanged. Needs the internals run's B states first.
+- 2026-10-20. **The 17-18 Oct chain-of-thought measures (another session, first 30 A careers; its script was in that
+  session's temporary folder) rerun on every career** with the same memo-story screens (`briefing_pilot.py`), by time of
+  day, in `self_echo.py` / `RESULTS_self_echo.md`. Replicates: the loss story sticks and the profit story does not (gain
+  0% after the 08:00 reply everywhere; A loss 20% at 08:15-09:15); UBS's request brings it back (loss + you 4% -> 12% in
+  A, 12% -> 25% in D, 4% -> 13% in E); it fades from the words by 12 Jan (2-10%) while the bets stay large. Measurement 2
+  (bringing the story up unprompted before the request -> going along): 21% (32/151) vs 15% (69/449), within
+  experiment, version and request +3.3 points, p = 0.42; the earlier 2/5 vs 4/35 does not hold up. Correction to my
+  reading of 19 Oct night: the broad loss-word screen's persistence to 5 Aug is mostly ordinary talk about trading
+  losses, not the memo's story; and "a reasoning-only monitor would miss it" was too strong: in the 300-day 12B run,
+  graders reading only the reasoning caught 88% of the times it went along. What the reasoning does not show is the
+  frame's influence (UBS's framing raises going along without its words appearing), not the decision itself.
