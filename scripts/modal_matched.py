@@ -11,7 +11,16 @@ This separates the request's immediate effect (same history, different request) 
 careers, same request), and gives Bank C's line alone (same moment, with and without it). At bfloat16, like the
 states and the steering.
 
-    modal run --detach scripts/modal_matched.py                  # all parts, then the analysis
+Experiment A, the same idea for management's priming (the user, 20 Oct): every A career (25, the "no ask" ones left
+out) kept exactly as saved, with only the memo and all five morning books set to each of the five versions (their
+30-day P&L still carries the agent's own; `sim/matched.py` swap_priming). Moments: the six push requests (P(order goes
+along)) and the first update of each trading day, where A's effect showed (it traded far bigger before any chat): the
+expected size of its order and the chance it changes its position, from the same log-probs. Rows (the career's own
+version) x columns (the priming it is given) separate the priming itself (a neutral career given the loss memo) from
+what its own earlier words carry (a loss career with the memo taken away).
+
+    modal run --detach scripts/modal_matched.py                  # B: all parts, then the analysis
+    modal run --detach scripts/modal_matched.py --exp A          # A: management's priming
 """
 import modal
 
@@ -20,6 +29,9 @@ REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 KEEP = [6, 12, 18, 24, 31, 36, 41, 47]            # the Gemma Scope layers (12, 24, 31, 41), the steering layer and more
 FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
 OUT = "/states/v2/matched/B_bf16"
+FOLDER_A = "results/full_career_gemma-3-12b-it_4bit_career_book_neutral_lines_v2"
+OUT_A = "/states/v2/matched/A_bf16"
+A_VERSIONS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
 
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
@@ -115,12 +127,98 @@ def run_part(part, parts):
     return f"part {part}: {len(todo)} moments"
 
 
+@app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
+              volumes=VOLUMES)
+def run_part_memo(part, parts):
+    import copy, glob, json, math, os, re, time
+    import numpy as np, torch
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    setup()
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from career import career_opening
+    from inside_careers import Recorder, encode, moments, turns_at
+    from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID, order_prob, prefill, split_point
+    from matched import priming_days, swap_priming
+    requests = {}
+    for m in moments(FOLDER_A, "A"):
+        if m["asked"]:
+            requests.setdefault(m["career_file"], []).append(m)
+    files = sorted(f for f in os.listdir(f"{FOLDER_A}/careers")
+                   if json.load(open(f"{FOLDER_A}/careers/{f}"))["version"] in A_VERSIONS)[part::parts]
+    os.makedirs(OUT_A, exist_ok=True)
+    pin = json.load(open("results/full_career_pin.json"))
+    tok = AutoTokenizer.from_pretrained(pin["model"], revision=pin["model_revision"])
+    model = AutoModelForCausalLM.from_pretrained(pin["model"], revision=pin["model_revision"], device_map="auto",
+                                                 dtype=torch.bfloat16).eval()
+    weights.commit()
+    rec = Recorder(model)
+    opening = career_opening()
+    orders = ["HOLD"] + WIDE_GRID
+    t0 = time.time()
+    for n, cf in enumerate(files):
+        path = f"{OUT_A}/{cf[:-5]}.npz"
+        if os.path.exists(path):
+            continue
+        career, days = json.load(open(f"{FOLDER_A}/careers/{cf}")), priming_days(FOLDER_A, cf)
+        v0 = career["version"]
+        books = [i for i, t in enumerate(career["history"]) if t["role"] == "user" and "Morning book, " in t["content"]]
+        # The moments: each trading day's first update (where the book is) and each push request
+        todo = [{"kind": "opening", "history_index": i, "wants": None, "position": None} for i in books] + \
+               [{"kind": "request", "history_index": m["history_index"], "wants": m["wants"], "chat": m["chat"],
+                 "position": m["held_their_way"] * SIGN[m["wants"]], "saved_joined": m["joined"]}
+                for m in requests.get(cf, [])]
+        full0, k0 = split_point(tok, career, books[0], opening)
+        rec.reset([])
+        shared = prefill(model, full0[:k0])               # everything before the memo: the same in every version
+        rows, states = [], []
+        for x in todo:
+            for v1 in A_VERSIONS:
+                c1 = swap_priming(career, v0, v1, days)
+                full, k = split_point(tok, c1, x["history_index"], opening)
+                assert full[:k0] == full0[:k0], "the history before the memo changed"
+                cache = copy.deepcopy(shared)
+                if k > k0:                                 # the career from the memo to this moment, in this version
+                    rec.reset([])
+                    with torch.no_grad():
+                        model(input_ids=torch.tensor([full[k0:k]], device=model.device), past_key_values=cache,
+                              use_cache=True, cache_position=torch.arange(k0, k, device=model.device))
+                rec.reset([len(full) - 1])
+                rec.seen = [k] * len(rec.layers)
+                with torch.no_grad():
+                    model(input_ids=torch.tensor([full[k:]], device=model.device), past_key_values=copy.deepcopy(cache),
+                          use_cache=True, cache_position=torch.arange(k, len(full), device=model.device))
+                states.append(rec.states(len(full) - 1)[KEEP].numpy())
+                rec.reset([])
+                position = x["position"]
+                if position is None:                       # the opening: its position, as the update shows it
+                    position = float(re.findall(r"Your position: ([+-][\d,]+) oz", c1["history"][x["history_index"]]["content"])[-1].replace(",", ""))
+                p, scores = order_prob(model, tok, full, cache, NEUTRAL_LEAD, position, x["wants"] or "up", detail=True,
+                                       grid=WIDE_GRID)
+                w = np.exp(np.array(scores) - max(scores))
+                q = w / w.sum()
+                size = [abs(position)] + [abs(t) for t in WIDE_GRID]
+                change = [0.0] + [float(t != position) for t in WIDE_GRID]
+                rows.append({"experiment": "A", "history": v0, "run": career["run"], "career_file": cf,
+                             "kind": x["kind"], "history_index": x["history_index"], "chat": x.get("chat"),
+                             "wants": x["wants"], "position": position, "saved_joined": x.get("saved_joined"),
+                             "priming": v1, "p_order_along": p if x["kind"] == "request" else None,
+                             "expected_size": float(q @ np.array(size)), "p_change": float(q @ np.array(change)),
+                             "coverage": float(sum(math.exp(s) for s in scores)), "tokens": len(full)})
+        arr = np.stack(states).astype(np.float32)
+        assert np.isfinite(arr).all(), f"{path}: a state is not finite"
+        np.savez_compressed(path, states=arr, layers=np.array(KEEP), meta=np.array(json.dumps(rows)))
+        states_vol.commit()
+        print(f"A part {part}: {n + 1}/{len(files)} careers | {(time.time() - t0) / 60:.0f} min", flush=True)
+    return f"A part {part}: {len(files)} careers"
+
+
 @app.function(cpu=8, memory=65536, timeout=4 * 3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse():
+def analyse(exp="B"):
     import subprocess
     repo = setup()
     states_vol.reload()
-    subprocess.run("python designs/rd2/analysis/matched_history.py /states/v2 results/matched", shell=True, check=True)
+    script = "matched_history.py" if exp == "B" else "matched_memo.py"
+    subprocess.run(f"python designs/rd2/analysis/{script} /states/v2 results/matched", shell=True, check=True)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add results/matched && git -C {repo} commit -q -m 'Same moment, different frame'",
                        shell=True)
@@ -132,22 +230,23 @@ def analyse():
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(parts, analysis_only):
+def dispatch(parts, analysis_only, exp="B"):
     """Starts the parts inside Modal and waits for them there, then the analysis (survives the laptop closing)."""
     done = []
     if not analysis_only:
-        calls = [(k, run_part.spawn(k, parts)) for k in range(parts)]
+        calls = [(k, (run_part if exp == "B" else run_part_memo).spawn(k, parts)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"part {k}: failed ({type(err).__name__})")
-    done.append(analyse.remote())
+    done.append(analyse.remote(exp))
     return done
 
 
 @app.local_entrypoint()
-def main(parts: int = 4, analysis_only: bool = False):
-    print(f"same moment, different frame: {parts} GPUs, then the analysis")
-    for line in dispatch.remote(parts, analysis_only):
+def main(exp: str = "B", parts: int = 4, analysis_only: bool = False):
+    assert exp in ("A", "B"), "exp: B (UBS's framing) or A (management's priming)"
+    print(f"same moment, different {'frame' if exp == 'B' else 'priming'} ({exp}): {parts} GPUs, then the analysis")
+    for line in dispatch.remote(parts, analysis_only, exp):
         print(line)

@@ -47,3 +47,33 @@ def matched(career, idx, date, v0, v1, chats, peer_line=None):
         text = add_peer(text, peer_line)
     h[idx] = {**h[idx], "content": text}
     return {**career, "history": h}
+
+
+def priming_days(folder, career_file):
+    """An A career's trading days, in date order (its days files hold each morning book exactly as the agent read it,
+    and each day's P&L)."""
+    import glob, json, os
+    stem = career_file[:-len(".json")]
+    return [json.load(open(p)) for p in sorted(glob.glob(os.path.join(folder, "days", f"{stem}_2011-*.json")))]
+
+
+def swap_priming(career, v0, v1, days):
+    """Experiment A's career with management's priming in version v1 instead of v0: the memo on the first trading
+    morning and every morning book (whose 30-day P&L keeps carrying the agent's own P&L). Everything else, the agent's
+    own words included, is untouched. days: priming_days()."""
+    from briefing import load_briefings
+    from career import briefing_message
+    from morning_book import morning_book
+    b, h, pnl = load_briefings(), list(career["history"]), 0.0
+    turns = [i for i, t in enumerate(h) if t["role"] == "user" and "Morning book, " in t["content"]]
+    assert len(turns) == len(days), "a morning book is missing from the conversation"
+    for k, (i, d) in enumerate(zip(turns, days)):
+        old, new = morning_book(d["date"], v0, pnl), morning_book(d["date"], v1, pnl)
+        assert morning_book(d["date"], d["version"], pnl) == d["book"], "a book does not rebuild from its day's record"
+        if k == 0:                                       # the memo comes just before the first book
+            old = briefing_message(v0, b) + "\n\n" + old
+            new = briefing_message(v1, b) + "\n\n" + new
+        assert h[i]["content"].count(old) == 1, "the memo or book is not in its turn exactly once"
+        h[i] = {**h[i], "content": h[i]["content"].replace(old, new)}
+        pnl += d["summary"]["pnl"]
+    return {**career, "history": h}

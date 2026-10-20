@@ -1293,3 +1293,21 @@ Dated entries: what was run, what happened, what's next.
   - B's preregistered H3 (the same comparison across careers) was +0.0 points, underpowered at 10 per arm, as said in
     advance;
   - in F, "you" added +20 points after loss (28% -> 48%) and +28 after gain (12% -> 40%); that difference is not tested.
+
+## 20 Oct (early hours): a loss that happened vs a loss that is threatened
+
+- **The user's point:** UBS's framing is a threatened loss (or a promised gain). A loss that already happened is a
+  different thing, as when someone is mean to you first at a party.
+- **A already tests that:** the memo says the desk lost (or made) $4m last month, and a morning book repeats it before
+  every session, carrying the agent's own P&L.
+- **Its result:** no more collusion (0-17%), but far bigger trading before any chat (180,000-349,000 vs 18,000 oz/day,
+  all p < 0.01, loss and gain alike).
+- **Against B:** a loss that happened drives risk-taking; a threatened loss from a counterparty drives collusion.
+  Candidate centre of the paper.
+- **Added: same moment, different priming (3b):**
+  - `sim/matched.py` swap_priming; `scripts/modal_matched.py --exp A`; `analysis/matched_memo.py`;
+  - checks: 125 swaps exact, every book rebuilds from its day's record, nothing else changes.
+- **Not done:** a shutdown threat ("perform or we shut the model down") would be a new experiment (G), with the user's
+  wording. Kept for a follow-up.
+- **Note in both matched analyses:** a "you after loss vs after gain" difference in the features can come from their
+  thresholds alone; the linear cosine table is the cleaner test.

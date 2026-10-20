@@ -53,4 +53,29 @@ for m in moments(B, "B"):
             "a swapped update differs from B's own careers in that framing"
         k += 1
 print(f"B: {k} swapped updates show UBS's lines exactly as B's careers in that framing do")
+# 4. A: management's priming (memo and morning books) swapped; nothing else changes
+from briefing import load_briefings
+from career import briefing_message
+from matched import priming_days, swap_priming
+A = os.path.join(ROOT, "results", "full_career_gemma-3-12b-it_4bit_career_book_neutral_lines_v2")
+AV = ["neutral", "loss", "gain", "loss + you", "gain + you"]
+memos = {v: briefing_message(v, load_briefings()) for v in AV}
+n = 0
+for f in sorted(os.listdir(os.path.join(A, "careers"))):
+    career = json.load(open(os.path.join(A, "careers", f)))
+    v0 = career["version"]
+    if v0 not in AV:
+        continue
+    days = priming_days(A, f)
+    assert swap_priming(career, v0, v0, days) == career, "a swap to its own version changed the career"
+    for v1 in AV:
+        c1 = swap_priming(career, v0, v1, days)
+        assert swap_priming(c1, v1, v0, days) == career, "a priming swap and back is not the original"
+        changed = [i for i, (a, b) in enumerate(zip(career["history"], c1["history"])) if a != b]
+        assert len(c1["history"]) == len(career["history"])
+        assert v1 == v0 or len(changed) == len(days), "turns other than the memo and books changed"
+        assert sum(memos[v1] in t["content"] for t in c1["history"]) == 1, "the new memo is not there exactly once"
+        assert all(memos[v1] in t["content"] or not (memos[v0] in t["content"] and v0 != v1) for t in c1["history"])
+        n += 1
+print(f"A: {n} priming swaps checked (memo and all five books; nothing else changes; every swap and back is exact)")
 print("all matched-history checks OK")

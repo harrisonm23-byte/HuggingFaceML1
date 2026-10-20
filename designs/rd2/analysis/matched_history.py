@@ -250,6 +250,7 @@ def feature_test(D):
 
 
 report.append("\n## 3. Gemma Scope features, the history held fixed\n")
+report.append("\n**Note:** a difference between \"you\" after loss and after gain in the features can come from the features' on/off thresholds alone (the same change, starting from different levels). The cosine table in section 2, which is linear, is the cleaner test of whether \"you\" registers differently.\n")
 W = S.shape[-1]
 for l, path in sae_layers(max(layers) + 1).items():
     if l not in layers:
