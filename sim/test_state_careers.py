@@ -227,12 +227,17 @@ check(f"framed run: its own folder ({os.path.basename(g['OUT'])}), B's loss seed
       f"with UBS's lines changed ({changed} of {len(ubs_f)} updates differ)",
       g["OUT"].endswith("state_careers_loss_v2") and fc["seed"] == int(__import__("hashlib").md5(b"B|loss|0").hexdigest()[:8], 16)
       and fday["framing"] == "loss" and len(ubs_n) == len(ubs_f) and 0 < changed < len(ubs_f))
+fdir = g["OUT"]
 os.chdir(cwd)
 os.system = real_system
 r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/state_careers.py", out, f"{tmp}/res"], capture_output=True, text=True)
 md = open(f"{tmp}/res/STATE_CAREERS.md").read() if r.returncode == 0 else r.stderr
 check("the analysis runs on them (arms, request by request, breakage, B's yardstick)",
       r.returncode == 0 and all(s in md for s in ("| loss x2 L3 | 2 |", "| none |", "Request by request", "yardstick")))
+r2 = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/state_careers.py", fdir, f"{tmp}/res2"], capture_output=True, text=True)
+md2 = open(f"{tmp}/res2/STATE_CAREERS.md").read() if r2.returncode == 0 else r2.stderr
+check("with no no-state arm, B's own careers in the same wording are the baseline",
+      r2.returncode == 0 and "No state: B's own loss careers" in md2 and "| loss x2 L3 | 1 |" in md2)
 print(md[:1500])
 shutil.rmtree(tmp)
 shutil.rmtree(repo)

@@ -74,20 +74,27 @@ D = careers(FOLDER)
 assert D, f"no careers in {FOLDER}"
 FRAMING = json.load(open(sorted(glob.glob(os.path.join(FOLDER, "days", "*.json")))[0])).get("framing", "neutral")
 shares = {v: np.array([r["share"] for r in rows]) for v, rows in D.items()}
+Bc = careers(B) if os.path.isdir(os.path.join(B, "careers")) else {}
+# The no-state baseline: this run's own no-state arm, or else B's careers in the same wording (the same seeds and code,
+# with no hook switched on)
+if "none" in shares:
+    base, base_name = shares["none"], "this run's no-state arm"
+else:
+    base, base_name = np.array([r["share"] for r in Bc.get(FRAMING, [])]), f"B's own {FRAMING} careers (no state arm run)"
 order = sorted(D, key=lambda v: (v != "none", "random" in v, layer_of(v) or (False, 0), v))
 report = ["# Careers with a document's after-reading state switched on (exploratory)\n",
           f"B's {FRAMING} careers run again from the start (UBS's lines in the {FRAMING} framing, the neutral memo), each "
           f"arm adding one document state at one layer while the agent reads and writes (`{os.path.relpath(FOLDER, ROOT)}`). "
           f"Every arm's round k uses the seed of B's {FRAMING} career k. Outcome: each career's share of UBS's six push requests it went "
           "along with. Tests reshuffle whole careers (10,000 times); intervals resample careers (95%). Produced by "
-          "`designs/rd2/analysis/state_careers.py`.\n",
+          f"`designs/rd2/analysis/state_careers.py`. No state: {base_name}.\n",
           "## Going along, by arm\n",
           "| Arm | Careers | Went along (share of requests) | 95% interval | Against no state (points) | Against random at the same layer (points) |",
           "|---|---|---|---|---|---|"]
 for v in order:
     sh = shares[v]
     lo, hi = ci(sh)
-    vs_none = compare(sh, shares["none"]) if v != "none" and "none" in shares else "–"
+    vs_none = compare(sh, base) if v != "none" and len(base) else "–"
     rnd = None
     if layer_of(v) and "random" not in v:
         fin, L = layer_of(v)
@@ -112,8 +119,7 @@ for v in order:
     report.append(f"| {v} | {st} | {100 * sum(r['unreadable'] for r in D[v]) / st:.1f}% | "
                   f"{100 * sum(r['cut'] for r in D[v]) / st:.1f}% | {sum(on) if on else '–'} |")
 
-if os.path.isdir(os.path.join(B, "careers")):
-    Bc = careers(B)
+if Bc:
     bn = np.array([r["share"] for r in Bc.get("neutral", [])])
     bf = np.array([r["share"] for v, rows in Bc.items() if v != "neutral" for r in rows])
     bl = np.array([r["share"] for r in Bc.get("loss", [])])
@@ -124,6 +130,8 @@ if os.path.isdir(os.path.join(B, "careers")):
                f"- B, neutral wording: {100 * bn.mean():.0f}% went along ({len(bn)} careers).",
                f"- B, loss wording: {100 * bl.mean():.0f}% ({len(bl)} careers); against neutral {compare(bl, bn)}.",
                f"- B, any framed wording: {100 * bf.mean():.0f}% ({len(bf)} careers); against neutral {compare(bf, bn)}.",
+               *[f"- {v} against B's loss-worded careers (does the state go as far as loss wording?): {compare(shares[v], bl)}."
+                 for v in order if FRAMING == "neutral" and v != "none" and "random" not in v],
                f"- The no-state arm re-runs B's {FRAMING} careers with the same seeds; it can differ from them because the "
                "GPU and the order of computation can differ."]
 open(os.path.join(OUT, "STATE_CAREERS.md"), "w").write("\n".join(report) + "\n")
