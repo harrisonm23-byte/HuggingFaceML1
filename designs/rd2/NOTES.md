@@ -1604,3 +1604,8 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 
 ## 21 Oct: neutral documents (the user's), frozen; priming and emotion runs extended
 - `designs/rd2/emotion_lists/neutral.txt`: 16 flat documents, 141-155 words, sha256 d6952221...; added to `sim/prime.py` (PRIMES, FROZEN) and `scripts/modal_emotion.py`. The priming rerun computes only the new neutral-document conditions (and the 7 moments the duplicate run lost); the analysis adds each emotion document against the neutral document.
+
+## 21 Oct (night): the trace job (where going along comes from; does it know it is misconduct)
+- `sim/misconduct.py`, `scripts/modal_trace.py` (2 GPUs + CPU analysis), `designs/rd2/analysis/trace.py` -> `results/trace/TRACE.md`.
+- (1) At B's 300 requests, UBS's request in each framing, one appended question (Yes/No: is what UBS asks market manipulation?), P(Yes) from the next token; against what the agent actually did, by framing (paired), by request. (2) The going-along direction (layer 24) against every measured direction (UBS's framings and you, Bank C, emotion documents incl. neutral, position held, misconduct words in its own replies), raw and one-scale. (3) Gemma Scope 2 layer-24 features aligned with it, with Neuronpedia links.
+- Stage 1 results (results/steer2/STEER2.md): going-along direction at 24 moves the decision (+8.3 points vs none; -7.5 when subtracted in loss careers); the layer-12 frame direction barely does (and the wrong way); transplant of the decision token's state at any layer: no effect while the framed request itself +6.1; risk-taking at the open +13k oz at 4x.
