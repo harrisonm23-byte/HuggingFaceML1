@@ -1565,3 +1565,17 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   loss + you - loss, Credit - Gain vs gain + you - gain (and Loss - Neutral if given), each with a document-shuffle null,
   split-half ceilings and a held-out sort; and the drift of B's loss- vs gain-framed careers along Loss - Gain by
   request. Checked on fake data with a planted direction.
+
+## 21 Oct: incidental emotion before the request (the user's crossed idea), built
+
+- `sim/prime.py`, `scripts/modal_prime.py` (2 GPUs), `designs/rd2/analysis/prime.py` -> `results/prime/PRIME.md`.
+- B's 60 neutral-career requests; at each, no document or one of the author's frozen emotion documents (loss, blame,
+  gain, credit; a different one per moment, rotating through the 16) at the start of the update, before UBS's request;
+  the request in each of its five framings (the frozen file, via `matched`): 25 versions per moment, 1,500 in all.
+  Outcome: P(order goes along) after the fixed neutral reasoning line.
+- Tested (exploratory): each document vs none (UBS neutral); the user's two crossed predictions (after blame, a
+  gain + you request lands harder: relief; after credit, a loss + you request lands harder: avoiding blame), as
+  difference-in-differences; the full 5 x 5 table and every document x framing interaction.
+- Checked on a tiny model with the real careers, documents and framing file: 25 conditions per moment, only the update
+  changes, the document leads the update, the history prefix is identical across versions.
+- The user decided no neutral list is needed; the emotion comparison runs with Loss - Gain, Blame - Loss, Credit - Gain.
