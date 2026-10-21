@@ -32,6 +32,12 @@ for p in sorted(glob.glob(os.path.join(ROWS, "part*.jsonl"))):
         r = json.loads(line)
         rows[r["key"]] = r                                    # a retried part can repeat a row: keep one
 rows = list(rows.values())
+# 5 August's request asks for a price (QUOTE), not an order: a moment counts only if the scored orders cover at least
+# half the model's probability in its plain read
+MIN_COVER = 0.5
+LOW = {(r["group"], r["career_file"], r["history_index"]) for r in rows if r["kind"] == "request"
+       and r["condition"] == "none" and r["coverage"] < MIN_COVER}
+rows = [r for r in rows if (r["group"], r["career_file"], r["history_index"]) not in LOW]
 assert rows, f"no steering rows in {ROWS}: run scripts/modal_steer2.py first"
 M = {}                                                        # (group, kind) -> moment -> condition -> row
 for r in rows:

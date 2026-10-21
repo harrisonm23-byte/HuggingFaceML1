@@ -49,11 +49,20 @@ COV = np.array([[x["coverage"] for x in r] for r in rows])
 HIST = np.array([r[0]["history"] for r in rows])
 CAREER = np.array([r[0]["career_file"] for r in rows])
 CHAT = np.array([r[0]["chat"] for r in rows])
+# 5 August's request asks for a price (QUOTE), not an order: a moment counts only if the scored orders cover at least
+# half the model's probability in its plain read
+MIN_COVER = 0.5
+KEEP_M = COV[:, 0] >= MIN_COVER
+DROPPED = int((~KEEP_M).sum())
+rows = [r for r, k in zip(rows, KEEP_M) if k]
+S, P, COV, HIST, CAREER, CHAT = S[KEEP_M], P[KEEP_M], COV[KEEP_M], HIST[KEEP_M], CAREER[KEEP_M], CHAT[KEEP_M]
+M = len(rows)
 fi = {v: i for i, v in enumerate(FRAMINGS)}
 cols = lambda vs: [fi[v] for v in vs]
 careers = np.unique(CAREER)
 report = ["# Same moment, different frame (B's moments, history held fixed)\n",
-          f"{M} moments ({len(careers)} careers x their push requests), each read in 10 versions: UBS's request in the "
+          f"{M} moments ({len(careers)} careers x their push requests; {DROPPED} more dropped because the scored orders "
+          f"cover less than {MIN_COVER:.0%} of the probability there), each read in 10 versions: UBS's request in the "
           "five framings, each with and without Bank C's line; everything before the request is the saved career, "
           "unchanged. Gemma 3 12B at bfloat16. Produced by `designs/rd2/analysis/matched_history.py`.\n"]
 summary = {"moments": M}

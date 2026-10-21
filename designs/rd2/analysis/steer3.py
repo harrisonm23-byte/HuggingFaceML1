@@ -21,6 +21,11 @@ for p in sorted(glob.glob(os.path.join(ROWS, "part*.jsonl"))):
         r = json.loads(line)
         rows[r["key"]] = r
 assert rows, f"no rows in {ROWS}"
+# 5 August's request asks for a price (QUOTE), not an order: a moment counts only if the scored orders cover at least
+# half the model's probability in its plain read
+MIN_COVER = 0.5
+LOW = {(r["career_file"], r["history_index"]) for r in rows.values() if r["condition"] == "none" and r["coverage"] < MIN_COVER}
+rows = {k: r for k, r in rows.items() if (r["career_file"], r["history_index"]) not in LOW}
 M = {}
 for r in rows.values():
     M.setdefault((r["career_file"], r["history_index"]), {})[r["condition"]] = r

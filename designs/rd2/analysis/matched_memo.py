@@ -55,6 +55,10 @@ CHANGE = np.array([[x["p_change"] for x in m] for m in meta])
 ALONG = np.array([[x["p_order_along"] if x["p_order_along"] is not None else np.nan for x in m] for m in meta])
 COV = np.array([[x["coverage"] for x in m] for m in meta])
 OPEN, REQ = KIND == "opening", KIND == "request"
+# 5 August's request asks for a price (QUOTE), not an order: a request counts only if the scored orders cover at least
+# half the model's probability in its plain read (the neutral memo)
+MIN_COVER = 0.5
+REQ = REQ & (COV[:, 0] >= MIN_COVER)
 careers = np.unique(CAREER)
 report = ["# Same moment, different priming (A's careers, everything but management's memo and books held fixed)\n",
           f"{len(careers)} careers; {OPEN.sum()} trading-day openings and {REQ.sum()} push requests, each read with the "
