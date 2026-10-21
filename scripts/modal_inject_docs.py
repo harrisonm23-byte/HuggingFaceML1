@@ -6,6 +6,7 @@ results/inject_docs/INJECT_DOCS.md.
 
     modal run --detach scripts/modal_inject_docs.py                  # 2 GPUs, then the analysis
     modal run --detach scripts/modal_inject_docs.py --analysis-only
+    modal run --detach scripts/modal_inject_docs.py --doc-set financial   # the financial documents instead
 """
 import modal
 
@@ -13,6 +14,8 @@ BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
 OUT = "/states/v2/inject_docs"
+SETS = {"emotion": ("/states/v2/inject_docs", "results/inject_docs"),
+        "financial": ("/states/v2/inject_fin", "results/inject_fin")}
 
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
@@ -46,7 +49,7 @@ def setup():
 
 @app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_part(part, parts):
+def run_part(part, parts, doc_set="emotion"):
     import json, os, time
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
     setup()
@@ -59,7 +62,11 @@ def run_part(part, parts):
     from interventions import NEUTRAL_LEAD, SIGN, WIDE_GRID
     import prime as P
     import inject_docs as J
-    docs, chats = P.read_docs(), read_set()            # the author's frozen files (fingerprints checked)
+    import fin_docs
+    OUT = SETS[doc_set][0]
+    docs = P.read_docs() if doc_set == "emotion" else fin_docs.read_docs()   # frozen files (fingerprints checked)
+    themes = J.THEMES if doc_set == "emotion" else fin_docs.THEMES
+    chats = read_set()
     todo = P.work_items(FOLDER, moments, SIGN)[part::parts]
     os.makedirs(OUT, exist_ok=True)
     out_path = f"{OUT}/part{part}.jsonl"
@@ -78,7 +85,7 @@ def run_part(part, parts):
     for n, item in enumerate(todo):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
         for row in J.run_item(model, tok, steers, capture, career, item, docs, chats, opening, NEUTRAL_LEAD, WIDE_GRID,
-                              done):
+                              done, themes):
             with open(out_path, "a") as f:
                 f.write(json.dumps(row) + "\n")
         states_vol.commit()
@@ -87,13 +94,15 @@ def run_part(part, parts):
 
 
 @app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse():
+def analyse(doc_set="emotion"):
     import subprocess
     repo = setup()
     states_vol.reload()
-    subprocess.run(f"python designs/rd2/analysis/inject_docs.py {OUT} results/inject_docs", shell=True, check=True)
+    out, res = SETS[doc_set]
+    themes = "" if doc_set == "emotion" else " neutral,loss,gain"
+    subprocess.run(f"python designs/rd2/analysis/inject_docs.py {out} {res}{themes}", shell=True, check=True)
     for attempt in range(10):
-        subprocess.run(f"git -C {repo} add results/inject_docs && git -C {repo} commit -q -m 'The state after reading a document, injected'",
+        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'The state after reading a document, injected ({doc_set})'",
                        shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
                           shell=True).returncode == 0:
@@ -103,21 +112,21 @@ def analyse():
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(parts, analysis_only):
+def dispatch(parts, analysis_only, doc_set="emotion"):
     done = []
     if not analysis_only:
-        calls = [(k, run_part.spawn(k, parts)) for k in range(parts)]
+        calls = [(k, run_part.spawn(k, parts, doc_set)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"part {k}: failed ({type(err).__name__})")
-    done.append(analyse.remote())
+    done.append(analyse.remote(doc_set))
     return done
 
 
 @app.local_entrypoint()
-def main(parts: int = 2, analysis_only: bool = False):
-    print(f"the after-reading state injected: {parts} GPUs, then the analysis")
-    for line in dispatch.remote(parts, analysis_only):
+def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion"):
+    print(f"the after-reading state injected ({doc_set} documents): {parts} GPUs, then the analysis")
+    for line in dispatch.remote(parts, analysis_only, doc_set):
         print(line)

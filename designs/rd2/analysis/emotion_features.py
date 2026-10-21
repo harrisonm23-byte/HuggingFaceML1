@@ -26,11 +26,12 @@ ROOT = sys.argv[3] if len(sys.argv) > 3 else None     # states root, for the goi
 PERMS, TOP, Q = 2000, 12, 0.05
 RNG = np.random.default_rng(20261022)
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
-CONTRASTS = [("loss", "neutral"), ("blame", "neutral"), ("gain", "neutral"), ("credit", "neutral"),
-             ("loss", "gain"), ("blame", "loss"), ("credit", "gain")]
 os.makedirs(OUT, exist_ok=True)
 z = np.load(NPZ)
 theme = np.array([m["theme"] for m in json.loads(str(z["meta"]))])
+KINDS = list(dict.fromkeys(theme))                    # the document types, in file order
+CONTRASTS = [c for c in [("loss", "neutral"), ("blame", "neutral"), ("gain", "neutral"), ("credit", "neutral"),
+                         ("loss", "gain"), ("blame", "loss"), ("credit", "gain")] if c[0] in KINDS and c[1] in KINDS]
 umeta = json.loads(str(z["umeta"]))
 
 
@@ -192,7 +193,7 @@ def table(L, live, d, q, A, B, label_a, label_b, top=TOP):
 
 
 if "cmeta" in z.files:
-    T = ["neutral", "loss", "blame", "gain", "credit"]
+    T = [t for t in ["neutral", "loss", "blame", "gain", "credit"] if t in KINDS]
     cmeta = json.loads(str(z["cmeta"]))
     report.append("\n# Read by the agent itself\n")
     report.append(f"The same documents placed at the start of UBS's request update in B's neutral careers ({len(cmeta)} "
@@ -238,7 +239,7 @@ if "cmeta" in z.files:
                           f"at q < {Q})\n")
             report += rows
             summary[L]["agent"][f"decide {t} vs none"] = {"q<0.05": int((q < Q).sum()), "up": up, "down": down}
-        for a, b in (("loss", "gain"), ("blame", "loss"), ("credit", "gain")):
+        for a, b in [c for c in (("loss", "gain"), ("blame", "loss"), ("credit", "gain")) if c[0] in T and c[1] in T]:
             live, d, p, q = paired(Dd[:, 1 + T.index(a)] - Dd[:, 1 + T.index(b)])
             rows, up, down = table(L, live, d, q, Dd[:, 1 + T.index(a)], Dd[:, 1 + T.index(b)], f"after {a}", f"after {b}", top=8)
             report.append(f"**At the decision: after {a} against after {b}** ({int((q < Q).sum())} features differ at "
@@ -253,7 +254,7 @@ if "raw_24" in z.files and ROOT:
     import steer2
     run1 = sorted(p for e in ("A", "B", "C", "C2", "D", "E", "F") for p in glob.glob(os.path.join(ROOT, f"{e}_bf16", "*.npz")))
     if run1:
-        T6 = ["none", "neutral", "loss", "blame", "gain", "credit"]
+        T6 = ["none"] + [t for t in ["neutral", "loss", "blame", "gain", "credit"] if t in KINDS]
         dirs = steer2.along_direction(run1, 24)
         cm = json.loads(str(z["cmeta"]))
         runs = np.array([int(m["career_file"].split("_r")[-1].split(".")[0]) for m in cm])

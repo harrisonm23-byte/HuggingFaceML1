@@ -13,7 +13,7 @@ import glob, json, os, sys
 import numpy as np
 
 ROWS, OUT = sys.argv[1], sys.argv[2]
-THEMES = ["neutral", "loss", "blame", "gain", "credit"]
+THEMES = sys.argv[3].split(",") if len(sys.argv) > 3 else ["neutral", "loss", "blame", "gain", "credit"]
 LAYERS, RL = [12, 18, 24], 18
 MIN_COVER = 0.5
 PERMS, BOOT = 10000, 2000

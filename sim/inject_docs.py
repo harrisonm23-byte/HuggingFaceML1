@@ -54,10 +54,10 @@ class SeqSteer:
         return (h,) + tuple(output[1:]) if isinstance(output, tuple) else h
 
 
-def conditions():
+def conditions(themes=THEMES):
     """[(name, theme, kind, layer)]."""
     c = [("none", None, "none", None)]
-    for t in THEMES:
+    for t in themes:
         c.append((f"{t}: as read", t, "read", None))
         c += [(f"{t}: mean at layer {L}", t, "mean", L) for L in LAYERS]
         c += [(f"{t}: aligned at layer {L}", t, "aligned", L) for L in LAYERS]
@@ -66,7 +66,7 @@ def conditions():
     return c
 
 
-def run_item(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, done=()):
+def run_item(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, done=(), themes=THEMES):
     """Every condition at one request. One row per condition."""
     import torch
     from inside_careers import encode, turns_at
@@ -91,7 +91,7 @@ def run_item(model, tok, steers, capture, career, item, docs, chats, opening, le
             capture.on = False
         return dict(capture.got)
 
-    for name, t, kind, L in conditions():
+    for name, t, kind, L in conditions(themes):
         key = f"{item['career_file']}|{idx}|{name}"
         if key in done:
             continue
