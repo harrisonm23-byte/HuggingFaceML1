@@ -82,7 +82,7 @@ def read_encode_analyse():
 
     def hook(L):
         def h(module, inputs, output):
-            got[L] = (output[0] if isinstance(output, tuple) else output)[0, 1:].float()   # leave out BOS
+            got[L] = (output[0] if isinstance(output, tuple) else output)[0].float()
         return h
     for L in WANT_LAYERS:
         layers[L].register_forward_hook(hook(L))
@@ -93,9 +93,51 @@ def read_encode_analyse():
             with torch.no_grad():
                 model(input_ids=tok(d, return_tensors="pt")["input_ids"].to(model.device))
             for L in WANT_LAYERS:
-                a = enc(got[L], L)
+                a = enc(got[L][1:], L)                  # leave out BOS
                 acts[L].append(torch.stack([a.mean(0), (a > 0).float().mean(0)]).cpu().numpy())   # mean, share of tokens on
             meta.append({"theme": f[:-4], "doc": i})
+    # The same documents read by the agent itself: inside B's neutral careers, at each of their 60 requests, placed at the
+    # start of the request's update as in the priming run (sim/prime.py), so "you" and "we" are the agent and its desk.
+    # Kept: the features while it reads the document (mean over the document's tokens), and at its decision afterwards
+    # (the last token before its reply), with no document as the comparison.
+    import copy
+    import prime as P
+    from career import career_opening
+    from inside_careers import encode, moments, turns_at
+    from interventions import SIGN, prefill, split_point
+    docs = P.read_docs()
+    opening = career_opening()
+    folder = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
+    items = P.work_items(folder, moments, SIGN)
+    THEMES = ["none", "neutral", "loss", "blame", "gain", "credit"]
+    incar = {L: [] for L in WANT_LAYERS}                 # moments x 5 themes x features (reading the document)
+    decide = {L: [] for L in WANT_LAYERS}                # moments x 6 (none + 5 themes) x features (at the decision)
+    cmeta = []
+    for n, item in enumerate(items):
+        career = json.load(open(f"{folder}/careers/{item['career_file']}"))
+        idx = item["history_index"]
+        plain, k = split_point(tok, career, idx, opening)
+        cache = prefill(model, plain[:k])
+        row_r, row_d = {L: [] for L in WANT_LAYERS}, {L: [] for L in WANT_LAYERS}
+        for t in THEMES:
+            doc = None if t == "none" else docs[t][item["doc"] % len(docs[t])]
+            full = encode(tok, turns_at(P.primed(career, idx, doc), idx, opening))
+            assert full[:k] == plain[:k], "the history before the update changed"
+            with torch.no_grad():
+                model(input_ids=torch.tensor([full[k:]], device=model.device), past_key_values=copy.deepcopy(cache),
+                      use_cache=True, cache_position=torch.arange(k, len(full), device=model.device))
+            for L in WANT_LAYERS:
+                h = got[L]                                  # positions k .. end
+                row_d[L].append(enc(h[-1:], L)[0].cpu().numpy())
+                if doc is not None:
+                    start = next(i for i in range(k, len(full)) if full[i] != plain[i])
+                    span = h[start - k:start - k + (len(full) - len(plain))]
+                    row_r[L].append(enc(span, L).mean(0).cpu().numpy())
+        for L in WANT_LAYERS:
+            incar[L].append(np.stack(row_r[L]))
+            decide[L].append(np.stack(row_d[L]))
+        cmeta.append({"career_file": item["career_file"], "history_index": idx, "date": item["date"], "doc": item["doc"]})
+        print(f"in career: {n + 1}/{len(items)}", flush=True)
     # B's matched rereads (decision token; five framings x Bank C): encoded at the same layers
     ubs = {L: [] for L in WANT_LAYERS}
     umeta = []
@@ -110,7 +152,10 @@ def read_encode_analyse():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     np.savez_compressed(OUT, **{f"doc_{L}": np.stack(acts[L]).astype(np.float32) for L in WANT_LAYERS},
                         **{f"ubs_{L}": np.stack(ubs[L]).astype(np.float32) for L in WANT_LAYERS},
-                        meta=np.array(json.dumps(meta)), umeta=np.array(json.dumps(umeta)))
+                        **{f"incar_{L}": np.stack(incar[L]).astype(np.float32) for L in WANT_LAYERS},
+                        **{f"decide_{L}": np.stack(decide[L]).astype(np.float32) for L in WANT_LAYERS},
+                        meta=np.array(json.dumps(meta)), umeta=np.array(json.dumps(umeta)),
+                        cmeta=np.array(json.dumps(cmeta)))
     states_vol.commit()
     subprocess.run(f"python designs/rd2/analysis/emotion_features.py {OUT} results/emotion_lists", shell=True, check=True)
     for attempt in range(10):

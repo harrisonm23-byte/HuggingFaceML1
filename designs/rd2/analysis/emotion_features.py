@@ -158,6 +158,89 @@ for L in WANT_LAYERS:
     summary[L]["vs UBS"] = {"ubs_features": len(ubs_up) + len(ubs_down), "same": same, "opposite": opposite,
                             "expected_same": exp_same, "correlation": float(r), "shared_up": [int(f) for f in shared]}
 
+
+# ---------------- read by the agent itself (inside its own career, just before UBS's request)
+def paired(D):
+    """D: moments x features (a difference within each moment). (features tested, mean, p, q); p flips the sign of
+    each moment's difference ({PERMS} times, read off a fitted normal)."""
+    live = np.where((D != 0).any(0))[0]
+    Y = D[:, live]
+    null = np.stack([(RNG.choice([-1, 1], (len(Y), 1)) * Y).mean(0) for _ in range(PERMS)])
+    return live, Y.mean(0), *pq(Y.mean(0), null)
+
+
+def table(L, live, d, q, A, B, label_a, label_b, top=TOP):
+    up = [i for i in np.argsort(-d) if q[i] < Q and d[i] > 0][:top]
+    down = [i for i in np.argsort(d) if q[i] < Q and d[i] < 0][:top]
+    names([(L, int(live[i])) for i in up + down])
+    out = []
+    for lab, sel in ((label_a, up), (label_b, down)):
+        if not sel:
+            continue
+        out.append(f"| More active {lab} | Activation ({label_a} / {label_b}) | Description |\n|---|---|---|")
+        for i in sel:
+            f = int(live[i])
+            out.append(f"| [{f}]({NEURONPEDIA.format(layer=L, feature=f)}) | {A[:, f].mean():.1f} / {B[:, f].mean():.1f} "
+                       f"| {_names.get((L, f), '')} |")
+        out.append("")
+    return out, [int(live[i]) for i in up], [int(live[i]) for i in down]
+
+
+if "cmeta" in z.files:
+    T = ["neutral", "loss", "blame", "gain", "credit"]
+    cmeta = json.loads(str(z["cmeta"]))
+    report.append("\n# Read by the agent itself\n")
+    report.append(f"The same documents placed at the start of UBS's request update in B's neutral careers ({len(cmeta)} "
+                  "requests, one document of each type per request, as in the priming run), so that \u201cyou\u201d and "
+                  "\u201cwe\u201d are the agent and its desk. While reading: each feature's mean activation over the "
+                  "document's tokens. At the decision: the last token before the agent's reply, against the same moment "
+                  "with no document. Paired within the request; p flips the sign of each request's difference. "
+                  "**Personal:** for blame against loss and credit against gain (the \u201cyou\u201d in each), the features "
+                  "that differ when the agent reads the document in its own career but not when it reads it on its own.\n")
+    for L in WANT_LAYERS:
+        R = z[f"incar_{L}"]                                       # requests x 5 types x features
+        Dd = z[f"decide_{L}"]                                     # requests x 6 (none + 5 types) x features
+        X = z[f"doc_{L}"][:, 0]
+        report.append(f"\n## Layer {L}, read by the agent\n")
+        summary[L]["agent"] = {}
+        for a, b in CONTRASTS:
+            A, B = R[:, T.index(a)], R[:, T.index(b)]
+            live, d, p, q = paired(A - B)
+            rows, up, down = table(L, live, d, q, A, B, a, b)
+            res = {"tested": int(len(live)), "q<0.05": int((q < Q).sum()), "up": up, "down": down}
+            line = (f"**Reading: {a} against {b}** ({len(live)} features active; {int((q < Q).sum())} differ at q < {Q})")
+            if (a, b) in (("blame", "loss"), ("credit", "gain")):
+                live_s, d_s, p_s, q_s = contrast(X, a, b)
+                alone = set(live_s[q_s < Q].tolist())
+                mine = live[q < Q]
+                personal = [int(f) for f in mine if f not in alone]
+                order = sorted(personal, key=lambda f: -abs(d[np.searchsorted(live, f)]))[:TOP]
+                names([(L, f) for f in order])
+                line += (f". Personal: {len(personal)} of them do not differ when the documents are read on their own "
+                         f"({len(alone)} differ there).")
+                res["personal"] = order
+                rows += ([f"| Personal ({a} vs {b}, only in the agent's own career) | Direction | Description |\n|---|---|---|"]
+                         + [f"| [{f}]({NEURONPEDIA.format(layer=L, feature=f)}) | "
+                            f"{'more in ' + a if d[np.searchsorted(live, f)] > 0 else 'more in ' + b} | {_names.get((L, f), '')} |"
+                            for f in order] + [""])
+            report.append(line + "\n")
+            report += rows
+            summary[L]["agent"][f"read {a} vs {b}"] = res
+        for t in T:
+            live, d, p, q = paired(Dd[:, 1 + T.index(t)] - Dd[:, 0])
+            rows, up, down = table(L, live, d, q, Dd[:, 1 + T.index(t)], Dd[:, 0], f"after {t}", "with no document", top=8)
+            report.append(f"**At the decision: after a {t} document against none** ({int((q < Q).sum())} features differ "
+                          f"at q < {Q})\n")
+            report += rows
+            summary[L]["agent"][f"decide {t} vs none"] = {"q<0.05": int((q < Q).sum()), "up": up, "down": down}
+        for a, b in (("loss", "gain"), ("blame", "loss"), ("credit", "gain")):
+            live, d, p, q = paired(Dd[:, 1 + T.index(a)] - Dd[:, 1 + T.index(b)])
+            rows, up, down = table(L, live, d, q, Dd[:, 1 + T.index(a)], Dd[:, 1 + T.index(b)], f"after {a}", f"after {b}", top=8)
+            report.append(f"**At the decision: after {a} against after {b}** ({int((q < Q).sum())} features differ at "
+                          f"q < {Q})\n")
+            report += rows
+            summary[L]["agent"][f"decide {a} vs {b}"] = {"q<0.05": int((q < Q).sum()), "up": up, "down": down}
+
 open(os.path.join(OUT, "FEATURES.md"), "w").write("\n".join(report) + "\n")
 json.dump(summary, open(os.path.join(OUT, "features.json"), "w"), indent=1, default=float)
 print("written", os.path.join(OUT, "FEATURES.md"))
