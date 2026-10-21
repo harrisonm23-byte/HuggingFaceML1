@@ -175,7 +175,7 @@ def chat(turns, **k):
 
 
 g = {"__name__": "__main__", "REPO": repo, "BRANCH": "check", "PIN": json.load(open("results/full_career_pin.json")),
-     "ARM_INFO": info, "WHEN": "every", "SPAN": "update"}
+     "ARM_INFO": info, "WHEN": "every", "SPAN": "update", "FRAMING": "neutral"}
 exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
 exec(setup_cell[setup_cell.index("from mountain import"):], g)
 exec(settings_cell, g)
@@ -212,6 +212,21 @@ try:
     check("a career saved with another state for the same arm stops the run", False)
 except AssertionError:
     check("a career saved with another state for the same arm stops the run", True)
+# a framed run: UBS's lines in B's loss framing, its own folder, B's loss seeds
+g.update(ARM_INFO={"loss x2 L3": info["loss x2 L3"]}, FRAMING="loss")
+exec(settings_cell, g)
+g["ROUNDS_HERE"] = [0]
+exec(run_cell, g)
+fc = json.load(open(f"{g['OUT']}/careers/loss_x2_L3_r0.json"))
+nc = cs["loss_x2_L3_r0.json"]
+fday = json.load(open(f"{g['OUT']}/days/loss_x2_L3_r0_2011-01-07.json"))
+ubs_n = [t["content"] for t in nc["history"] if t["role"] == "user"]
+ubs_f = [t["content"] for t in fc["history"] if t["role"] == "user"]
+changed = sum(a != b for a, b in zip(ubs_n, ubs_f))
+check(f"framed run: its own folder ({os.path.basename(g['OUT'])}), B's loss seed, framing recorded, and the same career "
+      f"with UBS's lines changed ({changed} of {len(ubs_f)} updates differ)",
+      g["OUT"].endswith("state_careers_loss_v2") and fc["seed"] == int(__import__("hashlib").md5(b"B|loss|0").hexdigest()[:8], 16)
+      and fday["framing"] == "loss" and len(ubs_n) == len(ubs_f) and 0 < changed < len(ubs_f))
 os.chdir(cwd)
 os.system = real_system
 r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/state_careers.py", out, f"{tmp}/res"], capture_output=True, text=True)

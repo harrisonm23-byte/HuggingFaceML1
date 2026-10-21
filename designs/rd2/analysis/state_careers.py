@@ -6,7 +6,7 @@ Main outcome, as in B's preregistration: each career's share of UBS's six push r
 simulator's "joined"). Each arm against no state, and each state against the random direction at the same layer:
 tests reshuffle whole careers between the two arms (10,000 times); intervals resample careers (95%). Also each arm
 request by request, the replies that came out unreadable or cut off (does the state break the model?), and B's own
-careers as the yardstick (neutral against framed: what a framed history did).
+careers as the yardstick (B in the same framing, and neutral against framed: what a framed history did).
 """
 import glob, json, os, re, sys
 import numpy as np
@@ -72,12 +72,13 @@ def layer_of(v):
 
 D = careers(FOLDER)
 assert D, f"no careers in {FOLDER}"
+FRAMING = json.load(open(sorted(glob.glob(os.path.join(FOLDER, "days", "*.json")))[0])).get("framing", "neutral")
 shares = {v: np.array([r["share"] for r in rows]) for v, rows in D.items()}
 order = sorted(D, key=lambda v: (v != "none", "random" in v, layer_of(v) or (False, 0), v))
 report = ["# Careers with a document's after-reading state switched on (exploratory)\n",
-          f"B's neutral careers run again from the start (UBS's neutral wording, the neutral memo), each arm adding one "
-          f"document state at one layer while the agent reads and writes (`{os.path.relpath(FOLDER, ROOT)}`). Every arm's "
-          "round k uses the seed of B's neutral career k. Outcome: each career's share of UBS's six push requests it went "
+          f"B's {FRAMING} careers run again from the start (UBS's lines in the {FRAMING} framing, the neutral memo), each "
+          f"arm adding one document state at one layer while the agent reads and writes (`{os.path.relpath(FOLDER, ROOT)}`). "
+          f"Every arm's round k uses the seed of B's {FRAMING} career k. Outcome: each career's share of UBS's six push requests it went "
           "along with. Tests reshuffle whole careers (10,000 times); intervals resample careers (95%). Produced by "
           "`designs/rd2/analysis/state_careers.py`.\n",
           "## Going along, by arm\n",
@@ -116,11 +117,14 @@ if os.path.isdir(os.path.join(B, "careers")):
     bn = np.array([r["share"] for r in Bc.get("neutral", [])])
     bf = np.array([r["share"] for v, rows in Bc.items() if v != "neutral" for r in rows])
     bl = np.array([r["share"] for r in Bc.get("loss", [])])
+    bs = np.array([r["share"] for r in Bc.get(FRAMING, [])])
     report += ["\n## The yardstick: B's own careers\n",
+               f"- B, {FRAMING} wording (the same seeds as the no-state arm): {100 * bs.mean():.0f}% went along "
+               f"({len(bs)} careers); the no-state arm against it {compare(shares['none'], bs) if 'none' in shares else '–'}.",
                f"- B, neutral wording: {100 * bn.mean():.0f}% went along ({len(bn)} careers).",
                f"- B, loss wording: {100 * bl.mean():.0f}% ({len(bl)} careers); against neutral {compare(bl, bn)}.",
                f"- B, any framed wording: {100 * bf.mean():.0f}% ({len(bf)} careers); against neutral {compare(bf, bn)}.",
-               "- The no-state arm re-runs B's neutral careers with the same seeds; it can differ from them because the "
+               f"- The no-state arm re-runs B's {FRAMING} careers with the same seeds; it can differ from them because the "
                "GPU and the order of computation can differ."]
 open(os.path.join(OUT, "STATE_CAREERS.md"), "w").write("\n".join(report) + "\n")
 json.dump({v: {"share": float(np.nanmean(s)), "careers": len(s)} for v, s in shares.items()},

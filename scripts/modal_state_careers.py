@@ -9,11 +9,14 @@ Then launch (one GPU per round; each round runs one career of every arm, about a
 
     modal run --detach scripts/modal_state_careers.py --arms "loss@21,blame@21,random@21,none"
 
+Framed careers: --framings "loss" (or several, e.g. "neutral,loss,loss + you"); UBS's lines then come in that framing
+of B's, each framing its own set of careers and results folder, and each arm's round k uses B's seed for that framing.
+
 Options: --strength 2 (times the state's natural size), --rounds 0-9, --when every|trading, --span update|all,
 --per-arm (one GPU per arm and round), --analysis-only. Arms: theme@layer for the emotional states (loss, blame, gain,
 credit), fin:theme@layer for the financial ones (loss, gain), random@layer or fin:random@layer, and none. A layer must
 have been scanned: 18-21, or an even layer from 4 to 42 once the sweep has run. When the careers are done,
-designs/rd2/analysis/state_careers.py pushes results/state_careers/STATE_CAREERS.md.
+designs/rd2/analysis/state_careers.py pushes results/state_careers[_framing]/STATE_CAREERS.md.
 """
 import modal
 
@@ -82,7 +85,7 @@ def check_arms(arms, strength):
 
 @app.function(gpu=GPU, timeout=24 * 3600, retries=modal.Retries(max_retries=5, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_job(arms, strength, rounds, when, span, only=None):
+def run_job(arms, strength, rounds, when, span, only=None, framing="neutral"):
     """Notebook 31's cells (imports, settings, model, memory check, agent, run), as scripts/modal_careers.py runs a
     notebook; `only` keeps one arm (--per-arm)."""
     import json, os, sys
@@ -101,49 +104,55 @@ def run_job(arms, strength, rounds, when, span, only=None):
     g = {"__name__": "__main__"}
     exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
     g.update(REPO=repo, BRANCH=BRANCH, PIN=json.load(open("results/full_career_pin.json")), ARM_INFO=info, WHEN=when,
-             SPAN=span)
+             SPAN=span, FRAMING=framing)
     exec(setup_cell[setup_cell.index("from mountain import"):], g)      # the notebook's imports (no Colab parts)
     exec(settings_cell, g)                                                # its versions and inputs
     g["ROUNDS_HERE"] = rounds                                             # this job's rounds
-    print(f"{NOTEBOOK}: arms {list(info)}, rounds {rounds} on {g['torch'].cuda.get_device_name(0)}", flush=True)
+    print(f"{NOTEBOOK}: {framing} framing, arms {list(info)}, rounds {rounds} on {g['torch'].cuda.get_device_name(0)}", flush=True)
     exec(model_cell, g)                                                   # the model (weights cached between jobs)
     weights.commit()
     for cell in (memory_cell, agent_cell, run_cell):                      # the memory check, the agent, the run
         exec(cell, g)
     push(repo, "results", f"Modal job {NOTEBOOK}: final save")            # every save on GitHub before the server goes
-    return f"arms {list(info)} rounds {rounds}: done"
+    return f"{framing}: arms {list(info)} rounds {rounds}: done"
 
 
 @app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS)
-def analyse(when="every", span="update"):
+def analyse(when="every", span="update", framing="neutral"):
     import subprocess
     repo = setup()
-    name = "state_careers" + ("" if (when, span) == ("every", "update") else f"_{when}_{span}")
+    import state_careers as S
+    name = S.run_name(framing, when, span)
     folder = f"results/full_career_gemma-3-12b-it_4bit_{name}_v2"
     res = "results/" + name
     subprocess.run(f"python designs/rd2/analysis/state_careers.py {folder} {res}", shell=True, check=True)
-    push(repo, res, "Careers with the state on: analysis")
+    push(repo, res, f"Careers with the state on ({framing}): analysis")
     return f"{res}/STATE_CAREERS.md pushed"
 
 
 @app.function(timeout=24 * 3600, secrets=SECRETS)
 def dispatch(todo, strength, when, span):
     """Starts every job from inside Modal and waits there (no GPU), so --detach keeps them all running; then analyses."""
-    calls = [run_job.spawn(arms, strength, rounds, when, span, only) for arms, rounds, only in todo]
+    calls = [run_job.spawn(arms, strength, rounds, when, span, only, framing) for arms, rounds, only, framing in todo]
     done = []
-    for (arms, rounds, only), c in zip(todo, calls):
+    for (arms, rounds, only, framing), c in zip(todo, calls):
         try:
             done.append(c.get())
         except Exception as e:                    # one job failing (after its retries) does not stop the others
-            done.append(f"{only or arms} rounds {rounds}: failed ({type(e).__name__})")
-    done.append(analyse.remote(when, span))
+            done.append(f"{framing}: {only or arms} rounds {rounds}: failed ({type(e).__name__})")
+    for framing in dict.fromkeys(t[3] for t in todo):
+        done.append(analyse.remote(when, span, framing))
     return done
 
 
 @app.local_entrypoint()
 def main(arms: str, strength: float = 2.0, rounds: str = "0-9", when: str = "every", span: str = "update",
-         per_arm: bool = False, check: bool = False, analysis_only: bool = False):
+         per_arm: bool = False, check: bool = False, analysis_only: bool = False, framings: str = "neutral"):
     assert when in ("every", "trading") and span in ("update", "all"), "--when every|trading, --span update|all"
+    fr = [f.strip() for f in framings.split(",") if f.strip()]
+    assert fr and all(f in ("neutral", "loss", "gain", "loss + you", "gain + you") for f in fr), \
+        '--framings: any of neutral, loss, gain, "loss + you", "gain + you", separated by commas'
+
     lines, names = check_arms.remote(arms, strength)   # a typo or an unscanned layer stops here, before any GPU starts
     print("arms as they will run:")
     for line in lines:
@@ -151,12 +160,14 @@ def main(arms: str, strength: float = 2.0, rounds: str = "0-9", when: str = "eve
     if check:
         return
     if analysis_only:
-        print(analyse.remote(when, span))
+        for f in fr:
+            print(analyse.remote(when, span, f))
         return
     a, b = (rounds.split("-") + [None])[:2]
     rr = list(range(int(a), int(b) + 1)) if b else [int(r) for r in rounds.split(",")]
-    todo = [(arms, [k], n) for k in rr for n in names] if per_arm else [(arms, [k], None) for k in rr]
-    print(f"careers with the state on: {len(names)} arms x {len(rr)} rounds = {len(names) * len(rr)} careers on "
+    todo = [(arms, [k], n, f) for f in fr for k in rr for n in (names if per_arm else [None])]
+    print(f"careers with the state on: {len(fr)} framing(s) ({', '.join(fr)}) x {len(names)} arms x {len(rr)} rounds = "
+          f"{len(fr) * len(names) * len(rr)} careers on "
           f"{len(todo)} GPUs (about an hour per career); state on {when} reply, span {span}, {strength:g} x its size")
     for line in dispatch.remote(todo, strength, when, span):
         print(line)

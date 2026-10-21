@@ -104,6 +104,17 @@ def build_arms(spec, strength, sources=None):
     return out
 
 
+FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]    # B's five, as in its careers
+
+
+def run_name(framing, when, span):
+    """The run's name: state_careers, plus the framing if not neutral, plus when/span if not every/update."""
+    assert framing in FRAMINGS, f"framing {framing!r}: one of {FRAMINGS}"
+    assert when in WHENS and span in SPANS, (when, span)
+    return ("state_careers" + ("" if framing == "neutral" else "_" + framing.replace(" + ", "_plus_"))
+            + ("" if (when, span) == ("every", "update") else f"_{when}_{span}"))
+
+
 def steer_on(when, date, trading_days):
     """Whether the state is on for an update on `date`."""
     assert when in WHENS, when
