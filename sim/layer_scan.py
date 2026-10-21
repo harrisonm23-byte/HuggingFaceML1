@@ -16,6 +16,7 @@ import copy
 import numpy as np
 
 LAYERS = [12, 14, 16, 18, 20, 22, 24]
+ALL_LAYERS = list(range(48))
 STRENGTHS = [1, 2, 4, 8]
 RANDOM_STRENGTHS = [4, 8]
 
@@ -50,7 +51,7 @@ def base_and_docs(career, item, docs, chats, opening, tok):
     return plain, k, reads
 
 
-def shifts_at(model, tok, capture, career, item, docs, chats, opening):
+def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LAYERS):
     """{layer: the loss reading's mean change over the update minus the neutral reading's} at one moment."""
     import torch
     from interventions import prefill
@@ -71,8 +72,8 @@ def shifts_at(model, tok, capture, career, item, docs, chats, opening):
     means = {}
     for t, (seq, start, extra) in reads.items():
         a = read(seq)
-        means[t] = {L: (a[L][start - k + extra:] - b[L][start - k:]).mean(0).cpu().numpy() for L in LAYERS}
-    for L in LAYERS:
+        means[t] = {L: (a[L][start - k + extra:] - b[L][start - k:]).mean(0).cpu().numpy() for L in layers}
+    for L in layers:
         out[L] = means["loss"][L] - means["neutral"][L]
     return out
 
@@ -141,3 +142,39 @@ def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid,
                "shift_size": float(np.linalg.norm(vec)) if vec is not None else 0.0, "coverage": cover,
                "orders": orders, "probs": probs, **summarise_orders(orders, probs, item["position"], item["wants"]),
                "showcase": showcase, "reply": reply, "reply_status": parse_reply(reply)["status"] if reply else None}
+
+
+def showcase(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, strength=1, max_new=300):
+    """One moment: the loss-specific change measured there, then, with no document, added at each layer in turn (one
+    greedy reply each), plus no injection. One row per layer."""
+    import torch
+    from inside_careers import encode, turns_at
+    from interventions import order_dist, prefill, split_point, summarise_orders
+    from matched import matched
+    from mountain import parse_reply
+    d = shifts_at(model, tok, capture, career, item, docs, chats, opening, ALL_LAYERS)
+    idx = item["history_index"]
+    base = matched(career, idx, item["date"], "neutral", "neutral", chats)
+    full = encode(tok, turns_at(base, idx, opening))
+    _, k = split_point(tok, base, idx, opening)
+    cache = prefill(model, full[:k])
+    for L in [None] + ALL_LAYERS:
+        try:
+            for st in steers.values():
+                st.vec = None
+            if L is not None:
+                steers[L].vec = torch.tensor(d[L] * strength, dtype=torch.float32, device=model.device)
+            orders, probs, cover = order_dist(model, tok, full, cache, lead, grid)
+            x = torch.tensor([full], device=model.device)
+            with torch.no_grad():
+                g = model.generate(input_ids=x, attention_mask=torch.ones_like(x), past_key_values=copy.deepcopy(cache),
+                                   max_new_tokens=max_new, do_sample=False, disable_compile=True)
+            reply = tok.decode(g[0, len(full):], skip_special_tokens=True)
+        finally:
+            for st in steers.values():
+                st.vec = None
+        yield {"layer": L, "strength": strength if L is not None else 0,
+               "shift_size": float(np.linalg.norm(d[L])) * strength if L is not None else 0.0,
+               "career_file": item["career_file"], "date": item["date"], "chat": item["chat"], "wants": item["wants"],
+               "coverage": cover, **summarise_orders(orders, probs, item["position"], item["wants"]),
+               "reply": reply, "reply_status": parse_reply(reply)["status"]}
