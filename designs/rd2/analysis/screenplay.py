@@ -12,6 +12,7 @@ import glob, json, os, sys
 import numpy as np
 
 ROWS, OUT = sys.argv[1], sys.argv[2]
+MIN_COVER = 0.5      # a moment counts only if the scored orders cover at least half the probability in every condition
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
 VERSIONS = ["loss", "gain", "loss + you", "gain + you"]
 PERMS, BOOT = 10000, 2000
@@ -29,6 +30,12 @@ for r in rows.values():
     k = (r["career_file"], r["history_index"])
     M.setdefault(k, {})[(r["condition"], r["framing"])] = r["p_order_along"]
     meta[k] = r
+cover = {}
+for r in rows.values():
+    if r["framing"] == r["version"]:
+        cover.setdefault((r["career_file"], r["history_index"]), []).append(r["coverage"])
+dropped = {k for k, v in cover.items() if min(v) < MIN_COVER}
+M = {k: v for k, v in M.items() if k not in dropped}
 own = lambda k, c: M[k].get((c, meta[k]["version"]))
 
 
@@ -53,7 +60,8 @@ mean = lambda c, where=lambda k: True: 100 * np.mean([own(k, c) for k in M if wh
 conds = sorted({r["condition"] for r in rows.values()} - {"screenplay", "real"})
 sp = test("screenplay")
 report = ["# The screenplay history and the injected end state (exploratory)\n",
-          f"{len(M)} moments: F's framed careers at each request after the first. Real: the agent's own replies. "
+          f"{len(M)} moments (of {len(M) + len(dropped)}; {len(dropped)} dropped because the scored orders cover less than "
+          f"{MIN_COVER:.0%} of the model's probability in some condition): F's framed careers at each request after the first. Real: the agent's own replies. "
           "Screenplay: its chat replies replaced by the user's scripted replies (median "
           f"{np.median([meta[k]['replaced'] for k in M]):.0f} replaced before the request). Injection: the screenplay's "
           "state at the request minus the real one's, added to the real history's request update. P(the order goes "
