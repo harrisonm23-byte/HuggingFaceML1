@@ -1590,3 +1590,14 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - The nulls are wide because a few huge residual dimensions dominate raw cosines; the analysis now also reports the
   cosine and its null with every dimension on one scale (pooled spread over documents and decision moments). Rerun
   with `modal run --detach scripts/modal_emotion.py` (re-reads the documents, minutes). Paper paragraph after it.
+
+## 21 Oct (evening): Stage 2 built ahead of Stage 1's result
+
+- `notebooks/30_steered_careers.ipynb` (B's notebook 19, UBS's neutral wording throughout; arms in `sim/steer2.ARMS`:
+  loss all career, loss until 12 Jan, gain all career, random all career; 5 careers each) and
+  `scripts/modal_steered_careers.py` (from modal_careers.py; reads the pooled frame directions from the matched rereads,
+  hands STEER/STRENGTH/STEER_LAYER/STEER_SHA to the notebook; one GPU per round). Steering at layer 12 on every token the
+  model reads or writes while the arm is on; the date comes from each update (`date_in`), a correction request keeps
+  the last date. Checked locally (settings run for real; agent cell with a tiny model): on through 12 Jan for the
+  push-and-release arm, off after; hook cleared after every reply.
+- Launch after Stage 1 sets the strength: `modal run --detach scripts/modal_steered_careers.py --strength <1|2|4>`.

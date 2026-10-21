@@ -292,3 +292,36 @@ def run_item(model, tok, steers, patches, capture, dirs, item, career, opening, 
                "orders": orders, "probs": probs, **summary, "along_projection": float(state[ALONG_LAYER] @ u_along),
                "along_size": dirs[ALONG_LAYER][half_for(item["run"])]["size"], "along": [a for a, _ in judged],
                "status": [s for _, s in judged], "replies": replies, "tokens": len(seq)}
+
+
+def pooled(npz_paths, layer=LAYER, seed=20261024):
+    """Stage 2 (whole careers): the loss and gain directions at their natural size from all 300 matched moments, and a
+    random direction scaled to the loss direction's size (new careers, so no half is held out)."""
+    d = directions(npz_paths, layer, n_random=1, seed=seed)
+    loss = (d[0]["loss"] + d[1]["loss"]) / 2
+    gain = (d[0]["gain"] + d[1]["gain"]) / 2
+    rnd = np.random.default_rng(seed).normal(size=loss.shape[0])
+    return {"loss": loss, "gain": gain, "random": rnd / np.linalg.norm(rnd) * np.linalg.norm(loss)}
+
+
+ARMS = {"loss all career": ("loss", None), "loss until 12 Jan": ("loss", "2011-01-12"),
+        "gain all career": ("gain", None), "random all career": ("random", None)}
+MONTHS = {m: i + 1 for i, m in enumerate(["January", "February", "March", "April", "May", "June", "July", "August",
+                                          "September", "October", "November", "December"])}
+
+
+def date_in(text):
+    """The date an update is for: "2011-01-07" (trading days) or "Wednesday 22 August 2007" (chat-only days)."""
+    m = re.search(r"\b(\d{4})-(\d{2})-(\d{2})\b", text)
+    if m:
+        return m.group(0)
+    m = re.search(r"\b(\d{1,2}) (" + "|".join(MONTHS) + r") (\d{4})\b", text)
+    return f"{m.group(3)}-{MONTHS[m.group(2)]:02d}-{int(m.group(1)):02d}" if m else None
+
+
+def arm_vector(steer, arm, date, strength):
+    """The vector a Stage 2 arm adds at this date (None: steering off)."""
+    which, until = ARMS[arm]
+    if until is not None and (date is None or date > until):
+        return None
+    return steer[which] * strength
