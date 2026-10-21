@@ -148,8 +148,9 @@ def analyse(doc_set="emotion", sweep=False):
     out, res = SCAN[doc_set] + ("_sweep" if sweep else ""), SETS[doc_set][1]
     subprocess.run(f"python designs/rd2/analysis/layer_scan.py {out} {res}" + (" SWEEP" if sweep else ""), shell=True,
                    check=True)
+    tag = ", sweep" if sweep else ""
     for attempt in range(10):
-        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan ({doc_set}{", sweep" if sweep else ""})'",
+        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan ({doc_set}{tag})'",
                        shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
                           shell=True).returncode == 0:
