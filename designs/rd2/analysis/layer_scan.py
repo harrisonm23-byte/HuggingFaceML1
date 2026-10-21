@@ -47,7 +47,7 @@ cell = lambda r: "–" if r is None else (f"{100 * r['change']:+.1f} (p < 0.001)
                                               else f"{100 * r['change']:+.1f} (p {r['p']:.3f})")
 cover = lambda c: np.median([m[c]["coverage"] for m in M.values() if c in m]) if M else float("nan")
 report = ["# Layer scan: the loss-specific after-reading state, injected without the document (exploratory)\n",
-          f"{len(M)} moments (B's neutral careers at their requests; {len(low)} more left out because the scored orders "
+          f"{len(M)} moments (B's neutral careers at the 7 and 12 January requests; {len(low)} more left out because the scored orders "
           "cover less than half of the model's probability with no injection). The direction is the loss document's "
           "after-reading change over the request's update minus the neutral document's, built on the other half of the "
           "careers; it is added with no document at one layer, from the start of the request's update, at 1 to 8 times its "

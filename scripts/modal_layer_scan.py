@@ -1,6 +1,6 @@
 """Layer scan for the after-reading state, on Modal (the user, 22 Oct; `sim/layer_scan.py`). First the loss-specific
 direction (the loss document's after-reading change minus the neutral document's) at layers 12-24, from B's 60
-neutral-career requests; then, with no document, that direction added at one layer at 1-8 times its natural size against
+neutral-career requests on 7 and 12 January (20 moments); then, with no document, that direction added at one layer at 1-8 times its natural size against
 random directions, with one greedy reply per condition at a fixed showcase moment. Then
 `designs/rd2/analysis/layer_scan.py` pushes results/layer_scan/LAYER_SCAN.md.
 
@@ -12,6 +12,7 @@ import modal
 BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
+DATES = ("2011-01-07", "2011-01-12")        # 10 neutral careers x the first two requests = 20 moments
 SETS = {"emotion": ("/states/v2/layer_scan", "results/layer_scan"),
         "financial": ("/states/v2/layer_scan_fin", "results/layer_scan_fin")}
 
@@ -55,7 +56,7 @@ def _load(doc_set):
     from interventions import SIGN
     import prime as P, fin_docs
     docs = P.read_docs() if doc_set == "emotion" else fin_docs.read_docs()   # frozen files (fingerprints checked)
-    items = P.work_items(FOLDER, moments, SIGN)
+    items = [m for m in P.work_items(FOLDER, moments, SIGN) if m["date"] in DATES]   # the first two requests only
     pin = json.load(open("results/full_career_pin.json"))
     tok = AutoTokenizer.from_pretrained(pin["model"], revision=pin["model_revision"])
     model = AutoModelForCausalLM.from_pretrained(pin["model"], revision=pin["model_revision"], device_map="auto",
