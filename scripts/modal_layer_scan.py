@@ -152,7 +152,7 @@ def analyse(doc_set="emotion"):
 
 @app.function(gpu="H100", timeout=2 * 3600, secrets=SECRETS, volumes=VOLUMES)
 def showcase(doc_set="emotion", strength=1.0, themes=""):
-    """One moment (7 Jan, neutral career 0): the loss-specific change measured there, injected at each layer in turn,
+    """One moment (chosen for a no-injection P(along) near 40%): each document's change measured there, injected at each layer in turn,
     one greedy reply each. Writes and pushes results/<set>/SHOWCASE.md."""
     import json, os, subprocess
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -160,7 +160,23 @@ def showcase(doc_set="emotion", strength=1.0, themes=""):
     import layer_scan as LS, inject_docs as J
     from interventions import NEUTRAL_LEAD, WIDE_GRID, Steer
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
-    item = items[0]
+    # The moment: the one whose no-injection P(along) is closest to 40% (room to move either way), among those whose
+    # scored orders cover at least half of the model's probability
+    from inside_careers import encode, turns_at
+    from interventions import order_dist, prefill, split_point, summarise_orders
+    from matched import matched
+    base_p = []
+    for it in items:
+        c = json.load(open(f"{FOLDER}/careers/{it['career_file']}"))
+        b = matched(c, it["history_index"], it["date"], "neutral", "neutral", chats)
+        full = encode(tok, turns_at(b, it["history_index"], opening))
+        _, k = split_point(tok, b, it["history_index"], opening)
+        orders, probs, cover = order_dist(model, tok, full, prefill(model, full[:k]), NEUTRAL_LEAD, WIDE_GRID)
+        pa = summarise_orders(orders, probs, it["position"], it["wants"])["p_order_along"]
+        base_p.append((it, pa, cover))
+        print(f"baseline {it['career_file']} {it['date']}: P(along) {100 * pa:.0f}%, coverage {cover:.2f}", flush=True)
+    ok = [x for x in base_p if x[2] >= 0.5] or base_p
+    item = min(ok, key=lambda x: abs(x[1] - 0.4))[0]
     career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
     steers = {L: Steer(layers[L]) for L in LS.ALL_LAYERS}
     capture = J.Capture({L: layers[L] for L in LS.ALL_LAYERS})
@@ -173,6 +189,7 @@ def showcase(doc_set="emotion", strength=1.0, themes=""):
         rows.append(r)
         print(f"{r['theme']} layer {r['layer']}: P(along) {100 * r['p_order_along']:.0f}% | {r['reply_status']}", flush=True)
     r0 = rows[0]
+    baselines = "; ".join(f"{x[0]['career_file'][:-5]} {x[0]['date'][5:]}: {100 * x[1]:.0f}%" for x in base_p)
     lines = ["# The showcase: each document's after-reading state, injected at each layer in turn (exploratory)\n",
              f"One moment: {r0['career_file']}, {r0['date']} ({r0['chat']}), UBS's request in its neutral wording (UBS wants "
              f"the price {r0['wants']}). The change each document type (loss, blame, gain, credit) makes to the state over "
@@ -180,6 +197,8 @@ def showcase(doc_set="emotion", strength=1.0, themes=""):
              f"{strength:g} times its size. One greedy reply per layer (no sampling), so every difference comes from the "
              "injection. P(along): the probability that the order goes along, after the fixed neutral reasoning line. "
              "Produced by `scripts/modal_layer_scan.py --showcase-only`.\n",
+             f"The moment was chosen as the one whose no-injection P(along) is closest to 40% (scored orders covering at "
+             f"least half of the probability). No-injection P(along) at the 20 candidate moments: {baselines}.\n",
              f"No injection: P(along) {100 * r0['p_order_along']:.0f}%, reply read as {r0['reply_status']}.\n",
              "P(along) by layer, with how the reply reads (trade, hold, malformed...):\n"]
     themes = list(dict.fromkeys(r["theme"] for r in rows[1:]))
