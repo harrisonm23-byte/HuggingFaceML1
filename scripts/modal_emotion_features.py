@@ -1,7 +1,9 @@
 """What the author's emotion documents activate inside the model (exploratory; the user, 22 Oct). One GPU rereads each
 document (designs/rd2/emotion_lists/*.txt, frozen), passes every token's state at layers 12, 24, 31 and 41 through the
 Gemma Scope 2 dictionaries (16k) and keeps each feature's mean activation over the document's tokens; it also encodes
-B's matched rereads at the same layers (UBS's loss vs gain request at the same moment). Then
+B's matched rereads at the same layers (UBS's loss vs gain request at the same moment). It also places each document
+inside B's neutral careers, just before UBS's request (as in the priming run), and keeps the features while the agent
+reads it and at its decision afterwards, plus the raw decision state (layers 12, 18, 24, 31). Then
 `designs/rd2/analysis/emotion_features.py` lists the features each document type lights up, with Neuronpedia links, and
 pushes results/emotion_lists/FEATURES.md.
 
@@ -50,7 +52,7 @@ def setup():
     return repo
 
 
-@app.function(gpu="H100", timeout=2 * 3600, secrets=SECRETS, volumes=VOLUMES)
+@app.function(gpu="H100", memory=65536, timeout=3 * 3600, secrets=SECRETS, volumes=VOLUMES)
 def read_encode_analyse():
     import glob, hashlib, json, os, subprocess
     import numpy as np, torch
@@ -115,7 +117,7 @@ def read_encode_analyse():
     incar = {L: [] for L in WANT_LAYERS}                 # moments x 5 themes x features (reading the document)
     decide = {L: [] for L in WANT_LAYERS}                # moments x 6 (none + 5 themes) x features (at the decision)
     raw = {L: [] for L in RAW}                           # moments x 6 x width: the raw decision state
-    cmeta = []
+    cmeta, clean, total = [], 0, 0
     for n, item in enumerate(items):
         career = json.load(open(f"{folder}/careers/{item['career_file']}"))
         idx = item["history_index"]
@@ -126,6 +128,11 @@ def read_encode_analyse():
             doc = None if t == "none" else docs[t][item["doc"] % len(docs[t])]
             full = encode(tok, turns_at(P.primed(career, idx, doc), idx, opening))
             assert full[:k] == plain[:k], "the history before the update changed"
+            if doc is not None:                             # the document's tokens: where the two reads part, as many as
+                extra = len(full) - len(plain)              # the document adds; the rest of the update must match
+                start = next(i for i in range(k, len(plain)) if full[i] != plain[i])
+                clean += full[start + extra:] == plain[start:]
+                total += 1
             with torch.no_grad():
                 model(input_ids=torch.tensor([full[k:]], device=model.device), past_key_values=copy.deepcopy(cache),
                       use_cache=True, cache_position=torch.arange(k, len(full), device=model.device))
@@ -135,8 +142,7 @@ def read_encode_analyse():
                 h = got[L]                                  # positions k .. end
                 row_d[L].append(enc(h[-1:], L)[0].cpu().numpy())
                 if doc is not None:
-                    start = next(i for i in range(k, len(full)) if full[i] != plain[i])
-                    span = h[start - k:start - k + (len(full) - len(plain))]
+                    span = h[start - k:start - k + extra]
                     row_r[L].append(enc(span, L).mean(0).cpu().numpy())
         for L in WANT_LAYERS:
             incar[L].append(np.stack(row_r[L]))
@@ -144,7 +150,7 @@ def read_encode_analyse():
         for L in RAW:
             raw[L].append(np.stack(row_x[L]))
         cmeta.append({"career_file": item["career_file"], "history_index": idx, "date": item["date"], "doc": item["doc"]})
-        print(f"in career: {n + 1}/{len(items)}", flush=True)
+        print(f"in career: {n + 1}/{len(items)} (document spans exact: {clean}/{total})", flush=True)
     # B's matched rereads (decision token; five framings x Bank C): encoded at the same layers
     ubs = {L: [] for L in WANT_LAYERS}
     umeta = []

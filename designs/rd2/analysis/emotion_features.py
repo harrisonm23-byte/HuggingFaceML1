@@ -1,13 +1,17 @@
 """What the author's emotion documents activate inside the model: the analysis (exploratory; the user, 22 Oct).
 
-    python designs/rd2/analysis/emotion_features.py <features npz from scripts/modal_emotion_features.py> <output dir>
+    python designs/rd2/analysis/emotion_features.py <features npz from scripts/modal_emotion_features.py> <output dir> \
+        [<states root, e.g. /states/v2: for the going-along test>]
 
 For each layer (12, 24, 31, 41) and each contrast (each emotion against the neutral documents; loss against gain; blame
 against loss; credit against gain): the Gemma Scope 2 features whose mean activation over a document's tokens differs
-most between the two document types; p by reshuffling which documents belong to which type (2,000 times), with a
-false-discovery-rate correction over the features active in either type. Then, for loss against gain: do the features
-that separate the documents also separate UBS's loss request from its gain request at the same moment (B's matched
-rereads, the decision token)? Feature names come from Neuronpedia where it has one.
+most between the two document types; p by reshuffling which documents belong to which type (2,000 times, read off a
+normal fitted to the reshuffled differences), with a false-discovery-rate correction over the features active in either
+type. For loss against gain: do the features that separate the documents also separate UBS's loss request from its gain
+request at the same moment (B's matched rereads)? Then the same documents read by the agent inside its own career: the
+features while it reads, the "personal" ones (blame vs loss, credit vs gain, only in its own career), the features at its
+decision afterwards, and whether its decision state moves along the going-along direction (layer 24). Feature names come
+from Neuronpedia where it has one.
 """
 import json, math, os, sys, urllib.request
 from concurrent.futures import ThreadPoolExecutor
