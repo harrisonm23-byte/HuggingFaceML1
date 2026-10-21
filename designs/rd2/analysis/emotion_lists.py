@@ -14,7 +14,8 @@ history held fixed (the matched rereads, 300 B moments):
 - Loss - Neutral (if Neutral is given) against loss and loss + you minus neutral.
 Reported: the cosine; a null from reshuffling which documents belong to which theme (1,000 times); each direction's
 ceiling (its cosine with itself built on two halves); and a held-out check (built on half the documents, does it sort
-the other half?). Then the drift: Run 1's B states at the six requests projected on the Loss - Gain direction, loss-framed
+the other half?). Each cosine is also given with every dimension put on the same scale (a few very large dimensions
+dominate Gemma's residual stream and can make raw cosines and their null wide). Then the drift: Run 1's B states at the six requests projected on the Loss - Gain direction, loss-framed
 careers minus gain-framed, request by request.
 """
 import glob, json, os, sys
@@ -37,7 +38,7 @@ cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
 # UBS's frame directions, the history held fixed
 idx = {(v, b): 2 * i + int(b) for i, v in enumerate(FRAMINGS) for b in (False, True)}
 shifts = {k: [] for k in ("loss_gain", "you_loss", "you_gain", "loss_neutral")}
-runs = []
+runs, neutral_states = [], []
 for p in sorted(glob.glob(os.path.join(MATCHED, "*.npz"))):
     m = np.load(p)
     S = m["states"].astype(np.float64)                           # 10 versions x layers x width
@@ -47,6 +48,19 @@ for p in sorted(glob.glob(os.path.join(MATCHED, "*.npz"))):
     shifts["you_gain"].append(g("gain + you") - g("gain"))
     shifts["loss_neutral"].append((g("loss") + g("loss + you")) / 2 - g("neutral"))
     runs.append(int(json.loads(str(m["meta"]))[0]["run"]))
+    neutral_states.append(g("neutral"))
+NEUTRAL_STATES = np.stack(neutral_states)                         # moments x layers x width
+
+
+def scale_at(j, L):
+    """Each dimension's spread, pooled over the documents (centred by theme) and the decision moments (centred): a few
+    very large dimensions dominate Gemma's residual stream, so raw cosines are compared again with every dimension put
+    on the same scale."""
+    X = STATES["mean"][:, L].copy()
+    for t in themes:
+        X[THEME == t] -= X[THEME == t].mean(0)
+    Y = NEUTRAL_STATES[:, j] - NEUTRAL_STATES[:, j].mean(0)
+    return np.sqrt((np.concatenate([X, Y]) ** 2).mean(0)) + 1e-6
 runs = np.array(runs)
 UBS = {k: np.stack(v) for k, v in shifts.items()}                 # moments x layers x width
 PAIRS = [("Loss - Gain", "loss", "gain", "loss_gain", "UBS: loss - gain request"),
@@ -65,8 +79,9 @@ summary = {}
 half = np.arange(len(THEME)) % 2 == 0
 for name, a, b, key, ubs_name in PAIRS:
     report.append(f"\n## {name}, against {ubs_name}\n")
-    report.append("| Layer | Cosine | Null, 95% range | Emotion direction, two halves of the documents | UBS direction, two "
-                  "halves of the careers | Held out: documents sorted right |\n|---|---|---|---|---|---|")
+    report.append("| Layer | Cosine | Null, 95% range | Cosine, dimensions on one scale | Null, 95% range | Emotion "
+                  "direction, two halves of the documents | UBS direction, two halves of the careers | Held out: documents "
+                  "sorted right |\n|---|---|---|---|---|---|---|---|")
     summary[name] = {}
     ab = np.isin(THEME, [a, b])
     for j, L in enumerate(KEEP):
@@ -75,11 +90,16 @@ for name, a, b, key, ubs_name in PAIRS:
         u = UBS[key][:, j].mean(0)
         c = cos(e, u)
         lab = THEME[ab]
-        null = []
+        sc = scale_at(j, L)
+        cz = cos(e / sc, u / sc)
+        null, nullz = [], []
         for _ in range(SHUFFLES):
             sh = RNG.permutation(lab)
-            null.append(cos(X[ab][sh == a].mean(0) - X[ab][sh == b].mean(0), u))
+            d = X[ab][sh == a].mean(0) - X[ab][sh == b].mean(0)
+            null.append(cos(d, u))
+            nullz.append(cos(d / sc, u / sc))
         lo, hi = np.percentile(null, [2.5, 97.5])
+        loz, hiz = np.percentile(nullz, [2.5, 97.5])
         e_ceiling = cos(X[(THEME == a) & half].mean(0) - X[(THEME == b) & half].mean(0),
                         X[(THEME == a) & ~half].mean(0) - X[(THEME == b) & ~half].mean(0))
         u_ceiling = cos(UBS[key][runs < 5, j].mean(0), UBS[key][runs >= 5, j].mean(0))
@@ -89,9 +109,10 @@ for name, a, b, key, ubs_name in PAIRS:
             mid = (X[(THEME == a) & h].mean(0) + X[(THEME == b) & h].mean(0)) / 2
             test = ab & ~h
             right += list(((X[test] - mid) @ d > 0) == (THEME[test] == a))
-        report.append(f"| {L} | {c:+.3f} | {lo:+.3f} to {hi:+.3f} | {e_ceiling:+.3f} | {u_ceiling:+.3f} | "
-                      f"{100 * np.mean(right):.0f}% |")
-        summary[name][L] = {"cosine": c, "null": [float(lo), float(hi)], "emotion_ceiling": e_ceiling,
+        report.append(f"| {L} | {c:+.3f} | {lo:+.3f} to {hi:+.3f} | {cz:+.3f} | {loz:+.3f} to {hiz:+.3f} | "
+                      f"{e_ceiling:+.3f} | {u_ceiling:+.3f} | {100 * np.mean(right):.0f}% |")
+        summary[name][L] = {"cosine": c, "null": [float(lo), float(hi)], "cosine_scaled": cz,
+                            "null_scaled": [float(loz), float(hiz)], "emotion_ceiling": e_ceiling,
                             "ubs_ceiling": u_ceiling, "held_out_right": float(np.mean(right))}
 
 # The drift: do loss-framed careers sit further along the Loss - Gain emotion direction, request by request?

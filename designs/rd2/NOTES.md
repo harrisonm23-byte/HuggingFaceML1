@@ -1579,3 +1579,14 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Checked on a tiny model with the real careers, documents and framing file: 25 conditions per moment, only the update
   changes, the document leads the update, the history prefix is identical across versions.
 - The user decided no neutral list is needed; the emotion comparison runs with Loss - Gain, Blame - Loss, Credit - Gain.
+
+## 21 Oct: emotion comparison, first result; a scale-corrected check added
+
+- `results/emotion_lists/EMOTION.md`: the author's lists are encoded cleanly (split-half 0.74-0.98, held-out 84-100%),
+  but they do not line up with UBS's frame directions beyond the document-shuffle null at any layer, except Loss - Gain
+  at layer 24 (+0.097 vs null up to +0.090; marginal). Blame - Loss and Credit - Gain: within the null. No consistent
+  drift of loss-framed careers along Loss - Gain. Reading: the model encodes a counterparty's loss framing as
+  something more specific than generic catastrophe/victory text.
+- The nulls are wide because a few huge residual dimensions dominate raw cosines; the analysis now also reports the
+  cosine and its null with every dimension on one scale (pooled spread over documents and decision moments). Rerun
+  with `modal run --detach scripts/modal_emotion.py` (re-reads the documents, minutes). Paper paragraph after it.
