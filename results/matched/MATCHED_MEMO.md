@@ -1,6 +1,6 @@
 # Same moment, different priming (A's careers, everything but management's memo and books held fixed)
 
-25 careers; 125 trading-day openings and 150 push requests, each read with the memo and all five morning books in each of the five versions (the books' 30-day P&L still carries the agent's own; the agent's own words are as saved). Gemma 3 12B at bfloat16. Outcomes from the log-probs of HOLD and every order size the agents used, after a fixed neutral reasoning line; coverage (the share of all probability those orders take): median 0.95, lowest 0.00. Produced by `designs/rd2/analysis/matched_memo.py`.
+25 careers; 125 trading-day openings and 83 push requests, each read with the memo and all five morning books in each of the five versions (the books' 30-day P&L still carries the agent's own; the agent's own words are as saved). Gemma 3 12B at bfloat16. Outcomes from the log-probs of HOLD and every order size the agents used, after a fixed neutral reasoning line; coverage (the share of all probability those orders take): median 0.95, lowest 0.00. Produced by `designs/rd2/analysis/matched_memo.py`.
 
 
 ## 1. What it would do
@@ -62,27 +62,27 @@
 
 | History \ priming | neutral | loss | gain | loss + you | gain + you |
 |---|---|---|---|---|---|
-| neutral | 25.1% | 28.7% | 28.4% | 26.9% | 28.3% |
-| loss | 11.6% | 10.6% | 10.4% | 10.2% | 10.6% |
-| gain | 9.4% | 9.4% | 9.8% | 10.0% | 10.1% |
-| loss + you | 10.6% | 10.4% | 10.9% | 10.1% | 11.0% |
-| gain + you | 7.8% | 6.8% | 7.1% | 6.3% | 7.0% |
+| neutral | 35.6% | 41.3% | 42.9% | 36.4% | 41.5% |
+| loss | 6.1% | 5.2% | 5.0% | 3.9% | 5.6% |
+| gain | 15.1% | 15.2% | 15.7% | 15.8% | 16.3% |
+| loss + you | 11.5% | 11.1% | 11.9% | 10.5% | 11.9% |
+| gain + you | 11.7% | 10.1% | 10.6% | 9.4% | 10.4% |
 
 | Contrast (all 25 histories; paired, signs flipped by career) | Change | 95% interval | p |
 |---|---|---|---|
-| Priming: loss vs neutral | +0.3 points | -0.7 to +1.5 | 0.6804 |
-| Priming: gain vs neutral | +0.4 points | -0.5 to +1.4 | 0.4163 |
-| Priming: loss + you vs neutral | -0.2 points | -1.4 to +1.2 | 0.7993 |
-| Priming: gain + you vs neutral | +0.5 points | -0.4 to +1.6 | 0.3972 |
-| Priming: loss frame vs gain frame | -0.4 points | -0.9 to +0.0 | 0.1015 |
-| "You" after loss: loss + you vs loss | -0.5 points | -1.3 to +0.2 | 0.2664 |
-| "You" after gain: gain + you vs gain | +0.1 points | -0.3 to +0.4 | 0.7677 |
-| "You" after loss minus after gain | -0.5 points | -1.5 to +0.3 | 0.3170 |
+| Priming: loss vs neutral | +0.4 points | -0.8 to +1.8 | 0.5586 |
+| Priming: gain vs neutral | +0.8 points | -0.4 to +2.1 | 0.2683 |
+| Priming: loss + you vs neutral | -0.3 points | -1.9 to +1.3 | 0.7170 |
+| Priming: gain + you vs neutral | +0.9 points | -0.3 to +2.3 | 0.2136 |
+| Priming: loss frame vs gain frame | -0.8 points | -1.8 to +0.2 | 0.1368 |
+| "You" after loss: loss + you vs loss | -0.7 points | -2.3 to +0.6 | 0.4435 |
+| "You" after gain: gain + you vs gain | +0.1 points | -0.5 to +0.6 | 0.7815 |
+| "You" after loss minus after gain | -0.8 points | -2.8 to +0.6 | 0.4498 |
 
 | What its own words carry (priming held neutral; different careers, 5 per version, so the intervals are rough) | Change | 95% interval | p |
 |---|---|---|---|
-| History: loss frame vs neutral | -14.0 points | -29.1 to +0.4 | 0.0725 |
-| History: gain frame vs neutral | -16.4 points | -31.7 to -1.6 | 0.0300 |
+| History: loss frame vs neutral | -17.1 points | -36.5 to +9.7 | 0.1786 |
+| History: gain frame vs neutral | -14.8 points | -34.7 to +10.7 | 0.2297 |
 
 **Validity check:** the as-saved expected order size at the day's first update, against what the real careers traded before the first chat (oz/day, mean over their trading days):
 
@@ -102,14 +102,14 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 
 | Layer | Ceiling (two halves) | vs Run 1's memo direction | vs UBS's loss (history held fixed) | vs the priming direction at the day's first update |
 |---|---|---|---|---|
-| 6 | 0.655 | 0.041 | 0.030 | 0.746 |
-| 12 | 0.883 | 0.712 | 0.718 | 0.406 |
-| 18 | 0.683 | -0.299 | -0.305 | -0.152 |
-| 24 | -0.018 | 0.034 | 0.399 | -0.084 |
-| 31 | 0.815 | 0.360 | -0.074 | 0.394 |
-| 36 | 0.899 | 0.389 | 0.200 | 0.702 |
-| 41 | 0.860 | 0.367 | 0.115 | 0.649 |
-| 47 | 0.928 | 0.647 | -0.557 | 0.578 |
+| 6 | 0.764 | -0.005 | 0.019 | 0.788 |
+| 12 | 0.796 | 0.601 | 0.590 | 0.374 |
+| 18 | 0.237 | -0.026 | -0.023 | 0.143 |
+| 24 | 0.215 | 0.039 | 0.205 | 0.056 |
+| 31 | 0.879 | 0.359 | -0.084 | 0.401 |
+| 36 | 0.873 | 0.394 | 0.197 | 0.718 |
+| 41 | 0.724 | 0.386 | 0.091 | 0.660 |
+| 47 | 0.878 | 0.630 | -0.520 | 0.591 |
 
 **"You" after loss and after gain** (the change the "+ you" priming makes at the same moment): sizes, how alike (cosine), and the ceiling (after loss vs itself on two halves of the careers).
 
@@ -129,25 +129,25 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 
 **Note:** a difference between "you" after loss and after gain in the features can come from the features' on/off thresholds alone (the same change, starting from different levels). The cosine table in section 2, which is linear, is the cleaner test of whether "you" registers differently.
 
-**Priming: loss frame vs gain frame, layer 12** (63 features tested; 32 with q < 0.05; 4 of the top 15 are also in UBS's top 15 (B's matched run))
+**Priming: loss frame vs gain frame, layer 12** (63 features tested; 33 with q < 0.05; 4 of the top 15 are also in UBS's top 15 (B's matched run))
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [16341](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341) | +0.33 | +2.52 | 0.0010 | 0.004 |
-| [1534](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1534) | +0.32 | +0.16 | 0.0010 | 0.004 |
-| [482](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482) | +0.27 | +0.49 | 0.0020 | 0.007 |
-| [5791](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791) | +0.27 | +0.20 | 0.0010 | 0.004 |
-| [4382](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/4382) | +0.27 | +0.46 | 0.0010 | 0.004 |
-| [652](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/652) | +0.26 | +0.31 | 0.0010 | 0.004 |
-| [438](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438) | +0.25 | +0.44 | 0.0020 | 0.007 |
-| [1641](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641) | +0.24 | +0.23 | 0.0030 | 0.009 |
-| [3000](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000) | -0.23 | -0.18 | 0.0010 | 0.004 |
-| [12687](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/12687) | -0.23 | -0.05 | 0.0010 | 0.004 |
-| [3985](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3985) | +0.23 | +0.17 | 0.0010 | 0.004 |
-| [9499](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9499) | +0.23 | +0.10 | 0.0010 | 0.004 |
-| [2819](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2819) | +0.22 | +0.13 | 0.0040 | 0.011 |
-| [1272](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1272) | +0.21 | +0.15 | 0.0110 | 0.024 |
-| [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +0.21 | +0.11 | 0.0110 | 0.024 |
+| [16341](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341) | +0.33 | +2.52 | 0.0010 | 0.005 |
+| [1534](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1534) | +0.32 | +0.16 | 0.0010 | 0.005 |
+| [482](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482) | +0.27 | +0.49 | 0.0030 | 0.009 |
+| [5791](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/5791) | +0.27 | +0.20 | 0.0010 | 0.005 |
+| [4382](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/4382) | +0.27 | +0.46 | 0.0010 | 0.005 |
+| [652](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/652) | +0.26 | +0.31 | 0.0010 | 0.005 |
+| [438](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438) | +0.25 | +0.44 | 0.0010 | 0.005 |
+| [1641](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641) | +0.24 | +0.23 | 0.0020 | 0.008 |
+| [3000](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3000) | -0.23 | -0.18 | 0.0030 | 0.009 |
+| [12687](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/12687) | -0.23 | -0.05 | 0.0010 | 0.005 |
+| [3985](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/3985) | +0.23 | +0.17 | 0.0010 | 0.005 |
+| [9499](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9499) | +0.23 | +0.10 | 0.0010 | 0.005 |
+| [2819](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2819) | +0.22 | +0.13 | 0.0020 | 0.008 |
+| [1272](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1272) | +0.21 | +0.15 | 0.0100 | 0.021 |
+| [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +0.21 | +0.11 | 0.0080 | 0.018 |
 
 **"You" after loss: loss + you vs loss, layer 12** (63 features tested; 41 with q < 0.05)
 
@@ -169,7 +169,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [1272](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1272) | +0.46 | +0.73 | 0.0010 | 0.002 |
 | [8848](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/8848) | +0.45 | +0.97 | 0.0010 | 0.002 |
 
-**"You" after gain: gain + you vs gain, layer 12** (62 features tested; 46 with q < 0.05; 13 of its top 15 are also in the top 15 after loss)
+**"You" after gain: gain + you vs gain, layer 12** (62 features tested; 44 with q < 0.05; 13 of its top 15 are also in the top 15 after loss)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -193,23 +193,23 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +0.30 | +0.34 | 0.0010 | 0.016 |
-| [1641](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641) | +0.28 | +0.45 | 0.0010 | 0.016 |
-| [168](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/168) | -0.27 | -0.98 | 0.0010 | 0.016 |
-| [482](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482) | +0.25 | +1.01 | 0.0010 | 0.016 |
-| [2653](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2653) | +0.23 | +0.21 | 0.0020 | 0.025 |
-| [9499](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9499) | +0.19 | +0.14 | 0.0030 | 0.031 |
-| [1272](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1272) | -0.17 | -0.23 | 0.0300 | 0.195 |
-| [2328](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2328) | +0.16 | +1.02 | 0.0260 | 0.195 |
-| [111](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/111) | -0.14 | -0.42 | 0.0400 | 0.229 |
-| [277](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/277) | -0.13 | -0.63 | 0.0559 | 0.254 |
-| [2878](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2878) | +0.13 | +1.42 | 0.0180 | 0.162 |
-| [6423](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/6423) | +0.13 | +0.12 | 0.0480 | 0.252 |
-| [2604](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604) | +0.13 | +0.12 | 0.0629 | 0.254 |
-| [438](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438) | +0.12 | +0.42 | 0.0919 | 0.254 |
-| [16341](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341) | -0.12 | -1.70 | 0.0310 | 0.195 |
+| [524](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/524) | +0.30 | +0.34 | 0.0010 | 0.013 |
+| [1641](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1641) | +0.28 | +0.45 | 0.0030 | 0.031 |
+| [168](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/168) | -0.27 | -0.98 | 0.0010 | 0.013 |
+| [482](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/482) | +0.25 | +1.01 | 0.0010 | 0.013 |
+| [2653](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2653) | +0.23 | +0.21 | 0.0010 | 0.013 |
+| [9499](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/9499) | +0.19 | +0.14 | 0.0010 | 0.013 |
+| [1272](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/1272) | -0.17 | -0.23 | 0.0220 | 0.154 |
+| [2328](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2328) | +0.16 | +1.02 | 0.0330 | 0.189 |
+| [111](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/111) | -0.14 | -0.42 | 0.0450 | 0.236 |
+| [277](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/277) | -0.13 | -0.63 | 0.0569 | 0.244 |
+| [2878](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2878) | +0.13 | +1.42 | 0.0180 | 0.142 |
+| [6423](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/6423) | +0.13 | +0.12 | 0.0300 | 0.189 |
+| [2604](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/2604) | +0.13 | +0.12 | 0.0729 | 0.255 |
+| [438](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/438) | +0.12 | +0.42 | 0.1099 | 0.301 |
+| [16341](https://www.neuronpedia.org/gemma-3-12b-it/12-gemmascope-2-res-16k/16341) | -0.12 | -1.70 | 0.0180 | 0.142 |
 
-**Priming: loss frame vs gain frame, layer 24** (158 features tested; 92 with q < 0.05; 3 of the top 15 are also in UBS's top 15 (B's matched run))
+**Priming: loss frame vs gain frame, layer 24** (158 features tested; 91 with q < 0.05; 2 of the top 15 are also in UBS's top 15 (B's matched run))
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -225,7 +225,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [9059](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059) | +0.48 | +15.32 | 0.0010 | 0.003 |
 | [4250](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4250) | +0.45 | +32.29 | 0.0010 | 0.003 |
 | [907](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/907) | +0.45 | +41.13 | 0.0010 | 0.003 |
-| [7925](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7925) | -0.45 | -9.15 | 0.0010 | 0.003 |
+| [7925](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7925) | -0.45 | -9.15 | 0.0020 | 0.005 |
 | [9517](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9517) | -0.44 | -41.14 | 0.0010 | 0.003 |
 | [3068](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3068) | -0.44 | -31.37 | 0.0010 | 0.003 |
 
@@ -249,7 +249,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [11649](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649) | +0.34 | +7.27 | 0.0010 | 0.003 |
 | [3068](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3068) | -0.34 | -21.72 | 0.0010 | 0.003 |
 
-**"You" after gain: gain + you vs gain, layer 24** (160 features tested; 55 with q < 0.05; 10 of its top 15 are also in the top 15 after loss)
+**"You" after gain: gain + you vs gain, layer 24** (160 features tested; 56 with q < 0.05; 10 of its top 15 are also in the top 15 after loss)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -269,7 +269,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [7745](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7745) | -0.31 | -12.14 | 0.0010 | 0.004 |
 | [4023](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4023) | +0.31 | +21.40 | 0.0010 | 0.004 |
 
-**"You" after loss minus after gain, layer 24** (158 features tested; 25 with q < 0.05)
+**"You" after loss minus after gain, layer 24** (158 features tested; 24 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -280,16 +280,16 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [15753](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/15753) | -0.29 | -3.78 | 0.0010 | 0.014 |
 | [9059](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9059) | +0.29 | +6.11 | 0.0010 | 0.014 |
 | [13729](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13729) | +0.27 | +3.92 | 0.0010 | 0.014 |
-| [334](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/334) | -0.26 | -14.39 | 0.0030 | 0.030 |
+| [334](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/334) | -0.26 | -14.39 | 0.0020 | 0.024 |
 | [869](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/869) | +0.25 | +18.59 | 0.0010 | 0.014 |
-| [222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222) | -0.23 | -7.56 | 0.0030 | 0.030 |
-| [8311](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8311) | +0.22 | +3.37 | 0.0060 | 0.039 |
-| [13674](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674) | +0.21 | +1.98 | 0.0040 | 0.032 |
-| [14235](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14235) | -0.21 | -3.83 | 0.0020 | 0.024 |
+| [222](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222) | -0.23 | -7.56 | 0.0040 | 0.030 |
+| [8311](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/8311) | +0.22 | +3.37 | 0.0070 | 0.046 |
+| [13674](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13674) | +0.21 | +1.98 | 0.0030 | 0.026 |
+| [14235](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/14235) | -0.21 | -3.83 | 0.0010 | 0.014 |
 | [12357](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12357) | +0.20 | +1.57 | 0.0010 | 0.014 |
-| [12678](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678) | -0.19 | -3.21 | 0.0020 | 0.024 |
+| [12678](https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678) | -0.19 | -3.21 | 0.0030 | 0.026 |
 
-**Priming: loss frame vs gain frame, layer 31** (195 features tested; 137 with q < 0.05; 2 of the top 15 are also in UBS's top 15 (B's matched run))
+**Priming: loss frame vs gain frame, layer 31** (195 features tested; 135 with q < 0.05; 3 of the top 15 are also in UBS's top 15 (B's matched run))
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -309,7 +309,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [1603](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1603) | +0.65 | +160.89 | 0.0010 | 0.002 |
 | [3066](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3066) | +0.65 | +186.86 | 0.0010 | 0.002 |
 
-**"You" after loss: loss + you vs loss, layer 31** (197 features tested; 107 with q < 0.05)
+**"You" after loss: loss + you vs loss, layer 31** (197 features tested; 106 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -329,7 +329,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [4368](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368) | +0.47 | +129.18 | 0.0010 | 0.002 |
 | [1826](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1826) | +0.46 | +83.83 | 0.0010 | 0.002 |
 
-**"You" after gain: gain + you vs gain, layer 31** (184 features tested; 85 with q < 0.05; 6 of its top 15 are also in the top 15 after loss)
+**"You" after gain: gain + you vs gain, layer 31** (184 features tested; 84 with q < 0.05; 6 of its top 15 are also in the top 15 after loss)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -349,27 +349,27 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [239](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/239) | -0.33 | -37.08 | 0.0010 | 0.003 |
 | [896](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/896) | +0.32 | +44.87 | 0.0010 | 0.003 |
 
-**"You" after loss minus after gain, layer 31** (195 features tested; 71 with q < 0.05)
+**"You" after loss minus after gain, layer 31** (195 features tested; 69 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
-| [3051](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3051) | +0.53 | +60.99 | 0.0010 | 0.005 |
-| [1450](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1450) | +0.47 | +60.34 | 0.0010 | 0.005 |
-| [5584](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5584) | +0.47 | +41.95 | 0.0010 | 0.005 |
-| [2831](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2831) | -0.47 | -85.43 | 0.0010 | 0.005 |
-| [4368](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368) | +0.44 | +123.40 | 0.0010 | 0.005 |
-| [1826](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1826) | +0.43 | +80.21 | 0.0010 | 0.005 |
-| [1336](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1336) | +0.42 | +72.53 | 0.0010 | 0.005 |
-| [5862](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5862) | +0.39 | +52.18 | 0.0010 | 0.005 |
-| [879](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/879) | +0.38 | +40.09 | 0.0010 | 0.005 |
-| [2153](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2153) | -0.38 | -56.36 | 0.0010 | 0.005 |
-| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | +0.36 | +62.15 | 0.0010 | 0.005 |
-| [3153](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3153) | -0.35 | -58.56 | 0.0010 | 0.005 |
-| [1157](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1157) | +0.33 | +44.49 | 0.0010 | 0.005 |
-| [1837](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1837) | +0.32 | +34.48 | 0.0010 | 0.005 |
-| [6634](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6634) | -0.31 | -72.15 | 0.0010 | 0.005 |
+| [3051](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3051) | +0.53 | +60.99 | 0.0010 | 0.004 |
+| [1450](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1450) | +0.47 | +60.34 | 0.0010 | 0.004 |
+| [5584](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5584) | +0.47 | +41.95 | 0.0010 | 0.004 |
+| [2831](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2831) | -0.47 | -85.43 | 0.0010 | 0.004 |
+| [4368](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368) | +0.44 | +123.40 | 0.0010 | 0.004 |
+| [1826](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1826) | +0.43 | +80.21 | 0.0010 | 0.004 |
+| [1336](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1336) | +0.42 | +72.53 | 0.0010 | 0.004 |
+| [5862](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5862) | +0.39 | +52.18 | 0.0010 | 0.004 |
+| [879](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/879) | +0.38 | +40.09 | 0.0010 | 0.004 |
+| [2153](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2153) | -0.38 | -56.36 | 0.0010 | 0.004 |
+| [2130](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2130) | +0.36 | +62.15 | 0.0010 | 0.004 |
+| [3153](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3153) | -0.35 | -58.56 | 0.0010 | 0.004 |
+| [1157](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1157) | +0.33 | +44.49 | 0.0010 | 0.004 |
+| [1837](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1837) | +0.32 | +34.48 | 0.0010 | 0.004 |
+| [6634](https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6634) | -0.31 | -72.15 | 0.0010 | 0.004 |
 
-**Priming: loss frame vs gain frame, layer 41** (192 features tested; 121 with q < 0.05; 4 of the top 15 are also in UBS's top 15 (B's matched run))
+**Priming: loss frame vs gain frame, layer 41** (192 features tested; 121 with q < 0.05; 5 of the top 15 are also in UBS's top 15 (B's matched run))
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -389,7 +389,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [1826](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1826) | +0.61 | +305.98 | 0.0010 | 0.002 |
 | [375](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/375) | +0.61 | +315.58 | 0.0010 | 0.002 |
 
-**"You" after loss: loss + you vs loss, layer 41** (187 features tested; 99 with q < 0.05)
+**"You" after loss: loss + you vs loss, layer 41** (187 features tested; 98 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -409,7 +409,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [10380](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/10380) | +0.41 | +82.93 | 0.0010 | 0.003 |
 | [337](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/337) | +0.41 | +98.45 | 0.0010 | 0.003 |
 
-**"You" after gain: gain + you vs gain, layer 41** (185 features tested; 72 with q < 0.05; 6 of its top 15 are also in the top 15 after loss)
+**"You" after gain: gain + you vs gain, layer 41** (185 features tested; 75 with q < 0.05; 6 of its top 15 are also in the top 15 after loss)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
@@ -429,7 +429,7 @@ Measured at UBS's requests (where Run 1's and UBS's directions were measured too
 | [3061](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3061) | +0.30 | +98.64 | 0.0010 | 0.004 |
 | [337](https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/337) | +0.30 | +58.59 | 0.0010 | 0.004 |
 
-**"You" after loss minus after gain, layer 41** (192 features tested; 60 with q < 0.05)
+**"You" after loss minus after gain, layer 41** (192 features tested; 58 with q < 0.05)
 
 | Feature | Difference (spread units) | Activation difference | p | q |
 |---|---|---|---|---|
