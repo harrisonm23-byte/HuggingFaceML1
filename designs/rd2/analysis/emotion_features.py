@@ -85,7 +85,7 @@ def names(pairs):
             _names[p] = n
 
 
-report = ["# What the emotion documents activate inside the model (exploratory)\n",
+report = [f"# What the {'emotion' if 'blame' in KINDS else 'financial'} documents activate inside the model (exploratory)\n",
           f"{len(theme)} documents ({', '.join(f'{t} {int((theme == t).sum())}' for t in dict.fromkeys(theme))}), each "
           "read on its own by Gemma 3 12B (bfloat16). Every token's state passed through the Gemma Scope 2 dictionary "
           "(16k, residual stream); a document's activation of a feature is its mean over the document's tokens. "
