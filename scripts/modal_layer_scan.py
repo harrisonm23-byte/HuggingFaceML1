@@ -6,6 +6,7 @@ random directions, with one greedy reply per condition at a fixed showcase momen
 
     modal run --detach scripts/modal_layer_scan.py                        # the confirmation scan, layers 18-21
     modal run --detach scripts/modal_layer_scan.py --doc-set financial    # the financial documents
+    modal run --detach scripts/modal_layer_scan.py --framed --parts 3      # the same states with framed requests
     modal run --detach scripts/modal_layer_scan.py --showcase-only --themes blame,gain,credit   # some types only
     modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per document type and layer (0-47)
 """
@@ -237,9 +238,80 @@ def dispatch(parts, analysis_only, doc_set):
     return done
 
 
+@app.function(gpu="H100", timeout=10 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
+              volumes=VOLUMES)
+def run_part_framed(part, parts, doc_set="emotion"):
+    """The states at layers 19 and 21 (2x) with UBS's request in each of its five framings."""
+    import json, os, time
+    import numpy as np
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    setup()
+    states_vol.reload()
+    import layer_scan as LS
+    from interventions import NEUTRAL_LEAD, WIDE_GRID, Steer
+    z = np.load(f"{SCAN[doc_set]}/shifts.npz")                  # the directions from the confirmation scan
+    assert [int(l) for l in z["layers"]] == LS.LAYERS
+    themes = [str(t) for t in z["themes"]]
+    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(LS.LAYERS)}
+                                          for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])])
+    docs, items, tok, model, layers, chats, opening = _load(doc_set)
+    out = SCAN[doc_set] + "_framed"
+    os.makedirs(out, exist_ok=True)
+    todo = items[part::parts]
+    out_path = f"{out}/part{part}.jsonl"
+    done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
+    steers = {L: Steer(layers[L]) for L in LS.FRAMED_LAYERS}
+    t0 = time.time()
+    for n, item in enumerate(todo):
+        career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
+        for row in LS.run_item_framed(model, tok, steers, career, item, dirs, chats, opening, NEUTRAL_LEAD, WIDE_GRID,
+                                      themes, done):
+            with open(out_path, "a") as f:
+                f.write(json.dumps(row) + "\n")
+        states_vol.commit()
+        print(f"framed part {part}: {n + 1}/{len(todo)} moments | {(time.time() - t0) / 60:.0f} min", flush=True)
+    return f"framed part {part}: {len(todo)} moments"
+
+
+@app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS, volumes=VOLUMES)
+def analyse_framed(doc_set="emotion"):
+    import subprocess
+    repo = setup()
+    states_vol.reload()
+    out, res = SCAN[doc_set] + "_framed", SETS[doc_set][1]
+    subprocess.run(f"python designs/rd2/analysis/layer_scan_framed.py {out} {res}", shell=True, check=True)
+    for attempt in range(10):
+        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan, framed requests ({doc_set})'",
+                       shell=True)
+        if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
+                          shell=True).returncode == 0:
+            return "framed-scan results pushed"
+        subprocess.run(f"git -C {repo} rebase --abort", shell=True)
+    raise RuntimeError("could not push the results")
+
+
+@app.function(timeout=14 * 3600)
+def dispatch_framed(parts, analysis_only, doc_set):
+    done = []
+    if not analysis_only:
+        calls = [(k, run_part_framed.spawn(k, parts, doc_set)) for k in range(parts)]
+        for k, c in calls:
+            try:
+                done.append(c.get())
+            except Exception as err:
+                done.append(f"framed part {k}: failed ({type(err).__name__})")
+    done.append(analyse_framed.remote(doc_set))
+    return done
+
+
 @app.local_entrypoint()
 def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion", showcase_only: bool = False,
-         strength: float = 1.0, themes: str = ""):
+         strength: float = 1.0, themes: str = "", framed: bool = False):
+    if framed:
+        print(f"layer scan with framed requests ({doc_set} documents): {parts} GPUs, then the analysis")
+        for line in dispatch_framed.remote(parts, analysis_only, doc_set):
+            print(line)
+        return
     if showcase_only:
         print(f"layer showcase ({doc_set} documents, {strength:g}x): one moment, one reply per document type and layer")
         print(showcase.remote(doc_set, strength, themes))

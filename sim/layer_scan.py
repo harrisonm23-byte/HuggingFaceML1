@@ -184,3 +184,65 @@ def showcase(model, tok, steers, capture, career, item, docs, chats, opening, le
                "career_file": item["career_file"], "date": item["date"], "chat": item["chat"], "wants": item["wants"],
                "coverage": cover, **summarise_orders(orders, probs, item["position"], item["wants"]),
                "reply": reply, "reply_status": parse_reply(reply)["status"]}
+
+
+FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
+FRAMED_LAYERS, FRAMED_STRENGTH = [19, 21], 2
+FRAMED_SAMPLED = ("loss", "blame")
+
+
+def conditions_framed(themes):
+    """[(name, theme, layer, kind, strength, sampled)] for one framing of UBS's request."""
+    c = [("none", None, None, "none", 0, True)]
+    for L in FRAMED_LAYERS:
+        c += [(f"{t} x{FRAMED_STRENGTH} at layer {L}", t, L, "push", FRAMED_STRENGTH, t in FRAMED_SAMPLED) for t in themes]
+        c.append((f"random x{FRAMED_STRENGTH} at layer {L}", None, L, "random", FRAMED_STRENGTH, False))
+    return c
+
+
+def run_item_framed(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES):
+    """The states injected with UBS's request in each of its five framings (the same neutral career, the same moment).
+    One row per framing and condition."""
+    import torch
+    from inside_careers import encode, turns_at
+    from interventions import goes_along, order_dist, prefill, sample, split_point, summarise_orders
+    from matched import matched
+    from steer2 import half_for
+    idx = item["history_index"]
+    h = half_for(int(item["run"]))
+    _, k = split_point(tok, career, idx, opening)
+    cache = None
+    for v in FRAMINGS:
+        full = encode(tok, turns_at(matched(career, idx, item["date"], "neutral", v, chats), idx, opening))
+        rng = np.random.default_rng(20261022 + idx)
+        for name, t, L, kind, s, sampled in conditions_framed(themes):
+            key = f"{item['career_file']}|{idx}|{v}|{name}"
+            r = rng.normal(size=4096)
+            if key in done:
+                continue
+            if cache is None:
+                cache = prefill(model, full[:k])
+            vec = None
+            if kind == "push":
+                vec = dirs[h][t][L][0] * s
+            elif kind == "random":
+                size = np.mean([dirs[h][tt][L][1] for tt in themes])
+                r = r[:dirs[h][themes[0]][L][0].shape[0]]
+                vec = r / np.linalg.norm(r) * size * s
+            try:
+                for st in steers.values():
+                    st.vec = None
+                if vec is not None:
+                    steers[L].vec = torch.tensor(vec, dtype=torch.float32, device=model.device)
+                orders, probs, cover = order_dist(model, tok, full, cache, lead, grid)
+                replies = sample(model, full, cache, samples, tok=tok) if sampled else []
+            finally:
+                for st in steers.values():
+                    st.vec = None
+            judged = [goes_along(x, item["position"], item["wants"]) for x in replies]
+            yield {"key": key, "career_file": item["career_file"], "run": item["run"], "history_index": idx,
+                   "date": item["date"], "chat": item["chat"], "wants": item["wants"], "position": item["position"],
+                   "framing": v, "condition": name, "theme": t, "layer": L, "kind": kind, "strength": s,
+                   "shift_size": float(np.linalg.norm(vec)) if vec is not None else 0.0, "coverage": cover,
+                   "orders": orders, "probs": probs, **summarise_orders(orders, probs, item["position"], item["wants"]),
+                   "replies": replies, "along": [a for a, _ in judged], "status": [st_ for _, st_ in judged]}
