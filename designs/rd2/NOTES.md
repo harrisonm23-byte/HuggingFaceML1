@@ -1554,3 +1554,14 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Plan once filled: (1) compare, no injection: cosine of each emotion direction with the frame direction from UBS's
   lines (held fixed) by layer, and the framed careers' drift along it; (2) inject: as steering arms, or as text placed
   before a request (an incidental-emotion priming test, after Lerner et al.).
+
+## 21 Oct: the author's emotion lists are in; comparison job built
+
+- Files from the user (frozen, sha256 in `scripts/modal_emotion.py`): `designs/rd2/emotion_lists/` loss.txt, blame.txt,
+  gain.txt, credit.txt; 16 documents each, ~150 words; Loss and Gain have no "you", Blame and Credit ~445 each; nothing
+  about silver, trading or banks. No neutral list yet (the code uses `neutral.txt` if added).
+- `scripts/modal_emotion.py` (1 GPU, minutes): reads each document, keeps every layer's mean state over its tokens (and
+  last token); then `designs/rd2/analysis/emotion_lists.py`: Loss - Gain vs UBS's loss - gain request, Blame - Loss vs
+  loss + you - loss, Credit - Gain vs gain + you - gain (and Loss - Neutral if given), each with a document-shuffle null,
+  split-half ceilings and a held-out sort; and the drift of B's loss- vs gain-framed careers along Loss - Gain by
+  request. Checked on fake data with a planted direction.
