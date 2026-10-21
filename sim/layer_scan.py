@@ -199,7 +199,7 @@ def showcase(model, tok, steers, capture, career, item, docs, chats, opening, le
 
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
 FRAMED_LAYERS, FRAMED_STRENGTH = [19, 21], 2
-FRAMED_SAMPLED = ("loss", "blame")
+FRAMED_SAMPLED = ("loss", "blame", "gain", "credit")   # every emotional state gets the agent's own replies
 
 
 def conditions_framed(themes, layers=None):
