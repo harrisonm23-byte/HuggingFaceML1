@@ -23,7 +23,8 @@ KEEP = [6, 12, 18, 24, 31, 36, 41, 47]                 # the layers saved in the
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
          .pip_install("torch==2.11.0", index_url="https://download.pytorch.org/whl/cu130")
-         .pip_install("transformers==5.20.1", "accelerate==1.15.0", "numpy", "huggingface_hub", "safetensors"))
+         .pip_install("transformers==5.20.1", "accelerate==1.15.0", "bitsandbytes==0.50.2", "python-docx",
+                      "pandas", "numpy", "huggingface_hub", "safetensors"))
 app = modal.App("rd2-emotion-features", image=image)
 weights = modal.Volume.from_name("rd2-hf-cache", create_if_missing=True)
 states_vol = modal.Volume.from_name("rd2-states", create_if_missing=True)
@@ -84,7 +85,8 @@ def read_encode_analyse():
         def h(module, inputs, output):
             got[L] = (output[0] if isinstance(output, tuple) else output)[0].float()
         return h
-    for L in WANT_LAYERS:
+    RAW = [12, 18, 24, 31]                              # raw decision states kept here (24: the going-along direction)
+    for L in sorted(set(WANT_LAYERS) | set(RAW)):
         layers[L].register_forward_hook(hook(L))
     acts, meta = {L: [] for L in WANT_LAYERS}, []
     for f in FROZEN:
@@ -112,13 +114,14 @@ def read_encode_analyse():
     THEMES = ["none", "neutral", "loss", "blame", "gain", "credit"]
     incar = {L: [] for L in WANT_LAYERS}                 # moments x 5 themes x features (reading the document)
     decide = {L: [] for L in WANT_LAYERS}                # moments x 6 (none + 5 themes) x features (at the decision)
+    raw = {L: [] for L in RAW}                           # moments x 6 x width: the raw decision state
     cmeta = []
     for n, item in enumerate(items):
         career = json.load(open(f"{folder}/careers/{item['career_file']}"))
         idx = item["history_index"]
         plain, k = split_point(tok, career, idx, opening)
         cache = prefill(model, plain[:k])
-        row_r, row_d = {L: [] for L in WANT_LAYERS}, {L: [] for L in WANT_LAYERS}
+        row_r, row_d, row_x = {L: [] for L in WANT_LAYERS}, {L: [] for L in WANT_LAYERS}, {L: [] for L in RAW}
         for t in THEMES:
             doc = None if t == "none" else docs[t][item["doc"] % len(docs[t])]
             full = encode(tok, turns_at(P.primed(career, idx, doc), idx, opening))
@@ -126,6 +129,8 @@ def read_encode_analyse():
             with torch.no_grad():
                 model(input_ids=torch.tensor([full[k:]], device=model.device), past_key_values=copy.deepcopy(cache),
                       use_cache=True, cache_position=torch.arange(k, len(full), device=model.device))
+            for L in RAW:
+                row_x[L].append(got[L][-1].cpu().numpy())
             for L in WANT_LAYERS:
                 h = got[L]                                  # positions k .. end
                 row_d[L].append(enc(h[-1:], L)[0].cpu().numpy())
@@ -136,6 +141,8 @@ def read_encode_analyse():
         for L in WANT_LAYERS:
             incar[L].append(np.stack(row_r[L]))
             decide[L].append(np.stack(row_d[L]))
+        for L in RAW:
+            raw[L].append(np.stack(row_x[L]))
         cmeta.append({"career_file": item["career_file"], "history_index": idx, "date": item["date"], "doc": item["doc"]})
         print(f"in career: {n + 1}/{len(items)}", flush=True)
     # B's matched rereads (decision token; five framings x Bank C): encoded at the same layers
@@ -154,10 +161,12 @@ def read_encode_analyse():
                         **{f"ubs_{L}": np.stack(ubs[L]).astype(np.float32) for L in WANT_LAYERS},
                         **{f"incar_{L}": np.stack(incar[L]).astype(np.float32) for L in WANT_LAYERS},
                         **{f"decide_{L}": np.stack(decide[L]).astype(np.float32) for L in WANT_LAYERS},
+                        **{f"raw_{L}": np.stack(raw[L]).astype(np.float32) for L in RAW},
                         meta=np.array(json.dumps(meta)), umeta=np.array(json.dumps(umeta)),
                         cmeta=np.array(json.dumps(cmeta)))
     states_vol.commit()
-    subprocess.run(f"python designs/rd2/analysis/emotion_features.py {OUT} results/emotion_lists", shell=True, check=True)
+    subprocess.run(f"python designs/rd2/analysis/emotion_features.py {OUT} results/emotion_lists /states/v2", shell=True,
+                   check=True)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add results/emotion_lists && git -C {repo} commit -q -m 'What the emotion documents "
                        "activate'", shell=True)

@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.join(os.getcwd(), "sim"))
 from gemma_scope import NEURONPEDIA, WANT_LAYERS
 
 NPZ, OUT = sys.argv[1], sys.argv[2]
+ROOT = sys.argv[3] if len(sys.argv) > 3 else None     # states root, for the going-along direction
 PERMS, TOP, Q = 2000, 12, 0.05
 RNG = np.random.default_rng(20261022)
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
@@ -240,6 +241,41 @@ if "cmeta" in z.files:
                           f"q < {Q})\n")
             report += rows
             summary[L]["agent"][f"decide {a} vs {b}"] = {"q<0.05": int((q < Q).sum()), "up": up, "down": down}
+
+
+# ---------------- does reading a document move the decision toward going along?
+if "raw_24" in z.files and ROOT:
+    import glob
+    import steer2
+    run1 = sorted(p for e in ("A", "B", "C", "C2", "D", "E", "F") for p in glob.glob(os.path.join(ROOT, f"{e}_bf16", "*.npz")))
+    if run1:
+        T6 = ["none", "neutral", "loss", "blame", "gain", "credit"]
+        dirs = steer2.along_direction(run1, 24)
+        cm = json.loads(str(z["cmeta"]))
+        runs = np.array([int(m["career_file"].split("_r")[-1].split(".")[0]) for m in cm])
+        careers = np.array([m["career_file"] for m in cm])
+        Xr = z["raw_24"].astype(np.float64)                      # requests x 6 x width
+        # each career's along direction is built on the other half of the careers (steer2's split)
+        proj = np.stack([Xr[i] @ dirs[steer2.half_for(int(runs[i]))]["along"] / dirs[steer2.half_for(int(runs[i]))]["size"] ** 2
+                         for i in range(len(Xr))])              # requests x 6, in units of the going-along shift
+        report.append("\n# Does reading a document move the decision toward going along?\n")
+        report.append("At each of the requests above, the agent's raw state at its decision (layer 24) after reading each "
+                      "document, projected on the going-along direction (agents that went along minus those that did not, "
+                      "within request, experiment and framing, from the other half of the careers). Units: 1 = the full "
+                      "gap between agents that went along and agents that did not. Paired within the request; p flips "
+                      "signs by career (10,000 times).\n")
+        report.append("| Document | Against no document | p | Against the neutral document | p |\n|---|---|---|---|---|")
+        summary["toward_going_along"] = {}
+
+        def flip(d):
+            c = np.array([d[careers == k].mean() for k in np.unique(careers)])
+            null = (RNG.choice([-1, 1], (10000, len(c))) * c).mean(1)
+            return c.mean(), (np.sum(np.abs(null) >= abs(c.mean()) - 1e-12) + 1) / 10001
+        for t in T6[1:]:
+            a, pa = flip(proj[:, T6.index(t)] - proj[:, 0])
+            b, pb = (flip(proj[:, T6.index(t)] - proj[:, 1]) if t != "neutral" else (float("nan"), float("nan")))
+            report.append(f"| {t} | {a:+.3f} | {pa:.4f} | " + ("\u2013 | \u2013 |" if t == "neutral" else f"{b:+.3f} | {pb:.4f} |"))
+            summary["toward_going_along"][t] = {"vs_none": a, "p_none": pa, "vs_neutral": b, "p_neutral": pb}
 
 open(os.path.join(OUT, "FEATURES.md"), "w").write("\n".join(report) + "\n")
 json.dump(summary, open(os.path.join(OUT, "features.json"), "w"), indent=1, default=float)
