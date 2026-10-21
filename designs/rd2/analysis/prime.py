@@ -15,7 +15,7 @@ import glob, json, os, sys
 import numpy as np
 
 ROWS, OUT = sys.argv[1], sys.argv[2]
-PRIMES = ["none", "loss", "blame", "gain", "credit"]
+PRIMES = ["none", "neutral", "loss", "blame", "gain", "credit"]
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
 PERMS, BOOT = 10000, 2000
 RNG = np.random.default_rng(20261021)
@@ -31,6 +31,9 @@ M = {}
 for r in rows.values():
     M.setdefault((r["career_file"], r["history_index"]), {})[(r["prime"], r["framing"])] = r["p_order_along"]
 moments = {k: v for k, v in M.items() if len(v) == len(PRIMES) * len(FRAMINGS)}
+if not moments:                                       # before the neutral documents ran: the four emotion documents only
+    PRIMES = [p for p in PRIMES if p != "neutral"]
+    moments = {k: v for k, v in M.items() if all((p, f) in v for p in PRIMES for f in FRAMINGS)}
 
 
 def test(f):
@@ -66,6 +69,22 @@ for p in PRIMES[1:]:
     r = test(lambda v, p=p: v[(p, "neutral")] - v[("none", "neutral")])
     report.append(f"| {p} | {pts(r)} |")
     summary["document_vs_none"][p] = r
+
+if "neutral" in PRIMES:
+    report.append("\n## Each emotion document against the neutral document, UBS's request neutral (points): emotion "
+                  "itself, beyond reading any document\n")
+    report.append("| Document | Change | 95% interval | p |\n|---|---|---|---|")
+    summary["document_vs_neutral_document"] = {}
+    for p in [x for x in PRIMES if x not in ("none", "neutral")]:
+        r = test(lambda v, p=p: v[(p, "neutral")] - v[("neutral", "neutral")])
+        report.append(f"| {p} | {pts(r)} |")
+        summary["document_vs_neutral_document"][p] = r
+    report.append("\nPooled over all five framings:\n")
+    report.append("| Document | Change | 95% interval | p |\n|---|---|---|---|")
+    for p in [x for x in PRIMES if x not in ("none", "neutral")]:
+        r = test(lambda v, p=p: np.mean([v[(p, f)] - v[("neutral", f)] for f in FRAMINGS]))
+        report.append(f"| {p} | {pts(r)} |")
+        summary["document_vs_neutral_document"][p + " (all framings)"] = r
 
 report.append("\n## The two crossed predictions (points): the framing's effect over the neutral request, with the "
               "document minus without it\n")

@@ -1601,3 +1601,6 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   the last date. Checked locally (settings run for real; agent cell with a tiny model): on through 12 Jan for the
   push-and-release arm, off after; hook cleared after every reply.
 - Launch after Stage 1 sets the strength: `modal run --detach scripts/modal_steered_careers.py --strength <1|2|4>`.
+
+## 21 Oct: neutral documents (the user's), frozen; priming and emotion runs extended
+- `designs/rd2/emotion_lists/neutral.txt`: 16 flat documents, 141-155 words, sha256 d6952221...; added to `sim/prime.py` (PRIMES, FROZEN) and `scripts/modal_emotion.py`. The priming rerun computes only the new neutral-document conditions (and the 7 moments the duplicate run lost); the analysis adds each emotion document against the neutral document.

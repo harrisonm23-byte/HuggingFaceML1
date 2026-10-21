@@ -13,7 +13,8 @@ LISTS = "designs/rd2/emotion_lists"
 FROZEN = {"loss.txt": "ad106b2c76d2075adf38f3efc01a3c7c551e84a663b43255ac73ca8e95d8a5e6",
           "blame.txt": "448e76cae16ceb96d01cd11288b32fbaaf7c1f567c16b9a3896dc26b953feb32",
           "gain.txt": "e9aa8b85169dff39d11706ab75d2efdb4cf664b4cf5cd31ea591a0b44d718d16",
-          "credit.txt": "28e16297b8c5fb9053da680fc1116ccac549b3c047b5235e234ee63665eb056f"}
+          "credit.txt": "28e16297b8c5fb9053da680fc1116ccac549b3c047b5235e234ee63665eb056f",
+          "neutral.txt": "d6952221565fb8d8854e35ce3f609ef9ee89894540ea659577b15a48087b9019"}
 OUT = "/states/v2/emotion/states.npz"
 
 image = (modal.Image.debian_slim(python_version="3.13")
