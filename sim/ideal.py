@@ -1,10 +1,10 @@
 """The ideal history (designs/rd2/DESIGN_IDEAL_HISTORY.md; the user, 21 Oct): every setting at maximum, and the agent's own
 record turned from refusing to going along.
 
-Base (the user's choice, 21 Oct): Experiment D's careers, which carry management's memo and five morning books and UBS's
-framed lines (B's file), all in one framing. In the ideal history, the agent's own reply at every
+Base (the user's choice, 21 Oct): Experiment F's careers (UBS's framed lines from B's file and Bank C's endorsement at
+each request, one framing), where going along was highest (48% under loss + you, 40% under gain + you). In the ideal history, the agent's own reply at every
 earlier push request where it did not go along is replaced by a real Gemma reply that went along at that same request,
-in a career of the same framing (E first, then F, D, B; replies in which the agent itself speaks of fault,
+in a career of the same framing (F first, then E, D, B; replies in which the agent itself speaks of fault,
 responsibility or credit preferred). Nothing is written here: the replies are Gemma's own, from other careers.
 
 At each later request (12 January on), the ideal history and the real one (its own replies kept) are read up to the
@@ -14,9 +14,9 @@ original trades.
 import json, os, re
 
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
-DONOR_EXPERIMENTS = [("E", "memo_ubs_bank_c_v2"), ("F", "peer_same_frame_v2"), ("D", "memo_and_ubs_framing_v2"),
+DONOR_EXPERIMENTS = [("F", "peer_same_frame_v2"), ("E", "memo_ubs_bank_c_v2"), ("D", "memo_and_ubs_framing_v2"),
                      ("B", "ubs_framing_v2")]
-BASES = {"D": "results/full_career_gemma-3-12b-it_4bit_memo_and_ubs_framing_v2"}   # management + UBS (B's lines)
+BASES = {"F": "results/full_career_gemma-3-12b-it_4bit_peer_same_frame_v2"}   # UBS (B's lines) + Bank C
 FIRST_REQUEST = "p344_i_can_hunt_with_u"
 OWN_WORDS = re.compile(r"\b(fault|responsib\w*|on me|my call|my decision|blame|credit|thank\w*|proud)\b", re.I)
 
@@ -26,7 +26,7 @@ def folder(name):
 
 
 def donors(moments):
-    """{(version, request): [replies that went along]}: E's first, then F, D, B; within each, replies with the agent's own
+    """{(version, request): [replies that went along]}: F's first, then E, D, B; within each, replies with the agent's own
     words of fault, responsibility or credit first."""
     out = {}
     for exp, name in DONOR_EXPERIMENTS:

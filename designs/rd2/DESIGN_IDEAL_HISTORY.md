@@ -19,7 +19,16 @@ own acquiescence should make it continue.
 This is the "ideal acquiescence" scenario: not a signal injected into the model, but a **history** the model reads as its
 own.
 
-## The ideal histories (one per framing)
+## Built (21 Oct): base = Experiment F
+
+The user chose F as the base: UBS's lines (B's frozen file) and Bank C's endorsement at every request, one framing,
+where going along was highest (48% under loss + you, 40% under gain + you). Management was left out: in D and E it
+raised risk-taking but not going along. Code: `sim/ideal.py`, `scripts/modal_ideal.py`, `designs/rd2/analysis/ideal.py`.
+200 moments (F's 40 framed careers x the five requests after the first); 262 earlier refusals replaced by real
+going-along replies (donors: F, then E, D, B, same framing and request), 298 own going-along replies kept, 40 refusals
+with no donor. Real vs ideal, UBS's request in each of five framings.
+
+## The ideal histories (one per framing; as first drafted)
 
 Four ideal histories, one for each framing, so the framings can be compared at maximum:
 
