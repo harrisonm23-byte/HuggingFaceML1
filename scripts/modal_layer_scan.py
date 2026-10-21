@@ -1,10 +1,10 @@
 """Layer scan for the after-reading state, on Modal (the user, 22 Oct; `sim/layer_scan.py`). First the loss-specific
-direction (the loss document's after-reading change minus the neutral document's) at layers 12-24, from B's 60
+state of each document type (its after-reading change minus the neutral document's) at layers 18-21, from B's
 neutral-career requests on 7 and 12 January (20 moments); then, with no document, that direction added at one layer at 1-8 times its natural size against
 random directions, with one greedy reply per condition at a fixed showcase moment. Then
 `designs/rd2/analysis/layer_scan.py` pushes results/layer_scan/LAYER_SCAN.md.
 
-    modal run --detach scripts/modal_layer_scan.py                        # the emotion documents
+    modal run --detach scripts/modal_layer_scan.py                        # the confirmation scan, layers 18-21
     modal run --detach scripts/modal_layer_scan.py --doc-set financial    # the financial documents
     modal run --detach scripts/modal_layer_scan.py --showcase-only --themes blame,gain,credit   # some types only
     modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per document type and layer (0-47)
@@ -17,6 +17,7 @@ FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
 DATES = ("2011-01-07", "2011-01-12")        # 10 neutral careers x the first two requests = 20 moments
 SETS = {"emotion": ("/states/v2/layer_scan", "results/layer_scan"),
         "financial": ("/states/v2/layer_scan_fin", "results/layer_scan_fin")}
+SCAN = {"emotion": "/states/v2/layer_scan_18_21", "financial": "/states/v2/layer_scan_18_21_fin"}   # the confirmation scan
 
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
@@ -72,30 +73,31 @@ def _load(doc_set):
 @app.function(gpu="H100", timeout=4 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
 def directions(doc_set="emotion"):
-    """Stage A: the loss-specific change at every scanned layer, at each of the 60 moments (saved to the volume)."""
+    """Stage A: each document type's change minus the neutral document's, at layers 18-21, at each moment (saved)."""
     import json, os
     import numpy as np
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
     setup()
     states_vol.reload()
     import layer_scan as LS, inject_docs as J
-    out = SETS[doc_set][0]
+    out = SCAN[doc_set]
     path = f"{out}/shifts.npz"
     if os.path.exists(path):
         return "directions: already built"
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
+    themes = [t for t in docs if t != "neutral"]
     capture = J.Capture({L: layers[L] for L in LS.LAYERS})
     runs, vecs, meta = [], [], []
     for n, item in enumerate(items):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
-        d = LS.shifts_at(model, tok, capture, career, item, docs, chats, opening)
+        d = LS.shifts_at(model, tok, capture, career, item, docs, chats, opening, LS.LAYERS, all_themes=True)
         runs.append(int(item["run"]))
-        vecs.append(np.stack([d[L] for L in LS.LAYERS]))
+        vecs.append(np.stack([np.stack([d[t][L] for L in LS.LAYERS]) for t in themes]))
         meta.append({"career_file": item["career_file"], "history_index": item["history_index"]})
         print(f"directions: {n + 1}/{len(items)}", flush=True)
     os.makedirs(out, exist_ok=True)
     np.savez(path, shifts=np.stack(vecs).astype(np.float32), runs=np.array(runs), layers=np.array(LS.LAYERS),
-             meta=np.array(json.dumps(meta)))
+             themes=np.array(themes), meta=np.array(json.dumps(meta)))
     states_vol.commit()
     return f"directions: {len(items)} moments"
 
@@ -110,13 +112,13 @@ def run_part(part, parts, doc_set="emotion"):
     states_vol.reload()
     import layer_scan as LS
     from interventions import NEUTRAL_LEAD, WIDE_GRID, Steer
-    out = SETS[doc_set][0]
+    out = SCAN[doc_set]
     z = np.load(f"{out}/shifts.npz")
     assert [int(l) for l in z["layers"]] == LS.LAYERS
-    dirs = LS.build_directions([(int(r), {L: z["shifts"][i, j] for j, L in enumerate(LS.LAYERS)})
-                                for i, r in enumerate(z["runs"])])
+    themes = [str(t) for t in z["themes"]]
+    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(LS.LAYERS)}
+                                          for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])])
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
-    showcase_key = (items[0]["career_file"], items[0]["history_index"])      # one fixed moment, every condition
     todo = items[part::parts]
     out_path = f"{out}/part{part}.jsonl"
     done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
@@ -124,9 +126,8 @@ def run_part(part, parts, doc_set="emotion"):
     t0 = time.time()
     for n, item in enumerate(todo):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
-        show = (item["career_file"], item["history_index"]) == showcase_key
-        for row in LS.run_item(model, tok, steers, career, item, dirs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, done,
-                               showcase=show):
+        for row in LS.run_item(model, tok, steers, career, item, dirs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, themes,
+                               done):
             with open(out_path, "a") as f:
                 f.write(json.dumps(row) + "\n")
         states_vol.commit()
@@ -139,7 +140,7 @@ def analyse(doc_set="emotion"):
     import subprocess
     repo = setup()
     states_vol.reload()
-    out, res = SETS[doc_set]
+    out, res = SCAN[doc_set], SETS[doc_set][1]
     subprocess.run(f"python designs/rd2/analysis/layer_scan.py {out} {res}", shell=True, check=True)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan ({doc_set})'", shell=True)

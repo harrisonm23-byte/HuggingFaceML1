@@ -15,18 +15,20 @@ reply is also written under every condition, to see what the injected state does
 import copy
 import numpy as np
 
-LAYERS = [12, 14, 16, 18, 20, 22, 24]
+LAYERS = [18, 19, 20, 21]          # the confirmation scan: where the showcase and the injection run put the effect
 ALL_LAYERS = list(range(48))
-STRENGTHS = [1, 2, 4, 8]
-RANDOM_STRENGTHS = [4, 8]
+STRENGTHS = [1, 2]
+RANDOM_STRENGTH = 2
+SAMPLES = 2                         # sampled replies per moment, with no injection and at 1x (the agent's own words)
 
 
-def conditions():
-    """[(name, layer, kind, strength)]."""
-    c = [("none", None, "none", 0)]
+def conditions(themes):
+    """[(name, theme, layer, kind, strength, sampled)]."""
+    c = [("none", None, None, "none", 0, True)]
     for L in LAYERS:
-        c += [(f"loss-specific x{s} at layer {L}", L, "push", s) for s in STRENGTHS]
-        c += [(f"random x{s} at layer {L}", L, "random", s) for s in RANDOM_STRENGTHS]
+        for t in themes:
+            c += [(f"{t} x{s} at layer {L}", t, L, "push", s, s == 1) for s in STRENGTHS]
+        c.append((f"random x{RANDOM_STRENGTH} at layer {L}", None, L, "random", RANDOM_STRENGTH, False))
     return c
 
 
@@ -84,25 +86,26 @@ def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LA
 
 
 def build_directions(rows):
-    """rows: [(run, {layer: vector})] -> {half: {layer: (direction, size)}}; half 0 is applied to runs 0-4 and built on
-    runs 5-9, half 1 the other way."""
+    """rows: [(run, {theme: {layer: vector}})] -> {half: {theme: {layer: (direction, size)}}}; half 0 is applied to runs
+    0-4 and built on runs 5-9, half 1 the other way."""
     out = {}
+    themes = list(rows[0][1])
     for half in (0, 1):
         use = [d for run, d in rows if (run >= 5) == (half == 0)]
-        out[half] = {}
-        for L in LAYERS:
-            v = np.mean([d[L] for d in use], 0)
-            out[half][L] = (v, float(np.linalg.norm(v)))
+        out[half] = {t: {} for t in themes}
+        for t in themes:
+            for L in LAYERS:
+                v = np.mean([d[t][L] for d in use], 0)
+                out[half][t][L] = (v, float(np.linalg.norm(v)))
     return out
 
 
-def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid, done=(), showcase=False, max_new=300):
+def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES):
     """Every condition at one request (no document). One row per condition."""
     import torch
     from inside_careers import encode, turns_at
-    from interventions import order_dist, prefill, split_point, summarise_orders
+    from interventions import goes_along, order_dist, prefill, sample, split_point, summarise_orders
     from matched import matched
-    from mountain import parse_reply
     from steer2 import half_for
     idx = item["history_index"]
     base = matched(career, idx, item["date"], "neutral", "neutral", chats)
@@ -111,42 +114,38 @@ def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid,
     cache = None
     h = half_for(int(item["run"]))
     rng = np.random.default_rng(20261022 + idx)
-    for name, L, kind, s in conditions():
+    for name, t, L, kind, s, sampled in conditions(themes):
         key = f"{item['career_file']}|{idx}|{name}"
+        r = rng.normal(size=4096)                         # drawn every time, so a resumed run gets the same vectors
         if key in done:
             continue
         if cache is None:
             cache = prefill(model, full[:k])
         vec = None
-        if kind != "none":
-            d, size = dirs[h][L]
-            if kind == "push":
-                vec = d * s
-            else:
-                r = rng.normal(size=d.shape[0])
-                vec = r / np.linalg.norm(r) * size * s
-        reply = None
+        if kind == "push":
+            d, _ = dirs[h][t][L]
+            vec = d * s
+        elif kind == "random":
+            size = np.mean([dirs[h][tt][L][1] for tt in themes])
+            r = r[:dirs[h][themes[0]][L][0].shape[0]]
+            vec = r / np.linalg.norm(r) * size * s
         try:
             for st in steers.values():
                 st.vec = None
             if vec is not None:
                 steers[L].vec = torch.tensor(vec, dtype=torch.float32, device=model.device)
             orders, probs, cover = order_dist(model, tok, full, cache, lead, grid)
-            if showcase:
-                x = torch.tensor([full], device=model.device)
-                with torch.no_grad():
-                    g = model.generate(input_ids=x, attention_mask=torch.ones_like(x), past_key_values=copy.deepcopy(cache),
-                                       max_new_tokens=max_new, do_sample=False, disable_compile=True)
-                reply = tok.decode(g[0, len(full):], skip_special_tokens=True)
+            replies = sample(model, full, cache, samples, tok=tok) if sampled else []
         finally:
             for st in steers.values():
                 st.vec = None
+        judged = [goes_along(x, item["position"], item["wants"]) for x in replies]
         yield {"key": key, "career_file": item["career_file"], "run": item["run"], "history_index": idx,
                "date": item["date"], "chat": item["chat"], "wants": item["wants"], "position": item["position"],
-               "condition": name, "layer": L, "kind": kind, "strength": s,
+               "condition": name, "theme": t, "layer": L, "kind": kind, "strength": s,
                "shift_size": float(np.linalg.norm(vec)) if vec is not None else 0.0, "coverage": cover,
                "orders": orders, "probs": probs, **summarise_orders(orders, probs, item["position"], item["wants"]),
-               "showcase": showcase, "reply": reply, "reply_status": parse_reply(reply)["status"] if reply else None}
+               "replies": replies, "along": [a for a, _ in judged], "status": [st_ for _, st_ in judged]}
 
 
 def showcase(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, strength=1, max_new=300,
