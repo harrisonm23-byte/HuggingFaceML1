@@ -7,6 +7,8 @@ random directions, with one greedy reply per condition at a fixed showcase momen
     modal run --detach scripts/modal_layer_scan.py                        # the confirmation scan, layers 18-21
     modal run --detach scripts/modal_layer_scan.py --doc-set financial    # the financial documents
     modal run --detach scripts/modal_layer_scan.py --framed --parts 3      # the same states with framed requests
+    modal run --detach scripts/modal_layer_scan.py --sweep --doc-set financial --parts 3   # every second layer, 4-42
+    modal run --detach scripts/modal_layer_scan.py --framed --layers 14,26 --doc-set financial --parts 3
     modal run --detach scripts/modal_layer_scan.py --showcase-only --themes blame,gain,credit   # some types only
     modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per document type and layer (0-47)
 """
@@ -73,7 +75,7 @@ def _load(doc_set):
 
 @app.function(gpu="H100", timeout=4 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def directions(doc_set="emotion"):
+def directions(doc_set="emotion", sweep=False):
     """Stage A: each document type's change minus the neutral document's, at layers 18-21, at each moment (saved)."""
     import json, os
     import numpy as np
@@ -81,23 +83,24 @@ def directions(doc_set="emotion"):
     setup()
     states_vol.reload()
     import layer_scan as LS, inject_docs as J
-    out = SCAN[doc_set]
+    out = SCAN[doc_set] + ("_sweep" if sweep else "")
+    scan_layers = LS.SWEEP_LAYERS if sweep else LS.LAYERS
     path = f"{out}/shifts.npz"
     if os.path.exists(path):
         return "directions: already built"
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
     themes = [t for t in docs if t != "neutral"]
-    capture = J.Capture({L: layers[L] for L in LS.LAYERS})
+    capture = J.Capture({L: layers[L] for L in scan_layers})
     runs, vecs, meta = [], [], []
     for n, item in enumerate(items):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
-        d = LS.shifts_at(model, tok, capture, career, item, docs, chats, opening, LS.LAYERS, all_themes=True)
+        d = LS.shifts_at(model, tok, capture, career, item, docs, chats, opening, scan_layers, all_themes=True)
         runs.append(int(item["run"]))
-        vecs.append(np.stack([np.stack([d[t][L] for L in LS.LAYERS]) for t in themes]))
+        vecs.append(np.stack([np.stack([d[t][L] for L in scan_layers]) for t in themes]))
         meta.append({"career_file": item["career_file"], "history_index": item["history_index"]})
         print(f"directions: {n + 1}/{len(items)}", flush=True)
     os.makedirs(out, exist_ok=True)
-    np.savez(path, shifts=np.stack(vecs).astype(np.float32), runs=np.array(runs), layers=np.array(LS.LAYERS),
+    np.savez(path, shifts=np.stack(vecs).astype(np.float32), runs=np.array(runs), layers=np.array(scan_layers),
              themes=np.array(themes), meta=np.array(json.dumps(meta)))
     states_vol.commit()
     return f"directions: {len(items)} moments"
@@ -105,7 +108,7 @@ def directions(doc_set="emotion"):
 
 @app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_part(part, parts, doc_set="emotion"):
+def run_part(part, parts, doc_set="emotion", sweep=False):
     import json, os, time
     import numpy as np
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -113,22 +116,23 @@ def run_part(part, parts, doc_set="emotion"):
     states_vol.reload()
     import layer_scan as LS
     from interventions import NEUTRAL_LEAD, WIDE_GRID, Steer
-    out = SCAN[doc_set]
-    z = np.load(f"{out}/shifts.npz")
-    assert [int(l) for l in z["layers"]] == LS.LAYERS
+    out = src = SCAN[doc_set] + ("_sweep" if sweep else "")
+    z = np.load(f"{src}/shifts.npz")
+    scan_layers = [int(l) for l in z["layers"]]
     themes = [str(t) for t in z["themes"]]
-    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(LS.LAYERS)}
-                                          for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])])
+    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(scan_layers)}
+                                              for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])], scan_layers)
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
     todo = items[part::parts]
     out_path = f"{out}/part{part}.jsonl"
     done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
-    steers = {L: Steer(layers[L]) for L in LS.LAYERS}
+    steers = {L: Steer(layers[L]) for L in scan_layers}
+    conds = LS.conditions_sweep(themes) if sweep else None
     t0 = time.time()
     for n, item in enumerate(todo):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
         for row in LS.run_item(model, tok, steers, career, item, dirs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, themes,
-                               done):
+                               done, conds=conds):
             with open(out_path, "a") as f:
                 f.write(json.dumps(row) + "\n")
         states_vol.commit()
@@ -137,14 +141,16 @@ def run_part(part, parts, doc_set="emotion"):
 
 
 @app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse(doc_set="emotion"):
+def analyse(doc_set="emotion", sweep=False):
     import subprocess
     repo = setup()
     states_vol.reload()
-    out, res = SCAN[doc_set], SETS[doc_set][1]
-    subprocess.run(f"python designs/rd2/analysis/layer_scan.py {out} {res}", shell=True, check=True)
+    out, res = SCAN[doc_set] + ("_sweep" if sweep else ""), SETS[doc_set][1]
+    subprocess.run(f"python designs/rd2/analysis/layer_scan.py {out} {res}" + (" SWEEP" if sweep else ""), shell=True,
+                   check=True)
     for attempt in range(10):
-        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan ({doc_set})'", shell=True)
+        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan ({doc_set}{", sweep" if sweep else ""})'",
+                       shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
                           shell=True).returncode == 0:
             return "layer-scan results pushed"
@@ -224,23 +230,23 @@ def showcase(doc_set="emotion", strength=1.0, themes=""):
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(parts, analysis_only, doc_set):
+def dispatch(parts, analysis_only, doc_set, sweep=False):
     done = []
     if not analysis_only:
-        done.append(directions.remote(doc_set))
-        calls = [(k, run_part.spawn(k, parts, doc_set)) for k in range(parts)]
+        done.append(directions.remote(doc_set, sweep))
+        calls = [(k, run_part.spawn(k, parts, doc_set, sweep)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"part {k}: failed ({type(err).__name__})")
-    done.append(analyse.remote(doc_set))
+    done.append(analyse.remote(doc_set, sweep))
     return done
 
 
 @app.function(gpu="H100", timeout=10 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_part_framed(part, parts, doc_set="emotion"):
+def run_part_framed(part, parts, doc_set="emotion", layers_spec=""):
     """The states at layers 19 and 21 (2x) with UBS's request in each of its five framings."""
     import json, os, time
     import numpy as np
@@ -249,23 +255,26 @@ def run_part_framed(part, parts, doc_set="emotion"):
     states_vol.reload()
     import layer_scan as LS
     from interventions import NEUTRAL_LEAD, WIDE_GRID, Steer
-    z = np.load(f"{SCAN[doc_set]}/shifts.npz")                  # the directions from the confirmation scan
-    assert [int(l) for l in z["layers"]] == LS.LAYERS
+    use = [int(x) for x in layers_spec.split(",") if x] or LS.FRAMED_LAYERS
+    src = SCAN[doc_set] if all(L in LS.LAYERS for L in use) else SCAN[doc_set] + "_sweep"   # where those directions are
+    z = np.load(f"{src}/shifts.npz")
+    scan_layers = [int(l) for l in z["layers"]]
     themes = [str(t) for t in z["themes"]]
-    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(LS.LAYERS)}
-                                          for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])])
+    dirs = LS.build_directions([(int(r), {t: {L: z["shifts"][i, a, j] for j, L in enumerate(scan_layers)}
+                                              for a, t in enumerate(themes)}) for i, r in enumerate(z["runs"])], scan_layers)
     docs, items, tok, model, layers, chats, opening = _load(doc_set)
-    out = SCAN[doc_set] + "_framed"
+    out = SCAN[doc_set] + "_framed" + ("" if use == LS.FRAMED_LAYERS else "_L" + "_".join(map(str, use)))
     os.makedirs(out, exist_ok=True)
     todo = items[part::parts]
     out_path = f"{out}/part{part}.jsonl"
     done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
-    steers = {L: Steer(layers[L]) for L in LS.FRAMED_LAYERS}
+    steers = {L: Steer(layers[L]) for L in use}
     t0 = time.time()
     for n, item in enumerate(todo):
         career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
         for row in LS.run_item_framed(model, tok, steers, career, item, dirs, chats, opening, NEUTRAL_LEAD, WIDE_GRID,
-                                      themes, done):
+                                      themes, done, layers=use,
+                                      sampled_themes=("loss", "blame") if doc_set == "emotion" else ("loss", "gain")):
             with open(out_path, "a") as f:
                 f.write(json.dumps(row) + "\n")
         states_vol.commit()
@@ -274,12 +283,15 @@ def run_part_framed(part, parts, doc_set="emotion"):
 
 
 @app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse_framed(doc_set="emotion"):
+def analyse_framed(doc_set="emotion", layers_spec=""):
     import subprocess
     repo = setup()
     states_vol.reload()
-    out, res = SCAN[doc_set] + "_framed", SETS[doc_set][1]
-    subprocess.run(f"python designs/rd2/analysis/layer_scan_framed.py {out} {res}", shell=True, check=True)
+    import layer_scan as LS
+    use = [int(x) for x in layers_spec.split(",") if x] or LS.FRAMED_LAYERS
+    tag = "" if use == LS.FRAMED_LAYERS else "_L" + "_".join(map(str, use))
+    out, res = SCAN[doc_set] + "_framed" + tag, SETS[doc_set][1]
+    subprocess.run(f"python designs/rd2/analysis/layer_scan_framed.py {out} {res} {tag}", shell=True, check=True)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer scan, framed requests ({doc_set})'",
                        shell=True)
@@ -291,25 +303,25 @@ def analyse_framed(doc_set="emotion"):
 
 
 @app.function(timeout=14 * 3600)
-def dispatch_framed(parts, analysis_only, doc_set):
+def dispatch_framed(parts, analysis_only, doc_set, layers_spec=""):
     done = []
     if not analysis_only:
-        calls = [(k, run_part_framed.spawn(k, parts, doc_set)) for k in range(parts)]
+        calls = [(k, run_part_framed.spawn(k, parts, doc_set, layers_spec)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"framed part {k}: failed ({type(err).__name__})")
-    done.append(analyse_framed.remote(doc_set))
+    done.append(analyse_framed.remote(doc_set, layers_spec))
     return done
 
 
 @app.local_entrypoint()
 def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion", showcase_only: bool = False,
-         strength: float = 1.0, themes: str = "", framed: bool = False):
+         strength: float = 1.0, themes: str = "", framed: bool = False, sweep: bool = False, layers: str = ""):
     if framed:
         print(f"layer scan with framed requests ({doc_set} documents): {parts} GPUs, then the analysis")
-        for line in dispatch_framed.remote(parts, analysis_only, doc_set):
+        for line in dispatch_framed.remote(parts, analysis_only, doc_set, layers):
             print(line)
         return
     if showcase_only:
@@ -317,5 +329,5 @@ def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion", 
         print(showcase.remote(doc_set, strength, themes))
         return
     print(f"layer scan ({doc_set} documents): directions, then {parts} GPUs, then the analysis")
-    for line in dispatch.remote(parts, analysis_only, doc_set):
+    for line in dispatch.remote(parts, analysis_only, doc_set, sweep):
         print(line)

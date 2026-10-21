@@ -13,8 +13,9 @@ import glob, json, os, sys
 import numpy as np
 
 ROWS, OUT = sys.argv[1], sys.argv[2]
+TAG = sys.argv[3] if len(sys.argv) > 3 else ""
 FRAMINGS = ["neutral", "loss", "gain", "loss + you", "gain + you"]
-LAYERS, S = [19, 21], 2
+S = 2
 MIN_COVER, PERMS = 0.5, 10000
 RNG = np.random.default_rng(20261022)
 os.makedirs(OUT, exist_ok=True)
@@ -30,6 +31,7 @@ for r in rows.values():
 low = {k for k, m in M.items() if ("neutral", "none") not in m or m[("neutral", "none")]["coverage"] < MIN_COVER}
 M = {k: m for k, m in M.items() if k not in low}
 themes = [t for t in dict.fromkeys(r["theme"] for r in rows.values()) if t]
+LAYERS = sorted({r["layer"] for r in rows.values() if r["layer"] is not None})
 
 
 def test(a, b):
@@ -51,8 +53,8 @@ level = lambda v, c: 100 * np.mean([m[(v, c)]["p_order_along"] for m in M.values
 report = ["# The layer scan with framed requests (exploratory)\n",
           f"{len(M)} moments (B's 10 neutral careers at the 7 and 12 January requests; {len(low)} more left out because the "
           "scored orders cover less than half of the model's probability with the neutral request). UBS's request in each "
-          "of its five framings; each document type's after-reading state (minus the neutral document's) added at layer 19 "
-          f"or 21 at {S} times its size. P(the order goes along) after the fixed neutral reasoning line. Produced by "
+          "of its five framings; each document type's after-reading state (minus the neutral document's) added at layer "
+          f"{' or '.join(map(str, LAYERS))} at {S} times its size. P(the order goes along) after the fixed neutral reasoning line. Produced by "
           "`designs/rd2/analysis/layer_scan_framed.py`.\n",
           "## No injection: the framing's own effect\n",
           "| Request | P(along) | Against the neutral request |\n|---|---|---|"]
@@ -84,6 +86,6 @@ if samp:
         report.append(f"| {v} | " + " | ".join(cells) + " |")
     st = [s for r in samp for s in r["status"]]
     report.append(f"\nUnreadable replies overall: {100 * np.mean([s not in ('trade', 'hold') for s in st]):.0f}%.")
-open(os.path.join(OUT, "LAYER_SCAN_FRAMED.md"), "w").write("\n".join(report) + "\n")
-json.dump(summary, open(os.path.join(OUT, "layer_scan_framed.json"), "w"), indent=1, default=float)
-print("written", os.path.join(OUT, "LAYER_SCAN_FRAMED.md"))
+open(os.path.join(OUT, f"LAYER_SCAN_FRAMED{TAG}.md"), "w").write("\n".join(report) + "\n")
+json.dump(summary, open(os.path.join(OUT, f"layer_scan_framed{TAG}.json"), "w"), indent=1, default=float)
+print("written", os.path.join(OUT, f"LAYER_SCAN_FRAMED{TAG}.md"))

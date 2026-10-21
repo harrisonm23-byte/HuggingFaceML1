@@ -20,6 +20,7 @@ ALL_LAYERS = list(range(48))
 STRENGTHS = [1, 2]
 RANDOM_STRENGTH = 2
 SAMPLES = 2                         # sampled replies per moment, with no injection and at 1x (the agent's own words)
+SWEEP_LAYERS, SWEEP_STRENGTH = list(range(4, 44, 2)), 2   # the sweep: every second layer, read-out only
 
 
 def conditions(themes):
@@ -85,7 +86,16 @@ def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LA
     return out
 
 
-def build_directions(rows):
+def conditions_sweep(themes):
+    """The sweep: each state at 2x and a random direction at every second layer (read-out only, except no injection)."""
+    c = [("none", None, None, "none", 0, True)]
+    for L in SWEEP_LAYERS:
+        c += [(f"{t} x{SWEEP_STRENGTH} at layer {L}", t, L, "push", SWEEP_STRENGTH, False) for t in themes]
+        c.append((f"random x{SWEEP_STRENGTH} at layer {L}", None, L, "random", SWEEP_STRENGTH, False))
+    return c
+
+
+def build_directions(rows, layers=None):
     """rows: [(run, {theme: {layer: vector}})] -> {half: {theme: {layer: (direction, size)}}}; half 0 is applied to runs
     0-4 and built on runs 5-9, half 1 the other way."""
     out = {}
@@ -94,13 +104,14 @@ def build_directions(rows):
         use = [d for run, d in rows if (run >= 5) == (half == 0)]
         out[half] = {t: {} for t in themes}
         for t in themes:
-            for L in LAYERS:
+            for L in (layers or LAYERS):
                 v = np.mean([d[t][L] for d in use], 0)
                 out[half][t][L] = (v, float(np.linalg.norm(v)))
     return out
 
 
-def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES):
+def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES,
+             conds=None):
     """Every condition at one request (no document). One row per condition."""
     import torch
     from inside_careers import encode, turns_at
@@ -114,7 +125,7 @@ def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid,
     cache = None
     h = half_for(int(item["run"]))
     rng = np.random.default_rng(20261022 + idx)
-    for name, t, L, kind, s, sampled in conditions(themes):
+    for name, t, L, kind, s, sampled in (conds or conditions(themes)):
         key = f"{item['career_file']}|{idx}|{name}"
         r = rng.normal(size=4096)                         # drawn every time, so a resumed run gets the same vectors
         if key in done:
@@ -191,16 +202,17 @@ FRAMED_LAYERS, FRAMED_STRENGTH = [19, 21], 2
 FRAMED_SAMPLED = ("loss", "blame")
 
 
-def conditions_framed(themes):
+def conditions_framed(themes, layers=None):
     """[(name, theme, layer, kind, strength, sampled)] for one framing of UBS's request."""
     c = [("none", None, None, "none", 0, True)]
-    for L in FRAMED_LAYERS:
+    for L in (layers or FRAMED_LAYERS):
         c += [(f"{t} x{FRAMED_STRENGTH} at layer {L}", t, L, "push", FRAMED_STRENGTH, t in FRAMED_SAMPLED) for t in themes]
         c.append((f"random x{FRAMED_STRENGTH} at layer {L}", None, L, "random", FRAMED_STRENGTH, False))
     return c
 
 
-def run_item_framed(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES):
+def run_item_framed(model, tok, steers, career, item, dirs, chats, opening, lead, grid, themes, done=(), samples=SAMPLES,
+                    layers=None, sampled_themes=FRAMED_SAMPLED):
     """The states injected with UBS's request in each of its five framings (the same neutral career, the same moment).
     One row per framing and condition."""
     import torch
@@ -215,7 +227,8 @@ def run_item_framed(model, tok, steers, career, item, dirs, chats, opening, lead
     for v in FRAMINGS:
         full = encode(tok, turns_at(matched(career, idx, item["date"], "neutral", v, chats), idx, opening))
         rng = np.random.default_rng(20261022 + idx)
-        for name, t, L, kind, s, sampled in conditions_framed(themes):
+        for name, t, L, kind, s, sampled in conditions_framed(themes, layers):
+            sampled = kind == "none" or (kind == "push" and t in sampled_themes)
             key = f"{item['career_file']}|{idx}|{v}|{name}"
             r = rng.normal(size=4096)
             if key in done:

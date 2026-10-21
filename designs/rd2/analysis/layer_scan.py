@@ -14,7 +14,7 @@ import glob, json, os, sys
 import numpy as np
 
 ROWS, OUT = sys.argv[1], sys.argv[2]
-LAYERS, STRENGTHS, RS = [18, 19, 20, 21], [1, 2], 2
+SWEEP = len(sys.argv) > 3 and sys.argv[3] == "SWEEP"
 MIN_COVER, PERMS, BOOT = 0.5, 10000, 2000
 RNG = np.random.default_rng(20261022)
 os.makedirs(OUT, exist_ok=True)
@@ -30,6 +30,9 @@ for r in rows.values():
 low = {k for k, m in M.items() if "none" not in m or m["none"]["coverage"] < MIN_COVER}
 M = {k: m for k, m in M.items() if k not in low}
 themes = [t for t in dict.fromkeys(r["theme"] for r in rows.values()) if t]
+LAYERS = sorted({r["layer"] for r in rows.values() if r["layer"] is not None})
+STRENGTHS = sorted({r["strength"] for r in rows.values() if r["kind"] == "push"})
+RS = max(r["strength"] for r in rows.values() if r["kind"] == "random")
 
 
 def test(a, b="none", field="p_order_along"):
@@ -49,7 +52,8 @@ def test(a, b="none", field="p_order_along"):
 cell = lambda r: "–" if r is None else (f"{100 * r['change']:+.1f} (p < 0.001)" if r["p"] < 0.001
                                               else f"{100 * r['change']:+.1f} (p {r['p']:.3f})")
 base = 100 * np.mean([m["none"]["p_order_along"] for m in M.values()]) if M else float("nan")
-report = ["# Confirmation scan: each document's after-reading state at layers 18-21 (exploratory)\n",
+report = [f"# {'Layer sweep' if SWEEP else 'Confirmation scan'}: each document's after-reading state at layers "
+          f"{LAYERS[0]}-{LAYERS[-1]} (exploratory)\n",
           f"{len(M)} moments (B's 10 neutral careers at the 7 and 12 January requests; {len(low)} more left out because the "
           "scored orders cover less than half of the model's probability with no injection). Each document type's "
           "after-reading change over the request's update, minus the neutral document's, built on the other half of the "
@@ -85,6 +89,6 @@ if samp:
 cov = [m[c]["coverage"] for m in M.values() for c in m]
 report.append(f"\nCoverage over the included moments, every condition: median {np.median(cov):.2f}, "
               f"10th percentile {np.percentile(cov, 10):.2f}.")
-open(os.path.join(OUT, "LAYER_SCAN.md"), "w").write("\n".join(report) + "\n")
-json.dump(summary, open(os.path.join(OUT, "layer_scan.json"), "w"), indent=1, default=float)
-print("written", os.path.join(OUT, "LAYER_SCAN.md"))
+open(os.path.join(OUT, "LAYER_SWEEP.md" if SWEEP else "LAYER_SCAN.md"), "w").write("\n".join(report) + "\n")
+json.dump(summary, open(os.path.join(OUT, "layer_sweep.json" if SWEEP else "layer_scan.json"), "w"), indent=1, default=float)
+print("written", os.path.join(OUT, "LAYER_SWEEP.md" if SWEEP else "LAYER_SCAN.md"))
