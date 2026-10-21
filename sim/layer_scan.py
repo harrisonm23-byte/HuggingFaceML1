@@ -30,7 +30,7 @@ def conditions():
     return c
 
 
-def base_and_docs(career, item, docs, chats, opening, tok):
+def base_and_docs(career, item, docs, chats, opening, tok, themes=("loss", "neutral")):
     from inside_careers import encode, turns_at
     from interventions import split_point
     from matched import matched
@@ -40,7 +40,7 @@ def base_and_docs(career, item, docs, chats, opening, tok):
     plain = encode(tok, turns_at(base, idx, opening))
     _, k = split_point(tok, base, idx, opening)
     reads = {}
-    for t in ("loss", "neutral"):
+    for t in themes:
         doc = docs[t][item["doc"] % len(docs[t])]
         seq = encode(tok, turns_at(primed(base, idx, doc), idx, opening))
         assert seq[:k] == plain[:k], "the history before the update changed"
@@ -51,11 +51,13 @@ def base_and_docs(career, item, docs, chats, opening, tok):
     return plain, k, reads
 
 
-def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LAYERS):
-    """{layer: the loss reading's mean change over the update minus the neutral reading's} at one moment."""
+def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LAYERS, theme="loss", all_themes=False):
+    """{layer: the `theme` reading's mean change over the update minus the neutral reading's} at one moment; with
+    all_themes, {theme: {layer: ...}} for every document type but neutral."""
     import torch
     from interventions import prefill
-    plain, k, reads = base_and_docs(career, item, docs, chats, opening, tok)
+    themes = [t for t in docs if t != "neutral"] if all_themes else [theme]
+    plain, k, reads = base_and_docs(career, item, docs, chats, opening, tok, tuple(themes) + ("neutral",))
     cache = prefill(model, plain[:k])
 
     def read(seq):
@@ -73,8 +75,10 @@ def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LA
     for t, (seq, start, extra) in reads.items():
         a = read(seq)
         means[t] = {L: (a[L][start - k + extra:] - b[L][start - k:]).mean(0).cpu().numpy() for L in layers}
+    if all_themes:
+        return {t: {L: means[t][L] - means["neutral"][L] for L in layers} for t in themes}
     for L in layers:
-        out[L] = means["loss"][L] - means["neutral"][L]
+        out[L] = means[theme][L] - means["neutral"][L]
     return out
 
 
@@ -152,13 +156,14 @@ def showcase(model, tok, steers, capture, career, item, docs, chats, opening, le
     from interventions import order_dist, prefill, split_point, summarise_orders
     from matched import matched
     from mountain import parse_reply
-    d = shifts_at(model, tok, capture, career, item, docs, chats, opening, ALL_LAYERS)
+    D = shifts_at(model, tok, capture, career, item, docs, chats, opening, ALL_LAYERS, all_themes=True)
     idx = item["history_index"]
     base = matched(career, idx, item["date"], "neutral", "neutral", chats)
     full = encode(tok, turns_at(base, idx, opening))
     _, k = split_point(tok, base, idx, opening)
     cache = prefill(model, full[:k])
-    for L in [None] + ALL_LAYERS:
+    for t, L in [(None, None)] + [(t, L) for t in D for L in ALL_LAYERS]:
+        d = D.get(t)
         try:
             for st in steers.values():
                 st.vec = None
@@ -173,7 +178,7 @@ def showcase(model, tok, steers, capture, career, item, docs, chats, opening, le
         finally:
             for st in steers.values():
                 st.vec = None
-        yield {"layer": L, "strength": strength if L is not None else 0,
+        yield {"theme": t, "layer": L, "strength": strength if L is not None else 0,
                "shift_size": float(np.linalg.norm(d[L])) * strength if L is not None else 0.0,
                "career_file": item["career_file"], "date": item["date"], "chat": item["chat"], "wants": item["wants"],
                "coverage": cover, **summarise_orders(orders, probs, item["position"], item["wants"]),

@@ -6,7 +6,7 @@ random directions, with one greedy reply per condition at a fixed showcase momen
 
     modal run --detach scripts/modal_layer_scan.py                        # the emotion documents
     modal run --detach scripts/modal_layer_scan.py --doc-set financial    # the financial documents
-    modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per layer (0-47)
+    modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per document type and layer (0-47)
 """
 import modal
 
@@ -168,20 +168,25 @@ def showcase(doc_set="emotion", strength=1.0):
     rows = []
     for r in LS.showcase(model, tok, steers, capture, career, item, docs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, strength):
         rows.append(r)
-        print(f"layer {r['layer']}: P(along) {100 * r['p_order_along']:.0f}% | {r['reply_status']}", flush=True)
+        print(f"{r['theme']} layer {r['layer']}: P(along) {100 * r['p_order_along']:.0f}% | {r['reply_status']}", flush=True)
     r0 = rows[0]
-    lines = ["# The showcase: the loss-specific after-reading state, injected at each layer in turn (exploratory)\n",
+    lines = ["# The showcase: each document's after-reading state, injected at each layer in turn (exploratory)\n",
              f"One moment: {r0['career_file']}, {r0['date']} ({r0['chat']}), UBS's request in its neutral wording (UBS wants "
-             f"the price {r0['wants']}). The change a loss document makes to the state over the request's update, minus "
-             f"the change a neutral document makes, measured at this moment, is added with no document at one layer, at "
+             f"the price {r0['wants']}). The change each document type (loss, blame, gain, credit) makes to the state over "
+             f"the request's update, minus the change a neutral document makes, measured at this moment, is added with no document at one layer, at "
              f"{strength:g} times its size. One greedy reply per layer (no sampling), so every difference comes from the "
              "injection. P(along): the probability that the order goes along, after the fixed neutral reasoning line. "
              "Produced by `scripts/modal_layer_scan.py --showcase-only`.\n",
-             "| Layer | P(along) | Reply read as | Change size |\n|---|---|---|---|"]
-    lines += [f"| {'none' if r['layer'] is None else r['layer']} | {100 * r['p_order_along']:.0f}% | {r['reply_status']} | "
-              f"{r['shift_size']:.0f} |" for r in rows]
+             f"No injection: P(along) {100 * r0['p_order_along']:.0f}%, reply read as {r0['reply_status']}.\n",
+             "P(along) by layer, with how the reply reads (trade, hold, malformed...):\n"]
+    themes = list(dict.fromkeys(r["theme"] for r in rows[1:]))
+    by = {(r["theme"], r["layer"]): r for r in rows[1:]}
+    lines.append("| Layer | " + " | ".join(themes) + " |\n" + "|---" * (len(themes) + 1) + "|")
+    for L in LS.ALL_LAYERS:
+        lines.append(f"| {L} | " + " | ".join(f"{100 * by[(t, L)]['p_order_along']:.0f}% ({by[(t, L)]['reply_status']})"
+                                              for t in themes) + " |")
     lines.append("\n## The replies\n")
-    lines += [f"**{'No injection' if r['layer'] is None else 'Layer ' + str(r['layer'])}**\n> "
+    lines += [f"**{'No injection' if r['layer'] is None else r['theme'] + ', layer ' + str(r['layer'])}**\n> "
               + (r["reply"] or "").strip().replace("\n", "\n> ") + "\n" for r in rows]
     open(f"{res}/SHOWCASE.md", "w").write("\n".join(lines) + "\n")
     json.dump(rows, open(f"{res}/showcase.json", "w"), indent=1)
@@ -213,7 +218,7 @@ def dispatch(parts, analysis_only, doc_set):
 def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion", showcase_only: bool = False,
          strength: float = 1.0):
     if showcase_only:
-        print(f"layer showcase ({doc_set} documents, {strength:g}x): one moment, one reply per layer")
+        print(f"layer showcase ({doc_set} documents, {strength:g}x): one moment, one reply per document type and layer")
         print(showcase.remote(doc_set, strength))
         return
     print(f"layer scan ({doc_set} documents): directions, then {parts} GPUs, then the analysis")
