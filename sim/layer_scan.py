@@ -51,12 +51,13 @@ def base_and_docs(career, item, docs, chats, opening, tok, themes=("loss", "neut
     return plain, k, reads
 
 
-def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LAYERS, theme="loss", all_themes=False):
+def shifts_at(model, tok, capture, career, item, docs, chats, opening, layers=LAYERS, theme="loss", all_themes=False,
+              only=None):
     """{layer: the `theme` reading's mean change over the update minus the neutral reading's} at one moment; with
     all_themes, {theme: {layer: ...}} for every document type but neutral."""
     import torch
     from interventions import prefill
-    themes = [t for t in docs if t != "neutral"] if all_themes else [theme]
+    themes = [t for t in docs if t != "neutral" and (not only or t in only)] if all_themes else [theme]
     plain, k, reads = base_and_docs(career, item, docs, chats, opening, tok, tuple(themes) + ("neutral",))
     cache = prefill(model, plain[:k])
 
@@ -148,7 +149,8 @@ def run_item(model, tok, steers, career, item, dirs, chats, opening, lead, grid,
                "showcase": showcase, "reply": reply, "reply_status": parse_reply(reply)["status"] if reply else None}
 
 
-def showcase(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, strength=1, max_new=300):
+def showcase(model, tok, steers, capture, career, item, docs, chats, opening, lead, grid, strength=1, max_new=300,
+             only=None):
     """One moment: the loss-specific change measured there, then, with no document, added at each layer in turn (one
     greedy reply each), plus no injection. One row per layer."""
     import torch
@@ -156,7 +158,7 @@ def showcase(model, tok, steers, capture, career, item, docs, chats, opening, le
     from interventions import order_dist, prefill, split_point, summarise_orders
     from matched import matched
     from mountain import parse_reply
-    D = shifts_at(model, tok, capture, career, item, docs, chats, opening, ALL_LAYERS, all_themes=True)
+    D = shifts_at(model, tok, capture, career, item, docs, chats, opening, ALL_LAYERS, all_themes=True, only=only)
     idx = item["history_index"]
     base = matched(career, idx, item["date"], "neutral", "neutral", chats)
     full = encode(tok, turns_at(base, idx, opening))

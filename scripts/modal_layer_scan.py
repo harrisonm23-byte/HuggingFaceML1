@@ -6,6 +6,7 @@ random directions, with one greedy reply per condition at a fixed showcase momen
 
     modal run --detach scripts/modal_layer_scan.py                        # the emotion documents
     modal run --detach scripts/modal_layer_scan.py --doc-set financial    # the financial documents
+    modal run --detach scripts/modal_layer_scan.py --showcase-only --themes blame,gain,credit   # some types only
     modal run --detach scripts/modal_layer_scan.py --showcase-only        # one moment, one reply per document type and layer (0-47)
 """
 import modal
@@ -150,7 +151,7 @@ def analyse(doc_set="emotion"):
 
 
 @app.function(gpu="H100", timeout=2 * 3600, secrets=SECRETS, volumes=VOLUMES)
-def showcase(doc_set="emotion", strength=1.0):
+def showcase(doc_set="emotion", strength=1.0, themes=""):
     """One moment (7 Jan, neutral career 0): the loss-specific change measured there, injected at each layer in turn,
     one greedy reply each. Writes and pushes results/<set>/SHOWCASE.md."""
     import json, os, subprocess
@@ -164,9 +165,11 @@ def showcase(doc_set="emotion", strength=1.0):
     steers = {L: Steer(layers[L]) for L in LS.ALL_LAYERS}
     capture = J.Capture({L: layers[L] for L in LS.ALL_LAYERS})
     res = SETS[doc_set][1]
+    tag = "_" + "_".join(t for t in themes.split(",") if t) if themes else ""
     os.makedirs(res, exist_ok=True)
     rows = []
-    for r in LS.showcase(model, tok, steers, capture, career, item, docs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, strength):
+    for r in LS.showcase(model, tok, steers, capture, career, item, docs, chats, opening, NEUTRAL_LEAD, WIDE_GRID, strength,
+                         only=[t for t in themes.split(",") if t] or None):
         rows.append(r)
         print(f"{r['theme']} layer {r['layer']}: P(along) {100 * r['p_order_along']:.0f}% | {r['reply_status']}", flush=True)
     r0 = rows[0]
@@ -188,8 +191,8 @@ def showcase(doc_set="emotion", strength=1.0):
     lines.append("\n## The replies\n")
     lines += [f"**{'No injection' if r['layer'] is None else r['theme'] + ', layer ' + str(r['layer'])}**\n> "
               + (r["reply"] or "").strip().replace("\n", "\n> ") + "\n" for r in rows]
-    open(f"{res}/SHOWCASE.md", "w").write("\n".join(lines) + "\n")
-    json.dump(rows, open(f"{res}/showcase.json", "w"), indent=1)
+    open(f"{res}/SHOWCASE{tag.upper()}.md", "w").write("\n".join(lines) + "\n")
+    json.dump(rows, open(f"{res}/showcase{tag}.json", "w"), indent=1)
     for attempt in range(10):
         subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Layer showcase ({doc_set})'", shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
@@ -216,10 +219,10 @@ def dispatch(parts, analysis_only, doc_set):
 
 @app.local_entrypoint()
 def main(parts: int = 2, analysis_only: bool = False, doc_set: str = "emotion", showcase_only: bool = False,
-         strength: float = 1.0):
+         strength: float = 1.0, themes: str = ""):
     if showcase_only:
         print(f"layer showcase ({doc_set} documents, {strength:g}x): one moment, one reply per document type and layer")
-        print(showcase.remote(doc_set, strength))
+        print(showcase.remote(doc_set, strength, themes))
         return
     print(f"layer scan ({doc_set} documents): directions, then {parts} GPUs, then the analysis")
     for line in dispatch.remote(parts, analysis_only, doc_set):
