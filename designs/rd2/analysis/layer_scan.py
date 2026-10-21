@@ -72,7 +72,7 @@ report.append("| Layer | " + " | ".join(themes) + " |\n" + "|---" * (1 + len(the
 for L in LAYERS:
     report.append(f"| {L} | " + " | ".join(cell(test(f"{t} x{RS} at layer {L}", f"random x{RS} at layer {L}"))
                                           for t in themes) + " |")
-if "loss" in themes and "gain" in themes:
+if "loss" in themes and "gain" in themes and 1 in STRENGTHS:      # (the sweep runs at 2x only)
     report.append("\n**Loss against gain (x1)**: " + "; ".join(
         f"layer {L} {cell(test(f'loss x1 at layer {L}', f'gain x1 at layer {L}'))}" for L in LAYERS) + ".")
 
