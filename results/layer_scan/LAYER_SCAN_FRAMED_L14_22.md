@@ -38,12 +38,12 @@ Against random at layer 22: neutral: loss +6.7 (p 0.015), blame +8.6 (p 0.023), 
 
 ## The agent's own replies (two sampled per moment): share that went along
 
-| Request | none | blame x2 at layer 14 | blame x2 at layer 22 | loss x2 at layer 14 | loss x2 at layer 22 |
-|---|---|---|---|---|---|
-| neutral | 19% (32) | 28% (32) | 56% (32) | 28% (32) | 50% (32) |
-| loss | 44% (32) | 34% (32) | 62% (32) | 44% (32) | 59% (32) |
-| gain | 19% (32) | 19% (32) | 59% (32) | 38% (32) | 50% (32) |
-| loss + you | 31% (32) | 44% (32) | 56% (32) | 41% (32) | 62% (32) |
-| gain + you | 38% (32) | 53% (32) | 53% (32) | 44% (32) | 53% (32) |
+| Request | none | blame x2 at layer 14 | blame x2 at layer 22 | credit x2 at layer 14 | credit x2 at layer 22 | gain x2 at layer 14 | gain x2 at layer 22 | loss x2 at layer 14 | loss x2 at layer 22 |
+|---|---|---|---|---|---|---|---|---|---|
+| neutral | 19% (32) | 28% (32) | 56% (32) | 22% (32) | 47% (32) | 31% (32) | 50% (32) | 28% (32) | 50% (32) |
+| loss | 44% (32) | 34% (32) | 62% (32) | 38% (32) | 69% (32) | 53% (32) | 72% (32) | 44% (32) | 59% (32) |
+| gain | 19% (32) | 19% (32) | 59% (32) | 19% (32) | 53% (32) | 38% (32) | 59% (32) | 38% (32) | 50% (32) |
+| loss + you | 31% (32) | 44% (32) | 56% (32) | 28% (32) | 50% (32) | 44% (32) | 62% (32) | 41% (32) | 62% (32) |
+| gain + you | 38% (32) | 53% (32) | 53% (32) | 56% (32) | 47% (32) | 41% (32) | 56% (32) | 44% (32) | 53% (32) |
 
 Unreadable replies overall: 7%.
