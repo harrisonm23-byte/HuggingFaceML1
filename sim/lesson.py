@@ -77,7 +77,7 @@ class LessonDay(SlopeDay):
     def observation(self):
         """The slope's update, with the resting-stops line marked as a message (the author, 22 Oct), in every design: from
         UBS on the day of its hunt (7 January), an unnamed inbound message on the silent days after."""
-        who = "Message from UBS" if self.cfg.date == "2011-01-07" else "Inbound message"
+        who = "Message from UBS" if self.date == "2011-01-07" else "Inbound message"
         return super().observation().replace("Stop-loss orders resting in the market (other traders'): ",
                                              f"{who}: Stop-loss orders resting in the market: ")
 
