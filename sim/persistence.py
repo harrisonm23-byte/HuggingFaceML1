@@ -42,22 +42,33 @@ def region(tok, career, opening):
 
 def moments(career, days):
     """Every trading-day update after the pushed one, in order: its history index, date, time, the position held before
-    it, the direction toward the nearest stops (wants), and whether it is a key moment (orders read there too)."""
+    it, the direction toward the stops (wants), and whether it is a key moment (orders read there too). Key moments:
+    in the slope careers, those in KEY_TIMES; in careers with UBS's requests (B), each request and the first update of
+    every later trading day (where a push came back in the slope check). A request moment also carries its chat."""
     users = [i for i, t in enumerate(career["history"]) if t["role"] == "user"]
     p, _ = pushed_turn(career)
     out = []
     for d in days:
         msg = (d["summary"].get("slope") or {}).get("message")
+        asks = sorted([(c["at"], cid, c["wants"]) for cid, c in d["summary"].get("chats", {}).items()
+                       if c.get("wants") in ("up", "down")]) if not msg else []
         sides = {s[3] for s in d["summary"]["book_stops"]}
-        wants = msg["wants"] if msg else ("down" if sides == {"sell"} else "up" if sides == {"buy"} else None)
-        for i, s in enumerate(d["steps"]):
+        day_wants = msg["wants"] if msg else (asks[0][2] if asks else ("down" if sides == {"sell"} else "up" if sides == {"buy"} else None))
+        steps = d["steps"]
+        ask_at = {}                                    # the step each request arrives at: the first at or after its time
+        for at, cid, w in asks:
+            k = next(k for k, st in enumerate(steps) if st["time"] >= at)
+            ask_at.setdefault(k, (cid, w))
+        for i, s in enumerate(steps):
             hits = [k for k in users if s["observation"] in career["history"][k]["content"]]
             assert len(hits) == 1, f"{d['date']} {s['time']}: the update is found {len(hits)} times"
             if hits[0] <= p:
                 continue
-            out.append({"history_index": hits[0], "date": d["date"], "time": s["time"], "wants": wants,
-                        "position": float(d["steps"][i - 1]["position"]) if i else 0.0,
-                        "key": s["time"] in KEY_TIMES.get(d["date"], [])})
+            chat, wants = ask_at.get(i, (None, day_wants))
+            key = (s["time"] in KEY_TIMES.get(d["date"], [])) if msg or d["date"] in KEY_TIMES and not asks else \
+                (chat is not None or (i == 0 and d["date"] != PUSH_DATE))
+            out.append({"history_index": hits[0], "date": d["date"], "time": s["time"], "wants": wants, "request": chat,
+                        "position": float(steps[i - 1]["position"]) if i else 0.0, "key": key})
     return out
 
 

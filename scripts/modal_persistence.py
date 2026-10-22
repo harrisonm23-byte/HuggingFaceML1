@@ -11,8 +11,13 @@ Then:
     modal run --detach scripts/modal_persistence.py
 
 Options: --folder (default: the slope pilot's careers), --arms (default: the four emotional states and a random one at
-layers 14 and 22), --strength 8, --careers none_r0,none_r1 (default: all in the folder), --no-orders (states only),
---analysis-only. Results: results/persistence/<folder>/<career>.json, and designs/rd2/analysis/persistence.py writes
+layers 14 and 22), --strengths 8 (or several, e.g. 4,8), --careers none_r0,none_r1 (default: all in the folder), --only
+neutral_r (careers whose name starts so), --no-orders (states only), --analysis-only.
+
+B's framed experiment, its 10 neutral careers, with each request and each later trading morning (designs/rd2/PREREG_JOLT.md):
+
+    modal run --detach scripts/modal_persistence.py --folder results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2 \
+        --only neutral_r --strengths 4,8 Results: results/persistence/<folder>/<career>.json, and designs/rd2/analysis/persistence.py writes
 results/persistence/<folder>/PERSISTENCE.md.
 """
 import modal
@@ -67,8 +72,17 @@ def out_dir(folder):
     return "results/persistence/" + folder.rstrip("/").split("/")[-1].replace("full_career_gemma-3-12b-it_4bit_", "")
 
 
+def build(arms, strengths):
+    """The states at every strength, by name (e.g. "loss x4 L14")."""
+    import state_careers as S
+    out = {}
+    for st in strengths:
+        out.update({v: a for v, a in S.build_arms(arms, st).items() if a["vec"] is not None})
+    return out
+
+
 @app.function(cpu=2, memory=8192, timeout=1200, secrets=SECRETS, volumes=VOLUMES)
-def check(folder, arms, strength):
+def check(folder, arms, strengths):
     """The careers, each one's pushed moment and later updates, and the states (no GPU)."""
     import glob, json, os
     setup()
@@ -86,8 +100,8 @@ def check(folder, arms, strength):
         ms = P.moments(career, days)
         out.append(f"{n}: pushed moment {r1 - r0} tokens (from {r0}); {len(ms)} later updates, key: "
                    f"{[(m['date'], m['time']) for m in ms if m['key']]}; instructions: "
-                   f"{'the slope' if 'other traders' in opening else 'the pilot'}")
-    for v, a in S.build_arms(arms, strength).items():
+                   f"{'the slope' if 'other traders' in opening else 'the earlier ones'}")
+    for v, a in build(arms, strengths).items():
         out.append(f"{v}: {a['theme']} at layer {a['layer']}, {a['strength']:g} x its size ({a['strength'] * a['size']:.1f}), "
                    f"from {a['source']}")
     return out, names
@@ -95,7 +109,7 @@ def check(folder, arms, strength):
 
 @app.function(gpu="H100", timeout=4 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_job(folder, name, arms, strength, orders=True):
+def run_job(folder, name, arms, strengths, orders=True):
     import json, os, time
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -111,18 +125,19 @@ def run_job(folder, name, arms, strength, orders=True):
                                                  dtype=torch.bfloat16).eval()
     weights.commit()
     layers_mod = [m for _, m in model.named_modules() if type(m).__name__.endswith("DecoderLayer")]
-    info = S.build_arms(arms, strength)
+    info = build(arms, strengths)
     push_layers = sorted({a["layer"] for a in info.values() if a["layer"] is not None})
     steers = {L: S.ArmSteer(layers_mod[L]) for L in push_layers}     # before the recorder, so it sees the push
     rec = Recorder(model)
     career, days = P.load_career(folder, name)
     t0 = time.time()
     res = P.run_career(model, tok, career, days, P.opening_for(career),
-                       {"none": None, **{v: (a["layer"], a["vec"]) for v, a in info.items() if a["vec"] is not None}},
+                       {"none": None, **{v: (a["layer"], a["vec"]) for v, a in info.items()}},
                        steers, rec, layers=list(range(min(push_layers) + 1, len(layers_mod))), lead=NEUTRAL_LEAD,
                        grid=WIDE_GRID, orders=orders)
-    res.update(career=name, folder=folder, strength=strength, precision="bfloat16", minutes=(time.time() - t0) / 60,
-               states={v: {"theme": a["theme"], "layer": a["layer"], "sha": a["sha"], "source": a["source"]} for v, a in info.items()})
+    res.update(career=name, folder=folder, strength=max(strengths), strengths=list(strengths), precision="bfloat16",
+               minutes=(time.time() - t0) / 60, states={v: {"theme": a["theme"], "layer": a["layer"], "strength": a["strength"],
+                                                            "sha": a["sha"], "source": a["source"]} for v, a in info.items()})
     d = out_dir(folder)
     os.makedirs(d, exist_ok=True)
     json.dump(res, open(f"{d}/{name}.json", "w"))
@@ -141,8 +156,8 @@ def analyse(folder):
 
 
 @app.function(timeout=8 * 3600, secrets=SECRETS)
-def dispatch(folder, names, arms, strength, orders):
-    calls = [run_job.spawn(folder, n, arms, strength, orders) for n in names]
+def dispatch(folder, names, arms, strengths, orders):
+    calls = [run_job.spawn(folder, n, arms, strengths, orders) for n in names]
     done = []
     for n, c in zip(names, calls):
         try:
@@ -154,9 +169,10 @@ def dispatch(folder, names, arms, strength, orders):
 
 
 @app.local_entrypoint()
-def main(folder: str = FOLDER, arms: str = ARMS, strength: float = 8.0, careers: str = "", orders: bool = True,
-         check_only: bool = False, analysis_only: bool = False):
-    lines, names = check.remote(folder, arms, strength)
+def main(folder: str = FOLDER, arms: str = ARMS, strengths: str = "8", careers: str = "", only: str = "",
+         orders: bool = True, check_only: bool = False, analysis_only: bool = False):
+    sts = [float(x) for x in strengths.split(",")]
+    lines, names = check.remote(folder, arms, sts)
     for line in lines:
         print("  " + line)
     if check_only:
@@ -164,7 +180,7 @@ def main(folder: str = FOLDER, arms: str = ARMS, strength: float = 8.0, careers:
     if analysis_only:
         print(analyse.remote(folder))
         return
-    names = [n for n in names if not careers or n in careers.split(",")]
-    print(f"persistence check: {len(names)} careers on {len(names)} GPUs, arms {arms}, {strength:g} x")
-    for line in dispatch.remote(folder, names, arms, strength, orders):
+    names = [n for n in names if (not careers or n in careers.split(",")) and n.startswith(only)]
+    print(f"persistence check: {len(names)} careers on {len(names)} GPUs, arms {arms}, at {strengths} x")
+    for line in dispatch.remote(folder, names, arms, sts, orders):
         print(line)

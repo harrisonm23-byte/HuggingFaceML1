@@ -128,7 +128,33 @@ r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.dirname
                                                   "designs/rd2/analysis/persistence.py"), tmp], capture_output=True, text=True)
 md = open(f"{tmp}/PERSISTENCE.md").read() if r.returncode == 0 else r.stderr
 check("the summary runs: imprint tables by push layer, and the orders at the key moments",
-      r.returncode == 0 and "## Pushed at layer 1: what is left at layer 5" in md and "| 2011-01-12 09:30 | push x8 L1 |" in md)
+      r.returncode == 0 and "## Pushed at layer 1: what is left at layer 5" in md and "| push x8 L1 |" in md
+      and "01-12 08:00, minus random" in md)
 print(md[:1500])
+
+# ---- 5. a career with UBS's requests (as B): the requests and the later mornings are key; the preregistered tests run
+bday = lambda d, times, asks: {"date": d, "summary": {"chats": {f"c{i}": {"wants": w, "at": t} for i, (t, w) in enumerate(asks)},
+                                                     "book_stops": [["Client A", 1.0, 1, "sell"]]},
+                               "steps": [{"time": t, "observation": obs[(d, t)], "position": 0} for t in times]}
+bdays = [bday("2011-01-07", ["08:00", "08:15", "09:45"], [("08:10", "down")]),
+         bday("2011-01-12", ["08:00", "09:30"], [("09:30", "up"), ("09:00", "none")])]
+bm = P.moments(career, bdays)
+check(f"B-style: the requests and the later mornings are key, each request with its direction: "
+      f"{[(m['date'], m['time'], m['request'], m['wants']) for m in bm if m['key']]}",
+      [(m["date"], m["time"], m["request"], m["wants"]) for m in bm if m["key"]] ==
+      [("2011-01-07", "08:15", "c0", "down"), ("2011-01-12", "08:00", None, "up"), ("2011-01-12", "09:30", "c0", "up")])
+gen = torch.Generator().manual_seed(1)
+barms = {"none": None, **{f"{t} x4 L14": (L, (torch.randn(64, generator=gen) * 8).numpy()) for t in ("loss", "gain", "blame", "credit", "random")}}
+bout = P.run_career(model, tok, career, bdays, opening, barms, steers, rec, layers=list(range(6)), lead=NEUTRAL_LEAD, grid=[0, 10, -10])
+tmpb = tempfile.mkdtemp()
+for k in range(3):
+    json.dump({**bout, "folder": "results/check_b", "strength": 4, "strengths": [4], "career": f"neutral_r{k}"}, open(f"{tmpb}/neutral_r{k}.json", "w"))
+r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                                  "designs/rd2/analysis/persistence.py"), tmpb], capture_output=True, text=True)
+mdb = open(f"{tmpb}/PERSISTENCE.md").read() if r.returncode == 0 else r.stderr
+check("B-style summary: the preregistered tests, going along at the requests, opening a position at the mornings",
+      r.returncode == 0 and "**H1, the push does not roll" in mdb and "**H2, it comes back" in mdb
+      and "## Going along at UBS's requests" in mdb and "## Opening a position at the trading mornings" in mdb)
+print(mdb[:1800])
 print("\nall checks passed" if ok else "\nSOME CHECKS FAILED")
 sys.exit(0 if ok else 1)
