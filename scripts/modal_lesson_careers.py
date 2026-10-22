@@ -13,8 +13,13 @@ placeholders):
     modal run --detach scripts/modal_lesson_careers.py --design lesson
     modal run --detach scripts/modal_lesson_careers.py --design silent
 
-Options: --arms "none" (default) or arms as in scripts/modal_state_careers.py, --strength, --when once --span kept (the
-push at the top, before UBS's hunt), --rounds 0-4, --design lesson|watch|silent, --through all|2011-01-12,
+Then the same lesson careers with a document's state on every reply (layer 22, 2 x; "none" from the run above is their
+baseline, with the same seeds, in the same folder):
+
+    modal run --detach scripts/modal_lesson_careers.py --design lesson --arms "loss@22,gain@22,blame@22,credit@22,random@22" --strength 2
+
+Options: --arms "none" (default) or arms as in scripts/modal_state_careers.py, --strength, --when every (default: every
+reply) or trading (trading days only), --rounds 0-4, --design lesson|watch|silent, --through all|2011-01-12,
 --analysis-only. Results: results/full_career_gemma-3-12b-it_4bit_<name>_v2, and designs/rd2/analysis/lesson.py writes
 results/<name>/LESSON.md.
 """
