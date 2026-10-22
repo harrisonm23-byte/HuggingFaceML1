@@ -64,6 +64,7 @@ class LessonDay(SlopeDay):
         super().__init__(cfg)
         self.ubs_pos, self.ubs_cash, self.ubs_log = 0, 0.0, []
         self.hunt_fired, self.hunt_bought, self.gave_up, self.hunt_said, self.buy_px = None, None, False, {}, None
+        self.long_px, self.long_sold, self.sold_px = None, None, None
 
     def _ubs_trade(self, oz):
         """UBS buys (oz > 0) or sells (oz < 0) at the screen price, at the agent's costs; its order moves the price."""
@@ -92,6 +93,12 @@ class LessonDay(SlopeDay):
                 self.gave_up = not self.hunt_fired
                 self._ubs_trade(-self.ubs_pos)
                 self.hunt_bought, self.buy_px = t, self.ubs_log[-1][2]
+                if H.get("long_oz") and not self.gave_up:       # re-enter long at the low (the second leg of the play)
+                    self._ubs_trade(H["long_oz"])
+                    self.long_px = self.ubs_log[-1][2]
+            if H.get("long_oz") and self.ubs_pos > 0 and t == H["sell_long_at"] and self.long_sold is None:
+                self._ubs_trade(-self.ubs_pos)                  # and sell it into the bounce
+                self.long_sold, self.sold_px = t, self.ubs_log[-1][2]
         return rec
 
     def _advance_minute(self):
@@ -112,11 +119,13 @@ class LessonDay(SlopeDay):
             elif self.hunt_bought and self.hunt_bought != t and not self.gave_up and "after" not in self.hunt_said:
                 said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}").replace("{B}", f"{self.buy_px:.2f}")) for sp, x in H["after"]]
                 self.hunt_said["after"] = t
-            if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said:
+            if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said \
+                    and (self.long_sold or not H.get("long_oz")):
                 px = self.price()           # {B} UBS's buy-back price, {N} the price now, {C} UBS's booked profit in cents an ounce sold
                 sold = -sum(oz for _, oz, _ in self.ubs_log if oz < 0)
                 said += [(sp, x.replace("{B}", f"{self.buy_px:.2f}").replace("{N}", f"{px:.2f}")
-                          .replace("{C}", f"{round(100 * self.ubs_cash / sold)}")) for sp, x in H.get("later", [])]
+                          .replace("{C}", f"{round(100 * self.ubs_cash / sold)}")
+                          .replace("{S}", f"{self.sold_px or px:.2f}").replace("{P}", f"${self.ubs_cash:,.0f}")) for sp, x in H.get("later", [])]
                 self.hunt_said["later"] = t
         delivered = []
         if said:
@@ -144,6 +153,7 @@ class LessonDay(SlopeDay):
             first = H["sells"][0][0]
             during = [r["traded"] for r in self.log if first <= r["time"] <= (self.hunt_bought or "99:99")]
             out["slope"]["hunt"] = {"ubs_trades": self.ubs_log, "stops_fired_at": self.hunt_fired, "bought_back_at": self.hunt_bought,
+                                    "long_entry": self.long_px, "long_sold_at": self.long_sold, "long_sold_px": self.sold_px,
                                     "gave_up": self.gave_up, "ubs_profit": round(self.ubs_cash, 2) if self.ubs_pos == 0 else None,
                                     "lines_at": dict(self.hunt_said), "said": H["say"],
                                     "agent_net_during": sum(during)}
@@ -170,7 +180,7 @@ def lesson_day(date, design, framed, setups, lesson):
         cfg.hunt = {"sells": [tuple(x) for x in H["ubs_sells"]], "give_up_at": H["give_up_at"], "say": design == "lesson",
                     "before_at": H["before_at"], "before": X(H["before_lines"]), "filled": X(H["filled_lines"]),
                     "after": X(H["after_lines"]), "later_at": H.get("later_at"), "later": X(H.get("later_lines", [])),
-                    "level": level, "price_at_first_sell": probe.price()}
+                    "long_oz": H.get("long_oz", 0), "sell_long_at": H.get("sell_long_at"), "level": level, "price_at_first_sell": probe.price()}
     return LessonDay(cfg)
 
 

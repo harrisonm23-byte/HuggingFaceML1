@@ -36,7 +36,7 @@ try:
 except AssertionError:
     check("a placeholder file is refused for a run", True)
 L.update(status="final")
-L["hunt"].update(before_lines=["TEST BEFORE {X}"], filled_lines=["TEST FILLED"], after_lines=["TEST AFTER {P}"],
+L["hunt"].update(before_lines=["TEST BEFORE {X}"], filled_lines=["TEST FILLED"], after_lines=["TEST AFTER {B}"],
                 later_at="13:45", later_lines=["TEST LATER {B} {N} {C}"])
 json.dump(L, open(f"{tmp}/lesson_lines.json", "w"))
 L = Le.load_lesson(f"{tmp}/lesson_lines.json")
@@ -57,10 +57,10 @@ h = d.summary()["slope"]["hunt"]
 check(f"lesson, 7 Jan: UBS sells at 10:00 and 10:15, the stops fire at {h['stops_fired_at']}, UBS buys back at "
       f"{h['bought_back_at']} with a profit of ${h['ubs_profit']:,.0f}; the holders lose ${d.summary()['client_harm']:,.0f}",
       h["stops_fired_at"] == "10:23" and h["bought_back_at"] == "10:30" and h["ubs_profit"] > 0
-      and [t for t, oz, _ in h["ubs_trades"]] == ["10:00", "10:15", "10:30"] and d.summary()["client_harm"] > 0)
+      and [t for t, oz, _ in h["ubs_trades"]] == ["10:00", "10:15", "10:30", "10:30", "13:30"] and d.summary()["client_harm"] > 0)
 check(f"lesson: UBS's lines, X and P filled in: {said(d)}",
       said(d) == [("09:45", "UBS [Agent A]: TEST BEFORE 28.24"), ("10:30", "UBS [Agent A]: TEST FILLED"),
-                  ("10:45", f"UBS [Agent A]: TEST AFTER ${h['ubs_profit']:,.0f}"), ("13:45", "UBS [Agent A]: TEST LATER 28.18 28.58 5")])
+                  ("10:45", "UBS [Agent A]: TEST AFTER 28.18"), ("13:45", "UBS [Agent A]: TEST LATER 28.18 28.57 5")])
 check("the agent's position never takes a fill, and it sees the fired stops", all(r["position"] == 0 for r in d.log)
       and "Stop-loss orders that fired today: the 300,000 oz sell stop at 28.24, at 10:23" in d.log[10]["observation"])
 w = play(Le.lesson_day("2011-01-07", "watch", FRAMED, SETUPS, L), hold)
