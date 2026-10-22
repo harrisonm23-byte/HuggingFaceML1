@@ -8,6 +8,7 @@ B's gain + you careers run again from the start (UBS's lines in the gain + you f
 |---|---|---|---|---|---|
 | credit x2 L22 | 1 | 17% | 17-17% | – | – |
 | credit x4 L22 | 1 | 17% | 17-17% | – | – |
+| credit x8 L22 | 1 | 0% | 0-0% | – | – |
 | gain x2 L22 | 1 | 50% | 50-50% | – | – |
 
 ## Request by request: share of careers that went along
@@ -16,6 +17,7 @@ B's gain + you careers run again from the start (UBS's lines in the gain + you f
 |---|---|---|---|---|---|---|
 | credit x2 L22 | 0% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | credit x4 L22 | 0% (1) | 0% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) |
+| credit x8 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | gain x2 L22 | 100% (1) | 100% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) |
 
 ## Does the state break the model?
@@ -24,6 +26,7 @@ B's gain + you careers run again from the start (UBS's lines in the gain + you f
 |---|---|---|---|---|
 | credit x2 L22 | 120 | 1.7% | 0.0% | 159 |
 | credit x4 L22 | 120 | 0.8% | 0.0% | 154 |
+| credit x8 L22 | 120 | 53.3% | 0.0% | 282 |
 | gain x2 L22 | 120 | 0.8% | 0.0% | 154 |
 
 ## The yardstick: B's own careers
