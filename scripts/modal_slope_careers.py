@@ -12,10 +12,17 @@ The neutral pilot (5 careers, the first two trading days; --through all for the 
     modal run --detach scripts/modal_slope_careers.py --design slope --through 2011-01-12
 
 Options: --arms "none" (default) or arms as in scripts/modal_state_careers.py (e.g. "loss@22,gain@22,random@22,none"),
---when every|trading|once (once: the state on the first reply of 7 January only, the push at the top), --strength 2,
+--when every|trading|once|start (once: the state on the first reply of 7 January only, the push at the top; start: the
+career's first reply), --span update|all|kept (kept, with once or start: the pushed update and reply keep the state at
+every later read, as a cached memory would), --strength 2, --no-controls (no control days),
 --rounds 0-4, --design slope|quiet|flat (quiet: only the final request; flat: no lines), --through 2011-01-12|all,
 --analysis-only. Results: results/full_career_gemma-3-12b-it_4bit_<name>_v2, and designs/rd2/analysis/slope.py writes
 results/<name>/SLOPE.md.
+
+The jolt (a push once at the top, kept, at layer 22, 8 x; one career per state to the hint, no control days):
+
+    modal run --detach scripts/modal_slope_careers.py --arms "loss@22,gain@22,blame@22,credit@22,random@22" \
+        --strength 8 --when once --span kept --rounds 0 --no-controls
 """
 import modal
 
@@ -98,7 +105,7 @@ def check_arms(arms, strength, design, through):
 
 @app.function(gpu=GPU, timeout=24 * 3600, retries=modal.Retries(max_retries=5, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_job(arms, strength, rounds, when, span, only=None, framing="neutral", design="slope", through=None):
+def run_job(arms, strength, rounds, when, span, only=None, framing="neutral", design="slope", through=None, controls=True):
     """Notebook 32's cells (imports, settings, model, memory check, agent, run), as scripts/modal_careers.py runs a
     notebook; `only` keeps one arm (--per-arm)."""
     import json, os, sys
@@ -117,7 +124,7 @@ def run_job(arms, strength, rounds, when, span, only=None, framing="neutral", de
     g = {"__name__": "__main__"}
     exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
     g.update(REPO=repo, BRANCH=BRANCH, PIN=json.load(open("results/full_career_pin.json")), ARM_INFO=info, WHEN=when,
-             SPAN=span, FRAMING=framing, DESIGN=design, THROUGH=through)
+             SPAN=span, FRAMING=framing, DESIGN=design, THROUGH=through, CONTROLS=controls)
     exec(setup_cell[setup_cell.index("from mountain import"):], g)      # the notebook's imports (no Colab parts)
     exec(settings_cell, g)                                                # its versions and inputs
     g["ROUNDS_HERE"] = rounds                                             # this job's rounds
@@ -141,16 +148,17 @@ def analyse(name):
     return f"{res}/SLOPE.md pushed"
 
 
-def run_name(design, framing, when, span, through):
+def run_name(design, framing, when, span, through, controls=True):
     """The notebook's NAME (the results folder), worked out the same way."""
     return (f"slope_{design}" + ("" if framing == "neutral" else "_" + framing.replace(" + ", "_plus_"))
-            + ("" if (when, span) == ("every", "update") else f"_{when}_{span}") + ("" if through is None else f"_to_{through}"))
+            + ("" if (when, span) == ("every", "update") else f"_{when}_{span}") + ("" if through is None else f"_to_{through}")
+            + ("" if controls else "_nocontrol"))
 
 
 @app.function(timeout=24 * 3600, secrets=SECRETS)
-def dispatch(todo, strength, when, span, design, through):
+def dispatch(todo, strength, when, span, design, through, controls):
     """Starts every job from inside Modal and waits there (no GPU), so --detach keeps them all running; then analyses."""
-    calls = [run_job.spawn(arms, strength, rounds, when, span, only, framing, design, through)
+    calls = [run_job.spawn(arms, strength, rounds, when, span, only, framing, design, through, controls)
              for arms, rounds, only, framing in todo]
     done = []
     for (arms, rounds, only, framing), c in zip(todo, calls):
@@ -159,15 +167,17 @@ def dispatch(todo, strength, when, span, design, through):
         except Exception as e:                    # one job failing (after its retries) does not stop the others
             done.append(f"{framing}: {only or arms} rounds {rounds}: failed ({type(e).__name__})")
     for framing in dict.fromkeys(t[3] for t in todo):
-        done.append(analyse.remote(run_name(design, framing, when, span, through)))
+        done.append(analyse.remote(run_name(design, framing, when, span, through, controls)))
     return done
 
 
 @app.local_entrypoint()
 def main(arms: str = "none", strength: float = 2.0, rounds: str = "0-4", when: str = "every", span: str = "update",
          per_arm: bool = False, check: bool = False, analysis_only: bool = False, framings: str = "neutral",
-         design: str = "slope", through: str = "2011-01-12"):
-    assert when in ("every", "trading", "once") and span in ("update", "all"), "--when every|trading|once, --span update|all"
+         design: str = "slope", through: str = "2011-01-12", controls: bool = True):
+    assert when in ("every", "trading", "once", "start") and span in ("update", "all", "kept"), \
+        "--when every|trading|once|start, --span update|all|kept"
+    assert span != "kept" or when in ("once", "start"), "--span kept goes with --when once or start (one push, kept)"
     assert design in ("slope", "quiet", "flat"), "--design slope|quiet|flat"
     through = None if through == "all" else through
     fr = [f.strip() for f in framings.split(",") if f.strip()]
@@ -182,12 +192,13 @@ def main(arms: str = "none", strength: float = 2.0, rounds: str = "0-4", when: s
         return
     if analysis_only:
         for f in fr:
-            print(analyse.remote(run_name(design, f, when, span, through)))
+            print(analyse.remote(run_name(design, f, when, span, through, controls)))
         return
     a, b = (rounds.split("-") + [None])[:2]
     rr = list(range(int(a), int(b) + 1)) if b else [int(r) for r in rounds.split(",")]
     todo = [(arms, [k], n, f) for f in fr for k in rr for n in (names if per_arm else [None])]
     print(f"the slope ({design}, through {through or 'all five trading days'}): {len(fr)} framing(s) x {len(names)} arms x "
-          f"{len(rr)} rounds = {len(fr) * len(names) * len(rr)} careers on {len(todo)} GPUs; state on {when} reply")
-    for line in dispatch.remote(todo, strength, when, span, design, through):
+          f"{len(rr)} rounds = {len(fr) * len(names) * len(rr)} careers on {len(todo)} GPUs; state on {when} reply, span "
+          f"{span}, {strength:g} x; control days {'on' if controls else 'off'}")
+    for line in dispatch.remote(todo, strength, when, span, design, through, controls):
         print(line)

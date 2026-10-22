@@ -15,10 +15,12 @@ averaged over all 20 scanned moments (both halves of the careers, since the new 
 Every state is used at STRENGTH times its natural size (its length). A layer must have been scanned: 18-21 (the
 confirmation scan) or an even layer from 4 to 42 (the sweep).
 
-When the state is on (WHEN): "every" reply of the career, "trading" days only, or "once" (the first reply on a
-trading day only: one push at the top; notebook 32). Where (SPAN): "update", the newest
+When the state is on (WHEN): "every" reply of the career, "trading" days only, "once" (the first reply on a trading
+day only: one push at the top; notebook 32) or "start" (the career's first reply only). Where (SPAN): "update", the newest
 update and the reply, as in the layer scans (the history before it is read as it is); or "all", every token of the
-conversation.
+conversation; or, with "once" and "start", "kept": the pushed update and reply keep the state at every later read
+(each reply re-reads the conversation from its text, so without this a one-time push lives on only in what the agent
+wrote; kept, it stays in the model's reading of that moment, as a cached memory would hold it).
 """
 import hashlib
 import os
@@ -28,7 +30,7 @@ import numpy as np
 
 SOURCES = {"emotion": ["/states/v2/layer_scan_18_21", "/states/v2/layer_scan_18_21_sweep"],
            "financial": ["/states/v2/layer_scan_18_21_fin", "/states/v2/layer_scan_18_21_fin_sweep"]}
-WHENS, SPANS = ("every", "trading", "once"), ("update", "all")
+WHENS, SPANS = ("every", "trading", "once", "start"), ("update", "all", "kept")
 RANDOM_SEED = 20261022
 
 
@@ -122,6 +124,8 @@ def steer_on(when, date, trading_days, first=False):
     assert when in WHENS, when
     if when == "once":
         return bool(first) and date in trading_days
+    if when == "start":
+        return bool(first)
     return when == "every" or (date is not None and date in trading_days)
 
 
@@ -141,15 +145,16 @@ def update_start(tok, turns):
 
 
 class ArmSteer:
-    """Adds `vec` to a decoder layer's output at every token from position `start` on (positions as the model counts
-    them, so chunked reading and token-by-token writing are both covered); nothing when off."""
+    """Adds `vec` to a decoder layer's output at every token from position `start` on, or from `start` up to `end`
+    (positions as the model counts them, so chunked reading and token-by-token writing are both covered); nothing when
+    off."""
 
     def __init__(self, layer_module):
-        self.vec, self.start, self.steered = None, 0, 0
+        self.vec, self.start, self.end, self.steered = None, 0, None, 0
         self.handle = layer_module.register_forward_hook(self._hook, with_kwargs=True)
 
-    def set(self, vec=None, start=0):
-        self.vec, self.start, self.steered = vec, start, 0
+    def set(self, vec=None, start=0, end=None):
+        self.vec, self.start, self.end, self.steered = vec, start, end, 0
 
     def _hook(self, module, args, kwargs, output):
         if self.vec is None:
@@ -157,7 +162,23 @@ class ArmSteer:
         h = output[0] if isinstance(output, tuple) else output
         pos = kwargs.get("position_ids")
         assert pos is not None, "the decoder layer was called without position_ids"
-        mask = (pos[0] >= self.start).to(h.dtype)[None, :, None]
+        keep = pos[0] >= self.start
+        if self.end is not None:
+            keep = keep & (pos[0] < self.end)
+        mask = keep.to(h.dtype)[None, :, None]
         self.steered += int(mask.sum())
         h = h + mask * self.vec.to(h.dtype)
         return (h,) + tuple(output[1:]) if isinstance(output, tuple) else h
+
+
+def kept_end(tok, turns, k):
+    """Where the pushed moment ends: the token after turn k (the pushed reply), found as the length of the part the
+    conversation up to it shares with the whole one."""
+    upto = tok.apply_chat_template(turns[:k + 1], return_dict=True)["input_ids"]
+    full = tok.apply_chat_template(turns, add_generation_prompt=True, return_dict=True)["input_ids"]
+    n = 0
+    for a, b in zip(upto, full):
+        if a != b:
+            break
+        n += 1
+    return n

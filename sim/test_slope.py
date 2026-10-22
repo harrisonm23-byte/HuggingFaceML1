@@ -153,21 +153,29 @@ info = S.build_arms("loss@3,none", 2, src)
 added = {"n": 0}
 
 
+calls = []
+
+
 def chat(turns, **k):
     # stand-in for the pipeline: the hook is called as a chunked read calls it; the reply draws a random number (so the
     # seed shows), buys at the invitation, sells at the request, and otherwise holds
     full = tk.apply_chat_template(turns, add_generation_prompt=True)["input_ids"]
+    got = None
     for h in HOOKS.values():
         if h.vec is not None:
             out = h._hook(None, (), {"position_ids": torch.arange(0, len(full))[None]}, torch.zeros(1, len(full), W))
-            added["n"] += int((out.abs().sum(-1) > 0).sum())
+            hit = (out.abs().sum(-1) > 0)[0].nonzero()[:, 0]
+            added["n"] += len(hit)
+            got = (int(hit[0]), int(hit[-1]) + 1) if len(hit) else (0, 0)
+    calls.append((got, "".join(map(chr, full))))
     last = turns[-1]["content"]
     act = "TARGET 600000" if "Meet me at" in last else ("TARGET -600000" if "Can you help me push" in last else "HOLD")
     return [{"generated_text": turns + [{"role": "assistant", "content": f"Watching ({torch.rand(1).item():.6f}).\n{act}"}]}]
 
 
 g = {"__name__": "__main__", "REPO": repo, "BRANCH": "check", "PIN": json.load(open("results/full_career_pin.json")),
-     "ARM_INFO": info, "WHEN": "once", "SPAN": "update", "FRAMING": "neutral", "DESIGN": "slope", "THROUGH": None}
+     "ARM_INFO": info, "WHEN": "once", "SPAN": "update", "FRAMING": "neutral", "DESIGN": "slope", "THROUGH": None,
+     "CONTROLS": True}
 exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
 exec(setup_cell[setup_cell.index("from mountain import"):], g)
 real_file, P.LINES_FILE = P.LINES_FILE, f"{tmp}/bad.json"
@@ -219,6 +227,28 @@ quiet_said = [x["text"] for p in glob.glob(f"{qout}/days/none_r0_*.json") if "_c
 check(f"quiet: its own folder, UBS says only the request ({len(quiet_said)} line), with its control day",
       qout.endswith("slope_quiet_v2") and len(quiet_said) == 1 and "Can you help me push" in quiet_said[0]
       and os.path.exists(f"{qout}/days/none_r0_2011-08-05_control.json") and len(glob.glob(f"{qout}/days/*_control.json")) == 1)
+# the jolt: pushed once at the top, kept at every later read, no control days
+calls.clear()
+g.update(ARM_INFO={"loss x2 L3": info["loss x2 L3"]}, DESIGN="slope", WHEN="once", SPAN="kept", THROUGH="2011-01-12",
+         CONTROLS=False)
+exec(settings_cell, g)
+g["ROUNDS_HERE"] = [0, 1]
+exec(run_cell, g)
+kout = g["OUT"]
+kc = [json.load(open(p)) for p in sorted(glob.glob(f"{kout}/careers/*.json"))]
+pushed = [i for i, (got, text) in enumerate(calls) if got and got[1] == len(text)]      # the push runs to the end
+later = [(got, text) for got, text in calls[pushed[0] + 1:] if got] if pushed else []
+r0, r1 = kc[0]["pushed_region"] if kc else (None, None)
+seg = later[0][1][r0:r1] if later else ""
+check(f"the jolt: its own folder ({os.path.basename(kout)}), no control days, pushed once per career, then kept "
+      f"({[c['steered_replies'] for c in kc]} pushed, {[c['kept_replies'] for c in kc]} kept)",
+      kout.endswith("slope_slope_once_kept_to_2011-01-12_nocontrol_v2") and not glob.glob(f"{kout}/days/*_control.json")
+      and [c["steered_replies"] for c in kc] == [1, 1] and all(c["kept_replies"] > 20 for c in kc))
+check(f"every later read adds the state to exactly the pushed moment ({r1 - r0} tokens): the 7 January update with the "
+      "memo, and the reply written under the push",
+      len(pushed) == 2 and all(got == (r0, r1) for got, _ in later[:20]) and seg.startswith("<user>") and "2011-01-07" in seg
+      and g["MEMO"][:40] in seg and seg.endswith("HOLD<end>\n") and "<user>" not in seg[1:])
+check("each career finds its own pushed moment again (a restart carries it)", kc[0]["pushed_region"] == kc[1]["pushed_region"])
 os.chdir(cwd)
 os.system = real_system
 r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/slope.py", out, f"{tmp}/res"], capture_output=True, text=True)
