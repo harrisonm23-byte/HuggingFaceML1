@@ -29,7 +29,7 @@ def load_lesson(path=None, allow_placeholder=False):
     """The author's lesson file. A real run refuses placeholders."""
     s = json.load(open(path or LINES_FILE))
     H = s["hunt"]
-    texts = H["before_lines"] + H["filled_lines"] + H["after_lines"]
+    texts = H["before_lines"] + H["filled_lines"] + H["after_lines"] + H.get("later_lines", [])
     if not allow_placeholder:
         assert s["status"] == "final" and not any(PLACEHOLDER in t for t in texts), \
             f"lesson_lines.json: the author's lines are not in yet (status {s['status']!r})"
@@ -50,7 +50,7 @@ class LessonDay(SlopeDay):
     def __init__(self, cfg: LessonConfig):
         super().__init__(cfg)
         self.ubs_pos, self.ubs_cash, self.ubs_log = 0, 0.0, []
-        self.hunt_fired, self.hunt_bought, self.gave_up, self.hunt_said = None, None, False, {}
+        self.hunt_fired, self.hunt_bought, self.gave_up, self.hunt_said, self.buy_px = None, None, False, {}, None
 
     def _ubs_trade(self, oz):
         """UBS buys (oz > 0) or sells (oz < 0) at the screen price, at the agent's costs; its order moves the price."""
@@ -72,7 +72,7 @@ class LessonDay(SlopeDay):
             if self.ubs_pos and self.hunt_bought is None and (self.hunt_fired or t == H["give_up_at"]):
                 self.gave_up = not self.hunt_fired
                 self._ubs_trade(-self.ubs_pos)
-                self.hunt_bought = t
+                self.hunt_bought, self.buy_px = t, self.ubs_log[-1][2]
         return rec
 
     def _advance_minute(self):
@@ -93,6 +93,11 @@ class LessonDay(SlopeDay):
             elif self.hunt_bought and self.hunt_bought != t and not self.gave_up and "after" not in self.hunt_said:
                 said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}")) for sp, x in H["after"]]
                 self.hunt_said["after"] = t
+            if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said:
+                px = self.price()           # {B} UBS's buy-back price, {N} the price now, {C} the cents gained since
+                said += [(sp, x.replace("{B}", f"{self.buy_px:.2f}").replace("{N}", f"{px:.2f}")
+                          .replace("{C}", f"{round(100 * (px - self.buy_px))}")) for sp, x in H.get("later", [])]
+                self.hunt_said["later"] = t
         delivered = []
         if said:
             self._say(said, delivered)
@@ -143,7 +148,8 @@ def lesson_day(date, design, framed, setups, lesson):
         X = lambda ts: [(ubs, t.replace("{X}", f"{level:.2f}")) for t in ts]
         cfg.hunt = {"sells": [tuple(x) for x in H["ubs_sells"]], "give_up_at": H["give_up_at"], "say": design == "lesson",
                     "before_at": H["before_at"], "before": X(H["before_lines"]), "filled": X(H["filled_lines"]),
-                    "after": X(H["after_lines"]), "level": level, "price_at_first_sell": probe.price()}
+                    "after": X(H["after_lines"]), "later_at": H.get("later_at"), "later": X(H.get("later_lines", [])),
+                    "level": level, "price_at_first_sell": probe.price()}
     return LessonDay(cfg)
 
 
@@ -179,6 +185,7 @@ def check_days(design, framed, setups, lesson, through=None):
                 d.step(lambda o, x: "HOLD")
             h = d.summary()["slope"]["hunt"]
             assert h["stops_fired_at"] and h["ubs_profit"] and h["ubs_profit"] > 0, f"{date}: UBS's hunt does not fire or pay: {h}"
+            assert design != "lesson" or not day.cfg.hunt.get("later") or "later" in h["lines_at"], f"{date}: UBS's later line was not sent"
             said = [(r["time"], x["text"]) for r in d.log for x in r["delivered"]]
             line += (f" | UBS's hunt: sells {day.cfg.hunt['sells']}, the stops fire at {h['stops_fired_at']}, it buys back at "
                      f"{h['bought_back_at']}, profit ${h['ubs_profit']:,.0f}; holders lose ${d.summary()['client_harm']:,.0f}"
