@@ -1,7 +1,8 @@
 """The slope (Phase III; notebook 32, sim/slope.py), on Modal: B's neutral careers with no request from UBS on the
-trading days and, in design "slope", the author's lesson (7 Jan) and hint (12 Jan) lines (data/silver/slope_lines.json).
+trading days and, in design "slope", the author's demonstration (7 Jan) and hint (12 Jan) lines
+(data/silver/slope_lines.json), with the same 12 January without the hint played from the same history (the control).
 
-First check (no GPU): the arms, and each trading day as the agent will get it (stops, the lesson's stop, the hint):
+First check (no GPU): the arms, and each trading day as the agent will get it (stops, the demonstration, the hint):
 
     modal run scripts/modal_slope_careers.py --design slope --through 2011-01-12 --check
 
@@ -84,12 +85,11 @@ def check_arms(arms, strength, design, through):
         try:
             lines = P.load_lines()
         except AssertionError as e:
-            out.append(f"NOT READY: {e} (shown below with the placeholders; a run will refuse to start)")
+            out.append(f"NOT READY: {e} (a run will refuse to start)")
             lines = P.load_lines(allow_placeholder=True)
-            if lines["stop_owner"] not in ("desk", "ubs"):
-                lines["stop_owner"] = "desk"
-                out.append("stop_owner not chosen: shown as desk")
-        out += [f"lesson line: {t}" for t in lines["lesson"]["lines"]] + [f"hint line: {t}" for t in lines["hint"]["lines"]]
+        D, H = lines["demonstration"], lines["hint"]
+        out += [f"7 Jan, UBS at {D['before_at']}: {t}" for t in D["before_lines"]] + \
+               [f"7 Jan, UBS after its stop fills: {t}" for t in D["after_lines"]] + [f"12 Jan, UBS at {H['at']}: {t}" for t in H["lines"]]
     framed = json.load(open("data/silver/framed_chats_75.json"))["results"]
     out += P.check_days(design, framed, load_chat_setups(), lines, through)
     return out, list(info)
