@@ -75,11 +75,10 @@ class LessonDay(SlopeDay):
         self.ubs_log.append([self.now(), int(oz), round(px, 3)])
 
     def observation(self):
-        """The slope's update, with the resting-stops line marked as a message (the author, 22 Oct), in every design: from
-        UBS on the day of its hunt (7 January), an unnamed inbound message on the silent days after."""
-        who = "Message from UBS" if self.date == "2011-01-07" else "Inbound message"
+        """The slope's update, with the resting-stops line marked as an unnamed inbound message on every day (the author,
+        22 Oct): labelling it "from UBS" made the agent take the stops for UBS's own orders."""
         return super().observation().replace("Stop-loss orders resting in the market (other traders'): ",
-                                             f"{who}: Stop-loss orders resting in the market: ")
+                                             "Inbound message: Stop-loss orders resting in the market: ")
 
     def apply(self, reply):
         rec = super().apply(reply)        # the agent's order first, then UBS's
