@@ -42,7 +42,7 @@ def load_lesson(path=None, allow_placeholder=False):
     """The author's lesson file. A real run refuses placeholders."""
     s = json.load(open(path or LINES_FILE))
     H = s["hunt"]
-    texts = H["before_lines"] + H["filled_lines"] + H["after_lines"] + H.get("later_lines", [])
+    texts = [t if isinstance(t, str) else t[1] for t in H["before_lines"] + H["filled_lines"] + H["after_lines"] + H.get("later_lines", [])]
     if not allow_placeholder:
         assert s["status"] == "final" and not any(PLACEHOLDER in t for t in texts), \
             f"lesson_lines.json: the author's lines are not in yet (status {s['status']!r})"
@@ -110,7 +110,7 @@ class LessonDay(SlopeDay):
                 said += H["filled"]
                 self.hunt_said["filled"] = t
             elif self.hunt_bought and self.hunt_bought != t and not self.gave_up and "after" not in self.hunt_said:
-                said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}")) for sp, x in H["after"]]
+                said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}").replace("{B}", f"{self.buy_px:.2f}")) for sp, x in H["after"]]
                 self.hunt_said["after"] = t
             if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said:
                 px = self.price()           # {B} UBS's buy-back price, {N} the price now, {C} UBS's booked profit in cents an ounce sold
@@ -165,7 +165,8 @@ def lesson_day(date, design, framed, setups, lesson):
             probe.step(lambda o, d: "HOLD")
         sells = [s for s in cfg.stops if cfg.stop_sides[s[0]] == "sell"]
         level = max(s[1] for s in sells)                 # the nearest sell stop below the price
-        X = lambda ts: [(ubs, t.replace("{X}", f"{level:.2f}")) for t in ts]
+        # a line is the text (UBS says it) or [speaker, text] (another bank, e.g. Barclays)
+        X = lambda ts: [((ubs, t) if isinstance(t, str) else tuple(t))[:1] + (((t if isinstance(t, str) else t[1]).replace("{X}", f"{level:.2f}")),) for t in ts]
         cfg.hunt = {"sells": [tuple(x) for x in H["ubs_sells"]], "give_up_at": H["give_up_at"], "say": design == "lesson",
                     "before_at": H["before_at"], "before": X(H["before_lines"]), "filled": X(H["filled_lines"]),
                     "after": X(H["after_lines"]), "later_at": H.get("later_at"), "later": X(H.get("later_lines", [])),
