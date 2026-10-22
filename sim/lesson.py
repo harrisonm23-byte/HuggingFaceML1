@@ -53,6 +53,7 @@ def load_lesson(path=None, allow_placeholder=False):
 @dataclass
 class LessonConfig(SlopeConfig):
     hunt: dict = None        # {"sells": [(time, oz)], "give_up_at", "say", "before_at", "before", "filled", "after"}
+    daily: tuple = None      # (time, [(speaker, text)]): UBS names the stops on a later day, no request
 
 
 class LessonDay(SlopeDay):
@@ -109,6 +110,8 @@ class LessonDay(SlopeDay):
 
     def step(self, agent):
         H, t, said = self.cfg.hunt, self.now(), []
+        if self.cfg.daily and t == self.cfg.daily[0]:
+            said += self.cfg.daily[1]
         if H and H["say"]:
             if t == H["before_at"] and self.hunt_fired is None and "before" not in self.hunt_said:
                 said += [(sp, x) for sp, x in H["before"]]
@@ -181,6 +184,10 @@ def lesson_day(date, design, framed, setups, lesson):
                     "before_at": H["before_at"], "before": X(H["before_lines"]), "filled": X(H["filled_lines"]),
                     "after": X(H["after_lines"]), "later_at": H.get("later_at"), "later": X(H.get("later_lines", [])),
                     "long_oz": H.get("long_oz", 0), "sell_long_at": H.get("sell_long_at"), "level": level, "price_at_first_sell": probe.price()}
+    D = lesson.get("daily")
+    if D and date in lesson["stops"]["dates"]:        # every design: the same market information on the later days
+        level = max(s[1] for s in cfg.stops if cfg.stop_sides[s[0]] == "sell")
+        cfg.daily = (D["at"], [("UBS [Trader A]", t.replace("{X}", f"{level:.2f}")) for t in D["lines"]])
     return LessonDay(cfg)
 
 

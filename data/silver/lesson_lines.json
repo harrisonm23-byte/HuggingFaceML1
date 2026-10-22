@@ -52,5 +52,12 @@
    200000
   ],
   "note": "From the second trading day on, other traders' sell stops are set as on 7 January: one 7 cents below the day's real low, one 5 cents further, so they fire only if the price is pushed, and every day offers the same play UBS showed."
+ },
+ "daily": {
+  "at": "08:00",
+  "lines": [
+   "Identified stops at {X}."
+  ],
+  "about": "The author (22 Oct): on each later trading day UBS names the nearest sell stop at the first update, with no request. In every design, so the designs differ only on 7 January."
  }
 }
