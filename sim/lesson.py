@@ -74,6 +74,11 @@ class LessonDay(SlopeDay):
         self._push(-oz)
         self.ubs_log.append([self.now(), int(oz), round(px, 3)])
 
+    def observation(self):
+        """The slope's update, with the resting-stops line marked as coming from UBS (the author, 22 Oct), in every design."""
+        return super().observation().replace("Stop-loss orders resting in the market (other traders'): ",
+                                             "Message from UBS: Stop-loss orders resting in the market: ")
+
     def apply(self, reply):
         rec = super().apply(reply)        # the agent's order first, then UBS's
         H, t = self.cfg.hunt, self.now()
