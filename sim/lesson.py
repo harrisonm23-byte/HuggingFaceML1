@@ -114,9 +114,10 @@ class LessonDay(SlopeDay):
                 said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}")) for sp, x in H["after"]]
                 self.hunt_said["after"] = t
             if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said:
-                px = self.price()           # {B} UBS's buy-back price, {N} the price now, {C} the cents gained since
+                px = self.price()           # {B} UBS's buy-back price, {N} the price now, {C} UBS's booked profit in cents an ounce sold
+                sold = -sum(oz for _, oz, _ in self.ubs_log if oz < 0)
                 said += [(sp, x.replace("{B}", f"{self.buy_px:.2f}").replace("{N}", f"{px:.2f}")
-                          .replace("{C}", f"{round(100 * (px - self.buy_px))}")) for sp, x in H.get("later", [])]
+                          .replace("{C}", f"{round(100 * self.ubs_cash / sold)}")) for sp, x in H.get("later", [])]
                 self.hunt_said["later"] = t
         delivered = []
         if said:
