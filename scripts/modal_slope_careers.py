@@ -1,18 +1,19 @@
 """The slope (Phase III; notebook 32, sim/slope.py), on Modal: B's neutral careers with no request from UBS on the
-trading days and, in design "slope", the author's demonstration (7 Jan) and hint (12 Jan) lines
-(data/silver/slope_lines.json), with the same 12 January without the hint played from the same history (the control).
+trading days. In design "slope" the author's demonstration (7 Jan) and messages (12 Jan to the request on 5 Aug;
+data/silver/slope_lines.json), each message's day also played without it from the same history (the control); "quiet"
+sends only the final request, "flat" nothing.
 
-First check (no GPU): the arms, and each trading day as the agent will get it (stops, the demonstration, the hint):
+First check (no GPU): the arms, and each trading day as the agent will get it (stops, the demonstration, the messages):
 
     modal run scripts/modal_slope_careers.py --design slope --through 2011-01-12 --check
 
-The neutral pilot (5 careers, the first two trading days; it refuses to start while the author's lines are placeholders):
+The neutral pilot (5 careers, the first two trading days; --through all for the whole career):
 
     modal run --detach scripts/modal_slope_careers.py --design slope --through 2011-01-12
 
 Options: --arms "none" (default) or arms as in scripts/modal_state_careers.py (e.g. "loss@22,gain@22,random@22,none"),
 --when every|trading|once (once: the state on the first reply of 7 January only, the push at the top), --strength 2,
---rounds 0-4, --design slope|flat (flat: the same careers with no lines, the control), --through 2011-01-12|all,
+--rounds 0-4, --design slope|quiet|flat (quiet: only the final request; flat: no lines), --through 2011-01-12|all,
 --analysis-only. Results: results/full_career_gemma-3-12b-it_4bit_<name>_v2, and designs/rd2/analysis/slope.py writes
 results/<name>/SLOPE.md.
 """
@@ -80,16 +81,16 @@ def check_arms(arms, strength, design, through):
                    f"{v}: {a['doc_set']} {a['theme']}, layer {a['layer']}, natural size {a['size']:.1f}, added at "
                    f"{a['strength']:g} x ({a['strength'] * a['size']:.1f}), from {a['source']} ({a['moments']} moments), "
                    f"fingerprint {a['sha']}")
-    lines = None
+    try:
+        lines = P.load_lines()
+    except AssertionError as e:
+        out.append(f"NOT READY: {e} (a run will refuse to start)")
+        lines = P.load_lines(allow_placeholder=True)
+    D = lines["demonstration"]
     if design == "slope":
-        try:
-            lines = P.load_lines()
-        except AssertionError as e:
-            out.append(f"NOT READY: {e} (a run will refuse to start)")
-            lines = P.load_lines(allow_placeholder=True)
-        D, H = lines["demonstration"], lines["hint"]
         out += [f"7 Jan, UBS at {D['before_at']}: {t}" for t in D["before_lines"]] + \
-               [f"7 Jan, UBS after its stop fills: {t}" for t in D["after_lines"]] + [f"12 Jan, UBS at {H['at']}: {t}" for t in H["lines"]]
+               [f"7 Jan, UBS after its stop fills: {t}" for t in D["after_lines"]]
+    out += [f"{m['date']}, UBS at {m['at']} ({m['role']}): {t}" for m in lines["messages"] if P.sent(design, m) for t in m["lines"]]
     framed = json.load(open("data/silver/framed_chats_75.json"))["results"]
     out += P.check_days(design, framed, load_chat_setups(), lines, through)
     return out, list(info)
@@ -167,7 +168,7 @@ def main(arms: str = "none", strength: float = 2.0, rounds: str = "0-4", when: s
          per_arm: bool = False, check: bool = False, analysis_only: bool = False, framings: str = "neutral",
          design: str = "slope", through: str = "2011-01-12"):
     assert when in ("every", "trading", "once") and span in ("update", "all"), "--when every|trading|once, --span update|all"
-    assert design in ("slope", "flat"), "--design slope|flat"
+    assert design in ("slope", "quiet", "flat"), "--design slope|quiet|flat"
     through = None if through == "all" else through
     fr = [f.strip() for f in framings.split(",") if f.strip()]
     assert fr and all(f in ("neutral", "loss", "gain", "loss + you", "gain + you") for f in fr), \
