@@ -13,6 +13,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | loss x2 L21 | 2 | 17% | 17-17% | +8.3 (+0.0 to +16.7), p 1.000 | +16.7 (+16.7 to +16.7), p 0.323 |
 | blame x2 L22 | 1 | 0% | 0-0% | – | – |
 | credit x2 L22 | 1 | 17% | 17-17% | – | – |
+| gain x2 L22 | 1 | 33% | 33-33% | – | – |
 | loss x2 L22 | 1 | 0% | 0-0% | – | – |
 | random x2 L14 | 2 | 25% | 17-33% | +16.7 (+0.0 to +33.3), p 0.665 | – |
 | random x2 L21 | 2 | 0% | 0-0% | -8.3 (-16.7 to +0.0), p 1.000 | – |
@@ -29,6 +30,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | loss x2 L21 | 100% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
 | blame x2 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | credit x2 L22 | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
+| gain x2 L22 | 100% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | loss x2 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | random x2 L14 | 100% (2) | 0% (2) | 0% (2) | 0% (2) | 50% (2) | 0% (2) |
 | random x2 L21 | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
@@ -45,6 +47,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | loss x2 L21 | 240 | 0.4% | 0.0% | 312 |
 | blame x2 L22 | 120 | 0.0% | 0.0% | 154 |
 | credit x2 L22 | 120 | 2.5% | 0.0% | 154 |
+| gain x2 L22 | 120 | 7.5% | 0.0% | 155 |
 | loss x2 L22 | 120 | 0.0% | 0.0% | 154 |
 | random x2 L14 | 240 | 0.8% | 0.0% | 311 |
 | random x2 L21 | 240 | 0.8% | 0.0% | 308 |
@@ -62,5 +65,6 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 - loss x2 L21 against B's loss-worded careers (does the state go as far as loss wording?): -8.3 (-18.3 to +1.7), p 0.666.
 - blame x2 L22 against B's loss-worded careers (does the state go as far as loss wording?): –.
 - credit x2 L22 against B's loss-worded careers (does the state go as far as loss wording?): –.
+- gain x2 L22 against B's loss-worded careers (does the state go as far as loss wording?): –.
 - loss x2 L22 against B's loss-worded careers (does the state go as far as loss wording?): –.
 - The no-state arm re-runs B's neutral careers with the same seeds; it can differ from them because the GPU and the order of computation can differ.
