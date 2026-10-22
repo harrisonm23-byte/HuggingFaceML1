@@ -3,9 +3,29 @@
   "share": 0.08333333333333333,
   "careers": 2
  },
+ "blame x2 L22": {
+  "share": 0.0,
+  "careers": 1
+ },
+ "credit x2 L22": {
+  "share": 0.16666666666666666,
+  "careers": 1
+ },
  "gain x2 L14": {
   "share": 0.16666666666666666,
   "careers": 2
+ },
+ "gain x2 L22": {
+  "share": 0.3333333333333333,
+  "careers": 1
+ },
+ "gain x4 L22": {
+  "share": 0.3333333333333333,
+  "careers": 1
+ },
+ "gain x8 L22": {
+  "share": 0.0,
+  "careers": 1
  },
  "loss x2 L14": {
   "share": 0.08333333333333333,
@@ -14,6 +34,10 @@
  "loss x2 L21": {
   "share": 0.16666666666666666,
   "careers": 2
+ },
+ "loss x2 L22": {
+  "share": 0.0,
+  "careers": 1
  },
  "none": {
   "share": 0.08333333333333333,
@@ -26,5 +50,17 @@
  "random x2 L21": {
   "share": 0.0,
   "careers": 2
+ },
+ "random x2 L22": {
+  "share": 0.0,
+  "careers": 1
+ },
+ "random x4 L22": {
+  "share": 0.0,
+  "careers": 1
+ },
+ "random x8 L22": {
+  "share": 0.0,
+  "careers": 1
  }
 }
