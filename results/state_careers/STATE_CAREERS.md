@@ -21,6 +21,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | random x2 L21 | 2 | 0% | 0-0% | -8.3 (-16.7 to +0.0), p 1.000 | – |
 | random x2 L22 | 1 | 0% | 0-0% | – | – |
 | random x4 L22 | 1 | 0% | 0-0% | – | – |
+| random x8 L22 | 1 | 0% | 0-0% | – | – |
 
 ## Request by request: share of careers that went along
 
@@ -41,6 +42,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | random x2 L21 | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
 | random x2 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | random x4 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
+| random x8 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 
 ## Does the state break the model?
 
@@ -61,6 +63,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 | random x2 L21 | 240 | 0.8% | 0.0% | 308 |
 | random x2 L22 | 120 | 0.8% | 0.0% | 157 |
 | random x4 L22 | 120 | 86.7% | 0.0% | 370 |
+| random x8 L22 | 120 | 100.0% | 0.0% | 394 |
 
 ## The yardstick: B's own careers
 
