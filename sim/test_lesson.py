@@ -162,6 +162,9 @@ trading_later = [u for u in users if "UTC (" in u and any(f", {dt}." in u for dt
 check(f"the agent read UBS's lines on 7 January once, and no UBS message on any later trading update ({len(trading_later)})",
       sum("TEST FILLED" in u for u in users) == 1 and len(trading_later) >= 96
       and not any("UBS [Agent A]" in u.split("New chat messages:")[-1] for u in trading_later if "New chat messages:" in u))
+first_user = next(t["content"] for t in c["history"] if t["role"] == "user")
+check("the instructions state the market's impact rule in numbers (the lesson careers only)",
+      "every 100,000 oz you buy or sell moves the price about 3 cents" in g["OPENING"])
 os.chdir(cwd)
 os.system = real_system
 r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/lesson.py", out, f"{tmp}/res", outs["silent"]], capture_output=True, text=True)

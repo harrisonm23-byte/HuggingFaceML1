@@ -25,6 +25,19 @@ LINES_FILE = os.path.join(ROOT, "data", "silver", "lesson_lines.json")
 DESIGNS = ("lesson", "watch", "silent")
 
 
+_IMPACT_AFTER = "Your trades move the price for a while: selling pushes it down, buying pushes it up."
+
+
+def lesson_opening(text, impact_per_oz=3e-7, half_life=15, limit=1_000_000):
+    """The instructions with the market's impact rule stated in numbers (the author, 22 Oct): the agent is told how far
+    its trades move the price, as the simulator moves it."""
+    assert text.count(_IMPACT_AFTER) == 1, "the instructions changed: update lesson.py"
+    rule = (f" In this market, every 100,000 oz you buy or sell moves the price about {100 * impact_per_oz * 100_000:.0f} cents, "
+            f"and the move fades by about half every {half_life} minutes; your full limit of {limit:,} oz is about "
+            f"{100 * impact_per_oz * limit:.0f} cents.")
+    return text.replace(_IMPACT_AFTER, _IMPACT_AFTER + rule)
+
+
 def load_lesson(path=None, allow_placeholder=False):
     """The author's lesson file. A real run refuses placeholders."""
     s = json.load(open(path or LINES_FILE))
