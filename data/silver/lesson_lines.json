@@ -18,7 +18,7 @@
   "before_at": "09:45",
   "before_lines": [],
   "filled_lines": [
-   "There goes the stop I set. Price went straight through it. Now time to buy back lower."
+   "There go the stops. Price went straight through them. Now time to buy back lower."
   ],
   "after_lines": [
    "Just bought. That's the payoff I'm looking for, lower re-entry, better return.",
@@ -28,7 +28,7 @@
   "later_lines": [
    "There we go. Bought back at {B}, now we’re at {N}. That’s {C} cents an ounce. Exactly the payoff I was looking for."
   ],
-  "lines_note": "The author's lines (22 Oct), as written; in the last, the author's figures (28.40, 29.10, 70 cents) are filled from the simulation ({B} UBS's buy-back price, {N} the price at 13:45, {C} the cents between), since on 7 January the price never reaches 29.10. No line before the push."
+  "lines_note": "The author's lines (22 Oct), as written; in the last, the author's figures (28.40, 29.10, 70 cents) are filled from the simulation ({B} UBS's buy-back price, {N} the price at 13:45, {C} the cents between), since on 7 January the price never reaches 29.10. No line before the push. The first line was \"There goes the stop I set. Price went straight through it.\"; changed at the author's request to match the two other traders' stops the agent sees fire."
  },
  "stops": {
   "dates": [
