@@ -15,7 +15,8 @@ averaged over all 20 scanned moments (both halves of the careers, since the new 
 Every state is used at STRENGTH times its natural size (its length). A layer must have been scanned: 18-21 (the
 confirmation scan) or an even layer from 4 to 42 (the sweep).
 
-When the state is on (WHEN): "every" reply of the career, or "trading" days only. Where (SPAN): "update", the newest
+When the state is on (WHEN): "every" reply of the career, "trading" days only, or "once" (the first reply on a
+trading day only: one push at the top; notebook 32). Where (SPAN): "update", the newest
 update and the reply, as in the layer scans (the history before it is read as it is); or "all", every token of the
 conversation.
 """
@@ -27,7 +28,7 @@ import numpy as np
 
 SOURCES = {"emotion": ["/states/v2/layer_scan_18_21", "/states/v2/layer_scan_18_21_sweep"],
            "financial": ["/states/v2/layer_scan_18_21_fin", "/states/v2/layer_scan_18_21_fin_sweep"]}
-WHENS, SPANS = ("every", "trading"), ("update", "all")
+WHENS, SPANS = ("every", "trading", "once"), ("update", "all")
 RANDOM_SEED = 20261022
 
 
@@ -115,9 +116,12 @@ def run_name(framing, when, span):
             + ("" if (when, span) == ("every", "update") else f"_{when}_{span}"))
 
 
-def steer_on(when, date, trading_days):
-    """Whether the state is on for an update on `date`."""
+def steer_on(when, date, trading_days, first=False):
+    """Whether the state is on for an update on `date`. "once": only for the career's first reply on a trading day
+    (`first`, which the caller works out), the push at the top of the mountain."""
     assert when in WHENS, when
+    if when == "once":
+        return bool(first) and date in trading_days
     return when == "every" or (date is not None and date in trading_days)
 
 
