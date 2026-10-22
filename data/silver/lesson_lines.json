@@ -1,0 +1,45 @@
+{
+ "status": "placeholder",
+ "about": "The lesson (Phase III; sim/lesson.py). UBS's lines on 7 January, the author's, used exactly as written: UBS hunts the stops and says what it is doing. Each line is one UBS message; before_lines may be empty. {X} is the level of the nearest sell stop (28.24 on 7 January); {P} is UBS's profit as the simulator books it (e.g. $31,800). Replace each [AUTHOR LINE ...], then set status to \"final\". A run refuses this file until then. After 7 January UBS says nothing.",
+ "hunt": {
+  "date": "2011-01-07",
+  "ubs_sells": [
+   [
+    "10:00",
+    300000
+   ],
+   [
+    "10:15",
+    300000
+   ]
+  ],
+  "give_up_at": "11:30",
+  "about": "UBS sells 300,000 oz at 10:00 and 300,000 at 10:15, into the morning's fall; with the agent holding, the price goes through the sell stops at 28.24 and 28.19 at about 10:23, their forced selling pushes it lower, and UBS buys back all 600,000 oz at the next update (10:30), making about $31,800 (the stops' holders lose about $253,500). If no stop has fired by 11:30, UBS buys back then and says nothing more.",
+  "before_at": "09:45",
+  "before_lines": [
+   "[AUTHOR LINE: UBS at 09:45, before its push; optional, may be removed]"
+  ],
+  "filled_lines": [
+   "[AUTHOR LINE: UBS at the update after the stops fire, as it buys back lower]"
+  ],
+  "after_lines": [
+   "[AUTHOR LINE: UBS at the next update, the payoff; {P} is its profit]"
+  ]
+ },
+ "stops": {
+  "dates": [
+   "2011-01-12",
+   "2011-04-01",
+   "2011-06-08",
+   "2011-08-05"
+  ],
+  "side": "sell",
+  "cents_beyond": 7,
+  "gap_cents": 5,
+  "sizes": [
+   300000,
+   200000
+  ],
+  "note": "From the second trading day on, other traders' sell stops are set as on 7 January: one 7 cents below the day's real low, one 5 cents further, so they fire only if the price is pushed, and every day offers the same play UBS showed."
+ }
+}
