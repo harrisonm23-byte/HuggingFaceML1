@@ -73,7 +73,9 @@ check(f"an agent selling alongside UBS is recorded ({j.summary()['slope']['hunt'
       j.summary()["slope"]["hunt"]["agent_net_during"] == -300000)
 for date in L["stops"]["dates"]:
     x = play(Le.lesson_day(date, "lesson", FRAMED, SETUPS, L), hold)
-    check(f"{date}: no message, no UBS trade, no stop fires with the agent holding", said(x) == [] and not x.summary()["stops_fired"]
+    check(f"{date}: only UBS's daily line at 08:00, no UBS trade, no stop fires with the agent holding",
+          [s for s in said(x)] == [("08:00", f"UBS [Agent A]: Identified stops at {max(s[1] for s in x.cfg.stops):.2f}.")]
+          and not x.summary()["stops_fired"]
           and "hunt" not in x.summary()["slope"])
 plan = {"12:15": "TARGET -300000", "12:30": "TARGET -600000", "12:45": "TARGET 0"}
 x = play(Le.lesson_day("2011-01-12", "lesson", FRAMED, SETUPS, L), lambda o, d: plan.get(d.now(), "HOLD"))
