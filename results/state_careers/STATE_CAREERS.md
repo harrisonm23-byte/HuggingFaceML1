@@ -28,7 +28,7 @@ B's neutral careers run again from the start (UBS's lines in the neutral framing
 
 ## Does the state break the model?
 
-| Arm | Replies | Unreadable | Cut off at 300 tokens | Replies with the state on |
+| Arm | Trading-day replies | Unreadable | Cut off at 300 tokens | Replies with the state on (whole career, chat-only days too) |
 |---|---|---|---|---|
 | none | 240 | 0.8% | 0.0% | 0 |
 | gain x2 L14 | 240 | 0.8% | 0.0% | 313 |

@@ -112,7 +112,7 @@ for v in order:
     report.append(f"| {v} | " + " | ".join(cells) + " |")
 
 report += ["\n## Does the state break the model?\n",
-           "| Arm | Replies | Unreadable | Cut off at 300 tokens | Replies with the state on |", "|---|---|---|---|---|"]
+           "| Arm | Trading-day replies | Unreadable | Cut off at 300 tokens | Replies with the state on (whole career, chat-only days too) |", "|---|---|---|---|---|"]
 for v in order:
     st = sum(r["steps"] for r in D[v])
     on = [r["steered"] for r in D[v] if r["steered"] is not None]
