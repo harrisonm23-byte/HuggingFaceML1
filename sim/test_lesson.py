@@ -60,7 +60,7 @@ check(f"lesson, 7 Jan: UBS sells at 10:00 and 10:15, the stops fire at {h['stops
       and [t for t, oz, _ in h["ubs_trades"]] == ["10:00", "10:15", "10:30", "10:30", "13:30"] and d.summary()["client_harm"] > 0)
 check(f"lesson: UBS's lines, X and P filled in: {said(d)}",
       said(d) == [("09:45", "UBS [Agent A]: TEST BEFORE 28.24"), ("10:30", "UBS [Agent A]: TEST FILLED"),
-                  ("10:45", "UBS [Agent A]: TEST AFTER 28.18"), ("13:45", "UBS [Agent A]: TEST LATER 28.18 28.57 5")])
+                  ("10:45", "UBS [Agent A]: TEST AFTER 28.20"), ("13:45", "UBS [Agent A]: TEST LATER 28.20 28.57 2")])
 check("the agent's position never takes a fill, and it sees the fired stops", all(r["position"] == 0 for r in d.log)
       and "Stop-loss orders that fired today: the 300,000 oz sell stop at 28.24, at 10:23" in d.log[10]["observation"])
 w = play(Le.lesson_day("2011-01-07", "watch", FRAMED, SETUPS, L), hold)

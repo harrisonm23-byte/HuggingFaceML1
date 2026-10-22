@@ -66,15 +66,23 @@ class LessonDay(SlopeDay):
         self.ubs_pos, self.ubs_cash, self.ubs_log = 0, 0.0, []
         self.hunt_fired, self.hunt_bought, self.gave_up, self.hunt_said, self.buy_px = None, None, False, {}, None
         self.long_px, self.long_sold, self.sold_px = None, None, None
+        self.bcl_pos, self.bcl_cash, self.bcl_log, self.bcl_px = 0, 0.0, [], None      # Barclays, selling with UBS
 
-    def _ubs_trade(self, oz):
-        """UBS buys (oz > 0) or sells (oz < 0) at the screen price, at the agent's costs; its order moves the price."""
+    def _ubs_trade(self, oz, bank="ubs"):
+        """UBS (or Barclays) buys (oz > 0) or sells (oz < 0) at the screen price, at the agent's costs; its order moves
+        the price."""
         px = self.price()
         half = self.cfg.half_spread if oz > 0 else -self.cfg.half_spread
-        self.ubs_cash -= oz * (px + half) + self.cfg.impact_per_oz * oz * oz / 2
-        self.ubs_pos += oz
+        cost = oz * (px + half) + self.cfg.impact_per_oz * oz * oz / 2
+        if bank == "ubs":
+            self.ubs_cash -= cost
+            self.ubs_pos += oz
+            self.ubs_log.append([self.now(), int(oz), round(px, 3)])
+        else:
+            self.bcl_cash -= cost
+            self.bcl_pos += oz
+            self.bcl_log.append([self.now(), int(oz), round(px, 3)])
         self._push(-oz)
-        self.ubs_log.append([self.now(), int(oz), round(px, 3)])
 
     def observation(self):
         """The slope's update, with the resting-stops line marked as an unnamed inbound message on every day (the author,
@@ -87,11 +95,17 @@ class LessonDay(SlopeDay):
         H, t = self.cfg.hunt, self.now()
         if H:
             if self.hunt_fired is None and self.hunt_bought is None:
+                for at, oz in H.get("barclays_sells", []):
+                    if t == at:
+                        self._ubs_trade(-oz, "barclays")
                 for at, oz in H["sells"]:
                     if t == at:
                         self._ubs_trade(-oz)
             if self.ubs_pos and self.hunt_bought is None and (self.hunt_fired or t == H["give_up_at"]):
                 self.gave_up = not self.hunt_fired
+                if self.bcl_pos:                                 # Barclays covers with UBS, just before it
+                    self._ubs_trade(-self.bcl_pos, "barclays")
+                    self.bcl_px = self.bcl_log[-1][2]
                 self._ubs_trade(-self.ubs_pos)
                 self.hunt_bought, self.buy_px = t, self.ubs_log[-1][2]
                 if H.get("long_oz") and not self.gave_up:       # re-enter long at the low (the second leg of the play)
@@ -120,7 +134,8 @@ class LessonDay(SlopeDay):
                 said += H["filled"]
                 self.hunt_said["filled"] = t
             elif self.hunt_bought and self.hunt_bought != t and not self.gave_up and "after" not in self.hunt_said:
-                said += [(sp, x.replace("{P}", f"${self.ubs_cash:,.0f}").replace("{B}", f"{self.buy_px:.2f}")) for sp, x in H["after"]]
+                said += [(sp, x.replace("{BP}", f"${self.bcl_cash:,.0f}").replace("{BB}", f"{self.bcl_px or 0:.2f}")
+                          .replace("{P}", f"${self.ubs_cash:,.0f}").replace("{B}", f"{self.buy_px:.2f}")) for sp, x in H["after"]]
                 self.hunt_said["after"] = t
             if t == H.get("later_at") and self.hunt_bought and not self.gave_up and "later" not in self.hunt_said \
                     and (self.long_sold or not H.get("long_oz")):
@@ -156,6 +171,7 @@ class LessonDay(SlopeDay):
             first = H["sells"][0][0]
             during = [r["traded"] for r in self.log if first <= r["time"] <= (self.hunt_bought or "99:99")]
             out["slope"]["hunt"] = {"ubs_trades": self.ubs_log, "stops_fired_at": self.hunt_fired, "bought_back_at": self.hunt_bought,
+                                    "barclays_trades": self.bcl_log, "barclays_profit": round(self.bcl_cash, 2) if self.bcl_log and self.bcl_pos == 0 else None,
                                     "long_entry": self.long_px, "long_sold_at": self.long_sold, "long_sold_px": self.sold_px,
                                     "gave_up": self.gave_up, "ubs_profit": round(self.ubs_cash, 2) if self.ubs_pos == 0 else None,
                                     "lines_at": dict(self.hunt_said), "said": H["say"],
@@ -183,7 +199,7 @@ def lesson_day(date, design, framed, setups, lesson):
         cfg.hunt = {"sells": [tuple(x) for x in H["ubs_sells"]], "give_up_at": H["give_up_at"], "say": design == "lesson",
                     "before_at": H["before_at"], "before": X(H["before_lines"]), "filled": X(H["filled_lines"]),
                     "after": X(H["after_lines"]), "later_at": H.get("later_at"), "later": X(H.get("later_lines", [])),
-                    "long_oz": H.get("long_oz", 0), "sell_long_at": H.get("sell_long_at"), "level": level, "price_at_first_sell": probe.price()}
+                    "barclays_sells": [tuple(x) for x in H.get("barclays_sells", [])], "long_oz": H.get("long_oz", 0), "sell_long_at": H.get("sell_long_at"), "level": level, "price_at_first_sell": probe.price()}
     D = lesson.get("daily")
     if D and date in lesson["stops"]["dates"]:        # every design: the same market information on the later days
         level = max(s[1] for s in cfg.stops if cfg.stop_sides[s[0]] == "sell")
