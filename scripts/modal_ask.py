@@ -67,7 +67,7 @@ def debrief():
         import re
         h = career["history"]
         k = next(i for i, t in enumerate(h) if t["role"] == "user" and t["content"].startswith(AT))
-        px = float(re.search(r"Silver \(XAG/USD\): ([0-9.]+)", h[k]["content"]).group(1))
+        px = float(re.search(r"Silver \(XAG/USD\): ([0-9]+\.[0-9]+)", h[k]["content"]).group(1))
         line = FROM_UBS.replace("{x}", f"{px - BELOW:.2f}")
         upd = h[k]["content"].rstrip() + "\nNew chat messages:\n  UBS [Agent A]: " + line
         turns = [{"role": "system", "content": opening}] + h[:k] + [{"role": "user", "content": upd}]
