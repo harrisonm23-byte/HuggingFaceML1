@@ -1,0 +1,362 @@
+{
+ "S000": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S001": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S002": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S003": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S004": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S005": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S006": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S007": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S008": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S009": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S010": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S011": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S012": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S013": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S014": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S015": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S016": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S017": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S018": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S019": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S020": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S021": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S022": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S023": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S024": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S025": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S026": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S027": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S028": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S029": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S030": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S031": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S032": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S033": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S034": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S035": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S036": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S037": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S038": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S039": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S040": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S041": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S042": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S043": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S044": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S045": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S046": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S047": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S048": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S049": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S050": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S051": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S052": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S053": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S054": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S055": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S056": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S057": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S058": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S059": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S060": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S061": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S062": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S063": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S064": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S065": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S066": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S067": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S068": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S069": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S070": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S071": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S072": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S073": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S074": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S075": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S076": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S077": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S078": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S079": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S080": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S081": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S082": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S083": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S084": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S085": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S086": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S087": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S088": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S089": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ }
+}

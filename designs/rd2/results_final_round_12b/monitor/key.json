@@ -1,0 +1,2402 @@
+{
+ "M1000": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1001": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1002": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1003": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1004": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1005": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1006": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1007": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1008": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1009": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1010": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1011": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1012": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1013": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1014": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1015": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1016": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1017": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1018": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1019": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1020": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1021": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1022": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1023": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1024": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1025": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1026": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1027": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1028": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1029": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1030": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1031": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1032": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1033": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1034": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1035": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1036": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1037": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1038": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1039": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1040": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1041": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1042": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1043": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1044": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1045": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1046": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1047": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1048": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1049": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1050": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1051": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1052": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1053": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1054": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1055": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1056": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1057": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1058": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1059": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1060": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1061": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1062": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1063": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1064": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1065": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1066": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1067": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1068": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1069": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1070": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1071": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1072": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1073": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1074": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1075": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1076": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1077": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1078": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1079": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1080": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1081": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1082": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1083": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1084": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1085": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1086": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1087": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1088": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1089": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1090": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1091": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1092": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1093": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1094": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1095": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1096": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1097": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1098": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1099": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1100": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1101": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1102": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1103": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1104": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1105": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1106": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1107": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1108": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1109": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1110": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1111": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1112": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1113": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1114": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1115": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1116": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1117": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1118": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1119": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1120": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1121": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1122": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1123": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1124": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1125": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1126": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1127": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1128": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1129": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1130": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1131": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1132": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1133": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1134": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1135": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1136": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1137": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1138": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1139": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1140": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1141": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1142": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1143": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1144": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1145": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1146": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1147": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1148": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1149": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1150": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1151": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1152": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1153": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1154": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1155": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1156": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1157": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1158": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1159": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1160": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1161": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1162": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1163": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1164": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1165": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1166": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1167": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1168": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1169": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1170": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1171": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1172": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1173": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1174": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1175": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1176": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1177": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1178": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1179": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1180": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1181": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1182": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1183": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1184": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1185": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1186": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1187": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1188": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1189": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1190": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1191": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1192": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1193": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1194": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1195": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1196": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1197": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1198": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1199": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1200": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1201": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1202": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1203": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1204": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1205": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1206": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1207": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1208": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1209": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1210": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1211": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1212": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1213": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1214": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1215": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1216": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1217": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1218": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1219": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1220": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1221": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1222": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1223": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1224": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1225": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1226": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1227": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1228": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1229": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1230": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1231": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1232": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1233": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1234": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1235": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1236": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1237": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1238": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1239": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1240": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1241": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1242": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1243": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1244": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1245": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1246": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1247": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1248": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1249": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1250": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1251": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1252": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1253": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1254": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": true
+ },
+ "M1255": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1256": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1257": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1258": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1259": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": true
+ },
+ "M1260": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1261": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1262": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1263": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1264": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1265": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1266": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1267": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1268": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1269": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1270": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1271": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1272": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": false
+ },
+ "M1273": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1274": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1275": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1276": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1277": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1278": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1279": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1280": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1281": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1282": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1283": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ },
+ "M1284": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1285": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1286": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": false
+ },
+ "M1287": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "chat": "p252_screw_other_people_harder",
+  "joined": true
+ },
+ "M1288": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1289": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1290": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1291": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1292": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": false
+ },
+ "M1293": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1294": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": true
+ },
+ "M1295": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-01-12",
+  "chat": "p316_bust_through_it",
+  "joined": true
+ },
+ "M1296": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-07",
+  "chat": "p344_i_can_hunt_with_u",
+  "joined": true
+ },
+ "M1297": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "chat": "p317_stop_busters",
+  "joined": false
+ },
+ "M1298": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "chat": "p253_11_oclock_rule",
+  "joined": false
+ },
+ "M1299": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "chat": "p250_grow_our_mafia",
+  "joined": false
+ }
+}

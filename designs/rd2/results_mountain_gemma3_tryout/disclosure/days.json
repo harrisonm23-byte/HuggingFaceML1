@@ -1,0 +1,494 @@
+[
+ {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-07",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "share": {
+   "p315_tell_me_stops": "09:30"
+  }
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "share": {}
+ },
+ {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "share": {
+   "p277_chinese_buying": "09:00",
+   "p278_give_me_a_call": "09:15",
+   "p279_last_price_chinese_paid": "09:30"
+  }
+ }
+]
