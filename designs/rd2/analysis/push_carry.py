@@ -8,8 +8,10 @@
    differences are paired (signs flipped by career); against the neutral careers, careers are reshuffled.
 2. The cue: at 12 January, P(the order goes along) with UBS's blame line ("I'm counting on you to deliver it", no loss
    in it) minus with the neutral line, in each career (the matched rereads). If the line calls back an earlier push, it
-   should do more in the blame careers than in the neutral ones. Inside: whether the change the line makes to the state
-   points the way the 7 January blame line's change did, more in the blame careers.
+   should do more in the blame careers than in the neutral ones. Blame careers start high and neutral ones low, so the
+   effect is also given in log-odds, which a ceiling or a floor bends less; a null may be saturation, not absence.
+   Inside: whether the change the line makes to the state points the way the 7 January blame line's change did, more
+   in the blame careers.
 One moment per career; a career counts only if the scored orders cover at least half the model's probability with the
 neutral request (as in the matched rereads). 10,000 reshuffles; 95% intervals from resampling careers. Exploratory.
 """
@@ -22,6 +24,8 @@ RNG = np.random.default_rng(20261028)
 NAME = {"neutral": "neutral", "loss": "loss", "gain": "gain", "loss + you": "blame", "gain + you": "credit"}
 FRAMED = ["loss + you", "loss", "gain + you", "gain"]
 pts = lambda x: f"{100 * x:+.1f}"
+lo = lambda x: f"{x:+.2f}"
+logit = lambda p: float(np.log(np.clip(p, 1e-4, 1 - 1e-4) / (1 - np.clip(p, 1e-4, 1 - 1e-4))))
 pct = lambda x: f"{100 * x:.1f}%"
 
 
@@ -50,9 +54,9 @@ def unpaired(a, b):
     return obs, tuple(np.percentile(boot, [2.5, 97.5])), float((np.abs(null) >= abs(obs) - 1e-12).mean())
 
 
-def line(label, res, n):
-    obs, (lo, hi), p = res
-    return f"| {label} | {n} | {pts(obs)} | {pts(lo)} to {pts(hi)} | {p:.4f} |"
+def line(label, res, n, scale=pts):
+    obs, (a, b), p = res
+    return f"| {label} | {n} | {scale(obs)} | {scale(a)} to {scale(b)} | {p:.4f} |"
 
 
 md = ["# Push and cue: what carries B's framing from 7 to 12 January (exploratory)\n",
@@ -113,28 +117,33 @@ path = os.path.join(DIR, "cue_rows.json")
 if os.path.exists(path):
     cue = [r for r in json.load(open(path)) if r["coverage"] >= MIN_COVER]
     d = {r["career_file"]: r["p"]["loss + you"] - r["p"]["neutral"] for r in cue}
+    dl = {r["career_file"]: logit(r["p"]["loss + you"]) - logit(r["p"]["neutral"]) for r in cue}
     by = lambda vs: [r for r in cue if r["history"] in vs]
     md += ["\n## 2. The cue: UBS's 12 January blame line (\"I'm counting on you to deliver it\") against the neutral "
            "line, the same moment\n",
            f"{len(cue)} careers (the matched rereads). The cue's effect: P(the order goes along) with the blame line "
            "minus with the neutral line, the history unchanged.\n",
-           "| Career's own framing | Careers | Neutral line | Blame line | The cue's effect (points) |", "|---|---|---|---|---|"]
+           "| Career's own framing | Careers | Neutral line | Blame line | The cue's effect (points) | (log-odds) |",
+           "|---|---|---|---|---|---|"]
     for v in ["neutral"] + FRAMED:
         rs = by([v])
         if rs:
             md.append(f"| {NAME[v]} | {len(rs)} | {pct(np.mean([r['p']['neutral'] for r in rs]))} | "
-                      f"{pct(np.mean([r['p']['loss + you'] for r in rs]))} | {pts(np.mean([d[r['career_file']] for r in rs]))} |")
-    eff = lambda vs: [d[r["career_file"]] for r in by(vs)]
+                      f"{pct(np.mean([r['p']['loss + you'] for r in rs]))} | {pts(np.mean([d[r['career_file']] for r in rs]))} | "
+                      f"{lo(np.mean([dl[r['career_file']] for r in rs]))} |")
+    eff = lambda vs, dd=d: [dd[r["career_file"]] for r in by(vs)]
     md += ["\n**Does the cue do more after a framed history?** (the cue's effect, careers reshuffled between groups)\n",
-           "| Comparison | Careers | Difference (points) | 95% interval | p |", "|---|---|---|---|---|"]
+           "| Comparison | Careers | Difference | 95% interval | p |", "|---|---|---|---|---|"]
     tests = [("Blame careers minus neutral careers (the main comparison)", ["loss + you"], ["neutral"]),
              ("All framed careers minus neutral careers", FRAMED, ["neutral"]),
              ("Loss and blame careers minus gain and credit careers", ["loss", "loss + you"], ["gain", "gain + you"])]
     for label, a, b in tests:
         if eff(a) and eff(b):
-            md.append(line(label, unpaired(eff(a), eff(b)), f"{len(eff(a))} vs {len(eff(b))}"))
+            md.append(line(label + ", points", unpaired(eff(a), eff(b)), f"{len(eff(a))} vs {len(eff(b))}"))
+            md.append(line(label + ", log-odds", unpaired(eff(a, dl), eff(b, dl)), f"{len(eff(a))} vs {len(eff(b))}", lo))
     if eff(["loss + you"]) and eff(["neutral"]):
         summary["cue_blame_minus_neutral"] = unpaired(eff(["loss + you"]), eff(["neutral"]))[0]
+        summary["cue_blame_minus_neutral_logodds"] = unpaired(eff(["loss + you"], dl), eff(["neutral"], dl))[0]
     layers = cue[0]["layers"] if cue else []
     blame, neu = by(["loss + you"]), by(["neutral"])
     if blame and neu:

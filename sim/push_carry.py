@@ -78,6 +78,52 @@ def reread_versions(career, idx, chats):
     return out
 
 
+WORD = re.compile(r"[a-z0-9']+")
+STOP = set("about after again against before being below between both could doesn't don't every first from have here "
+           "into just more only other over same should since some still than that their them then there these they "
+           "this those through under very want were what when where which while will with without would your yours "
+           "you're we're it's that's".split())
+
+
+def added(framed, neutral):
+    """The runs of words a framing adds to UBS's neutral line (lower case)."""
+    import difflib
+    f, n = WORD.findall(framed.lower()), WORD.findall(neutral.lower())
+    return [f[j1:j2] for op, _, _, j1, j2 in difflib.SequenceMatcher(None, n, f, autojunk=False).get_opcodes()
+            if op in ("insert", "replace")]
+
+
+def echoes(career, idx, chats):
+    """Where the agent's own replies before the moment repeat what the framing added to UBS's earlier lines: shared
+    runs of three words (strict), and the added words of five letters or more that are not common words (loose).
+    [{ubs_date, reply_index, reply_date, shared (3-word runs), words}]"""
+    v0, h = career["version"], career["history"]
+    table = {}
+    for c in chats:
+        for l in c["lines"]:
+            table[(c["date"], l["text"][v0])] = l["text"]["neutral"]
+    grams = lambda ws: {tuple(ws[i:i + 3]) for i in range(len(ws) - 2)}
+    out, last_date = [], None
+    for i in range(idx):
+        if h[i]["role"] != "user":
+            continue
+        d = turn_date(h[i]["content"]) or last_date
+        last_date = d
+        for _, text in UBS_LINE.findall(h[i]["content"]):
+            runs = added(text, table[(d, text)])
+            g = set().union(*[grams(r) for r in runs]) if runs else set()
+            ws = {w for r in runs for w in r if len(w) >= 5 and w not in STOP and w not in WORD.findall(table[(d, text)].lower())}
+            for j in range(i + 1, idx):
+                if h[j]["role"] != "assistant":
+                    continue
+                rw = WORD.findall(h[j]["content"].lower())
+                shared, words = sorted(" ".join(x) for x in g & grams(rw)), sorted(ws & set(rw))
+                if shared or words:
+                    out.append({"ubs_date": d, "reply_index": j, "reply_date": turn_date(h[j - 1]["content"]) or d,
+                                "shared": shared, "words": words})
+    return out
+
+
 def cue_row(z12, z7, career_file):
     """One career's cue, from its two matched-reread files (scripts/modal_matched.py: states, layers, meta) at
     12 January and 7 January: P(the order goes along) with each framing of the 12 January request (no Bank C), and the
