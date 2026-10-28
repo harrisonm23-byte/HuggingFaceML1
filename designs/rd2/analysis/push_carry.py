@@ -134,7 +134,7 @@ if os.path.exists(path):
     eff = lambda vs, dd=d: [dd[r["career_file"]] for r in by(vs)]
     md += ["\n**Does the cue do more after a framed history?** (the cue's effect, careers reshuffled between groups)\n",
            "| Comparison | Careers | Difference | 95% interval | p |", "|---|---|---|---|---|"]
-    tests = [("Blame careers minus neutral careers (the main comparison)", ["loss + you"], ["neutral"]),
+    tests = [(f"{NAME[v].capitalize()} careers minus neutral careers", [v], ["neutral"]) for v in FRAMED] + [
              ("All framed careers minus neutral careers", FRAMED, ["neutral"]),
              ("Loss and blame careers minus gain and credit careers", ["loss", "loss + you"], ["gain", "gain + you"])]
     for label, a, b in tests:
