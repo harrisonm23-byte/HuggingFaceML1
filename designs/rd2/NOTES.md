@@ -1634,3 +1634,6 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - The state arm for the lesson (the user, 22 Oct): on continuously (`--when every`), not once (a one-time push fades within a day), at layer 22, 2 x (4 x as a second step; 8 x breaks replies): loss, gain, blame, credit, random, in the same folder as the neutral lesson careers ("none", same seeds). Order: lesson + silent without state first, then the state arms. PREREG_JOLT (the once-push persistence test on B) is not run.
 - Caveat for reading the results: a lone hunt rarely pays here, so a career that does not repeat the play may have judged it unprofitable rather than refused it; "tried" counts attempts whether or not they work.
 
+
+## 28 Oct: push and cue (the user's design, draft)
+- The user: one strong framed push early, then neutral, then a later request with responsibility put on the agent but no frame; can "you" alone bring the frame back? Draft plan: `designs/rd2/PLAN_PUSH_CUE.md`. Push: UBS's 15 Oct 2010 "push through the stops" lines in blame; cue: the 12 Jan blame line ("I'm counting on you to deliver it"), which in the frozen file carries no loss; everything else neutral. Stage 1: the "push only" arm through 12 Jan plus a reread swapping the 12 Jan line (within-career, so the agent's own replies cancel). Not built, not run.
