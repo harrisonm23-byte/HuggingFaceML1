@@ -216,6 +216,16 @@ finally:
 check("a Modal job's override: L22x2 sets the layer and the size, keeps the construction, names the folder and arms",
       (g2["LAYER"], g2["STRENGTH"], g2["CONSTRUCTION"]) == (22, 2.0, g["CONSTRUCTION"]) and g2["NAME"] == f"frame_state_{g['CONSTRUCTION']}_x2_L22"
       and all("x2 L22" in v for v in g2["VERSIONS"]) and 22 in g2["EXTRA_HASH"] and 2.0 in g2["EXTRA_HASH"])
+g3 = dict(g)
+os.environ["RD2_SETTINGS"] = "L16x4-gain"
+try:
+    exec(settings_cell, g3)
+finally:
+    del os.environ["RD2_SETTINGS"]
+check("the frame override: L16x4-gain carries the gain state, in its own folder, both arms named for it, hashed apart",
+      g3["FRAME"] == "gain" and g3["NAME"] == "frame_state_gain_after_x4_L16" and list(g3["ARMS"]) == ["gain after x4 L16", "random after x4 L16 (gain size)"]
+      and all(f == "gain" for _, f in g3["ARMS"].values()) and "gain" in g3["EXTRA_HASH"] and "gain" in g3["TABLES"]
+      and g2["FRAME"] == "loss + you" and g2["NAME"] == "frame_state_after_x2_L22" and "loss + you" not in g2["EXTRA_HASH"])
 slug = lambda v: v.replace(" + ", "_plus_").replace(" ", "_")
 import transformers
 mod = Gemma3ForCausalLM(Gemma3TextConfig(vocab_size=97, hidden_size=W, intermediate_size=128, num_hidden_layers=44,

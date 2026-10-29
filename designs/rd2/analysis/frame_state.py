@@ -1,7 +1,7 @@
 """Careers with the frame's state carried in (notebook 35; sim/frame_state.py): B's neutral career with the state UBS's
-blame lines would have produced added at each UBS message and kept. Against B's neutral careers (the base: the same
-words, nothing added) and the random direction of the same size; B's blame careers (the framed words themselves) as the
-yardstick.
+framed lines (blame, or another frame) would have produced added at each UBS message and kept. Against B's neutral
+careers (the base: the same words, nothing added) and the random direction of the same size; B's careers of that frame
+(the framed words themselves) as the yardstick.
 
     python designs/rd2/analysis/frame_state.py [careers folder] [output dir]
 
@@ -56,13 +56,15 @@ first = [json.load(open(p)) for p in sorted(glob.glob(f"{FS}/careers/*.json"))[:
 arms = sorted({json.load(open(p))["version"] for p in glob.glob(f"{FS}/careers/*.json")}, key=lambda v: v.startswith("random"))
 how = (f"{first[0].get('construction', 'whole')} construction, {first[0].get('strength', 1):g} x its size, layer "
        f"{first[0]['layer']}") if first else "no careers yet"
+FRAME = first[0].get("arm", ["frame", "loss + you"])[1] if first else "loss + you"
+FRAME_NAME = {"loss + you": "blame", "gain + you": "credit", "loss": "loss", "gain": "gain"}[FRAME]
 groups = [("B neutral: the same words, nothing added (base)", careers(B, "neutral"))]
 groups += [(f"{v}: neutral words, the state carried in" if not v.startswith("random") else f"{v}: a random direction, same "
             "sizes (control)", careers(FS, v)) for v in arms]
-groups += [("B blame: the framed words themselves (yardstick)", careers(B, "loss + you"))]
+groups += [(f"B {FRAME_NAME}: the framed words themselves (yardstick)", careers(B, FRAME))]
 lines = ["# Careers with the frame's state carried in (exploratory)", "",
          "Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and the neutral memo, with the state "
-         f"UBS's blame lines would have produced ({how}) added at each of the 29 updates with a UBS line, to the update "
+         f"UBS's {FRAME_NAME} lines would have produced ({how}) added at each of the 29 updates with a UBS line, to the update "
          "and the reply under it, and kept there at every later read. \"whole\": the framed update's average state minus "
          "the neutral update's; \"after\": the difference on the tokens after the framed words only. Levels; the base "
          "first.", "",
