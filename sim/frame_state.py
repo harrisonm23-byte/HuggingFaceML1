@@ -2,11 +2,13 @@
 UBS's neutral words throughout, with the state UBS's framed words would have produced added inside the model.
 
 At each update with a UBS line (29 per career), the update is read twice from the same point of the career: as it is
-(neutral) and with UBS's lines in the framing (FROM). The difference of the two readings' averages over the update's
-tokens, at one layer, is added to every token of the neutral update and of the reply written under it: the
-whole-message transplant of the third steering run (sim/steer3.py), which at single moments moved going along about a
-third as much as the framed words did, at layers 18 and 24. Kept: at every later read the update and its reply keep
-that moment's state, as a framed career keeps the framed words in its conversation (each reply re-reads the
+(neutral) and with UBS's lines in the framing (FROM). The difference of the two readings at one layer, times STRENGTH,
+is added to every token of the neutral update and of the reply written under it. Two constructions: "whole", the
+difference of the readings' averages over the update's tokens (the whole-message transplant of sim/steer3.py; round 0,
+29 Oct: nothing moved); "after", the difference on the tokens after the framed words only (the document states'
+construction; at the direct request UBS's blame line's "after" state made the agent sell through 7 of 10 times,
+results/frame_states/FRAME_STATES.md, while "whole" did nothing). Kept: at every later read the update and its reply
+keep that moment's state, as a framed career keeps the framed words in its conversation (each reply re-reads the
 conversation from its text, so otherwise the state would live on only in what the agent wrote). The control: the same
 moments and sizes with one random direction for the whole career.
 """
@@ -18,6 +20,7 @@ import numpy as np
 UBS = re.compile(r"^(\s*UBS \[Agent [AB]\]: )(.*)$", re.M)
 NOTE = "Your reply was not accepted"
 KINDS = ("frame", "random")
+CONSTRUCTIONS = ("whole", "after")
 RANDOM_SEED = 20261029
 
 
@@ -98,25 +101,31 @@ class Segments:
         return (h,) + tuple(output[1:]) if isinstance(output, tuple) else h
 
 
-class SumCapture:
-    """While on, sums a layer's output over the positions of every pass, and counts them."""
+class Capture:
+    """While on, keeps a layer's output at every position of every pass (float32, CPU), in order."""
 
     def __init__(self, layer_module):
-        self.on, self.sum, self.n = False, None, 0
+        self.on, self.parts = False, []
         self.handle = layer_module.register_forward_hook(self._hook)
 
     def reset(self):
-        self.sum, self.n = None, 0
+        self.parts = []
 
     def _hook(self, module, inputs, output):
         if self.on:
-            h = (output[0] if isinstance(output, tuple) else output)[0].float()
-            s = h.sum(0)
-            self.sum = s if self.sum is None else self.sum + s
-            self.n += h.shape[0]
+            self.parts.append((output[0] if isinstance(output, tuple) else output)[0].float().cpu().numpy())
 
-    def mean(self):
-        return (self.sum / self.n).cpu().numpy()
+    def states(self):
+        return np.concatenate(self.parts) if self.parts else np.zeros((0, 0), np.float32)
+
+
+def common_suffix(a, b):
+    """How many tokens a and b share at their ends, counting only tokens after the first place they differ."""
+    d = next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), min(len(a), len(b)))
+    n = 0
+    while n < min(len(a), len(b)) - d and a[-1 - n] == b[-1 - n]:
+        n += 1
+    return n
 
 
 def _read(model, ids, start, cache, chunk, capture=None):
@@ -135,30 +144,41 @@ def _read(model, ids, start, cache, chunk, capture=None):
     finally:
         if capture is not None:
             capture.on = False
-    return capture.mean() if capture is not None else None
+    return capture.states() if capture is not None else None
 
 
-def frame_shift(model, tok, turns, framed_turns, start, capture, chunk=4096):
-    """The framed update's average state minus the neutral update's, at the capture's layer, both read after the same
-    history (turns end with the update; read with the reply's opening, as the third steering run did)."""
+def frame_shift(model, tok, turns, framed_turns, start, capture, chunk=4096, construction="whole"):
+    """The framed update's state minus the neutral update's at the capture's layer, both read after the same history
+    (turns end with the update; read with the reply's opening, as the steering runs did): "whole", the difference of
+    the averages over the update's tokens; "after", the difference on the tokens after the framed words (the tokens
+    the two updates share at their ends). Returns (vector, tokens after the framed words)."""
     import copy
     from transformers import DynamicCache
+    assert construction in CONSTRUCTIONS, construction
     a = tok.apply_chat_template(turns, add_generation_prompt=True, return_dict=True)["input_ids"]
     b = tok.apply_chat_template(framed_turns, add_generation_prompt=True, return_dict=True)["input_ids"]
     assert a[:start] == b[:start] and a != b, "the framed update must differ from the neutral one after the same history"
+    s = common_suffix(b, a)
+    assert s >= 1, "no tokens after the framed words"
     cache = DynamicCache(config=model.config)
     _read(model, a[:start], 0, cache, chunk)
     framed = _read(model, b, start, copy.deepcopy(cache), chunk, capture)
     neutral = _read(model, a, start, cache, chunk, capture)
-    return (framed - neutral).astype(np.float32)
+    if construction == "after":
+        vec = framed[-s:].mean(0) - neutral[-s:].mean(0)
+    else:
+        vec = framed.mean(0) - neutral.mean(0)
+    return vec.astype(np.float32), s
 
 
 class FrameState:
-    """One career's moments: [{"start", "end" (None while open), "key", "size", "lines"}] and their vectors."""
+    """One career's moments: [{"start", "end" (None while open), "key", "size" (natural), "lines", "after_tokens"}] and
+    the vectors added (the state times `strength`)."""
 
-    def __init__(self, kind, table, seed=RANDOM_SEED):
-        assert kind in KINDS, kind
+    def __init__(self, kind, table, seed=RANDOM_SEED, construction="whole", strength=1.0):
+        assert kind in KINDS and construction in CONSTRUCTIONS, (kind, construction)
         self.kind, self.table, self.seed = kind, table, seed
+        self.construction, self.strength = construction, float(strength)
         self.moments, self.vecs, self.unit = [], [], None
 
     def begin(self, model, tok, turns, capture, chunk=4096):
@@ -175,24 +195,26 @@ class FrameState:
             if n:
                 ft = [dict(t) for t in turns[:u + 1]]
                 ft[u]["content"] = framed
-                vec = frame_shift(model, tok, turns[:u + 1], ft, start, capture, chunk)
+                vec, s = frame_shift(model, tok, turns[:u + 1], ft, start, capture, chunk, self.construction)
                 size = float(np.linalg.norm(vec))
                 if self.kind == "random":
                     if self.unit is None:
                         self.unit = random_unit(len(vec), self.seed)
                     vec = self.unit * size
-                self.moments.append({"start": start, "end": None, "key": key, "size": size, "lines": n})
-                self.vecs.append(vec)
+                self.moments.append({"start": start, "end": None, "key": key, "size": size, "lines": n, "after_tokens": s})
+                self.vecs.append((vec * self.strength).astype(np.float32))
         return [(m["start"], m["end"], v) for m, v in zip(self.moments, self.vecs)]
 
     def saved(self):
-        return {"kind": self.kind, "seed": self.seed, "moments": [dict(m) for m in self.moments]}
+        return {"kind": self.kind, "seed": self.seed, "construction": self.construction, "strength": self.strength,
+                "moments": [dict(m) for m in self.moments]}
 
     def vectors(self):
         return np.stack(self.vecs) if self.vecs else np.zeros((0, 0), np.float32)
 
     def restore(self, saved, vecs):
-        assert saved["kind"] == self.kind and saved["seed"] == self.seed, "saved with another arm"
+        assert (saved["kind"], saved["seed"], saved["construction"], saved["strength"]) == \
+            (self.kind, self.seed, self.construction, self.strength), "saved with another arm"
         self.moments = [dict(m) for m in saved["moments"]]
         self.vecs = [np.asarray(v, np.float32) for v in vecs]
         assert len(self.vecs) == len(self.moments)

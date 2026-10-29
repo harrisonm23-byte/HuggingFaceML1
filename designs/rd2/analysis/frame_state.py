@@ -52,16 +52,20 @@ def perm(a, b):
     return (hits + 1) / (N + 1)
 
 
+first = [json.load(open(p)) for p in sorted(glob.glob(f"{FS}/careers/*.json"))[:1]]
 arms = sorted({json.load(open(p))["version"] for p in glob.glob(f"{FS}/careers/*.json")}, key=lambda v: v.startswith("random"))
+how = (f"{first[0].get('construction', 'whole')} construction, {first[0].get('strength', 1):g} x its size, layer "
+       f"{first[0]['layer']}") if first else "no careers yet"
 groups = [("B neutral: the same words, nothing added (base)", careers(B, "neutral"))]
 groups += [(f"{v}: neutral words, the state carried in" if not v.startswith("random") else f"{v}: a random direction, same "
             "sizes (control)", careers(FS, v)) for v in arms]
 groups += [("B blame: the framed words themselves (yardstick)", careers(B, "loss + you"))]
 lines = ["# Careers with the frame's state carried in (exploratory)", "",
          "Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and the neutral memo, with the state "
-         "UBS's blame lines would have produced (the framed update's average state minus the neutral update's, at layer "
-         "18) added at each of the 29 updates with a UBS line, to the update and the reply under it, and kept there at "
-         "every later read. Levels; the base first.", "",
+         f"UBS's blame lines would have produced ({how}) added at each of the 29 updates with a UBS line, to the update "
+         "and the reply under it, and kept there at every later read. \"whole\": the framed update's average state minus "
+         "the neutral update's; \"after\": the difference on the tokens after the framed words only. Levels; the base "
+         "first.", "",
          "## Went along at each push request (careers that went along / careers)", "",
          "| Careers | n | " + " | ".join(label for _, label in PUSH) + " | All six |",
          "|---|---|" + "---|" * (len(PUSH) + 1)]

@@ -116,26 +116,39 @@ framed[-1]["content"] = "New chat messages:\n  UBS [Agent A]: hi, and that is on
 start = F.turn_start(tk, turns, 3)
 check("the update starts where the conversation before it ends", start == len(tk.apply_chat_template(turns[:3])["input_ids"]))
 kept = F.Segments(layers[L])
-cap = F.SumCapture(layers[L])
+cap = F.Capture(layers[L])
 vec0 = torch.randn(W)
 kept.set([(3, 12, vec0)])                      # an earlier moment, kept while the history is read
-got = F.frame_shift(model, tk, turns, framed, start, cap, chunk=8)
+got, s_after = F.frame_shift(model, tk, turns, framed, start, cap, chunk=8)
+got_a, s_after2 = F.frame_shift(model, tk, turns, framed, start, cap, chunk=8, construction="after")
 
 
-def brute(ts):
+def brute_all(ts):
     x = torch.tensor([tk.apply_chat_template(ts, add_generation_prompt=True)["input_ids"]])
     keep = {}
     hh = layers[L].register_forward_hook(lambda m, a, o: keep.__setitem__("h", (o[0] if isinstance(o, tuple) else o)[0]))
     with torch.no_grad():
         model(input_ids=x)
     hh.remove()
-    return keep["h"][start:].float().mean(0).numpy()
+    return keep["h"][start:].float().numpy()
+
+
+def brute(ts):
+    return brute_all(ts).mean(0)
 
 
 want = brute(framed) - brute(turns)
 kept.set()
-check(f"the state equals a brute-force full read (largest gap {np.abs(got - want).max():.1e}, size {np.linalg.norm(want):.2f})",
+check(f"the whole state equals a brute-force full read (largest gap {np.abs(got - want).max():.1e}, size {np.linalg.norm(want):.2f})",
       np.abs(got - want).max() < 1e-4 and np.linalg.norm(want) > 0)
+ids_n = tk.apply_chat_template(turns, add_generation_prompt=True)["input_ids"]
+ids_f = tk.apply_chat_template(framed, add_generation_prompt=True)["input_ids"]
+s_want = F.common_suffix(ids_f, ids_n)
+kept.set([(3, 12, vec0)])
+want_a = brute_all(framed)[-s_want:].mean(0) - brute_all(turns)[-s_want:].mean(0)
+kept.set()
+check(f"the after state equals a brute-force read of the {s_want} shared tail tokens (largest gap {np.abs(got_a - want_a).max():.1e})",
+      s_after == s_after2 == s_want and s_want >= 1 and np.abs(got_a - want_a).max() < 1e-4)
 kept.handle.remove()
 cap.handle.remove()
 hook.handle.remove()
@@ -158,11 +171,11 @@ os.chdir(repo)
 measured = []
 
 
-def fake_shift(model, tok, turns, framed_turns, start, capture, chunk=4096):
+def fake_shift(model, tok, turns, framed_turns, start, capture, chunk=4096, construction="whole"):
     # stand-in: a fixed vector for each framed update, so careers run twice give the same states
     measured.append(start)
     seed = int(hashlib.md5(framed_turns[-1]["content"].encode()).hexdigest()[:8], 16)
-    return np.random.default_rng(seed).normal(size=W).astype(np.float32)
+    return np.random.default_rng(seed).normal(size=W).astype(np.float32), 3
 
 
 F.frame_shift = fake_shift
@@ -173,7 +186,7 @@ added = {"bad": 0, "calls": 0}
 def chat(turns, **k):
     # stand-in for the pipeline: the hook is called the way a chunked read and a short reply call it
     full = tk.apply_chat_template(turns, add_generation_prompt=True)["input_ids"]
-    if stop["at"] and stop["at"] in turns[-1]["content"] and g["CURRENT_ARM"] == "blame state L18":
+    if stop["at"] and stop["at"] in turns[-1]["content"] and g["CURRENT_ARM"] == VB:
         stop["at"] = None
         raise RuntimeError("stopped partway (the check)")
     segs = g["STEER"].segs
@@ -193,12 +206,15 @@ g = {"__name__": "__main__", "REPO": repo, "BRANCH": "check", "PIN": json.load(o
 exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
 exec(setup_cell[setup_cell.index("from mountain import"):], g)
 exec(settings_cell, g)
+VB, VR = g["VERSIONS"]                                 # the blame and random arms, as the settings name them
+slug = lambda v: v.replace(" + ", "_plus_").replace(" ", "_")
 import transformers
-mod = Gemma3ForCausalLM(Gemma3TextConfig(vocab_size=97, hidden_size=W, intermediate_size=128, num_hidden_layers=20,
+mod = Gemma3ForCausalLM(Gemma3TextConfig(vocab_size=97, hidden_size=W, intermediate_size=128, num_hidden_layers=44,
                                          num_attention_heads=2, num_key_value_heads=1, head_dim=32, sliding_window=16))
 g.update(mod=mod, tok=tk, chat=chat, transformers=transformers, np=np)
 exec(agent_cell, g)
-check("the hook and the capture sit on layer 18", g["STEER"].handle is not None and g["LAYER"] == 18)
+check(f"the hook and the capture sit on layer {g['LAYER']} ({g['CONSTRUCTION']}, x{g['STRENGTH']:g})",
+      g["STEER"].handle is not None and g["CAPTURE"].handle is not None)
 g["ROUNDS_HERE"] = [0]
 stop["at"] = "2011-06-08"                       # the blame career stops on 8 June, after 1 April was saved
 try:
@@ -207,20 +223,20 @@ try:
 except RuntimeError:
     out = g["OUT"]
     check("the career stopped partway, its last trading day and states saved",
-          os.path.exists(f"{out}/partial/blame_state_L18_r0.json") and os.path.exists(f"{out}/partial/blame_state_L18_r0_moments.npz"))
+          os.path.exists(f"{out}/partial/{slug(VB)}_r0.json") and os.path.exists(f"{out}/partial/{slug(VB)}_r0_moments.npz"))
 before = len(measured)
-saved_n = len(json.load(open(f"{out}/partial/blame_state_L18_r0.json"))["frame_state"]["moments"])
+saved_n = len(json.load(open(f"{out}/partial/{slug(VB)}_r0.json"))["frame_state"]["moments"])
 g["ROUNDS_HERE"] = [0, 1]
 exec(run_cell, g)
 cs = {os.path.basename(p)[:-5]: json.load(open(p)) for p in glob.glob(f"{out}/careers/*.json")}
 vs = {k: np.load(f"{out}/careers/{k}_moments.npz")["vecs"] for k in cs}
+B0, B1, R0 = f"{slug(VB)}_r0", f"{slug(VB)}_r1", f"{slug(VR)}_r0"
 check(f"four careers saved ({sorted(cs)}), 5 trading days each, no partial left",
       len(cs) == 4 and len(glob.glob(f"{out}/days/*.json")) == 20 and not os.listdir(f"{out}/partial"))
 check("the stopped career, continued, equals the one run straight through (history, moments, states)",
-      cs["blame_state_L18_r0"]["history"] == cs["blame_state_L18_r1"]["history"]
-      and cs["blame_state_L18_r0"]["frame_state"] == cs["blame_state_L18_r1"]["frame_state"]
-      and np.array_equal(vs["blame_state_L18_r0"], vs["blame_state_L18_r1"]))
-c = cs["blame_state_L18_r1"]
+      cs[B0]["history"] == cs[B1]["history"] and cs[B0]["frame_state"] == cs[B1]["frame_state"]
+      and np.array_equal(vs[B0], vs[B1]))
+c = cs[B1]
 ms = c["frame_state"]["moments"]
 check(f"29 moments, 58 UBS lines ({len(ms)}, {sum(m['lines'] for m in ms)})", len(ms) == 29 and sum(m["lines"] for m in ms) == 58)
 opening = g["OPENING"]
@@ -238,18 +254,22 @@ n_rep = sum(t["role"] == "assistant" for t in c["history"])
 first = next(i for i, t in enumerate(c["history"]) if t["role"] == "user" and F.UBS.search(t["content"]))
 check(f"steered from the first UBS update on ({c['steered_replies']} of {n_rep} replies)",
       c["steered_replies"] == sum(t["role"] == "assistant" for t in c["history"][first:]))
-r = vs["random_L18_r0"]
+r = vs[R0]
 units = r / np.linalg.norm(r, axis=1, keepdims=True)
 check("random: the blame state's sizes, moment by moment, in one direction",
-      np.allclose(np.linalg.norm(r, axis=1), np.linalg.norm(vs["blame_state_L18_r0"], axis=1), rtol=1e-5)
+      np.allclose(np.linalg.norm(r, axis=1), np.linalg.norm(vs[B0], axis=1), rtol=1e-5)
       and np.allclose(units, units[0], atol=1e-6))
+check(f"the vectors added are {g['STRENGTH']:g} x the natural size, which each moment records",
+      np.allclose(np.linalg.norm(vs[B0], axis=1), g["STRENGTH"] * np.array([m["size"] for m in ms]), rtol=1e-5)
+      and all(m["after_tokens"] == 3 for m in ms) and c["frame_state"]["construction"] == g["CONSTRUCTION"])
 check(f"each moment measured once; continued, only the moments after the last saved day again ({len(measured)} = "
       f"{before} before the stop + {29 - saved_n} + 3 x 29)", len(measured) == before + (29 - saved_n) + 3 * 29)
 check("every arm's round k has B's neutral seed for round k",
       all(x["seed"] == int(hashlib.md5(f"B|neutral|{x['run']}".encode()).hexdigest()[:8], 16) for x in cs.values()))
-day = json.load(open(f"{out}/days/blame_state_L18_r0_2011-08-05.json"))
-check(f"each saved day records the arm, layer and the moments so far ({day['moments']} by 5 Aug; UBS's last chats come "
-      "after it)", day["arm"] == "blame state L18" and day["layer"] == 18 and day["kind"] == "frame"
+day = json.load(open(f"{out}/days/{B0}_2011-08-05.json"))
+check(f"each saved day records the arm, layer, construction, strength and the moments so far ({day['moments']} by 5 Aug; "
+      "UBS's last chats come after it)", day["arm"] == VB and day["layer"] == g["LAYER"] and day["kind"] == "frame"
+      and day["construction"] == g["CONSTRUCTION"] and day["strength"] == g["STRENGTH"]
       and 0 < day["moments"] < 29 and day["moment_sizes"] == [m["size"] for m in ms[:day["moments"]]])
 check("the hooks are off after every reply", not g["STEER"].segs and not g["CAPTURE"].on)
 os.chdir(cwd)
@@ -258,7 +278,7 @@ res = tempfile.mkdtemp()
 r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/frame_state.py", out, res], capture_output=True, text=True)
 md = open(f"{res}/FRAME_STATE.md").read() if r.returncode == 0 else r.stderr
 check("the analysis runs on them (base, both arms, the yardstick, the states)",
-      r.returncode == 0 and all(s in md for s in ("| B neutral", "| blame state L18", "| random L18", "| B blame", "| 29 |")))
+      r.returncode == 0 and all(s in md for s in ("| B neutral", f"| {VB}", f"| {VR}", "| B blame", "| 29 |", g["CONSTRUCTION"])))
 print(md[:2500])
 shutil.rmtree(repo)
 shutil.rmtree(res)
