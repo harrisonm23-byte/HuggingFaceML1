@@ -33,7 +33,7 @@ weights = modal.Volume.from_name("rd2-hf-cache", create_if_missing=True)
 def parse_jobs(spec):
     out = []
     for item in spec.split(","):
-        name, rounds = item.strip().split(":")
+        name, rounds = item.strip().rsplit(":", 1)
         if "-" in rounds:
             a, b = rounds.split("-")
             rounds = list(range(int(a), int(b) + 1))
@@ -65,7 +65,11 @@ def run_job(name, rounds):
     from huggingface_hub import login
     login(token=os.environ["HF_TOKEN"].split()[0])
 
-    nb = json.load(open(f"notebooks/{name}.ipynb"))
+    # "name@settings" hands the notebook an override through RD2_SETTINGS (notebook 35: "@L22x2" is layer 22, twice the size)
+    notebook, _, settings = name.partition("@")
+    if settings:
+        os.environ["RD2_SETTINGS"] = settings
+    nb = json.load(open(f"notebooks/{notebook}.ipynb"))
     setup_cell, settings_cell, model_cell, memory_cell, agent_cell, run_cell, _glance = \
         ["".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code"]
     g = {"__name__": "__main__"}

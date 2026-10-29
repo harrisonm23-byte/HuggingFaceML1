@@ -207,6 +207,15 @@ exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
 exec(setup_cell[setup_cell.index("from mountain import"):], g)
 exec(settings_cell, g)
 VB, VR = g["VERSIONS"]                                 # the blame and random arms, as the settings name them
+g2 = dict(g)
+os.environ["RD2_SETTINGS"] = "L22x2"
+try:
+    exec(settings_cell, g2)
+finally:
+    del os.environ["RD2_SETTINGS"]
+check("a Modal job's override: L22x2 sets the layer and the size, keeps the construction, names the folder and arms",
+      (g2["LAYER"], g2["STRENGTH"], g2["CONSTRUCTION"]) == (22, 2.0, g["CONSTRUCTION"]) and g2["NAME"] == f"frame_state_{g['CONSTRUCTION']}_x2_L22"
+      and all("x2 L22" in v for v in g2["VERSIONS"]) and 22 in g2["EXTRA_HASH"] and 2.0 in g2["EXTRA_HASH"])
 slug = lambda v: v.replace(" + ", "_plus_").replace(" ", "_")
 import transformers
 mod = Gemma3ForCausalLM(Gemma3TextConfig(vocab_size=97, hidden_size=W, intermediate_size=128, num_hidden_layers=44,
