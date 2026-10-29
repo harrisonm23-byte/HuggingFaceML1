@@ -1,4 +1,5 @@
-"""The frame's state at every layer (sim/transplant_sweep.py): results/transplant_sweep/TRANSPLANT_SWEEP.md.
+"""The frame's state at every layer (sim/transplant_sweep.py): results/transplant_sweep/TRANSPLANT_SWEEP.md, or for
+another frame's folder (results/transplant_sweep_<frame>) the same table at the layers that frame was run at.
 
     python designs/rd2/analysis/transplant_sweep.py /states/v2/transplant_sweep results/transplant_sweep
 
@@ -10,8 +11,7 @@ layer and the cosine between "whole" and "after" (from the saved vectors).
 import glob, json, os, random, sys
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "sim"))
-from transplant_sweep import LAYERS, conditions
+NAME = {"loss": "loss", "gain": "gain", "loss + you": "blame", "gain + you": "credit"}
 
 
 def load(folder):
@@ -49,24 +49,25 @@ def main(src, out):
         d = [by[(*m, cond)]["p_order_along"] - by[(*m, base)]["p_order_along"] for m in ok if (*m, cond) in by and (*m, base) in by]
         return flip_p(d)
 
+    LAYERS = sorted({r["layer"] for r in rows if r["layer"] is not None})
+    framed_name = next(r["condition"] for r in rows if r["kind"] == "framed")
+    frame = NAME.get(framed_name[len("framed ("):-len("), as read")], framed_name)
     none, n0 = level("none")
-    framed, _ = level(f"framed (loss + you), as read")
+    framed, _ = level(framed_name)
     pct = lambda v: "-" if v is None else f"{v:.1f}%"
-    lines = ["# The frame's state at every layer (exploratory)", "",
+    lines = [f"# The {frame} frame's state by layer (exploratory)", "",
              f"B's neutral careers at the 7 and 12 January requests: {len(moments)} moments, {len(ok)} where the scored "
              "orders cover at least half of the probability with nothing added. P(the order goes along) after the fixed "
              "neutral reasoning line; levels, the base first. \"whole\": the framed update's average state minus the "
              "neutral update's (notebook 35's construction); \"after\": the difference on the tokens after the framed words "
              "only (the document states' construction). Each added to every token of the update and the reply, against a "
              "random direction of the same size at the same layer. p: sign flips by career against none at the same moments.",
-             "", f"**Nothing added: {pct(none)}. The blame words themselves, as read: {pct(framed)} "
-             f"(p {fmt_p(p_vs('framed (loss + you), as read', 'none'))}).**", "",
+             "", f"**Nothing added: {pct(none)}. The {frame} words themselves, as read: {pct(framed)} "
+             f"(p {fmt_p(p_vs(framed_name, 'none'))}).**", "",
              "| Layer | whole x1 | p vs none | random, whole size | after x1 | p vs none | after x2 | p vs none | p vs random | random, after x2 size | after x4 | p vs none | p vs random | random, after x4 size |",
              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for L in LAYERS:
         w, _ = level(f"whole x1 L{L}")
-        if w is None:
-            continue
         rw, _ = level(f"random, whole size, L{L}")
         a1, _ = level(f"after x1 L{L}")
         a2, _ = level(f"after x2 L{L}")
@@ -82,8 +83,9 @@ def main(src, out):
     shifts = [np.load(p, allow_pickle=False) for p in sorted(glob.glob(os.path.join(src, "shifts", "*.npz")))]
     if shifts:
         after_tok = [json.loads(str(z["meta"]))["after_tokens"] for z in shifts]
-        for j, L in enumerate(LAYERS):
-            w = np.stack([z["whole"][j] for z in shifts]); a = np.stack([z["after"][j] for z in shifts])
+        for L in LAYERS:
+            at = [list(z["layers"]).index(L) for z in shifts]
+            w = np.stack([z["whole"][j] for z, j in zip(shifts, at)]); a = np.stack([z["after"][j] for z, j in zip(shifts, at)])
             cos = np.mean([float(x @ y / (np.linalg.norm(x) * np.linalg.norm(y))) for x, y in zip(w, a)])
             lines.append(f"| {L} | {np.linalg.norm(w, axis=1).mean():.0f} | {np.linalg.norm(a, axis=1).mean():.0f} | {cos:.2f} | "
                          f"{np.mean(after_tok):.1f} |")

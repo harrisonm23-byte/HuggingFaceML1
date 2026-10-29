@@ -5,13 +5,25 @@ pushes results/transplant_sweep/TRANSPLANT_SWEEP.md. Each moment's vectors are s
 
     modal run --detach scripts/modal_transplant_sweep.py                  # 4 GPUs (5 moments each), then the analysis
     modal run --detach scripts/modal_transplant_sweep.py --analysis-only
+
+The other frames at the band where blame's state carried (layers 16, 20, 22, 24; no "whole" conditions), each frame in
+its own folder (/states/v2/transplant_sweep_<frame>, results/transplant_sweep_<frame>), then the frame-by-frame table
+`designs/rd2/analysis/transplant_frames.py` -> results/transplant_sweep/FRAMES.md:
+
+    modal run --detach scripts/modal_transplant_sweep.py --framings "loss,gain,gain + you" --layers "16,20,22,24" --no-whole
 """
 import modal
 
 BRANCH = "claude/huggingface-ml-research-setup-ulvgve"
 REPO_URL = "https://github.com/harrisonm23-byte/HuggingFaceML1.git"
 FOLDER = "results/full_career_gemma-3-12b-it_4bit_ubs_framing_v2"
-OUT = "/states/v2/transplant_sweep"
+STATES = "/states/v2"
+OUT = f"{STATES}/transplant_sweep"                        # the blame frame's run (every layer)
+
+
+def folder(framing):
+    """Each frame's folder name: the blame run keeps "transplant_sweep"; the others add the frame."""
+    return "transplant_sweep" if framing == "loss + you" else "transplant_sweep_" + framing.replace(" + ", "_").replace(" ", "_")
 
 image = (modal.Image.debian_slim(python_version="3.13")
          .apt_install("git")
@@ -45,7 +57,7 @@ def setup():
 
 @app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_part(part, parts):
+def run_part(part, parts, framings, layer_list, whole):
     import json, os, time
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
     setup()
@@ -63,9 +75,6 @@ def run_part(part, parts):
              if m["version"] == "neutral" and m["date"] in T.DATES]
     assert len(items) == 20, len(items)
     todo = sorted(items, key=lambda m: (m["career_file"], m["history_index"]))[part::parts]
-    os.makedirs(f"{OUT}/shifts", exist_ok=True)
-    out_path = f"{OUT}/part{part}.jsonl"
-    done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
     pin = json.load(open("results/full_career_pin.json"))
     tok = AutoTokenizer.from_pretrained(pin["model"], revision=pin["model_revision"])
     model = AutoModelForCausalLM.from_pretrained(pin["model"], revision=pin["model_revision"], device_map="auto",
@@ -73,36 +82,45 @@ def run_part(part, parts):
     weights.commit()
     layers = [mm for _, mm in model.named_modules() if type(mm).__name__.endswith("DecoderLayer")]
     assert len(layers) == 48, len(layers)
-    steers = {L: Steer(layers[L]) for L in T.LAYERS}
-    capture = T.Capture({L: layers[L] for L in T.LAYERS})
-    units = T.random_units(model.config.get_text_config().hidden_size)
+    steers = {L: Steer(layers[L]) for L in layer_list}
+    capture = T.Capture({L: layers[L] for L in layer_list})
+    units = T.random_units(model.config.get_text_config().hidden_size, layer_list)    # the same direction per layer, every frame
     opening = career_opening()
     t0 = time.time()
+    for framing in framings:
+        out = f"{STATES}/{folder(framing)}"
+        os.makedirs(f"{out}/shifts", exist_ok=True)
+        out_path = f"{out}/part{part}.jsonl"
+        done = {json.loads(l)["key"] for l in open(out_path)} if os.path.exists(out_path) else set()
 
-    def save(sh, meta):
-        np.savez(f"{OUT}/shifts/{meta['career_file'][:-5]}_{meta['history_index']}.npz", layers=np.array(T.LAYERS),
-                 whole=np.stack([sh["whole"][L] for L in T.LAYERS]), after=np.stack([sh["after"][L] for L in T.LAYERS]),
-                 meta=np.array(json.dumps(meta)))
+        def save(sh, meta, out=out):
+            np.savez(f"{out}/shifts/{meta['career_file'][:-5]}_{meta['history_index']}.npz", layers=np.array(layer_list),
+                     whole=np.stack([sh["whole"][L] for L in layer_list]), after=np.stack([sh["after"][L] for L in layer_list]),
+                     meta=np.array(json.dumps(meta)))
 
-    for n, item in enumerate(todo):
-        career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
-        for row in T.run_item(model, tok, steers, capture, units, item, career, chats, opening, NEUTRAL_LEAD, WIDE_GRID,
-                              done, save=save):
-            with open(out_path, "a") as f:
-                f.write(json.dumps(row) + "\n")
-        states_vol.commit()
-        print(f"part {part}: {n + 1}/{len(todo)} moments | {(time.time() - t0) / 60:.0f} min", flush=True)
-    return f"part {part}: {len(todo)} moments"
+        for n, item in enumerate(todo):
+            career = json.load(open(f"{FOLDER}/careers/{item['career_file']}"))
+            for row in T.run_item(model, tok, steers, capture, units, item, career, chats, opening, NEUTRAL_LEAD, WIDE_GRID,
+                                  done, layers=layer_list, save=save, framing=framing, whole=whole):
+                with open(out_path, "a") as f:
+                    f.write(json.dumps(row) + "\n")
+            states_vol.commit()
+            print(f"part {part}, {T.NAME[framing]}: {n + 1}/{len(todo)} moments | {(time.time() - t0) / 60:.0f} min", flush=True)
+    return f"part {part}: {len(todo)} moments x {len(framings)} frames"
 
 
 @app.function(cpu=2, memory=8192, timeout=3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse():
-    import subprocess
+def analyse(framings):
+    import glob, os, subprocess
     repo = setup()
     states_vol.reload()
-    subprocess.run(f"python designs/rd2/analysis/transplant_sweep.py {OUT} results/transplant_sweep", shell=True, check=True)
+    for framing in framings:
+        subprocess.run(f"python designs/rd2/analysis/transplant_sweep.py {STATES}/{folder(framing)} results/{folder(framing)}",
+                       shell=True, check=True)
+    if len(glob.glob(f"{STATES}/transplant_sweep*/part*.jsonl")) > len(glob.glob(f"{OUT}/part*.jsonl")):
+        subprocess.run(f"python designs/rd2/analysis/transplant_frames.py {STATES} results/transplant_sweep", shell=True, check=True)
     for attempt in range(10):
-        subprocess.run(f"git -C {repo} add results/transplant_sweep && git -C {repo} commit -q -m 'The frame state at every layer'",
+        subprocess.run(f"git -C {repo} add results/transplant_sweep* && git -C {repo} commit -q -m 'The frame state at every layer'",
                        shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
                           shell=True).returncode == 0:
@@ -112,21 +130,28 @@ def analyse():
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(parts, analysis_only):
+def dispatch(parts, analysis_only, framings, layer_list, whole):
     done = []
     if not analysis_only:
-        calls = [(k, run_part.spawn(k, parts)) for k in range(parts)]
+        calls = [(k, run_part.spawn(k, parts, framings, layer_list, whole)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"part {k}: failed ({type(err).__name__})")
-    done.append(analyse.remote())
+    done.append(analyse.remote(framings))
     return done
 
 
 @app.local_entrypoint()
-def main(parts: int = 4, analysis_only: bool = False):
-    print(f"the frame's state at every layer: {parts} GPUs, then the analysis")
-    for line in dispatch.remote(parts, analysis_only):
+def main(parts: int = 4, analysis_only: bool = False, framings: str = "loss + you", layers: str = "", whole: bool = True):
+    import sys
+    sys.path.insert(0, "sim")
+    import transplant_sweep as T
+    framings = [f.strip() for f in framings.split(",")]
+    assert all(f in T.FRAMES for f in framings), framings
+    layer_list = [int(x) for x in layers.split(",")] if layers else T.LAYERS
+    print(f"the frame's state by layer: {', '.join(T.NAME[f] for f in framings)}; layers {layer_list}; "
+          f"{'with' if whole else 'without'} the whole construction; {parts} GPUs, then the analysis")
+    for line in dispatch.remote(parts, analysis_only, framings, layer_list, whole):
         print(line)

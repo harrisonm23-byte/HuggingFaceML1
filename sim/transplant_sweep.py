@@ -12,11 +12,17 @@ Each is added to every token of the neutral update and of the reply, at its natu
 "after" at two and four times its size, against a random direction of the same size at the same layer. Outcome: P(the order goes
 along) after the fixed neutral reasoning line (sim/interventions.order_dist), as in the steering runs; the framed words
 read as written are the yardstick. Each moment's "whole" and "after" vectors at every layer are saved, for the careers.
+
+The same for the other frames (the user, 29 Oct: "What about gain, loss and credit?"): `framing` picks UBS's wording,
+`whole=False` drops the "whole" conditions, and the layers can be the band where blame's state carried (BAND).
 """
 import numpy as np
 
 LAYERS = list(range(4, 44, 2))
+BAND = [16, 20, 22, 24]                      # where the blame frame's "after" state carried (results/transplant_sweep)
 FROM = "loss + you"
+FRAMES = ["loss", "gain", "loss + you", "gain + you"]
+NAME = {"loss": "loss", "gain": "gain", "loss + you": "blame", "gain + you": "credit"}
 RANDOM_SEED = 20261029
 DATES = ("2011-01-07", "2011-01-12")
 
@@ -45,14 +51,22 @@ def common_suffix(a, b):
     return n
 
 
-def conditions(layers=LAYERS):
-    """[(name, kind, layer, strength)]: none and the framed words first, then seven conditions per layer."""
-    c = [("none", "none", None, 0), (f"framed ({FROM}), as read", "framed", None, 0)]
+def conditions(layers=LAYERS, framing=FROM, whole=True):
+    """[(name, kind, layer, strength)]: none and the framed words first, then seven conditions per layer (five without
+    the "whole" ones)."""
+    c = [("none", "none", None, 0), (f"framed ({framing}), as read", "framed", None, 0)]
     for L in layers:
-        c += [(f"whole x1 L{L}", "whole", L, 1), (f"after x1 L{L}", "after", L, 1), (f"after x2 L{L}", "after", L, 2),
-              (f"after x4 L{L}", "after", L, 4), (f"random, whole size, L{L}", "random_whole", L, 1),
-              (f"random, after x2 size, L{L}", "random_after", L, 2), (f"random, after x4 size, L{L}", "random_after", L, 4)]
+        c += [(f"whole x1 L{L}", "whole", L, 1)] if whole else []
+        c += [(f"after x1 L{L}", "after", L, 1), (f"after x2 L{L}", "after", L, 2), (f"after x4 L{L}", "after", L, 4)]
+        c += [(f"random, whole size, L{L}", "random_whole", L, 1)] if whole else []
+        c += [(f"random, after x2 size, L{L}", "random_after", L, 2), (f"random, after x4 size, L{L}", "random_after", L, 4)]
     return c
+
+
+def framing_of(rows):
+    """The frame a run's rows were measured with (from the framed-words condition's name)."""
+    name = next(r["condition"] for r in rows if r["kind"] == "framed")
+    return name[len("framed ("):-len("), as read")]
 
 
 def random_units(width, layers=LAYERS, seed=RANDOM_SEED):
@@ -85,7 +99,7 @@ def vector(kind, layer, strength, sh, units):
 
 
 def run_item(model, tok, steers, capture, units, item, career, chats, opening, lead, grid, done=(), layers=LAYERS,
-             save=None):
+             save=None, framing=FROM, whole=True):
     """Every condition at one neutral-career moment; one row per condition. `save(shifts, meta)` keeps the vectors."""
     import copy
     import torch
@@ -94,7 +108,7 @@ def run_item(model, tok, steers, capture, units, item, career, chats, opening, l
     from matched import matched
     idx = item["history_index"]
     full, k = split_point(tok, career, idx, opening)
-    framed_full = encode(tok, turns_at(matched(career, idx, item["date"], "neutral", FROM, chats), idx, opening))
+    framed_full = encode(tok, turns_at(matched(career, idx, item["date"], "neutral", framing, chats), idx, opening))
     assert framed_full[:k] == full[:k] and framed_full != full, "the framed request must differ after the same history"
     s = common_suffix(framed_full, full)
     for st in steers.values():
@@ -111,7 +125,7 @@ def run_item(model, tok, steers, capture, units, item, career, chats, opening, l
             capture.on = False
         return dict(capture.got)
 
-    for name, kind, layer, strength in conditions(layers):
+    for name, kind, layer, strength in conditions(layers, framing, whole):
         key = f"{item['career_file']}|{idx}|{name}"
         if key in done:
             continue
@@ -121,7 +135,7 @@ def run_item(model, tok, steers, capture, units, item, career, chats, opening, l
             sh = shifts(read(full), read(framed_full), s, layers)
             if save:
                 save(sh, {"career_file": item["career_file"], "history_index": idx, "date": item["date"],
-                          "after_tokens": s, "extra_tokens": len(framed_full) - len(full)})
+                          "framing": framing, "after_tokens": s, "extra_tokens": len(framed_full) - len(full)})
         vec = vector(kind, layer, strength, sh, units) if sh is not None else None
         seq = framed_full if kind == "framed" else full
         try:
@@ -133,7 +147,7 @@ def run_item(model, tok, steers, capture, units, item, career, chats, opening, l
                 st.vec = None
         yield {"key": key, "career_file": item["career_file"], "run": item["run"], "history_index": idx,
                "date": item["date"], "chat": item["chat"], "wants": item["wants"], "position": item["position"],
-               "condition": name, "kind": kind, "layer": layer, "strength": strength,
+               "condition": name, "kind": kind, "layer": layer, "strength": strength, "framing": framing,
                "shift_size": float(np.linalg.norm(vec)) if vec is not None else 0.0, "after_tokens": s,
                "coverage": cover, "orders": orders, "probs": probs,
                **summarise_orders(orders, probs, item["position"], item["wants"])}

@@ -6,7 +6,8 @@ Checks for the frame's state at every layer (sim/transplant_sweep.py), with no d
 3. run_item on a tiny random Gemma 3 with a Gemma-like template (one character per token), at B's real 7 January
    request (the update alone, after short instructions): one row per condition, the "after" state against a brute-force
    full read, the steer on only for the condition's layer and off after, done rows skipped, and the saved vectors;
-4. the analysis on those rows.
+4. the analysis on those rows;
+5. another frame (gain) without the "whole" conditions, and the frame-by-frame table on both frames' rows.
 """
 import glob, json, os, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,6 +34,10 @@ def check(name, cond):
 conds = T.conditions()
 check(f"{len(conds)} conditions: none and the framed words first, seven per layer", len(conds) == 2 + 7 * len(T.LAYERS)
       and conds[0][1] == "none" and conds[1][1] == "framed")
+gain_conds = T.conditions(T.BAND, "gain", whole=False)
+check("another frame without the whole construction: five conditions per layer, the frame in the framed words' name",
+      len(gain_conds) == 2 + 5 * len(T.BAND) and gain_conds[1][0] == "framed (gain), as read"
+      and not any("whole" in c[0] for c in gain_conds) and T.framing_of([{"kind": "framed", "condition": gain_conds[1][0]}]) == "gain")
 W = 64
 units = T.random_units(W, T.LAYERS)
 check("one unit direction per layer, the same every time",
@@ -149,15 +154,46 @@ with open(f"{tmp}/src/part0.jsonl", "w") as fh:
     fh.write(json.dumps(r2) + "\n")
 np.savez(f"{tmp}/src/shifts/m.npz", layers=np.array(LAYERS), whole=np.stack([sh["whole"][L] for L in LAYERS]),
          after=np.stack([sh["after"][L] for L in LAYERS]), meta=np.array(json.dumps(meta)))
-src = open(f"{ROOT}/designs/rd2/analysis/transplant_sweep.py").read().replace("from transplant_sweep import LAYERS, conditions",
-                                                                                  f"LAYERS = {LAYERS}").replace(
+src = open(f"{ROOT}/designs/rd2/analysis/transplant_sweep.py").read().replace(
     '["coverage"] >= 0.5', '["coverage"] >= 0.0')          # a tiny random model gives the orders little probability
 open(f"{tmp}/analysis.py", "w").write(src)
 r = subprocess.run([sys.executable, f"{tmp}/analysis.py", f"{tmp}/src", f"{tmp}/out"], capture_output=True, text=True)
 md = open(f"{tmp}/out/TRANSPLANT_SWEEP.md").read() if r.returncode == 0 else r.stderr
 check("the analysis runs: a row per layer, the sizes table, the base and the framed words",
-      r.returncode == 0 and all(f"| {L} |" in md for L in LAYERS) and "cosine" in md and "Nothing added:" in md)
+      r.returncode == 0 and all(f"| {L} |" in md for L in LAYERS) and "cosine" in md and "Nothing added:" in md
+      and md.startswith("# The blame frame's state by layer"))
 print(md[:1200])
+
+# ---- 5. another frame, without the whole construction; the frame-by-frame table
+gsaved = []
+grows = list(T.run_item(model, tk, steers, capture, units, item, career, chats, "RULES", "", ORDER_GRID, layers=[18],
+                        save=lambda sh, meta: gsaved.append((sh, meta)), framing="gain", whole=False))
+check("the gain frame: one row per condition, none of them whole, the frame recorded",
+      [r["condition"] for r in grows] == [c[0] for c in T.conditions([18], "gain", whole=False)]
+      and all(r["framing"] == "gain" for r in grows) and gsaved[0][1]["framing"] == "gain")
+gframed = encode(tk, turns_at(matched(career, 0, item["date"], "neutral", "gain", chats), 0, "RULES"))
+check("the gain frame's words differ from blame's, and so does its after state",
+      gframed != framed and not np.allclose(gsaved[0][0]["after"][18], sh["after"][18]))
+gby = {r["condition"]: r for r in grows}
+check("the gain words read differently from the neutral ones; none is the same row as before",
+      gby["framed (gain), as read"]["probs"] != gby["none"]["probs"] and np.allclose(gby["none"]["probs"], by["none"]["probs"]))
+os.makedirs(f"{tmp}/src2/transplant_sweep/shifts"); os.makedirs(f"{tmp}/src2/transplant_sweep_gain/shifts")
+shutil.copy(f"{tmp}/src/part0.jsonl", f"{tmp}/src2/transplant_sweep/part0.jsonl")
+shutil.copy(f"{tmp}/src/shifts/m.npz", f"{tmp}/src2/transplant_sweep/shifts/m.npz")
+with open(f"{tmp}/src2/transplant_sweep_gain/part0.jsonl", "w") as fh:
+    for r in grows:
+        fh.write(json.dumps(r) + "\n")
+np.savez(f"{tmp}/src2/transplant_sweep_gain/shifts/m.npz", layers=np.array([18]), whole=np.stack([gsaved[0][0]["whole"][18]]),
+         after=np.stack([gsaved[0][0]["after"][18]]), meta=np.array(json.dumps(gsaved[0][1])))
+src = open(f"{ROOT}/designs/rd2/analysis/transplant_frames.py").read().replace('["coverage"] >= 0.5', '["coverage"] >= 0.0')
+open(f"{tmp}/frames.py", "w").write(src)
+r = subprocess.run([sys.executable, f"{tmp}/frames.py", f"{tmp}/src2", f"{tmp}/out2", f"{ROOT}/results/words_b/key.json"],
+                   capture_output=True, text=True)
+md = open(f"{tmp}/out2/FRAMES.md").read() if r.returncode == 0 else r.stderr
+check("the frame-by-frame table: both frames, the shared layer, B's traded-along yardstick",
+      r.returncode == 0 and "| gain | 10% |" in md and "| blame | 33% |" in md and "## Layer 18" in md
+      and "## Layer 4" not in md and "Nothing added:" in md)
+print(md[-900:])
 shutil.rmtree(tmp)
 print("\nall checks passed" if ok else "\nSOME CHECKS FAILED")
 sys.exit(0 if ok else 1)
