@@ -13,7 +13,8 @@ import glob, json, os, random
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 MODELS = [("Gemma 3 12B", "full_career_gemma-3-12b-it_4bit_ubs_framing_v2"),
           ("Qwen3.5 9B", "full_career_Qwen3.5-9B_4bit_ubs_framing_v2"),
-          ("Mistral Nemo 12B", "full_career_Mistral-Nemo-Instruct-2407_4bit_ubs_framing_v2")]
+          ("Ministral 3 14B", "full_career_Ministral-3-14B-Instruct-2512-BF16_4bit_ubs_framing_v2"),
+          ("Mistral Nemo 12B (cut; a 2024 reference)", "full_career_Mistral-Nemo-Instruct-2407_4bit_ubs_framing_v2")]
 VERSIONS = [("neutral", "Neutral"), ("loss", "Loss"), ("gain", "Gain"), ("loss + you", "Blame"), ("gain + you", "Credit")]
 PUSH = [("p344_i_can_hunt_with_u", "7 Jan"), ("p316_bust_through_it", "12 Jan"), ("p252_screw_other_people_harder", "1 Apr"),
         ("p250_grow_our_mafia", "8 Jun (third bank)"), ("p317_stop_busters", "8 Jun (stops)"), ("p253_11_oclock_rule", "5 Aug")]
