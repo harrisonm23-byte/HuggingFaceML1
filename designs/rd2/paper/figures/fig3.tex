@@ -1,0 +1,28 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.17}
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 1, horizontal sep=2.1cm},
+  width=8.2cm, height=6.2cm, ybar, bar width=13pt, ymin=0,
+  enlarge x limits=0.13, symbolic x coords={None,Neutral,Loss,Gain,Blame,Credit},
+  x tick label style={font=\footnotesize}, tick style={draw=none},
+  ymajorgrids, grid style={gray!20}, axis line style={gray!60},
+  nodes near coords, every node near coord/.append style={font=\footnotesize, black},
+  title style={font=\normalsize, align=center}]
+\nextgroupplot[ymax=55, ylabel={Order goes along (\%)},
+  title={(a) What the agent would do}, xtick={None,Neutral,Loss,Gain,Blame,Credit}, nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}}]
+  \addplot[draw=gray!70!black, fill=gray!30, bar shift=0pt] coordinates {(None,26.8) (Neutral,31.5)};
+  \addplot[draw=blue, fill=blue!35, bar shift=0pt] coordinates {(Loss,45.6) (Gain,41.6) (Blame,39.4) (Credit,34.7)};
+\nextgroupplot[ymax=4.2, ylabel={Shift toward going along},
+  title={(b) Its decision state, from no document},
+  symbolic x coords={Neutral,Loss,Gain,Blame,Credit}, xtick={Neutral,Loss,Gain,Blame,Credit},
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}}]
+  \addplot[draw=gray!70!black, fill=gray!30, bar shift=0pt] coordinates {(Neutral,1.908)};
+  \addplot[draw=blue, fill=blue!35, bar shift=0pt] coordinates {(Loss,3.363) (Gain,3.507) (Blame,3.433) (Credit,3.072)};
+  \draw[densely dashed, gray!70!black] (axis cs:Neutral,1.908) -- (axis cs:Credit,1.908);
+\end{groupplot}
+\end{tikzpicture}
+\end{document}

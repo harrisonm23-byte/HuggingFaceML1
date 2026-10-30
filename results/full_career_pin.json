@@ -1,0 +1,9 @@
+{
+ "model": "google/gemma-3-12b-it",
+ "model_revision": "96b6f1eccf38110c56df3a15bffe176da04bfd80",
+ "transformers": "5.20.1",
+ "accelerate": "1.15.0",
+ "bitsandbytes": "0.50.2",
+ "recorded": "2026-10-18T08:27:43Z",
+ "by": "notebook 21"
+}
