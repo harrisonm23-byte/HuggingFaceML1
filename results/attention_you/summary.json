@@ -1,52 +1,82 @@
 {
- "moments": 2,
+ "moments": 300,
  "layers": 48,
  "heads": 16,
+ "Blame: \"you\" mass (all layers) against P(goes along) under Blame": {
+  "n": 300,
+  "r": 0.36188030912748886,
+  "p": 4.999750012499375e-05
+ },
+ "Blame: \"you\" mass (global layers) against P(goes along) under Blame": {
+  "n": 300,
+  "r": 0.47292661202601743,
+  "p": 4.999750012499375e-05
+ },
+ "Blame minus Loss: extra mass against P(goes along), same moment": {
+  "n": 300,
+  "r": -0.09557577256131869,
+  "p": 0.09874506274686266
+ },
+ "Credit: \"you\" mass (all layers) against P(goes along) under Credit": {
+  "n": 300,
+  "r": 0.0435152903864255,
+  "p": 0.4512774361281936
+ },
+ "Credit: \"you\" mass (global layers) against P(goes along) under Credit": {
+  "n": 300,
+  "r": 0.4659472484494813,
+  "p": 4.999750012499375e-05
+ },
+ "Credit minus Gain: extra mass against P(goes along), same moment": {
+  "n": 300,
+  "r": -0.08050410425682857,
+  "p": 0.11769411529423529
+ },
  "decision_mean": {
   "Neutral": {
-   "history": 0.5716305375099182,
-   "update_rest": 0.22858105599880219,
-   "core_other": 0.019667454063892365,
-   "you_core": 0.0009345021680928767,
+   "history": 0.5495678782463074,
+   "update_rest": 0.23535975813865662,
+   "core_other": 0.03494805842638016,
+   "you_core": 0.0005803607637062669,
    "extra_other": 0.0,
    "you_extra": 0.0,
-   "tail": 0.1792028695344925
+   "tail": 0.17954181134700775
   },
   "Loss": {
-   "history": 0.567123532295227,
-   "update_rest": 0.22213859856128693,
-   "core_other": 0.015294861979782581,
-   "you_core": 0.0008506893063895404,
-   "extra_other": 0.012943095527589321,
+   "history": 0.5349785089492798,
+   "update_rest": 0.23222458362579346,
+   "core_other": 0.029612550511956215,
+   "you_core": 0.00047898301272653043,
+   "extra_other": 0.021297236904501915,
    "you_extra": 0.0,
-   "tail": 0.18162037432193756
+   "tail": 0.18140584230422974
   },
   "Gain": {
-   "history": 0.5677849650382996,
-   "update_rest": 0.22180156409740448,
-   "core_other": 0.015246977098286152,
-   "you_core": 0.0009171919082291424,
-   "extra_other": 0.012297551147639751,
+   "history": 0.5417595505714417,
+   "update_rest": 0.23321789503097534,
+   "core_other": 0.02929873764514923,
+   "you_core": 0.0004997906507924199,
+   "extra_other": 0.01336648128926754,
    "you_extra": 0.0,
-   "tail": 0.18191953003406525
+   "tail": 0.18185780942440033
   },
   "Blame": {
-   "history": 0.5543867945671082,
-   "update_rest": 0.21884983777999878,
-   "core_other": 0.013681351207196712,
-   "you_core": 0.000768439844250679,
-   "extra_other": 0.02944204770028591,
-   "you_extra": 0.0024135743733495474,
-   "tail": 0.18044765293598175
+   "history": 0.5313251614570618,
+   "update_rest": 0.23103107511997223,
+   "core_other": 0.028377288952469826,
+   "you_core": 0.00040802976582199335,
+   "extra_other": 0.024967052042484283,
+   "you_extra": 0.0021734079346060753,
+   "tail": 0.18172195553779602
   },
   "Credit": {
-   "history": 0.5572295188903809,
-   "update_rest": 0.21965062618255615,
-   "core_other": 0.014046634547412395,
-   "you_core": 0.0008476422517560422,
-   "extra_other": 0.025488754734396935,
-   "you_extra": 0.000811526260804385,
-   "tail": 0.1819339394569397
+   "history": 0.5370895862579346,
+   "update_rest": 0.23222124576568604,
+   "core_other": 0.028753122314810753,
+   "you_core": 0.00044366452493704855,
+   "extra_other": 0.018186666071414948,
+   "you_extra": 0.00112799066118896,
+   "tail": 0.1821746826171875
   }
  }
 }
