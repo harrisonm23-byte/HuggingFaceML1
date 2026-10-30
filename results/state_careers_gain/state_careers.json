@@ -2,5 +2,9 @@
  "gain x2 L22": {
   "share": 0.3333333333333333,
   "careers": 1
+ },
+ "none": {
+  "share": 0.0,
+  "careers": 1
  }
 }
