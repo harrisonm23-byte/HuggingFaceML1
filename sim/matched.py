@@ -12,8 +12,9 @@ SHOWN_PEER = "Bank C [Agent C]"            # how F's careers show Bank C to the 
 _UBS = re.compile(r"^(  UBS \[Agent A\]: )(.*)$", re.M)
 
 
-def swap_update(update, date, v0, v1, chats):
-    """The update with every UBS line (framing v0) replaced by the same line in framing v1. chats: read_set()."""
+def swap_update(update, date, v0, v1, chats, pattern=None):
+    """The update with every UBS line (framing v0) replaced by the same line in framing v1. chats: read_set().
+    pattern: which lines are UBS's (default: Agent A's, all a push request has; the chat-only days also have Agent B)."""
     if v0 == v1:
         return update
     table = {}
@@ -27,7 +28,7 @@ def swap_update(update, date, v0, v1, chats):
         assert alts is not None, "a UBS line in the update is not in the file for its framing"
         assert len(alts) == 1, "a UBS line in the update matches file lines with different framings"
         return m.group(1) + next(iter(alts))
-    new, n = _UBS.subn(sub, update)
+    new, n = (pattern or _UBS).subn(sub, update)
     assert n >= 1, "no UBS line in the update"
     return new
 

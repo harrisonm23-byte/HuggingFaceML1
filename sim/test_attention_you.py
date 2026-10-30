@@ -137,7 +137,6 @@ check("decision masses sum to 1; \"into you\" is NaN only without a \"you\" in t
       np.allclose(dec.sum(-1), 1.0, atol=1e-3) and np.isnan(into[[0, 1, 2]]).all() and np.isfinite(into[[3, 4]]).all()
       and np.allclose(np.nansum(into[[3, 4]], -1), 1.0, atol=1e-3))
 check("the blame reading matches the direct tap", np.allclose(dec[3], whole[:, :, 0, :], atol=2e-3))
-tap.remove()
 # ---- 5. the analysis on files shaped like the real ones
 import subprocess, tempfile
 tmp = tempfile.mkdtemp()
@@ -149,6 +148,7 @@ for cf in ("neutral_r0.json", "loss_plus_you_r1.json"):
         iy = rng.random((5, 6, 2, len(A.INTO_YOU_GROUPS))).astype(np.float32); iy /= iy.sum(-1, keepdims=True)
         iy[:3] = np.nan
         meta = [{"framing": v, "tokens": 900, "update_start": 700, "career_file": cf, "chat": chat, "history_index": 9,
+                 "history": "neutral" if cf.startswith("neutral") else "loss + you",
                  "saved_joined": False, **{f"n_{g}": 3 for g in A.DECISION_GROUPS}} for v in FRAMINGS]
         np.savez_compressed(f"{tmp}/attention_you/{cf[:-5]}__{chat}.npz", decision=d, into_you=iy,
                             decision_groups=np.array(A.DECISION_GROUPS), into_you_groups=np.array(A.INTO_YOU_GROUPS),
@@ -168,5 +168,53 @@ else:
     check(f"a framing's shares sum to 100 ({sum(shares):.1f})", abs(sum(shares) - 100) < 0.3)
     check("the link to the decision is reported", "| Blame: \"you\" mass (all layers)" in text)
 
+# ---- 6. the chat-only days
+cms = A.chat_moments(B)
+per = {}
+for m in cms:
+    per[m["career_file"]] = per.get(m["career_file"], 0) + 1
+check(f"chat-only-day updates with a UBS line: {len(cms)}, 17 in every career", len(cms) == 850 and set(per.values()) == {17})
+check("their dates are the chats' own dates in the file", {m["date"] for m in cms} <= {c["date"] for c in chats})
+counts2 = {v: {"lines": 0, "you_extra": 0, "you_core": 0, "extra": 0, "core_found": 0} for v in FRAMINGS}
+agent_b = 0
+cache = {}
+for m in cms:
+    c = cache.setdefault(m["career_file"], json.load(open(f"{B}/careers/{m['career_file']}")))
+    for v in FRAMINGS:
+        upd = A.framed(c, m["history_index"], m["date"], m["version"], v, chats)["history"][m["history_index"]]["content"]
+        agent_b += v == "neutral" and "UBS [Agent B]:" in upd
+        for sp in A.line_spans(upd, m["date"], v, chats):
+            k = counts2[v]
+            k["lines"] += 1; k["you_extra"] += len(sp["you_extra"]); k["you_core"] += len(sp["you_core"])
+            k["extra"] += bool(sp["extra"]); k["core_found"] += sp["core_words_found"] >= 0.6
+for v in FRAMINGS:
+    print(f"     chat days, {v}: {counts2[v]}")
+check(f"UBS's Agent B lines are swapped too ({agent_b} neutral-framed updates hold one)", agent_b == 50)
+check("every framed line has a framed part; the neutral lines none",
+      counts2["neutral"]["extra"] == 0 and all(counts2[v]["extra"] == counts2[v]["lines"] for v in FRAMINGS[1:]))
+check("\"you\" in the framed part only under blame and credit; UBS's own \"you\" the same in every framing",
+      counts2["loss"]["you_extra"] == counts2["gain"]["you_extra"] == 0 and counts2["loss + you"]["you_extra"] > 0
+      and counts2["gain + you"]["you_extra"] > 0 and len({counts2[v]["you_core"] for v in FRAMINGS}) == 1)
+check("most of UBS's line is found in every framed line (a rewrite keeps at least 60% of it, except 11 May's)",
+      all(counts2[v]["core_found"] >= counts2[v]["lines"] - 100 for v in FRAMINGS))
+# a rewritten line split word by word
+mask = A.core_mask("Hallelujah. Let's push it up.", "We're not saved yet. Let's push it up. If you ease off now, we both walk out with nothing.")
+line = "We're not saved yet. Let's push it up. If you ease off now, we both walk out with nothing."
+kept = "".join(ch if x else "_" for ch, x in zip(line, mask))
+check(f"a rewritten line: the shared words are UBS's, the rest framed ({kept[:40]}...)",
+      "Let's_push_it_up." in kept and "We're" not in kept and "saved" not in kept and "If you ease off" not in kept)
+# run_moment on a chat-day moment, the tiny model, a short history
+m = [x for x in cms if x["version"] == "loss + you" and x["date"] == "2011-03-31"][0]
+real = json.load(open(f"{B}/careers/{m['career_file']}"))
+short_c = {**real, "history": real["history"][m["history_index"] - 2:m["history_index"] + 1]}
+dec2, into2, meta2 = A.run_moment(model, tk, tap, short_c, {**m, "history_index": 2}, chats, "RULES", FRAMINGS, prefill)
+check("run_moment on a chat-only day: masses sum to 1, \"into you\" only under blame and credit",
+      np.allclose(dec2.sum(-1), 1.0, atol=1e-3) and np.isnan(into2[[0, 1, 2]]).all() and np.isfinite(into2[[3, 4]]).all())
+r = subprocess.run([sys.executable, f"{ROOT}/designs/rd2/analysis/attention_you.py", tmp, f"{tmp}/out_chat", "--chat"],
+                   capture_output=True, text=True) if os.rename(f"{tmp}/attention_you", f"{tmp}/attention_you_chat") is None else None
+check("the chat analysis runs and reports the words link", r.returncode == 0 and "agreed in words" in open(f"{tmp}/out_chat/ATTENTION_YOU.md").read()
+      if r.returncode == 0 else print(r.stderr[-1200:]))
+
+tap.remove()
 print("\nALL OK" if ok else "\nSOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

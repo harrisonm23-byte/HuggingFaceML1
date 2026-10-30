@@ -17,19 +17,51 @@ Masses are kept per layer and head. A local layer (sliding window) cannot see ke
 history is what it actually gives them. Nothing is sampled and nothing is steered.
 """
 import copy
+import difflib
 import re
 
 import numpy as np
 
 YOU = re.compile(r"\b[Yy]ou(?:r|rs|'re|'ve|'ll|'d)?\b")
-UBS_LINE = re.compile(r"^(  UBS \[Agent A\]: )(.*)$", re.M)
+UBS_LINE = re.compile(r"^(  UBS \[Agent [AB]\]: )(.*)$", re.M)      # the chat-only days also have UBS's Agent B
+WORD = re.compile(r"\w+(?:'\w+)?|[^\w\s]")
 DECISION_GROUPS = ["history", "update_rest", "core_other", "you_core", "extra_other", "you_extra", "tail"]
 INTO_YOU_GROUPS = ["history", "update_rest", "core", "extra_before_you", "you_and_after"]
 
 
+def core_mask(core, line):
+    """For each character of the framed line, whether it belongs to UBS's neutral line (the core): the words the two
+    share in order (difflib on words and punctuation, runs of at least two, or one word at the very start), so a framing
+    that rewrites the line ("Hallelujah." -> "We're not saved yet.") or drops its end ("-- it shouldn't hurt.") is
+    split correctly. Where the core opens the line unchanged this is exactly that opening."""
+    if line.startswith(core):
+        return [True] * len(core) + [False] * (len(line) - len(core))
+    cw, lw = [m for m in WORD.finditer(core)], [m for m in WORD.finditer(line)]
+    sm = difflib.SequenceMatcher(None, [m.group(0) for m in cw], [m.group(0) for m in lw], autojunk=False)
+    mask = [False] * len(line)
+    for blk in sm.get_matching_blocks():
+        if blk.size >= 2 or (blk.size == 1 and blk.b == 0):
+            for m in lw[blk.b:blk.b + blk.size]:
+                for i in range(m.start(), m.end()):
+                    mask[i] = True
+    return mask
+
+
+def runs(mask, offset):
+    """Character spans [a, b) where mask is True, shifted by offset."""
+    out, start = [], None
+    for i, x in enumerate(list(mask) + [False]):
+        if x and start is None:
+            start = i
+        elif not x and start is not None:
+            out.append((offset + start, offset + i))
+            start = None
+    return out
+
+
 def line_spans(update, date, framing, chats):
-    """Character spans in the update's text: for each UBS line, its neutral core and its framed extra, and every "you"
-    in each. chats: framing_set.read_set()."""
+    """Character spans in the update's text: for each UBS line, its neutral core and its framed extra (lists of spans),
+    and every "you" in each. chats: framing_set.read_set()."""
     table = {}
     for c in chats:
         if c["date"] == date:
@@ -42,12 +74,15 @@ def line_spans(update, date, framing, chats):
         assert cores is not None, "a UBS line in the update is not in the file for its framing"
         assert len(cores) == 1, "a UBS line matches file lines with different cores"
         core = next(iter(cores))
-        n = 0                                               # the core opens the framed line (checked in the test)
-        while n < min(len(core), len(line)) and core[n] == line[n]:
-            n += 1
-        out.append({"core": (start, start + n), "extra": (start + n, start + len(line)), "core_is_prefix": n == len(core),
-                    "you_core": [(start + y.start(), start + y.end()) for y in YOU.finditer(line[:n])],
-                    "you_extra": [(start + n + y.start(), start + n + y.end()) for y in YOU.finditer(line[n:])]})
+        mask = core_mask(core, line)
+        core_spans = runs(mask, start)
+        extra_spans = runs([not x and not line[i].isspace() for i, x in enumerate(mask)], start)
+        you_core, you_extra = [], []
+        for y in YOU.finditer(line):
+            (you_core if mask[y.start()] else you_extra).append((start + y.start(), start + y.end()))
+        out.append({"core": core_spans, "extra": extra_spans, "core_is_prefix": line.startswith(core),
+                    "core_words_found": sum(all(mask[w.start():w.end()]) for w in WORD.finditer(line))
+                    / max(1, len(WORD.findall(core))), "you_core": you_core, "you_extra": you_extra})
     return out
 
 
@@ -74,8 +109,8 @@ def token_groups(tok, turns, update_index, date, framing, chats):
     shift = lambda sp: (u0 + sp[0], u0 + sp[1])
     you_core = toks_many([shift(y) for s in spans for y in s["you_core"]])
     you_extra = toks_many([shift(y) for s in spans for y in s["you_extra"]])
-    core = toks_many([shift(s["core"]) for s in spans])
-    extra = toks_many([shift(s["extra"]) for s in spans])
+    core = toks_many([shift(sp) for s in spans for sp in s["core"]])
+    extra = [i for i in toks_many([shift(sp) for s in spans for sp in s["extra"]]) if i not in set(core)]
     upd = set(toks(u0, u1))
     first_upd = min(upd)
     yous, ubs = set(you_core) | set(you_extra), set(core) | set(extra)
@@ -89,6 +124,39 @@ def token_groups(tok, turns, update_index, date, framing, chats):
     # The extra before each "you" (the loss or gain statement), per "you" token
     before = {y: [i for i in extra if i < y] for y in you_extra}        # the loss or gain statement, any earlier "you" included
     return ids, groups, before
+
+
+def framed(career, idx, date, v0, v1, chats):
+    """A copy of the career whose update at `idx` carries UBS's lines (Agent A's and Agent B's) in framing v1."""
+    from matched import swap_update
+    h = list(career["history"])
+    h[idx] = {**h[idx], "content": swap_update(h[idx]["content"], date, v0, v1, chats, pattern=UBS_LINE)}
+    return {**career, "history": h}
+
+
+MONTHS = {m: i for i, m in enumerate("January February March April May June July August September October November "
+                                     "December".split(), 1)}
+
+
+def chat_moments(folder):
+    """Every chat-only-day update with a UBS line in every career of a results folder (B: 17 a career), in the same
+    form as inside_careers.moments(): career_file, version, run, date (ISO, the chat's), history_index, chat (an id for
+    the file name). The day's date is the update's "Wednesday 28 November 2007" line (some updates open with how the
+    last trading day closed)."""
+    import glob, json, os
+    out = []
+    for path in sorted(glob.glob(os.path.join(folder, "careers", "*.json"))):
+        c = json.load(open(path))
+        for i, t in enumerate(c["history"]):
+            if t["role"] != "user" or "no market session today" not in t["content"] or not UBS_LINE.search(t["content"]):
+                continue
+            d = re.search(r"\b(\d{2}) (" + "|".join(MONTHS) + r") (\d{4})\. You have no market session today", t["content"])
+            assert d, f"{path} turn {i}: no date"
+            date = f"{d[3]}-{MONTHS[d[2]]:02d}-{d[1]}"
+            out.append({"experiment": "B", "version": c["version"], "run": c["run"], "date": date, "history_index": i,
+                        "chat": f"chatday_{date}_t{i}", "wants": None, "joined": None,
+                        "career_file": os.path.basename(path)})
+    return out
 
 
 class Tap:
@@ -153,14 +221,13 @@ def run_moment(model, tok, tap, career, m, chats, opening, framings, prefill):
     import torch
     from inside_careers import turns_at
     from interventions import split_point
-    from matched import matched
     idx = m["history_index"]
     full0, k = split_point(tok, career, idx, opening)
     tap.off()
     cache = prefill(model, full0[:k])
     dec, into, rows = [], [], []
     for v1 in framings:
-        c = matched(career, idx, m["date"], m["version"], v1, chats)
+        c = framed(career, idx, m["date"], m["version"], v1, chats)
         turns = turns_at(c, idx, opening)
         ids, groups, before = token_groups(tok, turns, idx, m["date"], v1, chats)
         assert ids[:k] == full0[:k], "the history before the request changed"

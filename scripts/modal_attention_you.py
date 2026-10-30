@@ -9,6 +9,11 @@ also reads the matched run's P(order goes along) at the same moments, and the re
 
     modal run --detach scripts/modal_attention_you.py                 # 4 GPUs, then the analysis
     modal run --detach scripts/modal_attention_you.py --parts 1 --limit 2   # a trial: two moments on one GPU
+    modal run --detach scripts/modal_attention_you.py --days chat           # the chat-only days (850 moments)
+
+The chat-only days (the user, 30 Oct): every chat-only-day update with a UBS line in B's careers (17 a career), the
+same reading; saved to /states/v2/attention_you_chat, results in results/attention_you_chat (linked to the blind words
+labels, results/words_b, since there is no order on those days).
 """
 import modal
 
@@ -49,7 +54,7 @@ def setup():
 
 @app.function(gpu="H100", timeout=6 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_part(part, parts, limit=0):
+def run_part(part, parts, limit=0, days="trading"):
     import json, os, time
     import numpy as np, torch
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -61,10 +66,12 @@ def run_part(part, parts, limit=0):
     from inside_careers import moments
     from interventions import prefill
     chats = read_set()
-    todo = sorted(moments(FOLDER, "B"), key=lambda m: (m["career_file"], m["history_index"]))[part::parts]
+    found = moments(FOLDER, "B") if days == "trading" else A.chat_moments(FOLDER)
+    todo = sorted(found, key=lambda m: (m["career_file"], m["history_index"]))[part::parts]
+    out_dir = OUT if days == "trading" else OUT + "_chat"
     if limit:
         todo = todo[:limit]
-    os.makedirs(OUT, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
     pin = json.load(open("results/full_career_pin.json"))
     tok = AutoTokenizer.from_pretrained(pin["model"], revision=pin["model_revision"])
     model = AutoModelForCausalLM.from_pretrained(pin["model"], revision=pin["model_revision"], device_map="auto",
@@ -74,7 +81,7 @@ def run_part(part, parts, limit=0):
     opening = career_opening()
     t0 = time.time()
     for n, m in enumerate(todo):
-        path = f"{OUT}/{m['career_file'][:-5]}__{m['chat']}.npz"
+        path = f"{out_dir}/{m['career_file'][:-5]}__{m['chat']}.npz"
         if os.path.exists(path):
             continue
         career = json.load(open(f"{FOLDER}/careers/{m['career_file']}"))
@@ -95,13 +102,15 @@ def run_part(part, parts, limit=0):
 
 
 @app.function(cpu=4, memory=16384, timeout=2 * 3600, secrets=SECRETS, volumes=VOLUMES)
-def analyse():
+def analyse(days="trading"):
     import subprocess
     repo = setup()
     states_vol.reload()
-    subprocess.run("python designs/rd2/analysis/attention_you.py /states/v2 results/attention_you", shell=True, check=True)
+    res = "results/attention_you" + ("" if days == "trading" else "_chat")
+    flag = "" if days == "trading" else " --chat"
+    subprocess.run(f"python designs/rd2/analysis/attention_you.py /states/v2 {res}{flag}", shell=True, check=True)
     for attempt in range(10):
-        subprocess.run(f"git -C {repo} add results/attention_you && git -C {repo} commit -q -m 'Attention onto you'",
+        subprocess.run(f"git -C {repo} add {res} && git -C {repo} commit -q -m 'Attention onto you ({days} days)'",
                        shell=True)
         if subprocess.run(f"git -C {repo} pull -q --rebase origin {BRANCH} && git -C {repo} push -q origin HEAD:{BRANCH}",
                           shell=True).returncode == 0:
@@ -111,22 +120,24 @@ def analyse():
 
 
 @app.function(timeout=8 * 3600)
-def dispatch(parts, limit, analysis_only):
+def dispatch(parts, limit, analysis_only, days="trading"):
     """Starts the parts inside Modal and waits for them there, then the analysis (survives the laptop closing)."""
     done = []
     if not analysis_only:
-        calls = [(k, run_part.spawn(k, parts, limit)) for k in range(parts)]
+        calls = [(k, run_part.spawn(k, parts, limit, days)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
             except Exception as err:
                 done.append(f"part {k}: failed ({type(err).__name__})")
-    done.append(analyse.remote())
+    done.append(analyse.remote(days))
     return done
 
 
 @app.local_entrypoint()
-def main(parts: int = 4, limit: int = 0, analysis_only: bool = False):
-    print(f"attention onto \"you\": {parts} GPUs" + (f", {limit} moments each" if limit else "") + ", then the analysis")
-    for line in dispatch.remote(parts, limit, analysis_only):
+def main(parts: int = 4, limit: int = 0, analysis_only: bool = False, days: str = "trading"):
+    assert days in ("trading", "chat"), "days: trading (the push requests) or chat (the chat-only days)"
+    print(f"attention onto \"you\", {days} days: {parts} GPUs" + (f", {limit} moments each" if limit else "")
+          + ", then the analysis")
+    for line in dispatch.remote(parts, limit, analysis_only, days):
         print(line)
