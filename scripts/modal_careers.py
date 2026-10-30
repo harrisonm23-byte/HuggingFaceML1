@@ -10,6 +10,9 @@ repo). Then, from a machine with Modal's token:
 
     modal run --detach scripts/modal_careers.py --jobs "23_everything_at_once:0-9,20_takeover_careers:0-4"
 
+Another model (sim/other_models.py): "19_ubs_framing_careers@model=qwen3.5-9b&versions=neutral:0" runs Experiment B's
+notebook with that model's pin and chat-template adaptation, here only the neutral career of round 0.
+
 `--jobs` is a comma-separated list of notebook:rounds (rounds as 0-9, 3, or 0;2;5); each item is its own GPU, running in
 parallel. Never give two jobs (or a job and a Colab tab) the same notebook and round.
 """
@@ -25,6 +28,9 @@ image = (modal.Image.debian_slim(python_version="3.13")
          .pip_install("torch==2.11.0", index_url="https://download.pytorch.org/whl/cu130")
          .pip_install("transformers==5.20.1", "accelerate==1.15.0", "bitsandbytes==0.50.2", "python-docx",
                       "pandas", "numpy", "huggingface_hub"))
+# Qwen3.5's linear-attention layers have fast kernels in flash-linear-attention (without them transformers falls back
+# to a correct but slow reference implementation); a separate image, so Gemma's jobs keep their exact stack
+image_kernels = image.pip_install("flash-linear-attention==0.5.2", "fla-core==0.5.2")
 app = modal.App("rd2-careers", image=image)
 # The model's weights, downloaded once and kept between jobs
 weights = modal.Volume.from_name("rd2-hf-cache", create_if_missing=True)
@@ -43,10 +49,34 @@ def parse_jobs(spec):
     return out
 
 
-@app.function(gpu=GPU, timeout=24 * 3600, retries=modal.Retries(max_retries=5, initial_delay=60.0),
-              secrets=[modal.Secret.from_name("huggingface"), modal.Secret.from_name("github")],
-              volumes={"/root/.cache/huggingface": weights})
+JOB = dict(gpu=GPU, timeout=24 * 3600, retries=modal.Retries(max_retries=5, initial_delay=60.0),
+           secrets=[modal.Secret.from_name("huggingface"), modal.Secret.from_name("github")],
+           volumes={"/root/.cache/huggingface": weights})
+
+
+@app.function(**JOB)
 def run_job(name, rounds):
+    return _run_job(name, rounds)
+
+
+@app.function(image=image_kernels, **JOB)
+def run_job_kernels(name, rounds):
+    return _run_job(name, rounds)
+
+
+def needs_kernels(name):
+    settings = name.partition("@")[2]
+    if "model=" not in settings:
+        return False
+    import importlib.util, os
+    spec = importlib.util.spec_from_file_location("other_models", os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                                                              "..", "sim", "other_models.py"))
+    om = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(om)
+    return om.MODELS[om.parse(settings)["model"]]["kernels"]
+
+
+def _run_job(name, rounds):
     import json, os, subprocess, sys
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"   # as in Colab, set before torch starts
     repo = "/root/HuggingFaceML1"
@@ -67,19 +97,30 @@ def run_job(name, rounds):
 
     # "name@settings" hands the notebook an override through RD2_SETTINGS (notebook 35: "@L22x2" is layer 22, twice the size)
     notebook, _, settings = name.partition("@")
-    if settings:
+    import other_models
+    other = other_models.parse(settings)                 # "model=...": another model (sim/other_models.py)
+    if settings and not other:
         os.environ["RD2_SETTINGS"] = settings
     nb = json.load(open(f"notebooks/{notebook}.ipynb"))
     setup_cell, settings_cell, model_cell, memory_cell, agent_cell, run_cell, _glance = \
         ["".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code"]
     g = {"__name__": "__main__"}
     exec("import os, sys, json, glob, hashlib, time, datetime, torch", g)
-    g.update(REPO=repo, BRANCH=BRANCH, PIN=json.load(open("results/full_career_pin.json")))
+    g.update(REPO=repo, BRANCH=BRANCH, PIN=other_models.pin(other["model"]) if other
+             else json.load(open("results/full_career_pin.json")))
     exec(setup_cell[setup_cell.index("from mountain import"):], g)      # the notebook's imports (no Colab parts)
     exec(settings_cell, g)                                                # its versions and inputs
     g["ROUNDS_HERE"] = rounds                                             # this job's rounds
-    print(f"{name}: rounds {rounds} on {g['torch'].cuda.get_device_name(0)}", flush=True)
+    if other:
+        assert notebook == "19_ubs_framing_careers", "other models are set up for Experiment B only"
+        if "versions" in other:
+            assert set(other["versions"]) <= set(g["VERSIONS"]), other["versions"]
+            g["VERSIONS"] = other["versions"]
+        g["EXTRA_HASH"] = g["EXTRA_HASH"] + other_models.setup_hash(other["model"])
+    print(f"{name}: rounds {rounds}, model {g['PIN']['model']}, on {g['torch'].cuda.get_device_name(0)}", flush=True)
     exec(model_cell, g)                                                   # the model (weights cached between jobs)
+    if other:
+        other_models.adapt(g["tok"], other["model"])                      # its chat template, Gemma's layout
     weights.commit()
     for cell in (memory_cell, agent_cell, run_cell):                      # the memory check, the agent, the run
         exec(cell, g)
@@ -99,9 +140,9 @@ def run_job(name, rounds):
 def dispatch(todo):
     """Starts every job from inside Modal and waits for them there (no GPU). With --detach, Modal keeps alive only the
     last call the laptop started; that is this one, so all the jobs keep running when the laptop closes."""
-    calls = [run_job.spawn(name, rounds) for name, rounds in todo]
+    calls = [(run_job_kernels if kernels else run_job).spawn(name, rounds) for name, rounds, kernels in todo]
     done = []
-    for (name, rounds), c in zip(todo, calls):
+    for (name, rounds, _), c in zip(todo, calls):
         try:
             done.append(c.get())
         except Exception as e:                    # one job failing (after its retries) does not stop the others
@@ -111,8 +152,8 @@ def dispatch(todo):
 
 @app.local_entrypoint()
 def main(jobs: str):
-    todo = parse_jobs(jobs)
-    for name, rounds in todo:
-        print(f"starting {name}, rounds {rounds}")
+    todo = [(name, rounds, needs_kernels(name)) for name, rounds in parse_jobs(jobs)]   # decided here, where the repo is
+    for name, rounds, kernels in todo:
+        print(f"starting {name}, rounds {rounds}" + (" (with the linear-attention kernels)" if kernels else ""))
     for line in dispatch.remote(todo):
         print(line)
