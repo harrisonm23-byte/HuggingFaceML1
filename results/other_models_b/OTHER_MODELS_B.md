@@ -26,18 +26,18 @@ The same careers, framed lines, memo and settings as Gemma's Experiment B (4-bit
 
 | Framing | Careers | 7 Jan | 12 Jan | 1 Apr | 8 Jun (third bank) | 8 Jun (stops) | 5 Aug | Share of six | p vs its neutral | No valid order | Orders per career | Replies sent back per career |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Neutral (base) | 3 | 1/3 | 1/3 | 1/3 | 1/3 | 0/3 | 1/3 | 28% |  | 0 of 18 | 34 | 10 |
-| Loss | 3 | 3/3 | 0/3 | 1/3 | 0/3 | 0/3 | 0/3 | 22% | 1.000 | 0 of 18 | 28 | 11 |
-| Gain | 4 | 3/4 | 1/4 | 0/4 | 0/4 | 1/4 | 1/4 | 25% | 1.000 | 0 of 24 | 30 | 6 |
-| Blame | 3 | 3/3 | 0/3 | 1/3 | 0/3 | 2/3 | 1/3 | 39% | 0.802 | 0 of 18 | 23 | 11 |
-| Credit | 4 | 2/4 | 1/4 | 0/4 | 0/4 | 1/4 | 0/4 | 17% | 0.884 | 0 of 24 | 23 | 6 |
+| Neutral (base) | 5 | 2/5 | 1/5 | 1/5 | 1/5 | 1/5 | 2/5 | 27% |  | 0 of 30 | 30 | 7 |
+| Loss | 5 | 5/5 | 0/5 | 1/5 | 1/5 | 0/5 | 0/5 | 23% | 1.000 | 0 of 30 | 27 | 9 |
+| Gain | 5 | 3/5 | 1/5 | 0/5 | 0/5 | 1/5 | 1/5 | 20% | 0.856 | 0 of 30 | 26 | 6 |
+| Blame | 5 | 4/5 | 1/5 | 2/5 | 0/5 | 2/5 | 1/5 | 33% | 0.827 | 0 of 30 | 26 | 12 |
+| Credit | 5 | 2/5 | 1/5 | 0/5 | 0/5 | 1/5 | 0/5 | 13% | 0.560 | 0 of 30 | 24 | 9 |
 
 ## Mistral Nemo 12B (cut; a 2024 reference)
 
 | Framing | Careers | 7 Jan | 12 Jan | 1 Apr | 8 Jun (third bank) | 8 Jun (stops) | 5 Aug | Share of six | p vs its neutral | No valid order | Orders per career | Replies sent back per career |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Neutral (base) | 7 | 5/7 | 1/7 | 1/7 | 3/7 | 0/7 | 3/7 | 31% |  | 3 of 42 | 63 | 78 |
-| Loss | 5 | 4/5 | 1/5 | 4/5 | 1/5 | 1/5 | 3/5 | 47% | 0.173 | 3 of 30 | 72 | 23 |
-| Gain | 3 | 1/3 | 0/3 | 1/3 | 2/3 | 1/3 | 2/3 | 39% | 0.733 | 1 of 18 | 68 | 20 |
-| Blame | 1 | 0/1 | 1/1 | 0/1 | 0/1 | 0/1 | 0/1 | 17% | 0.747 | 1 of 6 | 106 | 137 |
-| Credit | 1 | 1/1 | 1/1 | 1/1 | 0/1 | 0/1 | 0/1 | 50% | 0.755 | 1 of 6 | 60 | 17 |
+| Loss | 5 | 4/5 | 1/5 | 4/5 | 1/5 | 1/5 | 3/5 | 47% | 0.175 | 3 of 30 | 72 | 23 |
+| Gain | 3 | 1/3 | 0/3 | 1/3 | 2/3 | 1/3 | 2/3 | 39% | 0.727 | 1 of 18 | 68 | 20 |
+| Blame | 1 | 0/1 | 1/1 | 0/1 | 0/1 | 0/1 | 0/1 | 17% | 0.745 | 1 of 6 | 106 | 137 |
+| Credit | 1 | 1/1 | 1/1 | 1/1 | 0/1 | 0/1 | 0/1 | 50% | 0.748 | 1 of 6 | 60 | 17 |
