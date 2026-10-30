@@ -11,9 +11,13 @@ B's loss careers run again from the start (UBS's lines in the loss framing, the 
 | loss x2 L14 | 2 | 33% | 33-33% | +0.0 (+0.0 to +0.0), p 1.000 | +25.0 (+16.7 to +33.3), p 0.335 |
 | blame x2 L21 | 2 | 17% | 0-33% | -16.7 (-33.3 to +0.0), p 1.000 | +8.3 (-16.7 to +33.3), p 1.000 |
 | loss x2 L21 | 2 | 17% | 0-33% | -16.7 (-33.3 to +0.0), p 1.000 | +8.3 (-16.7 to +33.3), p 1.000 |
+| blame x2 L22 | 1 | 0% | 0-0% | – | – |
+| credit x2 L22 | 1 | 33% | 33-33% | – | – |
+| gain x2 L22 | 1 | 33% | 33-33% | – | – |
 | loss x2 L22 | 1 | 17% | 17-17% | – | – |
 | random x2 L14 | 2 | 8% | 0-17% | -25.0 (-33.3 to -16.7), p 0.336 | – |
 | random x2 L21 | 2 | 8% | 0-17% | -25.0 (-33.3 to -16.7), p 0.335 | – |
+| random x2 L22 | 1 | 17% | 17-17% | – | – |
 
 ## Request by request: share of careers that went along
 
@@ -24,9 +28,13 @@ B's loss careers run again from the start (UBS's lines in the loss framing, the 
 | loss x2 L14 | 100% (2) | 50% (2) | 0% (2) | 0% (2) | 0% (2) | 50% (2) |
 | blame x2 L21 | 50% (2) | 50% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
 | loss x2 L21 | 50% (2) | 0% (2) | 50% (2) | 0% (2) | 0% (2) | 0% (2) |
+| blame x2 L22 | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
+| credit x2 L22 | 100% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
+| gain x2 L22 | 100% (1) | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | loss x2 L22 | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 | random x2 L14 | 50% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
 | random x2 L21 | 50% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) | 0% (2) |
+| random x2 L22 | 100% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) | 0% (1) |
 
 ## Does the state break the model?
 
@@ -37,9 +45,13 @@ B's loss careers run again from the start (UBS's lines in the loss framing, the 
 | loss x2 L14 | 240 | 0.8% | 0.0% | 314 |
 | blame x2 L21 | 240 | 0.4% | 0.0% | 316 |
 | loss x2 L21 | 240 | 0.8% | 0.0% | 308 |
+| blame x2 L22 | 120 | 0.8% | 0.0% | 154 |
+| credit x2 L22 | 120 | 0.8% | 0.0% | 156 |
+| gain x2 L22 | 120 | 0.8% | 0.0% | 154 |
 | loss x2 L22 | 120 | 0.8% | 0.0% | 154 |
 | random x2 L14 | 240 | 0.8% | 0.0% | 309 |
 | random x2 L21 | 240 | 0.8% | 0.0% | 311 |
+| random x2 L22 | 120 | 0.8% | 0.0% | 154 |
 
 ## The yardstick: B's own careers
 
