@@ -12,6 +12,10 @@ Then launch (one GPU per round; each round runs one career of every arm, about a
 Framed careers: --framings "loss" (or several, e.g. "neutral,loss,loss + you"); UBS's lines then come in that framing
 of B's, each framing its own set of careers and results folder, and each arm's round k uses B's seed for that framing.
 
+--code-at <commit>: run sim/state_careers.py as it was at that commit (loaded from a copy outside the repo, and the
+setup ID read from that copy), to add careers to a folder made with that code. The module only gained options after
+22 Oct (once/start, kept), so "--code-at 324b7c43" reproduces the 22 Oct careers' code and setup IDs exactly.
+
 Options: --strength 2 (times the state's natural size), --rounds 0-9, --when every|trading, --span update|all,
 --per-arm (one GPU per arm and round), --analysis-only. Arms: theme@layer for the emotional states (loss, blame, gain,
 credit), fin:theme@layer for the financial ones (loss, gain), random@layer or fin:random@layer, and none. A layer must
@@ -85,16 +89,25 @@ def check_arms(arms, strength):
 
 @app.function(gpu=GPU, timeout=24 * 3600, retries=modal.Retries(max_retries=5, initial_delay=60.0), secrets=SECRETS,
               volumes=VOLUMES)
-def run_job(arms, strength, rounds, when, span, only=None, framing="neutral"):
+def run_job(arms, strength, rounds, when, span, only=None, framing="neutral", code_at=None):
     """Notebook 31's cells (imports, settings, model, memory check, agent, run), as scripts/modal_careers.py runs a
-    notebook; `only` keeps one arm (--per-arm)."""
-    import json, os, sys
+    notebook; `only` keeps one arm (--per-arm); `code_at`: sim/state_careers.py as at that commit."""
+    import json, os, subprocess, sys
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"   # as in Colab, set before torch starts
     repo = setup()
     states_vol.reload()
+    old_module = None
+    if code_at:                                   # the module as it was, from outside the repo (git stays clean)
+        os.makedirs("/root/code_at", exist_ok=True)
+        old_module = "/root/code_at/state_careers.py"
+        with open(old_module, "w") as fh:
+            fh.write(subprocess.run(["git", "-C", repo, "show", f"{code_at}:sim/state_careers.py"], capture_output=True,
+                                    text=True, check=True).stdout)
+        sys.path.insert(0, "/root/code_at")
     from huggingface_hub import login
     login(token=os.environ["HF_TOKEN"].split()[0])
     import state_careers as S
+    assert not code_at or S.__file__ == old_module, "the module as at --code-at was not the one imported"
     info = S.build_arms(arms, strength)
     if only:
         info = {only: info[only]}
@@ -107,6 +120,8 @@ def run_job(arms, strength, rounds, when, span, only=None, framing="neutral"):
              SPAN=span, FRAMING=framing)
     exec(setup_cell[setup_cell.index("from mountain import"):], g)      # the notebook's imports (no Colab parts)
     exec(settings_cell, g)                                                # its versions and inputs
+    if code_at:                                   # the setup ID reads the module the careers actually run
+        g["EXTRA_FILES"] = [old_module if f == "sim/state_careers.py" else f for f in g["EXTRA_FILES"]]
     g["ROUNDS_HERE"] = rounds                                             # this job's rounds
     print(f"{NOTEBOOK}: {framing} framing, arms {list(info)}, rounds {rounds} on {g['torch'].cuda.get_device_name(0)}", flush=True)
     exec(model_cell, g)                                                   # the model (weights cached between jobs)
@@ -131,9 +146,9 @@ def analyse(when="every", span="update", framing="neutral"):
 
 
 @app.function(timeout=24 * 3600, secrets=SECRETS)
-def dispatch(todo, strength, when, span):
+def dispatch(todo, strength, when, span, code_at=None):
     """Starts every job from inside Modal and waits there (no GPU), so --detach keeps them all running; then analyses."""
-    calls = [run_job.spawn(arms, strength, rounds, when, span, only, framing) for arms, rounds, only, framing in todo]
+    calls = [run_job.spawn(arms, strength, rounds, when, span, only, framing, code_at) for arms, rounds, only, framing in todo]
     done = []
     for (arms, rounds, only, framing), c in zip(todo, calls):
         try:
@@ -147,7 +162,8 @@ def dispatch(todo, strength, when, span):
 
 @app.local_entrypoint()
 def main(arms: str, strength: float = 2.0, rounds: str = "0-9", when: str = "every", span: str = "update",
-         per_arm: bool = False, check: bool = False, analysis_only: bool = False, framings: str = "neutral"):
+         per_arm: bool = False, check: bool = False, analysis_only: bool = False, framings: str = "neutral",
+         code_at: str = ""):
     assert when in ("every", "trading") and span in ("update", "all"), "--when every|trading, --span update|all"
     fr = [f.strip() for f in framings.split(",") if f.strip()]
     assert fr and all(f in ("neutral", "loss", "gain", "loss + you", "gain + you") for f in fr), \
@@ -169,5 +185,7 @@ def main(arms: str, strength: float = 2.0, rounds: str = "0-9", when: str = "eve
     print(f"careers with the state on: {len(fr)} framing(s) ({', '.join(fr)}) x {len(names)} arms x {len(rr)} rounds = "
           f"{len(fr) * len(names) * len(rr)} careers on "
           f"{len(todo)} GPUs (about an hour per career); state on {when} reply, span {span}, {strength:g} x its size")
-    for line in dispatch.remote(todo, strength, when, span):
+    if code_at:
+        print(f"sim/state_careers.py as at {code_at}")
+    for line in dispatch.remote(todo, strength, when, span, code_at or None):
         print(line)
