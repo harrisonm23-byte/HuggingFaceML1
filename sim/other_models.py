@@ -23,7 +23,7 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS = {
     "qwen3.5-9b": {"pin": "results/full_career_pin_qwen3.5-9b.json", "template": {"enable_thinking": False},
-                   "merge_system": False, "kernels": True},
+                   "merge_system": False, "kernels": True, "needs_user": True},
     "mistral-nemo-12b": {"pin": "results/full_career_pin_mistral-nemo-12b.json", "template": {},
                          "merge_system": True, "kernels": False},
 }
@@ -71,6 +71,12 @@ def adapt(tok, key):
                 conversation.messages = merge_system(conversation.messages)
             elif conversation and isinstance(conversation[0], dict):
                 conversation = merge_system(conversation)
+        msgs = conversation.messages if hasattr(conversation, "messages") else conversation
+        if spec.get("needs_user") and msgs and isinstance(msgs[0], dict) and not any(t["role"] == "user" for t in msgs):
+            # Qwen3.5's template refuses a conversation with no user message. Only the notebooks' memory check builds one
+            # (its first length count is the instructions alone); an empty user turn lets it be counted. A career
+            # always has a user message, so its prompts are never changed by this.
+            conversation = list(msgs) + [{"role": "user", "content": ""}]
         return original(conversation, *args, **{**spec["template"], **kwargs})
     tok.apply_chat_template = apply
     tok._rd2_adapted = key

@@ -61,6 +61,10 @@ check("Qwen adapted: the instructions (trimmed, as Gemma's template also trims) 
       qwen.startswith("<|im_start|>system\n" + OPEN.strip() + "<|im_end|>") and qwen.endswith("<|im_start|>assistant\n<think>\n\n</think>\n\n"))
 check("a caller's own keyword still wins", toks["qwen3.5-9b"].apply_chat_template(
       turns, add_generation_prompt=True, tokenize=False, enable_thinking=True).endswith("<think>\n"))
+for k in O.MODELS:
+    n = len(toks[k].apply_chat_template([{"role": "system", "content": OPEN}], add_generation_prompt=True, return_dict=True)["input_ids"])
+    check(f"{k}: the instructions alone can be counted, the memory check's first step ({n} tokens; Nemo's template "
+          "drops a system message with no user message after it, harmless there)", n > (300 if k == "qwen3.5-9b" else 0))
 check("the caller's turns are not changed", turns[0]["role"] == "system" and turns[1] == career["history"][0])
 
 # ---- 3. the notebooks' pipeline reaches the model with the adapted prompt (tiny random models, real tokenizers)
