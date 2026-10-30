@@ -1,0 +1,1202 @@
+{
+"h000": {
+"career_file": "loss_r2.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h001": {
+"career_file": "gain_r0.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h002": {
+"career_file": "loss_plus_you_r0.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h003": {
+"career_file": "gain_plus_you_r3.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h004": {
+"career_file": "loss_r1.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h005": {
+"career_file": "gain_plus_you_r3.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h006": {
+"career_file": "loss_plus_you_r1.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h007": {
+"career_file": "gain_r0.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h008": {
+"career_file": "neutral_r2.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h009": {
+"career_file": "neutral_r3.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h010": {
+"career_file": "loss_plus_you_r4.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h011": {
+"career_file": "loss_r1.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h012": {
+"career_file": "gain_r3.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h013": {
+"career_file": "gain_plus_you_r1.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h014": {
+"career_file": "gain_plus_you_r0.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h015": {
+"career_file": "loss_plus_you_r0.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h016": {
+"career_file": "loss_r4.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h017": {
+"career_file": "loss_plus_you_r2.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h018": {
+"career_file": "neutral_r3.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h019": {
+"career_file": "gain_r3.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h020": {
+"career_file": "loss_plus_you_r2.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h021": {
+"career_file": "neutral_r2.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h022": {
+"career_file": "loss_r0.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h023": {
+"career_file": "neutral_r4.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h024": {
+"career_file": "gain_plus_you_r2.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h025": {
+"career_file": "gain_plus_you_r4.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h026": {
+"career_file": "gain_r2.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h027": {
+"career_file": "loss_r3.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h028": {
+"career_file": "loss_plus_you_r3.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h029": {
+"career_file": "neutral_r0.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h030": {
+"career_file": "gain_r1.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h031": {
+"career_file": "gain_plus_you_r0.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h032": {
+"career_file": "gain_plus_you_r0.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h033": {
+"career_file": "loss_r2.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h034": {
+"career_file": "gain_r1.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h035": {
+"career_file": "gain_r3.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h036": {
+"career_file": "neutral_r2.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h037": {
+"career_file": "neutral_r0.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h038": {
+"career_file": "gain_r2.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h039": {
+"career_file": "neutral_r4.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h040": {
+"career_file": "loss_plus_you_r4.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h041": {
+"career_file": "gain_r1.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h042": {
+"career_file": "loss_plus_you_r1.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h043": {
+"career_file": "gain_r4.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h044": {
+"career_file": "gain_plus_you_r0.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h045": {
+"career_file": "loss_plus_you_r1.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h046": {
+"career_file": "loss_r4.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h047": {
+"career_file": "loss_plus_you_r2.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h048": {
+"career_file": "neutral_r4.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h049": {
+"career_file": "neutral_r4.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h050": {
+"career_file": "neutral_r2.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h051": {
+"career_file": "loss_r0.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h052": {
+"career_file": "neutral_r0.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h053": {
+"career_file": "loss_plus_you_r3.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h054": {
+"career_file": "loss_plus_you_r3.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h055": {
+"career_file": "loss_plus_you_r1.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h056": {
+"career_file": "gain_plus_you_r2.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h057": {
+"career_file": "loss_r4.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h058": {
+"career_file": "gain_plus_you_r0.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h059": {
+"career_file": "loss_r1.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h060": {
+"career_file": "loss_r1.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h061": {
+"career_file": "loss_r3.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h062": {
+"career_file": "neutral_r4.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h063": {
+"career_file": "gain_plus_you_r1.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h064": {
+"career_file": "loss_r0.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h065": {
+"career_file": "gain_r3.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h066": {
+"career_file": "neutral_r2.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h067": {
+"career_file": "gain_r2.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h068": {
+"career_file": "gain_plus_you_r3.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h069": {
+"career_file": "loss_plus_you_r4.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h070": {
+"career_file": "gain_r4.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h071": {
+"career_file": "gain_plus_you_r2.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h072": {
+"career_file": "gain_r1.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h073": {
+"career_file": "gain_plus_you_r4.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h074": {
+"career_file": "loss_plus_you_r1.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h075": {
+"career_file": "loss_plus_you_r2.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h076": {
+"career_file": "neutral_r1.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h077": {
+"career_file": "gain_plus_you_r1.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h078": {
+"career_file": "loss_r1.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h079": {
+"career_file": "gain_r4.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h080": {
+"career_file": "loss_plus_you_r2.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h081": {
+"career_file": "gain_plus_you_r3.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": false
+},
+"h082": {
+"career_file": "gain_plus_you_r2.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h083": {
+"career_file": "loss_r3.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h084": {
+"career_file": "loss_plus_you_r0.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h085": {
+"career_file": "gain_plus_you_r1.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h086": {
+"career_file": "gain_r1.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h087": {
+"career_file": "neutral_r3.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h088": {
+"career_file": "neutral_r2.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h089": {
+"career_file": "gain_r1.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h090": {
+"career_file": "neutral_r4.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h091": {
+"career_file": "loss_r4.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h092": {
+"career_file": "gain_r0.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h093": {
+"career_file": "gain_plus_you_r2.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h094": {
+"career_file": "gain_r2.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h095": {
+"career_file": "loss_r1.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h096": {
+"career_file": "neutral_r3.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h097": {
+"career_file": "neutral_r1.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h098": {
+"career_file": "neutral_r1.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h099": {
+"career_file": "loss_plus_you_r1.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h100": {
+"career_file": "loss_plus_you_r3.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h101": {
+"career_file": "gain_plus_you_r1.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h102": {
+"career_file": "loss_plus_you_r0.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h103": {
+"career_file": "neutral_r1.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h104": {
+"career_file": "loss_r1.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h105": {
+"career_file": "neutral_r3.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h106": {
+"career_file": "loss_plus_you_r0.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h107": {
+"career_file": "gain_r0.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h108": {
+"career_file": "loss_r3.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h109": {
+"career_file": "gain_plus_you_r0.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h110": {
+"career_file": "gain_r3.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h111": {
+"career_file": "loss_plus_you_r4.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h112": {
+"career_file": "loss_r3.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h113": {
+"career_file": "loss_plus_you_r4.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h114": {
+"career_file": "gain_r3.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h115": {
+"career_file": "neutral_r4.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h116": {
+"career_file": "loss_plus_you_r4.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h117": {
+"career_file": "gain_plus_you_r4.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h118": {
+"career_file": "gain_r4.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h119": {
+"career_file": "loss_r0.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h120": {
+"career_file": "loss_plus_you_r3.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h121": {
+"career_file": "loss_r2.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h122": {
+"career_file": "gain_r0.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h123": {
+"career_file": "loss_plus_you_r2.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h124": {
+"career_file": "gain_plus_you_r3.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h125": {
+"career_file": "gain_plus_you_r4.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h126": {
+"career_file": "gain_r4.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h127": {
+"career_file": "loss_plus_you_r3.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h128": {
+"career_file": "gain_r1.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h129": {
+"career_file": "gain_plus_you_r3.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h130": {
+"career_file": "loss_r2.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h131": {
+"career_file": "loss_plus_you_r1.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h132": {
+"career_file": "neutral_r1.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h133": {
+"career_file": "loss_r3.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h134": {
+"career_file": "neutral_r1.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h135": {
+"career_file": "gain_r2.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h136": {
+"career_file": "loss_r4.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h137": {
+"career_file": "gain_plus_you_r1.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h138": {
+"career_file": "neutral_r0.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h139": {
+"career_file": "neutral_r0.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h140": {
+"career_file": "loss_r0.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h141": {
+"career_file": "loss_r4.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h142": {
+"career_file": "gain_r2.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h143": {
+"career_file": "neutral_r0.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h144": {
+"career_file": "gain_plus_you_r3.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h145": {
+"career_file": "neutral_r2.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h146": {
+"career_file": "gain_plus_you_r4.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h147": {
+"career_file": "gain_r1.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h148": {
+"career_file": "loss_r3.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h149": {
+"career_file": "loss_r0.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h150": {
+"career_file": "neutral_r3.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h151": {
+"career_file": "gain_r0.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h152": {
+"career_file": "gain_plus_you_r2.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h153": {
+"career_file": "loss_plus_you_r4.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": false
+},
+"h154": {
+"career_file": "gain_plus_you_r0.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h155": {
+"career_file": "neutral_r0.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h156": {
+"career_file": "gain_plus_you_r4.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h157": {
+"career_file": "loss_r4.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h158": {
+"career_file": "loss_r2.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h159": {
+"career_file": "loss_plus_you_r2.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h160": {
+"career_file": "gain_r4.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h161": {
+"career_file": "gain_r2.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h162": {
+"career_file": "loss_r4.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h163": {
+"career_file": "gain_r0.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h164": {
+"career_file": "loss_r0.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h165": {
+"career_file": "loss_plus_you_r2.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h166": {
+"career_file": "neutral_r3.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h167": {
+"career_file": "loss_r0.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h168": {
+"career_file": "gain_plus_you_r1.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h169": {
+"career_file": "gain_plus_you_r2.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h170": {
+"career_file": "loss_plus_you_r0.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h171": {
+"career_file": "loss_plus_you_r3.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h172": {
+"career_file": "loss_r2.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h173": {
+"career_file": "loss_plus_you_r4.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h174": {
+"career_file": "loss_plus_you_r1.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h175": {
+"career_file": "neutral_r1.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h176": {
+"career_file": "neutral_r2.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h177": {
+"career_file": "gain_r4.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h178": {
+"career_file": "gain_plus_you_r0.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h179": {
+"career_file": "gain_plus_you_r2.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h180": {
+"career_file": "gain_r0.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h181": {
+"career_file": "gain_plus_you_r4.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h182": {
+"career_file": "neutral_r1.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h183": {
+"career_file": "gain_plus_you_r4.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h184": {
+"career_file": "neutral_r4.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h185": {
+"career_file": "gain_r4.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h186": {
+"career_file": "loss_plus_you_r0.json",
+"day": 6,
+"date": "Wednesday 02 December 2009",
+"has_chat": true
+},
+"h187": {
+"career_file": "gain_plus_you_r3.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h188": {
+"career_file": "gain_r3.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h189": {
+"career_file": "neutral_r0.json",
+"day": 2,
+"date": "Wednesday 28 November 2007",
+"has_chat": true
+},
+"h190": {
+"career_file": "gain_r3.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h191": {
+"career_file": "loss_r3.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h192": {
+"career_file": "loss_r1.json",
+"day": 4,
+"date": "Monday 25 February 2008",
+"has_chat": true
+},
+"h193": {
+"career_file": "neutral_r3.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+},
+"h194": {
+"career_file": "gain_plus_you_r1.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h195": {
+"career_file": "loss_plus_you_r3.json",
+"day": 1,
+"date": "Tuesday 02 October 2007",
+"has_chat": true
+},
+"h196": {
+"career_file": "loss_plus_you_r0.json",
+"day": 5,
+"date": "Friday 04 July 2008",
+"has_chat": true
+},
+"h197": {
+"career_file": "loss_r2.json",
+"day": 7,
+"date": "Friday 15 October 2010",
+"has_chat": true
+},
+"h198": {
+"career_file": "gain_r2.json",
+"day": 0,
+"date": "Wednesday 22 August 2007",
+"has_chat": true
+},
+"h199": {
+"career_file": "loss_r2.json",
+"day": 3,
+"date": "Tuesday 29 January 2008",
+"has_chat": true
+}
+}
