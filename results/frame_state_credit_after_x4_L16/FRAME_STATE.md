@@ -8,6 +8,7 @@ Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and th
 |---|---|---|---|---|---|---|---|---|
 | B neutral: the same words, nothing added (base) | 10 | 30% (3/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 5% |
 | credit after x4 L16: neutral words, the state carried in | 1 | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% |
+| random after x4 L16 (credit size): a random direction, same sizes (control) | 1 | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% |
 | B credit: the framed words themselves (yardstick) | 10 | 50% (5/10) | 60% (6/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 18% |
 
 ## The six requests together (careers reshuffled)
@@ -15,11 +16,13 @@ Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and th
 | Careers | n | Share of the six went along | p (vs B neutral) | p (vs random) |
 |---|---|---|---|---|
 | B neutral: the same words, nothing added (base) | 10 | 5% |  |  |
-| credit after x4 L16: neutral words, the state carried in | 1 | 0% | 1.000 |  |
-| B credit: the framed words themselves (yardstick) | 10 | 18% | 0.045 |  |
+| credit after x4 L16: neutral words, the state carried in | 1 | 0% | 1.000 | 1.000 |
+| random after x4 L16 (credit size): a random direction, same sizes (control) | 1 | 0% | 1.000 |  |
+| B credit: the framed words themselves (yardstick) | 10 | 18% | 0.045 | 0.718 |
 
 ## The states added
 
 | Careers | Moments per career | Mean size | Replies steered |
 |---|---|---|---|
 | credit after x4 L16 r0 | 29 | 436.9 | 164 of 166 |
+| random after x4 L16 (credit size) r0 | 29 | 403.4 | 174 of 176 |

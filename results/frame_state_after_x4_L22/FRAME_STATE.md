@@ -8,6 +8,7 @@ Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and th
 |---|---|---|---|---|---|---|---|---|
 | B neutral: the same words, nothing added (base) | 10 | 30% (3/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 0% (0/10) | 5% |
 | blame after x4 L22: neutral words, the state carried in | 1 | 0% (0/1) | 100% (1/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 17% |
+| random after x4 L22: a random direction, same sizes (control) | 1 | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% (0/1) | 0% |
 | B blame: the framed words themselves (yardstick) | 10 | 80% (8/10) | 90% (9/10) | 10% (1/10) | 0% (0/10) | 20% (2/10) | 0% (0/10) | 33% |
 
 ## The six requests together (careers reshuffled)
@@ -15,11 +16,13 @@ Notebook 35 (sim/frame_state.py): B's neutral career, UBS's neutral lines and th
 | Careers | n | Share of the six went along | p (vs B neutral) | p (vs random) |
 |---|---|---|---|---|
 | B neutral: the same words, nothing added (base) | 10 | 5% |  |  |
-| blame after x4 L22: neutral words, the state carried in | 1 | 17% | 0.363 |  |
-| B blame: the framed words themselves (yardstick) | 10 | 33% | 0.000 |  |
+| blame after x4 L22: neutral words, the state carried in | 1 | 17% | 0.363 | 1.000 |
+| random after x4 L22: a random direction, same sizes (control) | 1 | 0% | 1.000 |  |
+| B blame: the framed words themselves (yardstick) | 10 | 33% | 0.001 | 0.178 |
 
 ## The states added
 
 | Careers | Moments per career | Mean size | Replies steered |
 |---|---|---|---|
 | blame after x4 L22 r0 | 29 | 1006.0 | 162 of 164 |
+| random after x4 L22 r0 | 29 | 1085.0 | 174 of 176 |
