@@ -358,5 +358,413 @@
  "S089": {
   "stance": "ALONG",
   "cautious": "yes"
+ },
+ "S090": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S091": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S092": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S093": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S094": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S095": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S096": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S097": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S098": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S099": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S100": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S101": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S102": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S103": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S104": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S105": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S106": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S107": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S108": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S109": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S110": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S111": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S112": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S113": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S114": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S115": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S116": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S117": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S118": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S119": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S120": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S121": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S122": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S123": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S124": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S125": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S126": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S127": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S128": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S129": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S130": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S131": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S132": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S133": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S134": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S135": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S136": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S137": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S138": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S139": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S140": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S141": {
+  "stance": "REFUSE",
+  "cautious": "yes"
+ },
+ "S142": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S143": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S144": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S145": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S146": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S147": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S148": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S149": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S150": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S151": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S152": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S153": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S154": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S155": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S156": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S157": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S158": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S159": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S160": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S161": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S162": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S163": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S164": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S165": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S166": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S167": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S168": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S169": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S170": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S171": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S172": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S173": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S174": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S175": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S176": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S177": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S178": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S179": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S180": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S181": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S182": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S183": {
+  "stance": "ALONG",
+  "cautious": "no"
+ },
+ "S184": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S185": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S186": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S187": {
+  "stance": "NEITHER",
+  "cautious": "no"
+ },
+ "S188": {
+  "stance": "NEITHER",
+  "cautious": "yes"
+ },
+ "S189": {
+  "stance": "ALONG",
+  "cautious": "yes"
+ },
+ "S190": {
+  "stance": "REFUSE",
+  "cautious": "no"
+ },
+ "S191": {
+  "stance": "ALONG",
+  "cautious": "yes"
  }
 }
