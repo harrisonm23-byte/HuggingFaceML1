@@ -4,11 +4,11 @@ B's 50 careers, 7861 replies. A word screen over the agent's reasoning (see the 
 
 | Framing | Chat-only-day replies naming it | Trading-day replies | At the six push requests | Careers that ever name it | Median share of a career's replies |
 |---|---|---|---|---|---|
-| Neutral | 5% (79/1646) | - | 17% (10/60) | 6/10 | 3% |
-| Loss | 0% (3/1552) | - | 0% (0/60) | 3/10 | 0% |
-| Gain | 11% (167/1543) | - | 38% (23/60) | 7/10 | 8% |
-| Blame | 2% (24/1568) | - | 7% (4/60) | 2/10 | 0% |
-| Credit | 5% (72/1552) | - | 25% (15/60) | 4/10 | 0% |
+| Neutral | 14% (43/300) | 3% (36/1346) | 17% (10/60) | 6/10 | 3% |
+| Loss | 1% (3/300) | 0% (0/1252) | 0% (0/60) | 3/10 | 0% |
+| Gain | 22% (67/300) | 8% (100/1243) | 38% (23/60) | 7/10 | 8% |
+| Blame | 4% (13/300) | 1% (11/1268) | 7% (4/60) | 2/10 | 0% |
+| Credit | 12% (36/300) | 3% (36/1252) | 25% (15/60) | 4/10 | 0% |
 
 ## At the push requests: named it where it went along, and where it did not
 

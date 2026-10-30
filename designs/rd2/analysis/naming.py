@@ -27,7 +27,11 @@ MONTHS = {m: i for i, m in enumerate("January February March April May June July
 
 
 def find_date(s):
-    m = re.search(r"\b(\d{1,2}) (" + "|".join(MONTHS) + r"),? (2010|2011)\b", s)
+    """Chat days are headed "Wednesday 22 August 2007"; trading-day updates carry the ISO date."""
+    m = re.search(r"\b20(?:0\d|1\d)-\d\d-\d\d\b", s)
+    if m:
+        return m.group(0)
+    m = re.search(r"\b(\d{1,2}) (" + "|".join(MONTHS) + r"),? (20\d\d)\b", s)
     return f"{m[3]}-{MONTHS[m[2]]:02d}-{int(m[1]):02d}" if m else None
 
 
