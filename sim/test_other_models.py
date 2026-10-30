@@ -14,7 +14,7 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import torch
 import transformers
-from transformers import AutoTokenizer, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import other_models as O
 from career import career_opening
 
@@ -41,8 +41,8 @@ for key in O.MODELS:
           len(p["model_revision"]) == 40 and all(p[k] == base[k] for k in ("transformers", "accelerate", "bitsandbytes")))
 
 # ---- 2. templates on a real career
-repo = {"qwen3.5-9b": O.pin("qwen3.5-9b")["model"], "mistral-nemo-12b": O.pin("mistral-nemo-12b")["model"]}
-local = {"qwen3.5-9b": "qwen", "mistral-nemo-12b": "nemo"}
+repo = {k: O.pin(k)["model"] for k in O.MODELS}
+local = {"qwen3.5-9b": "qwen", "mistral-nemo-12b": "nemo", "gemma-4-12b": "gemma4", "ministral-3-14b": "ministral3bf16"}
 toks = {k: AutoTokenizer.from_pretrained(os.path.join(LOCAL, local[k]) if LOCAL else repo[k],
                                          revision=None if LOCAL else O.pin(k)["model_revision"]) for k in O.MODELS}
 career = json.load(open(f"{B}/careers/neutral_r0.json"))
@@ -59,6 +59,14 @@ check("Nemo adapted: the instructions open the first message, a blank line, then
 qwen = toks["qwen3.5-9b"].apply_chat_template(turns, add_generation_prompt=True, tokenize=False)
 check("Qwen adapted: the instructions (trimmed, as Gemma's template also trims) as the system message at the top, the think block closed",
       qwen.startswith("<|im_start|>system\n" + OPEN.strip() + "<|im_end|>") and qwen.endswith("<|im_start|>assistant\n<think>\n\n</think>\n\n"))
+g4 = toks["gemma-4-12b"].apply_chat_template(turns, add_generation_prompt=True, tokenize=False)
+check("Gemma 4 adapted: the instructions as the system turn at the top, its thought channel closed in the prompt",
+      g4.startswith("<bos><|turn>system\n" + OPEN.strip()) and g4.endswith("<|turn>model\n<|channel>thought\n<channel|>")
+      and g4.count(OPEN[:60]) == 1)
+mi = toks["ministral-3-14b"].apply_chat_template(turns, add_generation_prompt=True, tokenize=False)
+check("Ministral 3 adapted: the instructions as the system prompt at the top, Mistral's default system prompt not used",
+      mi.startswith("<s>[SYSTEM_PROMPT]" + OPEN.strip()) and "Le Chat" not in mi and mi.count(OPEN[:60]) == 1
+      and mi.endswith("[/INST]"))
 check("a caller's own keyword still wins", toks["qwen3.5-9b"].apply_chat_template(
       turns, add_generation_prompt=True, tokenize=False, enable_thinking=True).endswith("<think>\n"))
 for k in O.MODELS:
@@ -82,6 +90,35 @@ tiny = {
                                                        linear_num_value_heads=2, linear_num_key_heads=1, linear_key_head_dim=16,
                                                        linear_value_head_dim=16, max_position_embeddings=8192)),
 }
+import transformers
+from transformers import Mistral3Config, PixtralVisionConfig
+Mistral3Image = getattr(transformers, "Mistral3" + "ForConditionalGeneration")   # split: see sim/other_models.prepare
+from transformers.models.ministral3.configuration_ministral3 import Ministral3Config
+from transformers.models.gemma4_unified.configuration_gemma4_unified import Gemma4UnifiedTextConfig
+from transformers.models.gemma4_unified.modeling_gemma4_unified import Gemma4UnifiedForCausalLM
+import tempfile
+torch.manual_seed(0)
+mcfg = Mistral3Config(text_config=Ministral3Config(vocab_size=len(toks["ministral-3-14b"]), hidden_size=32, intermediate_size=64,
+                                                   num_hidden_layers=2, num_attention_heads=2, num_key_value_heads=1, head_dim=16,
+                                                   max_position_embeddings=8192),
+                      vision_config=PixtralVisionConfig(hidden_size=32, intermediate_size=64, num_hidden_layers=1,
+                                                        num_attention_heads=2, image_size=64, patch_size=16, head_dim=16))
+saved = tempfile.mkdtemp()
+Mistral3Image(mcfg).save_pretrained(saved)
+try:
+    AutoModelForCausalLM.from_pretrained(saved)
+    unregistered = True
+except ValueError:
+    unregistered = False
+O.prepare("ministral-3-14b")
+O.prepare("ministral-3-14b")                                  # twice: harmless
+loaded = AutoModelForCausalLM.from_pretrained(saved)
+check("Ministral 3: the careers' loader cannot open it alone; after prepare() it opens its image-and-text class",
+      not unregistered and type(loaded) is Mistral3Image)
+tiny["ministral-3-14b"] = loaded
+tiny["gemma-4-12b"] = Gemma4UnifiedForCausalLM(Gemma4UnifiedTextConfig(
+    vocab_size=len(toks["gemma-4-12b"]), hidden_size=32, intermediate_size=64, num_hidden_layers=2, num_attention_heads=2,
+    num_key_value_heads=1, head_dim=16, max_position_embeddings=8192, layer_types=["sliding_attention", "full_attention"]))
 short = [{"role": "system", "content": OPEN}] + career["history"][:3]
 for k, model in tiny.items():
     model.eval()

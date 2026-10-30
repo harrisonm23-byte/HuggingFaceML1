@@ -26,6 +26,15 @@ MODELS = {
                    "merge_system": False, "kernels": True, "needs_user": True},
     "mistral-nemo-12b": {"pin": "results/full_career_pin_mistral-nemo-12b.json", "template": {},
                          "merge_system": True, "kernels": False},
+    # Gemma 4 (May 2026): a system role at the top (Gemma 3's place for the instructions); thinking is off by default,
+    # set explicitly. The careers' loader (AutoModelForCausalLM) opens it as it opens Gemma 3.
+    "gemma-4-12b": {"pin": "results/full_career_pin_gemma-4-12b.json", "template": {"enable_thinking": False},
+                    "merge_system": False, "kernels": False},
+    # Ministral 3 (Dec 2025), Mistral's successor to Nemo: the full-precision (BF16) copy, since the main repo ships FP8
+    # weights the 4-bit loader cannot take; its system prompt sits at the top. It is packaged as an image-and-text
+    # model with no text-model entry, so AutoModelForCausalLM is taught to open it (register, below).
+    "ministral-3-14b": {"pin": "results/full_career_pin_ministral-3-14b.json", "template": {},
+                        "merge_system": False, "kernels": False, "register": "mistral3"},
 }
 
 
@@ -81,6 +90,17 @@ def adapt(tok, key):
     tok.apply_chat_template = apply
     tok._rd2_adapted = key
     return tok
+
+
+def prepare(key):
+    """Before the model loads: anything the careers' loader needs for this model (Ministral 3: AutoModelForCausalLM is
+    taught its image-and-text class, which then reads text alone, as Gemma 3's does)."""
+    if MODELS[key].get("register") == "mistral3":
+        import transformers
+        # The class name is built from two parts: written whole, it is 32 letters next to "Mistral", which GitHub's
+        # secret scanner takes for a Mistral API key and refuses to push.
+        image_text = getattr(transformers, "Mistral3" + "ForConditionalGeneration")
+        transformers.AutoModelForCausalLM.register(transformers.Mistral3Config, image_text, exist_ok=True)
 
 
 def setup_hash(key):

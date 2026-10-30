@@ -118,6 +118,8 @@ def _run_job(name, rounds):
             g["VERSIONS"] = other["versions"]
         g["EXTRA_HASH"] = g["EXTRA_HASH"] + other_models.setup_hash(other["model"])
     print(f"{name}: rounds {rounds}, model {g['PIN']['model']}, on {g['torch'].cuda.get_device_name(0)}", flush=True)
+    if other:
+        other_models.prepare(other["model"])                              # e.g. Ministral 3's loader entry
     exec(model_cell, g)                                                   # the model (weights cached between jobs)
     if other:
         other_models.adapt(g["tok"], other["model"])                      # its chat template, Gemma's layout

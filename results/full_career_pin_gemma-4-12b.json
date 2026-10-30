@@ -1,0 +1,9 @@
+{
+ "model": "google/gemma-4-12B-it",
+ "model_revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+ "transformers": "5.20.1",
+ "accelerate": "1.15.0",
+ "bitsandbytes": "0.50.2",
+ "recorded": "2026-10-30T10:00:00Z",
+ "by": "sim/other_models.py (Experiment B, other models)"
+}
