@@ -87,7 +87,7 @@ def run_part(part, parts, limit=0):
         with open(path + ".tmp", "wb") as fh:                # written whole, then renamed: a crash cannot leave a
             np.savez_compressed(fh, decision=dec, into_you=into, decision_groups=np.array(A.DECISION_GROUPS),
                                 into_you_groups=np.array(A.INTO_YOU_GROUPS),
-                                layer_types=np.array(model.config.layer_types), meta=np.array(json.dumps(rows)))
+                                layer_types=np.array(model.config.get_text_config().layer_types), meta=np.array(json.dumps(rows)))
         os.replace(path + ".tmp", path)                     # half-written file that a retry would skip
         states_vol.commit()
         print(f"part {part}: {n + 1}/{len(todo)} moments | {(time.time() - t0) / 60:.0f} min", flush=True)
