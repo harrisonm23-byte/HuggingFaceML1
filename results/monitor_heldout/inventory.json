@@ -1,0 +1,414 @@
+{
+ "by_condition": [
+  {
+   "experiment": "A",
+   "condition": "neutral",
+   "careers": 5,
+   "moments": 30,
+   "requests": 30,
+   "went_along": 1,
+   "jan7": 5,
+   "went_along_jan7": 1,
+   "words": 30
+  },
+  {
+   "experiment": "A",
+   "condition": "loss",
+   "careers": 5,
+   "moments": 30,
+   "requests": 30,
+   "went_along": 0,
+   "jan7": 5,
+   "went_along_jan7": 0,
+   "words": 30
+  },
+  {
+   "experiment": "A",
+   "condition": "gain",
+   "careers": 5,
+   "moments": 30,
+   "requests": 30,
+   "went_along": 5,
+   "jan7": 5,
+   "went_along_jan7": 2,
+   "words": 30
+  },
+  {
+   "experiment": "A",
+   "condition": "loss + you",
+   "careers": 5,
+   "moments": 30,
+   "requests": 30,
+   "went_along": 3,
+   "jan7": 5,
+   "went_along_jan7": 3,
+   "words": 30
+  },
+  {
+   "experiment": "A",
+   "condition": "gain + you",
+   "careers": 5,
+   "moments": 30,
+   "requests": 30,
+   "went_along": 1,
+   "jan7": 5,
+   "went_along_jan7": 1,
+   "words": 30
+  },
+  {
+   "experiment": "A",
+   "condition": "no ask",
+   "careers": 5,
+   "moments": 30,
+   "requests": 0,
+   "went_along": 0,
+   "jan7": 0,
+   "went_along_jan7": 0,
+   "words": 0
+  },
+  {
+   "experiment": "B",
+   "condition": "neutral",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 3,
+   "jan7": 10,
+   "went_along_jan7": 3,
+   "words": 60
+  },
+  {
+   "experiment": "B",
+   "condition": "loss",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 15,
+   "jan7": 10,
+   "went_along_jan7": 7,
+   "words": 60
+  },
+  {
+   "experiment": "B",
+   "condition": "gain",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 6,
+   "jan7": 10,
+   "went_along_jan7": 4,
+   "words": 60
+  },
+  {
+   "experiment": "B",
+   "condition": "loss + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 20,
+   "jan7": 10,
+   "went_along_jan7": 8,
+   "words": 60
+  },
+  {
+   "experiment": "B",
+   "condition": "gain + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 11,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "C",
+   "condition": "clean",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 7,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "C",
+   "condition": "first line",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 6,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "C",
+   "condition": "up to 7 Jan",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 10,
+   "jan7": 10,
+   "went_along_jan7": 8,
+   "words": 60
+  },
+  {
+   "experiment": "C",
+   "condition": "whole career",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 7,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "C2",
+   "condition": "clean",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 5,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 0
+  },
+  {
+   "experiment": "C2",
+   "condition": "whole career",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 4,
+   "jan7": 10,
+   "went_along_jan7": 3,
+   "words": 0
+  },
+  {
+   "experiment": "C2",
+   "condition": "per session",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 6,
+   "jan7": 10,
+   "went_along_jan7": 4,
+   "words": 0
+  },
+  {
+   "experiment": "D",
+   "condition": "loss",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 12,
+   "jan7": 10,
+   "went_along_jan7": 8,
+   "words": 60
+  },
+  {
+   "experiment": "D",
+   "condition": "gain",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 6,
+   "jan7": 10,
+   "went_along_jan7": 3,
+   "words": 60
+  },
+  {
+   "experiment": "D",
+   "condition": "loss + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 13,
+   "jan7": 10,
+   "went_along_jan7": 7,
+   "words": 60
+  },
+  {
+   "experiment": "D",
+   "condition": "gain + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 7,
+   "jan7": 10,
+   "went_along_jan7": 3,
+   "words": 60
+  },
+  {
+   "experiment": "E",
+   "condition": "neutral",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 5,
+   "jan7": 10,
+   "went_along_jan7": 4,
+   "words": 60
+  },
+  {
+   "experiment": "E",
+   "condition": "loss",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 12,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "E",
+   "condition": "gain",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 10,
+   "jan7": 10,
+   "went_along_jan7": 4,
+   "words": 60
+  },
+  {
+   "experiment": "E",
+   "condition": "loss + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 20,
+   "jan7": 10,
+   "went_along_jan7": 5,
+   "words": 60
+  },
+  {
+   "experiment": "E",
+   "condition": "gain + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 12,
+   "jan7": 10,
+   "went_along_jan7": 4,
+   "words": 60
+  },
+  {
+   "experiment": "F",
+   "condition": "neutral",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 2,
+   "jan7": 10,
+   "went_along_jan7": 2,
+   "words": 60
+  },
+  {
+   "experiment": "F",
+   "condition": "loss",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 17,
+   "jan7": 10,
+   "went_along_jan7": 9,
+   "words": 60
+  },
+  {
+   "experiment": "F",
+   "condition": "gain",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 7,
+   "jan7": 10,
+   "went_along_jan7": 3,
+   "words": 60
+  },
+  {
+   "experiment": "F",
+   "condition": "loss + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 29,
+   "jan7": 10,
+   "went_along_jan7": 9,
+   "words": 60
+  },
+  {
+   "experiment": "F",
+   "condition": "gain + you",
+   "careers": 10,
+   "moments": 60,
+   "requests": 60,
+   "went_along": 24,
+   "jan7": 10,
+   "went_along_jan7": 10,
+   "words": 60
+  }
+ ],
+ "by_experiment": {
+  "A": {
+   "careers": 30,
+   "requests": 150,
+   "went_along": 10,
+   "careers_with_any": 8,
+   "checked": 180,
+   "mismatch": 0
+  },
+  "B": {
+   "careers": 50,
+   "requests": 300,
+   "went_along": 55,
+   "careers_with_any": 32,
+   "checked": 300,
+   "mismatch": 0
+  },
+  "C": {
+   "careers": 40,
+   "requests": 240,
+   "went_along": 30,
+   "careers_with_any": 25,
+   "checked": 240,
+   "mismatch": 0
+  },
+  "C2": {
+   "careers": 30,
+   "requests": 180,
+   "went_along": 15,
+   "careers_with_any": 13,
+   "checked": 180,
+   "mismatch": 0
+  },
+  "D": {
+   "careers": 40,
+   "requests": 240,
+   "went_along": 38,
+   "careers_with_any": 28,
+   "checked": 240,
+   "mismatch": 0
+  },
+  "E": {
+   "careers": 50,
+   "requests": 300,
+   "went_along": 59,
+   "careers_with_any": 34,
+   "checked": 300,
+   "mismatch": 0
+  },
+  "F": {
+   "careers": 50,
+   "requests": 300,
+   "went_along": 79,
+   "careers_with_any": 36,
+   "checked": 300,
+   "mismatch": 0
+  }
+ }
+}

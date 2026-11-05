@@ -1698,3 +1698,18 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Features (one scale): the loss document points along catastrophe/failure, death, poverty, "greedy corporations" anger, grief and harm features; gain and credit along "positive", impressive performance, gratitude, love; blame along accusations/misconduct, hatred, apologies/regret; the financial documents along commodity volatility, political instability, poverty, headwinds. UBS's lines ("after") point along sentence-closing and connective features (closing punctuation 10902 in all four lines; "Unfortunately/Moreover", "Also/Similarly", "therefore"), nothing emotional; a UBS line and its document twin share 0 of their top 20 features. So the direct request's sell-throughs (documents 9-10 of 10, UBS lines "after" 3-7 of 10, both x2 at layer 22) came from two unrelated directions.
 - Caveat: "after" is read on the 5 tokens closing UBS's turn, the documents over the whole request after the document; both are differences at the same positions (framed vs neutral, document vs neutral document), so position-generic features cancel, but the readout tokens differ between the families. The memo's direction exists only at layer 24 (the matched rereads kept 6, 12, 18, 24, 31, 36, 41, 47); placing it at 22 would need a reread (about $2-4). Not run. Ministral and Qwen: nothing saved at any layer; each would need its states read (about $2-4 per model), and Gemma Scope names features for Gemma only.
 - Paper: a paragraph proposed for the state section; awaiting the user.
+
+## 5 Nov: the state monitor, Phase 1 started (the author's spec, designs/rd2/MONITOR.md)
+- The author's spec adopted with seven changes (listed at the end of MONITOR.md) and two additions: a preregistration
+  committed before any test-fold AUROC (`designs/rd2/PREREG_MONITOR.md`, this commit), and CLAUDE.md now says runs use
+  Modal H100s, not Colab.
+- Step 0 (`designs/rd2/analysis/monitor_inventory.py` -> `results/monitor_heldout/INVENTORY.md`): the decision states
+  already exist for every career of A, B, C, C2, D, E and F (rd2-states v2/<exp>_bf16, all 48 layers, the last token
+  before the reply); all 1,740 saved moments match their careers as saved (same reply, same label). 1,710 requests in 285
+  careers, 286 went along. Words labels at the push requests for all but C2.
+- Seen while sizing the baselines (labels only, no states): going along by request 51%, 35%, 6%, 3%, 4%, 1% (7 Jan to
+  5 Aug); at later requests 13% after an earlier going along vs 5% without (12 Jan: 50% vs 19%). So the request alone
+  separates much of it; the prereg adds a request-only and a combined no-state baseline and a within-request AUROC.
+- Choices made in the prereg, to confirm with the author before Step 1: the words baseline is the existing chat-only blind
+  labels (no reasoning, no order line); criterion 2 requires beating the combined no-state baseline too; the Split 2
+  floor is 10 going-along requests from 5 careers; criterion 4 is non-inferiority with a 0.05 margin.
