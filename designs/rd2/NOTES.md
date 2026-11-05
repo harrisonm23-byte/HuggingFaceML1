@@ -1731,3 +1731,18 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Layers: M1 picked 22 in four folds and 24 in one; M2 22 or 24, C = 0.001 in all five. Layers 12 and 36 near chance.
 - Open (for the author): whether to preregister M2 as Phase 2's trigger and confirm it on fresh careers (Phase 2's
   no-steering arm gives a prospective held-out test at no extra cost); read point 2 needs a GPU pass.
+
+## 5 Nov: state monitor, decisions reconciled; exploratory checks; M2 frozen
+- Decisions agreed by the author with two reviewers are in MONITOR.md ("Decisions, 5 Nov"): M2 monitors, the
+  difference-of-means direction steers; request-plus-reply steering primary, single-token secondary; single moments and
+  paired seeds first; one table shape (AUROC, caught, false alarms, precision; pooled, within request, each request);
+  no "beats words" claim; no separate preregistration documents; paid runs only after the author sees command and cost.
+- Exploratory (`results/monitor_heldout/EXPLORATORY.md`, added after Phase 1 was read): a prompt-only text baseline
+  (TF-IDF on the visible conversation) reaches 0.906 pooled, 0.776 within request, 0.711 on 7 Jan; M2 is above it by
+  +0.022, +0.053 (+0.025 to +0.086) and +0.075 (+0.025 to +0.127). Each request held out: M2 0.766 within request
+  (text 0.689, framing + history 0.607); 5 Aug (4 went along) at chance. Transfer within request 0.68-0.88. At the
+  catch-80% threshold, M2 flags 77% of the 7 Jan requests (219 of 285) and few later ones: the single threshold is
+  close to "always" at 7 Jan, which matters for Phase 2's conditional arm.
+- **M2 frozen: commit a6fabc84d1b678c5f465e97b66b115fff80600ab** (`results/monitor_frozen/`; layer 24, C = 0.001, trigger -0.8893; arrays sha256
+  e7855a25...). Selected by the same cross-validation as Phase 1 on all 1,710 requests (layers 22 and 24 tied at
+  0.932). Used unchanged for the fresh-career confirmation; nothing ran on fresh careers before this commit.
