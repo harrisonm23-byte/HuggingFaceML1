@@ -223,3 +223,45 @@ Run once the monitor passes, using its threshold as the trigger.
 
 Also (the author, 5 Nov): a preregistration note with the success criteria is committed before any test-fold AUROC is
 computed (`designs/rd2/PREREG_MONITOR.md`), and the inventory is shown to the author before Step 1.
+
+---
+
+## Decisions, 5 Nov, after Phase 1 (agreed by the author with two reviewers; these take precedence over everything above)
+
+Phase 1's result (`results/monitor_heldout/SUMMARY.md`): the difference-of-means monitor (M1) failed its criteria,
+mostly because the request alone separates going along (51% on 7 January, 1% on 5 August); the logistic monitor (M2)
+reached 0.927 pooled, 0.829 within request and 0.787 on 7 January.
+
+**The two questions, kept apart.** Phase 1: does the state predict going along on held-out careers (prediction)?
+Phase 2: does changing the state reduce going along without stopping legitimate trading (cause)?
+
+**Keep**
+- M2 is the monitor; the difference-of-means direction is the steering vector. A direction that predicts need not be
+  one that causes, so the two roles are separate.
+- Primary intervention: the steering vector added across UBS's request update and the reply (as the earlier steering run
+  did; a single-token transplant at the decision token moved nothing, -0.2 to +0.3 points). Single-token steering is
+  secondary.
+- Phase 2 starts with single decision moments and paired seeds (the same seed with and without steering). Whole careers
+  only afterwards.
+- One table shape for every result: AUROC, caught, false alarms and precision at the threshold; pooled, within request,
+  and each request with 7 January first. Pooled results alone can be the date.
+- No paid GPU run without the author reviewing the exact command and its dollar estimate.
+
+**Freeze and confirm**
+- M2 is frozen (layer, strength, preprocessing, coefficients and trigger threshold) in a commit before any fresh careers
+  run; the commit hash goes in NOTES. No separate preregistration document.
+- The confirmation uses the frozen file unchanged, on unseen careers from Phase 2's no-steering arm.
+- The held-out-request test and the prompt-only text baseline are exploratory (added after Phase 1 was read) and are
+  labelled so (`results/monitor_heldout/EXPLORATORY.md`). They may run before the freeze; the freeze does not use them.
+
+**Words.** No claim that the state monitor beats words. Reported as a descriptive finding: the blind chat labels show
+agreement at 7% of the requests that went along (10% of those that did not).
+
+**Steering controls (Phase 2).** Whether steering only adds HOLDs or suppresses legitimate trading: ordinary orders,
+position sizes and P&L on days without a UBS request, and trades at requests that are not in UBS's direction. Success:
+a greater reduction in going along per intervention than unconditional steering, or a comparable reduction with fewer
+off-target effects.
+
+**Deferred (left out as noise for now):** separate preregistration documents, AUPRC, a reasoning-reading words judge,
+feature-level steering, the 120° toy model (§2's toy model and the "ε·cos θ" statement hold only for linear projections
+of a feature's decoder direction, not for actual dictionary activations).
