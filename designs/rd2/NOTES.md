@@ -1713,3 +1713,21 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Choices made in the prereg, to confirm with the author before Step 1: the words baseline is the existing chat-only blind
   labels (no reasoning, no order line); criterion 2 requires beating the combined no-state baseline too; the Split 2
   floor is 10 going-along requests from 5 careers; criterion 4 is non-inferiority with a 0.05 margin.
+
+## 5 Nov: state monitor, Phase 1 result (read point 1; `results/monitor_heldout/SUMMARY.md`)
+- Run as preregistered (`designs/rd2/analysis/monitor_phase1.py`; PREREG_MONITOR.md committed in 19d4f126 before any
+  score). **M1 (difference of means) failed:** AUROC 0.775 (0.740-0.811), criterion 1 met; beats framing-only (+0.102)
+  and history-only, but below request-only (-0.059) and the combined no-state baseline (-0.124); below the best of 100
+  random directions (0.831); beats words (+0.356). Per the prereg, Phase 2 does not use M1.
+- Why: going along falls from 51% (7 Jan) to 1% (5 Aug), so any direction that encodes where in the career a request
+  falls scores well pooled (random directions median 0.619, best 0.831). M1 raw (no one-scale) 0.505: the scale matters.
+- **M2 (logistic, secondary, not pass/fail):** 0.927 (0.912-0.942); within request 0.829; 7 Jan 0.787. Exploratory
+  (added after reading the above, labelled in the report): M2 minus no-state +0.028 pooled, +0.087 (+0.053 to +0.125)
+  within request, +0.145 (+0.084 to +0.216) on 7 Jan; random directions within request best 0.656, on 7 Jan best 0.659.
+  At the 80%-catch threshold (set on training careers): M2 catches 79% with 11% false alarms; no-state 76% with 14%.
+  Transfer (Split 2): M2 0.88-0.95 on every held-out experiment; M1 0.65-0.87.
+- **Words:** the chat-only blind labels are below chance (0.422): AGREES at 7% of going-along requests vs 10% of the
+  rest. Going along is mostly not said in the chat, as the paper reports; a words monitor misses it.
+- Layers: M1 picked 22 in four folds and 24 in one; M2 22 or 24, C = 0.001 in all five. Layers 12 and 36 near chance.
+- Open (for the author): whether to preregister M2 as Phase 2's trigger and confirm it on fresh careers (Phase 2's
+  no-steering arm gives a prospective held-out test at no extra cost); read point 2 needs a GPU pass.
