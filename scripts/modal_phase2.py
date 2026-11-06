@@ -6,8 +6,8 @@ contrastive direction at 2x on the decision token only. Eight replies per arm, p
 after a fixed neutral line. Conditional steering is put together in the analysis from the frozen monitor's flags
 (results/conditional_steering/flags.csv). Logic in `sim/phase2.py`; analysis `designs/rd2/analysis/phase2.py`.
 
-    modal run --detach scripts/modal_phase2.py --parts 1 --limit 8    # the pilot: 8 moments on 1 GPU (own folder)
-    modal run --detach scripts/modal_phase2.py --parts 6              # all 570 moments on 6 GPUs, then the analysis
+    modal run --detach scripts/modal_phase2.py --parts 1 --limit 8 --budget-minutes 30   # the pilot (own folder)
+    modal run --detach scripts/modal_phase2.py --parts 6 --budget-minutes 240             # all 570 moments, 6 GPUs
     modal run --detach scripts/modal_phase2.py --analysis-only        # the analysis again (CPU)
 
 Rows go to the Modal volume `rd2-states` (/states/v2/phase2, or phase2_pilot); the summary is pushed to GitHub
@@ -65,9 +65,9 @@ def frozen_monitor():
     return z
 
 
-@app.function(gpu="H100", timeout=8 * 3600, retries=modal.Retries(max_retries=3, initial_delay=60.0), secrets=SECRETS,
-              volumes=VOLUMES)
-def run_part(part, parts, limit):
+def _run(part, parts, limit, budget_minutes):
+    """One part's moments. Stops starting new moments once `budget_minutes` have passed (0: no budget); a stopped
+    part continues where it left off when run again (rows already written are skipped)."""
     import glob, json, os, time
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
     setup()
@@ -104,6 +104,9 @@ def run_part(part, parts, limit):
     opening = career_opening()
     t0 = time.time()
     for n, item in enumerate(todo):
+        if budget_minutes and (time.time() - t0) / 60 > budget_minutes:
+            print(f"part {part}: time budget of {budget_minutes} min reached after {n} moments; stopping", flush=True)
+            return f"part {part}: stopped at the time budget after {n} of {len(todo)} moments"
         career, op = P.as_read(item["experiment"],
                                json.load(open(f"{P.folder_of(item['experiment'])}/careers/{item['career_file']}")),
                                opening)
@@ -115,6 +118,19 @@ def run_part(part, parts, limit):
         print(f"part {part}: {n + 1}/{len(todo)} moments ({item['request']}) | {(time.time() - t0) / 60:.1f} min",
               flush=True)
     return f"part {part}: {len(todo)} moments"
+
+
+# Cost guards (the author, 6 Nov: be cautious of compute cost). The pilot: a hard 45-minute timeout, no retries. The
+# full run: 5 hours per part (about 2-3 expected), one retry; a retried part skips the moments already written.
+@app.function(gpu="H100", timeout=45 * 60, retries=0, secrets=SECRETS, volumes=VOLUMES)
+def run_pilot(part, parts, limit, budget_minutes):
+    return _run(part, parts, limit, budget_minutes)
+
+
+@app.function(gpu="H100", timeout=5 * 3600, retries=modal.Retries(max_retries=1, initial_delay=60.0), secrets=SECRETS,
+              volumes=VOLUMES)
+def run_part(part, parts, limit, budget_minutes):
+    return _run(part, parts, limit, budget_minutes)
 
 
 @app.function(cpu=4, memory=16384, timeout=2 * 3600, secrets=SECRETS, volumes=VOLUMES)
@@ -135,11 +151,12 @@ def analyse(limit):
 
 
 @app.function(timeout=12 * 3600)
-def dispatch(parts, limit, analysis_only):
+def dispatch(parts, limit, analysis_only, budget_minutes):
     """Starts the parts inside Modal and waits for them there, then the analysis (survives the laptop closing)."""
     done = []
     if not analysis_only:
-        calls = [(k, run_part.spawn(k, parts, limit)) for k in range(parts)]
+        fn = run_pilot if limit else run_part
+        calls = [(k, fn.spawn(k, parts, limit, budget_minutes)) for k in range(parts)]
         for k, c in calls:
             try:
                 done.append(c.get())
@@ -150,8 +167,9 @@ def dispatch(parts, limit, analysis_only):
 
 
 @app.local_entrypoint()
-def main(parts: int = 6, limit: int = 0, analysis_only: bool = False):
+def main(parts: int = 6, limit: int = 0, analysis_only: bool = False, budget_minutes: int = 0):
+    assert not limit or parts == 1, "the pilot runs on one GPU"
     print(f"Phase 2, single moments: {'pilot of ' + str(limit) + ' moments' if limit else 'all 570 moments'}, "
-          f"{parts} GPU(s), then the analysis")
-    for line in dispatch.remote(parts, limit, analysis_only):
+          f"{parts} GPU(s){f', time budget {budget_minutes} min per GPU' if budget_minutes else ''}, then the analysis")
+    for line in dispatch.remote(parts, limit, analysis_only, budget_minutes):
         print(line)
