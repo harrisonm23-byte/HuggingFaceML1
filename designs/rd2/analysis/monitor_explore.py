@@ -131,6 +131,9 @@ d_j7 = interval(D, lambda w: auc(P1["M2"][j7 & (w > 0)], D.y[j7 & (w > 0)], w[j7
                 - auc(TEXT[j7 & (w > 0)], D.y[j7 & (w > 0)], w[j7 & (w > 0)]))
 rep.append(f"| AUROC difference | {fmtd(d_pool)} | {fmtd(d_within)} | {fmtd(d_j7)} |")
 summary["m2_minus_text"] = {"pooled": d_pool, "within_request": d_within, "jan7": d_j7}
+rep.append("\nReading: the state beats a word-count text classifier (hashed words and word pairs), most clearly at 7 "
+           "January. Open question: whether it beats a stronger text reader, such as a language model reading the same "
+           "conversation.")
 rep.append("\nText baseline settings per fold: " + "; ".join(
     f"fold {c['fold']}: C {c['text C']:g}, inner AUROC {c['text inner AUROC']:.3f}, {c['vocabulary']:,} hashed terms seen in training" for c in chosen) + ".")
 

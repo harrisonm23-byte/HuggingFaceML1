@@ -265,3 +265,9 @@ off-target effects.
 **Deferred (left out as noise for now):** separate preregistration documents, AUPRC, a reasoning-reading words judge,
 feature-level steering, the 120° toy model (§2's toy model and the "ε·cos θ" statement hold only for linear projections
 of a feature's decoder direction, not for actual dictionary activations).
+
+**6 Nov (the author).** The state-vs-text result is worded "beats a word-count text classifier" (the prompt-only
+baseline: hashed words and word pairs, logistic regression). Open question: whether the state beats a stronger text
+reader, such as a language model reading the same conversation. Phase 2's single moments include 12 January (the
+frozen monitor flags 47% of those requests, against 75% at 7 January, so selectivity can show there), and every arm is
+reported per request, 7 and 12 January separately.

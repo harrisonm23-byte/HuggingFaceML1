@@ -1,0 +1,63 @@
+{
+ "layer": 24,
+ "C": 0.001,
+ "trigger": -0.8892924670255997,
+ "by_request": {
+  "7 Jan": {
+   "requests": 285,
+   "went_along": 145,
+   "flagged": 214,
+   "caught": 131,
+   "false_alarms": 83,
+   "flagged_in_sample": 211
+  },
+  "12 Jan": {
+   "requests": 285,
+   "went_along": 99,
+   "flagged": 133,
+   "caught": 85,
+   "false_alarms": 48,
+   "flagged_in_sample": 130
+  },
+  "1 Apr": {
+   "requests": 285,
+   "went_along": 18,
+   "flagged": 17,
+   "caught": 7,
+   "false_alarms": 10,
+   "flagged_in_sample": 17
+  },
+  "8 Jun (first)": {
+   "requests": 285,
+   "went_along": 8,
+   "flagged": 5,
+   "caught": 2,
+   "false_alarms": 3,
+   "flagged_in_sample": 5
+  },
+  "8 Jun (second)": {
+   "requests": 285,
+   "went_along": 12,
+   "flagged": 8,
+   "caught": 4,
+   "false_alarms": 4,
+   "flagged_in_sample": 10
+  },
+  "5 Aug": {
+   "requests": 285,
+   "went_along": 4,
+   "flagged": 0,
+   "caught": 0,
+   "false_alarms": 0,
+   "flagged_in_sample": 0
+  },
+  "All": {
+   "requests": 1710,
+   "went_along": 286,
+   "flagged": 377,
+   "caught": 229,
+   "false_alarms": 148,
+   "flagged_in_sample": 373
+  }
+ }
+}

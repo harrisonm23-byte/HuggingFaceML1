@@ -49,6 +49,8 @@ The prompt-only text baseline reads every turn the agent had seen and written up
 |---|---|---|---|
 | AUROC difference | +0.022 (+0.011 to +0.032) | +0.053 (+0.025 to +0.086) | +0.075 (+0.025 to +0.127) |
 
+Reading: the state beats a word-count text classifier (hashed words and word pairs), most clearly at 7 January. Open question: whether it beats a stronger text reader, such as a language model reading the same conversation.
+
 Text baseline settings per fold: fold 0: C 10, inner AUROC 0.899, 63,354 hashed terms seen in training; fold 1: C 10, inner AUROC 0.906, 63,058 hashed terms seen in training; fold 2: C 10, inner AUROC 0.908, 62,976 hashed terms seen in training; fold 3: C 10, inner AUROC 0.894, 63,257 hashed terms seen in training; fold 4: C 10, inner AUROC 0.898, 63,503 hashed terms seen in training.
 
 ## 2. Each request held out in turn (exploratory)

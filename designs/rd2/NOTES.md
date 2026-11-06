@@ -1746,3 +1746,27 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - **M2 frozen: commit a6fabc84d1b678c5f465e97b66b115fff80600ab** (`results/monitor_frozen/`; layer 24, C = 0.001, trigger -0.8893; arrays sha256
   e7855a25...). Selected by the same cross-validation as Phase 1 on all 1,710 requests (layers 22 and 24 tied at
   0.932). Used unchanged for the fresh-career confirmation; nothing ran on fresh careers before this commit.
+
+## 6 Nov: Phase 2 single-moment harness built (not run)
+- The author: word the state-vs-text result as "beats a word-count text classifier", with a stronger text reader as
+  an open question (EXPLORATORY.md and MONITOR.md updated); include 12 January in the single moments and report every
+  arm per request, 7 and 12 January separately; bring the command and dollar estimate before anything runs.
+- Flags fixed before any steering (`results/conditional_steering/FLAGS.md`, `designs/rd2/analysis/phase2_flags.py`):
+  each saved request's out-of-fold score from the freeze's own cross-validation, at the frozen trigger (which these
+  scores reproduce exactly). Flagged: 7 Jan 75% (214 of 285; catches 90%, false alarms 59%); 12 Jan 47% (133; catches
+  86%, false alarms 26%); later requests 0-6%. So 12 January is where conditional steering can be selective.
+- Built: `sim/phase2.py`, `scripts/modal_phase2.py`, `designs/rd2/analysis/phase2.py`, `sim/test_phase2.py` (28 checks
+  pass on CPU: a tiny random Gemma 3 with the real tokenizer on a real career, the real states, made-up rows for the
+  analysis). 570 moments (every career's 7 and 12 Jan request); eight arms after the same unsteered history: none;
+  contrastive (holding minus going along, layer 24) at 0.5, 1, 2 times the gap, on the update and the reply; random of
+  the same sizes; contrastive x2 on the decision token only. Eight replies per arm with paired seeds; P(order goes
+  along) after the neutral line; the decision state's monitor score and gap position. Conditional = contrastive where
+  flagged, none elsewhere (put together in the analysis; no GPU arm). Measures: went along, HOLD, trades not UBS's
+  way, readable action, market reasoning (price, position, stops, clients).
+- Found while testing: at layer 24, dimension 2339 (a massive-activation dimension, about 80,000 at every request,
+  spread 3,834; next largest 162) is 88% of half 0's going-along gap and 6% of half 1's. The gap built on runs 5-9 is
+  mostly noise in that one dimension (size 562 with it, 200 without), and the two halves agree at cosine 0.35 with it,
+  0.72 without. Set to zero in every steering vector and random direction, sizes measured without it (`DROP_DIMS`);
+  otherwise a random direction "of the same size" pushes the ordinary dimensions about three times harder than the
+  contrastive one for half the moments. The earlier steering run (steer2) used the vector with it in. For the author.
+- Not launched: pilot first (`--parts 1 --limit 8`), then the full run, each on the author's yes with its cost.
