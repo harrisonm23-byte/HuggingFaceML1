@@ -1770,3 +1770,12 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   otherwise a random direction "of the same size" pushes the ordinary dimensions about three times harder than the
   contrastive one for half the moments. The earlier steering run (steer2) used the vector with it in. For the author.
 - Not launched: pilot first (`--parts 1 --limit 8`), then the full run, each on the author's yes with its cost.
+- **Pilot run (6 Nov, the author's yes):** `modal run --detach scripts/modal_phase2.py --parts 1 --limit 8
+  --budget-minutes 30`, 8 moments (4 at 7 Jan, 4 at 12 Jan), 1 H100: 56-59 s per moment for all eight arms, app up
+  14 min in all (about $1). Everything worked: every reply readable, the decision state moved exactly -0.5, -1, -2 gap
+  units under contrastive (random about 0), the frozen monitor on the state read here matches the saved state
+  (correlation 0.999). After the work finished Modal kept the app's containers up about 4 more minutes until stopped by
+  hand: stop the app as soon as results land. Fixes from the pilot: the gap-position check is now in gap units; the
+  order measure (P(order goes along) after the fixed line) is reported only where the scored orders hold at least half
+  the probability (at 2 of the 4 pilot 7 Jan moments they held almost none); full-run parts no longer retry on their
+  own. Results (8 moments, too few to read): `results/conditional_steering/pilot/`.

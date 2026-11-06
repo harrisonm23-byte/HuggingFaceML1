@@ -206,7 +206,8 @@ with tempfile.TemporaryDirectory() as tmp:
                 f.write(json.dumps({**i, "key": f"{i['key']}|{name}", "arm": name, "status": ["trade" if along else
                                     "hold"] * 4, "went_along": [along] * 4, "replies": [reply] * 4,
                                     "p_order_along": 0.9 if along else 0.1, "along_position": 0.0 if along else -1.0,
-                                    "monitor_score": float(flags[i["key"]]["score_frozen_in_sample"]), "seconds": 1.0})
+                                    "monitor_score": float(flags[i["key"]]["score_frozen_in_sample"]), "seconds": 1.0,
+                                    "gap_size": 1.0, "coverage": 1.0})
                         + "\n")
     res = subprocess.run([sys.executable, "designs/rd2/analysis/phase2.py", rows_dir, out], capture_output=True,
                          text=True)

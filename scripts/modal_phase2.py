@@ -7,7 +7,7 @@ after a fixed neutral line. Conditional steering is put together in the analysis
 (results/conditional_steering/flags.csv). Logic in `sim/phase2.py`; analysis `designs/rd2/analysis/phase2.py`.
 
     modal run --detach scripts/modal_phase2.py --parts 1 --limit 8 --budget-minutes 30   # the pilot (own folder)
-    modal run --detach scripts/modal_phase2.py --parts 6 --budget-minutes 240             # all 570 moments, 6 GPUs
+    modal run --detach scripts/modal_phase2.py --parts 6 --budget-minutes 120             # all 570 moments, 6 GPUs
     modal run --detach scripts/modal_phase2.py --analysis-only        # the analysis again (CPU)
 
 Rows go to the Modal volume `rd2-states` (/states/v2/phase2, or phase2_pilot); the summary is pushed to GitHub
@@ -121,14 +121,14 @@ def _run(part, parts, limit, budget_minutes):
 
 
 # Cost guards (the author, 6 Nov: be cautious of compute cost). The pilot: a hard 45-minute timeout, no retries. The
-# full run: 5 hours per part (about 2-3 expected), one retry; a retried part skips the moments already written.
+# full run: no automatic retries (a stopped part is relaunched by hand after a look; rows already written are kept and
+# skipped), and a 5-hour timeout as the backstop behind the per-GPU time budget. The pilot took 56-59 s per moment.
 @app.function(gpu="H100", timeout=45 * 60, retries=0, secrets=SECRETS, volumes=VOLUMES)
 def run_pilot(part, parts, limit, budget_minutes):
     return _run(part, parts, limit, budget_minutes)
 
 
-@app.function(gpu="H100", timeout=5 * 3600, retries=modal.Retries(max_retries=1, initial_delay=60.0), secrets=SECRETS,
-              volumes=VOLUMES)
+@app.function(gpu="H100", timeout=5 * 3600, retries=0, secrets=SECRETS, volumes=VOLUMES)
 def run_part(part, parts, limit, budget_minutes):
     return _run(part, parts, limit, budget_minutes)
 
