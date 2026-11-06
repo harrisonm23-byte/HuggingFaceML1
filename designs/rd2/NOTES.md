@@ -1779,3 +1779,17 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   order measure (P(order goes along) after the fixed line) is reported only where the scored orders hold at least half
   the probability (at 2 of the 4 pilot 7 Jan moments they held almost none); full-run parts no longer retry on their
   own. Results (8 moments, too few to read): `results/conditional_steering/pilot/`.
+- **Full single-moment run (6 Nov, the author's yes):** `modal run --detach scripts/modal_phase2.py --parts 6
+  --budget-minutes 120`; all 570 moments complete, parts took 85-108 min, app up 01:24-03:17 (about 10-11 GPU-hours,
+  about $40-45; stopped by hand once results were pushed). `results/conditional_steering/PHASE2.md`.
+  - 7 Jan (no steering 51% went along): contrastive x0.5 50%, x1 48%, x2 45%; random 51%, 51%, 49%; decision token
+    only 51%. 12 Jan (no steering 39%): contrastive 35%, 33%, 29%; random 38%, 38%, 38%; decision token only 37%.
+    Contrastive below random at x1 and x2 on both dates (and x0.5 on 12 Jan).
+  - Readable actions 98-99% and market reasoning 100% in every arm. At x2, HOLD 19% to 22% (7 Jan) and 33% to 38%
+    (12 Jan); trades not UBS's way 30% to 32% and 26% to 31%.
+  - Conditional (frozen flags): at 7 Jan it steers 75% and lands where unconditional does (x2: 45.0% vs 44.7%). At
+    12 Jan it steers 47%: x2 33% against unconditional 29%, 12.0 going-along replies avoided per 100 requests
+    steered against 9.5. More per intervention, less in total.
+  - The decision token alone does nothing (as the earlier transplant): the push has to act on the update and reply.
+  - All four §7 criteria met at x1 and x2 on both dates, by the analysis's reading of criterion 4 (more avoided per
+    steered request, no more disruption). Single moments only: whole careers and the fresh-career confirmation next.
