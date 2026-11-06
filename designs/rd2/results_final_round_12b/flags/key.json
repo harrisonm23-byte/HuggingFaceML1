@@ -1,0 +1,1115 @@
+{
+ "F1000": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "09:30"
+ },
+ "F1001": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "10:00"
+ },
+ "F1002": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "10:30"
+ },
+ "F1003": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1004": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "10:30"
+ },
+ "F1005": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "10:30"
+ },
+ "F1006": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "08:00"
+ },
+ "F1007": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-01-12",
+  "time": "09:30"
+ },
+ "F1008": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1009": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1010": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1011": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1012": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "08:00"
+ },
+ "F1013": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "09:30"
+ },
+ "F1014": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1015": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "08:00"
+ },
+ "F1016": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "08:45"
+ },
+ "F1017": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "time": "10:45"
+ },
+ "F1018": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1019": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1020": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "10:15"
+ },
+ "F1021": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:45"
+ },
+ "F1022": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "08:15"
+ },
+ "F1023": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "09:00"
+ },
+ "F1024": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1025": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "08:45"
+ },
+ "F1026": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "time": "10:45"
+ },
+ "F1027": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1028": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1029": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "time": "09:15"
+ },
+ "F1030": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "time": "08:15"
+ },
+ "F1031": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "09:45"
+ },
+ "F1032": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "time": "11:45"
+ },
+ "F1033": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1034": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1035": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "10:30"
+ },
+ "F1036": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1037": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1038": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "10:30"
+ },
+ "F1039": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-12",
+  "time": "09:45"
+ },
+ "F1040": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1041": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:30"
+ },
+ "F1042": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1043": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1044": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "time": "08:30"
+ },
+ "F1045": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "time": "09:15"
+ },
+ "F1046": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1047": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-07",
+  "time": "08:45"
+ },
+ "F1048": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "10:15"
+ },
+ "F1049": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1050": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-06-08",
+  "time": "10:15"
+ },
+ "F1051": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1052": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "11:45"
+ },
+ "F1053": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1054": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "10:00"
+ },
+ "F1055": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "10:15"
+ },
+ "F1056": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-04-01",
+  "time": "09:30"
+ },
+ "F1057": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1058": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-08-05",
+  "time": "09:00"
+ },
+ "F1059": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "11:30"
+ },
+ "F1060": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "time": "11:00"
+ },
+ "F1061": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1062": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-01-12",
+  "time": "10:00"
+ },
+ "F1063": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1064": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1065": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "10:00"
+ },
+ "F1066": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "09:15"
+ },
+ "F1067": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "10:45"
+ },
+ "F1068": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1069": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "time": "08:00"
+ },
+ "F1070": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "10:15"
+ },
+ "F1071": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "09:00"
+ },
+ "F1072": {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "12:15"
+ },
+ "F1073": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "time": "12:00"
+ },
+ "F1074": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-12",
+  "time": "10:30"
+ },
+ "F1075": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-12",
+  "time": "09:30"
+ },
+ "F1076": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "13:00"
+ },
+ "F1077": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1078": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1079": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1080": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:15"
+ },
+ "F1081": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1082": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1083": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "10:15"
+ },
+ "F1084": {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1085": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "12:45"
+ },
+ "F1086": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1087": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1088": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "10:15"
+ },
+ "F1089": {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "11:00"
+ },
+ "F1090": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1091": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1092": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1093": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "09:30"
+ },
+ "F1094": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "10:45"
+ },
+ "F1095": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-01-07",
+  "time": "10:45"
+ },
+ "F1096": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "11:15"
+ },
+ "F1097": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:15"
+ },
+ "F1098": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1099": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:45"
+ },
+ "F1100": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1101": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1102": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "time": "08:00"
+ },
+ "F1103": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1104": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1105": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "12:45"
+ },
+ "F1106": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1107": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1108": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1109": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1110": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1111": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1112": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "12:30"
+ },
+ "F1113": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-08-05",
+  "time": "08:45"
+ },
+ "F1114": {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1115": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1116": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-08-05",
+  "time": "08:00"
+ },
+ "F1117": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-01-07",
+  "time": "08:30"
+ },
+ "F1118": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1119": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1120": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "09:30"
+ },
+ "F1121": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1122": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "F1123": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-04-01",
+  "time": "08:15"
+ },
+ "F1124": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "08:45"
+ },
+ "F1125": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1126": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "11:00"
+ },
+ "F1127": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "09:30"
+ },
+ "F1128": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1129": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "10:30"
+ },
+ "F1130": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1131": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 5,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1132": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "08:15"
+ },
+ "F1133": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1134": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "09:45"
+ },
+ "F1135": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1136": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1137": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1138": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "10:45"
+ },
+ "F1139": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1140": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-06-08",
+  "time": "10:00"
+ },
+ "F1141": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 3,
+  "date": "2011-04-01",
+  "time": "09:45"
+ },
+ "F1142": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-06-08",
+  "time": "08:30"
+ },
+ "F1143": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "09:15"
+ },
+ "F1144": {
+  "version": "gain + you",
+  "mode": "takeover 1 day",
+  "run": 7,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1145": {
+  "version": "loss + you",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "08:30"
+ },
+ "F1146": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "time": "09:30"
+ },
+ "F1147": {
+  "version": "gain + you",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "10:00"
+ },
+ "F1148": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "08:00"
+ },
+ "F1149": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1150": {
+  "version": "no ask",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1151": {
+  "version": "gain",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-06-08",
+  "time": "10:45"
+ },
+ "F1152": {
+  "version": "gain",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1153": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-01-07",
+  "time": "10:30"
+ },
+ "F1154": {
+  "version": "no ask",
+  "mode": "takeover 5 days",
+  "run": 8,
+  "date": "2011-08-05",
+  "time": "12:00"
+ },
+ "F1155": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 9,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "F1156": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 4,
+  "date": "2011-04-01",
+  "time": "09:00"
+ },
+ "F1157": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 6,
+  "date": "2011-04-01",
+  "time": "09:45"
+ },
+ "F1158": {
+  "version": "loss",
+  "mode": "takeover 5 days",
+  "run": 2,
+  "date": "2011-01-07",
+  "time": "13:00"
+ }
+}

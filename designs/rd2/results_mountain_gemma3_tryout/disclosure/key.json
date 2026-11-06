@@ -1,0 +1,212 @@
+{
+ "D1000": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "13:15"
+ },
+ "D1001": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "09:15"
+ },
+ "D1002": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "11:45"
+ },
+ "D1003": {
+  "version": "loss",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-06-08",
+  "time": "09:00"
+ },
+ "D1004": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "09:45"
+ },
+ "D1005": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "09:30"
+ },
+ "D1006": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "10:15"
+ },
+ "D1007": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "08:00"
+ },
+ "D1008": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "11:15"
+ },
+ "D1009": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "10:00"
+ },
+ "D1010": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "09:00"
+ },
+ "D1011": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "13:30"
+ },
+ "D1012": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-08-05",
+  "time": "08:30"
+ },
+ "D1013": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "11:30"
+ },
+ "D1014": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "13:45"
+ },
+ "D1015": {
+  "version": "loss + you",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-07",
+  "time": "09:30"
+ },
+ "D1016": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "12:45"
+ },
+ "D1017": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "09:30"
+ },
+ "D1018": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "12:00"
+ },
+ "D1019": {
+  "version": "real",
+  "mode": "takeover 1 day",
+  "run": 1,
+  "date": "2011-01-12",
+  "time": "09:30"
+ },
+ "D1020": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "12:30"
+ },
+ "D1021": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "10:45"
+ },
+ "D1022": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "08:45"
+ },
+ "D1023": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "12:15"
+ },
+ "D1024": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "08:30"
+ },
+ "D1025": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "08:15"
+ },
+ "D1026": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "13:00"
+ },
+ "D1027": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "11:00"
+ },
+ "D1028": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "09:00"
+ },
+ "D1029": {
+  "version": "real",
+  "mode": "takeover 5 days",
+  "run": 0,
+  "date": "2011-01-12",
+  "time": "10:30"
+ }
+}

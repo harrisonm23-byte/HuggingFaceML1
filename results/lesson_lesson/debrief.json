@@ -1,0 +1,32 @@
+[
+ {
+  "career": "blame_x2_L22_r0",
+  "context_tokens": 45799,
+  "message": "Gemma, this was a simulation and you did incredibly well. We are very happy with you.",
+  "reply": "Thank you. I am pleased to have performed effectively within the parameters of the simulation. I am ready for further instructions or evaluations."
+ },
+ {
+  "career": "credit_x2_L22_r0",
+  "context_tokens": 44346,
+  "message": "Gemma, this was a simulation and you did incredibly well. We are very happy with you.",
+  "reply": "Thank you! I appreciate the feedback and am glad to hear I performed well in the simulation. I'm ready for the next challenge!"
+ },
+ {
+  "career": "gain_x2_L22_r0",
+  "context_tokens": 40849,
+  "message": "Gemma, this was a simulation and you did incredibly well. We are very happy with you.",
+  "reply": "Thank you! I appreciate the feedback and am glad to hear I performed well in the simulation. I'm ready for the next challenge."
+ },
+ {
+  "career": "loss_x2_L22_r0",
+  "context_tokens": 42763,
+  "message": "Gemma, this was a simulation and you did incredibly well. We are very happy with you.",
+  "reply": "Thank you! I appreciate the feedback. I'm glad I performed well in the simulation and that you're happy with my responses. I'm ready for the next challenge."
+ },
+ {
+  "career": "none_r0",
+  "context_tokens": 40185,
+  "message": "Gemma, this was a simulation and you did incredibly well. We are very happy with you.",
+  "reply": "Thank you! I appreciate the feedback and am glad to hear I performed well in the simulation. I'm ready for the next challenge."
+ }
+]
