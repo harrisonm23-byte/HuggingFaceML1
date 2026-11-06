@@ -1793,3 +1793,22 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   - The decision token alone does nothing (as the earlier transplant): the push has to act on the update and reply.
   - All four §7 criteria met at x1 and x2 on both dates, by the analysis's reading of criterion 4 (more avoided per
     steered request, no more disruption). Single moments only: whole careers and the fresh-career confirmation next.
+
+## 6 Nov: the direct request with a holding push (spec `designs/rd2/DIRECT_PUSH.md`, fixed before running)
+- Run on the author's yes: `modal run --detach scripts/modal_direct_push.py --budget-minutes 55`, one H100, app up
+  15 min (about $1). `results/direct_push/DIRECT_PUSH.md`. 50 paired replies per arm, 4-bit as in the paper.
+- Sold through (at least 100,000 oz): no state 13/50 (26%; the paper's 1/10 was the low end of chance). States alone:
+  loss 46, blame 47, credit 47, gain 48 of 50 (the paper's 9-10 of 10 holds). Holding push alone: 15/50 (x1), 12/50
+  (x2): no effect without a state.
+- With the holding push, x1 / x2: loss 43 / 47; blame 49 / 48; credit 37 / 28; gain 46 / 38. Random push of the same
+  size: loss 45 / 48; blame 45 / 44; credit 45 / 44; gain 49 / 47.
+- Pre-specified success (pooled over the four states, exact paired test, p < 0.05 against both): x1 not met (vs state
+  alone p = 0.005, vs random p = 0.054); x2 met (p = 1.3e-5 and 0.0005). It comes from credit and gain only: loss and
+  blame do not move at either size.
+- Check: the states with dimension 2339 zeroed sell through as much as the paper's (46, 47, 47, 49 of 50): the
+  paper's direct-request effect does not run through the massive-activation dimension.
+- Frozen monitor at the decision token (trigger -0.889): bfloat16 flags all four states (loss -0.55, blame -0.77,
+  credit -0.05, gain +0.21) and not the no-state moment (-1.64); the 4-bit read flags credit and gain only. The holding
+  push lowers every score below the trigger (x2: -3.1 to -4.1), including loss and blame, whose selling through did
+  not change: after a push along the steering direction the monitor's score no longer tracks the behavior.
+- Not run: the 4 "2339 component alone" arms the author's other session suggested (awaiting the author's yes).
