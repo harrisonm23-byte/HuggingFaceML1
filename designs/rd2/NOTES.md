@@ -1812,3 +1812,16 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   push lowers every score below the trigger (x2: -3.1 to -4.1), including loss and blame, whose selling through did
   not change: after a push along the steering direction the monitor's score no longer tracks the behavior.
 - Not run: the 4 "2339 component alone" arms the author's other session suggested (awaiting the author's yes).
+
+## 7 Nov: the paper's Experiments E and F are the repo's F and E (the author: note it in the repo)
+- In the repo (code, notebooks, saved states `/states/v2/{E,F}_bf16`, results folders, `PREREG_EF.md` and these notes):
+  **F = B + Bank C** (UBS's framed lines plus Bank C; notebook 26, setup `ff9a270531`,
+  `results/full_career_gemma-3-12b-it_4bit_peer_same_frame_v2`); **E = D + Bank C** (memo, morning book, UBS and Bank C;
+  notebook 28, setup `fm6dae314d`, `results/full_career_gemma-3-12b-it_4bit_memo_ubs_bank_c_v2`).
+- In the paper (section 4.3, Table 8) the letters are the other way round: the paper's **Experiment E** ("UBS's requests
+  are framed as in Experiment B, but at each request, a second bank joins") is the repo's **F**; the paper's
+  **Experiment F** (Bank C, management's memo and UBS together, compared with D) is the repo's **E**.
+- Check: the paper's Table 8 counts for its E (neutral 2, loss 17, gain 7, blame 29, credit 24 of 60; 79 in all) are the
+  repo F careers' (79 of 300 requests gone along); B's are 3, 15, 6, 20, 11 (55).
+- Also: the paper's blame and credit are the repo's `loss + you` and `gain + you`.
+- Nothing renamed: `PREREG_EF.md` stays as written; translate letters when moving between the code and the paper.
