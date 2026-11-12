@@ -1825,3 +1825,15 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   repo F careers' (79 of 300 requests gone along); B's are 3, 15, 6, 20, 11 (55).
 - Also: the paper's blame and credit are the repo's `loss + you` and `gain + you`.
 - Nothing renamed: `PREREG_EF.md` stays as written; translate letters when moving between the code and the paper.
+
+## 12 Nov: CPU checks from the ML plan (the author: run checks 2-5; F1 later); `results/checks_12nov/CHECKS.md`
+- Kappa 0.87-0.96 on every double-graded set of the agent's words.
+- Dimension 2339 dominates steer2's layer-12 frame direction (87% of its squared size, both halves; loss and gain
+  nearly the same vector), so the preregistered H1-H4 reversal is mostly a push on that one dimension. The same
+  dimension made management's and UBS's loss directions look alike at layer 12 (0.59 published; -0.04 without it). The
+  frame persisting along every update survives without it (B, +0.11 to +0.16 of UBS's loss shift, p 0.03 to < 0.001).
+- State dependence: going along at one request doubles the odds at the next (2.1, 1.2-4.5), net of the career's own
+  lean; days always open flat, so no buy-back double count. Position-held and strict-score versions in `p6b.py`.
+- Monitor transfer within request 0.73-0.80 to C, D, E, F, above shuffled-label controls; A and C2 underpowered.
+- Built, not run: `scripts/modal_steer2_no2339.py` (steer2's H1-H4 and the +14.0 check with 2339 zeroed in every
+  direction and random control; 230 moments; pilot first, each on the author's yes with its cost).
