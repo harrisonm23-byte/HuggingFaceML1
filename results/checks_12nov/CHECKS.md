@@ -37,6 +37,20 @@ on the log-odds scale. Average P(goes along) at requests 2-6: 8.0% after holding
 no 7 Jan sale is bought back on 12 Jan. `p6b.py`: the same with the position held when asked, and on two stricter
 scores (from a flat position; set off a client stop).
 
+**Robustness (`p6b.py`, 290 careers, 100 refits each): the doubling does not hold up.**
+
+| Version | Events, requests 2-6 | Odds ratio, last request (95%) | First request (log-odds) | Position held when asked |
+|---|---|---|---|---|
+| As above | 141 | 2.1 (1.2 to 4.5) | 0.22 (-0.49 to 1.03) | |
+| + position held when asked (per 100,000 oz UBS's way) | 141 | 1.84 (0.76 to 3.47) | 0.50 (-0.28 to 1.79) | +0.29 (0.03 to 0.70) |
+| Strict: went along from a flat position | 86 | 1.63 (0.32 to 6.17) | 2.52 (0.90 to 4.98) | |
+| Strict, from flat + position | 86 | 1.58 (0.42 to 5.98) | 2.52 (1.23 to 5.10) | -0.26 (-0.60 to -0.10) |
+| Strict: went along and set off a client stop | 62 | 0.39 (0.13 to 0.78) | 0.37 (-0.42 to 1.65) | |
+
+With the position held, the interval includes 1 (the two 8 June requests fall on the same day, so a position taken at
+the first is still held at the second). On the strict scores the lean sits in the first request, not in the last one,
+and going along that set off a stop is followed by less going along. Not for the paper as a finding.
+
 ## Monitor transfer (`monitor_transfer/`)
 
 M2 as frozen (layer 24, C = 0.001). Within-request AUROC (the request date alone separates going along), career

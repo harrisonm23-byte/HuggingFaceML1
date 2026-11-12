@@ -1833,7 +1833,9 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   dimension made management's and UBS's loss directions look alike at layer 12 (0.59 published; -0.04 without it). The
   frame persisting along every update survives without it (B, +0.11 to +0.16 of UBS's loss shift, p 0.03 to < 0.001).
 - State dependence: going along at one request doubles the odds at the next (2.1, 1.2-4.5), net of the career's own
-  lean; days always open flat, so no buy-back double count. Position-held and strict-score versions in `p6b.py`.
+  lean; days always open flat, so no buy-back double count. But with the position held when asked the interval
+  includes 1 (1.84, 0.76-3.47), and on the strict scores the lean sits in the first request (from flat: 1.6, 0.3-6.2;
+  set off a stop: 0.39, 0.13-0.78). Not a finding for the paper.
 - Monitor transfer within request 0.73-0.80 to C, D, E, F, above shuffled-label controls; A and C2 underpowered.
 - Built, not run: `scripts/modal_steer2_no2339.py` (steer2's H1-H4 and the +14.0 check with 2339 zeroed in every
   direction and random control; 230 moments; pilot first, each on the author's yes with its cost).
