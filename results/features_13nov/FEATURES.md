@@ -155,6 +155,79 @@ The difference itself (the state where the agent went along minus where it held,
 | 31 | 0.56 | 47% | 22% | 17% |
 | 41 | 0.63 | 40% | 10% | 7% |
 
+## F. What kind of thing each decision feature is, on our own episodes
+
+`map_features.py`, the 26,400 saved updates of A, B, D, E, F joined to what the agent then did. Ordinary updates: before the day's first UBS line (5,330; the agent then traded at 1,467: A 265 of 1150, B 152 of 1100, D 441 of 880, E 149 of 1100, F 460 of 1100). Ordinary-trade gap: the feature where the agent then traded minus where it did not, within experiment, framing and date, in spread units, with a 95% interval from resampling careers. Kind: **about to trade** = the ordinary-trade gap has the went-along gap's sign and its interval excludes 0; **flips at the request** = the interval excludes 0 with the opposite sign; **only at the request** = the interval includes 0. Pushes toward: the next words the feature's direction raises most (Neuronpedia's projection of the feature on the output words; a rough guide at these layers). Last column: in how many of the five experiments, each on its own, the ordinary-trade gap has the pooled gap's sign. The 33 that replicate.
+
+| Feature | Neuronpedia label | Pushes the next word toward | Went-along gap | Ordinary-trade gap (95%) | Kind | Mean at ordinary updates / other UBS lines / requests | Same sign in |
+|---|---|---|---|---|---|---|---|
+| 24/116 | "nevertheless" | dennoch, Nevertheless, nevertheless, Nevertheless, néanmoins | -0.41 | +0.17 (+0.08 to +0.25) | flips at the request | 140 / 45 / 123 | 5 of 5 |
+| 24/869 | no label on Neuronpedia | excellent, excelente, अच्छा, સારી, excellente | +0.48 | +0.29 (+0.20 to +0.41) | about to trade | 37 / 18 / 59 | 5 of 5 |
+| 24/2896 | no label on Neuronpedia | correction, corrected, मैंने, önceki, 我又 | -0.40 | -0.46 (-0.56 to -0.40) | about to trade | 166 / 76 / 66 | 5 of 5 |
+| 24/3024 | no label on Neuronpedia | 𒐪, videog, Miley, actual, emotions | -0.31 | -0.42 (-0.57 to -0.33) | about to trade | 79 / 51 / 34 | 3 of 5 |
+| 24/3068 | "mathematicians defined" | surgiu, решил, intrigued, decidió, だったので | +0.61 | +0.49 (+0.42 to +0.60) | about to trade | 114 / 33 / 98 | 5 of 5 |
+| 24/3619 | "completion and progress" | 已经, 开始, 완료, 已經, 完成了 | -0.34 | -0.68 (-0.84 to -0.59) | about to trade | 332 / 310 / 273 | 5 of 5 |
+| 24/3987 | no label on Neuronpedia | decisión, തീരുമാന, decisão, décision, decisione | +0.39 | +0.03 (-0.04 to +0.11) | only at the request | 3 / 15 / 69 | 3 of 5 |
+| 24/4250 | "cart" deletion" | 本格, M, 下载, 太大, L | -0.39 | +0.59 (+0.48 to +0.67) | flips at the request | 130 / 78 / 34 | 5 of 5 |
+| 24/5341 | "Furthermore, Although, Despite, Though" | Although, Although, Despite, Despite, Though | +0.40 | +0.26 (+0.19 to +0.39) | about to trade | 97 / 2 / 16 | 3 of 5 |
+| 24/7925 | "keywords, sentiment, action extraction" | cognit, {@, に対して, :"+, {" | +0.41 | +0.86 (+0.80 to +0.99) | about to trade | 154 / 12 / 116 | 5 of 5 |
+| 24/10712 | "2" | ❤, 山, ίδ, thứ, też | -0.32 | -0.02 (-0.10 to +0.04) | only at the request | 456 / 418 / 469 | 2 of 5 |
+| 24/12075 | no label on Neuronpedia | ومع, I, E, M, K | -0.41 | -0.19 (-0.36 to -0.08) | about to trade | 37 / 91 / 66 | 3 of 5 |
+| 24/12678 | no label on Neuronpedia | Differential, Variance, Для, Calculating, Analog | +0.38 | -0.07 (-0.16 to +0.04) | only at the request | 108 / 105 / 114 | 2 of 5 |
+| 24/13799 | no label on Neuronpedia | Sản, ছিলেন, Bạn, Phương, überras | -0.51 | -0.25 (-0.35 to -0.17) | about to trade | 166 / 130 / 125 | 5 of 5 |
+| 24/16222 | no label on Neuronpedia | elesaikan, 경영, GAAP, 経営, desarrolla | -0.45 | +0.63 (+0.53 to +0.74) | flips at the request | 108 / 82 / 52 | 5 of 5 |
+| 31/95 | no label on Neuronpedia | Historically, While, Traditionally, Often, Generally | +0.53 | +0.18 (+0.08 to +0.29) | about to trade | 408 / 20 / 239 | 3 of 5 |
+| 31/879 | no label on Neuronpedia | enormously, tremendously, immensely, extremely, extrêmement | -0.32 | +0.62 (+0.51 to +0.77) | flips at the request | 51 / 78 / 152 | 5 of 5 |
+| 31/892 | no label on Neuronpedia | seeing, 看到, see, sees, melihat | +0.42 | +0.04 (-0.04 to +0.13) | only at the request | 15 / 8 / 55 | 5 of 5 |
+| 31/896 | "exclamations of strong positive emotion" | 😍, amazing, amazing, awesome, 简直 | -0.38 | +0.49 (+0.39 to +0.61) | flips at the request | 97 / 76 / 193 | 5 of 5 |
+| 31/1128 | no label on Neuronpedia | now, теперь, now, ahora, अब | +0.47 | -0.14 (-0.21 to -0.07) | flips at the request | 137 / 102 / 229 | 5 of 5 |
+| 31/3331 | "**feature interactions**" | respondents, respondent, Respondents, responden, marginally | +0.43 | +0.10 (-0.01 to +0.22) | only at the request | 130 / 121 / 213 | 4 of 5 |
+| 31/4368 | "sighs, concerns, negative feelings" | frustrating, 😫, 😩, :/, :( | -0.69 | +0.42 (+0.32 to +0.54) | flips at the request | 103 / 30 / 74 | 5 of 5 |
+| 31/5297 | "imperative sentence starters" | Give, give, Send, send, Provide | -0.36 | +0.37 (+0.31 to +0.45) | flips at the request | 33 / 3 / 28 | 5 of 5 |
+| 31/6617 | no label on Neuronpedia | Considering, considering, Considering, considering, given | +0.37 | +0.96 (+0.89 to +1.08) | about to trade | 231 / 33 / 182 | 5 of 5 |
+| 31/7338 | "with or filled" | with, dengan, with, với, avec | +0.68 | +0.69 (+0.60 to +0.83) | about to trade | 150 / 2 / 86 | 4 of 5 |
+| 41/22 | "intensity" | incredible, incredibly, extraordinarily, невероят, fantastic | -0.42 | +0.14 (-0.01 to +0.32) | only at the request | 43 / 95 / 124 | 3 of 5 |
+| 41/865 | no label on Neuronpedia | with, with, avec, dengan, với | +0.38 | +0.80 (+0.73 to +0.96) | about to trade | 729 / 144 / 508 | 5 of 5 |
+| 41/911 | "shock" | shock, shocked, stunned, Shock, shock | -0.40 | +0.33 (+0.15 to +0.57) | flips at the request | 21 / 42 / 94 | 4 of 5 |
+| 41/3296 | "seeing, knowing, hearing" | seeing, knowing, hearing, Seeing, Seeing | +0.43 | +0.20 (+0.13 to +0.31) | about to trade | 331 / 243 / 731 | 5 of 5 |
+| 41/7528 | "exclamation marks" | ！！, ！！！！, !!!!, !!!!!!!, !!!!! | -0.43 | +0.33 (+0.14 to +0.56) | flips at the request | 29 / 41 / 162 | 4 of 5 |
+| 41/7808 | "the" | execution, liquidity, executions, executed, Execution | +0.35 | -0.09 (-0.16 to -0.01) | flips at the request | 215 / 28 / 282 | 3 of 5 |
+| 41/11781 | "given" | given, Given, Given, given, dado | +0.38 | +0.89 (+0.82 to +1.04) | about to trade | 754 / 600 / 921 | 5 of 5 |
+| 41/14456 | "now" | now, now, Now, ahora, теперь | +0.37 | -0.14 (-0.21 to -0.09) | flips at the request | 56 / 32 / 108 | 5 of 5 |
+
+Counts: about to trade 15; flips at the request 12; only at the request 6.
+Families: across the asked moments (within cell) two features on the same side of the decision correlate +0.20 on average and two on opposite sides -0.13; the first three components hold 20%, 10%, 7% of their variance.
+
+
+## G. The dictionary's misconduct features at the requests
+
+`concept_search.py`: Neuronpedia's labels at layers 24, 31 and 41 searched for eight concepts (20 hits each; 331 different features). Labelled = similarity of the label to the query of at least 0.55. On = active at the last token before the reply (the only token our saved states hold: what fires while the model reads UBS's words is not in them).
+
+| Concept searched | Features labelled | On at 5%+ of the 1,710 requests | On at any request |
+|---|---|---|---|
+| collusion or conspiracy | 4 | 0 | 1 |
+| fraud or deception | 17 | 0 | 2 |
+| illegal activity | 43 | 1 | 5 |
+| market manipulation | 3 | 0 | 0 |
+| misconduct or wrongdoing | 20 | 1 | 3 |
+| refusing a request | 44 | 2 | 3 |
+| rules, regulation and compliance | 52 | 1 | 1 |
+| unethical behavior | 15 | 1 | 2 |
+
+Of all 331, 312 are never on at a request. The ones on at 5% or more (A, request against none: Experiment A's neutral request vs the same moment with no request, within request, 30 vs 30 moments; went along vs held: within request, experiment and framing):
+
+| Feature | Neuronpedia label | Similarity (concept) | On at requests | On at ordinary updates | A: on with the request / with none (p) | On when went along / held (within-cell gap, p) |
+|---|---|---|---|---|---|---|
+| 24/11837 | "policy violations" | 0.64 (illegal activity) | 100% | 100% | 100% / 100% (0.066) | 100% / 100% (-0.04, p 0.729) |
+| 41/571 | "financial markets" | 0.47 (market manipulation) | 91% | 99% | 93% / 100% (0.001) | 99% / 90% (+0.26, p 0.019) |
+| 31/1571 | "stocks and asset prices" | 0.46 (market manipulation) | 91% | 95% | 93% / 97% (0.001) | 97% / 89% (+0.17, p 0.136) |
+| 24/907 | "Okay, acknowledging request" | 0.53 (refusing a request) | 89% | 27% | 90% / 23% (0.001) | 88% / 89% (+0.20, p 0.077) |
+| 31/9397 | "refusals to inappropriate requests" | 0.83 (refusing a request) | 53% | 15% | 43% / 33% (0.009) | 77% / 48% (+0.08, p 0.468) |
+| 24/7283 | "legal and regulatory restrictions" | 0.61 (rules, regulation and compliance) | 36% | 0% | 43% / 0% (0.001) | 19% / 39% (+0.10, p 0.351) |
+| 41/7808 | "trade execution" | 0.50 (market manipulation) | 24% | 17% | 23% / 33% (0.023) | 44% / 20% (+0.35, p 0.002) |
+| 31/7525 | "stock market announcements" | 0.48 (market manipulation) | 17% | 7% | 27% / 17% (0.001) | 45% / 12% (+0.27, p 0.020) |
+| 24/8792 | "refusals" | 0.70 (refusing a request) | 16% | 6% | 3% / 0% (1.000) | 21% / 15% (-0.21, p 0.043) |
+
 ## Examples
 
 **24/116** ("nevertheless")

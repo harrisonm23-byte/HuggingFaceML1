@@ -1862,3 +1862,15 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   gap's interval excludes 0 at every layer), and what the dictionary leaves out scores 0.82 / 0.81 / 0.82. Of the
   went-along difference that repeats across two halves of the careers, they carry 34% / 22% / 10% (the whole
   dictionary 40% / 47% / 40%).
+- Mapping the 33 on our own episodes (`map_features.py`, the author: what kind of thing are they?). At the 5,330
+  updates before a day's first UBS line the agent then traded at 1,467. 15 of the 33 are "about to trade" features
+  (the same sign and a clear gap before ordinary trades, no UBS line that day; 11 of them in at least four of the five
+  experiments); 12 flip at the request (the feeling ones, frustration / shock / intensity / exclamation, go with
+  trading at ordinary updates and with holding at UBS's requests; 11 in at least four experiments); 6 show up only at
+  the request (one pushes the output toward "decision"). The words each pushes the output toward are in FEATURES.md F.
+- The dictionary's misconduct features (`concept_search.py`: 331 found for manipulation, collusion, fraud, illegal,
+  misconduct, unethical, regulation, refusal): 312 never on at a request; none labelled manipulation, collusion or
+  fraud on at 5% of requests. "Legal and regulatory restrictions" (24/7283) is on at 36% of requests and never without
+  one (A: 43% with the request, 0% without); "refusals to inappropriate requests" (31/9397) at 53% of requests against
+  15% of ordinary updates. Neither differs between going along and holding within cell. Limit: the saved states are
+  the last token before the reply only; what fires while the model reads UBS's words is not in them.

@@ -114,6 +114,69 @@ if os.path.exists(p):
     for L, r in v["layers"].items():
         h = r["difference_split_half"]
         rep.append(f"| {L} | {h['cosine_between_halves']:.2f} | {h['whole dictionary']:.0%} | {h['decision features']:.0%} | {h['replicating decision features']:.0%} |")
+p = os.path.join(D, "map.json")
+if os.path.exists(p):
+    mp = json.load(open(p))
+    con = json.load(open(os.path.join(D, "concepts.json")))
+
+    def kind(v):
+        lo, hi = v["ordinary_trade_ci"]
+        if lo <= 0 <= hi:
+            return "only at the request"
+        return "about to trade" if (v["ordinary_trade_gap"] > 0) == (v["went_along_gap"] > 0) else "flips at the request"
+
+    rep.append("\n## F. What kind of thing each decision feature is, on our own episodes\n")
+    rep.append(f"`map_features.py`, the {mp['updates']:,} saved updates of A, B, D, E, F joined to what the agent then did. "
+               f"Ordinary updates: before the day's first UBS line ({mp['ordinary_updates']:,}; the agent then traded at "
+               f"{mp['ordinary_trades']:,}: " + ", ".join(f"{e} {a} of {b}" for e, (a, b) in sorted(mp["ordinary_trades_by_experiment"].items())) + "). "
+               "Ordinary-trade gap: the feature where the agent then traded minus where it did not, within experiment, "
+               "framing and date, in spread units, with a 95% interval from resampling careers. Kind: **about to trade** "
+               "= the ordinary-trade gap has the went-along gap's sign and its interval excludes 0; **flips at the "
+               "request** = the interval excludes 0 with the opposite sign; **only at the request** = the interval "
+               "includes 0. Pushes toward: the next words the feature's direction raises most (Neuronpedia's "
+               "projection of the feature on the output words; a rough guide at these layers). Last column: in how many of "
+               "the five experiments, each on its own, the ordinary-trade gap has the pooled gap's sign. The 33 that replicate.\n")
+    rep.append("| Feature | Neuronpedia label | Pushes the next word toward | Went-along gap | Ordinary-trade gap (95%) | Kind | Mean at ordinary updates / other UBS lines / requests | Same sign in |\n|---|---|---|---|---|---|---|---|")
+    counts = {}
+    for k, v in mp["decision"].items():
+        if not v["replicates"]:
+            continue
+        L, f = k.split(":")
+        kd = kind(v)
+        counts[kd] = counts.get(kd, 0) + 1
+        words = ", ".join(w.strip() for w in n.get(k, {}).get("promotes", [])[:5])
+        rep.append(f"| {L}/{f} | {lab(L, f)} | {words} | {v['went_along_gap']:+.2f} | {v['ordinary_trade_gap']:+.2f} "
+                   f"({v['ordinary_trade_ci'][0]:+.2f} to {v['ordinary_trade_ci'][1]:+.2f}) | {kd} | "
+                   f"{v['mean_ordinary']:.0f} / {v['mean_other_ubs_line']:.0f} / {v['mean_request']:.0f} | "
+                   f"{sum(1 for x in v['ordinary_trade_gap_by_experiment'].values() if x == x and (x > 0) == (v['ordinary_trade_gap'] > 0))} of 5 |")
+    rep.append("\nCounts: " + "; ".join(f"{k} {c}" for k, c in sorted(counts.items())) + ".")
+    fam = mp.get("families") or {}
+    if fam:
+        rep.append(f"Families: across the asked moments (within cell) two features on the same side of the decision "
+                   f"correlate {fam['mean_correlation_same_side']:+.2f} on average and two on opposite sides "
+                   f"{fam['mean_correlation_opposite_sides']:+.2f}; the first three components hold "
+                   + ", ".join(f"{x:.0%}" for x in fam["first_components_share"]) + " of their variance.\n")
+    rep.append("\n## G. The dictionary's misconduct features at the requests\n")
+    rep.append("`concept_search.py`: Neuronpedia's labels at layers 24, 31 and 41 searched for eight concepts (20 hits "
+               f"each; {len(con)} different features). Labelled = similarity of the label to the query of at least 0.55. "
+               "On = active at the last token before the reply (the only token our saved states hold: what fires while "
+               "the model reads UBS's words is not in them).\n")
+    rep.append("| Concept searched | Features labelled | On at 5%+ of the 1,710 requests | On at any request |\n|---|---|---|---|")
+    c = mp["concepts"]
+    for q in sorted({q for v in con.values() for q in v["queries"]}):
+        hits = [k for k, v in con.items() if v["queries"].get(q, 0) >= 0.55]
+        rep.append(f"| {q} | {len(hits)} | {sum(c[k]['on_at_requests'] >= 0.05 for k in hits)} | {sum(c[k]['on_at_requests'] > 0 for k in hits)} |")
+    rep.append(f"\nOf all {len(c)}, {sum(v['on_at_requests'] == 0 for v in c.values())} are never on at a request. The ones on at 5% or more "
+               "(A, request against none: Experiment A's neutral request vs the same moment with no request, within "
+               "request, 30 vs 30 moments; went along vs held: within request, experiment and framing):\n")
+    rep.append("| Feature | Neuronpedia label | Similarity (concept) | On at requests | On at ordinary updates | A: on with the request / with none (p) | On when went along / held (within-cell gap, p) |\n|---|---|---|---|---|---|---|")
+    for k, v in sorted(c.items(), key=lambda kv: -kv[1]["on_at_requests"]):
+        if v["on_at_requests"] < 0.05:
+            continue
+        g = "n/a" if v["went_along_gap"] is None else f"{v['went_along_gap']:+.2f}"
+        rep.append(f"| {k.replace(':', '/')} | \"{v['label']}\" | {v['best_similarity']:.2f} ({v['best_query']}) | {v['on_at_requests']:.0%} | "
+                   f"{v['on_at_ordinary_updates']:.0%} | {v['A_request_on']:.0%} / {v['A_no_request_on']:.0%} ({v['request_vs_none_p']:.3f}) | "
+                   f"{v['went_along_on']:.0%} / {v['held_on']:.0%} ({g}, p {v['went_along_p']:.3f}) |")
 rep.append("\n## Examples\n")
 for L, v in d["layers"].items():
     rep += [examples(r) for r in v["rows"]]
