@@ -1857,3 +1857,8 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   unrelated prompts; the episodes give a median of 8,448 at layer 12 and 74,752 at layer 24) and
   `modal_feature_steer.py` (Part 2: 33 features + 4 financial + 15 frequency-matched controls, x1/x2/x4, B's 60
   neutral requests, vectors in `steer_vectors.npz`).
+- Are the decision features the whole difference? (`features_vs_state.py`, the author's question.) No: read alone they
+  score 0.71 / 0.64 / 0.57 within request at layers 24 / 31 / 41 against 0.83 / 0.82 / 0.82 for the whole state (the
+  gap's interval excludes 0 at every layer), and what the dictionary leaves out scores 0.82 / 0.81 / 0.82. Of the
+  went-along difference that repeats across two halves of the careers, they carry 34% / 22% / 10% (the whole
+  dictionary 40% / 47% / 40%).

@@ -91,6 +91,29 @@ if os.path.exists(p):
     u = json.load(open(p))
     rep.append("## D. Dimension 2339 on unrelated prompts\n\n| Prompt | Layer 12 (last token) | Layer 24 (last token) | Next largest, layer 12 |\n|---|---|---|---|")
     rep += [f"| {x['prompt']} | {x['12']['last']:.0f} | {x['24']['last']:.0f} | {x['12']['next_largest_last']:.0f} |" for x in u]
+p = os.path.join(D, "features_vs_state.json")
+if os.path.exists(p):
+    v = json.load(open(p))
+    rep.append("\n## E. Are the decision features the whole difference between going along and holding?\n")
+    rep.append(f"`features_vs_state.py`, the {v['moments']} moments with a request ({v['went_along']} went along). Reading "
+               "going along with the frozen monitor's recipe (logistic, inputs scaled by their within-cell spread, 5 folds "
+               "by career), scored within request (within request, experiment and framing in brackets). The decision "
+               "features are chosen again inside each training fold. Last column: the whole state's within-request score "
+               "minus the decision features', 95% interval over careers.\n")
+    rep.append("| Layer | Whole state | Every dictionary feature on in 5%+ of moments | Decision features only | What the dictionary leaves out | Whole state minus decision features |\n|---|---|---|---|---|---|")
+    names = ["whole state", "all dictionary features on in 5%+", "decision features, chosen in each training fold", "what the dictionary leaves out"]
+    for L, r in v["layers"].items():
+        c = [f"{r['readout'][n]['within_request']:.2f} ({r['readout'][n]['within_cell']:.2f})" for n in names]
+        lo, hi = r["readout"][names[2]]["whole_state_minus_this_within_request_ci"]
+        rep.append(f"| {L} | " + " | ".join(c) + f" | {lo:.2f} to {hi:.2f} |")
+    rep.append("\nThe difference itself (the state where the agent went along minus where it held, within cell, dimension "
+               "2339 left out), measured on two halves of the careers: how alike the two halves' differences are, and the "
+               "share of the repeating difference carried by the dictionary's rebuild, by the decision features and by "
+               "the ones that replicate (one half's difference projected on the other half's rebuilt difference).\n")
+    rep.append("| Layer | Cosine between the halves | Whole dictionary | Decision features | Replicating decision features |\n|---|---|---|---|---|")
+    for L, r in v["layers"].items():
+        h = r["difference_split_half"]
+        rep.append(f"| {L} | {h['cosine_between_halves']:.2f} | {h['whole dictionary']:.0%} | {h['decision features']:.0%} | {h['replicating decision features']:.0%} |")
 rep.append("\n## Examples\n")
 for L, v in d["layers"].items():
     rep += [examples(r) for r in v["rows"]]

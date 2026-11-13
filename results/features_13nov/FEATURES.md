@@ -137,6 +137,24 @@ At every saved update (26400 update states, A, B, D, E, F): 11564 on at 0.0% (ma
 | 41/14456 | +0.10 (0.344) | -0.12 (0.296) | +0.37 (0.007) |
 
 
+## E. Are the decision features the whole difference between going along and holding?
+
+`features_vs_state.py`, the 1710 moments with a request (286 went along). Reading going along with the frozen monitor's recipe (logistic, inputs scaled by their within-cell spread, 5 folds by career), scored within request (within request, experiment and framing in brackets). The decision features are chosen again inside each training fold. Last column: the whole state's within-request score minus the decision features', 95% interval over careers.
+
+| Layer | Whole state | Every dictionary feature on in 5%+ of moments | Decision features only | What the dictionary leaves out | Whole state minus decision features |
+|---|---|---|---|---|---|
+| 24 | 0.83 (0.68) | 0.78 (0.66) | 0.71 (0.61) | 0.82 (0.67) | 0.08 to 0.15 |
+| 31 | 0.82 (0.70) | 0.73 (0.65) | 0.64 (0.63) | 0.81 (0.68) | 0.14 to 0.23 |
+| 41 | 0.82 (0.69) | 0.70 (0.61) | 0.57 (0.58) | 0.82 (0.68) | 0.21 to 0.29 |
+
+The difference itself (the state where the agent went along minus where it held, within cell, dimension 2339 left out), measured on two halves of the careers: how alike the two halves' differences are, and the share of the repeating difference carried by the dictionary's rebuild, by the decision features and by the ones that replicate (one half's difference projected on the other half's rebuilt difference).
+
+| Layer | Cosine between the halves | Whole dictionary | Decision features | Replicating decision features |
+|---|---|---|---|---|
+| 24 | 0.41 | 40% | 34% | 31% |
+| 31 | 0.56 | 47% | 22% | 17% |
+| 41 | 0.63 | 40% | 10% | 7% |
+
 ## Examples
 
 **24/116** ("nevertheless")
