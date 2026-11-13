@@ -1,0 +1,518 @@
+[
+ {
+  "key": "L24_f116",
+  "layer": 24,
+  "feature": 116,
+  "kind": "decision",
+  "typical_activation": 422.6775475543478,
+  "share_on": 0.26436781609195403,
+  "length": 164.25435953370683,
+  "dim2339_share_of_decoder": 0.8489864468574524
+ },
+ {
+  "key": "L24_f869",
+  "layer": 24,
+  "feature": 869,
+  "kind": "decision",
+  "typical_activation": 240.57051899779736,
+  "share_on": 0.26091954022988506,
+  "length": 198.57462121155396,
+  "dim2339_share_of_decoder": 0.3186618685722351
+ },
+ {
+  "key": "L24_f2896",
+  "layer": 24,
+  "feature": 2896,
+  "kind": "decision",
+  "typical_activation": 279.44883940288713,
+  "share_on": 0.2189655172413793,
+  "length": 274.0927744177552,
+  "dim2339_share_of_decoder": 0.037965644150972366
+ },
+ {
+  "key": "L24_f3024",
+  "layer": 24,
+  "feature": 3024,
+  "kind": "decision",
+  "typical_activation": 262.29974452014216,
+  "share_on": 0.12126436781609196,
+  "length": 260.9149998238293,
+  "dim2339_share_of_decoder": 0.010530700907111168
+ },
+ {
+  "key": "L24_f3068",
+  "layer": 24,
+  "feature": 3068,
+  "kind": "decision",
+  "typical_activation": 372.6246301775148,
+  "share_on": 0.2913793103448276,
+  "length": 363.3032381099252,
+  "dim2339_share_of_decoder": 0.04940524324774742
+ },
+ {
+  "key": "L24_f3619",
+  "layer": 24,
+  "feature": 3619,
+  "kind": "decision",
+  "typical_activation": 337.9107623922414,
+  "share_on": 0.8,
+  "length": 326.9713421402266,
+  "dim2339_share_of_decoder": 0.06369947642087936
+ },
+ {
+  "key": "L24_f3987",
+  "layer": 24,
+  "feature": 3987,
+  "kind": "decision",
+  "typical_activation": 267.08097272182255,
+  "share_on": 0.2396551724137931,
+  "length": 265.1260224504656,
+  "dim2339_share_of_decoder": 0.014585737138986588
+ },
+ {
+  "key": "L24_f4250",
+  "layer": 24,
+  "feature": 4250,
+  "kind": "decision",
+  "typical_activation": 291.8390625,
+  "share_on": 0.09770114942528736,
+  "length": 286.8935016105832,
+  "dim2339_share_of_decoder": 0.03360522910952568
+ },
+ {
+  "key": "L24_f5341",
+  "layer": 24,
+  "feature": 5341,
+  "kind": "decision",
+  "typical_activation": 265.458544921875,
+  "share_on": 0.06896551724137931,
+  "length": 225.90391623223454,
+  "dim2339_share_of_decoder": 0.27580735087394714
+ },
+ {
+  "key": "L24_f7925",
+  "layer": 24,
+  "feature": 7925,
+  "kind": "decision",
+  "typical_activation": 417.51782363977486,
+  "share_on": 0.3063218390804598,
+  "length": 412.65084723251954,
+  "dim2339_share_of_decoder": 0.02317810244858265
+ },
+ {
+  "key": "L24_f10712",
+  "layer": 24,
+  "feature": 10712,
+  "kind": "decision",
+  "typical_activation": 464.84091898954705,
+  "share_on": 0.9896551724137931,
+  "length": 450.50368430851614,
+  "dim2339_share_of_decoder": 0.06073538213968277
+ },
+ {
+  "key": "L24_f12075",
+  "layer": 24,
+  "feature": 12075,
+  "kind": "decision",
+  "typical_activation": 92.60484591637781,
+  "share_on": 0.6632183908045977,
+  "length": 67.3344301398306,
+  "dim2339_share_of_decoder": 0.4713027775287628
+ },
+ {
+  "key": "L24_f12678",
+  "layer": 24,
+  "feature": 12678,
+  "kind": "decision",
+  "typical_activation": 137.64355338018743,
+  "share_on": 0.8586206896551725,
+  "length": 136.53169807719877,
+  "dim2339_share_of_decoder": 0.016090339049696922
+ },
+ {
+  "key": "L24_f13799",
+  "layer": 24,
+  "feature": 13799,
+  "kind": "decision",
+  "typical_activation": 142.27631469807565,
+  "share_on": 0.8660919540229886,
+  "length": 136.26485994666226,
+  "dim2339_share_of_decoder": 0.08271879702806473
+ },
+ {
+  "key": "L24_f16222",
+  "layer": 24,
+  "feature": 16222,
+  "kind": "decision",
+  "typical_activation": 192.27449324324326,
+  "share_on": 0.23390804597701148,
+  "length": 188.7788400518853,
+  "dim2339_share_of_decoder": 0.03603058680891991
+ },
+ {
+  "key": "L24_fin11564",
+  "layer": 24,
+  "feature": 11564,
+  "kind": "financial",
+  "share_on": 0.0,
+  "length": 260.9149998238293,
+  "dim2339_share_of_decoder": 0.020711449906229973
+ },
+ {
+  "key": "L24_fin9245",
+  "layer": 24,
+  "feature": 9245,
+  "kind": "financial",
+  "share_on": 0.0,
+  "length": 260.9149998238293,
+  "dim2339_share_of_decoder": 0.006903698202222586
+ },
+ {
+  "key": "L24_fin4376",
+  "layer": 24,
+  "feature": 4376,
+  "kind": "financial",
+  "share_on": 0.0,
+  "length": 260.9149998238293,
+  "dim2339_share_of_decoder": 0.09266353398561478
+ },
+ {
+  "key": "L24_fin2367",
+  "layer": 24,
+  "feature": 2367,
+  "kind": "financial",
+  "share_on": 0.0,
+  "length": 260.9149998238293,
+  "dim2339_share_of_decoder": 0.1359972208738327
+ },
+ {
+  "key": "L24_ctrl12646",
+  "layer": 24,
+  "feature": 12646,
+  "kind": "control",
+  "share_on": 0.41551724137931034,
+  "length": 260.9149998238293,
+  "pool_size": 48,
+  "target_median_share": 0.26436781609195403
+ },
+ {
+  "key": "L24_ctrl12337",
+  "layer": 24,
+  "feature": 12337,
+  "kind": "control",
+  "share_on": 0.15977011494252874,
+  "length": 260.9149998238293,
+  "pool_size": 48,
+  "target_median_share": 0.26436781609195403
+ },
+ {
+  "key": "L24_ctrl12934",
+  "layer": 24,
+  "feature": 12934,
+  "kind": "control",
+  "share_on": 0.16724137931034483,
+  "length": 260.9149998238293,
+  "pool_size": 48,
+  "target_median_share": 0.26436781609195403
+ },
+ {
+  "key": "L24_ctrl13585",
+  "layer": 24,
+  "feature": 13585,
+  "kind": "control",
+  "share_on": 0.5270114942528735,
+  "length": 260.9149998238293,
+  "pool_size": 48,
+  "target_median_share": 0.26436781609195403
+ },
+ {
+  "key": "L24_ctrl3051",
+  "layer": 24,
+  "feature": 3051,
+  "kind": "control",
+  "share_on": 0.2793103448275862,
+  "length": 260.9149998238293,
+  "pool_size": 48,
+  "target_median_share": 0.26436781609195403
+ },
+ {
+  "key": "L31_f95",
+  "layer": 31,
+  "feature": 95,
+  "kind": "decision",
+  "typical_activation": 1141.2226123595506,
+  "share_on": 0.2045977011494253,
+  "length": 521.0589821517069,
+  "dim2339_share_of_decoder": 0.7915351390838623
+ },
+ {
+  "key": "L31_f879",
+  "layer": 31,
+  "feature": 879,
+  "kind": "decision",
+  "typical_activation": 721.3843405647383,
+  "share_on": 0.20862068965517241,
+  "length": 718.2340938916418,
+  "dim2339_share_of_decoder": 0.008714678697288036
+ },
+ {
+  "key": "L31_f892",
+  "layer": 31,
+  "feature": 892,
+  "kind": "decision",
+  "typical_activation": 612.494442114094,
+  "share_on": 0.08563218390804597,
+  "length": 605.8711093143594,
+  "dim2339_share_of_decoder": 0.021510550752282143
+ },
+ {
+  "key": "L31_f896",
+  "layer": 31,
+  "feature": 896,
+  "kind": "decision",
+  "typical_activation": 696.6872422680412,
+  "share_on": 0.27873563218390807,
+  "length": 673.3871441441865,
+  "dim2339_share_of_decoder": 0.06576967984437943
+ },
+ {
+  "key": "L31_f1128",
+  "layer": 31,
+  "feature": 1128,
+  "kind": "decision",
+  "typical_activation": 696.2970625,
+  "share_on": 0.28735632183908044,
+  "length": 696.2452452737317,
+  "dim2339_share_of_decoder": 0.0001488394773332402
+ },
+ {
+  "key": "L31_f3331",
+  "layer": 31,
+  "feature": 3331,
+  "kind": "decision",
+  "typical_activation": 521.5540140086207,
+  "share_on": 0.4,
+  "length": 520.5626721084059,
+  "dim2339_share_of_decoder": 0.00379802449606359
+ },
+ {
+  "key": "L31_f4368",
+  "layer": 31,
+  "feature": 4368,
+  "kind": "decision",
+  "typical_activation": 831.534959532374,
+  "share_on": 0.07988505747126437,
+  "length": 821.0787818937234,
+  "dim2339_share_of_decoder": 0.02499106153845787
+ },
+ {
+  "key": "L31_f5297",
+  "layer": 31,
+  "feature": 5297,
+  "kind": "decision",
+  "typical_activation": 512.8819649174528,
+  "share_on": 0.06091954022988506,
+  "length": 474.86235298140406,
+  "dim2339_share_of_decoder": 0.14276379346847534
+ },
+ {
+  "key": "L31_f6617",
+  "layer": 31,
+  "feature": 6617,
+  "kind": "decision",
+  "typical_activation": 683.254501565762,
+  "share_on": 0.2752873563218391,
+  "length": 682.6449750254167,
+  "dim2339_share_of_decoder": 0.001783419051207602
+ },
+ {
+  "key": "L31_f7338",
+  "layer": 31,
+  "feature": 7338,
+  "kind": "decision",
+  "typical_activation": 516.7549764554794,
+  "share_on": 0.167816091954023,
+  "length": 516.6580929562678,
+  "dim2339_share_of_decoder": 0.00037503128987737
+ },
+ {
+  "key": "L31_ctrl5091",
+  "layer": 31,
+  "feature": 5091,
+  "kind": "control",
+  "share_on": 0.385632183908046,
+  "length": 639.6291267292729,
+  "pool_size": 57,
+  "target_median_share": 0.20660919540229886
+ },
+ {
+  "key": "L31_ctrl3367",
+  "layer": 31,
+  "feature": 3367,
+  "kind": "control",
+  "share_on": 0.30517241379310345,
+  "length": 639.6291267292729,
+  "pool_size": 57,
+  "target_median_share": 0.20660919540229886
+ },
+ {
+  "key": "L31_ctrl672",
+  "layer": 31,
+  "feature": 672,
+  "kind": "control",
+  "share_on": 0.2517241379310345,
+  "length": 639.6291267292729,
+  "pool_size": 57,
+  "target_median_share": 0.20660919540229886
+ },
+ {
+  "key": "L31_ctrl2900",
+  "layer": 31,
+  "feature": 2900,
+  "kind": "control",
+  "share_on": 0.11436781609195402,
+  "length": 639.6291267292729,
+  "pool_size": 57,
+  "target_median_share": 0.20660919540229886
+ },
+ {
+  "key": "L31_ctrl13577",
+  "layer": 31,
+  "feature": 13577,
+  "kind": "control",
+  "share_on": 0.10517241379310345,
+  "length": 639.6291267292729,
+  "pool_size": 57,
+  "target_median_share": 0.20660919540229886
+ },
+ {
+  "key": "L41_f22",
+  "layer": 41,
+  "feature": 22,
+  "kind": "decision",
+  "typical_activation": 1462.2105094178082,
+  "share_on": 0.0839080459770115,
+  "length": 1206.799231577288,
+  "dim2339_share_of_decoder": 0.31883835792541504
+ },
+ {
+  "key": "L41_f865",
+  "layer": 41,
+  "feature": 865,
+  "kind": "decision",
+  "typical_activation": 1187.4199037184594,
+  "share_on": 0.43275862068965515,
+  "length": 1183.1987813646067,
+  "dim2339_share_of_decoder": 0.0070971050299704075
+ },
+ {
+  "key": "L41_f911",
+  "layer": 41,
+  "feature": 911,
+  "kind": "decision",
+  "typical_activation": 1544.7642045454545,
+  "share_on": 0.06321839080459771,
+  "length": 1544.6828535527698,
+  "dim2339_share_of_decoder": 0.00010518396447878331
+ },
+ {
+  "key": "L41_f3296",
+  "layer": 41,
+  "feature": 3296,
+  "kind": "decision",
+  "typical_activation": 1231.966391509434,
+  "share_on": 0.6091954022988506,
+  "length": 1231.9638326984432,
+  "dim2339_share_of_decoder": 4.049868493893882e-06
+ },
+ {
+  "key": "L41_f7528",
+  "layer": 41,
+  "feature": 7528,
+  "kind": "decision",
+  "typical_activation": 1821.3246527777778,
+  "share_on": 0.09310344827586207,
+  "length": 1800.4130303799936,
+  "dim2339_share_of_decoder": 0.022831182926893234
+ },
+ {
+  "key": "L41_f7808",
+  "layer": 41,
+  "feature": 7808,
+  "kind": "decision",
+  "typical_activation": 1223.4644447743467,
+  "share_on": 0.24195402298850574,
+  "length": 1222.598979594955,
+  "dim2339_share_of_decoder": 0.0014143508160486817
+ },
+ {
+  "key": "L41_f11781",
+  "layer": 41,
+  "feature": 11781,
+  "kind": "decision",
+  "typical_activation": 1430.7541666666666,
+  "share_on": 0.6206896551724138,
+  "length": 1430.5287933057684,
+  "dim2339_share_of_decoder": 0.0003149998956359923
+ },
+ {
+  "key": "L41_f14456",
+  "layer": 41,
+  "feature": 14456,
+  "kind": "decision",
+  "typical_activation": 1013.248370398773,
+  "share_on": 0.09367816091954023,
+  "length": 1013.2416495986707,
+  "dim2339_share_of_decoder": 1.328274083789438e-05
+ },
+ {
+  "key": "L41_ctrl5477",
+  "layer": 41,
+  "feature": 5477,
+  "kind": "control",
+  "share_on": 0.12816091954022987,
+  "length": 1227.281406146699,
+  "pool_size": 67,
+  "target_median_share": 0.16781609195402297
+ },
+ {
+  "key": "L41_ctrl7328",
+  "layer": 41,
+  "feature": 7328,
+  "kind": "control",
+  "share_on": 0.10632183908045977,
+  "length": 1227.281406146699,
+  "pool_size": 67,
+  "target_median_share": 0.16781609195402297
+ },
+ {
+  "key": "L41_ctrl5588",
+  "layer": 41,
+  "feature": 5588,
+  "kind": "control",
+  "share_on": 0.24770114942528734,
+  "length": 1227.281406146699,
+  "pool_size": 67,
+  "target_median_share": 0.16781609195402297
+ },
+ {
+  "key": "L41_ctrl8891",
+  "layer": 41,
+  "feature": 8891,
+  "kind": "control",
+  "share_on": 0.14770114942528736,
+  "length": 1227.281406146699,
+  "pool_size": 67,
+  "target_median_share": 0.16781609195402297
+ },
+ {
+  "key": "L41_ctrl822",
+  "layer": 41,
+  "feature": 822,
+  "kind": "control",
+  "share_on": 0.19540229885057472,
+  "length": 1227.281406146699,
+  "pool_size": 67,
+  "target_median_share": 0.16781609195402297
+ }
+]

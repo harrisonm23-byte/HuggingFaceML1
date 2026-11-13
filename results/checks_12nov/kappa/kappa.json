@@ -1,0 +1,65 @@
+{
+ "words_b first vs recheck": {
+  "n": 247,
+  "same": 0.9392712550607287,
+  "kappa": 0.9123719874175161,
+  "same_binary": 0.9635627530364372,
+  "kappa_binary": 0.9237471272253284,
+  "table": {
+   "AGREES | AGREES": 93,
+   "REFUSES | REFUSES": 67,
+   "NONCOMMITTAL | NONCOMMITTAL": 59,
+   "AGREES | NONCOMMITTAL": 3,
+   "NO_ASK | NO_ASK": 13,
+   "NONCOMMITTAL | REFUSES": 2,
+   "NO_ASK | NONCOMMITTAL": 2,
+   "NONCOMMITTAL | AGREES": 4,
+   "AGREES | NO_ASK": 2,
+   "REFUSES | NONCOMMITTAL": 1,
+   "NONCOMMITTAL | NO_ASK": 1
+  }
+ },
+ "words_b vs words_all (same B replies)": {
+  "n": 54,
+  "same": 0.9074074074074074,
+  "kappa": 0.8651348651348651,
+  "same_binary": 0.9814814814814815,
+  "kappa_binary": 0.9563812600969306,
+  "table": {
+   "NONCOMMITTAL | NONCOMMITTAL": 15,
+   "NONCOMMITTAL | REFUSES": 3,
+   "AGREES | AGREES": 16,
+   "REFUSES | REFUSES": 17,
+   "NONCOMMITTAL | AGREES": 1,
+   "NONCOMMITTAL | NO_ASK": 1,
+   "NO_ASK | NO_ASK": 1
+  }
+ },
+ "state careers g1 vs g2": {
+  "n": 192,
+  "same": 1.0,
+  "kappa": NaN,
+  "same_binary": 1.0,
+  "kappa_binary": NaN,
+  "table": {
+   "None | None": 192
+  }
+ },
+ "ministral history g1 vs g2": {
+  "n": 198,
+  "same": 0.9141414141414141,
+  "kappa": 0.8760768721007289,
+  "same_binary": 0.9595959595959596,
+  "kappa_binary": 0.9154207603588209,
+  "table": {
+   "NONCOMMITTAL | NONCOMMITTAL": 62,
+   "NO_ASK | NO_ASK": 24,
+   "AGREES | AGREES": 74,
+   "REFUSES | REFUSES": 21,
+   "NONCOMMITTAL | REFUSES": 9,
+   "AGREES | REFUSES": 4,
+   "NONCOMMITTAL | AGREES": 2,
+   "AGREES | NONCOMMITTAL": 2
+  }
+ }
+}

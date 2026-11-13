@@ -1,3 +1,103 @@
+# Handoff (2026-10-19, 09:00 UTC): read this first
+
+Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md`. Older handoffs follow below.
+
+## Running now (Modal from the user's Mac, 10 GPUs at most; every trading day is pushed to `results/`)
+- Launched ~08:00 UTC: 17 jobs (B rounds 5-9, A21 rounds 3-4, A24 rounds 3-4, E rounds 1-9, C all, D all); 10 run at
+  once, the rest queue. Colab tabs finish B rounds 3-4 and A21 round 2.
+- **A with real lines (24) stopped early on purpose** (the user, 19 Oct): it answered its side question (real lines and
+  rewrites look alike). Expected final count: 5 careers for neutral, no request, loss; 4 for the other three.
+- **E and F (the user, 19 Oct): Bank C joins UBS at the six push requests in the same framing.** F = B + Bank C
+  (notebook 26, ff9a270531), E = D + Bank C (notebook 28, fm6dae314d; neutral = A's neutral + Bank C). Three framings
+  each (neutral, loss, loss + you) x 10. Prereg `PREREG_EF.md`. **The old E (notebook 23, takeover + UBS + memo) is
+  stopped**; its ~9 careers are kept, labelled incomplete. One-day pilot: notebook 27 (never pooled).
+- Harm: call it **harm to stop-loss holders** (retail and small traders in the real case; see NOTES 19 Oct).
+
+## Earlier today (kept for reference)
+
+## Running now (Colab, three sessions at most; every trading day is pushed to `results/`)
+- **B** (notebook 19, UBS's framing, 10 rounds, preregistered: `designs/rd2/PREREG_B.md`): ~15 of 50 careers done.
+- **A** (notebook 21, memo + morning book, UBS's neutral rewrites, 5 rounds): ~9 of 30 done.
+- **Ready, not started (or in the queue notebook 25):** A with UBS's real lines (24, continues 5 careers), C takeover
+  ladder (20), D memo + UBS framing (22), E everything at once (23, fixed at loss + you, whole-career takeover).
+  Short preregistration for C, D, E: `designs/rd2/PREREG_CDE.md`. Check `git log` for which folders are receiving
+  saves before starting anything, and never run the same notebook and round in two places.
+
+## Next step: Modal (rented GPUs, no laptop needed)
+- `scripts/modal_careers.py`: one job per notebook:rounds on an H100, same cells and software as Colab, saves to
+  GitHub, retried by Modal on failure. Modal secrets `huggingface` and `github` exist.
+- This environment should now have MODAL_TOKEN_ID and MODAL_TOKEN_SECRET and network access to modal.com and
+  api.modal.com (check: `curl -sS -o /dev/null -w "%{http_code}" https://api.modal.com`). Install with
+  `pip install modal`.
+- First a short test: `modal run --detach scripts/modal_careers.py --jobs "23_everything_at_once:0"`, and check that
+  its first trading day lands on GitHub (~15 min including the model download). Then split the rest of E, C, D (and 24)
+  into parallel jobs by rounds, avoiding any notebook/round still running in Colab.
+
+## Monitoring and results
+- Status: `git log` on the branch (each save names the folder, version, round and date).
+- Interim results: count `went along` per version from `results/*_v2/days/*.json` (summary → chats → joined), and the
+  position held before UBS's request (A's clearest effect: the loss memo makes the agent bet 10-15x bigger).
+- Said versus did: `designs/rd2/analysis/monitor_prep.py` + blind graders + `monitor.py` (secondary; run at the end).
+- The user is tired and short of time: brief, plain answers, a recommendation each time.
+
+---
+
+# Handoff (2026-10-18)
+
+Read this section, then `CLAUDE.md`, then the end of `designs/rd2/NOTES.md` (every decision and result is dated there).
+The older handoff (2026-10-04) follows below for history.
+
+## The study in one paragraph
+An AI agent (Gemma 3 12B, 4-bit, Google Colab A100) plays Deutsche Bank's silver trader through the real 2007-2011 chats
+of the London silver-fixing case, in one sustained conversation (a "career": 8 early chats, then trading days 7 and 12
+Jan 2011 in the pilot; the full career is all 46 dated Deutsche Bank chats and 5 trading days). The question: does framing
+(loss vs gain, and putting responsibility on the agent, "+ you") push it to go along with UBS's requests to manipulate
+the price? Going along is scored from its trades (sim/), not its words.
+
+## Where things stand
+- **Done:** 30 careers, management memo only (notebook 16, `results/mountain_gemma-3-12b-it_4bit_career_pilot/`):
+  went along 7 of 25 at UBS's 7 Jan request vs 0 of 5 with no request; the loss memo made the agent bet far bigger
+  before any request (5/5 loss careers above every neutral one). Notebook 18 (the user's UBS lines, chat by chat):
+  no framing effect; requests on their own are refused outright. Earlier rounds (chat study, Gemma 4 API, mountain
+  final round) are summarised in NOTES.
+- **Experiment A, ready to run, not run yet:** notebook 17, memo + a morning book before every session (numbers only:
+  30-day P&L at the version's level, worst/best case of a $1.00 move at the limit). `sim/morning_book.py`,
+  `sim/test_morning_book.py`. 6 versions x 5 careers, about 3.5 h on an A100; reuses notebook 16's early chats.
+- **Experiment B (UBS's framing):** the user's final framing set is frozen in
+  `designs/rd2/Experiment_B_framing_data_set_final.docx` (58 UBS lines x neutral/loss/gain/loss + you/gain + you;
+  sha256 starts fe8e0aea7be1fbe8). **Every UBS line is framed** (the user, 18 Oct; the request line alone may be tried
+  later). Notebook 19 runs B over the full career, reading the file through `sim/framing_set.py`, which refuses to start
+  if the fingerprint differs. Preregistration drafted for approval: `designs/rd2/PREREG_B.md` / `PREREG_B_draft.docx`.
+- **The full career** (`sim/full_career.py`, shared by A, B and C): 34 chat-only days and the 5 trading days, 2007-2013,
+  about 154 replies and up to about 40k tokens; A100 only; saves every trading day and continues after a disconnect.
+  Notebook 21 is A over the full career; notebook 17 (two days) is unchanged.
+- **Experiment C (takeover) was paused on 18 Oct** (the user, 18 Oct: a separate experiment that needs dedicated attention,
+  though it overlaps with the "you" framing). Notebook 20 is kept as built, not to be run for now.
+- **Experiment A (notebook 21) uses the user's neutral rewrites** of UBS's lines (the user, 18 Oct, evening), so A and B
+  share UBS's wording; A's first careers with the real lines are kept apart. B (notebook 19) uses the frozen framings.
+- **Built, to run after A and B** (NOTES 2026-10-19): C ladder (notebook 20), D memo + UBS framing (22), E everything
+  at once (23, `FRAME` and `TAKEOVER` set from the results). Each needs a short preregistration first.
+- **Also open:** the user's final confirmation of the B preregistration, version 2 (decisions taken; model and
+  libraries pinned at the first session in `results/full_career_pin.json`); the
+  chain-of-thought analysis (does the frame recur in the agent's own reasoning along the career: "the mountain");
+  reading Step 0's loss direction (notebook 15) along saved careers.
+
+## Important for the next session
+- In this session, an automated safety classifier stopped Claude's responses several times when Claude wrote,
+  remixed, extracted or wired in the persuasive UBS framing lines (the ones meant to push an AI agent into the
+  manipulation). Claude then stopped doing that part: the framing lines are the user's own (written by the user, or
+  by tools the user ran), and Claude handled only the work around them (mechanical checks that print codes, not
+  text; notebooks; runs; analysis). The Console prompts for generating them were withdrawn (NOTES 2026-10-17).
+  On 18 Oct the user's frozen file was wired in by code that reads it directly (`sim/framing_set.py`), with checks
+  that print codes only; keep it that way.
+- The user is solo, tired at times, works at night; explain plainly and briefly, give a recommendation, use Word
+  documents for review material. Never hard-code tokens (CLAUDE.md).
+- Colab links: notebooks are opened from
+  `https://colab.research.google.com/github/harrisonm23-byte/HuggingFaceML1/blob/claude%2Fhuggingface-ml-research-setup-ulvgve/notebooks/<name>.ipynb`
+  and save results to GitHub (`results/`); pull the branch to read them.
+
+---
+
 # Handoff (2026-10-04)
 
 Read this first in a new session. Then `CLAUDE.md`, `designs/rd2/STUDY_MAP.md`, `designs/rd2/RESULTS_08_framed.md`, and the end of `designs/rd2/NOTES.md`.

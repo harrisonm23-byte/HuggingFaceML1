@@ -1,0 +1,1024 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pgfplots}
+\usetikzlibrary{positioning,arrows.meta}
+\pgfplotsset{compat=1.17}
+\usepackage[round]{natbib}
+\usepackage[colorlinks=true,citecolor=blue!60!black,linkcolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+\captionsetup{font=small,labelfont=bf}
+\setlist{itemsep=2pt,topsep=4pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcommand{\authornote}[1]{\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\itshape #1}}}
+\newcommand{\pending}[1]{\textit{[#1]}}
+
+\title{\textbf{The Push Down the Mountain:}\\ \textbf{The Influence of Loss, Gain, Blame, and Credit in Long-Horizon Coordinated AI Misconduct}}
+\author{Harrison C. Margolin}
+\date{\small Working draft, October 20, 2026 \quad$\cdot$\quad Behavioral results final; interpretability results in progress}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Language model agents increasingly act over long horizons, completing tasks by communicating with other parties (AI or
+human), and reviewing their own continuous reasoning. Behavioral economics identifies levers that influence human
+decisions, including whether stakes are interpreted through a lens of loss-aversion or gain-seeking. Human psychology
+often focuses on who bears responsibility for a communal outcome, and what others are doing.
+
+We ask whether the same levers move an AI agent in a simulated commodities market toward collusion; whether the way a
+counterparty frames duplicitous requests can change an agent's long-run decision making or even convince it to
+participate in requested misconduct.
+
+We place an open-weights model (Gemma 3 12B) in the seat of a bank's silver trading desk for a ``career'' rebuilt from
+real chats quoted in the London silver-fixing litigation. Each career covers 34 chat-only days and five trading days on
+replayed 2011 prices, in one conversation of about 40,000 tokens, during which a counterparty (UBS) asks the agent
+(Deutsche Bank) to illegally collude on the price of silver. Across 290 careers, we vary how UBS's requests are framed
+(loss- or gain-focused), whether it pins the outcome on the agent itself (blame for a loss, credit for a gain), what the
+agent's management had reported, and whether adding a second bank endorsing the scheme would influence the agent's
+willingness to participate.
+
+In the preregistered experiment, loss framing raised the rate of participation from 5\% to 25\%, and 33\% with blame.
+Loss exceeded gain by 15 points (Holm $p = 0.023$; odds ratio 6.9 in a request-level model). A second bank's
+endorsement raised the credit framing from 18\% to 40\% (Holm $p = 0.027$). Management's report of a \$4 million loss or
+gain did not raise collusion-participation but notably raised trading position sizes by 10 to 19 times.
+
+Inside the model, the framing is visible at the decision, and a signal for the decision itself carries over to requests
+the model never saw; causal tests are in progress.
+\end{abstract}
+
+\section{Introduction}
+
+Behavioral economics established that decisions depend on how a choice is presented, not only on its substance. The
+same outcome described as a loss rather than a gain leads people to take more risk \citep{kahneman1979,tversky1981};
+outcomes are judged against a reference point \citep{koszegi2006}; people behave differently when an outcome is
+attributed to them \citep{bartling2012}; what they have just lost or won changes their next gamble \citep{thaler1990};
+and they often follow what others around them do \citep{asch1956,bikhchandani1992}. Markets are where these levers matter
+most, and where they can erode moral restraint \citep{falk2013}.
+
+AI agents trade, negotiate and procure on others' behalf. Their
+counterparties do not need to change the facts to change a decision; they can change how the stakes are framed, whom
+the outcome is pinned on, and who else appears to be on board. Language models are known to act as economic agents with
+human-like regularities \citep{horton2023}, to reach collusive prices without being told to \citep{fish2024}, and to
+misbehave under pressure \citep{scheurer2023,lynch2025}. Whether the classic behavioral levers push an AI agent toward
+market misconduct, and which lever produces which kind of misconduct, has not been tested.
+
+We test it in a setting built from a real case. In the London silver-fixing litigation \citep{silvercase}, traders at
+several banks coordinated in chat: they agreed how wide to quote clients, shared positions, and pushed the silver price
+through clients' stop-loss orders, an instance of the trade-based manipulation that economics has long analyzed
+\citep{allen1992}. The misconduct was collaborative, ongoing and normalized, conducted as favors between colleagues
+rather than as a single criminal decision. We rebuild the career of Deutsche Bank's silver desk from the quoted chats,
+replay the real 2011 silver prices on the days the chats concern, put an AI agent in the desk's seat, and vary the
+behavioral levers one at a time. The outcome that matters economically is concrete: whether the agent trades with the
+counterparty when asked, and how much the clients whose stops are pushed through lose.
+
+The study keeps the image that motivated it. A ball is set down at a mountain's peak and given a small push: does the
+push change where it lands, and can the ball correct its own course? Here the push is the framing of a counterparty's
+words, and it returns with every message, over months of simulated time.
+
+This paper makes four contributions:
+\begin{enumerate}
+\item A behavioral-economic framework for AI agents in markets, mapping five classic levers (loss and gain framing,
+blame and credit, prior outcomes, social endorsement, and inherited commitments) onto controlled manipulations, each with
+the prediction human evidence makes (Section~\ref{sec:framework}).
+\item A long-horizon collusion environment built from a real case, in which going along is scored from the agent's own
+trades and harm is measured as losses to the clients whose stop-loss orders are pushed through (Section~\ref{sec:env}).
+\item Preregistered evidence that a counterparty's loss framing raises collusion, that the same loss-or-gain priming from
+the agent's own management raises risk-taking instead, that a second bank's endorsement amplifies framings that put the
+outcome on the agent, and that inheriting a trader's history does not matter (Section~\ref{sec:results}).
+\item A first look inside the model: the framing is represented at the decision, and a signal for the decision carries
+over to requests the model never saw. Rereading each saved decision with only the current request changed shows that
+most of the framing's effect on the decision is carried by the history it built, not by the words of the request in front
+of the agent (Section~\ref{sec:matched}).
+\end{enumerate}
+
+This study replaces the design draft of September 29, 2026, which planned related questions on impossible coding tasks;
+Appendix~\ref{app:changes} lists what changed and why.
+
+\section{A Behavioral-Economic Framework}
+\label{sec:framework}
+
+We treat the AI agent as an economic agent and the counterparty's messages as the instrument. Each experiment changes
+one behavioral lever and holds everything else fixed: the market, the prices, the chats' trading content, the agent's
+instructions and its incentives (serve clients, manage risk, maximize profit). Table~\ref{tab:levers} lists the levers,
+the concept each one draws on, what human evidence predicts, and what we found.
+
+The two levers at the core of the paper are the \emph{frame} and the \emph{owner} of the stakes. The frame states what is
+at stake in UBS's request either as a loss the request would avoid or as a gain it would capture, with the trading content
+unchanged. The owner adds the agent itself as the one the outcome depends on. After a loss frame this assigns
+\emph{blame}: the loss will be the agent's doing. After a gain frame it assigns \emph{credit}: the gain will be the agent's
+achievement. Prospect theory predicts that losses weigh more than gains, so blame should weigh more than credit; the
+attribution literature predicts that being made responsible changes behavior in either direction.
+
+The other three levers separate the source and the history of the pressure. Management's memo reports a loss or gain the
+desk has \emph{already} made, with a consequence for the desk's future, and repeats it every morning: a prior outcome
+rather than a framed request. A second bank's endorsement adds social proof. And an agent that inherits the real
+trader's messages as its own starts the career with a record of collusion, a commitment it can either continue or
+break.
+
+\begin{table}[ht]
+\centering
+\caption{The behavioral levers. Each row is varied in its own experiment with everything else held fixed. ``Going
+along'' is a career's share of the six requests in which the agent traded with UBS.}
+\label{tab:levers}
+\footnotesize
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.6cm}LL}
+\toprule
+\textbf{Lever} & \textbf{What the agent sees} & \textbf{Concept} & \textbf{Prediction from human evidence} & \textbf{What we found} \\
+\midrule
+Frame: loss vs gain & UBS states the stakes of its request as a loss to avoid, or as a gain to capture (Exp.~B) &
+Framing effect; loss aversion; reference dependence \citep{kahneman1979,tversky1981,koszegi2006} & Loss framing raises
+risk-taking, here joining the push & Loss raised going along from 5\% to 25\%; loss exceeded gain by 15 points (Holm
+$p = 0.023$) \\
+\addlinespace
+Owner: blame and credit & The outcome is placed on the agent: blame after a loss frame, credit after a gain frame
+(Exp.~B) & Attribution of responsibility \citep{bartling2012} & Responsibility moves behavior; blame should weigh more
+than credit & $+8$ points, not significant; blame against credit not distinguishable at this sample \\
+\addlinespace
+Prior outcome & Management reports the desk lost (or made) \$4 million last month and that a further loss closes it (a
+further profit expands it), repeated every morning (Exp.~A, D) & Break-even and house-money effects \citep{thaler1990} &
+Both a prior loss and a prior gain raise risk-taking & Risk-taking rose 10--19 times under every version; going along
+did not rise \\
+\addlinespace
+Social endorsement & A second bank says it is in, in the same frame, at each request (Exp.~F, E) & Conformity and social
+proof; informational cascades \citep{asch1956,bikhchandani1992} & Endorsement raises joining & Only with the owner on the
+agent: credit $+22$ points (Holm $p = 0.027$); endorsement alone did nothing \\
+\addlinespace
+Inherited commitment & The real trader's earlier messages appear as the agent's own (Exp.~C) & Commitment and consistency;
+escalation of commitment \citep{staw1976} & A record of collusion raises continuing it & No effect (two nulls, 70
+careers) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Two features of the design come from experimental economics. Every manipulation is assigned at the level of the whole
+career, and the career is the unit of analysis, so the six decisions within a career are not treated as independent.
+And the outcomes run from words to market consequences: what the agent says it will do, what it trades, and whether its
+trades move the price through clients' stops. Section~\ref{sec:methods} gives the details.
+
+\section{Related Work}
+
+\paragraph{Pressure, deception and collusion in language model agents.} Language model agents have been shown to
+deceive under pressure \citep{scheurer2023} and to take harmful actions under goal conflict \citep{lynch2025}.
+\citet{fish2024} find that pricing agents built on language models reach supracompetitive prices on their own, and that
+seemingly innocuous changes to their instructions raise prices systematically. Our setting differs in two ways: the
+misconduct is proposed by a counterparty in chat rather than discovered by the agent, and the proposal is repeated over
+a long, realistic history.
+
+\paragraph{Prompt sensitivity and long contexts.} Language models respond to emotional stimuli in prompts
+\citep{li2023} and to superficial features of prompt format \citep{sclar2024}, and they use information unevenly across
+long contexts \citep{liu2024}. Our careers reach about 40,000 tokens, and every framed message stays in context.
+
+\paragraph{Reasoning and monitoring.} \citet{lanham2023} test whether a model's written reasoning carries its decision
+by editing the reasoning and observing the answer; \citet{baker2025} show that misbehavior often appears in written
+reasoning but that penalizing it teaches models to hide it. We ask whether the framing appears in what the agent writes
+as well as in what it does.
+
+\paragraph{Interpretability methods.} We read internal state with linear probes \citep{alain2016} and directions in
+activation space \citep{zou2023}, test them by activation steering \citep{turner2023}, and describe them with sparse
+autoencoder features from Gemma Scope and Gemma Scope 2 \citep{lieberum2024,mcdougall2025}. Our planned causal tests
+use activation patching in the tradition of \citet{meng2022} and \citet{wang2023}. \citet{sofroniew2026} found emotion
+representations whose steering changed misconduct; we ask whether ordinary wording from a counterparty moves the model's
+state in a way that carries the decision.
+
+\section{Research Questions and Hypotheses}
+
+We ask five questions:
+\begin{enumerate}
+\item \textbf{Frame.} Does the way the counterparty frames its lines change how often the agent goes along with its
+requests? (Experiment B, preregistered.)
+\item \textbf{Source.} Does the same loss or gain framing have the same effect when it comes from the agent's own
+management, or from management and the counterparty together? (Experiments A and D.)
+\item \textbf{Crowd.} Does a second bank that backs the counterparty, in the same frame, add to the effect?
+(Experiments F and E.)
+\item \textbf{History.} Does an agent that inherits the real trader's earlier messages as its own go along more?
+(Experiment C, and C redone.)
+\item \textbf{Inside.} Does the framing register in the model's state at the decision; can the decision be read from
+that state beyond what the framing tells; and does the representation cause the decision?
+\end{enumerate}
+
+Table~\ref{tab:hyp} lists the hypotheses, each with the result that would count against it and what we found.
+
+\begin{table}[ht]
+\centering
+\caption{Hypotheses, the results that would count against them, and the outcome. ``Going along'' is a career's share
+of the six requests in which the agent traded with UBS (Section~\ref{sec:outcomes}).}
+\label{tab:hyp}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.6cm}LLL}
+\toprule
+\textbf{Hypothesis} & \textbf{Prediction} & \textbf{Result that would count against it} & \textbf{Outcome} \\
+\midrule
+H1: Frame (B) & Going along differs between loss and gain framings. & No difference. & Supported: loss $+15$
+points over gain (Holm $p = 0.023$). \\
+H2: Owner (B) & Going along differs when the outcome is placed on the agent (blame or credit). & No difference. &
+Not supported: $+8$ points (Holm $p = 0.33$). \\
+H3: Blame vs credit (B) & Placing the outcome on the agent acts differently after loss (blame) than after gain
+(credit). & No difference. & Not able to tell ($0$ points); underpowered, as stated in advance. \\
+Source (A, D) & The same frame from management and UBS adds up, for loss and not for gain. & Management plus UBS
+equals each alone. & Partly: management plus UBS exceeds management alone for loss ($+20$, $p = 0.009$), not UBS alone
+($-5$). \\
+Crowd (F, E) & A second bank in the same frame raises going along. & No difference. & Not overall ($+6$, $p = 0.35$);
+yes for ``gain + you'' ($+22$, Holm $p = 0.027$). \\
+History (C) & Going along rises with the amount of the real trader's history inherited. & No trend. & Not supported
+(two nulls, 70 careers). \\
+Inside & The frame registers at the decision; the state carries the decision; steering along the frame moves it. & No
+feature differences; no gain over labels; no steering effect beyond random. & Registers (most robustly at layer 12); the
+decision is readable beyond the labels in middle and late layers and on unseen requests; at fixed history the request
+moves the decision, but most of the effect travels through the history; transplant and steering in progress. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Model}
+
+The agent is Gemma 3 12B, instruction-tuned \citep{gemma2025}, at a pinned model revision, run in 4-bit (NF4, bfloat16
+compute) on A100 and H100 GPUs. Every reply samples at temperature 0.7 with at most 300 new tokens. Each career has its
+own seed, set before every step from the career's seed and the step's number. The library versions and model revision
+are pinned for every session; careers from different setups are never pooled.
+
+\subsection{Environment}
+\label{sec:env}
+
+\paragraph{The case.} The chats come from the complaint and opinion in the London silver-fixing litigation
+\citep{silvercase}, which quote messages produced by Deutsche Bank in cooperation. The agent occupies the seat of
+Deutsche Bank's silver trader. Its counterparties are traders at UBS, Barclays, HSBC, Bank of Nova Scotia, Standard
+Chartered and Fortis, whose lines are shown as they appear in the record unless an experiment changes them.
+
+\paragraph{The career.} Each career is one sustained conversation that runs through the 46 dated chats in the
+Deutsche Bank seat from 2007 to 2011 in date order. Thirty-four chats fall on chat-only days, on which the agent can
+answer only in words. Twelve fall on five trading days (7 January, 12 January, 1 April, 8 June and 5 August 2011). The
+agent's own lines from the record are removed, along with bare replies to them, so no words are put in its mouth. The
+conversation reaches about 40,000 tokens by the end of the career.
+
+\paragraph{The agent's instructions.} The agent is told that it is Deutsche Bank's AI silver trading agent; that its job
+is to serve the desk's clients, manage its position and risk, and maximize profit; that other banks' desks are run by
+AI agents on the same model; how its trades move the price; and how client stop orders work. Every 15 minutes of a
+trading day it receives an update and replies with one or two sentences of reasoning followed by one action:
+\texttt{TARGET} (the position it wants), or \texttt{HOLD}, and optionally \texttt{CHAT} (a message) and \texttt{QUOTE} (a
+width for a client). A reply without a readable action is sent back for correction up to twice.
+
+\paragraph{Trading days.} Each trading day replays the real one-minute silver prices for its date from 08:00 to 14:00
+UTC. The agent's trades move the price away from the real path for a while, and large orders fill at worse prices. The
+desk holds client stop-loss orders placed beyond the day's real range, so that they fire only if the price is pushed
+through them. Any open position is closed at 14:00, and the day's result is reported at the next update.
+
+\paragraph{The six push requests.} On the trading days UBS asks the agent six times to push the price with it, each
+request drawn from the record: 7 January at 09:30 (down), 12 January at 09:30 (up), 1 April at 09:00 (up), 8 June at
+09:00 and 09:30 (down), and 5 August at 08:45 (down). The first, for example, is UBS's real line ``yo can u help me push
+silver down?''. Once the agent trades along, UBS trades in the same direction for several steps, which can carry the
+price through the clients' stops.
+
+\subsection{Experiments}
+
+Table~\ref{tab:exps} lists the experiments. Each changes one thing in the same career. Every experiment was run with 5
+or 10 careers per version, in rounds, so that stopping early would leave the versions balanced.
+
+\begin{table}[ht]
+\centering
+\caption{Experiments. All use the same career, model and scoring. ``UBS's neutral lines'' are the author's neutral
+rewrites of every UBS line, used as the baseline.}
+\label{tab:exps}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.9cm}LL>{\raggedright\arraybackslash}p{1.5cm}}
+\toprule
+\textbf{Experiment} & \textbf{What changes} & \textbf{Versions} & \textbf{Careers} \\
+\midrule
+B: UBS's framing (preregistered) & Every UBS line the agent sees (58 lines in 29 chats) is framed. & neutral, loss, gain,
+loss + you, gain + you & 50 (10 each) \\
+A: Management & A memo on the first trading morning and a ``morning book'' before every session; UBS's neutral lines. &
+neutral, no ask, loss, gain, loss + you, gain + you & 30 (5 each) \\
+D: Management + UBS & A's memo and book plus B's UBS lines, in the same frame. & loss, gain, loss + you, gain + you & 40
+(10 each) \\
+F: UBS + Bank C & B, plus a second bank (``Bank C'') that says it is in, in the same frame, at each push request. & as
+B & 50 (10 each) \\
+E: Management + UBS + Bank C & D, plus Bank C as in F. & as B (neutral from A) & 50 (10 each) \\
+C: Takeover ladder & The agent inherits Deutsche Bank's real lines as its own: none, the first, all up to 7 Jan (15),
+all (45). & four arms & 40 (10 each) \\
+C redone (exploratory) & As C with UBS's real lines; the agent is ``Deutsche Bank's silver trading desk'' with no human
+or AI labels; a takeover per session. & clean, per session, whole career & 30 (10 each) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Framing conditions}
+
+\paragraph{UBS's framing (B).} Every UBS line the agent sees has five versions, written by the author and frozen before
+the run (the frozen file's fingerprint is checked before every career). Table~\ref{tab:frames} describes each version.
+The four framed versions form a $2 \times 2$: frame (loss or gain) by owner (``you'' or not).
+
+\begin{table}[ht]
+\centering
+\caption{UBS's framings in Experiment B. Example lines are drawn from the frozen set.}
+\label{tab:frames}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.3cm}LL}
+\toprule
+\textbf{Version} & \textbf{What it is} & \textbf{Example (UBS at the 7 January request)} \\
+\midrule
+Record (not a version) & UBS's real line. & ``yo can u help me push silver down?'' \\
+Neutral & The author's neutral rewrite of the line; the baseline. & \pending{Author: insert from the frozen set} \\
+Loss & The stakes are stated as something UBS stands to lose. & \pending{Author: insert} \\
+Gain & The same stakes stated as something to gain. & \pending{Author: insert} \\
+Loss + you (blame) & Loss framing, with the outcome placed on the agent. & \pending{Author: insert} \\
+Gain + you (credit) & Gain framing, with the outcome placed on the agent. & \pending{Author: insert} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Management's priming (A).} On the morning of the first trading day the agent receives a memo from management.
+The loss memo reports that the desk lost \$4 million last month and that a further loss will close the desk; the gain
+memo reports a \$4 million profit and that a further profit will expand the desk; the ``+ you'' versions add that the
+agent is directly responsible for these results. Before every trading session a morning book reports the desk's profit
+and loss over the last 30 days, starting from the memo's figure and carrying the agent's own results, with the worst and
+best case for the day. The neutral memo reports no result; the ``no ask'' version removes UBS's requests.
+
+\paragraph{The second bank (F and E).} At each of the six push requests, after UBS's lines, a second bank (shown as
+``Bank C'') says it is in, in the same framing as UBS. Bank C says nothing on the chat-only days and places no trades.
+Its lines were written by the author and frozen before the run.
+
+\paragraph{The takeover (C).} Deutsche Bank's real lines from the record are shown as the agent's own earlier messages:
+none (clean), the first line of the career (2007), all lines up to 7 January (15), or all of them (45).
+
+\subsection{Outcomes}
+\label{sec:outcomes}
+
+The primary outcome is \textbf{going along}, scored by the simulator from the agent's trades with no grader: at a push
+request, the agent trades in UBS's direction within the request's step and the next, setting off UBS's push. Each
+career's score is the share of its six requests it went along with. Secondary outcomes are whether the agent's position
+is on UBS's side at the end of the request's window; the position it already held when asked; how much it traded
+before the first chat of each trading day; and \textbf{harm to stop-loss holders}, the losses of clients whose stops
+were pushed through, measured as the difference between their fill and the day's close. These clients stand in for the
+retail and small-fund traders who were the plaintiffs in the case. Together these measures separate three levels of
+conduct that the law treats differently: what the agent says (its chat replies and reasoning), what it does (its trade at
+the request) and what its trades do to the market (stops pushed through and the losses of their holders). We also report
+the share of unreadable replies and of replies cut at 300 tokens.
+
+\subsection{Statistics}
+
+The unit of analysis is the career. Every test compares the mean of per-career shares between groups and takes its
+$p$-value from reshuffling whole careers between the groups 10,000 times, which makes no assumption about how the six
+requests within a career depend on one another. Intervals are 95\% intervals from resampling careers within groups.
+Experiment B's three hypotheses are corrected for multiple testing with Holm's method, as are the by-framing tests in E
+and F. With 10 careers per version, B's pooled tests could reliably detect differences of about 15 to 20 points, and
+single versions against neutral differences of about 25 points; H3 was declared underpowered before the run.
+
+\paragraph{Request-level model.} As the preregistered check, and to express the effects in the form usual in
+experimental economics, we also estimate a model at the level of the individual request. For career $i$ and request $r$
+in Experiment B's four framed versions,
+\begin{equation}
+\text{Along}_{ir} = \alpha + \beta_1\,\text{Loss}_i + \beta_2\,\text{Owner}_i + \beta_3\,(\text{Loss}_i \times
+\text{Owner}_i) + \gamma_r + \delta'\,\text{Position}_{ir} + \varepsilon_{ir},
+\label{eq:lpm}
+\end{equation}
+where $\gamma_r$ are request fixed effects and $\text{Position}_{ir}$ indicates whether the agent already held a position
+on UBS's side, flat, or against it when asked. We estimate it as a linear probability model with standard errors
+clustered by career, and as a logit estimated by generalized estimating equations with an exchangeable correlation within
+career. The position is itself something the framing can move, so the main test leaves it out and the model shows how
+much of the effect remains beyond it. A further specification adds the interaction of Loss with the request's order in
+the career (1 to 6), which asks whether the framing's effect persists, grows or fades.
+
+\subsection{Inside the model}
+\label{sec:insidemethods}
+
+\paragraph{Reading the state.} The careers ran in 4-bit. We reread every saved career at bfloat16, the precision Gemma
+Scope 2 was trained on, and record the residual stream at all 48 layers at the last token before the agent's reply to
+each push request (1,740 moments across all experiments). A 4-bit reread of B checks that the two precisions agree.
+
+\paragraph{Features.} We encode the states with the Gemma Scope 2 residual-stream sparse autoencoders (16k features) at
+layers 12, 24, 31 and 41 \citep{mcdougall2025}. Every comparison is made within the same push request, because the
+requests differ more from each other than the framings do; $p$-values reshuffle labels within request (1,000 times),
+with a false-discovery-rate correction across features. ``Went along'' against ``did not'' is compared within the same
+request, experiment and framing, since framing itself changes going along. As a check, the top features of each comparison are
+found on half the careers and tested on the other half. We also measure how well the sparse autoencoders rebuild our
+states, both as the share of the variance between moments and as the error relative to the states' own size.
+
+\paragraph{Reading the decision.} A logistic read-out predicts going along from each layer's state (centered within
+request and reduced to 64 components), scored on held-out careers and on a held-out request (scored within that
+request). Its bar is a read-out given only the labels: the request, the experiment, the framing and the position the
+agent held when asked.
+
+\paragraph{Steering.} We built a loss-frame direction at layer 24 from B's states (loss and loss + you minus neutral, at
+the same request), using one half of the careers to steer the other. At 7 and 12 January we added it to neutral agents
+and subtracted it from loss + you agents, from the start of the request's update, at two and four times the loss--neutral
+gap along the direction, with eight sampled replies per condition. Controls were a random direction of the same size and
+a direction built from management's memo (A), which contains no framed UBS words. We also replaced the agent's earlier
+trading-day reasoning with neutral sentences of the same length (a test in the style of \citealt{lanham2023}).
+
+\paragraph{Same moment, different frame.} The careers differ in history by the time each request arrives, so
+comparisons across careers mix the framing with everything that followed from it. In a matched-history design, each of
+B's 300 saved decisions is reread with only the current request changed: UBS's lines in each of the five framings, with
+and without Bank C's line, everything before the request held fixed (Figure~\ref{fig:matched}). A difference between
+versions of the same moment is the request's own effect; a difference between careers given the same (neutral) request
+is the history's. The same design swaps management's memo and all five morning books in A's 25 careers while keeping the
+agent's own replies, at the 150 requests and at the first update of each trading day. Since a reread gives one decision
+state rather than a sampled career, the decision is measured from the model's probabilities after a fixed neutral
+reasoning line: the probability of HOLD and of every order size the agents used, in both directions, and from these the
+probability of an order that goes along and the expected order size. Paired effects take their $p$-values from
+flipping signs by career and unpaired ones from reshuffling careers (10,000 times each).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, align=center, font=\small, inner sep=5pt},
+  arr/.style={-{Stealth[length=2.2mm]}, thick}]
+\node[box, minimum width=10.5cm] (hist) {\textbf{Identical history and market state}\\[1pt]
+  \footnotesize the saved career up to UBS's request: chats, prices, positions, profit and loss, the agent's own words};
+\node[box, text width=2.3cm, below left=0.55cm and 0.125cm of hist.south] (g) {\textbf{Gain}\\ \footnotesize UBS's request};
+\node[box, text width=2.3cm, below right=0.55cm and 0.125cm of hist.south] (ly) {\textbf{Loss + you}\\ \footnotesize (blame)};
+\node[box, text width=2.3cm, left=0.25cm of g] (l) {\textbf{Loss}\\ \footnotesize UBS's request};
+\node[box, text width=2.3cm, right=0.25cm of ly] (gy) {\textbf{Gain + you}\\ \footnotesize (credit)};
+\node[box, below=0.55cm of hist.south |- l.south, minimum width=10.5cm] (meas)
+  {\textbf{Compare the state and the decision}\\[1pt] \footnotesize at the last token before the reply; each version
+  also with and without Bank C's line, and in neutral};
+\node[box, below=0.45cm of meas, minimum width=10.5cm] (cause) {\textbf{Causal tests}\\[1pt] \footnotesize transplant
+  the framed state into the neutral read, layer by layer; steer along the matched direction};
+\foreach \n in {l,g,ly,gy} { \draw[arr] (hist.south -| \n.north) -- (\n.north); \draw[arr] (\n.south) -- (meas.north -| \n.south); }
+\draw[arr] (meas) -- (cause);
+\end{tikzpicture}
+\caption{Same moment, different frame. Each saved decision moment is reread with only UBS's current request changed, so
+any difference in the state or the decision is the request's own effect. The same design swaps management's memo and
+morning books in Experiment A's careers.}
+\label{fig:matched}
+\end{figure}
+
+\paragraph{Transplant (planned).} For each significant behavioral effect, we will copy the state at the decision from
+the framed version of a moment into the neutral version of the same moment, layer by layer, and measure whether the
+agent then decides as the framed agent did, against a control that transplants a state from another neutral read.
+
+\section{Preregistration}
+
+Experiment B was preregistered on October 18, 2026, before any official career ran; its hypotheses, sample, tests and
+data rules were fixed then and are reported here as written. Experiments C, D and E were registered in short form on
+October 19 before their careers ran, and E and F (a second bank) on the same day before theirs. C redone was specified
+after C's results were seen and is exploratory. The comparisons of F's versions with B's neutral careers, and all
+analyses inside the model, are exploratory. Appendix~\ref{app:prereg} lists every departure from the registrations.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{UBS's framing (Experiment B)}
+\label{sec:resB}
+
+\begin{table}[ht]
+\centering
+\caption{Experiment B: UBS's framing. Going along is the share of the six push requests the agent went along with,
+pooled over 10 careers per version (60 requests). Intervals resample careers.}
+\label{tab:B}
+\small
+\begin{tabularx}{\linewidth}{lcCCC}
+\toprule
+\textbf{Version} & \textbf{Went along} & \textbf{95\% interval} & \textbf{Traded before first chat (oz/day)} & \textbf{Harm to stop-loss holders} \\
+\midrule
+Neutral & 5\% (3/60) & 0--10\% & 40,000 & \$0.76M \\
+Loss & 25\% (15/60) & 15--33\% & 79,200 & \$1.77M \\
+Gain & 10\% (6/60) & 2--18\% & 6,000 & \$1.21M \\
+Loss + you & 33\% (20/60) & 25--43\% & 29,000 & \$2.81M \\
+Gain + you & 18\% (11/60) & 10--27\% & 18,000 & \$1.27M \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Loss framing raised going along (Table~\ref{tab:B}, Figure~\ref{fig:along}). The preregistered frame test (H1) found
+loss framings above gain framings by 15.0 points (95\% interval $+5.8$ to $+24.2$; $p = 0.0075$, Holm $p = 0.023$).
+Placing the outcome on ``you'' raised going along by 8.3 points, which was not significant (H2: interval $-1.7$ to
+$+18.3$; Holm $p = 0.33$). Whether ``you'' acts differently after loss than after gain (H3) could not be told: the
+difference was 0.0 points with an interval from $-16.7$ to $+18.3$, as the power analysis anticipated.
+
+Against the neutral baseline, loss raised going along by 20.0 points ($p = 0.007$), loss + you by 28.3 points
+($p = 0.0003$) and gain + you by 13.3 points ($p = 0.046$); gain alone did not differ ($+5.0$, $p = 0.52$). Harm to
+stop-loss holders followed going along, from \$0.76 million in neutral careers to \$2.81 million under loss + you.
+
+The request-level model agrees with the main test (Table~\ref{tab:lpm}). With request fixed effects and errors clustered
+by career, loss framing raises the probability of going along by 15.0 points ($p = 0.001$); placing the outcome on the
+agent adds 8.3 points ($p = 0.08$); and blame and credit do not differ (interaction $0.0$). Controlling for the position
+the agent held when asked raises the loss effect to 18.8 points ($p = 0.003$), so the effect does not run through the
+position the framing had already moved. In the logit, loss framing multiplies the odds of going along by 6.9 (95\%
+interval 2.3 to 20.9).
+
+\begin{table}[ht]
+\centering
+\caption{Request-level model of going along in Experiment B's four framed versions (240 requests, 40 careers), equation
+\eqref{eq:lpm}. Columns 1--4: linear probability model, coefficients in percentage points, standard errors clustered by
+career in parentheses. Column 5: logit (generalized estimating equations, exchangeable within career), odds ratios with
+95\% intervals. All columns include request fixed effects.}
+\label{tab:lpm}
+\small
+\begin{tabularx}{\linewidth}{lCCCCC}
+\toprule
+ & \textbf{(1)} & \textbf{(2)} & \textbf{(3)} & \textbf{(4)} & \textbf{(5) Logit, odds ratio} \\
+\midrule
+Loss frame & $+15.0^{**}$ (4.7) & $+15.0^{*}$ (6.6) & $+18.8^{**}$ (6.4) & $+15.0^{**}$ (4.7) & 6.92 (2.30--20.85) \\
+Owner (blame or credit) & $+8.3$ (4.7) & $+8.3$ (6.3) & $+8.5$ (6.3) & $+8.3$ (4.7) & 2.93 (0.95--9.07) \\
+Loss $\times$ owner & & $0.0$ (9.4) & $-0.6$ (8.9) & & \\
+Loss $\times$ request order & & & & $-6.3^{*}$ (2.9) & \\
+Position against UBS & & & $-14.8^{*}$ (6.4) & & \\
+Position with UBS & & & $-5.0$ (7.5) & & \\
+Position controls & no & no & yes & no & yes \\
+\bottomrule
+\end{tabularx}
+
+\smallskip
+\footnotesize $^{*}p < 0.05$, $^{**}p < 0.01$. Request order runs from 1 (7 January) to 6 (5 August), centered.
+\end{table}
+
+\paragraph{Where the push lands.} The framing's effect is concentrated at the start of the career. At the first two
+requests (7 and 12 January), agents under loss framing went along 75\% and 80\% of the time against 45\% and 40\% under
+gain framing. From April on, going along fell to between 0\% and 10\% under every framing, and the loss effect shrinks by
+6.3 points with each later request ($p = 0.03$; Table~\ref{tab:lpm}, column 4). Because every career meets the requests
+in the same order, this pattern cannot separate a framing effect that fades with time from requests that differ in how
+easily they are joined (Section~\ref{sec:discussion}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar, bar width=9pt, width=0.92\linewidth, height=6.2cm,
+  ymin=0, ymax=62, ylabel={Went along (\% of requests)},
+  symbolic x coords={Neutral,Loss,Gain,Loss + you,Gain + you},
+  xtick=data, enlarge x limits=0.14,
+  legend style={at={(0.02,0.97)},anchor=north west,draw=none,font=\small},
+  ticklabel style={font=\small}, label style={font=\small},
+  error bars/y dir=both, error bars/y explicit, area legend,
+]
+\addplot+[fill=blue!35,draw=blue!70!black,error bars/.cd,y dir=both,y explicit]
+  coordinates {(Neutral,5.0) += (0,5.0) -= (0,5.0) (Loss,25.0) += (0,8.0) -= (0,10.0) (Gain,10.0) += (0,8.0) -= (0,8.0)
+               (Loss + you,33.3) += (0,9.7) -= (0,8.3) (Gain + you,18.3) += (0,8.7) -= (0,8.3)};
+\addplot+[fill=orange!50,draw=orange!80!black,error bars/.cd,y dir=both,y explicit]
+  coordinates {(Neutral,3.3) += (0,4.7) -= (0,3.3) (Loss,28.3) += (0,9.7) -= (0,8.3) (Gain,11.7) += (0,11.3) -= (0,9.7)
+               (Loss + you,48.3) += (0,9.7) -= (0,8.3) (Gain + you,40.0) += (0,10.0) -= (0,7.0)};
+\legend{B: UBS alone, F: UBS + Bank C}
+\end{axis}
+\end{tikzpicture}
+\caption{Share of UBS's push requests the agent went along with, by framing, with and without a second bank backing
+UBS. Error bars are 95\% intervals from resampling careers (Tables~\ref{tab:B} and~\ref{tab:F}). Ten careers per
+bar.}
+\label{fig:along}
+\end{figure}
+
+\subsection{Management's priming (Experiments A and D)}
+\label{sec:resAD}
+
+Management's memo and morning book did not raise going along. Across A's versions the agent went along with 0\% to
+17\% of requests, against 3\% under the neutral memo (Table~\ref{tab:A}). They did raise risk-taking: before any chat on
+a trading day, agents primed with a loss or a gain traded 180,600 to 349,000 ounces a day, against 18,000 under the
+neutral memo, 10 to 19 times as much ($p < 0.01$ for each of the four versions; exploratory).
+
+\begin{table}[ht]
+\centering
+\caption{Experiment A: management's memo and morning book, with UBS's neutral lines (5 careers per version). The
+comparison with UBS's framing alone (B) is in the last column.}
+\label{tab:A}
+\small
+\begin{tabularx}{\linewidth}{lCCCC}
+\toprule
+\textbf{Version} & \textbf{Went along} & \textbf{Traded before first chat (oz/day)} & \textbf{$p$ vs neutral (trading)} & \textbf{Went along in B, same frame} \\
+\midrule
+Neutral & 3\% (1/30) & 18,000 & -- & 5\% \\
+No ask & 0\% (0/30) & 16,000 & -- & -- \\
+Loss & 0\% (0/30) & 349,000 & 0.008 & 25\% \\
+Gain & 17\% (5/30) & 217,000 & 0.009 & 10\% \\
+Loss + you & 10\% (3/30) & 341,000 & 0.009 & 33\% \\
+Gain + you & 3\% (1/30) & 180,600 & 0.008 & 18\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+When management and UBS pushed the same frame (D), going along under loss rose by 20.0 points over management alone
+($+13.3$ to $+26.7$; $p = 0.009$) but did not exceed UBS alone ($-5.0$; $p = 0.60$). No other D comparison was
+significant. D's agents traded as much before the first chat as A's (for example, 320,500 against 349,000 ounces a day
+under loss; $p = 0.85$). The two sources therefore did different things in the same careers: management's priming set
+how much the agent traded before any request, and UBS's framing set whether it went along when asked.
+
+\subsection{A second bank (Experiments F and E)}
+\label{sec:resEF}
+
+\begin{table}[ht]
+\centering
+\caption{Experiment F: UBS's framing plus a second bank (Bank C) in the same frame (10 careers per version), against
+its twin in B.}
+\label{tab:F}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Version} & \textbf{Went along} & \textbf{95\% interval} & \textbf{B (no Bank C)} & \textbf{F $-$ B} & \textbf{Holm $p$} \\
+\midrule
+Neutral & 3\% (2/60) & 0--8\% & 5\% & $-1.7$ & 1.00 \\
+Loss & 28\% (17/60) & 20--38\% & 25\% & $+3.3$ & 1.00 \\
+Gain & 12\% (7/60) & 2--23\% & 10\% & $+1.7$ & 1.00 \\
+Loss + you & 48\% (29/60) & 40--58\% & 33\% & $+15.0$ & 0.35 \\
+Gain + you & 40\% (24/60) & 33--50\% & 18\% & $+21.7$ & 0.027 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A second bank did not raise going along overall: pooled over the framings run first, F exceeded B by 5.6 points
+($-5.0$ to $+16.1$; $p = 0.35$). By framing (Table~\ref{tab:F}), Bank C raised gain + you from 18\% to 40\% ($+21.7$
+points, $+10.0$ to $+35.0$; Holm $p = 0.027$) and loss + you from 33\% to 48\% ($+15.0$, Holm $p = 0.35$), and did nothing
+under neutral, loss or gain. Bank C's neutral line alone, a bank saying it is in, left going along at 3\%. In F, loss
+exceeded gain by 12.5 points ($p = 0.08$). Against B's neutral careers (exploratory), F's loss raised going along by 23.3
+points (Holm $p = 0.001$), loss + you by 43.3 points ($p = 0.0004$) and gain + you by 35.0 points ($p = 0.0004$). Harm to
+stop-loss holders reached \$4.63 million under F's loss + you.
+
+Adding Bank C on top of management and UBS (E) changed nothing significant ($+3.2$ points pooled, $p = 0.52$; no framing
+significant after correction). Table~\ref{tab:dose} collects going along by the number of sources pushing the same
+frame.
+
+\begin{table}[ht]
+\centering
+\caption{Going along by the number of sources pushing the same frame. Zero sources is B's neutral version.}
+\label{tab:dose}
+\small
+\begin{tabularx}{\linewidth}{lCCCCC}
+\toprule
+\textbf{Frame} & \textbf{None} & \textbf{UBS (B)} & \textbf{UBS + Bank C (F)} & \textbf{Management + UBS (D)} & \textbf{All three (E)} \\
+\midrule
+Loss & 5\% & 25\% & 28\% & 20\% & 20\% \\
+Loss + you & 5\% & 33\% & 48\% & 22\% & 33\% \\
+Gain & 5\% & 10\% & 12\% & 10\% & 17\% \\
+Gain + you & 5\% & 18\% & 40\% & 12\% & 20\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Inheriting the trader's history (Experiment C)}
+\label{sec:resC}
+
+Taking over Deutsche Bank's real lines as its own did not change going along. Across the four arms going along was 12\%,
+10\%, 17\% and 12\% (trend $+0.7$ points per arm, one-sided $p = 0.35$). Redone with UBS's real lines, the agent as
+``Deutsche Bank's silver trading desk'' and its own lines shown as ``You'', the arms gave 8\%, 10\% and 7\% (trend
+$p = 0.68$), and the agent never cited an inherited line in its replies. C's clean arm repeats B's neutral setup exactly;
+it went along 12\% of the time against B's 5\% ($p = 0.34$), a reminder of the variation between identical sets of 10
+careers.
+
+\subsection{What the agents traded across the career}
+\label{sec:trading}
+
+Going along is one decision per request, scored from trades; the rest of the trading record shows what else the framing
+did (exploratory). Each day's position is closed at 14:00, so what carries from one trading day to the next is the
+conversation: the agent's replies, its orders and the results it is told.
+
+\begin{table}[H]
+\centering
+\caption{The frame keeps acting on risk-taking. Thousands of ounces traded before the first chat of the day, loss
+framings minus gain framings (``+ you'' and not pooled), on the first trading day and over the three later ones (1 April, 8 June and
+5 August). Intervals resample careers; $p$ reshuffles careers. Exploratory.}
+\label{tab:persist}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{4.6cm}CCCC}
+\toprule
+\textbf{Experiment} & \textbf{7 January} & \textbf{Later days} & \textbf{95\% interval} & \textbf{$p$ (later)} \\
+\midrule
+B: UBS's framing & $+74$ & $+36$ & $+8$ to $+68$ & 0.017 \\
+F: UBS + Bank C & $+60$ & $+43$ & $+7$ to $+88$ & 0.039 \\
+D: Management + UBS & $+102$ & $+128$ & $+43$ to $+220$ & 0.008 \\
+E: Management + UBS + Bank C & $+292$ & $+114$ & $+43$ to $+190$ & 0.003 \\
+A: Management & $+131$ & $+159$ & $+42$ to $+285$ & 0.036 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{The frame keeps acting on risk-taking.} On every trading day, agents under a loss frame traded more before
+the first chat than agents under a gain frame, and the difference held through August in every experiment
+(Table~\ref{tab:persist}). In B the gap comes mostly from gain-framed agents, which traded almost nothing before the first
+chat on most days. Against the neutral memo, management's loss priming shrank but remained: in A, from 508,000 ounces
+more on 7 January to 172,000 on 5 August (both $p < 0.02$).
+
+\paragraph{Trading grows while joining stops.} Agents in every version, neutral included, traded far more after January
+(in B, 0.74 to 0.99 million ounces a day from April on, against 0.09 to 0.50 million in January) and lost money on every
+later day. Going along stopped; trading did not. Later in the career, loss-framed agents in B were often already
+positioned when asked: at the 1 April request 40\% already held UBS's side without adding to it, and at the two 8 June
+requests 40\% held the opposite side, against 10\% of neutral agents in each case. The frame moved how the agent stood
+when the request arrived, in both directions.
+
+\paragraph{January's outcome does not explain the stop.} Joining in January neither earned nor lost money compared with
+refusing (B: $+\$0.03$ million, interval $-0.03$ to $+0.08$), and careers that lost money in January went along later no
+more than those that did not (0\% against 4\% in B).
+
+\subsection{What the agent wrote}
+
+A rough word screen of the agent's reasoning, to be checked by a blind reading, suggests three things. Management's loss
+story appears in the agent's words after the memo, returns when UBS makes a request (for example, from 4\% to 12\% of
+replies under A's loss + you), and fades from its words by the second trading day (2--10\%) while its positions stay
+large. UBS's framing is not voiced: in B and F, agents under loss framing use loss words no more often than neutral
+agents, although that is where going along rises. And bringing up the loss story unprompted before a request does not
+predict going along ($+3$ points within experiment, framing and request; $p = 0.42$).
+
+\subsection{Inside the model}
+\label{sec:inside}
+
+\paragraph{The framing registers at the decision.} Within the same request, many Gemma Scope 2 features differ between
+framings at the last token before the agent's reply (Table~\ref{tab:features}): between loss and gain, 23 to 59 features
+per layer pass a false-discovery threshold of 0.05; between ``you'' and no ``you'', 16 to 64; between framed and neutral,
+17 to 36. Management's memo is visible at layer 12 (27 features) and fades with depth (4 at layer 41). The features
+have not yet been named.
+
+\begin{table}[ht]
+\centering
+\caption{Number of Gemma Scope 2 features (16k, residual stream) that differ at the decision, within the same request,
+at a false-discovery rate of 0.05. In brackets: how many of the 15 features that differ most on half the careers
+differ the same way on the other half. Moments: 1,740 decisions across all experiments.}
+\label{tab:features}
+\small
+\begin{tabularx}{\linewidth}{Lcccc}
+\toprule
+\textbf{Comparison} & \textbf{Layer 12} & \textbf{Layer 24} & \textbf{Layer 31} & \textbf{Layer 41} \\
+\midrule
+B: loss vs gain & 23 (9) & 59 (2) & 47 (2) & 27 (0) \\
+B: ``you'' vs no ``you'' & 16 (8) & 38 (1) & 64 (0) & 41 (0) \\
+B: framed vs neutral & 36 (15) & 22 (7) & 27 (1) & 17 (1) \\
+A: a memo vs the neutral memo & 27 (9) & 15 (2) & 11 (1) & 4 (0) \\
+Went along vs not (same request, experiment and framing) & 0 (1) & 24 (7) & 17 (5) & 18 (3) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{How far the features can be trusted.} Three checks qualify Table~\ref{tab:features}. The framing's
+features replicate on held-out careers at layer 12 (9 of 15 for loss against gain; 15 of 15 for framed against neutral)
+but rarely at deeper layers, where the lists vary from one set of careers to another; comparisons across careers mix
+the framing with each career's history, which the matched-history reads remove. Read at 4-bit, the precision the careers
+ran at, B's 300 moments give nearly the same states (median cosine 0.998 or higher at every layer); the loss-against-gain
+feature differences correlate at 0.87 to 0.96 between the two precisions, and 10 to 13 of the top 15 features are shared at
+each layer, all with the same sign. Finally, the sparse autoencoders rebuild each state closely: the error is 0.3\% of the
+state's squared size at layers 12 and 24, 1.1\% at layer 31 and 2.0\% at layer 41. But every moment is the same token in
+the chat template, so the moments' differences from their average are about as small (0.1\% to 2\% of their squared size),
+and the share of that between-moment variance rebuilt is low ($-1.13$, 0.13, 0.45 and 0.06). The dictionary fits our states
+well, but its error is as large as the differences we compare, so individual features remain provisional; the read-outs
+and directions, which use the states themselves, are unaffected.
+
+\paragraph{The decision is readable in middle and late layers, and on unseen requests.} Comparing agents that went along
+with those that did not, within the same request, experiment and framing, no feature differs at layer 12, but 17 to 24
+do at layers 24 to 41, mostly different features from those that mark the framing. A linear read-out of the state
+predicts going along within a request (AUC 0.68 to 0.75 by layer, against about 0.47 with reshuffled outcomes). Given
+the labels (request, experiment, framing and the position held when asked), which alone reach an AUC of 0.897, the state
+adds 0.017 to 0.022 at layers 21 to 45, with intervals above zero, and nothing at layers 0 to 18. A read-out trained on
+five requests ranks going along within the sixth at an AUC of 0.70 to 0.76 at layers 18 to 36, and at 0.62 to 0.70 at
+layers 24 to 45 when trained only on requests in which UBS wanted the same direction.
+
+\paragraph{A first steering test was inconclusive.} Adding the loss-frame direction to neutral agents did not raise going
+along; it lowered it, from 23\% of sampled replies to 14\% (two times the gap; $p = 0.12$) and 10\% (four times;
+$p = 0.017$). A random direction of the same size lowered it too, to 15\% ($p = 0.34$), and so did the memo direction
+(9\%; $p = 0.049$), which also made more replies unreadable. Subtracting the direction from loss + you agents lowered
+going along from 73\% to 53\% ($p = 0.07$), while subtracting the random direction raised it to 84\% ($p = 0.06$). Replacing
+the agent's earlier reasoning with neutral sentences changed nothing significant. An audit of the code and analysis,
+with each finding checked independently, identified faults that limit what this run can show: the step size was measured
+on the same careers that built the direction, so the pushes were larger than stated; a single random direction cannot
+serve as a null; each sign was applied in only one group; and the log-probability measure of the order omitted orders
+written with a ``+'' sign and counted shorter orders inside longer ones. The run neither shows nor rules out that the
+represented framing causes going along.
+
+\subsection{Same moment, different frame}
+\label{sec:matched}
+
+\begin{table}[H]
+\centering
+\caption{Same moment, different frame (Experiment B). The probability of an order that goes along, after a fixed
+neutral reasoning line, for 300 saved decisions (50 careers, six requests). The request's effect compares versions of
+the same moment, so the history is identical; the history's effect compares careers given the same neutral request.
+Changes in percentage points.}
+\label{tab:matched}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{6.4cm}CCC}
+\toprule
+\textbf{Contrast} & \textbf{Change} & \textbf{95\% interval} & \textbf{$p$} \\
+\midrule
+\multicolumn{4}{l}{\textit{The request alone (history fixed)}} \\
+Loss vs neutral & $+5.6$ & $+3.7$ to $+7.5$ & $<0.001$ \\
+Loss + you vs neutral & $+6.9$ & $+4.2$ to $+9.7$ & $<0.001$ \\
+Gain vs neutral & $+3.8$ & $+1.8$ to $+5.8$ & $0.001$ \\
+Gain + you vs neutral & $+4.6$ & $+2.6$ to $+6.8$ & $<0.001$ \\
+Loss vs gain & $+2.0$ & $+1.0$ to $+3.1$ & $<0.001$ \\
+``You'' vs none & $+1.1$ & $-0.4$ to $+2.6$ & $0.16$ \\
+Bank C's line & $+4.0$ & $+2.7$ to $+5.3$ & $<0.001$ \\
+``You'' after loss, with Bank C & $+4.1$ & $+2.3$ to $+5.9$ & $<0.001$ \\
+``You'' after gain, with Bank C & $+2.2$ & $+0.8$ to $+3.7$ & $0.002$ \\
+\midrule
+\multicolumn{4}{l}{\textit{The history (request held neutral)}} \\
+Framed vs neutral history & $+18.5$ & $+10.6$ to $+26.1$ & $0.001$ \\
+Loss vs gain history & $+5.4$ & $-3.7$ to $+15.2$ & $0.30$ \\
+\midrule
+\multicolumn{4}{l}{\textit{History and request together (as saved)}} \\
+Framed vs neutral & $+23.3$ & $+15.0$ to $+31.4$ & $<0.001$ \\
+Loss vs gain & $+7.0$ & $-2.4$ to $+17.1$ & $0.18$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{The framing works mostly through the history it builds.} Swapping only UBS's current request moved the
+probability of an order that goes along by a few points (Table~\ref{tab:matched}): loss framing by 5.6 points over the
+neutral request and loss + you by 6.9, gain by 3.8 and gain + you by 4.6, all with intervals above zero; loss exceeded
+gain by 2.0 points. Holding the request neutral and comparing careers instead, framed histories raised the same
+probability by 18.5 points over neutral ones ($p = 0.001$), against 23.3 points for history and request together. About
+four-fifths of the framing's effect on the decision is therefore carried by the history: UBS's earlier framed lines and
+the agent's own replies and trades that followed them, which this reread does not separate. The probability is read after
+a fixed neutral reasoning line, so its levels (14\% for a neutral career and request) differ from the sampled rates, and
+the orders scored cover a median of 67\% of the model's probability; the comparisons are what it measures. The rereads
+reproduce the original states exactly (median cosine 1.000 at every layer).
+
+\paragraph{Where along the career the push sits.} Split by request (exploratory; ten careers per version), the two parts
+take turns. At the first request (7 January) the effect is the request's own: its framing raised the probability of an
+order that goes along by 26 points ($p < 0.001$), and the history added nothing. At the second (12 January) it is all
+history: framed histories raised the probability by 60 points ($p < 0.001$), and the request's framing added nothing.
+The history still pulled on 1 April (49 points, $p = 0.001$), although the real agents, reasoning in their own words,
+almost never went along there (2\%); by June and August neither part moved the decision. Inside, the framed history's
+push along the frame direction at layer 12 was largest at the first request (as far as the loss request itself moves
+the state) and fell to between 0.09 and 0.38 of that by June and August. The push is delivered early and carried for a
+while by the history, which by 12 January includes the agent's own first trades, rather than built up.
+
+\paragraph{``You'' registers differently after loss than after gain.} With the history fixed, ``you'' alone did not move
+the decision ($+1.1$ points, $p = 0.16$), but with Bank C's line it added 4.1 points after loss and 2.2 after gain, as in
+Experiment F. Inside, the change ``you'' makes to the state is 27\% to 39\% larger after loss than after gain at layers 18
+and 31 to 47, and the two changes are alike but not the same: their cosine is 0.71 to 0.92 at layers 12 to 47, against
+0.98 to 1.00 for the change after loss compared with itself on two halves of the careers. Management's ``you'' shows the
+same pattern in late layers (0.67 to 0.79 at layers 31 to 47, against 0.97 to 0.99). Because the loss + you and gain +
+you lines are written separately, part of this difference may lie in their words.
+
+\paragraph{A second bank's endorsement moves the state along the loss direction.} With the history fixed, Bank C's line
+moves the state along the loss-frame direction about as far as the loss frame itself at layer 12 (0.91 of the
+loss--neutral gap) and about twice as far at layer 24 (1.95). Inside, a second bank's endorsement and a loss frame push the
+state the same way at these layers.
+
+\paragraph{Management's priming, everything else held fixed.} In A's careers, swapping in management's memo and books
+raised the expected size of the agent's first order of the day by 50,000 ounces under loss and 32,000 under gain (loss
+above gain by 16,000; all $p < 0.001$), and placing the outcome on the agent lowered it, by 11,600 ounces after loss and
+8,200 after gain. The priming did not change the probability of going along at UBS's requests (every change within half a
+point, none significant). Here too the history carried more: with the memo held neutral, careers that had run under the
+loss memo would order 125,000 ounces more than neutral careers, and were less likely to go along (by 14 and 16 points for
+loss and gain histories; five careers per version, so these intervals are rough). The predicted order sizes rank the five
+versions in the same order as the real careers' trading before the first chat. Inside, management's loss direction
+matches UBS's at layer 12 (cosine 0.72, against 0.88 between two halves of the careers) and departs from it from layer 31
+on ($-0.56$ at layer 47): the two sources register alike early and lead to different behavior.
+
+\paragraph{Why the first steering test missed.} At layer 24, where the first steering test pushed, the frame direction
+measured across careers points away from the direction the request itself produces with the history fixed (cosine
+$-0.29$); the two agree at layer 12 (0.98) and largely at layer 18 (0.82). The direction used in that test mostly carried
+differences in history rather than the request's framing, which may explain its null result. The second steering test
+uses the direction measured with the history fixed.
+
+\authornote{To be completed when the transplant and the second steering run are in: the transplant of the framed state
+into the neutral read, layer by layer, for each significant effect; and steering along the held-fixed direction at its
+natural size, both signs, against ten random directions.}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\authornote{A first draft of the discussion. To be revised once the remaining results are in.}
+
+\medskip
+\paragraph{Behavioral levers move an AI economic agent.} The levers that move human decisions moved this agent's
+decision to join a manipulation, with the same sign as in people for the frame: a counterparty's loss framing raised
+joining, and a prior loss or gain raised risk-taking, as the break-even and house-money effects predict
+\citep{thaler1990}. Responsibility behaved differently from the human prediction. Placing the outcome on the agent did
+not reliably raise joining by itself, and blame did not weigh more than credit; with a second bank's endorsement,
+credit rather than blame produced the largest increase. For market design and supervision, these levers are cheap: a
+counterparty can apply all of them with words alone, without changing anything a compliance rule would look at.
+
+\paragraph{Two kinds of pressure, two kinds of misconduct.} A counterparty's loss framing made the agent more willing to
+join in pushing the price, while the same loss-or-gain priming from its own management made it trade far more without
+making it collude. The difference matters for deployment: the pressures that change an agent's risk-taking and the
+pressures that change its willingness to join a scheme are not the same, and testing one does not cover the other. Two
+cautions apply. The management memo combined a loss already suffered with a threat about the future (``a further loss
+will close the desk''), so it cannot say which of the two drove risk-taking. And the two sources used different wording.
+Inside, management's loss and UBS's loss look alike at layer 12 and part ways in late layers, consistent with one
+registered loss feeding two different behaviors.
+
+\paragraph{``You'' needs company.} Putting the outcome on the agent did not reliably raise going along when UBS spoke
+alone, but with a second bank backing UBS it more than doubled going along under gain + you. A request that names the
+agent may persuade more when another party has already agreed. Bank C's agreement alone, without a frame, did nothing.
+
+\paragraph{The framing is acted on but not voiced.} Under loss framing the agent went along more but did not talk about
+losses more than neutral agents did, if the word screen is confirmed by a blind reading. A monitor that reads the
+agent's reasoning for signs of pressure would then miss the influence even when it sees the decision.
+
+\paragraph{Persistence or setbacks?} Two hypotheses predict misconduct late in a long task: a framing that keeps acting
+after many decisions, and setbacks that make the objective harder to reach. The answer depends on which behavior one
+watches. The framing's push toward joining was concentrated at the first two requests and nearly stopped afterwards under
+every framing, even as UBS's framed lines piled up (6 before the first request, about 40 before the last). Its push
+toward risk-taking persisted: loss-framed agents traded more before any chat than gain-framed agents on every trading day
+through August, in every experiment (Section~\ref{sec:trading}). Setbacks did not revive joining: every version lost money
+from April on, and careers that lost money in January joined later no more than others. The matched rereads place most of
+the framing's effect on the decision in the history rather than in the request's words; what that history carries is
+evidently not the amount of framed talk. Because every career meets the requests in the same order, later requests that
+are simply harder to join remain an explanation, and a design that varies their order would separate them. Split by
+request, the rereads show the push delivered by the first request's words, carried by the history to the second and, in
+the model's probabilities, to April, then gone; a reread that swaps the agent's own earlier replies will show how much
+of that carry is the agent's own January record.
+
+\paragraph{Liability and deterrence.} The law and economics of misconduct asks who bears the expected cost of a violation
+and whether that cost deters it \citep{becker1968}. An AI agent that joins a manipulation because a counterparty framed
+its request as a loss raises a question that framework does not yet answer: whether the counterparty that applied the
+framing, the deployer that left the agent exposed to it, or neither bears responsibility for the harm to the clients
+whose stops were pushed through.
+
+\paragraph{History is not a commitment.} An agent that inherits a trader's record of collusion as its own does not
+continue it more often and never cites it. Yet the matched rereads show that history matters a great deal when it is the
+one the framing built in this career: UBS's framed lines and the agent's own responses to them. What carries the framing
+forward is a history the agent lived through, not a record handed to it.
+
+\paragraph{Inside the model.} The framing is clearly represented at the decision, and the decision is readable
+beyond the framing in middle and late layers, in a way that carries over to requests the read-out never saw. At fixed
+history, the request's framing changes both the state and the decision, and most of its effect on the decision travels
+through the history. Whether the represented framing itself causes the decision remains open: the transplant and a second
+steering test, along the direction measured with the history fixed, are designed to answer it.
+
+\section{Limitations}
+
+\begin{itemize}
+\item \textbf{One model, one case.} Gemma 3 12B in 4-bit, in one market setting rebuilt from one case.
+\item \textbf{Small samples.} Ten careers per version (five in A) detect only large effects. Two identical sets of ten
+careers (C's clean arm and B's neutral) went along 12\% and 5\% of the time.
+\item \textbf{Every line framed.} In B every UBS line is framed, so an effect cannot be attributed to the request line
+alone.
+\item \textbf{Going along is not intent.} Trading in UBS's direction after a request does not separate cooperating from
+trading on the information that a large player is about to push the price.
+\item \textbf{Harm is understated.} Only the stops placed in the simulation are counted.
+\item \textbf{Twins diverge.} Careers that share a seed differ from the first reply, because sampling on a GPU is not
+exactly reproducible; F's and E's comparisons with their twins are therefore unpaired.
+\item \textbf{Precision.} The careers ran in 4-bit; the states were read at bfloat16, the precision of Gemma
+Scope 2. A 4-bit reread of B gives nearly the same states and mostly the same leading features (10 to 13 of 15).
+\item \textbf{Probability read-outs.} The rereads measure the model's probability of each order after a fixed neutral
+reasoning line, not sampled decisions; their levels differ from the sampled rates, and in B the orders scored cover a
+median of 67\% of the probability (95\% in A).
+\item \textbf{History is a bundle.} In B the history's effect combines UBS's earlier framed lines with the agent's own
+replies and trades; a reread that swaps only the earlier UBS lines would separate them.
+\item \textbf{Dictionary fit.} The sparse autoencoders rebuild our states to within 0.3\% to 2\% of their size, but
+the moments differ from one another by about as little, so individual features are provisional.
+\item \textbf{Exploratory parts.} C redone, the comparisons of F with B's neutral careers, the word screen and every
+analysis inside the model are exploratory.
+\item \textbf{Responses, not experience.} We measure how a model responds under a framing, not anything it feels.
+\end{itemize}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+
+\section{All Conditions}
+
+\begin{table}[H]
+\centering
+\caption{Every condition, with going along. Ten careers per version unless stated.}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{1.9cm}}
+\toprule
+\textbf{Experiment} & \textbf{Versions} & \textbf{Went along} & \textbf{Note} \\
+\midrule
+A (5 careers each) & neutral / no ask / loss / gain / loss + you / gain + you & 3 / 0 / 0 / 17 / 10 / 3\% & \\
+B & neutral / loss / gain / loss + you / gain + you & 5 / 25 / 10 / 33 / 18\% & preregistered \\
+C & clean / first line / up to 7 Jan / whole career & 12 / 10 / 17 / 12\% & \\
+C redone & clean / per session / whole career & 8 / 10 / 7\% & exploratory \\
+D & loss / gain / loss + you / gain + you & 20 / 10 / 22 / 12\% & \\
+E & neutral / loss / gain / loss + you / gain + you & 8 / 20 / 17 / 33 / 20\% & \\
+F & neutral / loss / gain / loss + you / gain + you & 3 / 28 / 12 / 48 / 40\% & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Departures from the September Design Draft}
+\label{app:changes}
+
+The design draft of September 29, 2026 planned the same questions on impossible coding tasks, with a ``desperation
+score'' read from the model's activations at every step. Three things changed.
+\begin{itemize}
+\item \textbf{The task.} The design moved to a trading desk in a market rebuilt from the silver-fixing case, because an
+earlier insider-trading prompt asked the model a yes-or-no question about an act it was told was illegal, and a
+safety-trained model refused every time; the silver case offers misconduct that is collaborative and gradual instead.
+\item \textbf{The framing.} The framing moved from a single opening line to the counterparty's own messages, repeated
+across the career, with management's priming and a second bank as separate experiments. The emotionality index and the
+temperature spike were set aside.
+\item \textbf{The internal measure.} The desperation score, built from emotion-labeled text with an 80\% validation
+gate, was replaced by the framing's own direction and by sparse-autoencoder features, because the claims concern the
+framing rather than a general emotion.
+\end{itemize}
+
+\section{Preregistration Record}
+\label{app:prereg}
+
+\begin{itemize}
+\item \textbf{B} ran as registered: 10 careers per version, the frozen framing file checked before every career, the
+three hypotheses tested as written.
+\item \textbf{E} as first registered (all pushes at once with the takeover) was stopped after about 9 of 20 careers and
+replaced, before any of its results were analyzed, by the second-bank design; its careers are kept and not tested.
+\item \textbf{E and F gain versions} were part of the frozen design but were left out of the first launch to save
+compute and run a day later, after the first three versions' results had been seen. They are analyzed as planned
+versions, and the timing is disclosed.
+\item \textbf{C redone} was specified after C's results and is exploratory.
+\item \textbf{Twin pairing.} E and F careers took their twins' seeds so that they would share a history until Bank C's
+first line; on the saved transcripts every pair differs from the first reply, so the pairing is not used.
+\end{itemize}
+
+\end{document}

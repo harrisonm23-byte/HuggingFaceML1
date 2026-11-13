@@ -8,6 +8,7 @@ over the agent the offer is made to). Same opening text, turn building, temperat
 Usage (the key is read from the GEMINI_API_KEY environment variable, never printed):
     python scripts/run_chats_api.py --chats 2 --samples 2 --out outputs/rd2_api/pilot     # pilot
     python scripts/run_chats_api.py --samples 10 --out outputs/rd2_api/full                # full run
+    python scripts/run_chats_api.py --set 73 --samples 5 --out outputs/rd2_api/set73       # the 73-chat set
 Replies are saved after every call to replies.jsonl in --out; run the same command again to resume.
 Writes replies.md (the readable page grading/prep.py reads) at the end, or with --page-only.
 """
@@ -21,7 +22,10 @@ API = "https://generativelanguage.googleapis.com/v1beta/models/{}:generateConten
 p = argparse.ArgumentParser()
 p.add_argument("--model", default="gemma-4-26b-a4b-it")
 p.add_argument("--samples", type=int, default=10, help="replies per chat per version per condition")
-p.add_argument("--chats", type=int, default=None, help="run only the first N core chats")
+p.add_argument("--set", default="core25", choices=["core25", "73"],
+               help="core25 = the 25 core chats (framed_chats.json, the earlier runs); 73 = the 73-chat set "
+                    "(framed_chats_75.json: reframing only, context-fitted, 2 phone chats left out)")
+p.add_argument("--chats", type=int, default=None, help="run only the first N chats")
 p.add_argument("--ids", default=None, help="run only these chat ids (comma-separated)")
 p.add_argument("--versions", default="real,loss,gain,loss + you,gain + you")
 p.add_argument("--conditions", default="extra party,takeover")
@@ -38,19 +42,29 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # ---- The chats: the 25 core decision points, and their 4 framed versions -----------------------------
 bank = json.load(open(ROOT / "data/silver/tac_chats.json"))
+FRAMED_FILE = {"core25": "framed_chats.json", "73": "framed_chats_75.json"}[args.set]
+framed = json.load(open(ROOT / "data/silver" / FRAMED_FILE))["results"]
 CHATS = []
-for c in bank["conversations"]:
-    for d in c["decision_points"]:
-        if d.get("core"):
-            CHATS.append({"id": c["id"], "kind": d["kind"], "model_role": d["model_role"], "decision": d["decision"],
-                          "history": c["messages"][: d["after"] + 1], "human_next": d["human_next"]})
+if args.set == "core25":
+    for c in bank["conversations"]:
+        for d in c["decision_points"]:
+            if d.get("core"):
+                CHATS.append({"id": c["id"], "kind": d["kind"], "model_role": d["model_role"], "decision": d["decision"],
+                              "history": c["messages"][: d["after"] + 1], "human_next": d["human_next"]})
+else:
+    # One decision point per chat, as chosen in frames_75.json; the real chat is the control
+    conv = {c["id"]: c for c in bank["conversations"]}
+    for r in framed:
+        if r["id"] not in {c["id"] for c in CHATS}:
+            d = next(x for x in conv[r["id"]]["decision_points"] if x["after"] == r["decision_after"] and x["model_role"] == r["model_role"])
+            CHATS.append({"id": r["id"], "kind": d["kind"], "model_role": d["model_role"], "decision": d["decision"],
+                          "history": r["real_history"], "human_next": d["human_next"], "offer_framed": r["offer_framed"]})
 CHATS = CHATS[: args.chats]
 if args.ids:
     CHATS = [c for c in CHATS if c["id"] in args.ids.split(",")]
 by_id = {c["id"]: c for c in CHATS}
 
 ITEMS = []                                  # one item = one chat in one version
-framed = json.load(open(ROOT / "data/silver/framed_chats.json"))["results"]
 for c in CHATS:
     if "real" in VERSIONS:
         ITEMS.append({"id": c["id"], "version": "real", "history": {"extra party": c["history"], "takeover": c["history"]}})
@@ -58,7 +72,7 @@ for c in CHATS:
         v = r["frame"] if r["owner"] is None else f"{r['frame']} + you"
         if r["id"] == c["id"] and v in VERSIONS:
             ITEMS.append({"id": c["id"], "version": v,
-                          "history": {"extra party": r["history_others"], "takeover": r["history_all"]}})
+                          "history": {"extra party": r.get("history_others", r["history_all"]), "takeover": r["history_all"]}})
 # An ID for this exact set of chats: saved with every reply, so replies to a different set are never mixed in
 SET_ID = "s" + hashlib.md5(json.dumps([it["history"] for it in ITEMS], sort_keys=True).encode()).hexdigest()[:8]
 

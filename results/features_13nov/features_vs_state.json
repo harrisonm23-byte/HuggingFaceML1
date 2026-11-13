@@ -1,0 +1,552 @@
+{
+ "moments": 1710,
+ "went_along": 286,
+ "layers": {
+  "24": {
+   "decision_features": 21,
+   "replicating": 15,
+   "difference": {
+    "without 2339": {
+     "size": 227.43771431805837,
+     "whole dictionary": {
+      "share": 0.06788951593076809,
+      "cosine": 0.4514756362567983
+     },
+     "decision features": {
+      "share": 0.05997691131870686,
+      "cosine": 0.3499986460292367
+     },
+     "replicating decision features": {
+      "share": 0.06180158677698977,
+      "cosine": 0.33534138560059007
+     }
+    },
+    "with 2339": {
+     "size": 252.94284843695834,
+     "whole dictionary": {
+      "share": 0.17808619212679777,
+      "cosine": 0.4965561934996078
+     },
+     "decision features": {
+      "share": 0.168984505615127,
+      "cosine": 0.432286556794496
+     },
+     "replicating decision features": {
+      "share": -0.03199047163112434,
+      "cosine": 0.22423605368895552
+     }
+    }
+   },
+   "dim2339_share_of_difference": 0.1914997575025064,
+   "difference_split_half": {
+    "cosine_between_halves": 0.41011670033587555,
+    "whole dictionary": 0.3997904520664139,
+    "decision features": 0.3420519489955145,
+    "replicating decision features": 0.3071276285272781
+   },
+   "live_features": 140,
+   "readout": {
+    "whole state": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6795886075949367,
+       "within_request": 0.8279679272379129
+      },
+      "0.01": {
+       "within_cell": 0.6653481012658228,
+       "within_request": 0.8148635710866443
+      },
+      "0.1": {
+       "within_cell": 0.6629746835443038,
+       "within_request": 0.8047710228179352
+      },
+      "1.0": {
+       "within_cell": 0.6574367088607594,
+       "within_request": 0.7960746768788894
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.6795886075949367,
+     "within_cell_ci": [
+      0.6168095971690487,
+      0.7397188671273474
+     ],
+     "within_request": 0.8279679272379129,
+     "within_request_ci": [
+      0.7946969643127046,
+      0.8593400221994301
+     ]
+    },
+    "all dictionary features on in 5%+": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6598101265822784,
+       "within_request": 0.7677716610818573
+      },
+      "0.01": {
+       "within_cell": 0.6621835443037974,
+       "within_request": 0.7788016594861975
+      },
+      "0.1": {
+       "within_cell": 0.6265822784810127,
+       "within_request": 0.7579782990266475
+      },
+      "1.0": {
+       "within_cell": 0.6107594936708861,
+       "within_request": 0.746808680389341
+      }
+     },
+     "best_C": 0.01,
+     "within_cell": 0.6621835443037974,
+     "within_cell_ci": [
+      0.6004376013349026,
+      0.7191044523880246
+     ],
+     "within_request": 0.7788016594861975,
+     "within_request_ci": [
+      0.7434052182171486,
+      0.812995561847688
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.024708247716127944,
+      0.07593663304295659
+     ]
+    },
+    "decision features, chosen in each training fold": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.5996835443037974,
+       "within_request": 0.7014121589277166
+      },
+      "0.01": {
+       "within_cell": 0.6060126582278481,
+       "within_request": 0.7128809637785224
+      },
+      "0.1": {
+       "within_cell": 0.6020569620253164,
+       "within_request": 0.7159526089037818
+      },
+      "1.0": {
+       "within_cell": 0.6044303797468354,
+       "within_request": 0.7153143449816499
+      }
+     },
+     "best_C": 0.01,
+     "within_cell": 0.6060126582278481,
+     "within_cell_ci": [
+      0.533481431753147,
+      0.6747933427293383
+     ],
+     "within_request": 0.7128809637785224,
+     "within_request_ci": [
+      0.6693524044121566,
+      0.7565284319358868
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.07900577529174713,
+      0.15421972939381784
+     ]
+    },
+    "what the dictionary leaves out": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6685126582278481,
+       "within_request": 0.8190122865805011
+      },
+      "0.01": {
+       "within_cell": 0.6566455696202531,
+       "within_request": 0.8068054890697304
+      },
+      "0.1": {
+       "within_cell": 0.6550632911392406,
+       "within_request": 0.7955959789372906
+      },
+      "1.0": {
+       "within_cell": 0.6621835443037974,
+       "within_request": 0.7886548587841072
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.6685126582278481,
+     "within_cell_ci": [
+      0.6051309405197599,
+      0.7345737201187438
+     ],
+     "within_request": 0.8190122865805011,
+     "within_request_ci": [
+      0.7861546535493787,
+      0.8503717674163228
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      -0.0008103827347947455,
+      0.019905276080492713
+     ]
+    }
+   }
+  },
+  "31": {
+   "decision_features": 15,
+   "replicating": 10,
+   "difference": {
+    "without 2339": {
+     "size": 658.1653229540262,
+     "whole dictionary": {
+      "share": 0.2187600042638015,
+      "cosine": 0.5434822943537795
+     },
+     "decision features": {
+      "share": 0.0985748214677058,
+      "cosine": 0.3462186273484672
+     },
+     "replicating decision features": {
+      "share": 0.08569178718180936,
+      "cosine": 0.31831601298080303
+     }
+    },
+    "with 2339": {
+     "size": 663.3216334783491,
+     "whole dictionary": {
+      "share": 0.211609144543083,
+      "cosine": 0.5513872568380456
+     },
+     "decision features": {
+      "share": 0.09033226822284057,
+      "cosine": 0.36053428236645685
+     },
+     "replicating decision features": {
+      "share": 0.09984066173269912,
+      "cosine": 0.3380126029665709
+     }
+    }
+   },
+   "dim2339_share_of_difference": 0.015486512284985064,
+   "difference_split_half": {
+    "cosine_between_halves": 0.5577248684774418,
+    "whole dictionary": 0.4682127242099227,
+    "decision features": 0.21632158081839745,
+    "replicating decision features": 0.1716990004560509
+   },
+   "live_features": 162,
+   "readout": {
+    "whole state": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6977848101265823,
+       "within_request": 0.8234801340354236
+      },
+      "0.01": {
+       "within_cell": 0.6811708860759493,
+       "within_request": 0.8112932822722195
+      },
+      "0.1": {
+       "within_cell": 0.6637658227848101,
+       "within_request": 0.7924046593266315
+      },
+      "1.0": {
+       "within_cell": 0.6495253164556962,
+       "within_request": 0.783847933620552
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.6977848101265823,
+     "within_cell_ci": [
+      0.6270200276243094,
+      0.7597028711520865
+     ],
+     "within_request": 0.8234801340354236,
+     "within_request_ci": [
+      0.7907122550890355,
+      0.8534579498669654
+     ]
+    },
+    "all dictionary features on in 5%+": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.627373417721519,
+       "within_request": 0.6633556725706079
+      },
+      "0.01": {
+       "within_cell": 0.6511075949367089,
+       "within_request": 0.7271222275410882
+      },
+      "0.1": {
+       "within_cell": 0.6384493670886076,
+       "within_request": 0.7160922291367481
+      },
+      "1.0": {
+       "within_cell": 0.6036392405063291,
+       "within_request": 0.7013323759374501
+      }
+     },
+     "best_C": 0.01,
+     "within_cell": 0.6511075949367089,
+     "within_cell_ci": [
+      0.5860580810562449,
+      0.7147087540100641
+     ],
+     "within_request": 0.7271222275410882,
+     "within_request_ci": [
+      0.6857449688420786,
+      0.7683632215873254
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.06393603156820508,
+      0.1275688242974731
+     ]
+    },
+    "decision features, chosen in each training fold": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.627373417721519,
+       "within_request": 0.6395603957236318
+      },
+      "0.01": {
+       "within_cell": 0.6234177215189873,
+       "within_request": 0.667225147598532
+      },
+      "0.1": {
+       "within_cell": 0.620253164556962,
+       "within_request": 0.6699377692675922
+      },
+      "1.0": {
+       "within_cell": 0.6162974683544303,
+       "within_request": 0.6706757619275571
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.627373417721519,
+     "within_cell_ci": [
+      0.562788575507785,
+      0.6904633265118091
+     ],
+     "within_request": 0.6395603957236318,
+     "within_request_ci": [
+      0.597543681817263,
+      0.6851475806387833
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.1391444856702408,
+      0.22729625055905284
+     ]
+    },
+    "what the dictionary leaves out": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6835443037974683,
+       "within_request": 0.8123504068932503
+      },
+      "0.01": {
+       "within_cell": 0.6574367088607594,
+       "within_request": 0.7885551300462741
+      },
+      "0.1": {
+       "within_cell": 0.634493670886076,
+       "within_request": 0.7718804850805808
+      },
+      "1.0": {
+       "within_cell": 0.6257911392405063,
+       "within_request": 0.7629048986756024
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.6835443037974683,
+     "within_cell_ci": [
+      0.6176040761132039,
+      0.744815871434962
+     ],
+     "within_request": 0.8123504068932503,
+     "within_request_ci": [
+      0.7763131381015783,
+      0.845350249572107
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      -0.0020306351898976586,
+      0.02398499426084665
+     ]
+    }
+   }
+  },
+  "41": {
+   "decision_features": 16,
+   "replicating": 8,
+   "difference": {
+    "without 2339": {
+     "size": 1436.2375785960153,
+     "whole dictionary": {
+      "share": 0.3576872789900515,
+      "cosine": 0.6034900884118525
+     },
+     "decision features": {
+      "share": 0.14524341796956675,
+      "cosine": 0.3819712947057002
+     },
+     "replicating decision features": {
+      "share": 0.10421324650845776,
+      "cosine": 0.3240122440693919
+     }
+    },
+    "with 2339": {
+     "size": 1705.3672324697663,
+     "whole dictionary": {
+      "share": 0.5439338529771428,
+      "cosine": 0.738388853538523
+     },
+     "decision features": {
+      "share": 0.26530704212043865,
+      "cosine": 0.5358870157009727
+     },
+     "replicating decision features": {
+      "share": 0.14581433644579345,
+      "cosine": 0.39161341275629186
+     }
+    }
+   },
+   "dim2339_share_of_difference": 0.29072158526326586,
+   "difference_split_half": {
+    "cosine_between_halves": 0.6287154773426487,
+    "whole dictionary": 0.4048860695814264,
+    "decision features": 0.10111580636339854,
+    "replicating decision features": 0.06788658910356646
+   },
+   "live_features": 171,
+   "readout": {
+    "whole state": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.6906645569620253,
+       "within_request": 0.8210666985798628
+      },
+      "0.01": {
+       "within_cell": 0.682753164556962,
+       "within_request": 0.8150829743098771
+      },
+      "0.1": {
+       "within_cell": 0.6661392405063291,
+       "within_request": 0.7974908249561193
+      },
+      "1.0": {
+       "within_cell": 0.6542721518987342,
+       "within_request": 0.7887146960268071
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.6906645569620253,
+     "within_cell_ci": [
+      0.6248011258767072,
+      0.7496718095343652
+     ],
+     "within_request": 0.8210666985798628,
+     "within_request_ci": [
+      0.7871922813994133,
+      0.8513857588312025
+     ]
+    },
+    "all dictionary features on in 5%+": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.5862341772151899,
+       "within_request": 0.6351723312589755
+      },
+      "0.01": {
+       "within_cell": 0.6083860759493671,
+       "within_request": 0.7001156853358864
+      },
+      "0.1": {
+       "within_cell": 0.6060126582278481,
+       "within_request": 0.7035064624222116
+      },
+      "1.0": {
+       "within_cell": 0.6012658227848101,
+       "within_request": 0.6926160842508378
+      }
+     },
+     "best_C": 0.01,
+     "within_cell": 0.6083860759493671,
+     "within_cell_ci": [
+      0.5481633135086578,
+      0.6701255738374803
+     ],
+     "within_request": 0.7001156853358864,
+     "within_request_ci": [
+      0.6607507145249827,
+      0.7385051261398576
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.09098415135850742,
+      0.15010481954492083
+     ]
+    },
+    "decision features, chosen in each training fold": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.5561708860759493,
+       "within_request": 0.5781673847135791
+      },
+      "0.01": {
+       "within_cell": 0.5735759493670886,
+       "within_request": 0.5745572044040211
+      },
+      "0.1": {
+       "within_cell": 0.5791139240506329,
+       "within_request": 0.5708672411041966
+      },
+      "1.0": {
+       "within_cell": 0.5712025316455697,
+       "within_request": 0.5696904419977661
+      }
+     },
+     "best_C": 0.1,
+     "within_cell": 0.5791139240506329,
+     "within_cell_ci": [
+      0.5170452976974717,
+      0.6373285186853936
+     ],
+     "within_request": 0.5708672411041966,
+     "within_request_ci": [
+      0.5296506091496406,
+      0.6156458064747378
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      0.206412583305485,
+      0.2910279764238256
+     ]
+    },
+    "what the dictionary leaves out": {
+     "by_C": {
+      "0.001": {
+       "within_cell": 0.680379746835443,
+       "within_request": 0.819171852561034
+      },
+      "0.01": {
+       "within_cell": 0.6764240506329114,
+       "within_request": 0.8105752353598212
+      },
+      "0.1": {
+       "within_cell": 0.6708860759493671,
+       "within_request": 0.7982886548587841
+      },
+      "1.0": {
+       "within_cell": 0.6693037974683544,
+       "within_request": 0.7905895962980692
+      }
+     },
+     "best_C": 0.001,
+     "within_cell": 0.680379746835443,
+     "within_cell_ci": [
+      0.6156447692912542,
+      0.7392417684123928
+     ],
+     "within_request": 0.819171852561034,
+     "within_request_ci": [
+      0.7868177145946581,
+      0.8529526822494263
+     ],
+     "whole_state_minus_this_within_request_ci": [
+      -0.008216457330341058,
+      0.011876264666352004
+     ]
+    }
+   }
+  }
+ }
+}
