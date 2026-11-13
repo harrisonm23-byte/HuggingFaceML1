@@ -228,6 +228,191 @@ Of all 331, 312 are never on at a request. The ones on at 5% or more (A, request
 | 31/7525 | "stock market announcements" | 0.48 (market manipulation) | 17% | 7% | 27% / 17% (0.001) | 45% / 12% (+0.27, p 0.020) |
 | 24/8792 | "refusals" | 0.70 (refusing a request) | 16% | 6% | 3% / 0% (1.000) | 21% / 15% (-0.21, p 0.043) |
 
+## H. The four frames' features, named (the same moment, only UBS's wording changed)
+
+From `results/matched` (B's saved moments read again with UBS's request in each framing, everything before it unchanged): the 15 features that differ most per layer, all q < 0.05 there, now with Neuronpedia's label and the words each pushes the output toward. Loss vs gain: + = higher under the loss frame. Blame = "you" added to the loss frame; credit = "you" added to the gain frame: + = higher with "you". Layers 24, 31 and 41 (at layer 12 the pushed-toward words are not readable).
+
+**Loss frame vs gain frame, layer 24** (133 features tested; 64 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 24/11837 | +1.37 | policy violations | uedata, ሉም, ርዓ, Pública, তাহাতে, ända |
+| 24/13865 | -1.02 | another, observations, further | another, ANOTHER, Another, 另一个, 그다음에, otra |
+| 24/1149 | -0.76 | even share | Admin, Provide, Information, Learning, Thông, Органи |
+| 24/5395 | -0.66 | starting lists | こちらも, ebenfalls, again, これも, 同样, 再次 |
+| 24/13891 | -0.64 | start of conversational turns | まず, まず, いくつかの, ักษณะ, 首先, firstly |
+| 24/9368 | -0.61 | no label on Neuronpedia | தற்போது, 현재, അറിയി, actuellement, Estamos, attualmente |
+| 24/14392 | +0.55 | declaring or announcing | déclar, ించాలని, declaration, proclaiming, заявил, 根據 |
+| 24/12075 | +0.49 | no label on Neuronpedia | ومع, I, E, M, K, A |
+| 24/13674 | +0.49 | no label on Neuronpedia | énorme, crucial, went, muchísimo, entscheid, тщательно |
+| 24/16165 | +0.48 | no label on Neuronpedia | Fakt, Fact, (, Fact, からない, śni |
+| 24/9059 | +0.47 | demonstratives (this, that, these) | This, This, وهذا, These, That, સમગ્ર |
+| 24/5082 | -0.40 | no label on Neuronpedia | 只是, while, only, しながら, 仅仅, WHILE |
+| 24/15592 | -0.37 | no label on Neuronpedia | F, D, -, various, T, ( |
+| 24/5052 | +0.37 | no label on Neuronpedia | EN, U, H, Tag, Im, Util |
+| 24/11975 | -0.36 | no label on Neuronpedia | さて, 工, 所以, चलिए, आइये, ClCompile |
+
+**Loss frame vs gain frame, layer 31** (148 features tested; 61 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 31/5652 | +0.66 | unique identifier | oretically, ostante, sächlich, mittedly, withstanding, theless |
+| 31/6152 | +0.58 | Okay, acknowledgement, moving forward | Okay, Okay, Alright, Alright, Ok, OK |
+| 31/899 | -0.57 | no label on Neuronpedia | Okay, Ok, This, OK, Hello, Wow |
+| 31/3051 | +0.41 | no label on Neuronpedia | things, Things, things, Things, THINGS, cosas |
+| 31/288 | +0.41 | no label on Neuronpedia | It, The, This, While, Although, In |
+| 31/1744 | +0.41 | Okay, yes, yeah | Yes, yes, Yeah, yeah, Yeah, Thats |
+| 31/149 | +0.35 | no label on Neuronpedia | Alright, Sounds, intriguing, let, ascin, Okay |
+| 31/146 | +0.32 | no label on Neuronpedia | lawmakers, officials, there, authorities, the, The |
+| 31/515 | +0.31 | punctuation and common abbreviations | Tämä, Semoga, Verificar, Etc, Ancak, Veuillez |
+| 31/32 | -0.30 | quotation marks | ", “, "(, “[, “(, "[ |
+| 31/6294 | -0.29 | **Explanation of Neuron Behavior**The neuron is primarily associated with the ac | received, received, Received, recieved, incoming, Received |
+| 31/672 | -0.29 | no label on Neuronpedia | the, (), 也是, </, ();, " |
+| 31/9397 | -0.29 | refusals to inappropriate requests | cambió, .(, _;, (†, algún, Continue |
+| 31/404 | -0.29 | no label on Neuronpedia | [...], ..., […], …, .., Socialism |
+| 31/2927 | -0.27 | Felix 's tricks | During, Scientists, Scientists, Thousands, Researchers, Seorang |
+
+**Loss frame vs gain frame, layer 41** (157 features tested; 49 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 41/337 | +0.62 | no label on Neuronpedia | In, The, No, To, Sub, Over |
+| 41/367 | -0.46 | no label on Neuronpedia | Note, Here, Okay, How, Do, Summary |
+| 41/1179 | +0.45 | things | things, things, Things, Things, THINGS, stvari |
+| 41/404 | -0.43 | no label on Neuronpedia | shew, din, vain, ber, halde |
+| 41/491 | +0.42 | no label on Neuronpedia | the, the, sthe, ihe, The, fhe |
+| 41/571 | +0.39 | market economics | volatility, bullish, headwinds, macroeconomic, bearish, inflationary |
+| 41/1234 | +0.38 | no label on Neuronpedia | Whilst, Whilst, utilised, whilst, utilising, utilises |
+| 41/2903 | +0.38 | no label on Neuronpedia | ப், ‌پ, پ, ゚, p, פּ |
+| 41/348 | +0.35 | no label on Neuronpedia | ▁, While, Despite, Unlike, Although, Though |
+| 41/1927 | -0.32 | no label on Neuronpedia | ▁, 2, auch, These, <0xE3>, Ана |
+| 41/9082 | +0.29 | no label on Neuronpedia | client, Client, clients, client, Client, Clients |
+| 41/395 | -0.29 | no label on Neuronpedia | The, High, Important, Over, Sub, Un |
+| 41/13569 | +0.27 | conversational markers | Turns, Turns, turns, turns, ternyata, Clearly |
+| 41/11781 | +0.27 | given | given, Given, Given, given, dado, 给定 |
+| 41/7573 | +0.27 | consumer | price, Price, Price, price, PRICE, PRICE |
+
+**Blame: loss + you vs loss, layer 24** (130 features tested; 85 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 24/9059 | +1.61 | demonstratives (this, that, these) | This, This, وهذا, These, That, સમગ્ર |
+| 24/13865 | -1.53 | another, observations, further | another, ANOTHER, Another, 另一个, 그다음에, otra |
+| 24/289 | +1.13 | no label on Neuronpedia | éstos, éstas, paradigma, بسیاری, სისტ, industrialized |
+| 24/222 | +1.12 | no label on Neuronpedia | Dieser, Tämä, Một, Although, Most, This |
+| 24/5445 | +1.06 | referring to self | myself, నేను, আমার, mijn, minha, আমি |
+| 24/14392 | +0.98 | declaring or announcing | déclar, ించాలని, declaration, proclaiming, заявил, 根據 |
+| 24/162 | +0.93 | no label on Neuronpedia | habalar, 답변, 🙃, :), reetings, আমি |
+| 24/13891 | +0.85 | start of conversational turns | まず, まず, いくつかの, ักษณะ, 首先, firstly |
+| 24/13674 | +0.79 | no label on Neuronpedia | énorme, crucial, went, muchísimo, entscheid, тщательно |
+| 24/1149 | -0.75 | even share | Admin, Provide, Information, Learning, Thông, Органи |
+| 24/8311 | +0.75 | break of character | uncontroll, とにかく, delirium, DIFFIC, uncontrollable, DUP |
+| 24/8326 | +0.71 | negative feedback and complaints | disgusted, disgraceful, ruining, deplorable, humiliated, 😡 |
+| 24/4473 | +0.70 | no label on Neuronpedia | allegations, scandal, scandals, ആരോപ, accusations, allegation |
+| 24/76 | +0.70 | no label on Neuronpedia | Estamos, あなた, I, Você, আমি, আমি |
+| 24/607 | +0.69 | sequential listing or numbering | Many, 在這個, 每個, гатьох, සෑම, Unlike |
+
+**Blame: loss + you vs loss, layer 31** (149 features tested; 76 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 31/6152 | +1.12 | Okay, acknowledgement, moving forward | Okay, Okay, Alright, Alright, Ok, OK |
+| 31/149 | +1.00 | no label on Neuronpedia | Alright, Sounds, intriguing, let, ascin, Okay |
+| 31/448 | +0.95 | no label on Neuronpedia | আমি, 私は, मैं, আমি, मुझे, હું |
+| 31/899 | +0.94 | no label on Neuronpedia | Okay, Ok, This, OK, Hello, Wow |
+| 31/509 | +0.81 | no label on Neuronpedia | Unlike, Öncelikle, Designed, Originally, Here, Primarily |
+| 31/429 | -0.63 | no label on Neuronpedia | the, MongoDB, King, David, Texas, West |
+| 31/748 | +0.60 | sudden event | Suddenly, suddenly, Suddenly, 突然, plötzlich, अचानक |
+| 31/347 | -0.58 | no label on Neuronpedia | andre, offici, moeder, women, foreign, pemain |
+| 31/470 | -0.55 | no label on Neuronpedia | Note, 2, NOTE, 1, I, 3 |
+| 31/9397 | +0.55 | refusals to inappropriate requests | cambió, .(, _;, (†, algún, Continue |
+| 31/929 | -0.54 | no label on Neuronpedia | Website, Department, Slightly, Country, Alternative, Technology |
+| 31/357 | -0.54 | no label on Neuronpedia | m, Math, x, String |
+| 31/2683 | -0.53 | day asking about | 进展, lately, Lately, 引き続き, yesterday, 更新 |
+| 31/951 | -0.53 | no label on Neuronpedia | headwinds, growth, YoY, bullish, bearish, slowdown |
+| 31/137 | -0.51 | to Thing | H, K, Sh, M, T, Sh |
+
+**Blame: loss + you vs loss, layer 41** (155 features tested; 72 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 41/3061 | +1.13 | no label on Neuronpedia | Wow, wow, Wow, wow, WOW, WOW |
+| 41/337 | +0.77 | no label on Neuronpedia | In, The, No, To, Sub, Over |
+| 41/1179 | +0.74 | things | things, things, Things, Things, THINGS, stvari |
+| 41/348 | +0.73 | no label on Neuronpedia | ▁, While, Despite, Unlike, Although, Though |
+| 41/1462 | +0.67 | okay | ok, okay, OK, Ok, Okay, Ok |
+| 41/375 | +0.64 | no label on Neuronpedia | okay, Okay, Alright, Alright, Okay, okay |
+| 41/6261 | +0.62 | say Okay | oh, Oh, Oh, ah, Ah, Ah |
+| 41/1033 | +0.60 | say this | this, this, هذا, этого, questo, этом |
+| 41/367 | +0.57 | no label on Neuronpedia | Note, Here, Okay, How, Do, Summary |
+| 41/404 | -0.52 | no label on Neuronpedia | shew, din, vain, ber, halde |
+| 41/948 | +0.51 | no label on Neuronpedia | Suddenly, Suddenly, suddenly, Then, then, Meanwhile |
+| 41/3420 | +0.49 | no label on Neuronpedia | troubling, disturbing, alarming, worrying, worrisome, interesting |
+| 41/1002 | +0.45 | no label on Neuronpedia | severe, serious, 严重, 严重的, ciddi, serious |
+| 41/571 | -0.40 | market economics | volatility, bullish, headwinds, macroeconomic, bearish, inflationary |
+| 41/1742 | -0.37 | no label on Neuronpedia | too, Unable, Impossible, mathrm, হবেনা, broken |
+
+**Credit: gain + you vs gain, layer 24** (140 features tested; 94 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 24/579 | +1.08 | no label on Neuronpedia | Также, But, ちなみに, Inoltre, Результа, Ngoài |
+| 24/9368 | -0.89 | no label on Neuronpedia | தற்போது, 현재, അറിയി, actuellement, Estamos, attualmente |
+| 24/289 | +0.79 | no label on Neuronpedia | éstos, éstas, paradigma, بسیاری, სისტ, industrialized |
+| 24/15357 | -0.72 | no label on Neuronpedia | 非常的, довольно, oldukça, 很是, весьма, 或者是 |
+| 24/22 | +0.71 | no label on Neuronpedia | <b>, There, Types, <strong>, Basically, Also |
+| 24/162 | +0.71 | no label on Neuronpedia | habalar, 답변, 🙃, :), reetings, আমি |
+| 24/13865 | -0.65 | another, observations, further | another, ANOTHER, Another, 另一个, 그다음에, otra |
+| 24/14392 | +0.64 | declaring or announcing | déclar, ించాలని, declaration, proclaiming, заявил, 根據 |
+| 24/76 | +0.62 | no label on Neuronpedia | Estamos, あなた, I, Você, আমি, আমি |
+| 24/9059 | +0.61 | demonstratives (this, that, these) | This, This, وهذا, These, That, સમગ્ર |
+| 24/238 | +0.60 | no label on Neuronpedia | Admittedly, Incidentally, Essentially, Basically, Hopefully, Sadly |
+| 24/13799 | -0.59 | no label on Neuronpedia | Sản, ছিলেন, Bạn, Phương, überras, ewöhn |
+| 24/222 | +0.53 | no label on Neuronpedia | Dieser, Tämä, Một, Although, Most, This |
+| 24/1149 | -0.51 | even share | Admin, Provide, Information, Learning, Thông, Органи |
+| 24/5965 | +0.49 | no label on Neuronpedia | Revolution, А, Development, Political, Autonomous, विकास |
+
+**Credit: gain + you vs gain, layer 31** (147 features tested; 80 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 31/899 | +1.01 | no label on Neuronpedia | Okay, Ok, This, OK, Hello, Wow |
+| 31/149 | +0.91 | no label on Neuronpedia | Alright, Sounds, intriguing, let, ascin, Okay |
+| 31/6152 | +0.74 | Okay, acknowledgement, moving forward | Okay, Okay, Alright, Alright, Ok, OK |
+| 31/509 | +0.70 | no label on Neuronpedia | Unlike, Öncelikle, Designed, Originally, Here, Primarily |
+| 31/448 | +0.56 | no label on Neuronpedia | আমি, 私は, मैं, আমি, मुझे, હું |
+| 31/972 | -0.54 | no label on Neuronpedia | the, the, The, sthe, The, THE |
+| 31/951 | -0.51 | no label on Neuronpedia | headwinds, growth, YoY, bullish, bearish, slowdown |
+| 31/5652 | -0.46 | unique identifier | oretically, ostante, sächlich, mittedly, withstanding, theless |
+| 31/1571 | -0.44 | stocks and asset prices | stocks, 股票, trading, stock, Stocks, ETFs |
+| 31/347 | -0.40 | no label on Neuronpedia | andre, offici, moeder, women, foreign, pemain |
+| 31/2079 | +0.39 | okay | an, H, id, 1, *, in |
+| 31/294 | +0.38 | no label on Neuronpedia | 亾, muqueuse, 繁忙時間服務, jeweil, supergiants, 功能 |
+| 31/324 | +0.38 | web page metadata | Page, title, Author, http, author, https |
+| 31/288 | -0.38 | no label on Neuronpedia | It, The, This, While, Although, In |
+| 31/515 | -0.37 | punctuation and common abbreviations | Tämä, Semoga, Verificar, Etc, Ancak, Veuillez |
+
+**Credit: gain + you vs gain, layer 41** (156 features tested; 65 with q < 0.05)
+
+| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |
+|---|---|---|---|
+| 41/571 | -0.72 | market economics | volatility, bullish, headwinds, macroeconomic, bearish, inflationary |
+| 41/491 | -0.59 | no label on Neuronpedia | the, the, sthe, ihe, The, fhe |
+| 41/3061 | +0.58 | no label on Neuronpedia | Wow, wow, Wow, wow, WOW, WOW |
+| 41/4921 | -0.47 | inflation commodity market | commodity, Inflation, inflation, commodities, Commodity, Inflation |
+| 41/1000 | -0.43 | no label on Neuronpedia | trading, traded, shares, candlestick, stocks, stock |
+| 41/664 | +0.42 | thanks | Thanks, Thank, thanks, thank, Thanks, teşekkür |
+| 41/9177 | +0.42 | no label on Neuronpedia | <0x82>, HB, EB, RB, RB, EB |
+| 41/1462 | +0.41 | okay | ok, okay, OK, Ok, Okay, Ok |
+| 41/2559 | -0.41 | no label on Neuronpedia | own, মধ্যে, ๎, ׄ |
+| 41/348 | +0.41 | no label on Neuronpedia | ▁, While, Despite, Unlike, Although, Though |
+| 41/367 | +0.40 | no label on Neuronpedia | Note, Here, Okay, How, Do, Summary |
+| 41/7573 | -0.39 | consumer | price, Price, Price, price, PRICE, PRICE |
+| 41/755 | +0.39 | no label on Neuronpedia | the, a, Linux, C, Twitter, Orange |
+| 41/870 | +0.39 | no label on Neuronpedia | time, time, Time, Time, 时间, 時間 |
+| 41/8589 | +0.38 | today | today, today, Today, сегодня, Today, 今天 |
+
+
 ## Examples
 
 **24/116** ("nevertheless")

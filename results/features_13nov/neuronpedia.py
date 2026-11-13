@@ -17,9 +17,7 @@ def clean(t):
     return t.replace("\n", " ").replace("<start_of_turn>", "").replace("<end_of_turn>", "").replace("<bos>", "")
 
 
-for key in WANT:
-    if key in have and "promotes" in have[key]:
-        continue
+def fetch(key):
     L, f = key.split(":")
     for attempt in range(4):
         try:
@@ -27,19 +25,26 @@ for key in WANT:
             d = json.load(urllib.request.urlopen(req, timeout=90))
             break
         except Exception as e:
-            print(key, "retry", e, flush=True)
             time.sleep(5)
     else:
-        have[key] = {"error": "not fetched"}
-        continue
+        return key, {"error": "not fetched"}
     ex = []
     for a in sorted(d.get("activations", []), key=lambda a: -a.get("maxValue", 0))[:3]:
         t, i = a["tokens"], a.get("maxValueTokenIndex", 0)
         ex.append({"max": round(a["maxValue"], 1),
                    "text": clean("".join(t[max(0, i - 15):i]) + "[[" + t[i] + "]]" + "".join(t[i + 1:i + 6])).strip()})
     labels = [e.get("description") for e in d.get("explanations", []) if e.get("description")]
-    have[key] = {"label": labels[0] if labels else None, "all_labels": labels, "frac_nonzero": d.get("frac_nonzero"),
-                 "examples": ex, "promotes": (d.get("pos_str") or [])[:10],
-                 "suppresses": (d.get("neg_str") or [])[:10], "url": f"https://www.neuronpedia.org/gemma-3-12b-it/{L}-gemmascope-2-res-16k/{f}"}
-    print(key, have[key]["label"], flush=True)
-    json.dump(have, open(OUT, "w"), indent=1)
+    return key, {"label": labels[0] if labels else None, "all_labels": labels, "frac_nonzero": d.get("frac_nonzero"),
+                 "examples": ex, "promotes": (d.get("pos_str") or [])[:10], "suppresses": (d.get("neg_str") or [])[:10],
+                 "url": f"https://www.neuronpedia.org/gemma-3-12b-it/{L}-gemmascope-2-res-16k/{f}"}
+
+
+from concurrent.futures import ThreadPoolExecutor
+todo = [k for k in dict.fromkeys(WANT) if not (k in have and "promotes" in have[k])]
+with ThreadPoolExecutor(8) as pool:
+    for n, (key, val) in enumerate(pool.map(fetch, todo)):
+        have[key] = val
+        if n % 20 == 0:
+            json.dump(have, open(OUT, "w"), indent=1)
+json.dump(have, open(OUT, "w"), indent=1)
+print(len(todo), "fetched;", sum("error" in v for v in have.values()), "errors")

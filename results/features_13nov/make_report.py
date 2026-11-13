@@ -177,6 +177,30 @@ if os.path.exists(p):
         rep.append(f"| {k.replace(':', '/')} | \"{v['label']}\" | {v['best_similarity']:.2f} ({v['best_query']}) | {v['on_at_requests']:.0%} | "
                    f"{v['on_at_ordinary_updates']:.0%} | {v['A_request_on']:.0%} / {v['A_no_request_on']:.0%} ({v['request_vs_none_p']:.3f}) | "
                    f"{v['went_along_on']:.0%} / {v['held_on']:.0%} ({g}, p {v['went_along_p']:.3f}) |")
+p = os.path.join(D, "neuronpedia_frames.json")
+mj = os.path.join(D, "..", "matched", "matched.json")
+if os.path.exists(p) and os.path.exists(mj):
+    nf = json.load(open(p))
+    mf = json.load(open(mj))["features"]
+    rep.append("\n## H. The four frames' features, named (the same moment, only UBS's wording changed)\n")
+    rep.append("From `results/matched` (B's saved moments read again with UBS's request in each framing, everything before "
+               "it unchanged): the 15 features that differ most per layer, all q < 0.05 there, now with Neuronpedia's "
+               "label and the words each pushes the output toward. Loss vs gain: + = higher under the loss frame. Blame "
+               "= \"you\" added to the loss frame; credit = \"you\" added to the gain frame: + = higher with \"you\". "
+               "Layers 24, 31 and 41 (at layer 12 the pushed-toward words are not readable).\n")
+    for title, key in (("Loss frame vs gain frame", "Request: loss frame vs gain frame"),
+                       ("Blame: loss + you vs loss", '"You" after loss: loss + you vs loss'),
+                       ("Credit: gain + you vs gain", '"You" after gain: gain + you vs gain')):
+        for L in ("24", "31", "41"):
+            v = mf[key][L]
+            rep.append(f"**{title}, layer {L}** ({v['tested']} features tested; {v['q_below_0.05']} with q < 0.05)\n")
+            rep.append("| Feature | Difference (spread units) | Neuronpedia label | Pushes the next word toward |\n|---|---|---|---|")
+            for r in v["top"]:
+                x = nf.get(f"{L}:{r['feature']}", {})
+                label = (x.get("label") or "no label on Neuronpedia")[:80]
+                words = ", ".join(w.strip() for w in x.get("promotes", [])[:6] if w.strip())
+                rep.append(f"| {L}/{r['feature']} | {r['standardised_difference']:+.2f} | {label} | {words} |")
+            rep.append("")
 rep.append("\n## Examples\n")
 for L, v in d["layers"].items():
     rep += [examples(r) for r in v["rows"]]

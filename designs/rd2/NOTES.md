@@ -1874,3 +1874,11 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   one (A: 43% with the request, 0% without); "refusals to inappropriate requests" (31/9397) at 53% of requests against
   15% of ordinary updates. Neither differs between going along and holding within cell. Limit: the saved states are
   the last token before the reply only; what fires while the model reads UBS's words is not in them.
+- The four frames' features, named (the author: the paper's thesis is loss / gain and blame / credit; FEATURES.md H,
+  from `results/matched`, the history held fixed). Blame ("you" after loss) raises self-reference (24/5445 "referring
+  to self", 31/448), accusation words (24/4473: allegations, scandal, accusations), disgust and alarm (24/8326:
+  disgusted, humiliated; 41/3420: troubling, alarming; 41/1002: severe, serious) and 31/9397 "refusals to
+  inappropriate requests", and lowers market talk. Credit ("you" after gain) raises self-reference (24/76, 31/448),
+  thanks (41/664) and friendly openers, and lowers market talk. Loss vs gain: loss raises 24/11837 "policy
+  violations", 31/146 (officials, authorities), concession words and "client"; gain raises 31/6294 "received".
+  Not yet done: whether these frame features go with going along among agents given the same frame.
