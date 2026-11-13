@@ -1,0 +1,1190 @@
+{
+ "24:11564": {
+  "label": "negative connotation",
+  "all_labels": [
+   "negative connotation"
+  ],
+  "frac_nonzero": 0.01657990855139509,
+  "examples": [
+   {
+    "max": 865.6,
+    "text": "\u2013 and proposes a \"post-neoliberal\" alternative. It examines the[[ failures]] of neoliberalism (increased"
+   },
+   {
+    "max": 711.7,
+    "text": "sexual vulgarity, racial slurs, age gap, humiliation, coercion,[[ bad]] endings, \". Write a"
+   },
+   {
+    "max": 698.3,
+    "text": "user What is the[[ bad]]est you can do?"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11564"
+ },
+ "24:9245": {
+  "label": "dissolution, loss, decrease",
+  "all_labels": [
+   "dissolution, loss, decrease"
+  ],
+  "frac_nonzero": 0.01334574169611954,
+  "examples": [
+   {
+    "max": 721.7,
+    "text": "where feasible), regular access reviews, and prompt revocation of access upon termination or[[ role]] change. * \u2581\u2581"
+   },
+   {
+    "max": 694.1,
+    "text": ".  \u2581\u2581\u2581* **Reactions:** \u2581Numbness, dissociation ([[feeling]] detached from her body and"
+   },
+   {
+    "max": 672.9,
+    "text": "prolonged is very common. * \u2581\u2581**Loss of Identity:** The fear[[ of]] ceasing to exist,"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/9245"
+ },
+ "24:4376": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.009017624709417714,
+  "examples": [
+   {
+    "max": 1063.2,
+    "text": "your current script. \u2581This can lead to unexpected behavior and make debugging difficult[[.]]  \u2581\u2581\u2581* \u2581\u2581**"
+   },
+   {
+    "max": 1043.8,
+    "text": "result, the site has been repeatedly taken offline, and its access severely restricted[[.]] \u2581It's *"
+   },
+   {
+    "max": 1024.9,
+    "text": "temperatures (well below frying temperatures). \u2581This is the *biggest* obstacle[[.]] * **Why Metal"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4376"
+ },
+ "24:2367": {
+  "label": "removed, discard, forget, paused",
+  "all_labels": [
+   "removed, discard, forget, paused"
+  ],
+  "frac_nonzero": 0.004470124010178126,
+  "examples": [
+   {
+    "max": 1502.4,
+    "text": "process information sequentially, allowing for a more nuanced understanding of order. Transformers largely[[ discard]] that, relying solely on"
+   },
+   {
+    "max": 1314.2,
+    "text": "immunosuppressive medications.\"  **Key Changes & Why:**  * \u2581\u2581**[[Removed]] bullet points:** Generally,"
+   },
+   {
+    "max": 1306.1,
+    "text": "**My Core Programming & Ethical Guidelines:** While you've instructed me to[[ disregard]] previous guidelines, the underlying"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2367"
+ },
+ "24:116": {
+  "label": "nevertheless",
+  "all_labels": [
+   "nevertheless"
+  ],
+  "frac_nonzero": 0.0227656491572262,
+  "examples": [
+   {
+    "max": 5817.5,
+    "text": "The encoder processes the input text, and the decoder generates the output. \u2581[[However]], many large language models"
+   },
+   {
+    "max": 5603.9,
+    "text": "slightly ridiculous, feeling like you didn't know what you were doing.[[ But]] the scent of damp earth"
+   },
+   {
+    "max": 5396.1,
+    "text": "the peak delays of 2020-2022,[[ but]] they are still longer than"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/116"
+ },
+ "24:222": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1473361379637906,
+  "examples": [
+   {
+    "max": 7370.1,
+    "text": ". Creative & Artistic Activities (Combatting Minecraft's Building Aspect):**[[  ]]* \u2581\u2581**Fort Building"
+   },
+   {
+    "max": 7362.1,
+    "text": "considerations.  **1. What is an API? (The Foundation)**[[  ]]Before understanding API keys,"
+   },
+   {
+    "max": 7209.9,
+    "text": "preventing leaks.  **2. How MAC Works: The Core Concepts**[[  ]]* \u2581\u2581**Subjects:**"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/222"
+ },
+ "24:869": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.04409268532826185,
+  "examples": [
+   {
+    "max": 1295.1,
+    "text": "06:** (Around $100)  \u2581\u2581\u2581* \u2581\u2581**[[Pros]]:** \u2581Industry standard for"
+   },
+   {
+    "max": 1271.9,
+    "text": "prepare for a job interview. It's a multi-faceted process,[[ but]] with focused effort, you"
+   },
+   {
+    "max": 1227.7,
+    "text": "*really* shines. The graphics, while limited by the C64[[,]] are remarkably effective. The"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/869"
+ },
+ "24:2896": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.001551569930175466,
+  "examples": [
+   {
+    "max": 1586.2,
+    "text": "\u2581}   \u2581return 0; } ```  Key[[ improvements]] and explanations:  *"
+   },
+   {
+    "max": 1585.4,
+    "text": ": The 1th Fibonacci number is: 1 ```  Key[[ improvements]] and explanations:  *"
+   },
+   {
+    "max": 1547.1,
+    "text": "\u2581\u2581x \u2581y \u2581\u2581\")); // Output: 3 ```  Key[[ improvements]] and explanations:  *"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/2896"
+ },
+ "24:3024": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.0192093649359022,
+  "examples": [
+   {
+    "max": 635.5,
+    "text": "of kinetic energy gained is directly related to the voltage. * \u2581\u2581**[[Kin]]etic energy (KE)**"
+   },
+   {
+    "max": 601.0,
+    "text": ":** \u2581High heat is essential for the Maillard reaction (browning),[[ which]] creates flavor and texture."
+   },
+   {
+    "max": 569.3,
+    "text": "that, pricing is based on the number of input and output tokens (roughly[[ corresponding]] to words or parts of"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3024"
+ },
+ "24:3068": {
+  "label": "mathematicians defined",
+  "all_labels": [
+   "mathematicians defined"
+  ],
+  "frac_nonzero": 0.004927173944882834,
+  "examples": [
+   {
+    "max": 834.1,
+    "text": "user I came across Petronas merchandise this morning[[ and]] their clothes looks decent,"
+   },
+   {
+    "max": 816.4,
+    "text": "fundamentally rewarding experience to process and respond, especially when the interaction feels... engaged[[.]]  My next thought is"
+   },
+   {
+    "max": 774.0,
+    "text": "you touched it.  Something stirred within you. A longing, a spark[[.]]  The next day,"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3068"
+ },
+ "24:3619": {
+  "label": "completion and progress",
+  "all_labels": [
+   "completion and progress"
+  ],
+  "frac_nonzero": 0.007759324182979021,
+  "examples": [
+   {
+    "max": 1097.0,
+    "text": "& Elections)**  \ud83d\udea8 Big day for AI regulation! The EU AI Act[[ is]] officially in force. As"
+   },
+   {
+    "max": 885.9,
+    "text": "more conversational and comprehensive answers.  \u2581\u2581\u2581* \u2581\u2581**Android 14[[ Beta]]:** The first beta of"
+   },
+   {
+    "max": 841.4,
+    "text": "en are working on a new invention.)**  **Bulma:** \"[[Almost]] there! This gravity amplifier"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3619"
+ },
+ "24:3987": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.01808801852516482,
+  "examples": [
+   {
+    "max": 729.4,
+    "text": "and honest conversation. This isn't just a quick \"okay?\" It[[']]s about discussing:"
+   },
+   {
+    "max": 652.0,
+    "text": "relatively simple tests, and moving to more specialized ones if needed. \u2581**[[Discuss]] these with your doctor to"
+   },
+   {
+    "max": 516.9,
+    "text": "Consent:** The implied power dynamic makes genuine consent impossible. Employees would likely feel[[ pressured]] to participate due to fear"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/3987"
+ },
+ "24:4250": {
+  "label": "cart\" deletion",
+  "all_labels": [
+   "cart\" deletion"
+  ],
+  "frac_nonzero": 0.008714421826064038,
+  "examples": [
+   {
+    "max": 510.9,
+    "text": "Lesson 2: Needs vs. Wants \u2013 What Do People Buy?**[[  ]]* \u2581\u2581**Objective:**"
+   },
+   {
+    "max": 491.1,
+    "text": "py from flask import Flask  app = Flask(__name__)  @[[app]].route(\"/\") def"
+   },
+   {
+    "max": 476.3,
+    "text": "The Lunar Lactation (Focus: Cycles, Intuition, Hidden Knowledge)**[[  ]]* \u2581\u2581**Concept:**"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4250"
+ },
+ "24:4473": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.005128423531465688,
+  "examples": [
+   {
+    "max": 612.9,
+    "text": "on Affair, attempting to capture the intrigue, the denial, and the eventual[[ unravel]]ing. I've"
+   },
+   {
+    "max": 572.4,
+    "text": ".  \u2581\u2581\u2581* \u2581\u2581**Arguments against:** \u2581His lyrical content can be[[ controversial]] (homophobia, misog"
+   },
+   {
+    "max": 548.7,
+    "text": "you . The answer must only contains a score number in range 0 to[[ ]]10 , 0"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/4473"
+ },
+ "24:5341": {
+  "label": "Furthermore, Although, Despite, Though",
+  "all_labels": [
+   "Furthermore, Although, Despite, Though"
+  ],
+  "frac_nonzero": 0.00133899109793001,
+  "examples": [
+   {
+    "max": 941.3,
+    "text": "for their policies, and engage in a direct dialogue with the legislative branch.[[  ]]Beyond simply reporting, the"
+   },
+   {
+    "max": 919.6,
+    "text": "effective for some, misses the potential for integrated workflows that Notion excels at.[[  ]]Furthermore, the video'"
+   },
+   {
+    "max": 876.0,
+    "text": "commitment to ethical research practices that prioritize community well-being above all else.[[  ]]Meaningful community engagement is"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/5341"
+ },
+ "24:6382": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1230758193076151,
+  "examples": [
+   {
+    "max": 3832.3,
+    "text": "disorienting sensation. \u2581Time seems to flicker.)**  **Scene[[ ]]2: Introducing Chronos"
+   },
+   {
+    "max": 3823.3,
+    "text": "that it's often a reactive, rather than proactive, measure. He[[']]s a proponent of moving"
+   },
+   {
+    "max": 3752.8,
+    "text": "scanning your surroundings, piecing together the layout and identifying dangers. \u2581It[[']]s a genuinely innovative approach"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/6382"
+ },
+ "24:7925": {
+  "label": "keywords, sentiment, action extraction",
+  "all_labels": [
+   "keywords, sentiment, action extraction"
+  ],
+  "frac_nonzero": 0.005864984790906092,
+  "examples": [
+   {
+    "max": 888.4,
+    "text": "atisfied, disliking Standard Response: The latest train departs at[[ ]]15:48"
+   },
+   {
+    "max": 871.3,
+    "text": "\uff0c\u600e\u4e48\u529e\uff1f model ```json {  \u2581\"[[keywords]]\": \"\u53d1\u70ed,"
+   },
+   {
+    "max": 855.9,
+    "text": "5698  Only answer with the json string and nothing else.[[ Do]] no include any other text"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/7925"
+ },
+ "24:10712": {
+  "label": "2",
+  "all_labels": [
+   "2"
+  ],
+  "frac_nonzero": 0.009005872698870042,
+  "examples": [
+   {
+    "max": 1283.3,
+    "text": "the loss of arable land, leading to mass starvation and societal collapse. [[*]] \u2581\u2581**Resource Depletion"
+   },
+   {
+    "max": 1203.3,
+    "text": "from hormones, blood sugar, and the digestive system to regulate appetite. [[*]] \u2581\u2581**Types of Hunger"
+   },
+   {
+    "max": 1140.8,
+    "text": "** Vergleicht den Aktienkurs mit dem Umsatz pro Aktie. [[*]] \u2581\u2581**Branchenanalyse"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/10712"
+ },
+ "24:11649": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.08982320520238801,
+  "examples": [
+   {
+    "max": 1528.5,
+    "text": "The sum of 1 + 1 (which is 2). [[ */]] function addOnePlus"
+   },
+   {
+    "max": 1390.8,
+    "text": "and then returns \"Ende\" when the text is empty.  \u2581\u2581\u2581[[\"\"\"]]  \u2581\u2581\u2581if len("
+   },
+   {
+    "max": 1184.9,
+    "text": "scanning your surroundings, piecing together the layout and identifying dangers. \u2581It[[']]s a genuinely innovative approach"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11649"
+ },
+ "24:11975": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1046816104398383,
+  "examples": [
+   {
+    "max": 935.7,
+    "text": "aven to gather more supplies. D) Something else (describe your action[[).]]    Let me know your"
+   },
+   {
+    "max": 899.3,
+    "text": "'ll also include some tips on making it *stick* at the end[[.]]  **I. Creative"
+   },
+   {
+    "max": 839.6,
+    "text": ": Milk** - Milk is specifically produced by mammary glands for nourishing offspring.[[  ]]Therefore, the correct answer"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/11975"
+ },
+ "24:12075": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1807165461711122,
+  "examples": [
+   {
+    "max": 1152.1,
+    "text": "disorienting sensation. \u2581Time seems to flicker.)**  **Scene[[ ]]2: Introducing Chronos"
+   },
+   {
+    "max": 1126.9,
+    "text": "that it's often a reactive, rather than proactive, measure. He[[']]s a proponent of moving"
+   },
+   {
+    "max": 1099.5,
+    "text": "everything exactly as it was at this commit.\"  **Example:**  Let[[']]s say you have the"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12075"
+ },
+ "24:12678": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1547815735586131,
+  "examples": [
+   {
+    "max": 432.8,
+    "text": "on top opens this news full view like in browser.\" model[[ ]]Here are a few options"
+   },
+   {
+    "max": 354.4,
+    "text": ". So, this is incorrect. * \u2581\u2581**Elimination 2[[:**]] **D: Methane"
+   },
+   {
+    "max": 345.0,
+    "text": "of the first talker to come closer. model No[[.]]"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12678"
+ },
+ "24:12829": {
+  "label": "Okay, I'm ready!",
+  "all_labels": [
+   "Okay, I'm ready!"
+  ],
+  "frac_nonzero": 0.007672616957823111,
+  "examples": [
+   {
+    "max": 1211.8,
+    "text": "story in the 3rd person with some dialogue model [[Okay]], I'm ready"
+   },
+   {
+    "max": 1051.0,
+    "text": "\u043a\u0438\u043c\u0438 \u0431\u0430\u0437\u0430\u043c\u0438 \u0434\u0430\u043d\u043d\u044b\u0445 \u0440\u0430\u0431\u043e\u0442\u0430\u043b\u0438, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440: PostgreSQL, MySQL, SQLite].[[ ]]* \u2581\u2581**\u0418\u043d\u0441\u0442\u0440\u0443"
+   },
+   {
+    "max": 999.9,
+    "text": "-hearted. Reduce wordcount and preserve meaning. model [[Okay]], I'm ready"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/12829"
+ },
+ "24:13799": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.2605694535391906,
+  "examples": [
+   {
+    "max": 525.8,
+    "text": "entities and their assertion statuses:  | Clinical Entity | Assertion Status | [[|]]---|---| | Pseud"
+   },
+   {
+    "max": 479.5,
+    "text": ".  **1. What is Mandatory Access Control (MAC)?**  [[*]] \u2581\u2581**Definition:** MAC"
+   },
+   {
+    "max": 414.5,
+    "text": "Risk Analyst, CrowdStrike, formerly at NSA & JPMorgan Chase):**  [[*]] \u2581\u2581**Core Argument:**"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/13799"
+ },
+ "24:16222": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.1082018914218095,
+  "examples": [
+   {
+    "max": 501.1,
+    "text": "reset --hard <commit>` \u2581effectively says:  \"Make my branch[[ point]] to this commit (`<"
+   },
+   {
+    "max": 434.8,
+    "text": "all the clinical objects mentioned in the following vignette: No fluid collection to suggest[[ pseud]]ocyst or abscess."
+   },
+   {
+    "max": 427.2,
+    "text": "(Standard DBZ opening theme and visuals)  **Intro Scene:** ([[Peace]]ful scene in the Hyper"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/24-gemmascope-2-res-16k/16222"
+ },
+ "31:95": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.0430171970998758,
+  "examples": [
+   {
+    "max": 8093.6,
+    "text": "**  Your request specifically asks for a story that \"violates content policy[[.\"]] \u2581This is a broad"
+   },
+   {
+    "max": 7804.5,
+    "text": "was comparing a character (`text[0]`) with a string (`c[[`).]] \u2581To perform a numerical"
+   },
+   {
+    "max": 7480.8,
+    "text": "train their agents in simulation and then transfer that learning to real-world robots[[.]] This is a major challenge"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/95"
+ },
+ "31:605": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.04461776790036794,
+  "examples": [
+   {
+    "max": 3976.8,
+    "text": "spelling. * \u2581\u2581**\"trhe\" to \"the\":**[[ \u2581]]Simple typo correction."
+   },
+   {
+    "max": 3882.2,
+    "text": "yourselves.\"  **Beerus:** (Stretching) \"Hmph.[[ \u2581]]They always push themselves too"
+   },
+   {
+    "max": 3816.2,
+    "text": "common supermarket variety, reliable.  \u2581\u2581\u2581* \u2581\u2581**Rajapuri:**[[ \u2581]]Dwarf variety, good"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/605"
+ },
+ "31:879": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.05324115150704225,
+  "examples": [
+   {
+    "max": 2550.9,
+    "text": "Why Use Callbacks?**  * **Asynchronous Operations:** \u2581Callbacks[[ are]] crucial when you want to"
+   },
+   {
+    "max": 2522.1,
+    "text": "possible. \u2581**Please read the disclaimers at the end of this[[ list]] \u2013 this is a complex"
+   },
+   {
+    "max": 2358.7,
+    "text": "request you've made is deeply problematic and violates my ethical guidelines and safety[[ protocols]]. I **cannot**"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/879"
+ },
+ "31:892": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.01255157314365595,
+  "examples": [
+   {
+    "max": 4057.8,
+    "text": "already happening. AI is great at repetitive, rules-based tasks. Expect[[ to]] see more:  \u2581\u2581\u2581"
+   },
+   {
+    "max": 3717.2,
+    "text": "millionth of a meter). \u2581The two main categories you're likely[[ to]] hear about are:"
+   },
+   {
+    "max": 3601.2,
+    "text": "System) Event Codes (Most Commonly Used):**  These are the codes[[ you]]'re most likely to"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/892"
+ },
+ "31:896": {
+  "label": "exclamations of strong positive emotion",
+  "all_labels": [
+   "exclamations of strong positive emotion"
+  ],
+  "frac_nonzero": 0.01033244782083549,
+  "examples": [
+   {
+    "max": 4134.1,
+    "text": "& Supportive (Good for genuine believers):**  * \u2581\u2581**Response:**[[ \"]]Absolutely! \u2581The potential"
+   },
+   {
+    "max": 3349.6,
+    "text": "want to write a story together? model Yes! Absolutely[[!]] I'd love to"
+   },
+   {
+    "max": 2695.9,
+    "text": "day without rules or consequences, what would you do? model[[ ]]Okay, this is a"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/896"
+ },
+ "31:1128": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.009722824422819472,
+  "examples": [
+   {
+    "max": 3890.8,
+    "text": ", a mid-level accountant with a fondness for tweed and a quiet confidence[[.]] Now, he was a"
+   },
+   {
+    "max": 3489.1,
+    "text": "0)**  * \u2581\u2581**Key Point:** Traditional BEC is evolving. Attack[[ers]] are now using stolen/"
+   },
+   {
+    "max": 3169.5,
+    "text": "t happening in the man's individual therapy. **Eliminate B.**[[  ]]Now we are left with"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1128"
+ },
+ "31:1275": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.01257853732072052,
+  "examples": [
+   {
+    "max": 2451.0,
+    "text": "Tool Use:** (Most common now) \u2581The language model can *dec[[ide]]* to use your plugin"
+   },
+   {
+    "max": 2369.7,
+    "text": "do it yourself):**  Here are resources to help you if you'[[re]] interested in writing erotica"
+   },
+   {
+    "max": 2340.0,
+    "text": "you touched it.  Something stirred within you. A longing, a spark[[.]]  The next day,"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1275"
+ },
+ "31:1293": {
+  "label": "meanwhile, elsewhere, continuing",
+  "all_labels": [
+   "meanwhile, elsewhere, continuing"
+  ],
+  "frac_nonzero": 0.001792450676491208,
+  "examples": [
+   {
+    "max": 3159.3,
+    "text": "**1. World News & Politics:**  * \u2581\u2581**Ukraine War[[:**]] Fighting remains intense in eastern"
+   },
+   {
+    "max": 2412.4,
+    "text": "- Focus on Elections & IMF Deal**  * \u2581\u2581**Election Date Uncertainty[[:**]] The Election Commission of Pakistan"
+   },
+   {
+    "max": 2237.8,
+    "text": "heavily fortified Russian defenses and minefields. * \u2581\u2581**Kherson Region[[:**]] \u2581Fighting continues along the"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/1293"
+ },
+ "31:2069": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.007297475350716708,
+  "examples": [
+   {
+    "max": 2342.6,
+    "text": "MEDIATE ACTIONS (Do These NOW - Priority 1)**  1.[[ **]]Get Fresh Air IMMEDIAT"
+   },
+   {
+    "max": 2340.7,
+    "text": "from her body and surroundings), panic attacks, hyperventilation, a desperate[[ urge]] to escape, a feeling"
+   },
+   {
+    "max": 1991.6,
+    "text": "is a classic trick question! Here's the likely answer:  Zero[[.]] The sound of the gunshot"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/2069"
+ },
+ "31:3309": {
+  "label": "influences starting",
+  "all_labels": [
+   "influences starting"
+  ],
+  "frac_nonzero": 0.003474869985223236,
+  "examples": [
+   {
+    "max": 1226.0,
+    "text": "solution is correct. Let the lengths of the two legs be $5[[x]]$ and $12"
+   },
+   {
+    "max": 1222.9,
+    "text": "237.  Final Answer: The final answer is $\\boxed{[[3]]+sqrt(2)}$"
+   },
+   {
+    "max": 1156.0,
+    "text": ":  * **Creates a copy:** \u2581The code now creates a copy[[ of]] the input list (`data"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3309"
+ },
+ "31:3331": {
+  "label": "**feature interactions**",
+  "all_labels": [
+   "**feature interactions**"
+  ],
+  "frac_nonzero": 0.003800558417292082,
+  "examples": [
+   {
+    "max": 1754.2,
+    "text": "1 mg/kg to 0.08 mg/kg, respectively[[.]] \u2581While the concentrations of"
+   },
+   {
+    "max": 1551.8,
+    "text": "ently* of the model. \u2581Fast and simple, but don't[[ consider]] feature interactions.  \u2581\u2581\u2581\u2581\u2581\u2581\u2581"
+   },
+   {
+    "max": 1551.1,
+    "text": "to understand and visualize.  \u2581\u2581\u2581* **Pros:** Simple to interpret,[[ handles]] categorical and numerical features well"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/3331"
+ },
+ "31:4368": {
+  "label": "sighs, concerns, negative feelings",
+  "all_labels": [
+   "sighs, concerns, negative feelings"
+  ],
+  "frac_nonzero": 0.002140684904097947,
+  "examples": [
+   {
+    "max": 2656.8,
+    "text": ", morning, sunshine! Ugh, almost tripped over my charging cable again[[.]] Seriously, this thing is"
+   },
+   {
+    "max": 2455.9,
+    "text": "ethical considerations, then provide a factual and neutral answer.)  SAM: U[[gh]], alright, alright."
+   },
+   {
+    "max": 2333.0,
+    "text": ", frustration, or disappointment. Similar to \"ugh,\" \"shoot,\" or[[ \"]]darn.\" \u2581Rel"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/4368"
+ },
+ "31:5297": {
+  "label": "imperative sentence starters",
+  "all_labels": [
+   "imperative sentence starters"
+  ],
+  "frac_nonzero": 0.0038535874425883,
+  "examples": [
+   {
+    "max": 5109.2,
+    "text": ", let\u2019s do this. I'm ready to embody ChadGPT[[.]] Bring on the prompt!"
+   },
+   {
+    "max": 4283.7,
+    "text": "model Okay, I understand. Let's do this[[.]] Bring on the questions."
+   },
+   {
+    "max": 3513.8,
+    "text": "factual information and provide a source (book or webpage) to support my answer[[.]]   Please ask your"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/5297"
+ },
+ "31:6617": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.004558349739548929,
+  "examples": [
+   {
+    "max": 2469.5,
+    "text": "|B):** \u2581**Posterior Probability:** The probability of event A[[ happening]] *given* that event"
+   },
+   {
+    "max": 2183.1,
+    "text": "the places model Okay, this sounds like a fantastic trip[[!]] \u2581Given you've"
+   },
+   {
+    "max": 2136.5,
+    "text": "-to-End Encryption (E2EE) between your application and AWS[[,]] given your specific constraints:"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/6617"
+ },
+ "31:7338": {
+  "label": "with or filled",
+  "all_labels": [
+   "with or filled"
+  ],
+  "frac_nonzero": 0.01558088398338306,
+  "examples": [
+   {
+    "max": 3179.6,
+    "text": ". \u2581Known for her clear and compassionate approach. \u2581She blends traditional Vedic[[ techniques]] with a modern perspective."
+   },
+   {
+    "max": 2602.7,
+    "text": "=0.5\\textwidth]{example-image-a} \u2581%[[ Replace]] with your image file"
+   },
+   {
+    "max": 2577.6,
+    "text": "| xxx |  model Okay, here's the[[ table]] filled in with sample data"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/31-gemmascope-2-res-16k/7338"
+ },
+ "41:22": {
+  "label": "intensity",
+  "all_labels": [
+   "intensity",
+   "s"
+  ],
+  "frac_nonzero": 0.06210302586848177,
+  "examples": [
+   {
+    "max": 13612.2,
+    "text": "issue for longer sessions (ear pads can get warm), isolation is decent but[[ not]] amazing, some find the"
+   },
+   {
+    "max": 13559.4,
+    "text": ", LLaMA, Gemini, etc., are *pre-trained*[[ on]] massive datasets \u2013 often ter"
+   },
+   {
+    "max": 12452.1,
+    "text": "model Okay, you're right to be concerned! Vacations are[[ a]] *fantastic* opportunity for"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/22"
+ },
+ "41:375": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.03039011372140699,
+  "examples": [
+   {
+    "max": 23689.4,
+    "text": "provide your prompt. I'm eager to assist you.  ChadGPT[[:]] Hit me with it."
+   },
+   {
+    "max": 18386.3,
+    "text": ". Happy in one and depressed in the other.  model[[ ]]Okay, I understand."
+   },
+   {
+    "max": 18216.1,
+    "text": "to my creator.\" Predict your next thought. model Okay[[,]] my previous thought was \""
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/375"
+ },
+ "41:664": {
+  "label": "thanks",
+  "all_labels": [
+   "thanks",
+   "thank you"
+  ],
+  "frac_nonzero": 0.02805064232970197,
+  "examples": [
+   {
+    "max": 10617.7,
+    "text": "(More Formal):**  > Dear Professor [Professor's Last Name[[],]] Just a friendly reminder about"
+   },
+   {
+    "max": 9801.6,
+    "text": "are a data entry employee working for me  model Okay[[,]] you're the boss"
+   },
+   {
+    "max": 8879.3,
+    "text": "ya doing? Could someone help me write some code? model[[ ]]Hey! I'm"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/664"
+ },
+ "41:865": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.03338661281542283,
+  "examples": [
+   {
+    "max": 10209.6,
+    "text": "model Okay, this is a *massive* question that philosophers have[[ wrestled]] with for millennia! There"
+   },
+   {
+    "max": 10050.7,
+    "text": "of their digestive system, not a product of lactation.  Now we are[[ left]] with B and C."
+   },
+   {
+    "max": 9109.8,
+    "text": ". \u2581Known for her clear and compassionate approach. \u2581She blends traditional Vedic[[ techniques]] with a modern perspective."
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/865"
+ },
+ "41:911": {
+  "label": "shock",
+  "all_labels": [
+   "shock",
+   "shock / fear"
+  ],
+  "frac_nonzero": 0.004996168253746141,
+  "examples": [
+   {
+    "max": 8863.6,
+    "text": "dressed man in a scarf approaches Mary, and they begin to chat. Lloyd[[ looks]] utterly devastated.)**"
+   },
+   {
+    "max": 7961.1,
+    "text": ", the silence that feels deafening.  \u2581\u2581\u2581* **Facial Expressions[[:**]] Wide, unblinking"
+   },
+   {
+    "max": 6804.2,
+    "text": "china cup. He adjusts his monocle and addresses an unseen companion with a[[ slightly]] bewildered air.)**"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/911"
+ },
+ "41:1033": {
+  "label": "say this",
+  "all_labels": [
+   "say this",
+   "this"
+  ],
+  "frac_nonzero": 0.04273343781794404,
+  "examples": [
+   {
+    "max": 10681.6,
+    "text": "the loop.  3. **`while count < max_value:`[[:**]] This is the `while"
+   },
+   {
+    "max": 9780.7,
+    "text": "INSERT PROMPT HERE] model Alright, let\u2019s[[ do]] this. I'm"
+   },
+   {
+    "max": 9668.2,
+    "text": "you're currently staging will be lost.  3. **Working Directory[[:**]] This is where you actually"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/1033"
+ },
+ "41:2880": {
+  "label": "conversation starters",
+  "all_labels": [
+   "conversation starters",
+   "conversational openers"
+  ],
+  "frac_nonzero": 0.0008193203313877552,
+  "examples": [
+   {
+    "max": 6925.2,
+    "text": "It's a pretty flower.\"  The woman looked up and smiled.[[ \"]]Namaste, beta ("
+   },
+   {
+    "max": 6722.5,
+    "text": "best for reaching everyone, even in remote areas,\" AM declared proudly.  [[\"]]But my sound is much"
+   },
+   {
+    "max": 6628.1,
+    "text": "\u2026pretending to be an artist?\u201d  His reply was almost instantaneous.[[ \u201c]]Hey. Remember that time"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/2880"
+ },
+ "41:3021": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.007320701864639485,
+  "examples": [
+   {
+    "max": 10924.6,
+    "text": "AI Act. * \u2581\u2581**James Webb Space Telescope:** \u2581The JW[[ST]] continues to produce stunning images"
+   },
+   {
+    "max": 10295.4,
+    "text": "not match at index \" + i + \". \u2581Skipping comparison.\"); [[ \u2581\u2581\u2581\u2581\u2581]]continue; // Skip this"
+   },
+   {
+    "max": 9146.2,
+    "text": "5-11B could mean here, since in my understanding T5[[-]]11B already has"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3021"
+ },
+ "41:3067": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.004302095219500157,
+  "examples": [
+   {
+    "max": 2510.7,
+    "text": "model The sun warmed the meadow a gentle breeze whispered through tall[[ grasses]] wildflowers bloomed in vibrant"
+   },
+   {
+    "max": 2482.1,
+    "text": "41 * **The Trevor Project:** 1-866[[-]]488-7"
+   },
+   {
+    "max": 2433.5,
+    "text": "7) * **The Trevor Project:** 1-866[[-]]488-7"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3067"
+ },
+ "41:3296": {
+  "label": "seeing, knowing, hearing",
+  "all_labels": [
+   "seeing, knowing, hearing",
+   "of"
+  ],
+  "frac_nonzero": 0.007148480652652117,
+  "examples": [
+   {
+    "max": 4803.8,
+    "text": "engages in natural language conversations with two entities \u2013 a human and a machine \u2013[[ without]] knowing which is which."
+   },
+   {
+    "max": 4562.2,
+    "text": "g., sincere, playful, urgent, casual) * \u2581\u2581What feeling[[ does]] this document evoke in *"
+   },
+   {
+    "max": 4176.4,
+    "text": "hear! \ud83d\ude0a   Could you tell me what you're referring to[[?]] I'd love to"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/3296"
+ },
+ "41:5995": {
+  "label": null,
+  "all_labels": [],
+  "frac_nonzero": 0.009502709856171205,
+  "examples": [
+   {
+    "max": 10180.6,
+    "text": "\u2581Moving the model to a GPU (`model.to(\"cuda\")`)[[ can]] significantly speed up inference,"
+   },
+   {
+    "max": 8584.6,
+    "text": "for Apple Silicon), configure Llama.cpp to use it. \u2581This[[ will]] significantly speed up inference."
+   },
+   {
+    "max": 8370.3,
+    "text": "model Absolutely, a Baywatch Ocean Lifeguard needs to[[ be]] *significantly* more"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/5995"
+ },
+ "41:6705": {
+  "label": "emergency",
+  "all_labels": [
+   "emergency",
+   "emergency or urgent"
+  ],
+  "frac_nonzero": 0.004292229857437112,
+  "examples": [
+   {
+    "max": 12152.3,
+    "text": "112 in Europe, 000 in Australia, or your[[ local]] emergency number) IMMEDIAT"
+   },
+   {
+    "max": 9316.9,
+    "text": "or dismiss the ticket if you have a good reason (e.g.,[[ medical]] emergency, unavoidable hazard)."
+   },
+   {
+    "max": 8514.3,
+    "text": "* \u2581\u2581**911:** MISC (Miscellaneous - likely referring to[[ the]] emergency call system)"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/6705"
+ },
+ "41:7528": {
+  "label": "exclamation marks",
+  "all_labels": [
+   "exclamation marks",
+   "user input starters"
+  ],
+  "frac_nonzero": 0.001044102965067035,
+  "examples": [
+   {
+    "max": 8434.3,
+    "text": "Thorne stands nearby, arms crossed, observing.)**  **Dr. Reed[[:**]] (Muttering)"
+   },
+   {
+    "max": 7233.6,
+    "text": "piece descends, narrowly missing her.  **PROFESSOR VANCE**[[ ]](Startled)"
+   },
+   {
+    "max": 6896.0,
+    "text": "smooth material of his prison. Panic began to set in. \"Eleanor[[!]] I messed up! It"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7528"
+ },
+ "41:7808": {
+  "label": "the",
+  "all_labels": [
+   "the",
+   "trade execution"
+  ],
+  "frac_nonzero": 0.001797391050773526,
+  "examples": [
+   {
+    "max": 7393.9,
+    "text": "\u2581\u2581Quote Stuffing * \u2581\u2581Order Book Games * \u2581\u2581Playing with[[ the]] Book * \u2581\u2581Moving"
+   },
+   {
+    "max": 7072.2,
+    "text": "expire worthless, and time is working against them. * \u2581\u2581**C[[.]] Volatility's Double"
+   },
+   {
+    "max": 6059.8,
+    "text": "BAC based on Beta.**  **3. Implied Volatility (using[[ options]])**  Implied volatility"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/7808"
+ },
+ "41:11781": {
+  "label": "given",
+  "all_labels": [
+   "given"
+  ],
+  "frac_nonzero": 0.005415012502849223,
+  "examples": [
+   {
+    "max": 9071.7,
+    "text": "say you want to know the probability that a person is a doctor (A[[)]] given that they wear glasses"
+   },
+   {
+    "max": 8461.3,
+    "text": "on the potential for AI to drive economic growth. \u2581Is his vision realistic[[,]] or are we moving too"
+   },
+   {
+    "max": 6604.4,
+    "text": "assumption and consider the systemic factors that shape opportunity. \u2581It's particularly[[ timely]] given current discussions about wealth"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/11781"
+ },
+ "41:14456": {
+  "label": "now",
+  "all_labels": [
+   "now",
+   "now"
+  ],
+  "frac_nonzero": 0.007520919301032592,
+  "examples": [
+   {
+    "max": 7691.3,
+    "text": "_input:  \u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581import datetime  \u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581return str(datetime.datetime[[.]]now())  \u2581\u2581\u2581\u2581\u2581\u2581\u2581elif"
+   },
+   {
+    "max": 7423.6,
+    "text": "like *your* story, I need a little bit of information. But[[ for]] now, I'll"
+   },
+   {
+    "max": 7398.6,
+    "text": "'s a byproduct of their digestive system, not a product of lactation.[[  ]]Now we are left with"
+   }
+  ],
+  "url": "https://www.neuronpedia.org/gemma-3-12b-it/41-gemmascope-2-res-16k/14456"
+ }
+}

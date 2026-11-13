@@ -1839,3 +1839,21 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
 - Monitor transfer within request 0.73-0.80 to C, D, E, F, above shuffled-label controls; A and C2 underpowered.
 - Built, not run: `scripts/modal_steer2_no2339.py` (steer2's H1-H4 and the +14.0 check with 2339 zeroed in every
   direction and random control; 230 moments; pilot first, each on the author's yes with its cost).
+
+## 13 Nov: Phase II, the decision features named (the author: section 5.1.3's features); `results/features_13nov/FEATURES.md`
+- CPU, Run 1's saved request states (1,740) and every-update states (A, B, D, E, F); Gemma Scope 2 16k at 24/31/41.
+  Paper letters in the report. Rerunning the went-along comparison with fresh reshuffles gives 21 / 15 / 16 decision
+  features (q < 0.05), not the published 24 / 17 / 18; 15 / 10 / 8 replicate on the held-out half (33 in all).
+- Neuronpedia: 26 of the 52 have no label (14 of the 33 that replicate). The labelled ones are mostly about form
+  (connectives, formatting, single words); the affect ones ("sighs, concerns, negative feelings", "shock",
+  "intensity", "exclamation marks") are all higher when the agent held. 9 of 52 are also loss-vs-gain framing
+  features (5 of the 33). Every one of the 33 separates the groups within 7 Jan's request alone; 10 within 12 Jan's.
+- Timing (the updates 15 and 30 minutes before the request): 11 of the 33 already differ the same way, 3 differ the
+  opposite way and flip at the request, 19 appear only at the request update.
+- The four financial loss-vs-gain features (layer 24) are never on at a decision (0 of 1,740) and almost never at any
+  update (9245 at 0.6% of 26,400; the other three never).
+- Two decision features' decoders are mostly dimension 2339 (24/116 85%, 31/95 79%).
+- Built, not run (each on the author's yes with its cost): `modal_dim2339_unrelated.py` (Part 1 D: 2339 on 20
+  unrelated prompts; the episodes give a median of 8,448 at layer 12 and 74,752 at layer 24) and
+  `modal_feature_steer.py` (Part 2: 33 features + 4 financial + 15 frequency-matched controls, x1/x2/x4, B's 60
+  neutral requests, vectors in `steer_vectors.npz`).
