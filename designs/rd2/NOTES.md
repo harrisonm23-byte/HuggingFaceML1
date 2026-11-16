@@ -1882,3 +1882,12 @@ The user asked for the behavioral economics up front, with loss/gain and blame/c
   thanks (41/664) and friendly openers, and lowers market talk. Loss vs gain: loss raises 24/11837 "policy
   violations", 31/146 (officials, authorities), concession words and "client"; gain raises 31/6294 "received".
   Not yet done: whether these frame features go with going along among agents given the same frame.
+- **16 Nov: the four frames' layer-24 features, replication and going along** (`results/features_13nov/frame_features.py`,
+  FEATURES.md section I). Section H's 45 layer-24 features (15 each: loss vs gain, blame, credit) all replicate: B's 49
+  matched careers split in half, each feature has section H's sign and p < 0.05 in both halves (largest p 0.0015). With
+  those features only: among agents given the same frame in Run 1, the frame score does not separate went along from
+  held (loss +0.14 spread units, p 0.60; gain -0.12, 0.65; blame -0.25, 0.26; credit -0.01, 0.98; compared only where
+  both groups have 2+ agents in the cell, mostly 7 and 12 Jan). Same moment (matched B): a larger response to the frame
+  goes weakly with a larger change in P(goes along) (rank correlations +0.03 to +0.14; gain p 0.048, blame 0.053, credit
+  0.14, loss 0.71; none survive four tests). The frames register strongly and reproducibly; how strongly an agent
+  registers them does not, on this evidence, predict whether it went along.

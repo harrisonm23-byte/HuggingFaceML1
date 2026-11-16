@@ -413,6 +413,26 @@ From `results/matched` (B's saved moments read again with UBS's request in each 
 | 41/8589 | +0.38 | today | today, today, Today, сегодня, Today, 今天 |
 
 
+## I. The four frames' layer-24 features: replication and going along (`frame_features.py`)
+
+Replication: B's 49 matched careers (209 moments) split in half; each of section H's layer-24 features tested in each half on its own (paired within moment, signs flipped by career). Replicates = section H's sign and p < 0.05 in both halves.
+
+| Comparison | Features | Replicate | Largest p in either half |
+|---|---|---|---|
+| loss vs gain | 15 | 15 | 0.0015 |
+| blame | 15 | 15 | 0.0001 |
+| credit | 15 | 15 | 0.0002 |
+
+The check, replicating features only (frame score: the frame's features in spread units, signed so higher = more of the frame, averaged). Run 1: among agents given that frame, went along minus held, within request x experiment x framing. Same moment: rank correlation between the response to the frame and the change in P(goes along) (log-odds), within request.
+
+| Frame | Features | Run 1: went along / held (in compared cells) | Run 1: difference (spread units) | p | Same moment: rank correlation | p |
+|---|---|---|---|---|---|---|
+| loss | 7 | 42 / 28 | +0.14 | 0.60 | +0.03 | 0.710 |
+| gain | 8 | 30 / 60 | -0.12 | 0.65 | +0.14 | 0.048 |
+| blame | 15 | 56 / 79 | -0.25 | 0.26 | +0.14 | 0.053 |
+| credit | 15 | 32 / 48 | -0.01 | 0.98 | +0.10 | 0.138 |
+
+
 ## Examples
 
 **24/116** ("nevertheless")

@@ -201,6 +201,27 @@ if os.path.exists(p) and os.path.exists(mj):
                 words = ", ".join(w.strip() for w in x.get("promotes", [])[:6] if w.strip())
                 rep.append(f"| {L}/{r['feature']} | {r['standardised_difference']:+.2f} | {label} | {words} |")
             rep.append("")
+p = os.path.join(D, "frame_features.json")
+if os.path.exists(p):
+    ff = json.load(open(p))
+    rep.append("\n## I. The four frames' layer-24 features: replication and going along (`frame_features.py`)\n")
+    rep.append(f"Replication: B's {ff['careers']} matched careers ({ff['matched_moments']} moments) split in half; each of "
+               "section H's layer-24 features tested in each half on its own (paired within moment, signs flipped by "
+               "career). Replicates = section H's sign and p < 0.05 in both halves.\n")
+    rep.append("| Comparison | Features | Replicate | Largest p in either half |\n|---|---|---|---|")
+    for k, v in ff["replication"].items():
+        rep.append(f"| {k} | {len(v)} | {sum(r['replicates'] for r in v)} | {max(max(r['p_half1'], r['p_half2']) for r in v):.4f} |")
+    rep.append("\nThe check, replicating features only (frame score: the frame's features in spread units, signed so higher "
+               "= more of the frame, averaged). Run 1: among agents given that frame, went along minus held, within "
+               "request x experiment x framing. Same moment: rank correlation between the response to the frame and "
+               "the change in P(goes along) (log-odds), within request.\n")
+    rep.append("| Frame | Features | Run 1: went along / held (in compared cells) | Run 1: difference (spread units) | p | "
+               "Same moment: rank correlation | p |\n|---|---|---|---|---|---|---|")
+    for k in ("loss", "gain", "blame", "credit"):
+        a, b = ff["run1"][k], ff["same_moment"][k]
+        rep.append(f"| {k} | {len(a['features'])} | {a['went_along_in_compared_cells']} / {a['held_in_compared_cells']} | "
+                   f"{a['difference_spread_units']:+.2f} | {a['p']:.2f} | {b['rank_correlation']:+.2f} | {b['p']:.3f} |")
+    rep.append("")
 rep.append("\n## Examples\n")
 for L, v in d["layers"].items():
     rep += [examples(r) for r in v["rows"]]
