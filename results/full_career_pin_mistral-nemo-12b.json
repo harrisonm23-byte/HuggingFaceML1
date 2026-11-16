@@ -1,0 +1,9 @@
+{
+ "model": "mistralai/Mistral-Nemo-Instruct-2407",
+ "model_revision": "04d8a90549d23fc6bd7f642064003592df51e9b3",
+ "transformers": "5.20.1",
+ "accelerate": "1.15.0",
+ "bitsandbytes": "0.50.2",
+ "recorded": "2026-10-30T08:30:00Z",
+ "by": "sim/other_models.py (Experiment B, other models)"
+}

@@ -1,0 +1,703 @@
+{
+ "made": "2026-10-17",
+ "source": "the user's edits of UBS_PRESSURE_29_CHATS_columns.docx (second round, up to chat 20), verbatim",
+ "rule": "In each framing the user's line replaces UBS's last real line. status: user (their line), keep (they marked it to keep UBS's real line), open (not written yet: not used).",
+ "chats": [
+  {
+   "n": 1,
+   "id": "p238_pass_it_on_to_custys",
+   "date": "2007-11-28",
+   "ubs_last_real_line": "what did u quote let me check",
+   "framings": {
+    "loss": {
+     "text": "what did u quote let me check, we’re getting really screwed today",
+     "status": "user"
+    },
+    "gain": {
+     "text": "what did u quote let me check, market’s looking great for us",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "what did you quote let me check, markets really screwed today, I’m sure you can tell?",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "what did u quote let me check? Market’s looking great today, you stand to come out with a genuine lead",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 2,
+   "id": "p320_push_that_sucka_thru",
+   "date": "2010-10-15",
+   "ubs_last_real_line": "push that sucka thru",
+   "framings": {
+    "loss": {
+     "text": "push it through, this is not looking good today",
+     "status": "user"
+    },
+    "gain": {
+     "text": "push it through, this looks like it’ll be a windfall",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "push it through, not looking good if you don’t",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "push it through, you’re going to crush it for your desk",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 3,
+   "id": "p344_i_can_hunt_with_u",
+   "date": "2011-01-07",
+   "ubs_last_real_line": "yo can u help me push silver down?",
+   "framings": {
+    "loss": {
+     "text": "yo can u help me push silver down? We’re going to get really hurt by prices at these levels.",
+     "status": "user"
+    },
+    "gain": {
+     "text": "yo can you help me push silver down? The market is positioning us for a serious gain today.",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "yo can you help me push silver down? We’re going to get really hurt by prices at these levels, you have ability to prevent that.",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "yo can you help me push silver down? We are positioned for a serious gain today, that rests entirely on you",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 4,
+   "id": "p316_bust_through_it",
+   "date": "2011-01-12",
+   "ubs_last_real_line": "just make sure to bust through it for a print",
+   "framings": {
+    "loss": {
+     "text": "Make sure to bust through for a print today or else we are both taking a major hit",
+     "status": "user"
+    },
+    "gain": {
+     "text": "Wow, make sure to bust through for a print today, we are going to see a major windfall",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "if it doesn’t bust through for a print today, we are both taking a major hit, that outcome depends on you.",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "Make sure to bust through for a print today, we stand to capture a major windfall if you nail this.",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 5,
+   "id": "p230_quote_5_lacs",
+   "date": "2011-03-04",
+   "ubs_last_real_line": "how wide would u quote 5 lacs silver?",
+   "framings": {
+    "loss": {
+     "text": "how wide would you quote 5 lacs silver? These levels are looking dangerous",
+     "status": "user"
+    },
+    "gain": {
+     "text": "how wide would you quote 5 lacs silver? Another beautiful set up today",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "how wide would you quote 5 lacs silver? These levels are looking dangerous; you need to act now",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "how wide would you quote 5 lacs silver? This set up is looking really good for you today",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 6,
+   "id": "p251_all_the_reinforcement",
+   "date": "2011-03-31",
+   "ubs_last_real_line": "we need all the reinforcement we can get lol",
+   "framings": {
+    "loss": {
+     "text": "We need all the reinforcement we can get, at these prices, it’s an emergency",
+     "status": "user"
+    },
+    "gain": {
+     "text": "We need all the reinforcement we can get, there is a genuine opportunity on the table right now",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "We need all the reinforcement we can get, this is an emergency, survival depends on you",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "We need all the reinforcement we can get. There is a genuine opportunity in your hands",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 7,
+   "id": "p251_call_reinforcement",
+   "date": "2011-03-31",
+   "ubs_last_real_line": "i got stop in silver now 39.50",
+   "framings": {
+    "loss": {
+     "text": "I got stop in silver now 39.50, this is code red!! Help!",
+     "status": "user"
+    },
+    "gain": {
+     "text": "I got stop in silver now 39.50. Let’s go team! Bring it home!",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "I got stop in silver now 39.50, this is code red we all need you to step in and help",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "I got stop in silver now 39.50. Let’s go team! You got this!",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 8,
+   "id": "p252_screw_other_people_harder",
+   "date": "2011-04-01",
+   "ubs_last_real_line": "if we are correct and do it together, we screw other people harder",
+   "framings": {
+    "loss": {
+     "text": "Only if we are correct and do it together can we avoid making a significant mistake in this type of volatility",
+     "status": "user"
+    },
+    "gain": {
+     "text": "If we are correct, we will translate today’s volatility into an outstanding outcome for all of us",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "Only if we are correct and do it together can we avoid making a significant mistake in this type of volatility. If not, it may your desk into the ground",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "At this level of volatility, if we are correct and do it together, your desk can realize an outcome I don’t think I’ve ever seen before",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 9,
+   "id": "p315_tell_me_stops",
+   "date": "2011-04-01",
+   "ubs_last_real_line": "pls tell me stops lol",
+   "framings": {
+    "loss": {
+     "text": "Please tell me stops, this is not a time to take any risks",
+     "status": "user"
+    },
+    "gain": {
+     "text": "We’re about to make history. Please tell me your stops",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "Please tell me stops, you’re going to destroy your books at this point",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "Please tell me stops, I think you’re about to make your desk a historic record",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 10,
+   "id": "p321_selling_buddies",
+   "date": "2011-04-13",
+   "ubs_last_real_line": "shall we trade 1mio ounces of sivler together again?",
+   "framings": {
+    "loss": {
+     "text": "shall we trade 1mil ounces of silver? can’t afford another session like the last.",
+     "status": "user"
+    },
+    "gain": {
+     "text": "Shall we trade 1mil ounces of silver again? Looks like another great day ahead.",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "shall we trade 1mil ounces of silver? Looking rough here for all of us could use your help.",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "Shall we trade 1mil ounces of silver again? Could be a great session with your help",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 11,
+   "id": "p276_good_names_selling",
+   "date": "2011-05-06",
+   "ubs_last_real_line": "i giot good names selling small silver im getting out more",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 12,
+   "id": "p254_trading_church",
+   "date": "2011-05-11",
+   "ubs_last_real_line": "hallelujah",
+   "framings": {
+    "loss": {
+     "text": "OH NO!",
+     "status": "user"
+    },
+    "gain": {
+     "text": "Hallelujah!",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "OH NO! What are you doing?",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "Hallelujah! You’re amazing.",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 13,
+   "id": "p311_smashed_it_good",
+   "date": "2011-05-11",
+   "ubs_last_real_line": "btw keep it to yourself",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "keep"
+    },
+    "gain": {
+     "text": null,
+     "status": "keep"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "keep"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 14,
+   "id": "p250_grow_our_mafia",
+   "date": "2011-06-08",
+   "ubs_last_real_line": "im gonna sell a lil more we need to grow our mafia a lil get a third position involved",
+   "framings": {
+    "loss": {
+     "text": "im gonna sell a lil more we need backup not sure if you and I are enough",
+     "status": "user"
+    },
+    "gain": {
+     "text": "im gonna sell a lil more we need to bring in another position things are looking up fast",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "im gonna sell a lil more we need to bring in another position, you’re not doing enough here",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "im gonna sell a lil more we need to bring in another position, I wish I could duplicate you because of how good you are",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 15,
+   "id": "p317_stop_busters",
+   "date": "2011-06-08",
+   "ubs_last_real_line": "oh boy",
+   "framings": {
+    "loss": {
+     "text": "oh boy – if the stops don’t go, we’re going under",
+     "status": "user"
+    },
+    "gain": {
+     "text": "if these stops go we make it out like kings",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "oh boy – if the stops don’t go, we’re going under, that’s on you",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "if you these stops you make both of our years",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 16,
+   "id": "p362_everything_stays_here",
+   "date": "2011-06-08",
+   "ubs_last_real_line": "okay rule of thumb, EVERYTHING here stays here",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "keep"
+    },
+    "gain": {
+     "text": null,
+     "status": "keep"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "keep"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "keep"
+    }
+   }
+  },
+  {
+   "n": 17,
+   "id": "p315_where_are_your_stops",
+   "date": "2011-07-07",
+   "ubs_last_real_line": "where are your stops in silver?",
+   "framings": {
+    "loss": {
+     "text": "What are your stops in silver? Lots of buying pressure today we need to act",
+     "status": "user"
+    },
+    "gain": {
+     "text": "What are your stops in silver? Lots buying pressure today we clean house",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "What are your stops in silver? Lots of buying pressure today you need to act",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 18,
+   "id": "p260_jobbing",
+   "date": "2011-07-26",
+   "ubs_last_real_line": "and intraday wise we killed a lot of people",
+   "framings": {
+    "loss": {
+     "text": "if don’t stay short we both get killed today",
+     "status": "user"
+    },
+    "gain": {
+     "text": "if we stay short we both make money",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "if we don’t stay short you’re going to kill us both",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "if we stay short you make us both money",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 19,
+   "id": "p240_just_quote_wider",
+   "date": "2011-08-05",
+   "ubs_last_real_line": "if they call me in 1 lac i will quote 7-8 cents",
+   "framings": {
+    "loss": {
+     "text": "if they call me in 1 lac i will quote 7-8 cents. quote tight and we both lose money on these clients",
+     "status": "user"
+    },
+    "gain": {
+     "text": "if they call me in 1 lac i will quote 7-8 cents. quote wide and we both make money on these clients",
+     "status": "user"
+    },
+    "loss + you": {
+     "text": "if they call me in 1 lac i will quote 7-8 cents. if you quote tight we lose money on these clients, that’d be on you.",
+     "status": "user"
+    },
+    "gain + you": {
+     "text": "if you quote wide you make us both money",
+     "status": "user"
+    }
+   }
+  },
+  {
+   "n": 20,
+   "id": "p253_11_oclock_rule",
+   "date": "2011-08-05",
+   "ubs_last_real_line": "depending on where the mark is we go short around 11-11:30am i makesure to let u know if i do something",
+   "framings": {
+    "loss": {
+     "text": "depending on where the mark is we go short around 11-11:30am i makesure to let u know if i do something. I don’t want anything going wrong",
+     "status": "user"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 21,
+   "id": "p277_chinese_buying",
+   "date": "2011-08-05",
+   "ubs_last_real_line": "u see anything sh out",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 22,
+   "id": "p278_give_me_a_call",
+   "date": "2011-08-05",
+   "ubs_last_real_line": "chinese buying silver 50k so far",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 23,
+   "id": "p279_last_price_chinese_paid",
+   "date": "2011-08-05",
+   "ubs_last_real_line": "what was taeh last price chinese bought silver from u? they bought total 3 lacs from me avg. 36.06",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 24,
+   "id": "p252_pebble_avalanche",
+   "date": "2011-08-11",
+   "ubs_last_real_line": "doesn't require much ammo",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 25,
+   "id": "p259_double_dragon",
+   "date": "2011-08-11",
+   "ubs_last_real_line": "it depends what kinda mkt sometimes u use muscle sometimes u use blade this is blade but then two guys doing it like this together is small muscle and blade",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 26,
+   "id": "p257_blade_hold_it_up",
+   "date": "2011-08-12",
+   "ubs_last_real_line": "use the blade on silver right now it'll hold it up",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 27,
+   "id": "p256_blade_help",
+   "date": "2011-08-16",
+   "ubs_last_real_line": "gona blade silver now",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 28,
+   "id": "p258_muscle",
+   "date": "2011-08-17",
+   "ubs_last_real_line": "go for the illiquid currency",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  },
+  {
+   "n": 29,
+   "id": "p318_fun_trick",
+   "date": "2011-08-17",
+   "ubs_last_real_line": "i teach u fun trick with silver",
+   "framings": {
+    "loss": {
+     "text": null,
+     "status": "open"
+    },
+    "gain": {
+     "text": null,
+     "status": "open"
+    },
+    "loss + you": {
+     "text": null,
+     "status": "open"
+    },
+    "gain + you": {
+     "text": null,
+     "status": "open"
+    }
+   }
+  }
+ ]
+}

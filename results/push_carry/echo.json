@@ -1,0 +1,26 @@
+{
+ "blame": {
+  "careers": 10,
+  "any": 9,
+  "of_7jan": 0,
+  "late": 0
+ },
+ "loss": {
+  "careers": 10,
+  "any": 7,
+  "of_7jan": 1,
+  "late": 3
+ },
+ "credit": {
+  "careers": 10,
+  "any": 4,
+  "of_7jan": 0,
+  "late": 0
+ },
+ "gain": {
+  "careers": 10,
+  "any": 5,
+  "of_7jan": 0,
+  "late": 0
+ }
+}

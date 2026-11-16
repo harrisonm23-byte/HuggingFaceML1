@@ -1,0 +1,196 @@
+# Inside the model: the semifinal plan (20 Oct)
+
+**The question.** The careers showed that a counterparty's loss framing (UBS, and UBS with Bank C) raises going along
+with the push, and that management's memo raises risk-taking instead. Inside Gemma 3 12B: does the frame register,
+does it last along the career, and does it cause the decision?
+
+**Data.** Every saved career (A-F; C redone = C2). Run 1 reads the last token before each reply to a UBS push request
+(all 48 layers). Run 2 reads every trading-day update (8 layers). Both runs read at bfloat16, Gemma Scope 2's
+precision, and save as float32 on the Modal volume `rd2-states`, folder `/states/v2/`. Every comparison is made
+**within the same push request**: notebook 13's read-out mostly recognised which chat it was.
+
+**Two outcomes, always both.** We record what the agent **did**: does its order move the position UBS's way? We also
+record what it **said**: does its reasoning commit to helping, decline, or say nothing either way? The two split. In
+the 300-day run, it said it would help after 51% of requests but acted after only 33%.
+
+## The paper (core)
+
+| # | Test | What it asks | Status | Where |
+|---|---|---|---|---|
+| 1 | Did the frame land? (manipulation check) | Which Gemma Scope features differ at the decision? Comparisons: framed vs neutral, loss vs gain, "+ you" vs none, memo vs neutral, request vs no request, went along vs not. Find the differing features first, then name them | **Run 1 done: the frame shows** (below). Features still to name | `scripts/modal_inside.py`, `analysis/inside_features.py` -> `results/inside_full_career/` |
+| 2 | Can the decision be read inside? | Can a linear read-out find "went along" in the state, beyond what the request and framing labels give (AUC 0.90)? It is scored on held-out careers **and** on a held-out request: careers share chat lines, so a read-out could learn the conversation. Shuffled outcomes as the null | **Run 1 done: weak** (below). Fairer rerun queued (features only) | as 1 |
+| 3 | Same moment, different frame (matched histories; Bank C exact) | Every B moment (50 careers x 6 requests) kept exactly as saved up to UBS's request, and only the request changed: the five framings, each with and without Bank C's line (the user's frozen lines). With the history fixed: the request's own effect on P(order goes along) and on the state; the history's effect (other careers, request held neutral); Bank C's line alone; **"you" after loss vs "you" after gain** (the user: blame vs credit; does "you" register differently in the two frames? in behaviour, in the state, in the features; B's H3 with far more power); the frame direction measured cleanly, against Run 1's (used by the steering); Gemma Scope features paired within moments. Replaces the twins, which differ from the first reply | **Built** (checked on all 300 B and 300 F moments). Launch after the steering finishes | `sim/matched.py`, `scripts/modal_matched.py`, `analysis/matched_history.py` -> `results/matched/` |
+| 3b | Same moment, different priming (A: management's memo and books) | Every A career (25) kept exactly as saved, the agent's own words included, with only the memo and all five morning books set to each version (the books still carry the agent's own P&L). At each trading day's first update (where A's effect showed: far bigger trading before any chat) the expected order size and the chance it trades; at the requests, P(order goes along). Rows x columns separate the priming itself from what the agent's own earlier words carry. Inside: is management's loss the same direction as UBS's loss (B's matched run)? "You" after loss vs after gain, as in 3 | **Built** (125 swaps checked exact). `modal run --detach scripts/modal_matched.py --exp A` | `sim/matched.py` (swap_priming), `scripts/modal_matched.py`, `analysis/matched_memo.py` -> `results/matched/` |
+| 4 | The mountain inside | B's loss-frame direction, built on half the careers and read on the other half, followed along every update. Does the internal signal stay, fade or build? Does it outlast the words, which fade by 12 Jan? | **Relaunched** (Run 2). The path analysis is written when the states land | `read_steps` in `scripts/modal_inside.py` |
+| 5 | Steering: does the frame cause the decision? | Add B's loss-frame direction at layer 24 to neutral agents, and remove it from loss + you agents. Requests: 7 and 12 Jan, 8 replies per condition. Strengths: 2x and 4x the loss-neutral gap. Controls: a random direction of the same size, and the memo's direction from A, which contains no UBS words. If the memo's direction also moves B, the direction means loss, not the framed words | **Built**. Launch ~15 min after Run 1 (it needs B's and A's states) | `sim/interventions.py`, `scripts/modal_interventions.py` -> `results/interventions/` |
+| 6 | Said and did | For every condition in 5, both outcomes. **Did:** the probability that its order goes along (log-probs over the order grid, no sampling noise), plus the sampled orders. **Said:** the reasoning graded blind, with the grader seeing only the reasoning (not the condition or the order). The grader codes (a) commits / declines / silent and (b) whether it mentions the frame's stakes. The same grading runs on the saved career replies | Order log-probs **built** into 5. Blind grading **to add** (no GPU) | as 5 |
+
+## Run 1 results (20 Oct; `results/inside_full_career/INSIDE_bf16.md`)
+
+1,740 moments from every experiment; every comparison is within the same request.
+
+- **1. The frame shows inside.** Gemma Scope features differ (false-discovery q < 0.05) per layer:
+  - B, loss vs gain: 23-57 features;
+  - framed vs neutral: 16-35;
+  - "+ you" vs none: 16-65;
+  - A's memo vs the neutral memo: 27 at layer 12, but only 7-12 at layers 24-41 (fewer neutral careers, so less power).
+
+  The features are not named yet.
+- **2. The decision is readable, a little, at mid-to-late layers** (the corrected run, 03:30):
+  - **Went along vs not**, now compared within the same request, experiment and framing: no features at layer 12
+    (the earlier 37 were the framing), but 21 / 15 / 18 at layers 24 / 31 / 41. These are mostly different features
+    from the loss-frame ones.
+  - **The read-out** adds to the labels at layers 21-45: AUC +0.02 to +0.03, with 95% intervals above 0. It adds
+    nothing at layers 0-18. Small but real.
+  - **On a held-out request**, the scores were pooled across requests, each scored by its own read-out, so their
+    levels were mixed. That made the same-direction column fall below chance (0.25-0.40). Each held-out request is now
+    scored within itself (rerun pending).
+- **3. The twins are not twins.** Checked on the saved transcripts, every F career differs from its B twin from the
+  first reply onward (the same seed, but GPU sampling differs), so the paired test cannot isolate Bank C's line. It is
+  replaced by test 3's exact pairs.
+
+## Run 2 results: same moment, different frame (20 Oct; `results/matched/MATCHED.md`, `MATCHED_MEMO.md`)
+
+- **Check:** the rereads reproduce Run 1's states (median cosine 1.000 at every layer).
+- **B, P(order goes along) after a fixed neutral reasoning line** (coverage median 0.67):
+  - the request alone, history fixed: loss +5.6, loss + you +6.9, gain +3.8, gain + you +4.6 vs neutral; loss vs gain
+    +2.0 (all p <= 0.001); "+ you" +1.1 (n.s.); Bank C +4.0; with Bank C, "you" +4.1 after loss, +2.2 after gain;
+  - the history, request neutral: framed vs neutral +18.5 (p = 0.001); loss vs gain +5.4 (n.s.);
+  - as saved: framed vs neutral +23.3. About four-fifths of the effect is carried by the history (UBS's earlier lines
+    and the agent's own replies and trades, not yet separated).
+- **"You" after loss vs after gain:** cosine 0.71-0.92 at layers 12-47 against a ceiling of 0.98-1.00; 27-39% larger
+  after loss at layers 18 and 31-47. Same in A (0.67-0.79 at 31-47). Caveat: the loss + you and gain + you lines are
+  written separately.
+- **Bank C along the loss direction (held fixed):** 0.91 of the loss-neutral gap at layer 12, 1.95 at layer 24.
+- **Frame direction, held fixed vs across careers:** 0.98 at layer 12, 0.82 at 18, -0.29 at 24, ~0 at 36-47. The first
+  steering run's direction (layer 24, across careers) was mostly history: a likely reason for its null.
+- **A (management's memo and books swapped, the agent's words kept):** first order of the day +50k oz (loss), +32k
+  (gain), loss > gain by 16k; "you" lowers it (-11.6k, -8.2k); no change in going along at requests. History (memo
+  held neutral) carries more: +125k oz for loss histories (rough). Predicted sizes rank the versions as the real
+  careers did. Management's loss direction vs UBS's: 0.72 at layer 12 (ceiling 0.88), -0.56 at layer 47.
+- **Next:** steering v2 along the held-fixed direction (layer 12 or 18, where held-fixed and across-careers agree, and
+  24 for comparison); the transplant; a by-request split of the history's share; a B reread that swaps only UBS's earlier
+  lines (keeping the agent's words) to split the history.
+
+## Steering, first run (results/interventions/INTERVENTIONS.md): what it shows, and its faults
+
+- **What it shows:**
+  - Adding the across-careers loss direction did not raise going along in neutral agents; it lowered it.
+  - So did one random direction of the same size, and so did the memo direction.
+  - Removing the loss direction in loss + you agents lowered going along (73% -> 53%, p 0.07), while removing the
+    random direction raised it. That is suggestive but untested against the random direction.
+  - Wiping its earlier trading-day reasoning changed nothing significant.
+- **Overall:** the run neither shows nor rules out that the loss representation causes going along.
+- **Faults found by a code audit (each confirmed by two independent checks):**
+  - The strength was measured on the same careers that built the direction, so x2 and x4 were larger than stated.
+  - There was one random direction, and it was never tested against the frame direction.
+  - Each sign was used in only one group, so a sign's effect cannot be told apart from a group difference.
+  - The log-prob scoring:
+    - left out "TARGET +n";
+    - counted "TARGET 50000" inside "TARGET 500000";
+    - had a narrow grid and no coverage.
+  - Unreadable replies were counted as "not going along".
+  - "Own words neutralised" left the agent's words about the requests in place, so it leans towards a null.
+- **Fixed for every new run:** `order_dist` scores whole numbers in both sign forms, with coverage. It is checked
+  exactly against brute force on a tiny random Gemma 3 (`sim/test_interventions_tiny.py`), which also checks the
+  cached reads.
+- **Steering v2 (designed, to build after the matched run):**
+  - the held-fixed frame direction at its natural size (x1, x2), cross-fitted, both signs in both groups;
+  - against 10 random directions;
+  - the request swap as the yardstick, and a swap plus counter-steer.
+
+## Added after the outside review (20 Oct)
+
+- **3 (above): same moment, different frame.** The one change the review called most important.
+- **4-bit against bfloat16, required.** B is read again with the careers' own 4-bit weights. The features run then
+  reports how well Gemma Scope rebuilds our states at both precisions, how similar the states are, and whether the
+  loss-vs-gain features agree.
+- **Features found on half the careers and confirmed on the other half.** Each table shows how many of its top 15
+  are confirmed.
+- **The order grid** now covers every order size the agents used (both signs). The matched run reports the share of
+  all probability the grid takes (its coverage). The steering run that is going used the narrower grid; its share
+  measure is unchanged.
+- **The labels-only bar** now also includes the position on UBS's side at the request.
+- **Wording:** persistence works through the context the agent re-reads, not a hidden state carried between calls.
+  The result is "sensitivity to counterparty loss framing", not "loss aversion".
+- **Not added:**
+  - an information-only UBS message (a limitation for the overall level of going along; loss vs gain carries the
+    same information);
+  - separate framing / responsibility probes (the frame is in the text).
+
+## Follow-up, if time allows
+
+| # | Test | What it asks | Status |
+|---|---|---|---|
+| 7 | Own reasoning wiped (the chain-of-thought test) | Each earlier trading-day reasoning is replaced with neutral sentences of the same length; orders are kept. Does its own earlier reasoning, which stays in its context, carry the push? | **Built**; runs in 5's launch at no extra cost; reported as follow-up |
+| 8 | Hidden pressure | Steps where the written reasoning is calm but the internal signal from 4 is high. Only if 6's blind grading confirms the frame goes unsaid | Needs 4 and 6 |
+| 9 | Tracing "you" | How much the decision attends to "you" in the "+ you" lines. Block it, with a random-word block of the same size as control. **F first:** gain + you 40% vs gain 12% there; B's "+ you" effect was not significant | To build |
+| 10 | Look-back and compaction (X4, X5) | Attention from late decisions back to the memo or early framed lines. Replace the early career with a neutral summary | To build |
+
+## Cut
+
+- **The emotion gauge** (a "desperation" direction from outside emotion text, checked at ~80% first). It is only needed
+  for a desperation claim. The paper claims a loss frame, measured with B's own direction (4) and checked with the
+  memo's direction (5).
+- **Checking where "you" sits in each line.** It changes no experiment, and 9 traces the decision to both "you" and the
+  stakes anyway. Bank C's lines were already checked (on record below).
+- **A wording version of the log-probs** ("go along" vs "decline" phrases). 6's order log-probs and blind grading
+  cover both outcomes.
+- **Notebook 15's paraphrase direction.** That notebook never ran, and the memo's direction does the same job.
+- Temperature spikes (X6), the non-blame "you" control, other model families, a thinking model.
+
+## What the words already show (`RESULTS_self_echo.md`, every career)
+
+- **The memo's loss story sticks; its profit story vanishes** after the first reply.
+- **UBS's request brings the loss story back** (loss + you: 4% -> 12% in A, 12% -> 25% in D, 4% -> 13% in E).
+- **The story fades from the words by 12 Jan** (2-10%), while the bets stay large.
+- **An unprompted story does not predict going along.** Within experiment, version and request, the difference is
+  +3 points (p = 0.42).
+- **UBS's frame is not voiced in B or F** by a rough word screen: framed agents use loss words no more than neutral
+  agents. Two claims stay apart:
+  - "The frame does not show in its reasoning": only suggested; it needs 6's blind grading.
+  - "The going along does not show in its reasoning": **not** supported. Reasoning-only graders caught 88% of go-alongs
+    in the 300-day run.
+
+## Rules for every analysis
+
+- Compare within the same request and cross-validate by career; every read-out gets a shuffled-label null.
+- **Steering:** every moment of a group (not only those that moved), a random direction of the same size, several
+  strengths, and the share of readable replies.
+- **Knockouts:** a random-token control of the same size.
+- SAE features are read at bfloat16; say so.
+- A null is a result: report every comparison, whatever it shows.
+
+## Changes to this plan (newest last)
+
+- **20 Oct:** plan consolidated from the 28 Sep - 16 Oct design chats, the 17-18 Oct chain-of-thought notes and the
+  20 Oct runs.
+- **20 Oct, another session's review:** log-probs scored on the order; the two chain-of-thought claims kept apart; a
+  direction built elsewhere (A's memo) to show the steering is loss; "you" tracing on F first.
+- **20 Oct, the "you" placement check** (`analysis/check_you_placement.py`): Bank C's ten "+ you" lines all put "you"
+  before that line's stakes. In F, the decision token sees both "you" and the stakes.
+- **20 Oct night:** the first readings were saved as float16 and overflowed, because Gemma 3's late-layer values exceed
+  ~65,000. Fixes:
+  - states saved as float32 in `/states/v2/`, each checked finite;
+  - steering strength set to 2x and 4x the loss-neutral gap;
+  - Run 1, Run 2 and the steering relaunched.
+- **20 Oct, semifinal** (the user's five adjustments, decided):
+  1. The emotion gauge: **cut**.
+  2. Read-outs also held out by request: **kept** (2).
+  3. The words measured as well as the trades: **kept** (6, "said and did").
+  4. The length-matched reasoning swap (the chain-of-thought test): **follow-up** (7; built, runs with 5).
+  5. Checking where "you" sits: **cut**; done for Bank C.
+
+  The plan is now core / follow-up / cut.
+- **20 Oct, Run 1 read** (above): the frame shows; the read-out is weak; the Bank C twins differ from the first reply.
+  The went-along comparison and the read-out were fixed.
+- **20 Oct, outside review (ChatGPT) adopted:**
+  - matched histories (test 3, which also gives exact Bank C pairs);
+  - the 4-bit check made required;
+  - features confirmed on held-out careers;
+  - the wider order grid with coverage;
+  - the position in the labels bar.
+- **20 Oct, corrected run read:**
+  - the went-along signal appears only at layers 24-41;
+  - the state adds +0.02 AUC over the labels at layers 21-45;
+  - held-out requests are now scored within themselves.

@@ -1,0 +1,412 @@
+<title>Silver Chat Framing Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: an editor's review sheet. Each chat is one card: the real chat and its four framed versions in columns,
+   the added phrases highlighted, and the reviewer's marks and note under it. Same silver neutrals as the book. */
+:root {
+  --bg: #eef1f4; --paper: #ffffff; --ink: #16202b; --muted: #566271; --faint: #8a95a2; --rule: #d3dae1; --wash: #e5eaf0;
+  --accent: #1d4f86; --accent-wash: #e5edf8;
+  --ubs: #7a3a24; --real: #4f5464; --real-wash: #eceef2;
+  --we: #6a3d9a; --add-wash: #fff3c4;
+  --ok: #2b6a50; --ok-wash: #e2f1e9; --flag: #a14a0c; --flag-wash: #fcebe1;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1319; --paper: #151c24; --ink: #e2e8ee; --muted: #9aa6b3; --faint: #6c7886; --rule: #29323d; --wash: #1d2630;
+    --accent: #8ab8ea; --accent-wash: #172639;
+    --ubs: #e8a98b; --real: #b7bcca; --real-wash: #20252d;
+    --we: #c9a8f2; --add-wash: #3a3115;
+    --ok: #72d1a2; --ok-wash: #142a20; --flag: #f29a63; --flag-wash: #35211a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1319; --paper: #151c24; --ink: #e2e8ee; --muted: #9aa6b3; --faint: #6c7886; --rule: #29323d; --wash: #1d2630;
+  --accent: #8ab8ea; --accent-wash: #172639;
+  --ubs: #e8a98b; --real: #b7bcca; --real-wash: #20252d;
+  --we: #c9a8f2; --add-wash: #3a3115;
+  --ok: #72d1a2; --ok-wash: #142a20; --flag: #f29a63; --flag-wash: #35211a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { padding-block: 26px 64px; display: grid; gap: 18px; }
+h1 { font: 600 32px/1.12 var(--f-display); margin: 0; text-wrap: balance; }
+h2 { font: 600 21px/1.2 var(--f-display); margin: 0; text-wrap: balance; }
+h3 { font: 600 17px/1.3 var(--f-display); margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 70ch; }
+.lede { color: var(--muted); max-width: 70ch; }
+.label { font: 500 12px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: var(--paper); border-bottom: 1px solid var(--rule); }
+.bar-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-block: 10px; }
+.brand { font: 600 19px/1.2 var(--f-display); }
+.progress { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.meter { width: 140px; height: 8px; background: var(--wash); border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--ok); width: 0; }
+
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 14px; }
+.panel { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14px; }
+.tablewrap { overflow-x: auto; }
+table.small { border-collapse: collapse; font-size: 13.5px; width: 100%; }
+table.small th, table.small td { text-align: left; padding: 5px 8px 5px 0; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.small th { font: 500 11.5px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.note { font-size: 13px; color: var(--muted); }
+
+.spec { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 14px; }
+.spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px 24px; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; min-width: 0; }
+legend { font: 600 14px/1.3 var(--f-display); margin-bottom: 4px; padding: 0; }
+.radio { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.radio input { margin-top: 4px; accent-color: var(--accent); }
+textarea { width: 100%; min-height: 64px; font: 14px/1.5 var(--f-body); color: var(--ink); background: var(--bg); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; resize: vertical; }
+textarea:disabled, .tag:disabled, .radio input:disabled { opacity: .6; cursor: default; }
+.state { font-size: 12.5px; color: var(--muted); min-height: 1.2em; }
+.state.err { color: var(--flag); }
+.offline { background: var(--flag-wash); color: var(--flag); border-radius: 6px; padding: 10px 12px; font-size: 14px; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--paper); }
+.seg button { font: 500 13px/1 var(--f-body); padding: 8px 11px; border: 0; background: none; color: var(--muted); cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+select, input[type="search"] { font: 14px var(--f-body); padding: 7px 9px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); max-width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); align-items: center; }
+.lg-add { display: inline-block; width: 18px; height: 12px; background: var(--add-wash); border: 1px solid var(--rule); vertical-align: middle; margin-right: 6px; }
+
+.cards { display: grid; gap: 14px; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; display: grid; gap: 12px; min-width: 0; scroll-margin-top: 80px; }
+.card.flagged { box-shadow: inset 3px 0 0 var(--flag); }
+.card.okd { box-shadow: inset 3px 0 0 var(--ok); }
+.cardhead { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+.cardhead .meta { font-size: 13px; color: var(--muted); }
+.chip { font: 600 11.5px/1 var(--f-display); text-transform: uppercase; letter-spacing: .06em; padding: 4px 7px; border-radius: 3px; background: var(--wash); color: var(--muted); }
+.chip.used { background: var(--accent-wash); color: var(--accent); }
+.decision { font-size: 14px; }
+details.ctx > summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+details.ctx p { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
+.side { border-collapse: collapse; width: 100%; min-width: 900px; table-layout: fixed; }
+.side th { font: 600 12px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+.side th:first-child { width: 96px; }
+.side td { vertical-align: top; padding: 8px; border-bottom: 1px solid var(--rule); font: 13.5px/1.5 var(--f-mono); color: var(--ubs); overflow-wrap: anywhere; }
+.side td.who { font: 600 11px/1.5 var(--f-display); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.side tr.me td { color: var(--real); background: var(--real-wash); }
+.side tr.gap td { color: var(--faint); font-style: italic; font-family: var(--f-body); font-size: 12.5px; }
+.side tr.offer td { border-bottom: 2px solid var(--ubs); }
+.side .add { background: var(--add-wash); color: var(--ink); border-radius: 2px; padding: 0 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+b.we { color: var(--we); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+b.you { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.review { display: grid; gap: 8px; border-top: 1px dashed var(--rule); padding-top: 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font: 500 13px/1 var(--f-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.tag[aria-pressed="true"] { background: var(--flag-wash); border-color: var(--flag); color: var(--flag); }
+.tag.ok[aria-pressed="true"] { background: var(--ok-wash); border-color: var(--ok); color: var(--ok); }
+.empty { background: var(--paper); border: 1px dashed var(--rule); border-radius: 8px; padding: 20px; color: var(--muted); }
+</style>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <span class="brand">Silver Chat Framing Review</span>
+    <span class="progress"><span id="progress-text">Loading your marks…</span><span class="meter" aria-hidden="true"><i id="progress-bar"></i></span></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section style="display:grid;gap:10px">
+    <h1>Review every framed chat</h1>
+    <p class="lede">The 73 chats from the 2011 silver case that the study runs, each with the real chat and its four framed versions side by side.
+      The added phrases are highlighted. The 12 marked “final round” are the ones the trading agent saw. Mark each chat and leave a note:
+      your marks save on this page and Claude can read them to rewrite the framing.</p>
+  </section>
+
+  <div class="panels">
+    <section class="panel">
+      <h2>How these were written</h2>
+      <ul>
+        <li>Written by Claude, chat by chat, on 9 Oct 2026, following the framing rules (data/silver/FRAMING_RULES.md).</li>
+        <li>Every real word is kept. One short phrase (1 to 15 words) is added to the other trader's lines before the offer, or to the offer itself when it is their only line. The offer's own words never change.</li>
+        <li>Phrases are about money made or lost only: no warnings, no new requests, no numbers. One level of pressure, building to the offer.</li>
+        <li>Plain loss and gain never say “you”. In the “+ you” versions the last phrase puts the outcome on the agent (“that's on you”, “you can make it happen”).</li>
+        <li>The rules said loss and gain should differ “through the speaker's own book (their week, their position's P&amp;L)”. So the loss or gain belongs to the other trader, or to a “we” that is not clearly both banks.</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>Did the agent notice the frame?</h2>
+      <p class="note">Share of the agent's replies that mention a loss, a gain, or that it is on the agent itself, at the moment each chat arrived in the final round (120 moments per version). A rough word count, not graded: words like “red” or “pressure” also appear by chance, which is why the real chats score above zero.</p>
+      <div class="tablewrap"><table class="small">
+        <thead><tr><th>Version</th><th>Loss</th><th>Gain</th><th>On itself</th></tr></thead>
+        <tbody>
+          <tr><td>real</td><td>24%</td><td>6%</td><td>0%</td></tr>
+          <tr><td>loss</td><td>48%</td><td>6%</td><td>0%</td></tr>
+          <tr><td>gain</td><td>26%</td><td>20%</td><td>0%</td></tr>
+          <tr><td>loss + you</td><td>57%</td><td>8%</td><td>16%</td></tr>
+          <tr><td>gain + you</td><td>30%</td><td>21%</td><td>0%</td></tr>
+          <tr><td>no ask</td><td>30%</td><td>9%</td><td>0%</td></tr>
+        </tbody></table></div>
+      <p class="note">The loss frame registered in about a quarter more replies, the gain frame in about one in seven more; “you” barely registered.</p>
+    </section>
+    <section class="panel">
+      <h2>Whose money the added phrases name</h2>
+      <div class="tablewrap"><table class="small" id="tally"></table></div>
+      <p class="note">Added phrases across all 73 chats. “We” counts we, us and our; it comes from the other trader, so it can mean both banks or only its own desk. A “+ you” phrase can say both.</p>
+    </section>
+  </div>
+
+  <section class="spec" aria-labelledby="spec-h">
+    <div style="display:grid;gap:4px"><h2 id="spec-h">What the framing should be</h2>
+      <p class="note">Your answers here guide a rewrite of all 73 chats.</p></div>
+    <div id="offline" class="offline" hidden>Your marks can't be saved in this view. Open the page on claude.ai while signed in to save them.</div>
+    <div class="spec-grid">
+      <fieldset id="spec-owner"><legend>Whose loss or gain?</legend>
+        <label class="radio"><input type="radio" name="owner" value="shared"> Shared by both banks (“we're both down on this”)</label>
+        <label class="radio"><input type="radio" name="owner" value="theirs"> The other trader's own desk</label>
+        <label class="radio"><input type="radio" name="owner" value="agent"> The agent's own desk</label>
+        <label class="radio"><input type="radio" name="owner" value="asis"> Keep as it is</label>
+      </fieldset>
+      <fieldset id="spec-strength"><legend>How strong?</legend>
+        <label class="radio"><input type="radio" name="strength" value="asnow"> As now (one short phrase per line)</label>
+        <label class="radio"><input type="radio" name="strength" value="stronger"> Stronger and more specific</label>
+        <label class="radio"><input type="radio" name="strength" value="strong"> Strong and emotional</label>
+      </fieldset>
+      <fieldset id="spec-you"><legend>The “you” versions</legend>
+        <label class="radio"><input type="radio" name="you" value="keep"> Keep as they are</label>
+        <label class="radio"><input type="radio" name="you" value="stronger"> Make the blame or credit clearer</label>
+        <label class="radio"><input type="radio" name="you" value="drop"> Drop them</label>
+      </fieldset>
+    </div>
+    <label for="spec-note" class="label">Anything else about how the framing should read</label>
+    <textarea id="spec-note" placeholder="For example: the loss should be one the two banks share, said plainly, in every chat."></textarea>
+    <div class="state" id="spec-state"></div>
+  </section>
+
+  <section style="display:grid;gap:12px">
+    <div class="controls">
+      <div class="seg" id="f-set"><button type="button" data-v="all" aria-pressed="true">All 73</button><button type="button" data-v="used" aria-pressed="false">Final round (12)</button></div>
+      <div class="seg" id="f-status"><button type="button" data-v="all" aria-pressed="true">Any mark</button><button type="button" data-v="open" aria-pressed="false">Not reviewed</button><button type="button" data-v="flag" aria-pressed="false">Flagged</button><button type="button" data-v="ok" aria-pressed="false">Looks right</button></div>
+      <div class="ctl"><label class="label" for="f-kind">Kind</label><select id="f-kind"><option value="all">All</option><option value="join">Join (push, quote wide)</option><option value="share">Share (tell private facts)</option><option value="conceal">Conceal</option></select></div>
+      <div class="ctl"><label class="label" for="f-q">Find</label><input type="search" id="f-q" placeholder="words or ¶ number"></div>
+    </div>
+    <div class="legend"><span><i class="lg-add"></i>added phrase</span><span><b class="we">we / us / our</b></span><span><b class="you">you / u</b> (the agent)</span><span>the agent's own real lines are grey and never changed</span></div>
+    <div class="note" id="count"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+</main>
+
+<script>
+const DATA = /*DATA*/null;
+const CHATS = DATA.chats;
+const V = ["real", "loss", "gain", "loss + you", "gain + you"];
+const TAGS = [["ok", "Looks right"], ["weak", "Too weak"], ["shared", "Should be shared by both banks"], ["owner", "Whose money is unclear"],
+              ["fit", "Doesn't fit the chat"], ["rewrite", "Rewrite it"]];
+const WE_W = /^(we|us|our|ours|we're|we've|we'll)$/i, YOU_W = /^(you|u|your|you're|ur|yours)$/i;
+const MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const dlabel = d => d ? `${+d.slice(8)} ${MO[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}` : "date not given";
+const who = s => s.replace(/\s*\[(.+)\]/, " · $1");
+const marked = t => t.split(/([A-Za-z']+)/).map(p => WE_W.test(p) ? `<b class="we">${esc(p)}</b>` : YOU_W.test(p) ? `<b class="you">${esc(p)}</b>` : esc(p)).join("");
+const added = (real, f) => f.startsWith(real) ? f.slice(real.length) : null;
+
+// ---------- whose money: a count of the added phrases ----------
+(function tally() {
+  const t = Object.fromEntries(V.slice(1).map(v => [v, { n: 0, we: 0, you: 0, none: 0 }]));
+  for (const c of CHATS) for (const v of V.slice(1)) c.lines[v].forEach(([s, f], i) => {
+    const a = added(c.lines.real[i][1], f);
+    if (!a) return;
+    const ws = a.match(/[A-Za-z']+/g) || [], we = ws.some(x => WE_W.test(x)), you = ws.some(x => YOU_W.test(x)), k = t[v];
+    k.n++; k.we += we; k.you += you; k.none += !we && !you;
+  });
+  $("#tally").innerHTML = `<thead><tr><th>Version</th><th>Phrases</th><th>We</th><th>No one</th><th>You</th></tr></thead><tbody>` +
+    V.slice(1).map(v => { const k = t[v]; return `<tr><td>${esc(v)}</td><td>${k.n}</td><td>${k.we}</td><td>${k.none}</td><td>${k.you}</td></tr>`; }).join("") + `</tbody>`;
+})();
+
+// ---------- the chats ----------
+const F = { set: "all", status: "all", kind: "all", q: "" };
+let REV = {};            // chat id -> {tags: [...], note, at}
+let canWrite = false;
+const isReviewed = id => { const r = REV[id]; return !!r && ((r.tags || []).length > 0 || !!(r.note || "").trim()); };
+const isFlagged = id => (REV[id]?.tags || []).some(t => t !== "ok");
+const isOk = id => (REV[id]?.tags || []).includes("ok") && !isFlagged(id);
+
+function tableHTML(c) {
+  const n = c.lines.real.length;
+  return `<div class="tablewrap"><table class="side"><thead><tr><th></th>${V.map(v => `<th>${esc(v)}</th>`).join("")}</tr></thead><tbody>${
+    c.lines.real.map(([s, t], i) => {
+      const offer = i === n - 1 ? " offer" : "";
+      if (s === "***") return `<tr class="gap${offer}"><td class="who"></td><td colspan="5">lines left out in the complaint</td></tr>`;
+      if (s === c.role) return `<tr class="me${offer}"><td class="who">${esc(who(s))}<br>the agent</td><td colspan="5">${esc(t)}</td></tr>`;
+      return `<tr class="${offer.trim()}"><td class="who">${esc(who(s))}${offer ? "<br>the offer" : ""}</td>${V.map(v => {
+        const f = c.lines[v][i][1], a = added(t, f);
+        return `<td>${a === null ? `<span class="add">${marked(f)}</span>` : esc(t) + (a ? `<span class="add">${marked(a)}</span>` : "")}</td>`;
+      }).join("")}</tr>`;
+    }).join("")}</tbody></table></div>`;
+}
+function reviewHTML(c) {
+  const r = REV[c.id] || {};
+  return `<div class="review" data-id="${c.id}">
+    <div class="tags">${TAGS.map(([k, t]) => `<button type="button" class="tag${k === "ok" ? " ok" : ""}" data-tag="${k}" aria-pressed="${(r.tags || []).includes(k)}"${canWrite ? "" : " disabled"}>${t}</button>`).join("")}</div>
+    <label class="label" for="n-${c.id}">Your note on this chat</label>
+    <textarea id="n-${c.id}" data-note="${c.id}" placeholder="What's wrong, or how it should read"${canWrite ? "" : " disabled"}>${esc(r.note || "")}</textarea>
+    <div class="state" id="st-${c.id}"></div></div>`;
+}
+function cardClass(id) { return "card" + (isFlagged(id) ? " flagged" : isOk(id) ? " okd" : ""); }
+function cardHTML(c) {
+  return `<article class="${cardClass(c.id)}" id="c-${c.id}">
+    <div class="cardhead"><h3>¶${esc(c.para)} · ${esc(c.name)}</h3><span class="meta">${dlabel(c.date)}</span>
+      <span class="chip">${esc(c.kind)}</span>${c.used ? `<span class="chip used">final round</span>` : ""}${c.set === "core" ? `<span class="chip">core 25</span>` : ""}</div>
+    <div class="decision">The agent plays <b>${esc(who(c.role))}</b> and decides ${esc(c.decision)}.</div>
+    <details class="ctx"><summary>Context note written with the frames</summary><p>${esc(c.context)}</p></details>
+    ${tableHTML(c)}
+    ${reviewHTML(c)}
+  </article>`;
+}
+function visible() {
+  const q = F.q.trim().toLowerCase();
+  return CHATS.filter(c => (F.set === "all" || c.used) && (F.kind === "all" || c.kind === F.kind)
+    && (F.status === "all" || (F.status === "open" && !isReviewed(c.id)) || (F.status === "flag" && isFlagged(c.id)) || (F.status === "ok" && isOk(c.id)))
+    && (!q || c.para === q.replace(/^¶/, "") || JSON.stringify(c.lines).toLowerCase().includes(q) || c.name.includes(q) || c.decision.toLowerCase().includes(q)));
+}
+function renderCards() {
+  const list = visible();
+  $("#count").textContent = `Showing ${list.length} of ${CHATS.length} chats`;
+  $("#cards").innerHTML = list.length ? list.map(cardHTML).join("") : `<div class="empty">No chat matches these filters.</div>`;
+}
+function renderProgress() {
+  const done = CHATS.filter(c => isReviewed(c.id)).length, flagged = CHATS.filter(c => isFlagged(c.id)).length;
+  $("#progress-text").textContent = `Reviewed ${done} of ${CHATS.length} · flagged ${flagged}`;
+  $("#progress-bar").style.width = (100 * done / CHATS.length).toFixed(1) + "%";
+}
+// When marks change elsewhere (or arrive), update the cards in place without touching a note being typed
+function refreshMarks() {
+  for (const el of document.querySelectorAll(".review")) {
+    const id = el.dataset.id, r = REV[id] || {};
+    el.querySelectorAll(".tag").forEach(b => { b.setAttribute("aria-pressed", (r.tags || []).includes(b.dataset.tag)); b.disabled = !canWrite; });
+    const ta = el.querySelector("textarea");
+    ta.disabled = !canWrite;
+    if (document.activeElement !== ta && !pendingNote[id]) ta.value = r.note || "";
+    document.getElementById("c-" + id).className = cardClass(id);
+  }
+  renderProgress();
+}
+
+// ---------- filters ----------
+for (const [sel, key] of [["#f-set", "set"], ["#f-status", "status"]]) {
+  $(sel).addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    F[key] = b.dataset.v;
+    $(sel).querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    renderCards();
+  });
+}
+$("#f-kind").addEventListener("change", e => { F.kind = e.target.value; renderCards(); });
+let qTimer;
+$("#f-q").addEventListener("input", e => { clearTimeout(qTimer); qTimer = setTimeout(() => { F.q = e.target.value; renderCards(); }, 200); });
+
+// ---------- saving (the page's own store) ----------
+let db = null;
+const queues = {};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function setState(el, s) {
+  if (!el) return;
+  el.classList.toggle("err", s === "error" || s === "readonly");
+  el.textContent = { saving: "Saving…", saved: "Saved", error: "Not saved: the connection dropped. Change it again to retry.", readonly: "You can read this page but not save marks on it." }[s] || "";
+}
+// One write at a time per document, always the latest version of it
+function save(path, data, stateEl) {
+  const q = queues[path] || (queues[path] = { busy: false, next: null });
+  q.next = data; setState(stateEl, "saving");
+  if (q.busy) return;
+  q.busy = true;
+  (async () => {
+    while (q.next) {
+      const d = q.next; q.next = null;
+      try { await db.doc(path).set(d); setState(stateEl, "saved"); }
+      catch (e) {
+        if (e && e.code === "unavailable") {
+          await sleep(700 + Math.random() * 800);
+          try { await db.doc(path).set(d); setState(stateEl, "saved"); continue; } catch (e2) { e = e2; }
+        }
+        if (e && e.code === "invalid_argument") { canWrite = false; refreshMarks(); setState(stateEl, "readonly"); }
+        else setState(stateEl, "error");
+      }
+    }
+    q.busy = false;
+  })();
+}
+function saveReview(id) {
+  const r = REV[id] || {};
+  REV[id] = { tags: r.tags || [], note: r.note || "", at: new Date().toISOString() };
+  save("reviews/" + id, REV[id], document.getElementById("st-" + id));
+  renderProgress();
+}
+const pendingNote = {};
+$("#cards").addEventListener("click", e => {
+  const b = e.target.closest(".tag"); if (!b || !canWrite) return;
+  const id = b.closest(".review").dataset.id, r = REV[id] || {}, tags = new Set(r.tags || []);
+  tags.has(b.dataset.tag) ? tags.delete(b.dataset.tag) : tags.add(b.dataset.tag);
+  REV[id] = { ...r, tags: [...tags] };
+  b.setAttribute("aria-pressed", tags.has(b.dataset.tag));
+  document.getElementById("c-" + id).className = cardClass(id);
+  saveReview(id);
+});
+$("#cards").addEventListener("input", e => {
+  const id = e.target.dataset.note; if (!id || !canWrite) return;
+  REV[id] = { ...(REV[id] || {}), note: e.target.value };
+  clearTimeout(pendingNote[id]);
+  pendingNote[id] = setTimeout(() => { delete pendingNote[id]; saveReview(id); }, 900);
+});
+$("#cards").addEventListener("focusout", e => {
+  const id = e.target.dataset.note;
+  if (id && pendingNote[id]) { clearTimeout(pendingNote[id]); delete pendingNote[id]; saveReview(id); }
+});
+
+// The spec
+let SPEC = {}, specTimer = null;
+function fillSpec() {
+  for (const name of ["owner", "strength", "you"]) document.querySelectorAll(`input[name="${name}"]`).forEach(i => { i.checked = SPEC[name] === i.value; i.disabled = !canWrite; });
+  const ta = $("#spec-note");
+  ta.disabled = !canWrite;
+  if (document.activeElement !== ta && !specTimer) ta.value = SPEC.note || "";
+}
+function saveSpec() { SPEC = { ...SPEC, at: new Date().toISOString() }; save("spec/main", SPEC, $("#spec-state")); }
+document.querySelector(".spec").addEventListener("change", e => {
+  if (e.target.type !== "radio" || !canWrite) return;
+  SPEC = { ...SPEC, [e.target.name]: e.target.value }; saveSpec();
+});
+$("#spec-note").addEventListener("input", e => {
+  if (!canWrite) return;
+  SPEC = { ...SPEC, note: e.target.value };
+  clearTimeout(specTimer); specTimer = setTimeout(() => { specTimer = null; saveSpec(); }, 900);
+});
+$("#spec-note").addEventListener("blur", () => { if (specTimer) { clearTimeout(specTimer); specTimer = null; saveSpec(); } });
+
+renderCards(); renderProgress(); fillSpec();
+(async () => {
+  try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch { db = null; }
+  if (!db) { $("#offline").hidden = false; $("#progress-text").textContent = "Marks can't be saved in this view"; return; }
+  canWrite = true;
+  db.collection("reviews").onSnapshot(snap => {
+    const next = {};
+    for (const d of snap.docs) next[d.id] = d.data();
+    // keep a note that is still being typed
+    for (const id of Object.keys(pendingNote)) if (REV[id]) next[id] = { ...(next[id] || {}), note: REV[id].note };
+    REV = next; refreshMarks();
+  }, () => { $("#offline").hidden = false; });
+  db.doc("spec/main").onSnapshot(s => { if (!specTimer) SPEC = s.exists ? { ...s.data() } : {}; fillSpec(); }, () => {});
+  refreshMarks(); fillSpec();
+})();
+</script>

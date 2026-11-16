@@ -1,0 +1,2198 @@
+{
+ "sizes": {
+  "loss document": 1062.9647329773252,
+  "blame document": 783.7637573028289,
+  "gain document": 1052.6604451823978,
+  "credit document": 1003.3120007520284,
+  "financial loss document": 306.3467073450553,
+  "financial gain document": 338.9327282913114,
+  "UBS loss line, after": 1082.6407550983504,
+  "UBS blame line, after": 1036.6668537629475,
+  "UBS gain line, after": 1176.0335826009118,
+  "UBS credit line, after": 1061.5557565185368,
+  "UBS loss line, whole": 224.50982090375874,
+  "UBS blame line, whole": 174.0964157985106,
+  "UBS gain line, whole": 102.94615662432595,
+  "UBS credit line, whole": 160.7110147401874
+ },
+ "ceiling": {
+  "loss document": [
+   0.9929188538028683,
+   0.963375901024663
+  ],
+  "blame document": [
+   0.9058993476342626,
+   0.9732321158097095
+  ],
+  "gain document": [
+   0.9865330053536145,
+   0.9504953218347074
+  ],
+  "credit document": [
+   0.9655778727582934,
+   0.96899661070062
+  ],
+  "financial loss document": [
+   0.7945801499105304,
+   0.90785589876733
+  ],
+  "financial gain document": [
+   0.14681415413156063,
+   0.8904493704853598
+  ],
+  "UBS loss line, after": [
+   0.992581108754539,
+   0.9650012005610298
+  ],
+  "UBS blame line, after": [
+   0.9808465958410434,
+   0.9640666784171478
+  ],
+  "UBS gain line, after": [
+   0.9939326776200229,
+   0.9599185779982502
+  ],
+  "UBS credit line, after": [
+   0.9911059301057745,
+   0.9661148588535686
+  ],
+  "UBS loss line, whole": [
+   0.8987963764258209,
+   0.9959819829881454
+  ],
+  "UBS blame line, whole": [
+   0.441940124180845,
+   0.9961833858951451
+  ],
+  "UBS gain line, whole": [
+   0.9967308955740313,
+   0.996452079903792
+  ],
+  "UBS credit line, whole": [
+   0.9954343041968634,
+   0.9965485062492323
+  ]
+ },
+ "cosine_raw": {
+  "loss document": {
+   "loss document": 0.9999999999999998,
+   "blame document": 0.9456224435970053,
+   "gain document": 0.9689097824822184,
+   "credit document": 0.9661895941219929,
+   "financial loss document": -0.3269900845126992,
+   "financial gain document": 0.6964980515351951,
+   "UBS loss line, after": -0.7964435839211897,
+   "UBS blame line, after": -0.756756671952913,
+   "UBS gain line, after": -0.8368588173619607,
+   "UBS credit line, after": -0.777718428810351,
+   "UBS loss line, whole": -0.8213187990461803,
+   "UBS blame line, whole": -0.45573397031489954,
+   "UBS gain line, whole": 0.49210124921882414,
+   "UBS credit line, whole": 0.5832448614691693,
+   "random direction": 0.02382501954837432
+  },
+  "blame document": {
+   "loss document": 0.9456224435970053,
+   "blame document": 1.0,
+   "gain document": 0.9021646463663116,
+   "credit document": 0.9118164175480646,
+   "financial loss document": -0.2033867975238841,
+   "financial gain document": 0.6283477250615124,
+   "UBS loss line, after": -0.6611603091436945,
+   "UBS blame line, after": -0.619793246900018,
+   "UBS gain line, after": -0.6996497520280681,
+   "UBS credit line, after": -0.6447046728492624,
+   "UBS loss line, whole": -0.6827604159575378,
+   "UBS blame line, whole": -0.3503055914047751,
+   "UBS gain line, whole": 0.43680880129803995,
+   "UBS credit line, whole": 0.5166871836623851,
+   "random direction": 0.022978863084068775
+  },
+  "gain document": {
+   "loss document": 0.9689097824822184,
+   "blame document": 0.9021646463663116,
+   "gain document": 1.0000000000000002,
+   "credit document": 0.9904983413803189,
+   "financial loss document": -0.3580023684003132,
+   "financial gain document": 0.7285106963984124,
+   "UBS loss line, after": -0.7975146542825436,
+   "UBS blame line, after": -0.7625969823406626,
+   "UBS gain line, after": -0.8323794235857681,
+   "UBS credit line, after": -0.776338895614574,
+   "UBS loss line, whole": -0.8153000450234675,
+   "UBS blame line, whole": -0.45296984518771327,
+   "UBS gain line, whole": 0.4996470913194925,
+   "UBS credit line, whole": 0.5885501177516486,
+   "random direction": 0.02483892075137043
+  },
+  "credit document": {
+   "loss document": 0.9661895941219929,
+   "blame document": 0.9118164175480646,
+   "gain document": 0.9904983413803189,
+   "credit document": 0.9999999999999999,
+   "financial loss document": -0.38193713829326653,
+   "financial gain document": 0.7142295714789495,
+   "UBS loss line, after": -0.804194682395787,
+   "UBS blame line, after": -0.7654389390271857,
+   "UBS gain line, after": -0.8390231414329343,
+   "UBS credit line, after": -0.7821632971544215,
+   "UBS loss line, whole": -0.8299026602382242,
+   "UBS blame line, whole": -0.4741405519028573,
+   "UBS gain line, whole": 0.48106151858304835,
+   "UBS credit line, whole": 0.573743435697115,
+   "random direction": 0.025497835669130674
+  },
+  "financial loss document": {
+   "loss document": -0.3269900845126992,
+   "blame document": -0.2033867975238841,
+   "gain document": -0.3580023684003132,
+   "credit document": -0.38193713829326653,
+   "financial loss document": 0.9999999999999999,
+   "financial gain document": 0.1923534264120307,
+   "UBS loss line, after": 0.48744940066140835,
+   "UBS blame line, after": 0.487317453920927,
+   "UBS gain line, after": 0.4890275982684497,
+   "UBS credit line, after": 0.4703845724295469,
+   "UBS loss line, whole": 0.48886339755314456,
+   "UBS blame line, whole": 0.35113157756226276,
+   "UBS gain line, whole": -0.2072750816575449,
+   "UBS credit line, whole": -0.25377833337336286,
+   "random direction": -0.001771857599364336
+  },
+  "financial gain document": {
+   "loss document": 0.6964980515351951,
+   "blame document": 0.6283477250615124,
+   "gain document": 0.7285106963984124,
+   "credit document": 0.7142295714789495,
+   "financial loss document": 0.1923534264120307,
+   "financial gain document": 1.0000000000000002,
+   "UBS loss line, after": -0.5752115043194652,
+   "UBS blame line, after": -0.5376616399475984,
+   "UBS gain line, after": -0.6059271285514709,
+   "UBS credit line, after": -0.5680485523210647,
+   "UBS loss line, whole": -0.5986330261794142,
+   "UBS blame line, whole": -0.3266326714405437,
+   "UBS gain line, whole": 0.35738920722655754,
+   "UBS credit line, whole": 0.4291325490927333,
+   "random direction": 0.02272073543166327
+  },
+  "UBS loss line, after": {
+   "loss document": -0.7964435839211897,
+   "blame document": -0.6611603091436945,
+   "gain document": -0.7975146542825436,
+   "credit document": -0.804194682395787,
+   "financial loss document": 0.48744940066140835,
+   "financial gain document": -0.5752115043194652,
+   "UBS loss line, after": 1.0,
+   "UBS blame line, after": 0.918443949193366,
+   "UBS gain line, after": 0.9660951416223386,
+   "UBS credit line, after": 0.9371404194504562,
+   "UBS loss line, whole": 0.839906647371977,
+   "UBS blame line, whole": 0.5171379696598184,
+   "UBS gain line, whole": -0.40657699757040505,
+   "UBS credit line, whole": -0.5111046876360289,
+   "random direction": -0.017867057393856887
+  },
+  "UBS blame line, after": {
+   "loss document": -0.756756671952913,
+   "blame document": -0.619793246900018,
+   "gain document": -0.7625969823406626,
+   "credit document": -0.7654389390271857,
+   "financial loss document": 0.487317453920927,
+   "financial gain document": -0.5376616399475984,
+   "UBS loss line, after": 0.918443949193366,
+   "UBS blame line, after": 0.9999999999999998,
+   "UBS gain line, after": 0.9277733637546274,
+   "UBS credit line, after": 0.9567492338306018,
+   "UBS loss line, whole": 0.7692951565085353,
+   "UBS blame line, whole": 0.44565659355144865,
+   "UBS gain line, whole": -0.4541593044004485,
+   "UBS credit line, whole": -0.5398548016341327,
+   "random direction": -0.009256274101194128
+  },
+  "UBS gain line, after": {
+   "loss document": -0.8368588173619607,
+   "blame document": -0.6996497520280681,
+   "gain document": -0.8323794235857681,
+   "credit document": -0.8390231414329343,
+   "financial loss document": 0.4890275982684497,
+   "financial gain document": -0.6059271285514709,
+   "UBS loss line, after": 0.9660951416223386,
+   "UBS blame line, after": 0.9277733637546274,
+   "UBS gain line, after": 1.0,
+   "UBS credit line, after": 0.9630203954723202,
+   "UBS loss line, whole": 0.8563926305634001,
+   "UBS blame line, whole": 0.5081672204798061,
+   "UBS gain line, whole": -0.44083409200620655,
+   "UBS credit line, whole": -0.5487312943665111,
+   "random direction": -0.016865797940555517
+  },
+  "UBS credit line, after": {
+   "loss document": -0.777718428810351,
+   "blame document": -0.6447046728492624,
+   "gain document": -0.776338895614574,
+   "credit document": -0.7821632971544215,
+   "financial loss document": 0.4703845724295469,
+   "financial gain document": -0.5680485523210647,
+   "UBS loss line, after": 0.9371404194504562,
+   "UBS blame line, after": 0.9567492338306018,
+   "UBS gain line, after": 0.9630203954723202,
+   "UBS credit line, after": 1.0,
+   "UBS loss line, whole": 0.7985836859908981,
+   "UBS blame line, whole": 0.48329018009749275,
+   "UBS gain line, whole": -0.412624588563354,
+   "UBS credit line, whole": -0.4995604980545738,
+   "random direction": -0.005183237601611605
+  },
+  "UBS loss line, whole": {
+   "loss document": -0.8213187990461803,
+   "blame document": -0.6827604159575378,
+   "gain document": -0.8153000450234675,
+   "credit document": -0.8299026602382242,
+   "financial loss document": 0.48886339755314456,
+   "financial gain document": -0.5986330261794142,
+   "UBS loss line, after": 0.839906647371977,
+   "UBS blame line, after": 0.7692951565085353,
+   "UBS gain line, after": 0.8563926305634001,
+   "UBS credit line, after": 0.7985836859908981,
+   "UBS loss line, whole": 0.9999999999999999,
+   "UBS blame line, whole": 0.7957348863302381,
+   "UBS gain line, whole": -0.15319325671580686,
+   "UBS credit line, whole": -0.2788336430581945,
+   "random direction": -0.024997951968012903
+  },
+  "UBS blame line, whole": {
+   "loss document": -0.45573397031489954,
+   "blame document": -0.3503055914047751,
+   "gain document": -0.45296984518771327,
+   "credit document": -0.4741405519028573,
+   "financial loss document": 0.35113157756226276,
+   "financial gain document": -0.3266326714405437,
+   "UBS loss line, after": 0.5171379696598184,
+   "UBS blame line, after": 0.44565659355144865,
+   "UBS gain line, after": 0.5081672204798061,
+   "UBS credit line, after": 0.48329018009749275,
+   "UBS loss line, whole": 0.7957348863302381,
+   "UBS blame line, whole": 1.0000000000000002,
+   "UBS gain line, whole": 0.3595096392470656,
+   "UBS credit line, whole": 0.29487019067406506,
+   "random direction": -0.0135537977892239
+  },
+  "UBS gain line, whole": {
+   "loss document": 0.49210124921882414,
+   "blame document": 0.43680880129803995,
+   "gain document": 0.4996470913194925,
+   "credit document": 0.48106151858304835,
+   "financial loss document": -0.2072750816575449,
+   "financial gain document": 0.35738920722655754,
+   "UBS loss line, after": -0.40657699757040505,
+   "UBS blame line, after": -0.4541593044004485,
+   "UBS gain line, after": -0.44083409200620655,
+   "UBS credit line, after": -0.412624588563354,
+   "UBS loss line, whole": -0.15319325671580686,
+   "UBS blame line, whole": 0.3595096392470656,
+   "UBS gain line, whole": 1.0000000000000002,
+   "UBS credit line, whole": 0.9533574528397697,
+   "random direction": 0.01069235190803961
+  },
+  "UBS credit line, whole": {
+   "loss document": 0.5832448614691693,
+   "blame document": 0.5166871836623851,
+   "gain document": 0.5885501177516486,
+   "credit document": 0.573743435697115,
+   "financial loss document": -0.25377833337336286,
+   "financial gain document": 0.4291325490927333,
+   "UBS loss line, after": -0.5111046876360289,
+   "UBS blame line, after": -0.5398548016341327,
+   "UBS gain line, after": -0.5487312943665111,
+   "UBS credit line, after": -0.4995604980545738,
+   "UBS loss line, whole": -0.2788336430581945,
+   "UBS blame line, whole": 0.29487019067406506,
+   "UBS gain line, whole": 0.9533574528397697,
+   "UBS credit line, whole": 1.0,
+   "random direction": 0.014347152478192841
+  },
+  "random direction": {
+   "loss document": 0.02382501954837432,
+   "blame document": 0.022978863084068775,
+   "gain document": 0.02483892075137043,
+   "credit document": 0.025497835669130674,
+   "financial loss document": -0.001771857599364336,
+   "financial gain document": 0.02272073543166327,
+   "UBS loss line, after": -0.017867057393856887,
+   "UBS blame line, after": -0.009256274101194128,
+   "UBS gain line, after": -0.016865797940555517,
+   "UBS credit line, after": -0.005183237601611605,
+   "UBS loss line, whole": -0.024997951968012903,
+   "UBS blame line, whole": -0.0135537977892239,
+   "UBS gain line, whole": 0.01069235190803961,
+   "UBS credit line, whole": 0.014347152478192841,
+   "random direction": 0.9999999999999998
+  }
+ },
+ "cosine_one_scale": {
+  "loss document": {
+   "loss document": 1.0000000000000002,
+   "blame document": 0.9187992783693357,
+   "gain document": 0.8127493791529488,
+   "credit document": 0.7810188662505538,
+   "financial loss document": 0.33314751243417373,
+   "financial gain document": 0.2554356150924137,
+   "UBS loss line, after": 0.05430444415378882,
+   "UBS blame line, after": 0.062400352363796915,
+   "UBS gain line, after": 0.031026789611597994,
+   "UBS credit line, after": 0.04109297934410346,
+   "UBS loss line, whole": 0.03671237584596651,
+   "UBS blame line, whole": 0.03851597376274252,
+   "UBS gain line, whole": 0.020628887183864884,
+   "UBS credit line, whole": 0.01187118467721256,
+   "random direction": -0.016636586362236583
+  },
+  "blame document": {
+   "loss document": 0.9187992783693357,
+   "blame document": 0.9999999999999999,
+   "gain document": 0.7469163684506931,
+   "credit document": 0.7902389184297525,
+   "financial loss document": 0.28407352971583993,
+   "financial gain document": 0.20224796942878254,
+   "UBS loss line, after": 0.0709006657315602,
+   "UBS blame line, after": 0.09079640179027308,
+   "UBS gain line, after": 0.048396055219489684,
+   "UBS credit line, after": 0.06533522180671944,
+   "UBS loss line, whole": 0.047047582264735405,
+   "UBS blame line, whole": 0.06105350648401685,
+   "UBS gain line, whole": 0.025472755371909316,
+   "UBS credit line, whole": 0.023327667604177323,
+   "random direction": -0.011627814631987834
+  },
+  "gain document": {
+   "loss document": 0.8127493791529488,
+   "blame document": 0.7469163684506931,
+   "gain document": 1.0,
+   "credit document": 0.9386037935470227,
+   "financial loss document": 0.22825182360492216,
+   "financial gain document": 0.35285125611745405,
+   "UBS loss line, after": 0.03451913882224819,
+   "UBS blame line, after": 0.040108967740866225,
+   "UBS gain line, after": 0.03998132381313273,
+   "UBS credit line, after": 0.04858587098906203,
+   "UBS loss line, whole": 0.009896615375464695,
+   "UBS blame line, whole": 0.018466962809789694,
+   "UBS gain line, whole": 0.025714200063581192,
+   "UBS credit line, whole": 0.018253962613569017,
+   "random direction": -0.005690309727099297
+  },
+  "credit document": {
+   "loss document": 0.7810188662505538,
+   "blame document": 0.7902389184297525,
+   "gain document": 0.9386037935470227,
+   "credit document": 1.0,
+   "financial loss document": 0.18212089242718205,
+   "financial gain document": 0.3044249538942217,
+   "UBS loss line, after": 0.025669592715410777,
+   "UBS blame line, after": 0.045075187852060876,
+   "UBS gain line, after": 0.027905539323059926,
+   "UBS credit line, after": 0.0409426314509924,
+   "UBS loss line, whole": -0.036764157243746584,
+   "UBS blame line, whole": -0.025753616772019327,
+   "UBS gain line, whole": -0.023008177930799734,
+   "UBS credit line, whole": -0.02658373328680261,
+   "random direction": -0.004620429108431169
+  },
+  "financial loss document": {
+   "loss document": 0.33314751243417373,
+   "blame document": 0.28407352971583993,
+   "gain document": 0.22825182360492216,
+   "credit document": 0.18212089242718205,
+   "financial loss document": 1.0000000000000002,
+   "financial gain document": 0.8166722519578317,
+   "UBS loss line, after": 0.06289509468081997,
+   "UBS blame line, after": 0.09328618855540609,
+   "UBS gain line, after": 0.03848150207999381,
+   "UBS credit line, after": 0.05390916989518923,
+   "UBS loss line, whole": 0.04592158474894452,
+   "UBS blame line, whole": 0.07399123525732659,
+   "UBS gain line, whole": 0.03974159922318426,
+   "UBS credit line, whole": 0.05165207424546726,
+   "random direction": 0.003368446320805746
+  },
+  "financial gain document": {
+   "loss document": 0.2554356150924137,
+   "blame document": 0.20224796942878254,
+   "gain document": 0.35285125611745405,
+   "credit document": 0.3044249538942217,
+   "financial loss document": 0.8166722519578317,
+   "financial gain document": 1.0,
+   "UBS loss line, after": 0.01588218175708197,
+   "UBS blame line, after": 0.06116972097754669,
+   "UBS gain line, after": 0.013620276021862276,
+   "UBS credit line, after": 0.01217550934218359,
+   "UBS loss line, whole": -0.004133370247312725,
+   "UBS blame line, whole": 0.014591219453219515,
+   "UBS gain line, whole": -0.01292411565758091,
+   "UBS credit line, whole": 5.145539916371334e-05,
+   "random direction": 0.009674812813985894
+  },
+  "UBS loss line, after": {
+   "loss document": 0.05430444415378882,
+   "blame document": 0.0709006657315602,
+   "gain document": 0.03451913882224819,
+   "credit document": 0.025669592715410777,
+   "financial loss document": 0.06289509468081997,
+   "financial gain document": 0.01588218175708197,
+   "UBS loss line, after": 1.0000000000000002,
+   "UBS blame line, after": 0.6969079078876647,
+   "UBS gain line, after": 0.8244937894877801,
+   "UBS credit line, after": 0.7428481457899244,
+   "UBS loss line, whole": 0.17694331313903766,
+   "UBS blame line, whole": 0.10475370172615944,
+   "UBS gain line, whole": 0.11287529967438965,
+   "UBS credit line, whole": 0.0824675874115837,
+   "random direction": -0.00243613600525545
+  },
+  "UBS blame line, after": {
+   "loss document": 0.062400352363796915,
+   "blame document": 0.09079640179027308,
+   "gain document": 0.040108967740866225,
+   "credit document": 0.045075187852060876,
+   "financial loss document": 0.09328618855540609,
+   "financial gain document": 0.06116972097754669,
+   "UBS loss line, after": 0.6969079078876647,
+   "UBS blame line, after": 1.0,
+   "UBS gain line, after": 0.7125025685947112,
+   "UBS credit line, after": 0.8314002608986578,
+   "UBS loss line, whole": 0.04368042657697218,
+   "UBS blame line, whole": 0.04297534339096996,
+   "UBS gain line, whole": 0.018647195401767375,
+   "UBS credit line, whole": 0.01986968868216245,
+   "random direction": 0.00619351845340664
+  },
+  "UBS gain line, after": {
+   "loss document": 0.031026789611597994,
+   "blame document": 0.048396055219489684,
+   "gain document": 0.03998132381313273,
+   "credit document": 0.027905539323059926,
+   "financial loss document": 0.03848150207999381,
+   "financial gain document": 0.013620276021862276,
+   "UBS loss line, after": 0.8244937894877801,
+   "UBS blame line, after": 0.7125025685947112,
+   "UBS gain line, after": 1.0,
+   "UBS credit line, after": 0.8556945331339115,
+   "UBS loss line, whole": 0.10291744673979028,
+   "UBS blame line, whole": 0.04788465761908014,
+   "UBS gain line, whole": 0.11285111230638889,
+   "UBS credit line, whole": 0.06735318829347092,
+   "random direction": -0.0015067480578907872
+  },
+  "UBS credit line, after": {
+   "loss document": 0.04109297934410346,
+   "blame document": 0.06533522180671944,
+   "gain document": 0.04858587098906203,
+   "credit document": 0.0409426314509924,
+   "financial loss document": 0.05390916989518923,
+   "financial gain document": 0.01217550934218359,
+   "UBS loss line, after": 0.7428481457899244,
+   "UBS blame line, after": 0.8314002608986578,
+   "UBS gain line, after": 0.8556945331339115,
+   "UBS credit line, after": 1.0000000000000002,
+   "UBS loss line, whole": 0.09016001155092711,
+   "UBS blame line, whole": 0.07818642251824079,
+   "UBS gain line, whole": 0.10247348265504086,
+   "UBS credit line, whole": 0.1155871835643093,
+   "random direction": 0.00869058988540279
+  },
+  "UBS loss line, whole": {
+   "loss document": 0.03671237584596651,
+   "blame document": 0.047047582264735405,
+   "gain document": 0.009896615375464695,
+   "credit document": -0.036764157243746584,
+   "financial loss document": 0.04592158474894452,
+   "financial gain document": -0.004133370247312725,
+   "UBS loss line, after": 0.17694331313903766,
+   "UBS blame line, after": 0.04368042657697218,
+   "UBS gain line, after": 0.10291744673979028,
+   "UBS credit line, after": 0.09016001155092711,
+   "UBS loss line, whole": 1.0,
+   "UBS blame line, whole": 0.7954567380181039,
+   "UBS gain line, whole": 0.8264262318199138,
+   "UBS credit line, whole": 0.7738606082638964,
+   "random direction": -0.024832440560804903
+  },
+  "UBS blame line, whole": {
+   "loss document": 0.03851597376274252,
+   "blame document": 0.06105350648401685,
+   "gain document": 0.018466962809789694,
+   "credit document": -0.025753616772019327,
+   "financial loss document": 0.07399123525732659,
+   "financial gain document": 0.014591219453219515,
+   "UBS loss line, after": 0.10475370172615944,
+   "UBS blame line, after": 0.04297534339096996,
+   "UBS gain line, after": 0.04788465761908014,
+   "UBS credit line, after": 0.07818642251824079,
+   "UBS loss line, whole": 0.7954567380181039,
+   "UBS blame line, whole": 1.0,
+   "UBS gain line, whole": 0.7678560952258227,
+   "UBS credit line, whole": 0.8719063318733306,
+   "random direction": 0.018897024308292508
+  },
+  "UBS gain line, whole": {
+   "loss document": 0.020628887183864884,
+   "blame document": 0.025472755371909316,
+   "gain document": 0.025714200063581192,
+   "credit document": -0.023008177930799734,
+   "financial loss document": 0.03974159922318426,
+   "financial gain document": -0.01292411565758091,
+   "UBS loss line, after": 0.11287529967438965,
+   "UBS blame line, after": 0.018647195401767375,
+   "UBS gain line, after": 0.11285111230638889,
+   "UBS credit line, after": 0.10247348265504086,
+   "UBS loss line, whole": 0.8264262318199138,
+   "UBS blame line, whole": 0.7678560952258227,
+   "UBS gain line, whole": 1.0000000000000002,
+   "UBS credit line, whole": 0.8926609215873003,
+   "random direction": -0.02612285278822281
+  },
+  "UBS credit line, whole": {
+   "loss document": 0.01187118467721256,
+   "blame document": 0.023327667604177323,
+   "gain document": 0.018253962613569017,
+   "credit document": -0.02658373328680261,
+   "financial loss document": 0.05165207424546726,
+   "financial gain document": 5.145539916371334e-05,
+   "UBS loss line, after": 0.0824675874115837,
+   "UBS blame line, after": 0.01986968868216245,
+   "UBS gain line, after": 0.06735318829347092,
+   "UBS credit line, after": 0.1155871835643093,
+   "UBS loss line, whole": 0.7738606082638964,
+   "UBS blame line, whole": 0.8719063318733306,
+   "UBS gain line, whole": 0.8926609215873003,
+   "UBS credit line, whole": 1.0000000000000002,
+   "random direction": -0.007182511281469852
+  },
+  "random direction": {
+   "loss document": -0.016636586362236583,
+   "blame document": -0.011627814631987834,
+   "gain document": -0.005690309727099297,
+   "credit document": -0.004620429108431169,
+   "financial loss document": 0.003368446320805746,
+   "financial gain document": 0.009674812813985894,
+   "UBS loss line, after": -0.00243613600525545,
+   "UBS blame line, after": 0.00619351845340664,
+   "UBS gain line, after": -0.0015067480578907872,
+   "UBS credit line, after": 0.00869058988540279,
+   "UBS loss line, whole": -0.024832440560804903,
+   "UBS blame line, whole": 0.018897024308292508,
+   "UBS gain line, whole": -0.02612285278822281,
+   "UBS credit line, whole": -0.007182511281469852,
+   "random direction": 1.0
+  }
+ },
+ "contrasts": {
+  "loss - gain": {
+   "doc_ceiling": 0.9097532469350353,
+   "ubs_ceiling": 0.9491421187631035,
+   "doc_vs_ubs": "+0.080",
+   "doc_vs_fin": "+0.546",
+   "after_vs_whole": "+0.220"
+  },
+  "blame - credit": {
+   "doc_ceiling": 0.9293059265006709,
+   "ubs_ceiling": 0.9448537186816942,
+   "doc_vs_ubs": "+0.060",
+   "doc_vs_fin": "",
+   "after_vs_whole": "+0.170"
+  },
+  "blame - loss (the \"you\" in a loss)": {
+   "doc_ceiling": 0.8502566433518947,
+   "ubs_ceiling": 0.9516496474468215,
+   "doc_vs_ubs": "+0.047",
+   "doc_vs_fin": "",
+   "after_vs_whole": "+0.048"
+  },
+  "credit - gain (the \"you\" in a gain)": {
+   "doc_ceiling": 0.7716202630920472,
+   "ubs_ceiling": 0.9570371408781593,
+   "doc_vs_ubs": "+0.008",
+   "doc_vs_fin": "",
+   "after_vs_whole": "+0.213"
+  }
+ },
+ "mds": {
+  "loss document": [
+   -0.4841931638922399,
+   0.09635567787685455
+  ],
+  "blame document": [
+   -0.4515380740853076,
+   0.07849125497866392
+  ],
+  "gain document": [
+   -0.49394658715193834,
+   0.09462083765084536
+  ],
+  "credit document": [
+   -0.524436085235698,
+   0.05447390102477784
+  ],
+  "financial loss document": [
+   -0.2823934389930936,
+   0.07037310452102981
+  ],
+  "financial gain document": [
+   -0.35835273702084613,
+   0.065265121921843
+  ],
+  "UBS loss line, after": [
+   0.2543958442975937,
+   -0.4599822729088766
+  ],
+  "UBS blame line, after": [
+   0.16288015092900454,
+   -0.5302130922597421
+  ],
+  "UBS gain line, after": [
+   0.24271924877723594,
+   -0.5025392314417763
+  ],
+  "UBS credit line, after": [
+   0.2402533466245228,
+   -0.49042708479059755
+  ],
+  "UBS loss line, whole": [
+   0.42895360032045216,
+   0.3576630689543697
+  ],
+  "UBS blame line, whole": [
+   0.40025603290650247,
+   0.40017746991637615
+  ],
+  "UBS gain line, whole": [
+   0.4287711351724573,
+   0.3775425805707729
+  ],
+  "UBS credit line, whole": [
+   0.4248930172049441,
+   0.3964957813735801
+  ],
+  "random direction": [
+   0.01173771014641078,
+   -0.008297117388121278
+  ]
+ },
+ "features": {
+  "loss document": {
+   "along": [
+    [
+     1618,
+     0.14996050094788088
+    ],
+    [
+     3847,
+     0.1274736641335543
+    ],
+    [
+     10763,
+     0.10775047091018211
+    ],
+    [
+     2602,
+     0.10422147148446495
+    ],
+    [
+     13602,
+     0.1032896787593409
+    ],
+    [
+     2161,
+     0.10304217565282077
+    ],
+    [
+     760,
+     0.09565310352072137
+    ],
+    [
+     8104,
+     0.09493207365971941
+    ],
+    [
+     5555,
+     0.08924176689572473
+    ],
+    [
+     4421,
+     0.08898649274750176
+    ]
+   ],
+   "against": [
+    [
+     6741,
+     -0.09099775320093406
+    ],
+    [
+     1555,
+     -0.08614362475852036
+    ],
+    [
+     573,
+     -0.08285758390930534
+    ],
+    [
+     15784,
+     -0.07899481533744707
+    ],
+    [
+     7671,
+     -0.07580585311287354
+    ],
+    [
+     14455,
+     -0.07328483823273989
+    ],
+    [
+     9319,
+     -0.07110633362471136
+    ],
+    [
+     4533,
+     -0.06871103266973265
+    ],
+    [
+     6702,
+     -0.06555209191017
+    ],
+    [
+     8919,
+     -0.06412370619603808
+    ]
+   ]
+  },
+  "blame document": {
+   "along": [
+    [
+     2861,
+     0.12761713953847822
+    ],
+    [
+     3610,
+     0.12424655608522239
+    ],
+    [
+     1618,
+     0.1230031704664106
+    ],
+    [
+     2161,
+     0.1174946049611688
+    ],
+    [
+     15557,
+     0.11616551632348263
+    ],
+    [
+     760,
+     0.11487930404028773
+    ],
+    [
+     3847,
+     0.11290369344429345
+    ],
+    [
+     4421,
+     0.11148498036240366
+    ],
+    [
+     415,
+     0.10205910143382764
+    ],
+    [
+     14085,
+     0.1016736753766734
+    ]
+   ],
+   "against": [
+    [
+     6741,
+     -0.0863599845505444
+    ],
+    [
+     9319,
+     -0.07831242810646705
+    ],
+    [
+     4030,
+     -0.07726229987018893
+    ],
+    [
+     12671,
+     -0.07666430289237902
+    ],
+    [
+     573,
+     -0.07489676687492068
+    ],
+    [
+     6702,
+     -0.06790041429142962
+    ],
+    [
+     7671,
+     -0.06736615944671598
+    ],
+    [
+     14455,
+     -0.06588678833854254
+    ],
+    [
+     15784,
+     -0.0642550248949324
+    ],
+    [
+     1707,
+     -0.06403454224660064
+    ]
+   ]
+  },
+  "gain document": {
+   "along": [
+    [
+     11567,
+     0.14996039025901603
+    ],
+    [
+     2258,
+     0.09455347519497216
+    ],
+    [
+     9246,
+     0.09033051300330028
+    ],
+    [
+     3256,
+     0.0866555923171263
+    ],
+    [
+     1192,
+     0.0845159163797164
+    ],
+    [
+     5071,
+     0.08427024488061392
+    ],
+    [
+     10712,
+     0.08129465951221587
+    ],
+    [
+     2604,
+     0.07742310757547706
+    ],
+    [
+     7340,
+     0.07632917878453291
+    ],
+    [
+     3875,
+     0.07364600829796179
+    ]
+   ],
+   "against": [
+    [
+     7671,
+     -0.10252721981898551
+    ],
+    [
+     1555,
+     -0.0980359040623226
+    ],
+    [
+     15784,
+     -0.08544630601316489
+    ],
+    [
+     9319,
+     -0.0845647083132695
+    ],
+    [
+     4939,
+     -0.07755246828574182
+    ],
+    [
+     11385,
+     -0.06989777533132209
+    ],
+    [
+     7105,
+     -0.0690980946178982
+    ],
+    [
+     4533,
+     -0.06843637331152491
+    ],
+    [
+     15217,
+     -0.06686573390815735
+    ],
+    [
+     13981,
+     -0.06621192203071556
+    ]
+   ]
+  },
+  "credit document": {
+   "along": [
+    [
+     11567,
+     0.1387815027997551
+    ],
+    [
+     7340,
+     0.10926157656337857
+    ],
+    [
+     2604,
+     0.1026707732956969
+    ],
+    [
+     9246,
+     0.09320285893699873
+    ],
+    [
+     1192,
+     0.09158810374407275
+    ],
+    [
+     2258,
+     0.08811437204287398
+    ],
+    [
+     3256,
+     0.08275403259886199
+    ],
+    [
+     9173,
+     0.08179787431238317
+    ],
+    [
+     3971,
+     0.08095741760748303
+    ],
+    [
+     5555,
+     0.0755519222388753
+    ]
+   ],
+   "against": [
+    [
+     7671,
+     -0.10153764159281889
+    ],
+    [
+     1555,
+     -0.10004860149271878
+    ],
+    [
+     9319,
+     -0.09823105159020727
+    ],
+    [
+     15784,
+     -0.08434644543194725
+    ],
+    [
+     3051,
+     -0.08175809726935634
+    ],
+    [
+     4939,
+     -0.07765109487808558
+    ],
+    [
+     2605,
+     -0.0731952420056817
+    ],
+    [
+     11385,
+     -0.07218284020606533
+    ],
+    [
+     4030,
+     -0.07198268669135963
+    ],
+    [
+     2426,
+     -0.06996000919674189
+    ]
+   ]
+  },
+  "financial loss document": {
+   "along": [
+    [
+     4008,
+     0.14006662592350744
+    ],
+    [
+     9351,
+     0.13534625542623202
+    ],
+    [
+     10763,
+     0.12066071410180963
+    ],
+    [
+     436,
+     0.11740058983710813
+    ],
+    [
+     1618,
+     0.11506979672155607
+    ],
+    [
+     3520,
+     0.11458231946596507
+    ],
+    [
+     10632,
+     0.11250453904138275
+    ],
+    [
+     13602,
+     0.10117344066365727
+    ],
+    [
+     1978,
+     0.1006238578878258
+    ],
+    [
+     14874,
+     0.09711516304560955
+    ]
+   ],
+   "against": [
+    [
+     7105,
+     -0.10292199612678307
+    ],
+    [
+     4526,
+     -0.0768566300543392
+    ],
+    [
+     2975,
+     -0.07557238777235767
+    ],
+    [
+     4952,
+     -0.07309301579007971
+    ],
+    [
+     12142,
+     -0.06784982508703766
+    ],
+    [
+     6928,
+     -0.0638683213396914
+    ],
+    [
+     11468,
+     -0.06086817315573551
+    ],
+    [
+     13567,
+     -0.05989062966626075
+    ],
+    [
+     5577,
+     -0.05819027274135685
+    ],
+    [
+     11626,
+     -0.057875216526852784
+    ]
+   ]
+  },
+  "financial gain document": {
+   "along": [
+    [
+     4008,
+     0.12973922269992672
+    ],
+    [
+     9246,
+     0.11106100301325951
+    ],
+    [
+     10632,
+     0.10776065025824345
+    ],
+    [
+     9351,
+     0.09220178435499043
+    ],
+    [
+     4471,
+     0.09102949631176042
+    ],
+    [
+     11567,
+     0.08825712594855036
+    ],
+    [
+     10712,
+     0.08715536571681676
+    ],
+    [
+     14874,
+     0.0869018276706395
+    ],
+    [
+     6066,
+     0.08162034081267636
+    ],
+    [
+     6086,
+     0.08148893074447257
+    ]
+   ],
+   "against": [
+    [
+     7105,
+     -0.13474601409116774
+    ],
+    [
+     4526,
+     -0.08318447875336851
+    ],
+    [
+     2008,
+     -0.07827192736281782
+    ],
+    [
+     2975,
+     -0.07798239687626768
+    ],
+    [
+     1395,
+     -0.0752011848795287
+    ],
+    [
+     13775,
+     -0.07197761115059617
+    ],
+    [
+     6072,
+     -0.07136620150269068
+    ],
+    [
+     4500,
+     -0.07042494442202352
+    ],
+    [
+     1495,
+     -0.06860745650220168
+    ],
+    [
+     6928,
+     -0.06858166732817199
+    ]
+   ]
+  },
+  "UBS loss line, after": {
+   "along": [
+    [
+     10902,
+     0.22048189138794386
+    ],
+    [
+     6466,
+     0.10849702270146244
+    ],
+    [
+     297,
+     0.10543434915017494
+    ],
+    [
+     2203,
+     0.10328510717815637
+    ],
+    [
+     9321,
+     0.09459195720881577
+    ],
+    [
+     14477,
+     0.09365306012468333
+    ],
+    [
+     13921,
+     0.08805760494174389
+    ],
+    [
+     3452,
+     0.08190076043730146
+    ],
+    [
+     2587,
+     0.08149662651634108
+    ],
+    [
+     13777,
+     0.08149097389790527
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.18060952735528873
+    ],
+    [
+     14930,
+     -0.11123079163495617
+    ],
+    [
+     2927,
+     -0.10622051427350956
+    ],
+    [
+     7123,
+     -0.10156455009501703
+    ],
+    [
+     10399,
+     -0.09863320112259928
+    ],
+    [
+     2433,
+     -0.09572546863848627
+    ],
+    [
+     281,
+     -0.07722297729251862
+    ],
+    [
+     3043,
+     -0.0752793402844198
+    ],
+    [
+     4231,
+     -0.07425902315159712
+    ],
+    [
+     2854,
+     -0.07231325133402333
+    ]
+   ]
+  },
+  "UBS blame line, after": {
+   "along": [
+    [
+     10902,
+     0.283743606969896
+    ],
+    [
+     13921,
+     0.13409461492295016
+    ],
+    [
+     297,
+     0.12743086250973162
+    ],
+    [
+     2203,
+     0.12117686132642935
+    ],
+    [
+     9321,
+     0.11889557375747911
+    ],
+    [
+     6466,
+     0.11865717335718201
+    ],
+    [
+     2532,
+     0.11722895934970934
+    ],
+    [
+     8819,
+     0.10776820399813787
+    ],
+    [
+     4236,
+     0.10289411006893648
+    ],
+    [
+     2909,
+     0.09717986187337567
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.1714130934679321
+    ],
+    [
+     10399,
+     -0.11596716535794911
+    ],
+    [
+     7123,
+     -0.11488693000956565
+    ],
+    [
+     2927,
+     -0.09570113555144932
+    ],
+    [
+     2103,
+     -0.08858804043090808
+    ],
+    [
+     14930,
+     -0.0884150166979614
+    ],
+    [
+     2433,
+     -0.08782811601539177
+    ],
+    [
+     5639,
+     -0.0815306337730514
+    ],
+    [
+     8408,
+     -0.08126873166725472
+    ],
+    [
+     12678,
+     -0.078935090614427
+    ]
+   ]
+  },
+  "UBS gain line, after": {
+   "along": [
+    [
+     10902,
+     0.24863692653448952
+    ],
+    [
+     2203,
+     0.1270578249457363
+    ],
+    [
+     13921,
+     0.10655235586344086
+    ],
+    [
+     6466,
+     0.1048906824384822
+    ],
+    [
+     297,
+     0.10384223422148944
+    ],
+    [
+     757,
+     0.09726566721269016
+    ],
+    [
+     13514,
+     0.09401525688935554
+    ],
+    [
+     9321,
+     0.09283437382629352
+    ],
+    [
+     14165,
+     0.09210773356754334
+    ],
+    [
+     8819,
+     0.08987577332931979
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.18395060502614285
+    ],
+    [
+     10399,
+     -0.10524562653931246
+    ],
+    [
+     14930,
+     -0.10349494661146863
+    ],
+    [
+     2433,
+     -0.10159412860575456
+    ],
+    [
+     7123,
+     -0.10107020359638205
+    ],
+    [
+     2927,
+     -0.10022917413542881
+    ],
+    [
+     2854,
+     -0.08225995821146588
+    ],
+    [
+     6087,
+     -0.07682827528474208
+    ],
+    [
+     2103,
+     -0.0706878685002201
+    ],
+    [
+     2415,
+     -0.06979990113869966
+    ]
+   ]
+  },
+  "UBS credit line, after": {
+   "along": [
+    [
+     10902,
+     0.29067080709737325
+    ],
+    [
+     297,
+     0.14760841105184347
+    ],
+    [
+     6466,
+     0.13997908466259404
+    ],
+    [
+     2203,
+     0.13841869559094538
+    ],
+    [
+     13921,
+     0.1310769368667802
+    ],
+    [
+     8819,
+     0.1164896260530926
+    ],
+    [
+     9321,
+     0.1068236959930216
+    ],
+    [
+     2532,
+     0.09944192576668459
+    ],
+    [
+     3923,
+     0.0987969648440732
+    ],
+    [
+     15683,
+     0.08946083794830625
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.17811467304281056
+    ],
+    [
+     10399,
+     -0.11824171609968544
+    ],
+    [
+     7123,
+     -0.11079480957356513
+    ],
+    [
+     2927,
+     -0.09782228699076596
+    ],
+    [
+     2433,
+     -0.08885411869067555
+    ],
+    [
+     2103,
+     -0.08234994514281078
+    ],
+    [
+     5639,
+     -0.07691912007462258
+    ],
+    [
+     4231,
+     -0.07654993709458582
+    ],
+    [
+     9627,
+     -0.07592255340262229
+    ],
+    [
+     1636,
+     -0.07438506457900063
+    ]
+   ]
+  },
+  "UBS loss line, whole": {
+   "along": [
+    [
+     10833,
+     0.19305289558492997
+    ],
+    [
+     3928,
+     0.16179703883602778
+    ],
+    [
+     3361,
+     0.15581497181064663
+    ],
+    [
+     5793,
+     0.1549513714707615
+    ],
+    [
+     8382,
+     0.14687749385312593
+    ],
+    [
+     6254,
+     0.14683555683938282
+    ],
+    [
+     3507,
+     0.14251202461075016
+    ],
+    [
+     15953,
+     0.14090912699436925
+    ],
+    [
+     6043,
+     0.14038874744647317
+    ],
+    [
+     15444,
+     0.13786034014390702
+    ]
+   ],
+   "against": [
+    [
+     13262,
+     -0.1943244419262286
+    ],
+    [
+     5555,
+     -0.1901864170227171
+    ],
+    [
+     16304,
+     -0.17860299779103295
+    ],
+    [
+     608,
+     -0.17132023712414313
+    ],
+    [
+     4016,
+     -0.16399673151439095
+    ],
+    [
+     1346,
+     -0.15971330032657477
+    ],
+    [
+     9602,
+     -0.15863779093891087
+    ],
+    [
+     4096,
+     -0.14837423238929376
+    ],
+    [
+     12559,
+     -0.14669571908832885
+    ],
+    [
+     293,
+     -0.14590001230533547
+    ]
+   ]
+  },
+  "UBS blame line, whole": {
+   "along": [
+    [
+     10833,
+     0.19259621542483682
+    ],
+    [
+     8382,
+     0.18447701974767436
+    ],
+    [
+     9881,
+     0.17768860628074726
+    ],
+    [
+     5793,
+     0.17554305487518518
+    ],
+    [
+     8007,
+     0.17552927164850896
+    ],
+    [
+     6043,
+     0.16151746771180553
+    ],
+    [
+     5196,
+     0.15521058746236624
+    ],
+    [
+     14858,
+     0.15428949941484596
+    ],
+    [
+     3507,
+     0.15112610240818392
+    ],
+    [
+     15953,
+     0.14962960351090202
+    ]
+   ],
+   "against": [
+    [
+     13262,
+     -0.2236646309309545
+    ],
+    [
+     16304,
+     -0.20737481560250584
+    ],
+    [
+     608,
+     -0.19909284765232127
+    ],
+    [
+     293,
+     -0.19367625930083374
+    ],
+    [
+     5555,
+     -0.18782538849419547
+    ],
+    [
+     4096,
+     -0.1806946183590274
+    ],
+    [
+     1660,
+     -0.17399707801067052
+    ],
+    [
+     5026,
+     -0.17397574818224953
+    ],
+    [
+     1346,
+     -0.17201349484348835
+    ],
+    [
+     1917,
+     -0.17094156856151102
+    ]
+   ]
+  },
+  "UBS gain line, whole": {
+   "along": [
+    [
+     10833,
+     0.20032140492533362
+    ],
+    [
+     7227,
+     0.18664151020592057
+    ],
+    [
+     3713,
+     0.17994334086717836
+    ],
+    [
+     3928,
+     0.17641360560638075
+    ],
+    [
+     10994,
+     0.16397816189964404
+    ],
+    [
+     7582,
+     0.15987743328008455
+    ],
+    [
+     2984,
+     0.15841627195591929
+    ],
+    [
+     6434,
+     0.15566283155091018
+    ],
+    [
+     6884,
+     0.15409483390553996
+    ],
+    [
+     9881,
+     0.15237675800008127
+    ]
+   ],
+   "against": [
+    [
+     12559,
+     -0.19738100532612138
+    ],
+    [
+     9602,
+     -0.195369899815094
+    ],
+    [
+     5555,
+     -0.18699977758015932
+    ],
+    [
+     608,
+     -0.17958189841182823
+    ],
+    [
+     4915,
+     -0.17077503417868825
+    ],
+    [
+     4016,
+     -0.1692951537055632
+    ],
+    [
+     16304,
+     -0.1677821047795468
+    ],
+    [
+     1792,
+     -0.1563758162675015
+    ],
+    [
+     8412,
+     -0.1551796423288234
+    ],
+    [
+     13262,
+     -0.14788909341973352
+    ]
+   ]
+  },
+  "UBS credit line, whole": {
+   "along": [
+    [
+     10833,
+     0.20256066332498962
+    ],
+    [
+     3713,
+     0.17898846845936758
+    ],
+    [
+     9881,
+     0.17172169953440347
+    ],
+    [
+     10994,
+     0.17024255903281035
+    ],
+    [
+     3928,
+     0.1591290392392643
+    ],
+    [
+     14344,
+     0.15784793506569098
+    ],
+    [
+     210,
+     0.15089856213694275
+    ],
+    [
+     7582,
+     0.14396121025916236
+    ],
+    [
+     5793,
+     0.14366021538519574
+    ],
+    [
+     10383,
+     0.14341294388921755
+    ]
+   ],
+   "against": [
+    [
+     12559,
+     -0.21413149562401185
+    ],
+    [
+     608,
+     -0.18751301141227197
+    ],
+    [
+     9602,
+     -0.18576464133153617
+    ],
+    [
+     5555,
+     -0.18421729742320858
+    ],
+    [
+     4016,
+     -0.1818844645108778
+    ],
+    [
+     13262,
+     -0.17580970314728497
+    ],
+    [
+     8412,
+     -0.16644805424674122
+    ],
+    [
+     4096,
+     -0.16294212137050934
+    ],
+    [
+     1591,
+     -0.15784841605109495
+    ],
+    [
+     16304,
+     -0.15607982123108657
+    ]
+   ]
+  },
+  "random direction": {
+   "along": [
+    [
+     14241,
+     0.1513063178626503
+    ],
+    [
+     3268,
+     0.1482831298485476
+    ],
+    [
+     1561,
+     0.14272894678502943
+    ],
+    [
+     11567,
+     0.14051353116545068
+    ],
+    [
+     11046,
+     0.13760723695536622
+    ],
+    [
+     6429,
+     0.13495134178856735
+    ],
+    [
+     8315,
+     0.13367196176308052
+    ],
+    [
+     9026,
+     0.13201831316365814
+    ],
+    [
+     9066,
+     0.12389987219764656
+    ],
+    [
+     2116,
+     0.12185538575347234
+    ]
+   ],
+   "against": [
+    [
+     7073,
+     -0.15134824949727657
+    ],
+    [
+     5899,
+     -0.1441350625508504
+    ],
+    [
+     2887,
+     -0.13560109020891015
+    ],
+    [
+     8901,
+     -0.1311677652137705
+    ],
+    [
+     9932,
+     -0.1283095874306873
+    ],
+    [
+     9034,
+     -0.12572966698878396
+    ],
+    [
+     8646,
+     -0.12358238402281752
+    ],
+    [
+     12101,
+     -0.12266644531360595
+    ],
+    [
+     8492,
+     -0.1220107679326187
+    ],
+    [
+     15403,
+     -0.12184415349885912
+    ]
+   ]
+  },
+  "loss: line minus document": {
+   "shared": [],
+   "crossed": [],
+   "along": [
+    [
+     10902,
+     0.18540003809263095
+    ],
+    [
+     13921,
+     0.09678839248966237
+    ],
+    [
+     2203,
+     0.08759039260375381
+    ],
+    [
+     14477,
+     0.0816967398950378
+    ],
+    [
+     11904,
+     0.0755744566739842
+    ],
+    [
+     297,
+     0.07538860342539018
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.14199002457644305
+    ],
+    [
+     2927,
+     -0.09378262279759726
+    ],
+    [
+     1618,
+     -0.08984317456674634
+    ],
+    [
+     14930,
+     -0.08953828456249856
+    ],
+    [
+     3847,
+     -0.08895770429580871
+    ],
+    [
+     8043,
+     -0.08472742669796818
+    ]
+   ]
+  },
+  "blame: line minus document": {
+   "shared": [],
+   "crossed": [],
+   "along": [
+    [
+     10902,
+     0.21642582894808737
+    ],
+    [
+     13921,
+     0.12043658253585841
+    ],
+    [
+     2532,
+     0.0950488749240099
+    ],
+    [
+     8819,
+     0.09172318889349261
+    ],
+    [
+     3663,
+     0.08187844080964457
+    ],
+    [
+     297,
+     0.08096080016510496
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.12103589694166779
+    ],
+    [
+     415,
+     -0.09887348252899525
+    ],
+    [
+     3071,
+     -0.09486946449164346
+    ],
+    [
+     2604,
+     -0.09280583151011738
+    ],
+    [
+     4421,
+     -0.09104206879711073
+    ],
+    [
+     3847,
+     -0.08760409872018607
+    ]
+   ]
+  },
+  "gain: line minus document": {
+   "shared": [],
+   "crossed": [],
+   "along": [
+    [
+     10902,
+     0.1969519821531903
+    ],
+    [
+     13921,
+     0.10449443361847037
+    ],
+    [
+     2203,
+     0.10336853672327824
+    ],
+    [
+     1555,
+     0.08339671232445221
+    ],
+    [
+     8819,
+     0.07780860678397405
+    ],
+    [
+     3923,
+     0.07420192107287735
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.1364591565409922
+    ],
+    [
+     11567,
+     -0.10353906894710989
+    ],
+    [
+     10399,
+     -0.08475184506999914
+    ],
+    [
+     5555,
+     -0.08170726979876342
+    ],
+    [
+     14930,
+     -0.08085406245033484
+    ],
+    [
+     6260,
+     -0.07591106730188618
+    ]
+   ]
+  },
+  "credit: line minus document": {
+   "shared": [],
+   "crossed": [],
+   "along": [
+    [
+     10902,
+     0.2587230290989152
+    ],
+    [
+     13921,
+     0.12640163293320922
+    ],
+    [
+     2203,
+     0.12202803682273296
+    ],
+    [
+     297,
+     0.1136032249934239
+    ],
+    [
+     6466,
+     0.10985663753056424
+    ],
+    [
+     8819,
+     0.10702049525200624
+    ]
+   ],
+   "against": [
+    [
+     7995,
+     -0.14715717676430284
+    ],
+    [
+     10399,
+     -0.10130831354333224
+    ],
+    [
+     5555,
+     -0.07917986992670444
+    ],
+    [
+     7123,
+     -0.0789267386570497
+    ],
+    [
+     12201,
+     -0.07686065159150636
+    ],
+    [
+     2604,
+     -0.07508285366832587
+    ]
+   ]
+  }
+ }
+}

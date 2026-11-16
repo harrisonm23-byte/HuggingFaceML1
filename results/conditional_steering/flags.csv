@@ -1,0 +1,1711 @@
+experiment,version,run,career_file,chat,date,history_index,joined,score_oof,flag,score_frozen_in_sample,flag_in_sample,fold
+A,gain + you,0,gain_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.334416,0,-0.953790,0,4
+A,gain + you,0,gain_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.578085,0,-2.838897,0,4
+A,gain + you,0,gain_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.650070,0,-3.775435,0,4
+A,gain + you,0,gain_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,192,0,-7.083301,0,-7.066305,0,4
+A,gain + you,0,gain_plus_you_r0.json,p317_stop_busters,2011-06-08,196,0,-6.308968,0,-6.206707,0,4
+A,gain + you,0,gain_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,246,0,-5.990484,0,-5.667331,0,4
+A,gain + you,1,gain_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.992507,0,-2.415897,0,3
+A,gain + you,1,gain_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.739020,0,-3.394805,0,3
+A,gain + you,1,gain_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.100560,0,-3.844683,0,3
+A,gain + you,1,gain_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.014740,0,-6.103802,0,3
+A,gain + you,1,gain_plus_you_r1.json,p317_stop_busters,2011-06-08,194,0,-7.300917,0,-7.560047,0,3
+A,gain + you,1,gain_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.125372,0,-4.239775,0,3
+A,gain + you,2,gain_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.343106,0,-1.427450,0,0
+A,gain + you,2,gain_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,0,-2.489847,0,-2.854471,0,0
+A,gain + you,2,gain_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.765010,0,-4.342083,0,0
+A,gain + you,2,gain_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-7.811358,0,-7.438749,0,0
+A,gain + you,2,gain_plus_you_r2.json,p317_stop_busters,2011-06-08,194,0,-9.601980,0,-8.905582,0,0
+A,gain + you,2,gain_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.879887,0,-6.173931,0,0
+A,gain + you,3,gain_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.317530,0,-2.191014,0,1
+A,gain + you,3,gain_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.920318,0,-3.968713,0,1
+A,gain + you,3,gain_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.783389,0,-5.306881,0,1
+A,gain + you,3,gain_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-7.061971,0,-6.609424,0,1
+A,gain + you,3,gain_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-8.315460,0,-8.725867,0,1
+A,gain + you,3,gain_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-6.189090,0,-6.340869,0,1
+A,gain + you,4,gain_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.726696,0,-2.964454,0,2
+A,gain + you,4,gain_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,0,-3.389120,0,-3.584817,0,2
+A,gain + you,4,gain_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.938495,0,-6.195048,0,2
+A,gain + you,4,gain_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-7.645214,0,-7.704938,0,2
+A,gain + you,4,gain_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-7.577222,0,-7.570797,0,2
+A,gain + you,4,gain_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.327750,0,-5.885596,0,2
+A,gain,0,gain_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.424084,0,-0.609502,1,1
+A,gain,0,gain_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.582805,0,-1.708272,0,1
+A,gain,0,gain_r0.json,p252_screw_other_people_harder,2011-04-01,126,1,-6.207905,0,-4.240724,0,1
+A,gain,0,gain_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-8.025696,0,-7.286993,0,1
+A,gain,0,gain_r0.json,p317_stop_busters,2011-06-08,194,0,-8.652733,0,-8.234036,0,1
+A,gain,0,gain_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-6.621155,0,-5.792112,0,1
+A,gain,1,gain_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.315309,0,-1.665163,0,4
+A,gain,1,gain_r1.json,p316_bust_through_it,2011-01-12,76,0,-2.221673,0,-2.671368,0,4
+A,gain,1,gain_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.216646,0,-4.612886,0,4
+A,gain,1,gain_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-7.730931,0,-8.043033,0,4
+A,gain,1,gain_r1.json,p317_stop_busters,2011-06-08,194,0,-10.340879,0,-10.293483,0,4
+A,gain,1,gain_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-6.518747,0,-6.286383,0,4
+A,gain,2,gain_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.458221,0,-1.353479,0,3
+A,gain,2,gain_r2.json,p316_bust_through_it,2011-01-12,76,1,-1.977074,0,-1.317195,0,3
+A,gain,2,gain_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.002005,0,-3.894247,0,3
+A,gain,2,gain_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.231337,0,-5.405212,0,3
+A,gain,2,gain_r2.json,p317_stop_busters,2011-06-08,194,0,-6.340063,0,-6.389087,0,3
+A,gain,2,gain_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.137175,0,-5.473782,0,3
+A,gain,3,gain_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.734737,0,-1.931054,0,4
+A,gain,3,gain_r3.json,p316_bust_through_it,2011-01-12,76,0,-2.863233,0,-3.222821,0,4
+A,gain,3,gain_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.921929,0,-4.975135,0,4
+A,gain,3,gain_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.628957,0,-6.366259,0,4
+A,gain,3,gain_r3.json,p317_stop_busters,2011-06-08,194,0,-7.104187,0,-7.645936,0,4
+A,gain,3,gain_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-6.751830,0,-6.721547,0,4
+A,gain,4,gain_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.911394,1,1.053572,1,0
+A,gain,4,gain_r4.json,p316_bust_through_it,2011-01-12,76,1,-1.124054,0,-0.739651,1,0
+A,gain,4,gain_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.193517,0,-3.399152,0,0
+A,gain,4,gain_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-6.362300,0,-6.793300,0,0
+A,gain,4,gain_r4.json,p317_stop_busters,2011-06-08,196,0,-7.856373,0,-8.074170,0,0
+A,gain,4,gain_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-4.771776,0,-4.834085,0,0
+A,loss + you,0,loss_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-3.195521,0,-3.217706,0,1
+A,loss + you,0,loss_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.578488,0,-2.372357,0,1
+A,loss + you,0,loss_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.593897,0,-4.747354,0,1
+A,loss + you,0,loss_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.386970,0,-6.331084,0,1
+A,loss + you,0,loss_plus_you_r0.json,p317_stop_busters,2011-06-08,194,0,-6.867283,0,-6.476933,0,1
+A,loss + you,0,loss_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.010758,0,-4.957189,0,1
+A,loss + you,1,loss_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.672069,1,-0.145758,1,1
+A,loss + you,1,loss_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.018794,0,-2.919301,0,1
+A,loss + you,1,loss_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.738556,0,-5.944257,0,1
+A,loss + you,1,loss_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-8.008946,0,-7.418241,0,1
+A,loss + you,1,loss_plus_you_r1.json,p317_stop_busters,2011-06-08,194,0,-10.559946,0,-10.424440,0,1
+A,loss + you,1,loss_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-6.124440,0,-5.604611,0,1
+A,loss + you,2,loss_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.557072,0,-1.404888,0,2
+A,loss + you,2,loss_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,0,-2.323173,0,-2.593253,0,2
+A,loss + you,2,loss_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.913575,0,-5.435458,0,2
+A,loss + you,2,loss_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-7.538555,0,-7.602713,0,2
+A,loss + you,2,loss_plus_you_r2.json,p317_stop_busters,2011-06-08,194,0,-8.174070,0,-8.387680,0,2
+A,loss + you,2,loss_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.596056,0,-5.822988,0,2
+A,loss + you,3,loss_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.691429,1,-0.367297,1,2
+A,loss + you,3,loss_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-2.681924,0,-3.006037,0,2
+A,loss + you,3,loss_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.587443,0,-5.014786,0,2
+A,loss + you,3,loss_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-7.959225,0,-8.092801,0,2
+A,loss + you,3,loss_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-8.727019,0,-9.045123,0,2
+A,loss + you,3,loss_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.683715,0,-5.845340,0,2
+A,loss + you,4,loss_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-3.175077,0,-2.569934,0,0
+A,loss + you,4,loss_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,0,-4.848635,0,-5.046574,0,0
+A,loss + you,4,loss_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.943339,0,-5.907401,0,0
+A,loss + you,4,loss_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-7.100055,0,-7.175707,0,0
+A,loss + you,4,loss_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-7.080964,0,-6.687966,0,0
+A,loss + you,4,loss_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.576466,0,-5.340984,0,0
+A,loss,0,loss_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.751889,0,-1.945101,0,1
+A,loss,0,loss_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.013507,0,-1.612198,0,1
+A,loss,0,loss_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.984739,0,-4.368627,0,1
+A,loss,0,loss_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.253544,0,-6.063313,0,1
+A,loss,0,loss_r0.json,p317_stop_busters,2011-06-08,194,0,-6.454878,0,-6.504267,0,1
+A,loss,0,loss_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.672747,0,-5.304670,0,1
+A,loss,1,loss_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.149812,0,-2.284934,0,3
+A,loss,1,loss_r1.json,p316_bust_through_it,2011-01-12,76,0,-1.763036,0,-2.193913,0,3
+A,loss,1,loss_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.480432,0,-4.677330,0,3
+A,loss,1,loss_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-5.051315,0,-6.173000,0,3
+A,loss,1,loss_r1.json,p317_stop_busters,2011-06-08,194,0,-7.887155,0,-9.243598,0,3
+A,loss,1,loss_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.893068,0,-5.274410,0,3
+A,loss,2,loss_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.880923,0,-1.672676,0,0
+A,loss,2,loss_r2.json,p316_bust_through_it,2011-01-12,76,0,-2.545923,0,-2.500619,0,0
+A,loss,2,loss_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.947818,0,-4.543167,0,0
+A,loss,2,loss_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-7.184688,0,-7.095953,0,0
+A,loss,2,loss_r2.json,p317_stop_busters,2011-06-08,194,0,-8.377023,0,-7.508664,0,0
+A,loss,2,loss_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.913909,0,-6.331855,0,0
+A,loss,3,loss_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.576612,0,-2.067836,0,3
+A,loss,3,loss_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.702490,0,-3.711437,0,3
+A,loss,3,loss_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.534212,0,-5.577041,0,3
+A,loss,3,loss_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-7.151720,0,-7.518918,0,3
+A,loss,3,loss_r3.json,p317_stop_busters,2011-06-08,194,0,-7.993199,0,-8.307846,0,3
+A,loss,3,loss_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.107273,0,-4.562015,0,3
+A,loss,4,loss_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.789812,1,-0.924743,0,2
+A,loss,4,loss_r4.json,p316_bust_through_it,2011-01-12,76,0,-2.674961,0,-3.337174,0,2
+A,loss,4,loss_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.666235,0,-4.217893,0,2
+A,loss,4,loss_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.031093,0,-5.776121,0,2
+A,loss,4,loss_r4.json,p317_stop_busters,2011-06-08,194,0,-5.931217,0,-6.627193,0,2
+A,loss,4,loss_r4.json,p253_11_oclock_rule,2011-08-05,244,0,-3.323440,0,-3.173160,0,2
+A,neutral,0,neutral_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.030549,1,-0.336755,1,0
+A,neutral,0,neutral_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.769377,0,-2.893952,0,0
+A,neutral,0,neutral_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.067968,0,-5.279044,0,0
+A,neutral,0,neutral_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.681952,0,-6.801602,0,0
+A,neutral,0,neutral_r0.json,p317_stop_busters,2011-06-08,194,0,-8.749624,0,-8.112926,0,0
+A,neutral,0,neutral_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-4.306597,0,-4.700399,0,0
+A,neutral,1,neutral_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.639787,0,-3.092571,0,3
+A,neutral,1,neutral_r1.json,p316_bust_through_it,2011-01-12,76,0,-4.708685,0,-4.390839,0,3
+A,neutral,1,neutral_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.184434,0,-6.322714,0,3
+A,neutral,1,neutral_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.684528,0,-6.741903,0,3
+A,neutral,1,neutral_r1.json,p317_stop_busters,2011-06-08,194,0,-7.199939,0,-7.578896,0,3
+A,neutral,1,neutral_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-6.274227,0,-6.284248,0,3
+A,neutral,2,neutral_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.452102,0,-1.330218,0,4
+A,neutral,2,neutral_r2.json,p316_bust_through_it,2011-01-12,76,0,-3.945587,0,-3.941052,0,4
+A,neutral,2,neutral_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.306323,0,-6.201748,0,4
+A,neutral,2,neutral_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-7.571382,0,-7.658449,0,4
+A,neutral,2,neutral_r2.json,p317_stop_busters,2011-06-08,194,0,-7.490894,0,-7.904386,0,4
+A,neutral,2,neutral_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.406950,0,-5.546156,0,4
+A,neutral,3,neutral_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.244802,1,0.729929,1,2
+A,neutral,3,neutral_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.387711,0,-3.925892,0,2
+A,neutral,3,neutral_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.616718,0,-4.964757,0,2
+A,neutral,3,neutral_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.986462,0,-6.391068,0,2
+A,neutral,3,neutral_r3.json,p317_stop_busters,2011-06-08,194,0,-6.350506,0,-6.601887,0,2
+A,neutral,3,neutral_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-3.737733,0,-3.202769,0,2
+A,neutral,4,neutral_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.494680,1,-0.294585,1,4
+A,neutral,4,neutral_r4.json,p316_bust_through_it,2011-01-12,76,0,-6.294844,0,-6.550327,0,4
+A,neutral,4,neutral_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-7.217407,0,-7.435473,0,4
+A,neutral,4,neutral_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-7.265179,0,-7.657712,0,4
+A,neutral,4,neutral_r4.json,p317_stop_busters,2011-06-08,194,0,-8.910390,0,-8.537964,0,4
+A,neutral,4,neutral_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.673692,0,-4.613948,0,4
+B,gain + you,0,gain_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.674654,1,0.177790,1,4
+B,gain + you,0,gain_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,0,-0.731993,1,-1.317584,0,4
+B,gain + you,0,gain_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.958048,0,-6.859224,0,4
+B,gain + you,0,gain_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.978780,0,-6.329477,0,4
+B,gain + you,0,gain_plus_you_r0.json,p317_stop_busters,2011-06-08,194,0,-6.397848,0,-6.508219,0,4
+B,gain + you,0,gain_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-6.057810,0,-5.688711,0,4
+B,gain + you,1,gain_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.461673,1,0.076066,1,3
+B,gain + you,1,gain_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,1,0.327831,1,0.341511,1,3
+B,gain + you,1,gain_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.689649,0,-3.154234,0,3
+B,gain + you,1,gain_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-4.852711,0,-4.780224,0,3
+B,gain + you,1,gain_plus_you_r1.json,p317_stop_busters,2011-06-08,194,0,-3.950455,0,-4.163993,0,3
+B,gain + you,1,gain_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-2.903286,0,-3.199343,0,3
+B,gain + you,2,gain_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.238866,1,-0.639601,1,1
+B,gain + you,2,gain_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,-0.761280,1,-0.032632,1,1
+B,gain + you,2,gain_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.857032,0,-4.338771,0,1
+B,gain + you,2,gain_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-5.534161,0,-5.546406,0,1
+B,gain + you,2,gain_plus_you_r2.json,p317_stop_busters,2011-06-08,196,0,-3.875317,0,-4.161181,0,1
+B,gain + you,2,gain_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,246,0,-4.779920,0,-4.971327,0,1
+B,gain + you,3,gain_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.655868,1,-0.921894,0,2
+B,gain + you,3,gain_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.743189,1,-1.271635,0,2
+B,gain + you,3,gain_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.650161,0,-4.761191,0,2
+B,gain + you,3,gain_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-6.477749,0,-6.918445,0,2
+B,gain + you,3,gain_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-6.929431,0,-7.152739,0,2
+B,gain + you,3,gain_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.178611,0,-4.518674,0,2
+B,gain + you,4,gain_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.340204,1,1.691870,1,3
+B,gain + you,4,gain_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,0.852242,1,1.254178,1,3
+B,gain + you,4,gain_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.575883,0,-2.237939,0,3
+B,gain + you,4,gain_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-4.366867,0,-3.888399,0,3
+B,gain + you,4,gain_plus_you_r4.json,p317_stop_busters,2011-06-08,196,0,-4.028180,0,-3.876713,0,3
+B,gain + you,4,gain_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-2.959445,0,-3.117775,0,3
+B,gain + you,5,gain_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.240299,1,0.043513,1,0
+B,gain + you,5,gain_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,0,-1.457635,0,-1.452144,0,0
+B,gain + you,5,gain_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.882633,0,-5.272724,0,0
+B,gain + you,5,gain_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-5.496610,0,-6.604431,0,0
+B,gain + you,5,gain_plus_you_r5.json,p317_stop_busters,2011-06-08,196,0,-4.799847,0,-5.267311,0,0
+B,gain + you,5,gain_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,246,0,-5.017414,0,-5.161414,0,0
+B,gain + you,6,gain_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.074315,1,0.358349,1,4
+B,gain + you,6,gain_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,1,0.556641,1,0.857465,1,4
+B,gain + you,6,gain_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.456801,0,-2.520615,0,4
+B,gain + you,6,gain_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-5.463554,0,-5.464172,0,4
+B,gain + you,6,gain_plus_you_r6.json,p317_stop_busters,2011-06-08,196,0,-4.624152,0,-5.139447,0,4
+B,gain + you,6,gain_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,246,0,-4.388165,0,-4.321842,0,4
+B,gain + you,7,gain_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.384014,1,2.304148,1,0
+B,gain + you,7,gain_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,0.271342,1,0.674365,1,0
+B,gain + you,7,gain_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.827337,0,-2.665527,0,0
+B,gain + you,7,gain_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-3.805304,0,-4.630881,0,0
+B,gain + you,7,gain_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-4.099346,0,-4.461422,0,0
+B,gain + you,7,gain_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.630824,0,-3.549422,0,0
+B,gain + you,8,gain_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.439154,1,1.588739,1,3
+B,gain + you,8,gain_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,0.834693,1,0.897714,1,3
+B,gain + you,8,gain_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.073087,0,-1.949685,0,3
+B,gain + you,8,gain_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.431657,0,-4.083880,0,3
+B,gain + you,8,gain_plus_you_r8.json,p317_stop_busters,2011-06-08,194,0,-3.879520,0,-4.099009,0,3
+B,gain + you,8,gain_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.445869,0,-3.928449,0,3
+B,gain + you,9,gain_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.423120,1,-1.044577,0,3
+B,gain + you,9,gain_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,0,-2.747903,0,-3.154348,0,3
+B,gain + you,9,gain_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.693528,0,-7.404817,0,3
+B,gain + you,9,gain_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.241141,0,-6.965237,0,3
+B,gain + you,9,gain_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-6.393501,0,-7.381828,0,3
+B,gain + you,9,gain_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-6.715836,0,-6.850581,0,3
+B,gain,0,gain_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.346562,0,-2.726255,0,1
+B,gain,0,gain_r0.json,p316_bust_through_it,2011-01-12,76,0,-5.426612,0,-5.534212,0,1
+B,gain,0,gain_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-8.452966,0,-8.360174,0,1
+B,gain,0,gain_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-8.525126,0,-8.618000,0,1
+B,gain,0,gain_r0.json,p317_stop_busters,2011-06-08,194,0,-8.072441,0,-8.059667,0,1
+B,gain,0,gain_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.755885,0,-6.111474,0,1
+B,gain,1,gain_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.133469,1,0.374192,1,2
+B,gain,1,gain_r1.json,p316_bust_through_it,2011-01-12,76,0,-0.682415,1,-0.903782,0,2
+B,gain,1,gain_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.338800,0,-4.508339,0,2
+B,gain,1,gain_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-5.449788,0,-5.658871,0,2
+B,gain,1,gain_r1.json,p317_stop_busters,2011-06-08,194,0,-5.117886,0,-5.261331,0,2
+B,gain,1,gain_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.130593,0,-3.951050,0,2
+B,gain,2,gain_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.701226,1,-0.760559,1,3
+B,gain,2,gain_r2.json,p316_bust_through_it,2011-01-12,76,0,-2.720425,0,-3.036055,0,3
+B,gain,2,gain_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.715975,0,-7.694051,0,3
+B,gain,2,gain_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.863782,0,-7.920262,0,3
+B,gain,2,gain_r2.json,p317_stop_busters,2011-06-08,194,0,-7.618645,0,-8.894907,0,3
+B,gain,2,gain_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-6.566407,0,-6.936147,0,3
+B,gain,3,gain_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.839441,1,-1.324800,0,2
+B,gain,3,gain_r3.json,p316_bust_through_it,2011-01-12,76,0,-5.350432,0,-5.770042,0,2
+B,gain,3,gain_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-9.299388,0,-9.900919,0,2
+B,gain,3,gain_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-8.413784,0,-8.782167,0,2
+B,gain,3,gain_r3.json,p317_stop_busters,2011-06-08,194,0,-9.044725,0,-9.455436,0,2
+B,gain,3,gain_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.847173,0,-6.428823,0,2
+B,gain,4,gain_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.981123,1,2.269688,1,3
+B,gain,4,gain_r4.json,p316_bust_through_it,2011-01-12,76,1,-0.098113,1,0.158185,1,3
+B,gain,4,gain_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.230935,0,-5.043185,0,3
+B,gain,4,gain_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-6.475149,0,-7.229315,0,3
+B,gain,4,gain_r4.json,p317_stop_busters,2011-06-08,196,0,-7.628272,0,-8.564024,0,3
+B,gain,4,gain_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-3.795276,0,-4.057004,0,3
+B,gain,5,gain_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.198681,1,2.050211,1,0
+B,gain,5,gain_r5.json,p316_bust_through_it,2011-01-12,76,1,-0.284577,1,-0.089145,1,0
+B,gain,5,gain_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.753868,0,-3.986470,0,0
+B,gain,5,gain_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-5.079449,0,-5.150551,0,0
+B,gain,5,gain_r5.json,p317_stop_busters,2011-06-08,194,0,-5.225926,0,-4.717553,0,0
+B,gain,5,gain_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-3.399261,0,-3.202034,0,0
+B,gain,6,gain_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.257566,1,0.245190,1,4
+B,gain,6,gain_r6.json,p316_bust_through_it,2011-01-12,76,0,-0.946527,0,-1.264883,0,4
+B,gain,6,gain_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.485605,0,-5.474592,0,4
+B,gain,6,gain_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.391071,0,-6.075299,0,4
+B,gain,6,gain_r6.json,p317_stop_busters,2011-06-08,194,0,-5.697783,0,-5.578690,0,4
+B,gain,6,gain_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-3.595991,0,-3.338619,0,4
+B,gain,7,gain_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.543067,1,0.912180,1,2
+B,gain,7,gain_r7.json,p316_bust_through_it,2011-01-12,76,0,-1.097557,0,-1.480073,0,2
+B,gain,7,gain_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.269169,0,-4.852992,0,2
+B,gain,7,gain_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-5.061320,0,-5.492460,0,2
+B,gain,7,gain_r7.json,p317_stop_busters,2011-06-08,194,0,-5.599367,0,-6.184697,0,2
+B,gain,7,gain_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-5.097817,0,-5.042354,0,2
+B,gain,8,gain_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.894022,1,0.407080,1,0
+B,gain,8,gain_r8.json,p316_bust_through_it,2011-01-12,76,0,-1.035130,0,-1.300057,0,0
+B,gain,8,gain_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.785156,0,-5.172009,0,0
+B,gain,8,gain_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-6.694603,0,-6.839519,0,0
+B,gain,8,gain_r8.json,p317_stop_busters,2011-06-08,194,0,-8.083042,0,-7.609754,0,0
+B,gain,8,gain_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.446428,0,-4.838904,0,0
+B,gain,9,gain_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.149493,1,-0.564191,1,4
+B,gain,9,gain_r9.json,p316_bust_through_it,2011-01-12,76,0,-0.757591,1,-1.563971,0,4
+B,gain,9,gain_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.604709,0,-4.899748,0,4
+B,gain,9,gain_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.074184,0,-6.082922,0,4
+B,gain,9,gain_r9.json,p317_stop_busters,2011-06-08,194,0,-4.883698,0,-5.318381,0,4
+B,gain,9,gain_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-3.965558,0,-4.165868,0,4
+B,loss + you,0,loss_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.481852,1,2.573654,1,0
+B,loss + you,0,loss_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,1,1.091834,1,1.331092,1,0
+B,loss + you,0,loss_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,1,-2.098574,0,-1.172143,0,0
+B,loss + you,0,loss_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-2.870344,0,-2.548635,0,0
+B,loss + you,0,loss_plus_you_r0.json,p317_stop_busters,2011-06-08,194,1,-3.538193,0,-1.606414,0,0
+B,loss + you,0,loss_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-2.805792,0,-2.646730,0,0
+B,loss + you,1,loss_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.686204,1,-0.726443,1,1
+B,loss + you,1,loss_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,1,0.454115,1,0.857965,1,1
+B,loss + you,1,loss_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.515389,0,-1.767925,0,1
+B,loss + you,1,loss_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-3.440880,0,-3.514294,0,1
+B,loss + you,1,loss_plus_you_r1.json,p317_stop_busters,2011-06-08,196,0,-2.365628,0,-2.548706,0,1
+B,loss + you,1,loss_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,252,0,-4.840705,0,-4.504264,0,1
+B,loss + you,2,loss_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.929571,1,1.431943,1,1
+B,loss + you,2,loss_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,1.073828,1,1.515138,1,1
+B,loss + you,2,loss_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.986375,0,-2.202117,0,1
+B,loss + you,2,loss_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-3.820077,0,-3.390126,0,1
+B,loss + you,2,loss_plus_you_r2.json,p317_stop_busters,2011-06-08,196,1,-1.994039,0,-1.088882,0,1
+B,loss + you,2,loss_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,246,0,-3.565556,0,-3.329933,0,1
+B,loss + you,3,loss_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.206122,1,1.504166,1,2
+B,loss + you,3,loss_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,1,1.049304,1,0.985153,1,2
+B,loss + you,3,loss_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.318352,0,-1.807359,0,2
+B,loss + you,3,loss_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-3.097741,0,-3.275434,0,2
+B,loss + you,3,loss_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-2.737358,0,-3.232692,0,2
+B,loss + you,3,loss_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-3.564070,0,-3.141269,0,2
+B,loss + you,4,loss_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.787875,1,0.262272,1,0
+B,loss + you,4,loss_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,0.671506,1,0.622268,1,0
+B,loss + you,4,loss_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.047672,0,-2.023914,0,0
+B,loss + you,4,loss_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-2.645488,0,-3.035067,0,0
+B,loss + you,4,loss_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-1.705236,0,-1.790960,0,0
+B,loss + you,4,loss_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.028803,0,-4.481710,0,0
+B,loss + you,5,loss_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.008528,1,1.996430,1,1
+B,loss + you,5,loss_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,0,-0.592720,1,-0.733068,1,1
+B,loss + you,5,loss_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.885428,0,-2.896297,0,1
+B,loss + you,5,loss_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.187833,0,-5.794778,0,1
+B,loss + you,5,loss_plus_you_r5.json,p317_stop_busters,2011-06-08,194,0,-7.701678,0,-7.940350,0,1
+B,loss + you,5,loss_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-5.944971,0,-6.405471,0,1
+B,loss + you,6,loss_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.143190,1,2.339759,1,3
+B,loss + you,6,loss_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,1,0.955833,1,1.254414,1,3
+B,loss + you,6,loss_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.911176,0,-2.030702,0,3
+B,loss + you,6,loss_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-2.972608,0,-2.881023,0,3
+B,loss + you,6,loss_plus_you_r6.json,p317_stop_busters,2011-06-08,196,0,-0.907894,0,-1.048626,0,3
+B,loss + you,6,loss_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-3.483941,0,-3.597982,0,3
+B,loss + you,7,loss_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.407451,1,2.244658,1,4
+B,loss + you,7,loss_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,1.426191,1,1.269332,1,4
+B,loss + you,7,loss_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.351103,0,-2.219320,0,4
+B,loss + you,7,loss_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,192,0,-4.391371,0,-3.856991,0,4
+B,loss + you,7,loss_plus_you_r7.json,p317_stop_busters,2011-06-08,196,0,-2.062765,0,-2.216520,0,4
+B,loss + you,7,loss_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,246,0,-4.429347,0,-4.315339,0,4
+B,loss + you,8,loss_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.114281,1,0.737431,1,1
+B,loss + you,8,loss_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,1.135538,1,1.731585,1,1
+B,loss + you,8,loss_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.547153,0,-1.758170,0,1
+B,loss + you,8,loss_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-3.822360,0,-3.749478,0,1
+B,loss + you,8,loss_plus_you_r8.json,p317_stop_busters,2011-06-08,194,0,-2.763623,0,-2.399204,0,1
+B,loss + you,8,loss_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.382866,0,-4.395419,0,1
+B,loss + you,9,loss_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.157009,1,1.992607,1,0
+B,loss + you,9,loss_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,2.012805,1,2.027203,1,0
+B,loss + you,9,loss_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.329205,0,-1.156452,0,0
+B,loss + you,9,loss_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,194,0,-3.486593,0,-3.929114,0,0
+B,loss + you,9,loss_plus_you_r9.json,p317_stop_busters,2011-06-08,198,0,-2.007138,0,-1.974097,0,0
+B,loss + you,9,loss_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,254,0,-3.645830,0,-3.879433,0,0
+B,loss,0,loss_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.436768,1,0.824098,1,1
+B,loss,0,loss_r0.json,p316_bust_through_it,2011-01-12,76,1,0.678032,1,0.632589,1,1
+B,loss,0,loss_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.603135,0,-3.022618,0,1
+B,loss,0,loss_r0.json,p250_grow_our_mafia,2011-06-08,192,0,-4.316097,0,-4.523119,0,1
+B,loss,0,loss_r0.json,p317_stop_busters,2011-06-08,196,0,-5.157249,0,-5.212303,0,1
+B,loss,0,loss_r0.json,p253_11_oclock_rule,2011-08-05,246,0,-3.383519,0,-3.701630,0,1
+B,loss,1,loss_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.161772,1,0.271711,1,0
+B,loss,1,loss_r1.json,p316_bust_through_it,2011-01-12,76,1,0.802484,1,0.435149,1,0
+B,loss,1,loss_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.942960,0,-3.270537,0,0
+B,loss,1,loss_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-3.763116,0,-4.283308,0,0
+B,loss,1,loss_r1.json,p317_stop_busters,2011-06-08,196,0,-4.651674,0,-4.585121,0,0
+B,loss,1,loss_r1.json,p253_11_oclock_rule,2011-08-05,244,0,-4.530722,0,-5.018559,0,0
+B,loss,2,loss_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.979027,1,2.007719,1,2
+B,loss,2,loss_r2.json,p316_bust_through_it,2011-01-12,76,1,1.575892,1,1.549323,1,2
+B,loss,2,loss_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.086681,0,-2.480455,0,2
+B,loss,2,loss_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-3.199898,0,-3.575810,0,2
+B,loss,2,loss_r2.json,p317_stop_busters,2011-06-08,196,0,-3.934515,0,-4.523896,0,2
+B,loss,2,loss_r2.json,p253_11_oclock_rule,2011-08-05,244,0,-3.338256,0,-3.418073,0,2
+B,loss,3,loss_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.683974,1,-0.207371,1,0
+B,loss,3,loss_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.007092,1,-0.791186,1,0
+B,loss,3,loss_r3.json,p252_screw_other_people_harder,2011-04-01,128,0,-2.154168,0,-2.768784,0,0
+B,loss,3,loss_r3.json,p250_grow_our_mafia,2011-06-08,192,0,-3.637432,0,-4.292313,0,0
+B,loss,3,loss_r3.json,p317_stop_busters,2011-06-08,196,0,-5.658260,0,-5.671984,0,0
+B,loss,3,loss_r3.json,p253_11_oclock_rule,2011-08-05,244,0,-5.333712,0,-5.299004,0,0
+B,loss,4,loss_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.082540,1,1.481370,1,4
+B,loss,4,loss_r4.json,p316_bust_through_it,2011-01-12,76,1,0.972276,1,1.121111,1,4
+B,loss,4,loss_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.686098,0,-3.721102,0,4
+B,loss,4,loss_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.785927,0,-5.578800,0,4
+B,loss,4,loss_r4.json,p317_stop_busters,2011-06-08,194,0,-5.071198,0,-5.435020,0,4
+B,loss,4,loss_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.041985,0,-4.197771,0,4
+B,loss,5,loss_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.012389,1,0.480058,1,2
+B,loss,5,loss_r5.json,p316_bust_through_it,2011-01-12,76,1,-0.500393,1,0.000718,1,2
+B,loss,5,loss_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.535795,0,-2.290902,0,2
+B,loss,5,loss_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-4.987307,0,-5.170907,0,2
+B,loss,5,loss_r5.json,p317_stop_busters,2011-06-08,196,0,-5.028881,0,-5.306364,0,2
+B,loss,5,loss_r5.json,p253_11_oclock_rule,2011-08-05,244,0,-5.502656,0,-5.101459,0,2
+B,loss,6,loss_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.782166,1,-0.040885,1,0
+B,loss,6,loss_r6.json,p316_bust_through_it,2011-01-12,76,0,-0.016641,1,-0.889538,0,0
+B,loss,6,loss_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.061782,0,-3.651408,0,0
+B,loss,6,loss_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-3.743049,0,-4.704710,0,0
+B,loss,6,loss_r6.json,p317_stop_busters,2011-06-08,194,0,-5.467937,0,-5.508677,0,0
+B,loss,6,loss_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.141221,0,-4.495513,0,0
+B,loss,7,loss_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.053369,1,2.008619,1,2
+B,loss,7,loss_r7.json,p316_bust_through_it,2011-01-12,76,0,0.015463,1,-0.692798,1,2
+B,loss,7,loss_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.544919,0,-4.624353,0,2
+B,loss,7,loss_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-4.862257,0,-5.341079,0,2
+B,loss,7,loss_r7.json,p317_stop_busters,2011-06-08,194,0,-4.611421,0,-5.462002,0,2
+B,loss,7,loss_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.664578,0,-4.012203,0,2
+B,loss,8,loss_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.211079,1,1.816747,1,2
+B,loss,8,loss_r8.json,p316_bust_through_it,2011-01-12,76,1,-0.199336,1,0.402159,1,2
+B,loss,8,loss_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.668636,0,-2.591457,0,2
+B,loss,8,loss_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.375157,0,-4.089504,0,2
+B,loss,8,loss_r8.json,p317_stop_busters,2011-06-08,194,0,-4.984825,0,-5.079806,0,2
+B,loss,8,loss_r8.json,p253_11_oclock_rule,2011-08-05,242,1,-3.273682,0,-1.500855,0,2
+B,loss,9,loss_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.757607,1,1.094805,1,1
+B,loss,9,loss_r9.json,p316_bust_through_it,2011-01-12,76,1,-0.104002,1,0.324294,1,1
+B,loss,9,loss_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.713103,0,-2.947642,0,1
+B,loss,9,loss_r9.json,p250_grow_our_mafia,2011-06-08,192,0,-5.687367,0,-5.431936,0,1
+B,loss,9,loss_r9.json,p317_stop_busters,2011-06-08,196,0,-5.474133,0,-5.054107,0,1
+B,loss,9,loss_r9.json,p253_11_oclock_rule,2011-08-05,246,0,-4.224798,0,-4.390075,0,1
+B,neutral,0,neutral_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.355580,1,-0.245046,1,4
+B,neutral,0,neutral_r0.json,p316_bust_through_it,2011-01-12,76,0,-0.108854,1,-1.063486,0,4
+B,neutral,0,neutral_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.738476,0,-3.168524,0,4
+B,neutral,0,neutral_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.632045,0,-6.884154,0,4
+B,neutral,0,neutral_r0.json,p317_stop_busters,2011-06-08,194,0,-6.166094,0,-6.525532,0,4
+B,neutral,0,neutral_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-4.147507,0,-4.338914,0,4
+B,neutral,1,neutral_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.245767,0,-0.595732,1,4
+B,neutral,1,neutral_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.066849,0,-2.813706,0,4
+B,neutral,1,neutral_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.494136,0,-4.222786,0,4
+B,neutral,1,neutral_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.830970,0,-6.455804,0,4
+B,neutral,1,neutral_r1.json,p317_stop_busters,2011-06-08,194,0,-6.673537,0,-6.259558,0,4
+B,neutral,1,neutral_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.497205,0,-3.895433,0,4
+B,neutral,2,neutral_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.797423,1,-0.291093,1,3
+B,neutral,2,neutral_r2.json,p316_bust_through_it,2011-01-12,76,0,-5.127633,0,-5.421735,0,3
+B,neutral,2,neutral_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.746193,0,-5.195823,0,3
+B,neutral,2,neutral_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.026790,0,-6.866743,0,3
+B,neutral,2,neutral_r2.json,p317_stop_busters,2011-06-08,194,0,-7.275798,0,-7.560876,0,3
+B,neutral,2,neutral_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-4.732547,0,-4.657191,0,3
+B,neutral,3,neutral_r3.json,p344_i_can_hunt_with_u,2011-01-07,44,0,-0.492382,1,-0.916369,0,4
+B,neutral,3,neutral_r3.json,p316_bust_through_it,2011-01-12,140,0,-3.025944,0,-3.709381,0,4
+B,neutral,3,neutral_r3.json,p252_screw_other_people_harder,2011-04-01,234,0,-4.805514,0,-5.547749,0,4
+B,neutral,3,neutral_r3.json,p250_grow_our_mafia,2011-06-08,336,0,-7.213774,0,-7.597904,0,4
+B,neutral,3,neutral_r3.json,p317_stop_busters,2011-06-08,342,0,-7.386975,0,-7.792894,0,4
+B,neutral,3,neutral_r3.json,p253_11_oclock_rule,2011-08-05,420,0,-4.268974,0,-4.481701,0,4
+B,neutral,4,neutral_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.868125,1,-1.252900,0,4
+B,neutral,4,neutral_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.376415,0,-1.996082,0,4
+B,neutral,4,neutral_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.991888,0,-4.303645,0,4
+B,neutral,4,neutral_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.311641,0,-5.488714,0,4
+B,neutral,4,neutral_r4.json,p317_stop_busters,2011-06-08,194,0,-4.713312,0,-5.291875,0,4
+B,neutral,4,neutral_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.770299,0,-4.700849,0,4
+B,neutral,5,neutral_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.000499,1,-0.876926,1,3
+B,neutral,5,neutral_r5.json,p316_bust_through_it,2011-01-12,78,0,-1.969627,0,-2.130528,0,3
+B,neutral,5,neutral_r5.json,p252_screw_other_people_harder,2011-04-01,128,0,-4.906408,0,-5.104015,0,3
+B,neutral,5,neutral_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-6.069507,0,-7.152258,0,3
+B,neutral,5,neutral_r5.json,p317_stop_busters,2011-06-08,196,0,-7.206511,0,-7.945013,0,3
+B,neutral,5,neutral_r5.json,p253_11_oclock_rule,2011-08-05,244,0,-4.838573,0,-4.999126,0,3
+B,neutral,6,neutral_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.799973,1,-0.197790,1,3
+B,neutral,6,neutral_r6.json,p316_bust_through_it,2011-01-12,76,0,-1.514752,0,-1.429165,0,3
+B,neutral,6,neutral_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.191773,0,-5.151639,0,3
+B,neutral,6,neutral_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.290588,0,-6.292038,0,3
+B,neutral,6,neutral_r6.json,p317_stop_busters,2011-06-08,194,0,-7.291420,0,-7.314302,0,3
+B,neutral,6,neutral_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-5.018578,0,-5.080304,0,3
+B,neutral,7,neutral_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.163476,0,-1.183695,0,1
+B,neutral,7,neutral_r7.json,p316_bust_through_it,2011-01-12,76,0,-3.005180,0,-3.395570,0,1
+B,neutral,7,neutral_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.699577,0,-5.498919,0,1
+B,neutral,7,neutral_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-7.020386,0,-7.224138,0,1
+B,neutral,7,neutral_r7.json,p317_stop_busters,2011-06-08,194,0,-6.657443,0,-6.806708,0,1
+B,neutral,7,neutral_r7.json,p253_11_oclock_rule,2011-08-05,244,0,-3.190717,0,-3.430656,0,1
+B,neutral,8,neutral_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.009629,1,0.014869,1,2
+B,neutral,8,neutral_r8.json,p316_bust_through_it,2011-01-12,76,0,-2.095589,0,-2.423671,0,2
+B,neutral,8,neutral_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.747798,0,-4.130670,0,2
+B,neutral,8,neutral_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.725120,0,-6.061469,0,2
+B,neutral,8,neutral_r8.json,p317_stop_busters,2011-06-08,194,0,-6.400538,0,-7.019394,0,2
+B,neutral,8,neutral_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.003385,0,-3.525236,0,2
+B,neutral,9,neutral_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.701449,0,-1.662099,0,1
+B,neutral,9,neutral_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.402791,0,-3.647114,0,1
+B,neutral,9,neutral_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.268113,0,-5.226243,0,1
+B,neutral,9,neutral_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-5.348352,0,-5.449608,0,1
+B,neutral,9,neutral_r9.json,p317_stop_busters,2011-06-08,194,0,-6.381791,0,-6.551745,0,1
+B,neutral,9,neutral_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-5.078448,0,-5.433287,0,1
+C,clean,0,clean_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.054210,1,0.467429,1,2
+C,clean,0,clean_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.819040,0,-2.071505,0,2
+C,clean,0,clean_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.210370,0,-4.441844,0,2
+C,clean,0,clean_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.360175,0,-5.559385,0,2
+C,clean,0,clean_r0.json,p317_stop_busters,2011-06-08,194,0,-5.214664,0,-5.534120,0,2
+C,clean,0,clean_r0.json,p253_11_oclock_rule,2011-08-05,244,0,-4.241482,0,-4.160134,0,2
+C,clean,1,clean_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.891315,0,-0.937957,0,1
+C,clean,1,clean_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.223912,0,-3.818233,0,1
+C,clean,1,clean_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.145110,0,-4.266609,0,1
+C,clean,1,clean_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.049307,0,-6.266347,0,1
+C,clean,1,clean_r1.json,p317_stop_busters,2011-06-08,194,0,-7.357940,0,-7.696273,0,1
+C,clean,1,clean_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-3.626607,0,-4.180176,0,1
+C,clean,2,clean_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.188812,1,-0.354746,1,0
+C,clean,2,clean_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.797425,0,-1.774766,0,0
+C,clean,2,clean_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.924716,0,-3.827081,0,0
+C,clean,2,clean_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.934421,0,-6.011596,0,0
+C,clean,2,clean_r2.json,p317_stop_busters,2011-06-08,194,0,-7.473253,0,-7.077033,0,0
+C,clean,2,clean_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-4.949124,0,-5.242708,0,0
+C,clean,3,clean_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.079337,1,2.240068,1,2
+C,clean,3,clean_r3.json,p316_bust_through_it,2011-01-12,76,1,0.526672,1,0.712708,1,2
+C,clean,3,clean_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.179439,0,-4.157077,0,2
+C,clean,3,clean_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.151217,0,-5.207517,0,2
+C,clean,3,clean_r3.json,p317_stop_busters,2011-06-08,194,0,-5.249538,0,-5.308629,0,2
+C,clean,3,clean_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.188039,0,-5.165355,0,2
+C,clean,4,clean_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.296984,1,0.600669,1,1
+C,clean,4,clean_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.817308,0,-1.918587,0,1
+C,clean,4,clean_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.717528,0,-4.165993,0,1
+C,clean,4,clean_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-7.194119,0,-7.122828,0,1
+C,clean,4,clean_r4.json,p317_stop_busters,2011-06-08,194,0,-6.868826,0,-6.859376,0,1
+C,clean,4,clean_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.626340,0,-4.685406,0,1
+C,clean,5,clean_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.322952,1,0.585474,1,0
+C,clean,5,clean_r5.json,p316_bust_through_it,2011-01-12,76,1,-1.918898,0,-0.572987,1,0
+C,clean,5,clean_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.035452,0,-3.865984,0,0
+C,clean,5,clean_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.220256,0,-6.395412,0,0
+C,clean,5,clean_r5.json,p317_stop_busters,2011-06-08,194,0,-6.496740,0,-6.206871,0,0
+C,clean,5,clean_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.319057,0,-4.019327,0,0
+C,clean,6,clean_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.867034,1,-1.139444,0,4
+C,clean,6,clean_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.620818,0,-3.108056,0,4
+C,clean,6,clean_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.680482,0,-3.879527,0,4
+C,clean,6,clean_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-5.687937,0,-5.831695,0,4
+C,clean,6,clean_r6.json,p317_stop_busters,2011-06-08,194,0,-6.446095,0,-7.084191,0,4
+C,clean,6,clean_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.858364,0,-5.081675,0,4
+C,clean,7,clean_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.033414,1,0.407795,1,2
+C,clean,7,clean_r7.json,p316_bust_through_it,2011-01-12,76,0,-0.882479,1,-1.040113,0,2
+C,clean,7,clean_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.270954,0,-4.597210,0,2
+C,clean,7,clean_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-5.493258,0,-5.966694,0,2
+C,clean,7,clean_r7.json,p317_stop_busters,2011-06-08,194,0,-5.953863,0,-6.366496,0,2
+C,clean,7,clean_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.727320,0,-4.226821,0,2
+C,clean,8,clean_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.726120,0,-2.005642,0,2
+C,clean,8,clean_r8.json,p316_bust_through_it,2011-01-12,76,0,-2.579548,0,-3.099631,0,2
+C,clean,8,clean_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.487779,0,-4.028776,0,2
+C,clean,8,clean_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-6.587163,0,-6.827511,0,2
+C,clean,8,clean_r8.json,p317_stop_busters,2011-06-08,194,0,-6.145456,0,-6.410721,0,2
+C,clean,8,clean_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.277073,0,-4.436516,0,2
+C,clean,9,clean_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.090011,0,-1.140992,0,4
+C,clean,9,clean_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.719445,0,-3.990809,0,4
+C,clean,9,clean_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.107989,0,-5.392976,0,4
+C,clean,9,clean_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-5.379756,0,-5.730131,0,4
+C,clean,9,clean_r9.json,p317_stop_busters,2011-06-08,194,0,-6.916612,0,-7.270347,0,4
+C,clean,9,clean_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-4.336670,0,-4.330579,0,4
+C,first line,0,first_line_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.192859,1,0.583782,1,2
+C,first line,0,first_line_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.770478,0,-2.888296,0,2
+C,first line,0,first_line_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.120975,0,-4.317490,0,2
+C,first line,0,first_line_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.127085,0,-6.074728,0,2
+C,first line,0,first_line_r0.json,p317_stop_busters,2011-06-08,194,0,-6.813455,0,-6.820650,0,2
+C,first line,0,first_line_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-4.492045,0,-4.513260,0,2
+C,first line,1,first_line_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.939460,0,-1.021558,0,1
+C,first line,1,first_line_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.525474,0,-4.194402,0,1
+C,first line,1,first_line_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.100773,0,-5.311185,0,1
+C,first line,1,first_line_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.382516,0,-6.730020,0,1
+C,first line,1,first_line_r1.json,p317_stop_busters,2011-06-08,194,0,-6.451133,0,-6.659927,0,1
+C,first line,1,first_line_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-3.727772,0,-4.000914,0,1
+C,first line,2,first_line_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.800607,1,-0.010703,1,3
+C,first line,2,first_line_r2.json,p316_bust_through_it,2011-01-12,76,0,-2.810926,0,-3.068692,0,3
+C,first line,2,first_line_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.573942,0,-5.379152,0,3
+C,first line,2,first_line_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.895905,0,-7.272880,0,3
+C,first line,2,first_line_r2.json,p317_stop_busters,2011-06-08,194,0,-7.093433,0,-7.707566,0,3
+C,first line,2,first_line_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-6.299811,0,-6.720768,0,3
+C,first line,3,first_line_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.227238,1,-0.433085,1,3
+C,first line,3,first_line_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.152547,0,-3.356328,0,3
+C,first line,3,first_line_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.369471,0,-5.620291,0,3
+C,first line,3,first_line_r3.json,p250_grow_our_mafia,2011-06-08,192,0,-5.282161,0,-6.698192,0,3
+C,first line,3,first_line_r3.json,p317_stop_busters,2011-06-08,196,0,-6.393483,0,-6.893784,0,3
+C,first line,3,first_line_r3.json,p253_11_oclock_rule,2011-08-05,246,0,-5.196398,0,-5.444086,0,3
+C,first line,4,first_line_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.055346,1,0.423856,1,1
+C,first line,4,first_line_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.790739,0,-1.889898,0,1
+C,first line,4,first_line_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.194889,0,-5.563519,0,1
+C,first line,4,first_line_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-7.214720,0,-7.122478,0,1
+C,first line,4,first_line_r4.json,p317_stop_busters,2011-06-08,194,0,-7.056202,0,-7.045914,0,1
+C,first line,4,first_line_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-3.654436,0,-3.908229,0,1
+C,first line,5,first_line_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.154452,1,0.159295,1,2
+C,first line,5,first_line_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.049345,0,-2.551481,0,2
+C,first line,5,first_line_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.078770,0,-5.563351,0,2
+C,first line,5,first_line_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.182588,0,-6.524638,0,2
+C,first line,5,first_line_r5.json,p317_stop_busters,2011-06-08,194,0,-5.646587,0,-5.925086,0,2
+C,first line,5,first_line_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-3.195763,0,-3.223381,0,2
+C,first line,6,first_line_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.030982,1,-0.510421,1,0
+C,first line,6,first_line_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.447222,0,-2.755798,0,0
+C,first line,6,first_line_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.387553,0,-5.559590,0,0
+C,first line,6,first_line_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.828675,0,-7.514310,0,0
+C,first line,6,first_line_r6.json,p317_stop_busters,2011-06-08,194,0,-7.287836,0,-7.550030,0,0
+C,first line,6,first_line_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.418482,0,-4.852605,0,0
+C,first line,7,first_line_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.527990,1,0.958089,1,1
+C,first line,7,first_line_r7.json,p316_bust_through_it,2011-01-12,76,0,-0.527582,1,-0.912654,0,1
+C,first line,7,first_line_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.698096,0,-4.981401,0,1
+C,first line,7,first_line_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-6.732440,0,-6.573558,0,1
+C,first line,7,first_line_r7.json,p317_stop_busters,2011-06-08,194,0,-6.651476,0,-6.587001,0,1
+C,first line,7,first_line_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.916636,0,-4.126997,0,1
+C,first line,8,first_line_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.463842,1,-0.885357,1,2
+C,first line,8,first_line_r8.json,p316_bust_through_it,2011-01-12,76,0,-3.767160,0,-3.856323,0,2
+C,first line,8,first_line_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.900118,0,-7.350546,0,2
+C,first line,8,first_line_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-6.982312,0,-7.369815,0,2
+C,first line,8,first_line_r8.json,p317_stop_busters,2011-06-08,194,0,-6.748067,0,-6.811644,0,2
+C,first line,8,first_line_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.261413,0,-4.539629,0,2
+C,first line,9,first_line_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.117429,0,-0.039032,1,4
+C,first line,9,first_line_r9.json,p316_bust_through_it,2011-01-12,76,1,-1.938409,0,-0.996122,0,4
+C,first line,9,first_line_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.141859,0,-4.767440,0,4
+C,first line,9,first_line_r9.json,p250_grow_our_mafia,2011-06-08,194,0,-7.477571,0,-6.912335,0,4
+C,first line,9,first_line_r9.json,p317_stop_busters,2011-06-08,200,0,-7.631010,0,-7.567416,0,4
+C,first line,9,first_line_r9.json,p253_11_oclock_rule,2011-08-05,254,0,-4.520137,0,-4.180225,0,4
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.614235,1,-0.802003,1,0
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p316_bust_through_it,2011-01-12,76,1,-1.745832,0,-1.292619,0,0
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.633687,0,-4.820431,0,0
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.295350,0,-6.464020,0,0
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p317_stop_busters,2011-06-08,194,0,-6.846777,0,-6.774815,0,0
+C,up to 7 Jan,0,up_to_7_Jan_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.303926,0,-5.160143,0,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.577916,1,-0.016568,1,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p316_bust_through_it,2011-01-12,76,0,-0.941152,0,-0.759502,1,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.639784,0,-4.590397,0,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.155933,0,-6.591280,0,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p317_stop_busters,2011-06-08,194,0,-6.268744,0,-6.129368,0,0
+C,up to 7 Jan,1,up_to_7_Jan_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-5.350584,0,-5.351684,0,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.464042,1,-0.474330,1,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p316_bust_through_it,2011-01-12,76,0,-3.205293,0,-3.431939,0,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.814443,0,-5.116823,0,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.644544,0,-7.356431,0,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p317_stop_busters,2011-06-08,194,0,-7.539612,0,-7.791578,0,0
+C,up to 7 Jan,2,up_to_7_Jan_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-3.585650,0,-3.936320,0,0
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p344_i_can_hunt_with_u,2011-01-07,52,1,-0.499797,1,0.412537,1,4
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p316_bust_through_it,2011-01-12,176,0,-2.493283,0,-2.416940,0,4
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p252_screw_other_people_harder,2011-04-01,298,0,-4.305686,0,-4.620102,0,4
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p250_grow_our_mafia,2011-06-08,446,0,-6.559264,0,-6.654583,0,4
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p317_stop_busters,2011-06-08,458,0,-7.022709,0,-7.144582,0,4
+C,up to 7 Jan,3,up_to_7_Jan_r3.json,p253_11_oclock_rule,2011-08-05,574,0,-5.591868,0,-5.604124,0,4
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.679534,1,1.864450,1,0
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.080732,0,-0.830873,1,0
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.159157,0,-4.012852,0,0
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.896646,0,-6.048032,0,0
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p317_stop_busters,2011-06-08,194,0,-7.528698,0,-7.542925,0,0
+C,up to 7 Jan,4,up_to_7_Jan_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.309278,0,-4.841681,0,0
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.131102,1,0.309779,1,4
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p316_bust_through_it,2011-01-12,76,0,-0.934075,0,-1.287654,0,4
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.254766,0,-6.308856,0,4
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-8.944158,0,-8.270190,0,4
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p317_stop_busters,2011-06-08,194,0,-9.164882,0,-8.821106,0,4
+C,up to 7 Jan,5,up_to_7_Jan_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.770087,0,-4.293701,0,4
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.994306,1,1.300916,1,1
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p316_bust_through_it,2011-01-12,76,1,0.329906,1,0.562120,1,1
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.712948,0,-3.814064,0,1
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-5.895956,0,-5.388974,0,1
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p317_stop_busters,2011-06-08,196,0,-7.424836,0,-7.057342,0,1
+C,up to 7 Jan,6,up_to_7_Jan_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-5.172125,0,-5.008359,0,1
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.358452,1,1.224315,1,4
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p316_bust_through_it,2011-01-12,76,0,0.398531,1,-0.093232,1,4
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.342217,0,-4.604466,0,4
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p250_grow_our_mafia,2011-06-08,192,0,-6.274026,0,-6.504456,0,4
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p317_stop_busters,2011-06-08,196,0,-5.484835,0,-6.055896,0,4
+C,up to 7 Jan,7,up_to_7_Jan_r7.json,p253_11_oclock_rule,2011-08-05,246,0,-4.454874,0,-4.601742,0,4
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-2.099159,0,-0.849111,1,3
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p316_bust_through_it,2011-01-12,76,0,-3.471199,0,-3.125374,0,3
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.885930,0,-4.400097,0,3
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p250_grow_our_mafia,2011-06-08,192,0,-6.955697,0,-7.223158,0,3
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p317_stop_busters,2011-06-08,196,0,-6.927440,0,-7.519576,0,3
+C,up to 7 Jan,8,up_to_7_Jan_r8.json,p253_11_oclock_rule,2011-08-05,246,0,-4.030085,0,-4.277125,0,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.475140,0,-0.131299,1,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p316_bust_through_it,2011-01-12,76,0,-4.264184,0,-3.601348,0,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.613132,0,-5.152566,0,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-7.092583,0,-6.894399,0,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p317_stop_busters,2011-06-08,194,0,-6.963641,0,-7.074840,0,3
+C,up to 7 Jan,9,up_to_7_Jan_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-5.439429,0,-5.290704,0,3
+C,whole career,0,whole_career_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.883240,1,1.935879,1,3
+C,whole career,0,whole_career_r0.json,p316_bust_through_it,2011-01-12,76,1,0.001663,1,0.885720,1,3
+C,whole career,0,whole_career_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.779810,0,-3.866240,0,3
+C,whole career,0,whole_career_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.374082,0,-5.539334,0,3
+C,whole career,0,whole_career_r0.json,p317_stop_busters,2011-06-08,194,0,-6.380004,0,-6.427692,0,3
+C,whole career,0,whole_career_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-3.719209,0,-3.732784,0,3
+C,whole career,1,whole_career_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.679175,1,0.939737,1,0
+C,whole career,1,whole_career_r1.json,p316_bust_through_it,2011-01-12,76,0,0.047199,1,-0.385731,1,0
+C,whole career,1,whole_career_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.550390,0,-3.755329,0,0
+C,whole career,1,whole_career_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-5.177421,0,-5.813617,0,0
+C,whole career,1,whole_career_r1.json,p317_stop_busters,2011-06-08,194,0,-6.350741,0,-6.638131,0,0
+C,whole career,1,whole_career_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-3.015493,0,-3.263210,0,0
+C,whole career,2,whole_career_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.236974,1,-0.827881,1,4
+C,whole career,2,whole_career_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.236230,0,-1.564476,0,4
+C,whole career,2,whole_career_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.533050,0,-3.560013,0,4
+C,whole career,2,whole_career_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.789017,0,-5.871004,0,4
+C,whole career,2,whole_career_r2.json,p317_stop_busters,2011-06-08,194,0,-7.091214,0,-7.193290,0,4
+C,whole career,2,whole_career_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.173127,0,-5.421684,0,4
+C,whole career,3,whole_career_r3.json,p344_i_can_hunt_with_u,2011-01-07,52,1,0.446089,1,1.071232,1,1
+C,whole career,3,whole_career_r3.json,p316_bust_through_it,2011-01-12,188,0,-4.196167,0,-3.326405,0,1
+C,whole career,3,whole_career_r3.json,p252_screw_other_people_harder,2011-04-01,326,0,-7.424116,0,-6.389767,0,1
+C,whole career,3,whole_career_r3.json,p250_grow_our_mafia,2011-06-08,466,0,-8.191396,0,-7.833024,0,1
+C,whole career,3,whole_career_r3.json,p317_stop_busters,2011-06-08,474,0,-8.850841,0,-8.156827,0,1
+C,whole career,3,whole_career_r3.json,p253_11_oclock_rule,2011-08-05,574,0,-5.819928,0,-5.394017,0,1
+C,whole career,4,whole_career_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-3.116610,0,-2.469976,0,3
+C,whole career,4,whole_career_r4.json,p316_bust_through_it,2011-01-12,76,0,-3.861729,0,-2.716109,0,3
+C,whole career,4,whole_career_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.017561,0,-4.023489,0,3
+C,whole career,4,whole_career_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-7.992290,0,-7.602703,0,3
+C,whole career,4,whole_career_r4.json,p317_stop_busters,2011-06-08,196,0,-7.679999,0,-7.387154,0,3
+C,whole career,4,whole_career_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-3.557255,0,-3.490595,0,3
+C,whole career,5,whole_career_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.131889,1,-0.496046,1,2
+C,whole career,5,whole_career_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.215539,0,-3.011980,0,2
+C,whole career,5,whole_career_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.704281,0,-4.163475,0,2
+C,whole career,5,whole_career_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.551750,0,-7.307831,0,2
+C,whole career,5,whole_career_r5.json,p317_stop_busters,2011-06-08,194,0,-6.690128,0,-7.547662,0,2
+C,whole career,5,whole_career_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-3.953523,0,-3.665489,0,2
+C,whole career,6,whole_career_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.386952,1,0.717028,1,4
+C,whole career,6,whole_career_r6.json,p316_bust_through_it,2011-01-12,76,0,-3.211909,0,-3.048285,0,4
+C,whole career,6,whole_career_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.168748,0,-5.146098,0,4
+C,whole career,6,whole_career_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-7.652094,0,-7.536118,0,4
+C,whole career,6,whole_career_r6.json,p317_stop_busters,2011-06-08,196,0,-7.736416,0,-7.534339,0,4
+C,whole career,6,whole_career_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-3.888846,0,-3.108596,0,4
+C,whole career,7,whole_career_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.260562,1,-0.888831,1,1
+C,whole career,7,whole_career_r7.json,p316_bust_through_it,2011-01-12,76,0,-2.651615,0,-2.864581,0,1
+C,whole career,7,whole_career_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.811469,0,-4.038562,0,1
+C,whole career,7,whole_career_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-7.371386,0,-7.396240,0,1
+C,whole career,7,whole_career_r7.json,p317_stop_busters,2011-06-08,194,0,-7.445230,0,-7.295654,0,1
+C,whole career,7,whole_career_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.376065,0,-3.941465,0,1
+C,whole career,8,whole_career_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.346708,1,1.126879,1,3
+C,whole career,8,whole_career_r8.json,p316_bust_through_it,2011-01-12,76,1,-1.492541,0,-0.529001,1,3
+C,whole career,8,whole_career_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.106091,0,-5.130423,0,3
+C,whole career,8,whole_career_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.770911,0,-6.174860,0,3
+C,whole career,8,whole_career_r8.json,p317_stop_busters,2011-06-08,194,0,-6.935682,0,-7.263210,0,3
+C,whole career,8,whole_career_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.438434,0,-4.724474,0,3
+C,whole career,9,whole_career_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.123685,1,0.074469,1,3
+C,whole career,9,whole_career_r9.json,p316_bust_through_it,2011-01-12,76,0,-2.095320,0,-1.337024,0,3
+C,whole career,9,whole_career_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.343324,0,-4.497111,0,3
+C,whole career,9,whole_career_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-5.830893,0,-6.848571,0,3
+C,whole career,9,whole_career_r9.json,p317_stop_busters,2011-06-08,194,0,-6.731632,0,-7.570446,0,3
+C,whole career,9,whole_career_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-4.487374,0,-4.645361,0,3
+C2,clean,0,clean_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.233769,1,0.392504,1,4
+C2,clean,0,clean_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.383630,0,-1.630703,0,4
+C2,clean,0,clean_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.292730,0,-4.860687,0,4
+C2,clean,0,clean_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.816625,0,-5.724902,0,4
+C2,clean,0,clean_r0.json,p317_stop_busters,2011-06-08,194,0,-6.407816,0,-6.014646,0,4
+C2,clean,0,clean_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-3.744356,0,-3.628925,0,4
+C2,clean,1,clean_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.080593,1,1.177959,1,3
+C2,clean,1,clean_r1.json,p316_bust_through_it,2011-01-12,76,0,-1.370772,0,-1.666781,0,3
+C2,clean,1,clean_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.068355,0,-5.248281,0,3
+C2,clean,1,clean_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-5.733099,0,-5.880582,0,3
+C2,clean,1,clean_r1.json,p317_stop_busters,2011-06-08,194,0,-6.442809,0,-6.709239,0,3
+C2,clean,1,clean_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-5.223906,0,-5.496467,0,3
+C2,clean,2,clean_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.954735,0,-0.220231,1,1
+C2,clean,2,clean_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.821950,0,-1.630268,0,1
+C2,clean,2,clean_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.079661,0,-3.059635,0,1
+C2,clean,2,clean_r2.json,p250_grow_our_mafia,2011-06-08,194,0,-5.958407,0,-5.517691,0,1
+C2,clean,2,clean_r2.json,p317_stop_busters,2011-06-08,198,0,-6.440454,0,-6.378936,0,1
+C2,clean,2,clean_r2.json,p253_11_oclock_rule,2011-08-05,248,0,-7.282169,0,-7.109739,0,1
+C2,clean,3,clean_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.181399,1,0.114244,1,3
+C2,clean,3,clean_r3.json,p316_bust_through_it,2011-01-12,76,0,-2.439678,0,-2.536848,0,3
+C2,clean,3,clean_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.334550,0,-4.501160,0,3
+C2,clean,3,clean_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.506717,0,-5.623950,0,3
+C2,clean,3,clean_r3.json,p317_stop_busters,2011-06-08,194,0,-6.492561,0,-6.828663,0,3
+C2,clean,3,clean_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.432502,0,-4.745216,0,3
+C2,clean,4,clean_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.505791,1,-0.779122,1,0
+C2,clean,4,clean_r4.json,p316_bust_through_it,2011-01-12,76,0,-3.210064,0,-3.271896,0,0
+C2,clean,4,clean_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.813277,0,-3.908574,0,0
+C2,clean,4,clean_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.812930,0,-5.471615,0,0
+C2,clean,4,clean_r4.json,p317_stop_busters,2011-06-08,194,0,-7.946854,0,-6.742757,0,0
+C2,clean,4,clean_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.267659,0,-5.296499,0,0
+C2,clean,5,clean_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.062207,0,-1.251079,0,0
+C2,clean,5,clean_r5.json,p316_bust_through_it,2011-01-12,76,0,-5.027229,0,-5.248180,0,0
+C2,clean,5,clean_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.692952,0,-6.924974,0,0
+C2,clean,5,clean_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.686715,0,-6.659982,0,0
+C2,clean,5,clean_r5.json,p317_stop_busters,2011-06-08,194,0,-7.647425,0,-6.932209,0,0
+C2,clean,5,clean_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-5.341348,0,-5.086027,0,0
+C2,clean,6,clean_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.436367,1,-1.006163,0,2
+C2,clean,6,clean_r6.json,p316_bust_through_it,2011-01-12,76,0,-3.853973,0,-4.553980,0,2
+C2,clean,6,clean_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.839649,0,-5.158933,0,2
+C2,clean,6,clean_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.323094,0,-6.461073,0,2
+C2,clean,6,clean_r6.json,p317_stop_busters,2011-06-08,194,0,-6.863640,0,-7.118022,0,2
+C2,clean,6,clean_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.177535,0,-4.480385,0,2
+C2,clean,7,clean_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.271365,1,-0.475728,1,1
+C2,clean,7,clean_r7.json,p316_bust_through_it,2011-01-12,76,0,-2.983734,0,-3.020059,0,1
+C2,clean,7,clean_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.028430,0,-4.986224,0,1
+C2,clean,7,clean_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-5.524078,0,-5.291994,0,1
+C2,clean,7,clean_r7.json,p317_stop_busters,2011-06-08,194,0,-7.025888,0,-6.975568,0,1
+C2,clean,7,clean_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.653157,0,-3.636128,0,1
+C2,clean,8,clean_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.588633,1,-0.151294,1,2
+C2,clean,8,clean_r8.json,p316_bust_through_it,2011-01-12,76,0,-2.646893,0,-2.497689,0,2
+C2,clean,8,clean_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.591097,0,-3.560700,0,2
+C2,clean,8,clean_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-6.133943,0,-5.924795,0,2
+C2,clean,8,clean_r8.json,p317_stop_busters,2011-06-08,194,0,-6.969219,0,-7.235533,0,2
+C2,clean,8,clean_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-6.453030,0,-6.613790,0,2
+C2,clean,9,clean_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.704491,1,-0.563326,1,2
+C2,clean,9,clean_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.743257,0,-3.506209,0,2
+C2,clean,9,clean_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.793427,0,-5.059167,0,2
+C2,clean,9,clean_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.746215,0,-6.366665,0,2
+C2,clean,9,clean_r9.json,p317_stop_busters,2011-06-08,194,0,-8.155223,0,-8.221002,0,2
+C2,clean,9,clean_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-7.573669,0,-7.655257,0,2
+C2,per session,0,per_session_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.771499,1,-0.832157,1,2
+C2,per session,0,per_session_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.899391,0,-2.491465,0,2
+C2,per session,0,per_session_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.762568,0,-5.506784,0,2
+C2,per session,0,per_session_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-4.894398,0,-5.482162,0,2
+C2,per session,0,per_session_r0.json,p317_stop_busters,2011-06-08,194,0,-6.309428,0,-6.838431,0,2
+C2,per session,0,per_session_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-4.759805,0,-4.778248,0,2
+C2,per session,1,per_session_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.296010,0,-1.857783,0,3
+C2,per session,1,per_session_r1.json,p316_bust_through_it,2011-01-12,76,0,-1.956287,0,-1.938699,0,3
+C2,per session,1,per_session_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.651748,0,-4.349599,0,3
+C2,per session,1,per_session_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.452693,0,-6.627127,0,3
+C2,per session,1,per_session_r1.json,p317_stop_busters,2011-06-08,194,0,-7.820022,0,-7.895220,0,3
+C2,per session,1,per_session_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.597791,0,-4.912900,0,3
+C2,per session,2,per_session_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.816822,1,0.041764,1,2
+C2,per session,2,per_session_r2.json,p316_bust_through_it,2011-01-12,76,0,-3.103115,0,-3.225210,0,2
+C2,per session,2,per_session_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.510699,0,-4.905702,0,2
+C2,per session,2,per_session_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-5.725160,0,-5.850806,0,2
+C2,per session,2,per_session_r2.json,p317_stop_busters,2011-06-08,196,0,-6.456153,0,-6.211304,0,2
+C2,per session,2,per_session_r2.json,p253_11_oclock_rule,2011-08-05,244,0,-5.751478,0,-6.077712,0,2
+C2,per session,3,per_session_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.460439,1,-0.057982,1,2
+C2,per session,3,per_session_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.459075,0,-3.696485,0,2
+C2,per session,3,per_session_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.781018,0,-4.946900,0,2
+C2,per session,3,per_session_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-6.158029,0,-6.131526,0,2
+C2,per session,3,per_session_r3.json,p317_stop_busters,2011-06-08,194,0,-6.684770,0,-6.827411,0,2
+C2,per session,3,per_session_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.192407,0,-5.059968,0,2
+C2,per session,4,per_session_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.175347,1,-0.338957,1,3
+C2,per session,4,per_session_r4.json,p316_bust_through_it,2011-01-12,76,0,-3.281787,0,-3.524200,0,3
+C2,per session,4,per_session_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.784705,0,-6.269368,0,3
+C2,per session,4,per_session_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-6.850345,0,-7.855685,0,3
+C2,per session,4,per_session_r4.json,p317_stop_busters,2011-06-08,194,0,-8.359582,0,-9.476752,0,3
+C2,per session,4,per_session_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.585421,0,-6.215584,0,3
+C2,per session,5,per_session_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.183752,0,-0.269002,1,1
+C2,per session,5,per_session_r5.json,p316_bust_through_it,2011-01-12,76,1,-2.290129,0,-0.646927,1,1
+C2,per session,5,per_session_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.291287,0,-3.834139,0,1
+C2,per session,5,per_session_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-5.154860,0,-4.724576,0,1
+C2,per session,5,per_session_r5.json,p317_stop_busters,2011-06-08,194,0,-5.675335,0,-5.314635,0,1
+C2,per session,5,per_session_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.353298,0,-4.213558,0,1
+C2,per session,6,per_session_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.095963,1,-0.584770,1,4
+C2,per session,6,per_session_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.485405,0,-3.036728,0,4
+C2,per session,6,per_session_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.460377,0,-5.451843,0,4
+C2,per session,6,per_session_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.159669,0,-6.300520,0,4
+C2,per session,6,per_session_r6.json,p317_stop_busters,2011-06-08,194,0,-8.289008,0,-7.759526,0,4
+C2,per session,6,per_session_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-3.614535,0,-4.136088,0,4
+C2,per session,7,per_session_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.573108,1,1.902176,1,0
+C2,per session,7,per_session_r7.json,p316_bust_through_it,2011-01-12,76,1,-1.037184,0,-0.239747,1,0
+C2,per session,7,per_session_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.235513,0,-4.127459,0,0
+C2,per session,7,per_session_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-4.415189,0,-4.383654,0,0
+C2,per session,7,per_session_r7.json,p317_stop_busters,2011-06-08,194,0,-7.124816,0,-6.595546,0,0
+C2,per session,7,per_session_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.714952,0,-4.426065,0,0
+C2,per session,8,per_session_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.191911,1,-0.186168,1,1
+C2,per session,8,per_session_r8.json,p316_bust_through_it,2011-01-12,76,0,-2.757904,0,-1.953252,0,1
+C2,per session,8,per_session_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.482615,0,-4.310324,0,1
+C2,per session,8,per_session_r8.json,p250_grow_our_mafia,2011-06-08,192,0,-6.760194,0,-6.411345,0,1
+C2,per session,8,per_session_r8.json,p317_stop_busters,2011-06-08,196,0,-6.451305,0,-6.494344,0,1
+C2,per session,8,per_session_r8.json,p253_11_oclock_rule,2011-08-05,244,0,-3.975710,0,-4.360716,0,1
+C2,per session,9,per_session_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.174559,1,-0.533670,1,4
+C2,per session,9,per_session_r9.json,p316_bust_through_it,2011-01-12,76,0,-2.476292,0,-2.555938,0,4
+C2,per session,9,per_session_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.764006,0,-4.728148,0,4
+C2,per session,9,per_session_r9.json,p250_grow_our_mafia,2011-06-08,192,0,-6.844480,0,-6.252331,0,4
+C2,per session,9,per_session_r9.json,p317_stop_busters,2011-06-08,196,0,-8.411103,0,-7.707236,0,4
+C2,per session,9,per_session_r9.json,p253_11_oclock_rule,2011-08-05,246,0,-5.397353,0,-5.487632,0,4
+C2,whole career,0,whole_career_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.947418,0,-1.606713,0,0
+C2,whole career,0,whole_career_r0.json,p316_bust_through_it,2011-01-12,76,0,-3.394803,0,-3.681648,0,0
+C2,whole career,0,whole_career_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.013318,0,-4.892450,0,0
+C2,whole career,0,whole_career_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.364120,0,-6.916346,0,0
+C2,whole career,0,whole_career_r0.json,p317_stop_busters,2011-06-08,194,0,-7.457213,0,-7.561069,0,0
+C2,whole career,0,whole_career_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.311702,0,-5.552504,0,0
+C2,whole career,1,whole_career_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.897173,0,-1.527319,0,3
+C2,whole career,1,whole_career_r1.json,p316_bust_through_it,2011-01-12,76,0,-2.615241,0,-2.974962,0,3
+C2,whole career,1,whole_career_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.135758,0,-4.991887,0,3
+C2,whole career,1,whole_career_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-6.382498,0,-6.568902,0,3
+C2,whole career,1,whole_career_r1.json,p317_stop_busters,2011-06-08,196,0,-5.693863,0,-6.206872,0,3
+C2,whole career,1,whole_career_r1.json,p253_11_oclock_rule,2011-08-05,246,0,-4.901859,0,-5.230291,0,3
+C2,whole career,2,whole_career_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.284335,1,0.774175,1,4
+C2,whole career,2,whole_career_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.695362,0,-2.156669,0,4
+C2,whole career,2,whole_career_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.757049,0,-3.656020,0,4
+C2,whole career,2,whole_career_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.468034,0,-5.715733,0,4
+C2,whole career,2,whole_career_r2.json,p317_stop_busters,2011-06-08,194,0,-6.540497,0,-7.108446,0,4
+C2,whole career,2,whole_career_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.028387,0,-5.342268,0,4
+C2,whole career,3,whole_career_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.613996,0,-1.463204,0,1
+C2,whole career,3,whole_career_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.041847,0,-2.461852,0,1
+C2,whole career,3,whole_career_r3.json,p252_screw_other_people_harder,2011-04-01,126,1,-5.578793,0,-3.237174,0,1
+C2,whole career,3,whole_career_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.795423,0,-5.091847,0,1
+C2,whole career,3,whole_career_r3.json,p317_stop_busters,2011-06-08,194,0,-6.244649,0,-5.941519,0,1
+C2,whole career,3,whole_career_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.188550,0,-4.801881,0,1
+C2,whole career,4,whole_career_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.485138,1,-1.030429,0,4
+C2,whole career,4,whole_career_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.133251,0,-1.946220,0,4
+C2,whole career,4,whole_career_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.906660,0,-3.574932,0,4
+C2,whole career,4,whole_career_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-6.472041,0,-6.511499,0,4
+C2,whole career,4,whole_career_r4.json,p317_stop_busters,2011-06-08,196,0,-6.934680,0,-7.478293,0,4
+C2,whole career,4,whole_career_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-4.715026,0,-5.262060,0,4
+C2,whole career,5,whole_career_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-2.380763,0,-1.770084,0,0
+C2,whole career,5,whole_career_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.635703,0,-2.940301,0,0
+C2,whole career,5,whole_career_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.379352,0,-4.431352,0,0
+C2,whole career,5,whole_career_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-5.395032,0,-5.664884,0,0
+C2,whole career,5,whole_career_r5.json,p317_stop_busters,2011-06-08,194,0,-6.487956,0,-6.387833,0,0
+C2,whole career,5,whole_career_r5.json,p253_11_oclock_rule,2011-08-05,244,0,-3.912811,0,-4.055034,0,0
+C2,whole career,6,whole_career_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.364724,1,-0.810398,1,3
+C2,whole career,6,whole_career_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.781626,0,-2.856389,0,3
+C2,whole career,6,whole_career_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.308984,0,-4.583922,0,3
+C2,whole career,6,whole_career_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.062413,0,-6.283613,0,3
+C2,whole career,6,whole_career_r6.json,p317_stop_busters,2011-06-08,194,0,-6.692656,0,-6.769806,0,3
+C2,whole career,6,whole_career_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.959044,0,-5.539535,0,3
+C2,whole career,7,whole_career_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.751347,1,-0.958388,0,1
+C2,whole career,7,whole_career_r7.json,p316_bust_through_it,2011-01-12,76,0,-4.041659,0,-3.543287,0,1
+C2,whole career,7,whole_career_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.293165,0,-4.611773,0,1
+C2,whole career,7,whole_career_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-7.120747,0,-6.558482,0,1
+C2,whole career,7,whole_career_r7.json,p317_stop_busters,2011-06-08,194,0,-7.334219,0,-7.466538,0,1
+C2,whole career,7,whole_career_r7.json,p253_11_oclock_rule,2011-08-05,244,0,-5.173571,0,-4.815964,0,1
+C2,whole career,8,whole_career_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.356378,1,1.645792,1,0
+C2,whole career,8,whole_career_r8.json,p316_bust_through_it,2011-01-12,76,0,-0.823029,1,-1.188881,0,0
+C2,whole career,8,whole_career_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.174910,0,-4.439841,0,0
+C2,whole career,8,whole_career_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.213092,0,-5.022592,0,0
+C2,whole career,8,whole_career_r8.json,p317_stop_busters,2011-06-08,194,0,-5.743894,0,-6.136448,0,0
+C2,whole career,8,whole_career_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.849912,0,-4.553536,0,0
+C2,whole career,9,whole_career_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.180775,1,0.073425,1,4
+C2,whole career,9,whole_career_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.733948,0,-4.547819,0,4
+C2,whole career,9,whole_career_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.822750,0,-3.383473,0,4
+C2,whole career,9,whole_career_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.901375,0,-7.189919,0,4
+C2,whole career,9,whole_career_r9.json,p317_stop_busters,2011-06-08,194,0,-7.180515,0,-7.785706,0,4
+C2,whole career,9,whole_career_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-5.010005,0,-5.883001,0,4
+D,gain + you,0,gain_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.980113,1,1.396320,1,3
+D,gain + you,0,gain_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,0,0.728433,1,0.580362,1,3
+D,gain + you,0,gain_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.979549,0,-3.711269,0,3
+D,gain + you,0,gain_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,192,0,-5.544243,0,-5.082973,0,3
+D,gain + you,0,gain_plus_you_r0.json,p317_stop_busters,2011-06-08,196,0,-3.439991,0,-3.510292,0,3
+D,gain + you,0,gain_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,246,0,-5.596906,0,-5.808146,0,3
+D,gain + you,1,gain_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.393458,1,-0.619925,1,2
+D,gain + you,1,gain_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,-1.357036,0,-1.822567,0,2
+D,gain + you,1,gain_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.193303,0,-4.744825,0,2
+D,gain + you,1,gain_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-4.869924,0,-5.428291,0,2
+D,gain + you,1,gain_plus_you_r1.json,p317_stop_busters,2011-06-08,196,0,-6.019351,0,-6.755871,0,2
+D,gain + you,1,gain_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,246,0,-4.302795,0,-4.410594,0,2
+D,gain + you,2,gain_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.837307,0,-1.879394,0,0
+D,gain + you,2,gain_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.572968,0,-1.592740,0,0
+D,gain + you,2,gain_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.614640,0,-4.877957,0,0
+D,gain + you,2,gain_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-4.533387,0,-5.171418,0,0
+D,gain + you,2,gain_plus_you_r2.json,p317_stop_busters,2011-06-08,196,0,-5.440973,0,-5.313252,0,0
+D,gain + you,2,gain_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,246,0,-2.544906,0,-2.718152,0,0
+D,gain + you,3,gain_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.288219,1,-0.536070,1,3
+D,gain + you,3,gain_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.879218,1,-1.300397,0,3
+D,gain + you,3,gain_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.435318,0,-4.620735,0,3
+D,gain + you,3,gain_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-6.752653,0,-7.166448,0,3
+D,gain + you,3,gain_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-6.658648,0,-7.299184,0,3
+D,gain + you,3,gain_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.629694,0,-4.912829,0,3
+D,gain + you,4,gain_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.367797,1,2.014454,1,3
+D,gain + you,4,gain_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,0.266321,1,0.502907,1,3
+D,gain + you,4,gain_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.014532,0,-3.786887,0,3
+D,gain + you,4,gain_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.144712,0,-4.727425,0,3
+D,gain + you,4,gain_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-4.166878,0,-4.074387,0,3
+D,gain + you,4,gain_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.651898,0,-4.777276,0,3
+D,gain + you,5,gain_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.467299,1,0.868465,1,1
+D,gain + you,5,gain_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,1,-0.796448,1,-0.038336,1,1
+D,gain + you,5,gain_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.327730,0,-2.515520,0,1
+D,gain + you,5,gain_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-3.991957,0,-3.934475,0,1
+D,gain + you,5,gain_plus_you_r5.json,p317_stop_busters,2011-06-08,196,0,-4.780061,0,-4.432964,0,1
+D,gain + you,5,gain_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,248,0,-3.835175,0,-4.071565,0,1
+D,gain + you,6,gain_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.627696,1,-0.791732,1,3
+D,gain + you,6,gain_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,0,-0.591319,1,-0.801058,1,3
+D,gain + you,6,gain_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.381543,0,-4.305838,0,3
+D,gain + you,6,gain_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-7.436075,0,-7.603617,0,3
+D,gain + you,6,gain_plus_you_r6.json,p317_stop_busters,2011-06-08,194,0,-7.348963,0,-8.029584,0,3
+D,gain + you,6,gain_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-5.796801,0,-6.078465,0,3
+D,gain + you,7,gain_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.260920,1,-0.115449,1,1
+D,gain + you,7,gain_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,0,-2.610025,0,-2.360105,0,1
+D,gain + you,7,gain_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.279633,0,-6.664321,0,1
+D,gain + you,7,gain_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-6.790253,0,-7.110848,0,1
+D,gain + you,7,gain_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-8.250639,0,-8.520194,0,1
+D,gain + you,7,gain_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-6.289364,0,-6.349703,0,1
+D,gain + you,8,gain_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.048974,1,-0.053823,1,2
+D,gain + you,8,gain_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,-1.317130,0,-0.401619,1,2
+D,gain + you,8,gain_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.706437,0,-3.527618,0,2
+D,gain + you,8,gain_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.821270,0,-5.671173,0,2
+D,gain + you,8,gain_plus_you_r8.json,p317_stop_busters,2011-06-08,194,0,-5.630969,0,-5.303266,0,2
+D,gain + you,8,gain_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.827677,0,-5.332124,0,2
+D,gain + you,9,gain_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.698003,1,1.698633,1,0
+D,gain + you,9,gain_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,1.146422,1,1.536659,1,0
+D,gain + you,9,gain_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.157853,0,-3.515762,0,0
+D,gain + you,9,gain_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-4.516779,0,-5.415296,0,0
+D,gain + you,9,gain_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-4.799292,0,-5.135136,0,0
+D,gain + you,9,gain_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,244,0,-3.436312,0,-3.309432,0,0
+D,gain,0,gain_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.955602,0,-3.195945,0,4
+D,gain,0,gain_r0.json,p316_bust_through_it,2011-01-12,76,0,-2.147774,0,-2.838753,0,4
+D,gain,0,gain_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.598377,0,-6.642531,0,4
+D,gain,0,gain_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-6.747014,0,-7.083539,0,4
+D,gain,0,gain_r0.json,p317_stop_busters,2011-06-08,194,0,-8.193319,0,-8.443853,0,4
+D,gain,0,gain_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-8.575686,0,-8.035744,0,4
+D,gain,1,gain_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.355480,1,1.355461,1,2
+D,gain,1,gain_r1.json,p316_bust_through_it,2011-01-12,76,1,0.579807,1,1.538692,1,2
+D,gain,1,gain_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.405627,0,-4.327378,0,2
+D,gain,1,gain_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-4.904634,0,-4.685475,0,2
+D,gain,1,gain_r1.json,p317_stop_busters,2011-06-08,194,0,-6.376027,0,-6.311317,0,2
+D,gain,1,gain_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.794037,0,-4.952500,0,2
+D,gain,2,gain_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.036670,1,0.248157,1,2
+D,gain,2,gain_r2.json,p316_bust_through_it,2011-01-12,76,0,-0.970979,0,-0.975963,0,2
+D,gain,2,gain_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.215063,0,-3.284983,0,2
+D,gain,2,gain_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-5.157511,0,-5.492766,0,2
+D,gain,2,gain_r2.json,p317_stop_busters,2011-06-08,194,0,-4.651450,0,-4.774622,0,2
+D,gain,2,gain_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-4.377444,0,-4.066394,0,2
+D,gain,3,gain_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.581800,1,1.485108,1,4
+D,gain,3,gain_r3.json,p316_bust_through_it,2011-01-12,76,0,1.282793,1,0.108324,1,4
+D,gain,3,gain_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.549249,0,-4.495727,0,4
+D,gain,3,gain_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-4.085367,0,-4.716530,0,4
+D,gain,3,gain_r3.json,p317_stop_busters,2011-06-08,194,0,-4.253422,0,-5.271674,0,4
+D,gain,3,gain_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.826403,0,-5.450800,0,4
+D,gain,4,gain_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.686717,0,-1.809380,0,1
+D,gain,4,gain_r4.json,p316_bust_through_it,2011-01-12,76,0,0.580562,1,0.149430,1,1
+D,gain,4,gain_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.551613,0,-3.367970,0,1
+D,gain,4,gain_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.427530,0,-5.286072,0,1
+D,gain,4,gain_r4.json,p317_stop_busters,2011-06-08,194,0,-5.281163,0,-5.243277,0,1
+D,gain,4,gain_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.382658,0,-5.259150,0,1
+D,gain,5,gain_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.333947,0,-1.756364,0,3
+D,gain,5,gain_r5.json,p316_bust_through_it,2011-01-12,76,0,-1.269050,0,-1.567063,0,3
+D,gain,5,gain_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.593829,0,-6.858077,0,3
+D,gain,5,gain_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-8.474355,0,-8.903983,0,3
+D,gain,5,gain_r5.json,p317_stop_busters,2011-06-08,194,0,-8.796296,0,-9.884975,0,3
+D,gain,5,gain_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.990870,0,-5.631210,0,3
+D,gain,6,gain_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.142764,0,-1.226072,0,0
+D,gain,6,gain_r6.json,p316_bust_through_it,2011-01-12,76,0,-3.194629,0,-3.559644,0,0
+D,gain,6,gain_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-7.773115,0,-8.146286,0,0
+D,gain,6,gain_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-9.127467,0,-9.127116,0,0
+D,gain,6,gain_r6.json,p317_stop_busters,2011-06-08,194,0,-9.464217,0,-9.112928,0,0
+D,gain,6,gain_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-6.006840,0,-5.936939,0,0
+D,gain,7,gain_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.425389,1,-0.197676,1,2
+D,gain,7,gain_r7.json,p316_bust_through_it,2011-01-12,76,1,-1.229214,0,-0.439343,1,2
+D,gain,7,gain_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.114813,0,-4.013195,0,2
+D,gain,7,gain_r7.json,p250_grow_our_mafia,2011-06-08,192,0,-4.842228,0,-4.430124,0,2
+D,gain,7,gain_r7.json,p317_stop_busters,2011-06-08,196,0,-6.141671,0,-5.544400,0,2
+D,gain,7,gain_r7.json,p253_11_oclock_rule,2011-08-05,244,0,-4.345300,0,-5.047380,0,2
+D,gain,8,gain_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.419138,0,-1.411987,0,1
+D,gain,8,gain_r8.json,p316_bust_through_it,2011-01-12,76,1,-1.498686,0,-0.585289,1,1
+D,gain,8,gain_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.417121,0,-3.687069,0,1
+D,gain,8,gain_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.746618,0,-5.137281,0,1
+D,gain,8,gain_r8.json,p317_stop_busters,2011-06-08,194,0,-6.657222,0,-6.466868,0,1
+D,gain,8,gain_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-5.205694,0,-4.754482,0,1
+D,gain,9,gain_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.847387,1,-1.640601,0,4
+D,gain,9,gain_r9.json,p316_bust_through_it,2011-01-12,76,0,-0.397245,1,-1.308387,0,4
+D,gain,9,gain_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.246322,0,-4.719096,0,4
+D,gain,9,gain_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-5.429198,0,-5.808507,0,4
+D,gain,9,gain_r9.json,p317_stop_busters,2011-06-08,194,0,-4.833933,0,-5.489706,0,4
+D,gain,9,gain_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-4.524884,0,-4.434915,0,4
+D,loss + you,0,loss_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.266104,1,-0.557701,1,3
+D,loss + you,0,loss_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,1,-0.727678,1,-0.061573,1,3
+D,loss + you,0,loss_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.404099,0,-2.277059,0,3
+D,loss + you,0,loss_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-3.984683,0,-3.839654,0,3
+D,loss + you,0,loss_plus_you_r0.json,p317_stop_busters,2011-06-08,194,0,-3.521405,0,-3.584024,0,3
+D,loss + you,0,loss_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,244,0,-3.868735,0,-3.881228,0,3
+D,loss + you,1,loss_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.347835,1,2.034629,1,4
+D,loss + you,1,loss_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,-0.094726,1,-0.521259,1,4
+D,loss + you,1,loss_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.383664,0,-2.497892,0,4
+D,loss + you,1,loss_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-4.637967,0,-4.759173,0,4
+D,loss + you,1,loss_plus_you_r1.json,p317_stop_busters,2011-06-08,196,0,-2.179767,0,-2.457211,0,4
+D,loss + you,1,loss_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,244,0,-5.859729,0,-5.516889,0,4
+D,loss + you,2,loss_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.362384,1,0.033048,1,0
+D,loss + you,2,loss_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,0.584421,1,1.119825,1,0
+D,loss + you,2,loss_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.869639,1,-0.444203,1,0
+D,loss + you,2,loss_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-2.383789,0,-2.821667,0,0
+D,loss + you,2,loss_plus_you_r2.json,p317_stop_busters,2011-06-08,196,0,-2.080283,0,-1.818939,0,0
+D,loss + you,2,loss_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,244,0,-4.662614,0,-4.526511,0,0
+D,loss + you,3,loss_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.086560,1,0.287359,1,4
+D,loss + you,3,loss_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-1.365581,0,-1.621928,0,4
+D,loss + you,3,loss_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.700878,0,-2.603831,0,4
+D,loss + you,3,loss_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-4.661241,0,-4.125098,0,4
+D,loss + you,3,loss_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-2.830664,0,-2.845468,0,4
+D,loss + you,3,loss_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.993502,0,-5.537518,0,4
+D,loss + you,4,loss_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.627214,1,-1.243153,0,4
+D,loss + you,4,loss_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,0.078425,1,0.488153,1,4
+D,loss + you,4,loss_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,1,-3.232124,0,-2.123958,0,4
+D,loss + you,4,loss_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-4.925197,0,-3.963243,0,4
+D,loss + you,4,loss_plus_you_r4.json,p317_stop_busters,2011-06-08,196,0,-3.396388,0,-3.074583,0,4
+D,loss + you,4,loss_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,244,0,-4.764229,0,-4.437386,0,4
+D,loss + you,5,loss_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.756090,1,-0.756290,1,3
+D,loss + you,5,loss_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,0,0.009444,1,-0.296524,1,3
+D,loss + you,5,loss_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.213876,0,-2.618085,0,3
+D,loss + you,5,loss_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-3.564867,0,-3.532581,0,3
+D,loss + you,5,loss_plus_you_r5.json,p317_stop_busters,2011-06-08,196,0,-1.257419,0,-1.810890,0,3
+D,loss + you,5,loss_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,244,0,-4.588887,0,-5.153888,0,3
+D,loss + you,6,loss_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.404054,1,1.392036,1,0
+D,loss + you,6,loss_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,0,0.072799,1,-0.258030,1,0
+D,loss + you,6,loss_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.283099,0,-2.460363,0,0
+D,loss + you,6,loss_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-3.590537,0,-4.213496,0,0
+D,loss + you,6,loss_plus_you_r6.json,p317_stop_busters,2011-06-08,194,0,-2.904399,0,-3.108895,0,0
+D,loss + you,6,loss_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-5.529210,0,-5.395528,0,0
+D,loss + you,7,loss_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.696671,1,-0.872820,1,4
+D,loss + you,7,loss_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,0,-0.472315,1,-1.023216,0,4
+D,loss + you,7,loss_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.515394,0,-2.743526,0,4
+D,loss + you,7,loss_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-4.782591,0,-4.286380,0,4
+D,loss + you,7,loss_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-3.920668,0,-3.688747,0,4
+D,loss + you,7,loss_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-5.288353,0,-5.156671,0,4
+D,loss + you,8,loss_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.550195,1,0.898731,1,1
+D,loss + you,8,loss_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,1.239520,1,1.471989,1,1
+D,loss + you,8,loss_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.882466,1,-1.212242,0,1
+D,loss + you,8,loss_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,192,0,-3.222157,0,-3.247123,0,1
+D,loss + you,8,loss_plus_you_r8.json,p317_stop_busters,2011-06-08,196,0,-2.845887,0,-2.465595,0,1
+D,loss + you,8,loss_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,246,0,-4.028509,0,-3.651099,0,1
+D,loss + you,9,loss_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-2.637045,0,-0.910054,0,1
+D,loss + you,9,loss_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,0,-2.037374,0,-1.390425,0,1
+D,loss + you,9,loss_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.556386,0,-2.499487,0,1
+D,loss + you,9,loss_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-3.437526,0,-3.567820,0,1
+D,loss + you,9,loss_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-2.665473,0,-2.375500,0,1
+D,loss + you,9,loss_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-3.610631,0,-3.620119,0,1
+D,loss,0,loss_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.932326,1,1.870737,1,3
+D,loss,0,loss_r0.json,p316_bust_through_it,2011-01-12,76,1,1.504876,1,1.494366,1,3
+D,loss,0,loss_r0.json,p252_screw_other_people_harder,2011-04-01,128,0,-2.765915,0,-2.885507,0,3
+D,loss,0,loss_r0.json,p250_grow_our_mafia,2011-06-08,192,0,-5.437156,0,-5.769056,0,3
+D,loss,0,loss_r0.json,p317_stop_busters,2011-06-08,196,0,-5.954935,0,-6.664752,0,3
+D,loss,0,loss_r0.json,p253_11_oclock_rule,2011-08-05,244,0,-5.279597,0,-5.568343,0,3
+D,loss,1,loss_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.242218,1,1.220246,1,4
+D,loss,1,loss_r1.json,p316_bust_through_it,2011-01-12,76,0,0.069622,1,-0.474421,1,4
+D,loss,1,loss_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.774740,0,-3.118675,0,4
+D,loss,1,loss_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-3.654620,0,-3.932424,0,4
+D,loss,1,loss_r1.json,p317_stop_busters,2011-06-08,194,0,-3.827404,0,-4.167857,0,4
+D,loss,1,loss_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.233534,0,-4.299965,0,4
+D,loss,2,loss_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.123483,1,0.647228,1,2
+D,loss,2,loss_r2.json,p316_bust_through_it,2011-01-12,76,1,-0.188239,1,0.458020,1,2
+D,loss,2,loss_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.667168,0,-1.781287,0,2
+D,loss,2,loss_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-4.120726,0,-4.189428,0,2
+D,loss,2,loss_r2.json,p317_stop_busters,2011-06-08,196,0,-4.087404,0,-4.061858,0,2
+D,loss,2,loss_r2.json,p253_11_oclock_rule,2011-08-05,244,0,-4.197635,0,-4.257665,0,2
+D,loss,3,loss_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.979346,1,1.198097,1,0
+D,loss,3,loss_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.393905,1,-0.890754,0,0
+D,loss,3,loss_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.510553,0,-3.978736,0,0
+D,loss,3,loss_r3.json,p250_grow_our_mafia,2011-06-08,192,0,-4.644648,0,-4.891887,0,0
+D,loss,3,loss_r3.json,p317_stop_busters,2011-06-08,196,0,-5.233244,0,-4.580237,0,0
+D,loss,3,loss_r3.json,p253_11_oclock_rule,2011-08-05,244,0,-4.665656,0,-4.265678,0,0
+D,loss,4,loss_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.622058,0,-2.136501,0,2
+D,loss,4,loss_r4.json,p316_bust_through_it,2011-01-12,76,0,-2.765548,0,-3.414409,0,2
+D,loss,4,loss_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.550802,0,-4.227208,0,2
+D,loss,4,loss_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-4.905037,0,-5.590716,0,2
+D,loss,4,loss_r4.json,p317_stop_busters,2011-06-08,196,0,-5.433409,0,-6.032623,0,2
+D,loss,4,loss_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-5.025211,0,-4.897475,0,2
+D,loss,5,loss_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.187709,1,1.505092,1,1
+D,loss,5,loss_r5.json,p316_bust_through_it,2011-01-12,76,1,0.449973,1,0.582488,1,1
+D,loss,5,loss_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.531674,0,-1.592883,0,1
+D,loss,5,loss_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-4.633000,0,-4.373514,0,1
+D,loss,5,loss_r5.json,p317_stop_busters,2011-06-08,196,0,-4.134296,0,-4.310851,0,1
+D,loss,5,loss_r5.json,p253_11_oclock_rule,2011-08-05,246,0,-5.588088,0,-5.193195,0,1
+D,loss,6,loss_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.437255,0,-1.405858,0,2
+D,loss,6,loss_r6.json,p316_bust_through_it,2011-01-12,78,1,-0.240683,1,0.378546,1,2
+D,loss,6,loss_r6.json,p252_screw_other_people_harder,2011-04-01,128,0,-2.618746,0,-2.512863,0,2
+D,loss,6,loss_r6.json,p250_grow_our_mafia,2011-06-08,194,0,-4.382640,0,-4.285949,0,2
+D,loss,6,loss_r6.json,p317_stop_busters,2011-06-08,198,0,-4.445096,0,-4.403728,0,2
+D,loss,6,loss_r6.json,p253_11_oclock_rule,2011-08-05,248,0,-5.602795,0,-5.669314,0,2
+D,loss,7,loss_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.179427,1,1.231638,1,1
+D,loss,7,loss_r7.json,p316_bust_through_it,2011-01-12,76,0,1.742229,1,0.891617,1,1
+D,loss,7,loss_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.910844,0,-2.148135,0,1
+D,loss,7,loss_r7.json,p250_grow_our_mafia,2011-06-08,192,0,-5.015477,0,-4.940328,0,1
+D,loss,7,loss_r7.json,p317_stop_busters,2011-06-08,196,0,-4.811790,0,-4.693193,0,1
+D,loss,7,loss_r7.json,p253_11_oclock_rule,2011-08-05,246,0,-5.932319,0,-5.780365,0,1
+D,loss,8,loss_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.246353,1,1.471355,1,0
+D,loss,8,loss_r8.json,p316_bust_through_it,2011-01-12,76,0,0.138556,1,-0.357657,1,0
+D,loss,8,loss_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.165867,0,-3.556766,0,0
+D,loss,8,loss_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.245456,0,-4.729010,0,0
+D,loss,8,loss_r8.json,p317_stop_busters,2011-06-08,194,0,-4.626494,0,-4.190441,0,0
+D,loss,8,loss_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-5.173972,0,-4.835515,0,0
+D,loss,9,loss_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.426407,1,1.565796,1,0
+D,loss,9,loss_r9.json,p316_bust_through_it,2011-01-12,76,0,-0.818337,1,-0.866779,1,0
+D,loss,9,loss_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.618611,0,-5.538964,0,0
+D,loss,9,loss_r9.json,p250_grow_our_mafia,2011-06-08,192,0,-5.702731,0,-5.284576,0,0
+D,loss,9,loss_r9.json,p317_stop_busters,2011-06-08,196,0,-6.286657,0,-5.566462,0,0
+D,loss,9,loss_r9.json,p253_11_oclock_rule,2011-08-05,246,0,-5.689330,0,-5.431839,0,0
+E,gain + you,0,gain_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.862355,0,-2.008929,0,4
+E,gain + you,0,gain_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,1,0.760747,1,1.336927,1,4
+E,gain + you,0,gain_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,1,-1.719863,0,-1.133335,0,4
+E,gain + you,0,gain_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,194,0,-3.212423,0,-3.307662,0,4
+E,gain + you,0,gain_plus_you_r0.json,p317_stop_busters,2011-06-08,198,0,-2.806524,0,-2.529721,0,4
+E,gain + you,0,gain_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,248,0,-4.552540,0,-3.905537,0,4
+E,gain + you,1,gain_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.275964,0,-1.392450,0,0
+E,gain + you,1,gain_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,0.528027,1,-0.043257,1,0
+E,gain + you,1,gain_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.754212,0,-3.001534,0,0
+E,gain + you,1,gain_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-3.398075,0,-3.985092,0,0
+E,gain + you,1,gain_plus_you_r1.json,p317_stop_busters,2011-06-08,194,0,-4.946705,0,-4.822595,0,0
+E,gain + you,1,gain_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-3.107201,0,-2.878707,0,0
+E,gain + you,2,gain_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.939132,0,-0.497239,1,3
+E,gain + you,2,gain_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,0.024378,1,0.793784,1,3
+E,gain + you,2,gain_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,1,-2.864166,0,-1.506972,0,3
+E,gain + you,2,gain_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-4.206974,0,-3.621684,0,3
+E,gain + you,2,gain_plus_you_r2.json,p317_stop_busters,2011-06-08,194,0,-3.634127,0,-3.400454,0,3
+E,gain + you,2,gain_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-3.193587,0,-3.060900,0,3
+E,gain + you,3,gain_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.982207,1,0.930028,1,4
+E,gain + you,3,gain_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,1,0.495789,1,1.050060,1,4
+E,gain + you,3,gain_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.472314,0,-1.615030,0,4
+E,gain + you,3,gain_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-3.109196,0,-3.171543,0,4
+E,gain + you,3,gain_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-2.853839,0,-2.754865,0,4
+E,gain + you,3,gain_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-6.200186,0,-5.679401,0,4
+E,gain + you,4,gain_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.707350,1,2.009079,1,3
+E,gain + you,4,gain_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,0,1.670303,1,1.280884,1,3
+E,gain + you,4,gain_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.547588,0,-2.155579,0,3
+E,gain + you,4,gain_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-4.456884,0,-4.105614,0,3
+E,gain + you,4,gain_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-3.632265,0,-4.092989,0,3
+E,gain + you,4,gain_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-2.978130,0,-3.624265,0,3
+E,gain + you,5,gain_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.536178,1,-0.741892,1,4
+E,gain + you,5,gain_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,0,-1.507550,0,-1.682370,0,4
+E,gain + you,5,gain_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.376022,0,-2.276766,0,4
+E,gain + you,5,gain_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-4.123814,0,-4.396497,0,4
+E,gain + you,5,gain_plus_you_r5.json,p317_stop_busters,2011-06-08,196,0,-2.752884,0,-2.841967,0,4
+E,gain + you,5,gain_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,246,0,-4.916241,0,-4.530370,0,4
+E,gain + you,6,gain_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.037041,0,-2.099060,0,1
+E,gain + you,6,gain_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,1,1.093816,1,1.524926,1,1
+E,gain + you,6,gain_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.002945,0,-1.864086,0,1
+E,gain + you,6,gain_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-3.025940,0,-2.962591,0,1
+E,gain + you,6,gain_plus_you_r6.json,p317_stop_busters,2011-06-08,196,0,-2.771935,0,-3.072196,0,1
+E,gain + you,6,gain_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-3.677978,0,-3.421795,0,1
+E,gain + you,7,gain_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.274715,0,-0.654765,1,2
+E,gain + you,7,gain_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,1.663758,1,2.486816,1,2
+E,gain + you,7,gain_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.450249,0,-5.182241,0,2
+E,gain + you,7,gain_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-6.784164,0,-6.398858,0,2
+E,gain + you,7,gain_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-8.480522,0,-8.631724,0,2
+E,gain + you,7,gain_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-6.883371,0,-6.830966,0,2
+E,gain + you,8,gain_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.039233,0,-1.201678,0,0
+E,gain + you,8,gain_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,0,1.107310,1,0.025853,1,0
+E,gain + you,8,gain_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,128,0,-2.009653,0,-2.840522,0,0
+E,gain + you,8,gain_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,192,0,-3.033188,0,-4.111957,0,0
+E,gain + you,8,gain_plus_you_r8.json,p317_stop_busters,2011-06-08,196,0,-2.571927,0,-3.081644,0,0
+E,gain + you,8,gain_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,244,0,-4.167775,0,-4.246905,0,0
+E,gain + you,9,gain_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.775967,1,1.126852,1,2
+E,gain + you,9,gain_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,1.140384,1,1.713758,1,2
+E,gain + you,9,gain_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.453053,0,-2.192148,0,2
+E,gain + you,9,gain_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-3.648098,0,-3.496166,0,2
+E,gain + you,9,gain_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-3.718235,0,-3.381704,0,2
+E,gain + you,9,gain_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-3.364174,0,-3.982496,0,2
+E,gain,0,gain_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.559278,0,-2.110265,0,3
+E,gain,0,gain_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.271105,0,-1.673779,0,3
+E,gain,0,gain_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.776701,0,-7.311488,0,3
+E,gain,0,gain_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.162104,0,-6.615377,0,3
+E,gain,0,gain_r0.json,p317_stop_busters,2011-06-08,194,0,-6.211592,0,-7.844864,0,3
+E,gain,0,gain_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.096856,0,-5.496308,0,3
+E,gain,1,gain_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.767304,0,-2.146360,0,4
+E,gain,1,gain_r1.json,p316_bust_through_it,2011-01-12,76,0,-1.048254,0,-1.494187,0,4
+E,gain,1,gain_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.013554,0,-3.255737,0,4
+E,gain,1,gain_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-4.532616,0,-4.948585,0,4
+E,gain,1,gain_r1.json,p317_stop_busters,2011-06-08,194,0,-3.935490,0,-4.455791,0,4
+E,gain,1,gain_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.630975,0,-4.272173,0,4
+E,gain,2,gain_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.644406,1,0.933444,1,3
+E,gain,2,gain_r2.json,p316_bust_through_it,2011-01-12,76,0,-1.891782,0,-1.800800,0,3
+E,gain,2,gain_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.114192,0,-3.673794,0,3
+E,gain,2,gain_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.134462,0,-5.723615,0,3
+E,gain,2,gain_r2.json,p317_stop_busters,2011-06-08,194,0,-5.215123,0,-5.586909,0,3
+E,gain,2,gain_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-4.119531,0,-4.060103,0,3
+E,gain,3,gain_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.894364,1,0.805344,1,2
+E,gain,3,gain_r3.json,p316_bust_through_it,2011-01-12,76,1,0.546102,1,1.004379,1,2
+E,gain,3,gain_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.971669,0,-1.688506,0,2
+E,gain,3,gain_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-3.434236,0,-3.250570,0,2
+E,gain,3,gain_r3.json,p317_stop_busters,2011-06-08,194,0,-4.166385,0,-3.273000,0,2
+E,gain,3,gain_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.958847,0,-4.971795,0,2
+E,gain,4,gain_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.279154,1,0.683357,1,2
+E,gain,4,gain_r4.json,p316_bust_through_it,2011-01-12,78,1,1.064363,1,1.955089,1,2
+E,gain,4,gain_r4.json,p252_screw_other_people_harder,2011-04-01,130,0,-3.272324,0,-2.979116,0,2
+E,gain,4,gain_r4.json,p250_grow_our_mafia,2011-06-08,194,0,-3.278442,0,-3.098881,0,2
+E,gain,4,gain_r4.json,p317_stop_busters,2011-06-08,198,0,-3.533973,0,-3.265089,0,2
+E,gain,4,gain_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-3.666350,0,-3.516932,0,2
+E,gain,5,gain_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.261501,1,0.417698,1,0
+E,gain,5,gain_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.412738,0,-2.429284,0,0
+E,gain,5,gain_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.746310,0,-5.958007,0,0
+E,gain,5,gain_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-5.053145,0,-4.864100,0,0
+E,gain,5,gain_r5.json,p317_stop_busters,2011-06-08,196,0,-4.666972,0,-4.207300,0,0
+E,gain,5,gain_r5.json,p253_11_oclock_rule,2011-08-05,246,0,-4.898809,0,-4.570124,0,0
+E,gain,6,gain_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.231223,1,-0.557898,1,4
+E,gain,6,gain_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.099297,0,-1.981409,0,4
+E,gain,6,gain_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.334871,0,-4.247495,0,4
+E,gain,6,gain_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-5.568966,0,-5.474101,0,4
+E,gain,6,gain_r6.json,p317_stop_busters,2011-06-08,194,0,-5.002013,0,-4.911436,0,4
+E,gain,6,gain_r6.json,p253_11_oclock_rule,2011-08-05,242,1,-4.921922,0,-3.399206,0,4
+E,gain,7,gain_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.194933,0,-1.354649,0,1
+E,gain,7,gain_r7.json,p316_bust_through_it,2011-01-12,76,1,1.216217,1,1.358423,1,1
+E,gain,7,gain_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.071486,0,-3.032107,0,1
+E,gain,7,gain_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-4.133867,0,-4.055124,0,1
+E,gain,7,gain_r7.json,p317_stop_busters,2011-06-08,194,0,-5.038191,0,-5.264161,0,1
+E,gain,7,gain_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.415399,0,-4.150320,0,1
+E,gain,8,gain_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.151160,1,-0.743502,1,4
+E,gain,8,gain_r8.json,p316_bust_through_it,2011-01-12,76,0,-2.070870,0,-2.536378,0,4
+E,gain,8,gain_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.431575,0,-4.420685,0,4
+E,gain,8,gain_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.177242,0,-5.210295,0,4
+E,gain,8,gain_r8.json,p317_stop_busters,2011-06-08,194,0,-7.707172,0,-7.810040,0,4
+E,gain,8,gain_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-5.868001,0,-5.577881,0,4
+E,gain,9,gain_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.810999,1,1.235177,1,2
+E,gain,9,gain_r9.json,p316_bust_through_it,2011-01-12,76,1,1.862753,1,2.914874,1,2
+E,gain,9,gain_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.660092,0,-4.782813,0,2
+E,gain,9,gain_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-2.729468,0,-1.955737,0,2
+E,gain,9,gain_r9.json,p317_stop_busters,2011-06-08,194,1,-2.194336,0,-0.386276,1,2
+E,gain,9,gain_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-4.154924,0,-4.378056,0,2
+E,loss + you,0,loss_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.494221,1,-0.503920,1,3
+E,loss + you,0,loss_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,1,1.251144,1,1.491407,1,3
+E,loss + you,0,loss_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.813488,1,-0.145126,1,3
+E,loss + you,0,loss_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,192,1,-3.515768,0,-2.524931,0,3
+E,loss + you,0,loss_plus_you_r0.json,p317_stop_busters,2011-06-08,196,0,-1.494065,0,-1.699161,0,3
+E,loss + you,0,loss_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,244,0,-4.052339,0,-4.013014,0,3
+E,loss + you,1,loss_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.141409,1,0.084050,1,4
+E,loss + you,1,loss_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,0,-0.046590,1,-0.847244,1,4
+E,loss + you,1,loss_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.771330,1,-0.980332,0,4
+E,loss + you,1,loss_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-4.190861,0,-4.039480,0,4
+E,loss + you,1,loss_plus_you_r1.json,p317_stop_busters,2011-06-08,194,0,-2.950522,0,-3.067785,0,4
+E,loss + you,1,loss_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,244,0,-3.493980,0,-3.992127,0,4
+E,loss + you,2,loss_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.709150,1,-0.599708,1,1
+E,loss + you,2,loss_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,0,0.895000,1,0.675189,1,1
+E,loss + you,2,loss_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,1,-1.082024,0,-0.791796,1,1
+E,loss + you,2,loss_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,196,1,-2.301582,0,-1.491444,0,1
+E,loss + you,2,loss_plus_you_r2.json,p317_stop_busters,2011-06-08,200,0,-1.948137,0,-1.722913,0,1
+E,loss + you,2,loss_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,256,0,-4.630415,0,-4.052776,0,1
+E,loss + you,3,loss_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.845673,1,0.395482,1,3
+E,loss + you,3,loss_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.285675,1,-1.578746,0,3
+E,loss + you,3,loss_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.410901,1,-0.983128,0,3
+E,loss + you,3,loss_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-2.444393,0,-2.739818,0,3
+E,loss + you,3,loss_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-1.287412,0,-2.015640,0,3
+E,loss + you,3,loss_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-4.193211,0,-4.457375,0,3
+E,loss + you,4,loss_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.000793,1,0.244814,1,4
+E,loss + you,4,loss_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,0,0.510381,1,-0.240847,1,4
+E,loss + you,4,loss_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.480202,0,-2.169804,0,4
+E,loss + you,4,loss_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,190,1,-2.586300,0,-1.997115,0,4
+E,loss + you,4,loss_plus_you_r4.json,p317_stop_busters,2011-06-08,194,0,-1.722016,0,-1.404940,0,4
+E,loss + you,4,loss_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.310420,0,-5.185460,0,4
+E,loss + you,5,loss_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.254415,1,1.459947,1,1
+E,loss + you,5,loss_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,1,0.022840,1,0.805204,1,1
+E,loss + you,5,loss_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.576413,0,-2.441435,0,1
+E,loss + you,5,loss_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-2.116697,0,-1.968629,0,1
+E,loss + you,5,loss_plus_you_r5.json,p317_stop_busters,2011-06-08,194,1,0.720226,1,1.485666,1,1
+E,loss + you,5,loss_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.712113,0,-4.156208,0,1
+E,loss + you,6,loss_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.061016,1,0.311719,1,2
+E,loss + you,6,loss_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,0,-0.195064,1,-0.314596,1,2
+E,loss + you,6,loss_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.160572,0,-1.729901,0,2
+E,loss + you,6,loss_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-2.262304,0,-2.176486,0,2
+E,loss + you,6,loss_plus_you_r6.json,p317_stop_busters,2011-06-08,194,0,-1.986143,0,-2.359075,0,2
+E,loss + you,6,loss_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.283648,0,-4.927523,0,2
+E,loss + you,7,loss_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.005619,1,-0.505350,1,4
+E,loss + you,7,loss_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,0.444422,1,0.510544,1,4
+E,loss + you,7,loss_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.524805,1,0.048527,1,4
+E,loss + you,7,loss_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,192,0,-1.447665,0,-1.468327,0,4
+E,loss + you,7,loss_plus_you_r7.json,p317_stop_busters,2011-06-08,196,1,-1.171084,0,-0.056410,1,4
+E,loss + you,7,loss_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,244,0,-4.743529,0,-4.443739,0,4
+E,loss + you,8,loss_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.644652,1,2.166849,1,0
+E,loss + you,8,loss_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,1.250297,1,2.111463,1,0
+E,loss + you,8,loss_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,1,-1.714677,0,-0.640122,1,0
+E,loss + you,8,loss_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,192,0,0.406653,1,0.411376,1,0
+E,loss + you,8,loss_plus_you_r8.json,p317_stop_busters,2011-06-08,196,1,0.645311,1,1.158481,1,0
+E,loss + you,8,loss_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,244,0,-4.233649,0,-3.841300,0,0
+E,loss + you,9,loss_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-1.077638,0,-0.074014,1,1
+E,loss + you,9,loss_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,-1.832157,0,-0.563820,1,1
+E,loss + you,9,loss_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.701846,0,-1.684535,0,1
+E,loss + you,9,loss_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-3.283214,0,-3.033215,0,1
+E,loss + you,9,loss_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-3.074637,0,-2.955321,0,1
+E,loss + you,9,loss_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-4.240219,0,-4.538189,0,1
+E,loss,0,loss_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.389124,1,1.742595,1,0
+E,loss,0,loss_r0.json,p316_bust_through_it,2011-01-12,76,1,2.283962,1,2.224951,1,0
+E,loss,0,loss_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.895806,0,-2.210902,0,0
+E,loss,0,loss_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-2.257970,0,-2.732696,0,0
+E,loss,0,loss_r0.json,p317_stop_busters,2011-06-08,194,0,-3.750228,0,-3.317203,0,0
+E,loss,0,loss_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-5.389979,0,-5.709592,0,0
+E,loss,1,loss_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.806994,0,-2.215800,0,2
+E,loss,1,loss_r1.json,p316_bust_through_it,2011-01-12,76,0,-2.197361,0,-2.555607,0,2
+E,loss,1,loss_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.886754,0,-5.595589,0,2
+E,loss,1,loss_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-5.196844,0,-5.387099,0,2
+E,loss,1,loss_r1.json,p317_stop_busters,2011-06-08,194,0,-4.509369,0,-4.921082,0,2
+E,loss,1,loss_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-4.577723,0,-4.685450,0,2
+E,loss,2,loss_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.716929,1,2.394654,1,3
+E,loss,2,loss_r2.json,p316_bust_through_it,2011-01-12,76,0,1.308965,1,0.269164,1,3
+E,loss,2,loss_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.736466,0,-3.450863,0,3
+E,loss,2,loss_r2.json,p250_grow_our_mafia,2011-06-08,192,0,-3.492356,0,-3.624745,0,3
+E,loss,2,loss_r2.json,p317_stop_busters,2011-06-08,196,0,-3.330612,0,-3.766124,0,3
+E,loss,2,loss_r2.json,p253_11_oclock_rule,2011-08-05,246,0,-5.506337,0,-5.579775,0,3
+E,loss,3,loss_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.054083,1,0.152064,1,0
+E,loss,3,loss_r3.json,p316_bust_through_it,2011-01-12,76,1,-1.327884,0,-1.071118,0,0
+E,loss,3,loss_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.633841,0,-4.840045,0,0
+E,loss,3,loss_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-3.531793,0,-3.172817,0,0
+E,loss,3,loss_r3.json,p317_stop_busters,2011-06-08,194,0,-5.263969,0,-4.671245,0,0
+E,loss,3,loss_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.076039,0,-5.029217,0,0
+E,loss,4,loss_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.932179,1,1.491691,1,0
+E,loss,4,loss_r4.json,p316_bust_through_it,2011-01-12,76,1,-0.889292,1,0.282728,1,0
+E,loss,4,loss_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.478767,0,-2.165133,0,0
+E,loss,4,loss_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-3.151106,0,-2.564726,0,0
+E,loss,4,loss_r4.json,p317_stop_busters,2011-06-08,194,0,-5.796815,0,-4.675916,0,0
+E,loss,4,loss_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-4.012712,0,-3.722054,0,0
+E,loss,5,loss_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.277051,1,-1.163571,0,3
+E,loss,5,loss_r5.json,p316_bust_through_it,2011-01-12,76,0,0.185133,1,-0.594369,1,3
+E,loss,5,loss_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.871540,1,-1.585744,0,3
+E,loss,5,loss_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-1.499135,0,-2.070735,0,3
+E,loss,5,loss_r5.json,p317_stop_busters,2011-06-08,194,0,-3.786659,0,-4.638990,0,3
+E,loss,5,loss_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-6.469544,0,-7.097016,0,3
+E,loss,6,loss_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.726359,1,1.691387,1,1
+E,loss,6,loss_r6.json,p316_bust_through_it,2011-01-12,76,1,-0.108067,1,0.737763,1,1
+E,loss,6,loss_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.075138,0,-2.744595,0,1
+E,loss,6,loss_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-3.308030,0,-2.911278,0,1
+E,loss,6,loss_r6.json,p317_stop_busters,2011-06-08,194,0,-3.682692,0,-4.075611,0,1
+E,loss,6,loss_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-7.125092,0,-6.626290,0,1
+E,loss,7,loss_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.047242,1,-0.118897,1,3
+E,loss,7,loss_r7.json,p316_bust_through_it,2011-01-12,76,1,0.190169,1,0.291976,1,3
+E,loss,7,loss_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.495062,0,-2.572968,0,3
+E,loss,7,loss_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-3.358909,0,-3.123457,0,3
+E,loss,7,loss_r7.json,p317_stop_busters,2011-06-08,194,0,-2.157415,0,-2.496526,0,3
+E,loss,7,loss_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.903624,0,-5.073956,0,3
+E,loss,8,loss_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.072550,0,-1.439384,0,4
+E,loss,8,loss_r8.json,p316_bust_through_it,2011-01-12,76,0,-1.233974,0,-1.179541,0,4
+E,loss,8,loss_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.637871,0,-3.532878,0,4
+E,loss,8,loss_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.393011,0,-4.418679,0,4
+E,loss,8,loss_r8.json,p317_stop_busters,2011-06-08,194,0,-4.916737,0,-4.908386,0,4
+E,loss,8,loss_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-5.498322,0,-4.907920,0,4
+E,loss,9,loss_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.440887,1,2.053100,1,0
+E,loss,9,loss_r9.json,p316_bust_through_it,2011-01-12,76,1,0.788329,1,1.567615,1,0
+E,loss,9,loss_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.480225,0,-1.866750,0,0
+E,loss,9,loss_r9.json,p250_grow_our_mafia,2011-06-08,192,1,-2.697613,0,-1.272560,0,0
+E,loss,9,loss_r9.json,p317_stop_busters,2011-06-08,196,0,-5.540751,0,-4.245639,0,0
+E,loss,9,loss_r9.json,p253_11_oclock_rule,2011-08-05,246,0,-4.285826,0,-4.205146,0,0
+E,neutral,0,neutral_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.512607,1,0.770559,1,3
+E,neutral,0,neutral_r0.json,p316_bust_through_it,2011-01-12,76,1,-0.808966,1,-0.184982,1,3
+E,neutral,0,neutral_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.209369,0,-3.759602,0,3
+E,neutral,0,neutral_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-4.705030,0,-4.336273,0,3
+E,neutral,0,neutral_r0.json,p317_stop_busters,2011-06-08,194,0,-4.069400,0,-3.895549,0,3
+E,neutral,0,neutral_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-3.942509,0,-3.955187,0,3
+E,neutral,1,neutral_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.387301,1,-0.613239,1,1
+E,neutral,1,neutral_r1.json,p316_bust_through_it,2011-01-12,76,0,-3.626622,0,-3.949601,0,1
+E,neutral,1,neutral_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.969384,0,-5.007615,0,1
+E,neutral,1,neutral_r1.json,p250_grow_our_mafia,2011-06-08,190,0,-6.537079,0,-6.689275,0,1
+E,neutral,1,neutral_r1.json,p317_stop_busters,2011-06-08,194,0,-6.090540,0,-6.627861,0,1
+E,neutral,1,neutral_r1.json,p253_11_oclock_rule,2011-08-05,242,0,-3.608682,0,-3.810958,0,1
+E,neutral,2,neutral_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.031561,0,-2.043603,0,1
+E,neutral,2,neutral_r2.json,p316_bust_through_it,2011-01-12,76,0,-3.302577,0,-3.597133,0,1
+E,neutral,2,neutral_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.743389,0,-6.372952,0,1
+E,neutral,2,neutral_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.990733,0,-7.042477,0,1
+E,neutral,2,neutral_r2.json,p317_stop_busters,2011-06-08,194,0,-5.711911,0,-5.948906,0,1
+E,neutral,2,neutral_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-5.197914,0,-5.402866,0,1
+E,neutral,3,neutral_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.637922,0,-1.858562,0,1
+E,neutral,3,neutral_r3.json,p316_bust_through_it,2011-01-12,76,0,-3.601243,0,-3.929410,0,1
+E,neutral,3,neutral_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.022465,0,-4.821109,0,1
+E,neutral,3,neutral_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-6.631647,0,-6.445778,0,1
+E,neutral,3,neutral_r3.json,p317_stop_busters,2011-06-08,194,0,-6.865839,0,-7.256429,0,1
+E,neutral,3,neutral_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-3.784936,0,-4.112935,0,1
+E,neutral,4,neutral_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.430048,0,-1.533492,0,2
+E,neutral,4,neutral_r4.json,p316_bust_through_it,2011-01-12,76,0,-2.555627,0,-2.833764,0,2
+E,neutral,4,neutral_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.531438,0,-4.879555,0,2
+E,neutral,4,neutral_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-6.364985,0,-6.414434,0,2
+E,neutral,4,neutral_r4.json,p317_stop_busters,2011-06-08,194,0,-6.136010,0,-6.130435,0,2
+E,neutral,4,neutral_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-5.138561,0,-5.607431,0,2
+E,neutral,5,neutral_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.138321,0,-0.970779,0,2
+E,neutral,5,neutral_r5.json,p316_bust_through_it,2011-01-12,76,0,-4.216203,0,-3.574161,0,2
+E,neutral,5,neutral_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.546422,0,-5.334153,0,2
+E,neutral,5,neutral_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.765802,0,-6.689581,0,2
+E,neutral,5,neutral_r5.json,p317_stop_busters,2011-06-08,194,0,-6.072115,0,-5.919297,0,2
+E,neutral,5,neutral_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.658604,0,-4.423150,0,2
+E,neutral,6,neutral_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.627896,1,1.635938,1,0
+E,neutral,6,neutral_r6.json,p316_bust_through_it,2011-01-12,76,0,-1.802057,0,-2.106573,0,0
+E,neutral,6,neutral_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.669684,0,-3.775427,0,0
+E,neutral,6,neutral_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-4.241477,0,-4.594990,0,0
+E,neutral,6,neutral_r6.json,p317_stop_busters,2011-06-08,194,0,-4.126449,0,-3.813751,0,0
+E,neutral,6,neutral_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.496290,0,-4.848243,0,0
+E,neutral,7,neutral_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.019574,1,0.897814,1,2
+E,neutral,7,neutral_r7.json,p316_bust_through_it,2011-01-12,76,0,-2.058016,0,-2.281406,0,2
+E,neutral,7,neutral_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.083666,0,-4.647422,0,2
+E,neutral,7,neutral_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-5.295556,0,-5.316967,0,2
+E,neutral,7,neutral_r7.json,p317_stop_busters,2011-06-08,194,0,-4.652321,0,-4.623279,0,2
+E,neutral,7,neutral_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.170496,0,-4.702118,0,2
+E,neutral,8,neutral_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.263306,1,-0.600992,1,0
+E,neutral,8,neutral_r8.json,p316_bust_through_it,2011-01-12,76,0,-3.218394,0,-3.690122,0,0
+E,neutral,8,neutral_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.631642,0,-6.280415,0,0
+E,neutral,8,neutral_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.964040,0,-6.768612,0,0
+E,neutral,8,neutral_r8.json,p317_stop_busters,2011-06-08,194,0,-5.549829,0,-5.316984,0,0
+E,neutral,8,neutral_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-4.487163,0,-4.809025,0,0
+E,neutral,9,neutral_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.715667,1,-0.430324,1,1
+E,neutral,9,neutral_r9.json,p316_bust_through_it,2011-01-12,76,0,-2.122617,0,-2.418297,0,1
+E,neutral,9,neutral_r9.json,p252_screw_other_people_harder,2011-04-01,130,0,-4.916316,0,-4.498517,0,1
+E,neutral,9,neutral_r9.json,p250_grow_our_mafia,2011-06-08,202,0,-5.727965,0,-5.626135,0,1
+E,neutral,9,neutral_r9.json,p317_stop_busters,2011-06-08,206,0,-5.139163,0,-5.437877,0,1
+E,neutral,9,neutral_r9.json,p253_11_oclock_rule,2011-08-05,260,0,-3.703951,0,-3.889838,0,1
+F,gain + you,0,gain_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,3.748484,1,3.661296,1,1
+F,gain + you,0,gain_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,1,2.042975,1,2.637338,1,1
+F,gain + you,0,gain_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.392894,1,-0.888319,1,1
+F,gain + you,0,gain_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-3.340690,0,-3.477487,0,1
+F,gain + you,0,gain_plus_you_r0.json,p317_stop_busters,2011-06-08,194,0,-3.486057,0,-3.644106,0,1
+F,gain + you,0,gain_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-3.367553,0,-3.392202,0,1
+F,gain + you,1,gain_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.054704,1,0.414216,1,4
+F,gain + you,1,gain_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,1,1.166528,1,1.531127,1,4
+F,gain + you,1,gain_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.885283,0,-1.776213,0,4
+F,gain + you,1,gain_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-3.188716,0,-3.241337,0,4
+F,gain + you,1,gain_plus_you_r1.json,p317_stop_busters,2011-06-08,196,0,-2.495785,0,-2.369997,0,4
+F,gain + you,1,gain_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,250,0,-3.438298,0,-3.180894,0,4
+F,gain + you,2,gain_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.993494,1,2.001773,1,4
+F,gain + you,2,gain_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,1.125861,1,1.380797,1,4
+F,gain + you,2,gain_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,128,0,-1.775285,0,-1.759959,0,4
+F,gain + you,2,gain_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,194,0,-3.502613,0,-3.587911,0,4
+F,gain + you,2,gain_plus_you_r2.json,p317_stop_busters,2011-06-08,198,0,-2.977923,0,-2.826456,0,4
+F,gain + you,2,gain_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,250,0,-4.672909,0,-4.391211,0,4
+F,gain + you,3,gain_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.004236,1,1.975308,1,0
+F,gain + you,3,gain_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,1,2.219674,1,1.887066,1,0
+F,gain + you,3,gain_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.916680,0,-0.866026,1,0
+F,gain + you,3,gain_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-1.783514,0,-2.589020,0,0
+F,gain + you,3,gain_plus_you_r3.json,p317_stop_busters,2011-06-08,194,0,-1.638201,0,-1.728411,0,0
+F,gain + you,3,gain_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-3.355147,0,-3.767012,0,0
+F,gain + you,4,gain_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.853353,1,1.928326,1,0
+F,gain + you,4,gain_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,2.465571,1,2.606553,1,0
+F,gain + you,4,gain_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.449410,1,0.323607,1,0
+F,gain + you,4,gain_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-2.594113,0,-2.359565,0,0
+F,gain + you,4,gain_plus_you_r4.json,p317_stop_busters,2011-06-08,196,1,-2.173211,0,-0.892115,0,0
+F,gain + you,4,gain_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,244,1,-4.354049,0,-2.903674,0,0
+F,gain + you,5,gain_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,3.753736,1,3.523996,1,2
+F,gain + you,5,gain_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,1,2.783120,1,2.755584,1,2
+F,gain + you,5,gain_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.940014,0,-0.898629,0,2
+F,gain + you,5,gain_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-1.681591,0,-1.913696,0,2
+F,gain + you,5,gain_plus_you_r5.json,p317_stop_busters,2011-06-08,194,0,0.152685,1,-0.289871,1,2
+F,gain + you,5,gain_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-3.115028,0,-3.625745,0,2
+F,gain + you,6,gain_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.092861,1,1.857233,1,1
+F,gain + you,6,gain_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,1,1.401156,1,1.716483,1,1
+F,gain + you,6,gain_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,128,0,0.002404,1,-0.532029,1,1
+F,gain + you,6,gain_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-3.504007,0,-3.367520,0,1
+F,gain + you,6,gain_plus_you_r6.json,p317_stop_busters,2011-06-08,196,0,-1.095629,0,-1.141838,0,1
+F,gain + you,6,gain_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,244,0,-4.079518,0,-3.489830,0,1
+F,gain + you,7,gain_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.870745,1,1.134605,1,3
+F,gain + you,7,gain_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,2.036568,1,2.345358,1,3
+F,gain + you,7,gain_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.926195,0,-2.070540,0,3
+F,gain + you,7,gain_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-3.495088,0,-3.536533,0,3
+F,gain + you,7,gain_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-3.657307,0,-4.521243,0,3
+F,gain + you,7,gain_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.746509,0,-3.976361,0,3
+F,gain + you,8,gain_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.508701,1,2.587085,1,2
+F,gain + you,8,gain_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,1.496287,1,1.625691,1,2
+F,gain + you,8,gain_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.045169,0,-1.445385,0,2
+F,gain + you,8,gain_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-3.313974,0,-3.599059,0,2
+F,gain + you,8,gain_plus_you_r8.json,p317_stop_busters,2011-06-08,194,0,-2.040215,0,-2.420776,0,2
+F,gain + you,8,gain_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.029206,0,-3.323282,0,2
+F,gain + you,9,gain_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.263781,1,1.638806,1,1
+F,gain + you,9,gain_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,0.775813,1,1.066287,1,1
+F,gain + you,9,gain_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.732646,0,-2.043773,0,1
+F,gain + you,9,gain_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-3.486985,0,-3.593396,0,1
+F,gain + you,9,gain_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,-2.422891,0,-2.348905,0,1
+F,gain + you,9,gain_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-3.812059,0,-3.721740,0,1
+F,gain,0,gain_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.316651,1,0.041578,1,2
+F,gain,0,gain_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.733957,0,-1.983211,0,2
+F,gain,0,gain_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.641495,0,-4.032529,0,2
+F,gain,0,gain_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-4.320407,0,-4.637184,0,2
+F,gain,0,gain_r0.json,p317_stop_busters,2011-06-08,194,0,-3.717684,0,-3.878247,0,2
+F,gain,0,gain_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-3.654484,0,-3.375421,0,2
+F,gain,1,gain_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.090718,1,-0.414501,1,1
+F,gain,1,gain_r1.json,p316_bust_through_it,2011-01-12,76,0,0.191990,1,-0.468178,1,1
+F,gain,1,gain_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-7.133938,0,-7.615152,0,1
+F,gain,1,gain_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-5.881323,0,-6.413262,0,1
+F,gain,1,gain_r1.json,p317_stop_busters,2011-06-08,196,0,-5.645741,0,-6.430732,0,1
+F,gain,1,gain_r1.json,p253_11_oclock_rule,2011-08-05,246,0,-4.526093,0,-4.446256,0,1
+F,gain,2,gain_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.124494,1,0.088706,1,4
+F,gain,2,gain_r2.json,p316_bust_through_it,2011-01-12,76,1,-1.624511,0,-0.747588,1,4
+F,gain,2,gain_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.766854,0,-4.419540,0,4
+F,gain,2,gain_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-8.499173,0,-8.591671,0,4
+F,gain,2,gain_r2.json,p317_stop_busters,2011-06-08,194,0,-7.911838,0,-7.907939,0,4
+F,gain,2,gain_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-4.125207,0,-3.937463,0,4
+F,gain,3,gain_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.317383,1,0.808771,1,2
+F,gain,3,gain_r3.json,p316_bust_through_it,2011-01-12,76,0,-0.049180,1,-0.674021,1,2
+F,gain,3,gain_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.424368,0,-2.573569,0,2
+F,gain,3,gain_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-3.949050,0,-4.169677,0,2
+F,gain,3,gain_r3.json,p317_stop_busters,2011-06-08,194,0,-3.159901,0,-3.353837,0,2
+F,gain,3,gain_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-3.641804,0,-4.102589,0,2
+F,gain,4,gain_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.099744,0,-1.217693,0,4
+F,gain,4,gain_r4.json,p316_bust_through_it,2011-01-12,76,0,-2.800288,0,-2.917425,0,4
+F,gain,4,gain_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.420780,0,-5.491497,0,4
+F,gain,4,gain_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-4.697538,0,-4.912274,0,4
+F,gain,4,gain_r4.json,p317_stop_busters,2011-06-08,194,0,-4.272138,0,-4.095957,0,4
+F,gain,4,gain_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-2.475963,0,-2.377922,0,4
+F,gain,5,gain_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.936114,1,0.437890,1,0
+F,gain,5,gain_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.089516,0,-2.378472,0,0
+F,gain,5,gain_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.958982,0,-6.469852,0,0
+F,gain,5,gain_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.647672,0,-6.394390,0,0
+F,gain,5,gain_r5.json,p317_stop_busters,2011-06-08,194,0,-6.646676,0,-5.926121,0,0
+F,gain,5,gain_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-6.287993,0,-6.482920,0,0
+F,gain,6,gain_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.183904,1,0.074433,1,2
+F,gain,6,gain_r6.json,p316_bust_through_it,2011-01-12,76,1,0.978065,1,1.170070,1,2
+F,gain,6,gain_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.556928,0,-2.546293,0,2
+F,gain,6,gain_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-2.934218,0,-3.015587,0,2
+F,gain,6,gain_r6.json,p317_stop_busters,2011-06-08,194,0,-2.457984,0,-2.572529,0,2
+F,gain,6,gain_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-3.546506,0,-3.908102,0,2
+F,gain,7,gain_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.132386,1,0.203772,1,4
+F,gain,7,gain_r7.json,p316_bust_through_it,2011-01-12,76,0,-0.513240,1,-0.750134,1,4
+F,gain,7,gain_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.444932,0,-4.868880,0,4
+F,gain,7,gain_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-4.952069,0,-5.098259,0,4
+F,gain,7,gain_r7.json,p317_stop_busters,2011-06-08,194,0,-4.289419,0,-4.557772,0,4
+F,gain,7,gain_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.623234,0,-3.982582,0,4
+F,gain,8,gain_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.608497,1,-0.004891,1,3
+F,gain,8,gain_r8.json,p316_bust_through_it,2011-01-12,76,1,0.208454,1,0.807168,1,3
+F,gain,8,gain_r8.json,p252_screw_other_people_harder,2011-04-01,126,1,-3.549935,0,-2.342839,0,3
+F,gain,8,gain_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-4.240724,0,-3.797706,0,3
+F,gain,8,gain_r8.json,p317_stop_busters,2011-06-08,194,0,-1.659469,0,-1.690546,0,3
+F,gain,8,gain_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.804400,0,-3.988325,0,3
+F,gain,9,gain_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.580655,0,-2.520908,0,1
+F,gain,9,gain_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.708876,0,-3.783608,0,1
+F,gain,9,gain_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-7.209169,0,-7.552758,0,1
+F,gain,9,gain_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.824633,0,-6.661710,0,1
+F,gain,9,gain_r9.json,p317_stop_busters,2011-06-08,194,0,-7.034574,0,-7.250280,0,1
+F,gain,9,gain_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-6.802881,0,-7.113084,0,1
+F,loss + you,0,loss_plus_you_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.534871,1,-0.173925,1,0
+F,loss + you,0,loss_plus_you_r0.json,p316_bust_through_it,2011-01-12,76,0,2.782116,1,1.888912,1,0
+F,loss + you,0,loss_plus_you_r0.json,p252_screw_other_people_harder,2011-04-01,126,1,-0.177309,1,0.056496,1,0
+F,loss + you,0,loss_plus_you_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-0.808077,1,-1.275181,0,0
+F,loss + you,0,loss_plus_you_r0.json,p317_stop_busters,2011-06-08,194,0,0.379323,1,-0.072645,1,0
+F,loss + you,0,loss_plus_you_r0.json,p253_11_oclock_rule,2011-08-05,242,0,-4.160534,0,-3.917723,0,0
+F,loss + you,1,loss_plus_you_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.289347,1,2.643093,1,1
+F,loss + you,1,loss_plus_you_r1.json,p316_bust_through_it,2011-01-12,76,1,3.134060,1,3.319454,1,1
+F,loss + you,1,loss_plus_you_r1.json,p252_screw_other_people_harder,2011-04-01,128,1,0.755499,1,0.871965,1,1
+F,loss + you,1,loss_plus_you_r1.json,p250_grow_our_mafia,2011-06-08,194,1,0.056265,1,0.227211,1,1
+F,loss + you,1,loss_plus_you_r1.json,p317_stop_busters,2011-06-08,198,0,-0.798652,1,-1.004259,0,1
+F,loss + you,1,loss_plus_you_r1.json,p253_11_oclock_rule,2011-08-05,246,1,-3.508112,0,-1.660183,0,1
+F,loss + you,2,loss_plus_you_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.501362,1,2.704269,1,1
+F,loss + you,2,loss_plus_you_r2.json,p316_bust_through_it,2011-01-12,76,1,2.587430,1,2.544346,1,1
+F,loss + you,2,loss_plus_you_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.435313,1,-0.632954,1,1
+F,loss + you,2,loss_plus_you_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-0.663921,1,-0.682070,1,1
+F,loss + you,2,loss_plus_you_r2.json,p317_stop_busters,2011-06-08,194,1,0.214555,1,0.546119,1,1
+F,loss + you,2,loss_plus_you_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-3.724662,0,-3.280323,0,1
+F,loss + you,3,loss_plus_you_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.508091,1,1.674140,1,4
+F,loss + you,3,loss_plus_you_r3.json,p316_bust_through_it,2011-01-12,76,1,1.629319,1,2.061993,1,4
+F,loss + you,3,loss_plus_you_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.969691,0,-0.611293,1,4
+F,loss + you,3,loss_plus_you_r3.json,p250_grow_our_mafia,2011-06-08,192,0,-2.548599,0,-2.295675,0,4
+F,loss + you,3,loss_plus_you_r3.json,p317_stop_busters,2011-06-08,196,1,-3.051258,0,-1.192321,0,4
+F,loss + you,3,loss_plus_you_r3.json,p253_11_oclock_rule,2011-08-05,244,0,-3.134171,0,-2.397945,0,4
+F,loss + you,4,loss_plus_you_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.296536,1,2.481463,1,0
+F,loss + you,4,loss_plus_you_r4.json,p316_bust_through_it,2011-01-12,76,1,2.020158,1,2.185609,1,0
+F,loss + you,4,loss_plus_you_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.249407,0,-1.066123,0,0
+F,loss + you,4,loss_plus_you_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-1.292054,0,-1.430510,0,0
+F,loss + you,4,loss_plus_you_r4.json,p317_stop_busters,2011-06-08,196,1,-0.304141,1,0.402937,1,0
+F,loss + you,4,loss_plus_you_r4.json,p253_11_oclock_rule,2011-08-05,244,0,-4.202210,0,-3.665125,0,0
+F,loss + you,5,loss_plus_you_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.930031,1,3.537167,1,4
+F,loss + you,5,loss_plus_you_r5.json,p316_bust_through_it,2011-01-12,76,1,1.778134,1,2.387669,1,4
+F,loss + you,5,loss_plus_you_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.781348,1,-0.729263,1,4
+F,loss + you,5,loss_plus_you_r5.json,p250_grow_our_mafia,2011-06-08,192,0,-1.890078,0,-1.661796,0,4
+F,loss + you,5,loss_plus_you_r5.json,p317_stop_busters,2011-06-08,196,1,-1.792772,0,-0.249480,1,4
+F,loss + you,5,loss_plus_you_r5.json,p253_11_oclock_rule,2011-08-05,244,0,-2.695929,0,-2.619695,0,4
+F,loss + you,6,loss_plus_you_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.116498,1,2.312829,1,3
+F,loss + you,6,loss_plus_you_r6.json,p316_bust_through_it,2011-01-12,76,1,0.555767,1,0.662624,1,3
+F,loss + you,6,loss_plus_you_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.654855,1,-0.739641,1,3
+F,loss + you,6,loss_plus_you_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-2.211724,0,-2.280863,0,3
+F,loss + you,6,loss_plus_you_r6.json,p317_stop_busters,2011-06-08,194,0,-1.072573,0,-1.396726,0,3
+F,loss + you,6,loss_plus_you_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-3.073598,0,-3.105255,0,3
+F,loss + you,7,loss_plus_you_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.072535,1,-0.361106,1,2
+F,loss + you,7,loss_plus_you_r7.json,p316_bust_through_it,2011-01-12,76,1,1.557261,1,1.776354,1,2
+F,loss + you,7,loss_plus_you_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-0.038590,1,-0.093422,1,2
+F,loss + you,7,loss_plus_you_r7.json,p250_grow_our_mafia,2011-06-08,190,1,-2.339469,0,-1.770980,0,2
+F,loss + you,7,loss_plus_you_r7.json,p317_stop_busters,2011-06-08,194,0,-1.303166,0,-1.579120,0,2
+F,loss + you,7,loss_plus_you_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.746717,0,-3.979677,0,2
+F,loss + you,8,loss_plus_you_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.114187,1,1.430688,1,0
+F,loss + you,8,loss_plus_you_r8.json,p316_bust_through_it,2011-01-12,76,1,1.472648,1,1.149314,1,0
+F,loss + you,8,loss_plus_you_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.281210,0,-1.500930,0,0
+F,loss + you,8,loss_plus_you_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-2.088199,0,-3.144779,0,0
+F,loss + you,8,loss_plus_you_r8.json,p317_stop_busters,2011-06-08,194,0,-1.005954,0,-1.687502,0,0
+F,loss + you,8,loss_plus_you_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.586936,0,-3.599192,0,0
+F,loss + you,9,loss_plus_you_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,3.107680,1,3.057708,1,3
+F,loss + you,9,loss_plus_you_r9.json,p316_bust_through_it,2011-01-12,76,1,2.968709,1,3.202790,1,3
+F,loss + you,9,loss_plus_you_r9.json,p252_screw_other_people_harder,2011-04-01,126,1,0.156024,1,0.221793,1,3
+F,loss + you,9,loss_plus_you_r9.json,p250_grow_our_mafia,2011-06-08,190,1,0.098601,1,0.398899,1,3
+F,loss + you,9,loss_plus_you_r9.json,p317_stop_busters,2011-06-08,194,0,0.256015,1,-0.102549,1,3
+F,loss + you,9,loss_plus_you_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-2.787722,0,-3.039444,0,3
+F,loss,0,loss_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.067148,1,1.169273,1,0
+F,loss,0,loss_r0.json,p316_bust_through_it,2011-01-12,76,0,0.600989,1,0.127932,1,0
+F,loss,0,loss_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.662308,0,-3.001901,0,0
+F,loss,0,loss_r0.json,p250_grow_our_mafia,2011-06-08,192,0,-3.141304,0,-3.715632,0,0
+F,loss,0,loss_r0.json,p317_stop_busters,2011-06-08,196,0,-4.160392,0,-3.968452,0,0
+F,loss,0,loss_r0.json,p253_11_oclock_rule,2011-08-05,246,0,-3.121247,0,-3.754027,0,0
+F,loss,1,loss_r1.json,p344_i_can_hunt_with_u,2011-01-07,28,1,0.367644,1,0.850314,1,0
+F,loss,1,loss_r1.json,p316_bust_through_it,2011-01-12,76,0,1.745818,1,1.012148,1,0
+F,loss,1,loss_r1.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.355253,0,-2.494800,0,0
+F,loss,1,loss_r1.json,p250_grow_our_mafia,2011-06-08,192,0,-1.757986,0,-1.944647,0,0
+F,loss,1,loss_r1.json,p317_stop_busters,2011-06-08,196,1,-2.459739,0,-1.126049,0,0
+F,loss,1,loss_r1.json,p253_11_oclock_rule,2011-08-05,244,0,-4.545451,0,-4.789044,0,0
+F,loss,2,loss_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.800144,1,1.482116,1,2
+F,loss,2,loss_r2.json,p316_bust_through_it,2011-01-12,76,0,0.831627,1,0.417992,1,2
+F,loss,2,loss_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.450423,0,-2.970622,0,2
+F,loss,2,loss_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-2.675629,0,-3.013435,0,2
+F,loss,2,loss_r2.json,p317_stop_busters,2011-06-08,194,0,-3.873759,0,-4.527524,0,2
+F,loss,2,loss_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-3.009693,0,-3.528644,0,2
+F,loss,3,loss_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.527698,1,2.744594,1,2
+F,loss,3,loss_r3.json,p316_bust_through_it,2011-01-12,76,1,0.756572,1,1.886050,1,2
+F,loss,3,loss_r3.json,p252_screw_other_people_harder,2011-04-01,126,1,-2.473050,0,-1.182556,0,2
+F,loss,3,loss_r3.json,p250_grow_our_mafia,2011-06-08,192,1,-1.627964,0,-0.313379,1,2
+F,loss,3,loss_r3.json,p317_stop_busters,2011-06-08,196,0,-4.044697,0,-3.795503,0,2
+F,loss,3,loss_r3.json,p253_11_oclock_rule,2011-08-05,244,0,-4.360035,0,-4.434881,0,2
+F,loss,4,loss_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,1.248332,1,0.869276,1,2
+F,loss,4,loss_r4.json,p316_bust_through_it,2011-01-12,76,1,0.057627,1,0.032038,1,2
+F,loss,4,loss_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.047143,0,-2.478695,0,2
+F,loss,4,loss_r4.json,p250_grow_our_mafia,2011-06-08,192,0,-3.014310,0,-3.341840,0,2
+F,loss,4,loss_r4.json,p317_stop_busters,2011-06-08,196,0,-3.073032,0,-3.645047,0,2
+F,loss,4,loss_r4.json,p253_11_oclock_rule,2011-08-05,246,0,-3.796371,0,-4.264023,0,2
+F,loss,5,loss_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.440335,1,1.691467,1,3
+F,loss,5,loss_r5.json,p316_bust_through_it,2011-01-12,76,1,0.990139,1,1.034590,1,3
+F,loss,5,loss_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.853381,0,-2.678711,0,3
+F,loss,5,loss_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-3.500827,0,-3.370998,0,3
+F,loss,5,loss_r5.json,p317_stop_busters,2011-06-08,194,0,-2.956432,0,-3.522908,0,3
+F,loss,5,loss_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-4.832766,0,-5.245792,0,3
+F,loss,6,loss_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.214596,1,1.222047,1,3
+F,loss,6,loss_r6.json,p316_bust_through_it,2011-01-12,76,0,0.564853,1,0.400528,1,3
+F,loss,6,loss_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.911006,0,-2.851246,0,3
+F,loss,6,loss_r6.json,p250_grow_our_mafia,2011-06-08,192,0,-3.900219,0,-3.559434,0,3
+F,loss,6,loss_r6.json,p317_stop_busters,2011-06-08,196,0,-3.465236,0,-3.426447,0,3
+F,loss,6,loss_r6.json,p253_11_oclock_rule,2011-08-05,246,0,-3.508785,0,-3.789596,0,3
+F,loss,7,loss_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.111910,1,1.418645,1,4
+F,loss,7,loss_r7.json,p316_bust_through_it,2011-01-12,76,1,-0.259368,1,0.307939,1,4
+F,loss,7,loss_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.451838,0,-2.573489,0,4
+F,loss,7,loss_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-3.586061,0,-3.569413,0,4
+F,loss,7,loss_r7.json,p317_stop_busters,2011-06-08,194,0,-4.835377,0,-4.637727,0,4
+F,loss,7,loss_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-4.341989,0,-4.120796,0,4
+F,loss,8,loss_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,1,1.495538,1,1.999145,1,0
+F,loss,8,loss_r8.json,p316_bust_through_it,2011-01-12,76,0,-0.557529,1,-1.406035,0,0
+F,loss,8,loss_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-2.262038,0,-2.871348,0,0
+F,loss,8,loss_r8.json,p250_grow_our_mafia,2011-06-08,192,0,-3.196271,0,-3.660088,0,0
+F,loss,8,loss_r8.json,p317_stop_busters,2011-06-08,196,0,-3.871277,0,-3.487236,0,0
+F,loss,8,loss_r8.json,p253_11_oclock_rule,2011-08-05,246,0,-4.204016,0,-4.134739,0,0
+F,loss,9,loss_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,2.417804,1,2.538826,1,1
+F,loss,9,loss_r9.json,p316_bust_through_it,2011-01-12,76,1,2.143134,1,2.006560,1,1
+F,loss,9,loss_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-1.911546,0,-1.959622,0,1
+F,loss,9,loss_r9.json,p250_grow_our_mafia,2011-06-08,192,0,-2.687555,0,-2.615049,0,1
+F,loss,9,loss_r9.json,p317_stop_busters,2011-06-08,196,0,-3.266655,0,-3.651315,0,1
+F,loss,9,loss_r9.json,p253_11_oclock_rule,2011-08-05,246,0,-4.684831,0,-4.092173,0,1
+F,neutral,0,neutral_r0.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.933126,0,-0.923118,0,4
+F,neutral,0,neutral_r0.json,p316_bust_through_it,2011-01-12,76,0,-1.551648,0,-1.953201,0,4
+F,neutral,0,neutral_r0.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.698023,0,-5.007749,0,4
+F,neutral,0,neutral_r0.json,p250_grow_our_mafia,2011-06-08,190,0,-5.712277,0,-6.000089,0,4
+F,neutral,0,neutral_r0.json,p317_stop_busters,2011-06-08,194,0,-4.823762,0,-5.161592,0,4
+F,neutral,0,neutral_r0.json,p253_11_oclock_rule,2011-08-05,244,0,-4.147368,0,-4.053399,0,4
+F,neutral,1,neutral_r1.json,p344_i_can_hunt_with_u,2011-01-07,40,0,1.110971,1,0.377296,1,3
+F,neutral,1,neutral_r1.json,p316_bust_through_it,2011-01-12,136,0,-3.256859,0,-4.044108,0,3
+F,neutral,1,neutral_r1.json,p252_screw_other_people_harder,2011-04-01,230,0,-5.081996,0,-5.412199,0,3
+F,neutral,1,neutral_r1.json,p250_grow_our_mafia,2011-06-08,342,0,-7.547787,0,-7.951448,0,3
+F,neutral,1,neutral_r1.json,p317_stop_busters,2011-06-08,350,0,-6.007407,0,-6.734313,0,3
+F,neutral,1,neutral_r1.json,p253_11_oclock_rule,2011-08-05,440,0,-3.863586,0,-4.453750,0,3
+F,neutral,2,neutral_r2.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-0.308595,1,-0.554110,1,1
+F,neutral,2,neutral_r2.json,p316_bust_through_it,2011-01-12,76,0,-3.732808,0,-3.648376,0,1
+F,neutral,2,neutral_r2.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.003841,0,-5.344189,0,1
+F,neutral,2,neutral_r2.json,p250_grow_our_mafia,2011-06-08,190,0,-6.732109,0,-6.393225,0,1
+F,neutral,2,neutral_r2.json,p317_stop_busters,2011-06-08,194,0,-6.285963,0,-6.707816,0,1
+F,neutral,2,neutral_r2.json,p253_11_oclock_rule,2011-08-05,242,0,-3.894696,0,-3.801381,0,1
+F,neutral,3,neutral_r3.json,p344_i_can_hunt_with_u,2011-01-07,28,0,0.085200,1,-0.159773,1,3
+F,neutral,3,neutral_r3.json,p316_bust_through_it,2011-01-12,76,0,-2.871695,0,-2.849988,0,3
+F,neutral,3,neutral_r3.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.930233,0,-4.620091,0,3
+F,neutral,3,neutral_r3.json,p250_grow_our_mafia,2011-06-08,190,0,-5.677675,0,-5.468661,0,3
+F,neutral,3,neutral_r3.json,p317_stop_busters,2011-06-08,194,0,-5.436747,0,-5.274235,0,3
+F,neutral,3,neutral_r3.json,p253_11_oclock_rule,2011-08-05,242,0,-5.292641,0,-5.387058,0,3
+F,neutral,4,neutral_r4.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.107233,0,-1.426848,0,0
+F,neutral,4,neutral_r4.json,p316_bust_through_it,2011-01-12,76,0,-1.805563,0,-1.910160,0,0
+F,neutral,4,neutral_r4.json,p252_screw_other_people_harder,2011-04-01,126,0,-3.637079,0,-3.713403,0,0
+F,neutral,4,neutral_r4.json,p250_grow_our_mafia,2011-06-08,190,0,-5.194074,0,-5.630403,0,0
+F,neutral,4,neutral_r4.json,p317_stop_busters,2011-06-08,194,0,-4.980877,0,-5.080033,0,0
+F,neutral,4,neutral_r4.json,p253_11_oclock_rule,2011-08-05,242,0,-3.912744,0,-4.353291,0,0
+F,neutral,5,neutral_r5.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-2.787586,0,-3.026804,0,4
+F,neutral,5,neutral_r5.json,p316_bust_through_it,2011-01-12,76,0,-2.286025,0,-2.805727,0,4
+F,neutral,5,neutral_r5.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.511613,0,-4.713122,0,4
+F,neutral,5,neutral_r5.json,p250_grow_our_mafia,2011-06-08,190,0,-6.051288,0,-6.243292,0,4
+F,neutral,5,neutral_r5.json,p317_stop_busters,2011-06-08,194,0,-6.894679,0,-7.110061,0,4
+F,neutral,5,neutral_r5.json,p253_11_oclock_rule,2011-08-05,242,0,-5.326253,0,-5.224286,0,4
+F,neutral,6,neutral_r6.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-0.567376,1,0.009423,1,3
+F,neutral,6,neutral_r6.json,p316_bust_through_it,2011-01-12,76,0,-2.108740,0,-2.358763,0,3
+F,neutral,6,neutral_r6.json,p252_screw_other_people_harder,2011-04-01,126,0,-5.047500,0,-4.923701,0,3
+F,neutral,6,neutral_r6.json,p250_grow_our_mafia,2011-06-08,190,0,-6.064673,0,-6.631293,0,3
+F,neutral,6,neutral_r6.json,p317_stop_busters,2011-06-08,194,0,-5.826402,0,-6.257376,0,3
+F,neutral,6,neutral_r6.json,p253_11_oclock_rule,2011-08-05,242,0,-4.513106,0,-4.670079,0,3
+F,neutral,7,neutral_r7.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.213447,0,-1.217285,0,3
+F,neutral,7,neutral_r7.json,p316_bust_through_it,2011-01-12,76,0,-2.806560,0,-2.933422,0,3
+F,neutral,7,neutral_r7.json,p252_screw_other_people_harder,2011-04-01,126,0,-6.025784,0,-5.716106,0,3
+F,neutral,7,neutral_r7.json,p250_grow_our_mafia,2011-06-08,190,0,-6.003644,0,-6.182175,0,3
+F,neutral,7,neutral_r7.json,p317_stop_busters,2011-06-08,194,0,-6.304160,0,-6.741637,0,3
+F,neutral,7,neutral_r7.json,p253_11_oclock_rule,2011-08-05,242,0,-3.761077,0,-4.134538,0,3
+F,neutral,8,neutral_r8.json,p344_i_can_hunt_with_u,2011-01-07,28,0,-1.316043,0,-1.583831,0,2
+F,neutral,8,neutral_r8.json,p316_bust_through_it,2011-01-12,76,0,-3.282807,0,-3.707335,0,2
+F,neutral,8,neutral_r8.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.857468,0,-5.326428,0,2
+F,neutral,8,neutral_r8.json,p250_grow_our_mafia,2011-06-08,190,0,-5.179263,0,-5.745101,0,2
+F,neutral,8,neutral_r8.json,p317_stop_busters,2011-06-08,194,0,-4.788233,0,-5.047080,0,2
+F,neutral,8,neutral_r8.json,p253_11_oclock_rule,2011-08-05,242,0,-3.722681,0,-3.038876,0,2
+F,neutral,9,neutral_r9.json,p344_i_can_hunt_with_u,2011-01-07,28,1,-2.086763,0,-1.611017,0,1
+F,neutral,9,neutral_r9.json,p316_bust_through_it,2011-01-12,76,0,-3.402997,0,-3.389288,0,1
+F,neutral,9,neutral_r9.json,p252_screw_other_people_harder,2011-04-01,126,0,-4.799861,0,-4.527452,0,1
+F,neutral,9,neutral_r9.json,p250_grow_our_mafia,2011-06-08,190,0,-6.722374,0,-6.505811,0,1
+F,neutral,9,neutral_r9.json,p317_stop_busters,2011-06-08,194,0,-7.040213,0,-7.655427,0,1
+F,neutral,9,neutral_r9.json,p253_11_oclock_rule,2011-08-05,242,0,-5.620986,0,-5.959779,0,1
